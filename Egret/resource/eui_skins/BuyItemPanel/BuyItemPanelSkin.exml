@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BuyItemPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="636">
+	<e:Image id="bg" source="otherRes2_21" y="62.66"/>
+	<e:Image y="146" source="otherRes2_24" scale9Grid="19,19,66,66" anchorOffsetX="0" width="141" anchorOffsetY="0" height="141" horizontalCenter="0"/>
+	<e:Image id="itemImg" y="163.32" anchorOffsetX="0" anchorOffsetY="0" source="item_7" horizontalCenter="0"/>
+	<e:Image y="0" source="otherRes2_30" horizontalCenter="0"/>
+	<e:Image y="22.67" source="otherRes2_22" horizontalCenter="-4"/>
+	<e:Image id="closeBtn" y="34.01" horizontalCenter="282" source="functionPanel_4"/>
+	<e:Image x="216.36" y="375.64" source="otherRes2_31"/>
+	<e:Image y="423" source="otherRes2_23" horizontalCenter="0"/>
+	<e:Image id="_incBtn" x="422.48" y="452" source="otherRes2_25"/>
+	<e:Image id="_decBtn" x="144" y="452" source="otherRes2_26"/>
+	<e:Label id="itemName" text="Label" y="300.35" size="40" anchorOffsetX="0" width="378" textAlign="center" horizontalCenter="0"/>
+	<e:Label id="numLabel" text="X1" x="269.62" y="463.06" anchorOffsetX="0" width="98" anchorOffsetY="0" textAlign="center" size="40"/>
+	<e:Group id="_buyBtn" y="562" x="212">
+		<e:Image x="0" y="0" source="otherRes2_20"/>
+		<e:Label id="itemPrice" text="20" x="77.79" y="23" anchorOffsetX="0" width="98" anchorOffsetY="0" textAlign="center" size="40"/>
+		<e:Image y="8.34" anchorOffsetX="0" anchorOffsetY="0" source="item_1" x="12.84"/>
+	</e:Group>
+</e:Skin>

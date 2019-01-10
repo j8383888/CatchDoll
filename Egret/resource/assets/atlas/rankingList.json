@@ -1,0 +1,125 @@
+{
+  "file": "rankingList.png",
+  "frames": {
+    "rankingList_1": {
+      "x": 627,
+      "y": 351,
+      "w": 94,
+      "h": 45,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 94,
+      "sourceH": 45
+    },
+    "rankingList_2": {
+      "x": 513,
+      "y": 414,
+      "w": 153,
+      "h": 64,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 153,
+      "sourceH": 64
+    },
+    "rankingList_3": {
+      "x": 627,
+      "y": 286,
+      "w": 153,
+      "h": 64,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 153,
+      "sourceH": 64
+    },
+    "rankingList_4": {
+      "x": 513,
+      "y": 140,
+      "w": 128,
+      "h": 129,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 128,
+      "sourceH": 129
+    },
+    "rankingList_5": {
+      "x": 0,
+      "y": 957,
+      "w": 97,
+      "h": 47,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 97,
+      "sourceH": 47
+    },
+    "rankingList_6": {
+      "x": 0,
+      "y": 0,
+      "w": 512,
+      "h": 881,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 512,
+      "sourceH": 881
+    },
+    "rankingList_7": {
+      "x": 0,
+      "y": 882,
+      "w": 214,
+      "h": 74,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 214,
+      "sourceH": 74
+    },
+    "rankingList_8": {
+      "x": 513,
+      "y": 0,
+      "w": 442,
+      "h": 139,
+      "offX": 7,
+      "offY": 10,
+      "sourceW": 450,
+      "sourceH": 160
+    },
+    "rankingList_9": {
+      "x": 956,
+      "y": 0,
+      "w": 56,
+      "h": 56,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 56,
+      "sourceH": 56
+    },
+    "rankingList_10": {
+      "x": 513,
+      "y": 270,
+      "w": 113,
+      "h": 143,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 113,
+      "sourceH": 143
+    },
+    "rankingList_11": {
+      "x": 642,
+      "y": 140,
+      "w": 113,
+      "h": 145,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 113,
+      "sourceH": 145
+    },
+    "rankingList_12": {
+      "x": 756,
+      "y": 140,
+      "w": 113,
+      "h": 142,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 113,
+      "sourceH": 142
+    }
+  }
+}

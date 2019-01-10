@@ -1,0 +1,235 @@
+{
+  "file": "shopPanel.png",
+  "frames": {
+    "shopPanel_1": {
+      "x": 0,
+      "y": 0,
+      "w": 643,
+      "h": 895,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 643,
+      "sourceH": 895
+    },
+    "shopPanel_2": {
+      "x": 1112,
+      "y": 57,
+      "w": 72,
+      "h": 36,
+      "offX": 5,
+      "offY": 2,
+      "sourceW": 80,
+      "sourceH": 40
+    },
+    "shopPanel_3": {
+      "x": 1014,
+      "y": 170,
+      "w": 50,
+      "h": 36,
+      "offX": 2,
+      "offY": 2,
+      "sourceW": 55,
+      "sourceH": 40
+    },
+    "shopPanel_4": {
+      "x": 752,
+      "y": 399,
+      "w": 52,
+      "h": 35,
+      "offX": 1,
+      "offY": 3,
+      "sourceW": 55,
+      "sourceH": 40
+    },
+    "shopPanel_8": {
+      "x": 842,
+      "y": 345,
+      "w": 51,
+      "h": 35,
+      "offX": 2,
+      "offY": 3,
+      "sourceW": 55,
+      "sourceH": 40
+    },
+    "shopPanel_10": {
+      "x": 752,
+      "y": 435,
+      "w": 25,
+      "h": 41,
+      "offX": 3,
+      "offY": 0,
+      "sourceW": 30,
+      "sourceH": 42
+    },
+    "shopPanel_11": {
+      "x": 138,
+      "y": 896,
+      "w": 153,
+      "h": 64,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 153,
+      "sourceH": 64
+    },
+    "shopPanel_12": {
+      "x": 807,
+      "y": 239,
+      "w": 151,
+      "h": 64,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 151,
+      "sourceH": 64
+    },
+    "shopPanel_13": {
+      "x": 644,
+      "y": 248,
+      "w": 162,
+      "h": 70,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 162,
+      "sourceH": 70
+    },
+    "shopPanel_14": {
+      "x": 0,
+      "y": 973,
+      "w": 136,
+      "h": 39,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 136,
+      "sourceH": 39
+    },
+    "shopPanel_15": {
+      "x": 746,
+      "y": 319,
+      "w": 95,
+      "h": 79,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 95,
+      "sourceH": 79
+    },
+    "shopPanel_16": {
+      "x": 1014,
+      "y": 133,
+      "w": 88,
+      "h": 36,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 88,
+      "sourceH": 36
+    },
+    "shopPanel_17": {
+      "x": 644,
+      "y": 133,
+      "w": 130,
+      "h": 114,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 130,
+      "sourceH": 114
+    },
+    "shopPanel_18": {
+      "x": 0,
+      "y": 896,
+      "w": 137,
+      "h": 76,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 137,
+      "sourceH": 76
+    },
+    "shopPanel_20": {
+      "x": 644,
+      "y": 496,
+      "w": 88,
+      "h": 46,
+      "offX": 2,
+      "offY": 2,
+      "sourceW": 90,
+      "sourceH": 50
+    },
+    "shopPanel_21": {
+      "x": 644,
+      "y": 420,
+      "w": 107,
+      "h": 75,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 107,
+      "sourceH": 75
+    },
+    "shopPanel_22": {
+      "x": 644,
+      "y": 319,
+      "w": 101,
+      "h": 100,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 101,
+      "sourceH": 100
+    },
+    "shopPanel_23": {
+      "x": 775,
+      "y": 133,
+      "w": 97,
+      "h": 105,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 97,
+      "sourceH": 105
+    },
+    "shopPanel_24": {
+      "x": 1112,
+      "y": 0,
+      "w": 78,
+      "h": 56,
+      "offX": 2,
+      "offY": 0,
+      "sourceW": 80,
+      "sourceH": 56
+    },
+    "shopPanel_25": {
+      "x": 138,
+      "y": 961,
+      "w": 135,
+      "h": 53,
+      "offX": 0,
+      "offY": 1,
+      "sourceW": 135,
+      "sourceH": 55
+    },
+    "shopPanel_26": {
+      "x": 842,
+      "y": 304,
+      "w": 75,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 75,
+      "sourceH": 40
+    },
+    "shopPanel_27": {
+      "x": 873,
+      "y": 133,
+      "w": 140,
+      "h": 71,
+      "offX": 0,
+      "offY": 1,
+      "sourceW": 140,
+      "sourceH": 72
+    },
+    "shopPanel_28": {
+      "x": 644,
+      "y": 0,
+      "w": 467,
+      "h": 132,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 467,
+      "sourceH": 132
+    }
+  }
+}

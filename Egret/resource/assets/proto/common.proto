@@ -1,0 +1,32 @@
+syntax = "proto3";
+package Cmd;
+/* 登陆信息 */
+message Login_C
+{
+    required string account = 1;
+    required string password = 2;
+    optional int32 uid = 3;
+}
+/* 物品信息 */
+message ItemInfo_CS
+{
+    required int32 itemID = 1;
+    optional int32 itemNum = 2;
+    optional int32 itemUpdateNum = 3;
+}
+/* 玩家信息 */
+message PlayerInfo_S
+{
+    required int32 uid = 1;
+    repeated ItemInfo_CS itemInfo = 2;
+}
+
+/* 物品变化 */
+message ItemUpdate_CS
+{
+    required int32 uid = 1;
+    repeated ItemInfo_CS itemInfo = 2;
+}
+
+
+

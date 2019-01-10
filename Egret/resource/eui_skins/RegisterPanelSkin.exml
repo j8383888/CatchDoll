@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RegisterPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" y="61.67" source="functionPanel_15"/>
+	<e:Group x="63.32" y="104.35">
+		<e:Image id="item1" y="0" x="0" source="functionPanel_14"/>
+		<e:Image id="item2" y="0" source="functionPanel_14" x="123.31"/>
+		<e:Image id="item3" y="0" source="functionPanel_14" x="246.33"/>
+		<e:Image id="item4" y="0" source="functionPanel_14" x="370"/>
+		<e:Image id="item5" y="157.68" source="functionPanel_14" x="62.02"/>
+		<e:Image id="item6" y="157.68" source="functionPanel_14" x="188.36"/>
+		<e:Image id="item7" y="157.68" source="functionPanel_14" x="315.37"/>
+	</e:Group>
+	<e:Image y="0" source="functionPanel_16" horizontalCenter="0"/>
+	<e:Image id="closeBtn" y="15.65" horizontalCenter="276" source="functionPanel_4"/>
+	<e:Image id="getBtn" y="423.68" source="functionPanel_21" horizontalCenter="0"/>
+</e:Skin>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RankItemItem" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="rankingList_8"/>
+	<e:Image x="14" y="14.5" source="rankingList_4"/>
+	<e:Image id="rankBg1" x="323" y="4" source="rankingList_10" visible="false"/>
+	<e:Group id="rankBg2" x="346" y="47">
+		<e:Image x="2" y="0" source="rankingList_9"/>
+		<e:BitmapLabel id="rankLabel" x="0" y="12" font="rankFont_fnt" text="9" textAlign="center" width="60"/>
+	</e:Group>
+	<e:Label id="nameLabel" text="Name" x="149" y="35" textColor="0x591111" anchorOffsetX="0" width="167"/>
+	<e:Label id="scoreLabel" text="Score" x="149" y="89" textColor="0x591111" anchorOffsetX="0" width="179"/>
+</e:Skin>

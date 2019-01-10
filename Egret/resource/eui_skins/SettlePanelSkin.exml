@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SettlePanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="39.42" y="-4">
+		<e:Image id="rope2" x="435.27" y="593" fillMode="scale" source="settlePanel_3"/>
+		<e:Image id="rope1" x="111.93" y="593" fillMode="scale" source="settlePanel_3"/>
+		<e:Image x="0" y="88.48" fillMode="scale" source="settlePanel_8"/>
+		<e:Group id="starBox1" x="60.02" y="30">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_22"/>
+			<e:Image id="star1" x="75" y="75" fillMode="scale" source="settlePanel_25" anchorOffsetX="75" anchorOffsetY="75"/>
+		</e:Group>
+		<e:Group id="starBox3" x="208.02" y="0">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_21"/>
+			<e:Image id="star3" x="100" y="100" fillMode="scale" source="settlePanel_24" anchorOffsetX="100" anchorOffsetY="100"/>
+		</e:Group>
+		<e:Group id="starBox2" x="400.02" y="30">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_20"/>
+			<e:Image id="star2" x="87" y="75" fillMode="scale" source="settlePanel_23" anchorOffsetX="75" anchorOffsetY="75"/>
+		</e:Group>
+		<e:Image y="378.29" fillMode="scale" source="settlePanel_11" x="217"/>
+		<e:Image y="201" fillMode="scale" source="settlePanel_6" x="117"/>
+		<e:Image id="closeBtn" x="554.23" y="61.04" fillMode="scale" source="functionPanel_4"/>
+		<e:Image x="74.9" y="434.02" fillMode="scale" source="settlePanel_4"/>
+		<e:Group id="itemGroup" x="117.43" y="458.48" anchorOffsetX="0" width="393.27">
+			<e:Image x="0" y="-8" fillMode="scale" source="settlePanel_17"/>
+			<e:Image x="131.2" y="-8" fillMode="scale" source="settlePanel_17"/>
+			<e:layout>
+				<e:BasicLayout/>
+			</e:layout>
+		</e:Group>
+		<e:Group x="327.5" y="597.5">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_2"/>
+			<e:Image x="50.8" y="21.82" fillMode="scale" source="settlePanel_5"/>
+		</e:Group>
+		<e:Group x="94.94" y="597.5">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_15"/>
+			<e:Image x="40.01" y="23.34" fillMode="scale" source="settlePanel_26"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="_pullDownBox" x="21.05" y="759.6">
+		<e:Image x="0" y="0" fillMode="scale" source="settlePanel_12"/>
+		<e:Group id="switchBtn1" x="19.68" y="11.9">
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_13"/>
+			<e:Image fillMode="scale" source="settlePanel_7" x="12.52" y="7"/>
+		</e:Group>
+		<e:Group id="switchBtn2" x="184.18" y="11.9">
+			<e:Image fillMode="scale" x="12.52" y="7" source="settlePanel_16"/>
+			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_14"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

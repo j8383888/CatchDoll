@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SetUpSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" y="51" source="functionPanel_19"/>
+	<e:Image x="151.33" y="169.19" source="functionPanel_6"/>
+	<e:Image x="319.95" y="169.85" source="functionPanel_20"/>
+	<e:Image id="closeBtn" x="472.66" top="2" source="functionPanel_4"/>
+</e:Skin>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="TurntableGainPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="Turntable_json.Turntable_3" x="0"/>
+	<e:Image id="closeBtn" source="Turntable_json.Turntable_2" x="423" y="59" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="awardImg" source="Turntable_json.Turntable_7" x="200" y="275"/>
+	<e:Label id="awardDec" text="获得1枚游戏币" x="117" y="399" textColor="0x000000" bold="true" strokeColor="0xffffff" stroke="1" size="40" fontFamily="SimHei"/>
+</e:Skin>

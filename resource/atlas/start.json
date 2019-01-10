@@ -1,0 +1,15 @@
+{
+  "file": "start.png",
+  "frames": {
+    "start_1": {
+      "x": 0,
+      "y": 0,
+      "w": 196,
+      "h": 87,
+      "offX": 1,
+      "offY": 10,
+      "sourceW": 200,
+      "sourceH": 100
+    }
+  }
+}

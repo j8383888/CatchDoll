@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+	<e:Image x="0" y="-100" source="scene2_png"/>
+	<e:Image id="curtain2" source="battle_20" right="0" top="0"/>
+	<e:Image id="curtain1" source="battle_21" left="0" top="0"/>
+	<e:Image source="battle_16" left="0" top="0"/>
+	<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1"/>
+	<e:Group id="propBox" x="-203" y="380" width="203">
+		<e:Image x="0" y="0" source="battle_18"/>
+		<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
+		<e:Image id="prop1" x="72" y="70" source="item_6" anchorOffsetX="54.5" anchorOffsetY="50.5"/>
+		<e:Image id="prop2" x="73" y="175.67" source="item_5" anchorOffsetX="44" anchorOffsetY="49.5"/>
+		<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
+		<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
+	</e:Group>
+	<e:Image id="_returnBtn" source="battle_12" right="0" top="0"/>
+
+	<e:Image x="-103.14" y="202" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17"/>
+
+
+
+
+
+	<e:Group x="0" y="1019.75">
+		<e:Image x="0" y="0" scaleY="1" scaleX="1" source="battle_15"/>
+		<e:Image x="0" y="34.05" source="battle_22"/>
+		<e:Image id="_rightBtn" x="246.97" y="86.2" source="battle_6"/>
+		<e:Image id="_leftBtn" x="42.29" y="88" source="battle_8"/>
+		<e:Image id="_middleBtn" y="54" x="485.25" source="battle_7" anchorOffsetX="0" anchorOffsetY="0"/>
+	</e:Group>
+	<e:Group y="2.02" horizontalCenter="0">
+		<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
+		<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
+	</e:Group>
+</e:Skin>

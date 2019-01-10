@@ -1,0 +1,5 @@
+[
+{"id":1,"name":"小太阳","imageAry":[{"keyName":"monster1","sourceName":"monster_1"}],"life":50,"moveSpeed":2},
+{"id":2,"name":"西瓜怪","imageAry":[{"keyName":"monster2","sourceName":"monster_2"}],"life":80,"moveSpeed":4},
+{"id":3,"name":"喷火龙","imageAry":[{"keyName":"monster3","sourceName":"monster_3"}],"life":100,"moveSpeed":6}
+]

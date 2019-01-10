@@ -1,0 +1,105 @@
+{
+  "file": "item.png",
+  "frames": {
+    "item_1": {
+      "x": 413,
+      "y": 0,
+      "w": 65,
+      "h": 65,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 65,
+      "sourceH": 65
+    },
+    "item_2": {
+      "x": 316,
+      "y": 106,
+      "w": 65,
+      "h": 65,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 65,
+      "sourceH": 65
+    },
+    "item_3": {
+      "x": 0,
+      "y": 0,
+      "w": 121,
+      "h": 139,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 121,
+      "sourceH": 139
+    },
+    "item_4": {
+      "x": 326,
+      "y": 0,
+      "w": 86,
+      "h": 105,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 87,
+      "sourceH": 106
+    },
+    "item_5": {
+      "x": 228,
+      "y": 102,
+      "w": 87,
+      "h": 97,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 88,
+      "sourceH": 99
+    },
+    "item_6": {
+      "x": 122,
+      "y": 0,
+      "w": 103,
+      "h": 101,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 109,
+      "sourceH": 101
+    },
+    "item_7": {
+      "x": 122,
+      "y": 102,
+      "w": 105,
+      "h": 98,
+      "offX": 0,
+      "offY": 4,
+      "sourceW": 105,
+      "sourceH": 104
+    },
+    "item_10": {
+      "x": 101,
+      "y": 201,
+      "w": 61,
+      "h": 52,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 61,
+      "sourceH": 52
+    },
+    "item_99": {
+      "x": 226,
+      "y": 0,
+      "w": 99,
+      "h": 101,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 99,
+      "sourceH": 101
+    },
+    "item_100": {
+      "x": 0,
+      "y": 140,
+      "w": 100,
+      "h": 104,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 100,
+      "sourceH": 105
+    }
+  }
+}

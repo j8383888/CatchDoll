@@ -1,0 +1,135 @@
+{
+  "file": "Turntable.png",
+  "frames": {
+    "Turntable_1": {
+      "x": 0,
+      "y": 1320,
+      "w": 188,
+      "h": 239,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 188,
+      "sourceH": 239
+    },
+    "Turntable_2": {
+      "x": 0,
+      "y": 1560,
+      "w": 86,
+      "h": 85,
+      "offX": 9,
+      "offY": 11,
+      "sourceW": 100,
+      "sourceH": 100
+    },
+    "Turntable_3": {
+      "x": 0,
+      "y": 691,
+      "w": 445,
+      "h": 628,
+      "offX": 27,
+      "offY": 30,
+      "sourceW": 500,
+      "sourceH": 700
+    },
+    "Turntable_4": {
+      "x": 1333,
+      "y": 0,
+      "w": 640,
+      "h": 598,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 640,
+      "sourceH": 640
+    },
+    "Turntable_6": {
+      "x": 446,
+      "y": 691,
+      "w": 515,
+      "h": 515,
+      "offX": 44,
+      "offY": 44,
+      "sourceW": 600,
+      "sourceH": 600
+    },
+    "Turntable_7": {
+      "x": 446,
+      "y": 1207,
+      "w": 63,
+      "h": 65,
+      "offX": 21,
+      "offY": 20,
+      "sourceW": 100,
+      "sourceH": 100
+    },
+    "Turntable_8": {
+      "x": 87,
+      "y": 1560,
+      "w": 79,
+      "h": 58,
+      "offX": 12,
+      "offY": 24,
+      "sourceW": 100,
+      "sourceH": 100
+    },
+    "Turntable_9": {
+      "x": 189,
+      "y": 1442,
+      "w": 84,
+      "h": 79,
+      "offX": 11,
+      "offY": 13,
+      "sourceW": 100,
+      "sourceH": 100
+    },
+    "Turntable_10": {
+      "x": 189,
+      "y": 1320,
+      "w": 122,
+      "h": 121,
+      "offX": 6,
+      "offY": 6,
+      "sourceW": 128,
+      "sourceH": 128
+    },
+    "Turntable_11": {
+      "x": 0,
+      "y": 1646,
+      "w": 75,
+      "h": 84,
+      "offX": 14,
+      "offY": 8,
+      "sourceW": 100,
+      "sourceH": 100
+    },
+    "Turntable_12": {
+      "x": 312,
+      "y": 1320,
+      "w": 106,
+      "h": 60,
+      "offX": 2,
+      "offY": 0,
+      "sourceW": 110,
+      "sourceH": 60
+    },
+    "Turntable_13": {
+      "x": 0,
+      "y": 0,
+      "w": 675,
+      "h": 690,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 675,
+      "sourceH": 690
+    },
+    "Turntable_14": {
+      "x": 676,
+      "y": 0,
+      "w": 656,
+      "h": 656,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 656,
+      "sourceH": 656
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[
+{"id":1,"taskContent":"在小猪场抓住一只小猪","awardID":1,"awardNum":2,"taskLevel":1},
+{"id":2,"taskContent":"在宠物场获得三星评价","awardID":1,"awardNum":6,"taskLevel":3},
+{"id":3,"taskContent":"在宠物场获得二星评价","awardID":1,"awardNum":4,"taskLevel":2},
+{"id":4,"taskContent":"进入好友宠物场","awardID":3,"awardNum":2,"taskLevel":2},
+{"id":5,"taskContent":"在宠物场获得碎片1","awardID":1,"awardNum":2,"taskLevel":1},
+{"id":6,"taskContent":"在宠物场获得碎片2","awardID":1,"awardNum":4,"taskLevel":2},
+{"id":7,"taskContent":"在宠物场获得碎片3","awardID":1,"awardNum":6,"taskLevel":3},
+{"id":8,"taskContent":"好友宠物场获得碎片1","awardID":3,"awardNum":2,"taskLevel":1},
+{"id":9,"taskContent":"在仙人球场地获得碎片1","awardID":1,"awardNum":2,"taskLevel":1},
+{"id":10,"taskContent":"在仙人球场地获得碎片2","awardID":1,"awardNum":4,"taskLevel":2},
+{"id":11,"taskContent":"在仙人球场地获得碎片3","awardID":1,"awardNum":6,"taskLevel":3},
+{"id":12,"taskContent":"好友宠物场获得碎片2","awardID":3,"awardNum":4,"taskLevel":3},
+{"id":13,"taskContent":"好友宠物场获得碎片3","awardID":3,"awardNum":6,"taskLevel":4}
+]

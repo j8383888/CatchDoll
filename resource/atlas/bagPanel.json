@@ -1,0 +1,105 @@
+{
+  "file": "bagPanel.png",
+  "frames": {
+    "bagPanel_1": {
+      "x": 92,
+      "y": 583,
+      "w": 85,
+      "h": 25,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 85,
+      "sourceH": 25
+    },
+    "bagPanel_2": {
+      "x": 0,
+      "y": 583,
+      "w": 91,
+      "h": 50,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 91,
+      "sourceH": 50
+    },
+    "bagPanel_3": {
+      "x": 629,
+      "y": 0,
+      "w": 89,
+      "h": 50,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 89,
+      "sourceH": 50
+    },
+    "bagPanel_5": {
+      "x": 469,
+      "y": 172,
+      "w": 87,
+      "h": 48,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 87,
+      "sourceH": 48
+    },
+    "bagPanel_6": {
+      "x": 0,
+      "y": 634,
+      "w": 105,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 105,
+      "sourceH": 40
+    },
+    "bagPanel_7": {
+      "x": 629,
+      "y": 51,
+      "w": 48,
+      "h": 25,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 48,
+      "sourceH": 25
+    },
+    "bagPanel_8": {
+      "x": 469,
+      "y": 86,
+      "w": 159,
+      "h": 85,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 159,
+      "sourceH": 85
+    },
+    "bagPanel_9": {
+      "x": 0,
+      "y": 0,
+      "w": 468,
+      "h": 582,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 468,
+      "sourceH": 582
+    },
+    "bagPanel_10": {
+      "x": 469,
+      "y": 0,
+      "w": 159,
+      "h": 85,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 159,
+      "sourceH": 85
+    },
+    "bagPanel_11": {
+      "x": 0,
+      "y": 675,
+      "w": 90,
+      "h": 45,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 90,
+      "sourceH": 45
+    }
+  }
+}

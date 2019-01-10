@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="TurntableSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" x="0" y="0" anchorOffsetX="0" source="Turntable_13"/>
+	<e:Image id="closeBtn" x="534.66" y="19.15" source="functionPanel_4"/>
+	<e:Group id="turnTableBody" x="334" y="352" anchorOffsetX="319.5" anchorOffsetY="319" rotation="0" touchEnabled="false" touchThrough="true" touchChildren="false">
+		<e:Image source="Turntable_json.Turntable_4" x="318.01" y="317.98" anchorOffsetX="320" anchorOffsetY="320" rotation="0" locked="true"/>
+		<e:Image source="Turntable_json.Turntable_7" x="273.35" y="78.57" rotation="0"/>
+		<e:Image source="Turntable_json.Turntable_8" x="501.62" y="163.26" rotation="60"/>
+		<e:Image source="Turntable_json.Turntable_9" x="551.62" y="393.74" rotation="120"/>
+		<e:Image source="Turntable_json.Turntable_11" x="373.35" y="557.49" rotation="180"/>
+		<e:Image source="Turntable_json.Turntable_10" x="66.68" y="248.97" rotation="300"/>
+		<e:Group x="129.2" y="496.24" rotation="240">
+			<e:Image source="Turntable_json.Turntable_11" x="0" y="0"/>
+			<e:Image source="Turntable_json.Turntable_11" x="53" y="25" scaleY="0.7" scaleX="0.7"/>
+		</e:Group>
+	</e:Group>
+	<e:Image x="8" y="25" anchorOffsetX="0" source="Turntable_14" touchEnabled="false"/>
+	<e:Group id="_startBtn" x="240" y="214">
+		<e:Image source="Turntable_json.Turntable_1" x="0" y="0"/>
+		<e:Image id="getFont" x="90" y="140.74" source="Turntable_12" anchorOffsetX="55" anchorOffsetY="30"/>
+	</e:Group>
+</e:Skin>

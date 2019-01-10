@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RankPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" x="0" y="40" source="rankingList_6"/>
+	<e:Image id="closeBtn" x="437" y="27" source="functionPanel_4"/>
+	<e:Image x="161.5" y="3" source="rankingList_7"/>
+	<e:Group id="switchBtn1" x="84" y="109">
+		<e:Image x="0" y="0" source="rankingList_3"/>
+		<e:Image x="30" y="10" source="rankingList_5"/>
+	</e:Group>
+	<e:Group id="switchBtn2" x="282" y="109">
+		<e:Image x="0" y="0" source="rankingList_2"/>
+		<e:Image x="30" y="13" source="rankingList_1"/>
+	</e:Group>
+	<e:Scroller width="450" height="664" x="41.51" y="186.35" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="listGroup">
+			<e:layout>
+				<e:VerticalLayout gap="10"/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

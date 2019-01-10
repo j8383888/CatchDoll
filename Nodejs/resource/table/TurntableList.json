@@ -1,0 +1,8 @@
+[
+{"id":0,"rotation":0,"source":"Turntable_7","dec":"获得1枚游戏币","money":1,"hitRate":0.03},
+{"id":1,"rotation":-60,"source":"Turntable_8","dec":"获得2枚游戏币","money":2,"hitRate":0.25},
+{"id":2,"rotation":-120,"source":"Turntable_9","dec":"获得4枚游戏币","money":4,"hitRate":0.15},
+{"id":3,"rotation":-180,"source":"Turntable_8","dec":"获得8枚游戏币","money":8,"hitRate":0.15},
+{"id":4,"rotation":-240,"source":"Turntable_11","dec":"获得12枚游戏币","money":12,"hitRate":0.1},
+{"id":5,"rotation":-300,"source":"Turntable_10","dec":"获得15枚游戏币","money":15,"hitRate":0.05}
+]

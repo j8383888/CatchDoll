@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BagPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="454" y="133.48">
+		<e:Group id="switchBtn1" x="0" y="0">
+		<e:Image x="0" y="0" scaleY="1" scaleX="1" scale9Grid="19,22,107,31" anchorOffsetX="0" width="200" source="bagPanel_10"/>
+		<e:Image x="45" y="13.52" scaleY="1" scaleX="1" source="bagPanel_2"/>
+		</e:Group>
+		<e:Group id="switchBtn2" x="0" y="85">
+		<e:Image x="0" y="0" source="bagPanel_8"/>
+		<e:Image scaleY="1" scaleX="1" source="bagPanel_3" x="23" y="14"/>
+		</e:Group>
+		<e:Group id="switchBtn3" x="0" y="169">
+		<e:Image x="0" y="0" source="bagPanel_8"/>
+		<e:Image x="23" y="14" scaleY="1" scaleX="1" source="bagPanel_11"/>
+		</e:Group>
+		<e:Group id="switchBtn4" x="0" y="255">
+		<e:Image x="0" y="0" source="bagPanel_8"/>
+		<e:Image x="23" y="14" scaleY="1" scaleX="1" source="bagPanel_5"/>
+		</e:Group>
+	</e:Group>
+	<e:Image id="bg" x="0" y="40" source="bagPanel_9"/>
+	<e:Image id="closeBtn" x="404" y="-11.52" source="functionPanel_4"/>
+	<e:Group id="arrangeBtn" x="308" y="535.48">
+		<e:Image x="0" y="0" source="bagPanel_6"/>
+		<e:Image x="28.5" y="7.5" source="bagPanel_7"/>
+	</e:Group>
+</e:Skin>

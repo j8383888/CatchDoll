@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ShopItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="134">
+	<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_28"/>
+	<e:Group x="12.03" y="50">
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="34" source="shopPanel_14"/>
+		<e:Image id="itemImg" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="16.67" y="-37.33" source="item_6"/>
+	</e:Group>
+	<e:Group id="_buyBtn" x="320.58" y="32.66">
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_18"/>
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="31.34" y="15.35" source="shopPanel_26"/>
+	</e:Group>
+	<e:Image id="hotFlag" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="4.01" y="2.68" source="shopPanel_15"/>
+	<e:Group x="163.98" y="35.99">
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="9.34" source="shopPanel_25"/>
+		<e:Label id="price" text="X5" x="65.66" y="23.32"/>
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" y="5.35" source="functionUI_7" x="0"/>
+	</e:Group>
+</e:Skin>

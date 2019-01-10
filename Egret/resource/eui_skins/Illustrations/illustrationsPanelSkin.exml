@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="illustrationsPanelSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" x="0" y="0" source="otherRes2_19"/>
+	<e:Image id="closeBtn" source="battle_12" right="0" top="0"/>
+	<e:Image x="6.48" y="675.48" source="otherRes2_12"/>
+	<e:Group id="switchBtn1" x="43.78" y="710">
+		<e:Image x="0" y="0" source="otherRes2_6"/>
+		<e:Image x="25.79" y="7.6" source="otherRes2_16"/>
+	</e:Group>
+	<e:Group id="switchBtn2" x="205.28" y="710">
+		<e:Image x="0" y="0" source="otherRes2_5"/>
+		<e:Image x="25.79" y="7.6" source="otherRes2_14"/>
+	</e:Group>
+	<e:Group x="535.96" y="711.03">
+		<e:Image x="0" y="0" source="otherRes2_4"/>
+		<e:Image x="15.85" y="10.59" source="otherRes2_7"/>
+	</e:Group>
+	<e:Group id="itemGroup" x="65.83" y="797.75" anchorOffsetX="0" width="580.3" anchorOffsetY="0" height="401.52">
+		<e:layout>
+			<e:TileLayout horizontalAlign="center" verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+	<e:Group y="240.59" x="217">
+		<e:Group x="100.15" y="9.88">
+			<e:Label id="nameLabel" text="小太阳" x="25.2" y="16" textColor="0xFFA066" bold="true" fontFamily="Microsoft YaHei" verticalAlign="justify"/>
+			<e:Image x="-54.57" y="1.52" source="otherRes2_29" scaleX="1" scaleY="1"/>
+		</e:Group>
+		<e:Image x="18.8" y="185.91" source="otherRes2_2"/>
+		<e:Image x="66.27" y="249" source="fragment_1"/>
+		<e:Image x="0" y="0" source="fragment_101"/>
+		<e:Image x="47.8" y="71.88" source="monster_1"/>
+		<e:Label id="fragmentNum" text="0/30" x="123.22" y="259.52" textColor="0xffa066" bold="true" fontFamily="Microsoft YaHei" verticalAlign="justify"/>
+		<e:Group id="UnlockBtn" x="52.420000000000016" y="302.71" scaleX="1" scaleY="1">
+			<e:Image x="0" y="0" source="otherRes2_3"/>
+			<e:Image x="32.44" y="9.44" source="otherRes2_28"/>
+		</e:Group>
+	</e:Group>
+	<e:Group x="380.38" y="721.57">
+		<e:Image x="0" y="0" source="otherRes2_17"/>
+		<e:Label id="hasNum" text="0/50" x="71.54" y="2.58"/>
+	</e:Group>
+</e:Skin>

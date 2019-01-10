@@ -1,0 +1,255 @@
+{
+  "file": "settlePanel.png",
+  "frames": {
+    "settlePanel_2": {
+      "x": 479,
+      "y": 861,
+      "w": 208,
+      "h": 92,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 208,
+      "sourceH": 92
+    },
+    "settlePanel_3": {
+      "x": 935,
+      "y": 463,
+      "w": 55,
+      "h": 227,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 55,
+      "sourceH": 227
+    },
+    "settlePanel_4": {
+      "x": 0,
+      "y": 861,
+      "w": 478,
+      "h": 154,
+      "offX": 0,
+      "offY": 2,
+      "sourceW": 478,
+      "sourceH": 160
+    },
+    "settlePanel_5": {
+      "x": 795,
+      "y": 940,
+      "w": 101,
+      "h": 44,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 101,
+      "sourceH": 44
+    },
+    "settlePanel_6": {
+      "x": 619,
+      "y": 202,
+      "w": 400,
+      "h": 103,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 400,
+      "sourceH": 103
+    },
+    "settlePanel_7": {
+      "x": 869,
+      "y": 797,
+      "w": 137,
+      "h": 43,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 137,
+      "sourceH": 43
+    },
+    "settlePanel_8": {
+      "x": 0,
+      "y": 0,
+      "w": 618,
+      "h": 633,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 618,
+      "sourceH": 633
+    },
+    "settlePanel_9": {
+      "x": 869,
+      "y": 691,
+      "w": 105,
+      "h": 105,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 105,
+      "sourceH": 105
+    },
+    "settlePanel_10": {
+      "x": 688,
+      "y": 853,
+      "w": 106,
+      "h": 105,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 106,
+      "sourceH": 105
+    },
+    "settlePanel_11": {
+      "x": 831,
+      "y": 157,
+      "w": 173,
+      "h": 35,
+      "offX": 17,
+      "offY": 7,
+      "sourceW": 200,
+      "sourceH": 50
+    },
+    "settlePanel_12": {
+      "x": 0,
+      "y": 634,
+      "w": 636,
+      "h": 226,
+      "offX": 2,
+      "offY": 11,
+      "sourceW": 640,
+      "sourceH": 240
+    },
+    "settlePanel_13": {
+      "x": 479,
+      "y": 954,
+      "w": 157,
+      "h": 55,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 157,
+      "sourceH": 55
+    },
+    "settlePanel_14": {
+      "x": 637,
+      "y": 959,
+      "w": 157,
+      "h": 55,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 157,
+      "sourceH": 55
+    },
+    "settlePanel_15": {
+      "x": 637,
+      "y": 643,
+      "w": 209,
+      "h": 92,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 209,
+      "sourceH": 92
+    },
+    "settlePanel_16": {
+      "x": 795,
+      "y": 851,
+      "w": 137,
+      "h": 43,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 137,
+      "sourceH": 43
+    },
+    "settlePanel_17": {
+      "x": 754,
+      "y": 736,
+      "w": 114,
+      "h": 114,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 114,
+      "sourceH": 114
+    },
+    "settlePanel_18": {
+      "x": 637,
+      "y": 736,
+      "w": 116,
+      "h": 116,
+      "offX": 2,
+      "offY": 2,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "settlePanel_19": {
+      "x": 933,
+      "y": 841,
+      "w": 55,
+      "h": 73,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 55,
+      "sourceH": 73
+    },
+    "settlePanel_20": {
+      "x": 831,
+      "y": 0,
+      "w": 162,
+      "h": 156,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 162,
+      "sourceH": 156
+    },
+    "settlePanel_21": {
+      "x": 619,
+      "y": 0,
+      "w": 211,
+      "h": 201,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 211,
+      "sourceH": 201
+    },
+    "settlePanel_22": {
+      "x": 816,
+      "y": 306,
+      "w": 162,
+      "h": 156,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 162,
+      "sourceH": 156
+    },
+    "settlePanel_23": {
+      "x": 637,
+      "y": 493,
+      "w": 148,
+      "h": 149,
+      "offX": 0,
+      "offY": 1,
+      "sourceW": 150,
+      "sourceH": 150
+    },
+    "settlePanel_24": {
+      "x": 619,
+      "y": 306,
+      "w": 196,
+      "h": 186,
+      "offX": 3,
+      "offY": 4,
+      "sourceW": 200,
+      "sourceH": 200
+    },
+    "settlePanel_25": {
+      "x": 786,
+      "y": 493,
+      "w": 148,
+      "h": 149,
+      "offX": 0,
+      "offY": 1,
+      "sourceW": 150,
+      "sourceH": 150
+    },
+    "settlePanel_26": {
+      "x": 795,
+      "y": 895,
+      "w": 127,
+      "h": 44,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 127,
+      "sourceH": 44
+    }
+  }
+}

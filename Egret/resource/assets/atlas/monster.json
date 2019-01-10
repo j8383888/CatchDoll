@@ -1,0 +1,35 @@
+{
+  "file": "monster.png",
+  "frames": {
+    "monster_1": {
+      "x": 202,
+      "y": 0,
+      "w": 188,
+      "h": 168,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 188,
+      "sourceH": 168
+    },
+    "monster_2": {
+      "x": 0,
+      "y": 190,
+      "w": 171,
+      "h": 155,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 171,
+      "sourceH": 155
+    },
+    "monster_3": {
+      "x": 0,
+      "y": 0,
+      "w": 201,
+      "h": 189,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 201,
+      "sourceH": 189
+    }
+  }
+}

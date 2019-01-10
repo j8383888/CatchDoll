@@ -1,0 +1,6 @@
+[
+{"id":1,"name":"白板1","movieClipAry":[{"keyName":"normal","groupName":"BlueClipLevel1","actionName":"action","frameRate":10}],"hitRate":50,"hurt":1000},
+{"id":2,"name":"绿色2","movieClipAry":[{"keyName":"normal","groupName":"BlueClipLevel2","actionName":"action","frameRate":10}],"hitRate":60,"hurt":1001},
+{"id":3,"name":"蓝色3","movieClipAry":[{"keyName":"normal","groupName":"BlueClipLevel3","actionName":"action","frameRate":10}],"hitRate":70,"hurt":1002},
+{"id":4,"name":"紫色4","movieClipAry":[{"keyName":"normal","groupName":"BlueClipLevel4","actionName":"action","frameRate":10}],"hitRate":80,"hurt":1003}
+]

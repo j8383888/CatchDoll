@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ShopPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="shopPanel_1" x="0" y="36"/>
+	<e:Image x="234.28" y="92" source="shopPanel_27"/>
+	<e:Image id="closeBtn" y="-0.82" horizontalCenter="251.5" source="functionPanel_4"/>
+	<e:Group id="switchBtn2" x="258.37" y="195.15">
+		<e:Image x="0" y="0" source="shopPanel_11"/>
+		<e:Image x="32" y="8" source="shopPanel_20"/>
+	</e:Group>
+	<e:Group id="switchBtn1" x="89.15" y="195.15">
+		<e:Image x="0" y="0" source="shopPanel_12"/>
+		<e:Image x="32" y="15" source="shopPanel_16"/>
+	</e:Group>
+	<e:Scroller width="469" height="583.64" x="75.28" y="283.36" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group>
+			<e:Group id="diamondBox" x="0" y="0">
+				<e:Group x="0" y="0">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_28"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="6.67" y="8" source="shopPanel_15"/>
+					<e:Group x="12.03" y="50">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="34" source="shopPanel_14"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="28.63" y="2.66" source="shopPanel_24"/>
+					</e:Group>
+					<e:Group x="320.58" y="32.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_18"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="31.34" y="15.35" source="shopPanel_26"/>
+					</e:Group>
+					<e:Group x="153.31" y="34.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_13"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="26.01" y="14.01" source="shopPanel_4"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="103.99" y="14.67" source="shopPanel_10"/>
+					</e:Group>
+				</e:Group>
+				<e:Group x="0" y="142.97">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_28"/>
+					<e:Group x="12.03" y="50">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="34" source="shopPanel_14"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="21.19" y="-32.02" source="shopPanel_22"/>
+					</e:Group>
+					<e:Group x="320.58" y="32.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_18"/>
+						<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="31.34" y="15.35" source="shopPanel_26"/>
+					</e:Group>
+					<e:Group x="153.31" y="34.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_13"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="103.99" y="14.67" source="shopPanel_10"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="26.01" y="14.01" source="shopPanel_3"/>
+					</e:Group>
+				</e:Group>
+				<e:Group x="0" y="287">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_28"/>
+					<e:Group x="12.03" y="50">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="34" source="shopPanel_14"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="23.31" y="-36" source="shopPanel_23"/>
+					</e:Group>
+					<e:Group x="320.58" y="32.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_18"/>
+						<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="31.34" y="15.35" source="shopPanel_26"/>
+					</e:Group>
+					<e:Group x="153.31" y="34.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_13"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="103.99" y="14.67" source="shopPanel_10"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="26.01" y="14.01" source="shopPanel_8"/>
+					</e:Group>
+				</e:Group>
+				<e:Group x="0" y="429.99">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_28"/>
+					<e:Group x="12.03" y="50">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="34" source="shopPanel_14"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="9.95" y="-39.99" source="shopPanel_17"/>
+					</e:Group>
+					<e:Group x="320.58" y="32.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_18"/>
+						<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="31.34" y="15.35" source="shopPanel_26"/>
+					</e:Group>
+					<e:Group x="153.31" y="34.66">
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="0" y="0" source="shopPanel_13"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="103.99" y="14.67" source="shopPanel_10"/>
+					<e:Image anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" x="11.35" y="15.34" source="shopPanel_2"/>
+					</e:Group>
+				</e:Group>
+			</e:Group>
+			<e:Group id="itemBox" x="0" y="0" visible="false">
+				<e:layout>
+					<e:VerticalLayout gap="10"/>
+				</e:layout>
+			</e:Group>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

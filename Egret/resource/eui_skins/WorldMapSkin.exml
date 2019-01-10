@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="WorldMapSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
+	<e:Image source="otherRes1_14" y="-2"/>
+	<e:Group id="_illustrationsBtn" x="-1.5" y="318">
+		<e:Image y="0" x="56.5" source="otherRes1_15"/>
+		<e:Image source="otherRes1_18" y="99" x="0"/>
+		<e:Image y="117" x="94" source="otherRes1_17"/>
+	</e:Group>
+	<e:Group x="298.5" y="332">
+		<e:Image y="0" x="25.5" source="otherRes1_16"/>
+		<e:Image source="otherRes1_18" y="72" x="0"/>
+		<e:Image y="91" x="71.5" source="otherRes1_22"/>
+	</e:Group>
+	<e:Group id="_battleBtn" x="321.35" y="713">
+		<e:Image y="0" x="4" source="otherRes1_20"/>
+		<e:Image source="otherRes1_18" y="185.66" x="0"/>
+		<e:Image y="203.82" x="65.15" source="otherRes1_19"/>
+	</e:Group>
+	<e:Group x="4" y="752">
+		<e:Image y="0" x="31" source="otherRes1_23"/>
+		<e:Image y="108.5" x="0" source="otherRes1_18"/>
+		<e:Image y="128.5" x="62.5" source="otherRes1_21"/>
+	</e:Group>
+</e:Skin>

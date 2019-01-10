@@ -1,0 +1,65 @@
+{
+  "file": "chipBg.png",
+  "frames": {
+    "chipBg_1": {
+      "x": 0,
+      "y": 0,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "chipBg_2": {
+      "x": 121,
+      "y": 0,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "chipBg_3": {
+      "x": 0,
+      "y": 121,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "chipBg_4": {
+      "x": 121,
+      "y": 121,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "chipBg_5": {
+      "x": 242,
+      "y": 0,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    },
+    "chipBg_6": {
+      "x": 242,
+      "y": 121,
+      "w": 120,
+      "h": 120,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 120,
+      "sourceH": 120
+    }
+  }
+}
