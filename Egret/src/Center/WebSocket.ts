@@ -22,7 +22,7 @@ module catchDoll {
 		private _checkTime: number = 1000; // 检测时间间隔
 		private _isOpenHeart: boolean = true; // 是否开始心跳检测
 		private _heartTimer: any = null; // 心跳检测函数
-		private _isGetRep: boolean = false; // 是否收到回复
+		private _isGetRep: boolean = true; // 是否收到回复
 
 
 		public constructor() {
