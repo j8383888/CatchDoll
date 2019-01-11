@@ -17,6 +17,14 @@ module catchDoll {
 
 		private _protoRoot = new protobuf.Root();
 
+		private _curTime: number = 0;  // 当前检测次数
+		private _maxTime: number = 5; // 最大检测次数
+		private _checkTime: number = 1000; // 检测时间间隔
+		private _isOpenHeart: boolean = true; // 是否开始心跳检测
+		private _heartTimer: any = null; // 心跳检测函数
+		private _isGetRep: boolean = false; // 是否收到回复
+
+
 		public constructor() {
 			this._init();
 		}
@@ -42,8 +50,8 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
-			// this._webSocket.connect("127.0.0.1", 8001);
-			this._webSocket.connect("129.28.87.105", 8001);
+			this._webSocket.connect("127.0.0.1", 8001);
+			// this._webSocket.connect("129.28.87.105", 8001);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
@@ -85,13 +93,46 @@ module catchDoll {
 		 */
 		private _onSocketOpen(e: egret.Event): void {
 			console.log("webScoket链接成功")
-			this._login();
+			// this._login();
+			this.heartCheck();
 		}
-
+		/**
+		 *  心跳检测
+		 */
+		public heartCheck(): void {
+			if (this._isOpenHeart) {
+				this._heartTimer = setTimeout(this.sendHeartMsg.bind(this), this._checkTime);
+			}
+		}
+		/**
+		 *  发送心跳消息
+		 */
+		public sendHeartMsg(): void {
+			console.log("send heartMsg");
+			if (this._isGetRep) {
+				// 发送心跳协议到服务器
+				this._isGetRep = false;
+				this._curTime = 0;
+			} else{
+				this._curTime++;
+			}
+			if (this._curTime > this._maxTime) {
+				console.log("心跳异常");
+				clearTimeout(this._heartTimer);
+			} else{
+				this.heartCheck();
+			}
+		}
 		/**
 		 * 接受数据
 		 */
 		private _onReceiveMessage(e: egret.ProgressEvent): void {
+
+			//todo 在这里收到心跳协议回复，将_isGetRep置为true
+			if ("是不是心跳判断") {
+				this._isGetRep = true;
+			}
+
 			let ws: egret.WebSocket = e.target as egret.WebSocket;
 			this._readByteAry.clear();
 			ws.readBytes(this._readByteAry);

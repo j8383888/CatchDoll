@@ -6,7 +6,7 @@ import { PlayerCenter } from "./PlayerCenter";
 require('../out/Extendtion.js');
 ProtoParse.init();
 JsonParse.init();
-SQLServe.instance.createConnection();
+// SQLServe.instance.createConnection();
 MyWebSocket.instance.creatWebSocket();
 
 new PlayerCenter();

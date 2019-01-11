@@ -66,8 +66,9 @@ export class MyWebSocket {
 
     private _onReceive(conn): void {
         // conn.on("text", function (str: string) {
-        //     conn.sendText(str)
+        //     conn.sendText(str) 
         // })
+        // console.log("1");
         conn.on('binary', function (stream) {
             stream.once('readable', () => {
                 let rawData: Buffer = stream._readableState.buffer.head.data;
