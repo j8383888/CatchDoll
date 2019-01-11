@@ -32,6 +32,7 @@ export class MyWebSocket {
         console.log("WebSocket开始建立连接...")
         var server = ws.createServer(this._onReceive).listen(8001)
         console.log("WebSocket建立完毕");
+        console.log("测试日志");
     }
 
 
