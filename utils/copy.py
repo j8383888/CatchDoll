@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-  
 import os,shutil
-def copy(src,dest):
+def copyAtlas(src,dest):
 
 	if not os.path.exists(dest):
 		os.mkdir(dest)
@@ -20,13 +20,13 @@ def copy(src,dest):
 				if(os.path.exists(targetPath)):
 					os.remove(targetPath)
 				shutil.copyfile(path,targetPath)
-				print(" copy%s => %s"%(path,targetPath))
+				print(" copyAtlas%s => %s"%(path,targetPath))
 			elif suffix == ".png":
 				targetPath = dest + "\\" + name
 				if(os.path.exists(targetPath)):
 					os.remove(targetPath)
 				shutil.copyfile(path,targetPath)
-				print("copy %s => %s"%(path,targetPath))
+				print("copyAtlas %s => %s"%(path,targetPath))
 
 
 def copyFolder(srcTree,targetTree):
@@ -48,12 +48,27 @@ def copyFolder(srcTree,targetTree):
 			shutil.copytree(srcPath,targetPath)
 			print("copyFolder %s => %s"%(srcPath,targetPath))
 
+def copy(sorcePath,targetPath):
+	if(os.path.exists(targetPath)):
+		os.remove(targetPath)
+	shutil.copyfile(sorcePath,targetPath)
+	print("copy %s => %s"%(sorcePath,targetPath))
 
 
 src = r"..\resource\atlas"
 dest = r"..\Egret\resource\assets\atlas"
-copy(src,dest)
+copyAtlas(src,dest)
 
 srcTree = r"..\resource";
 targetTree = r"..\Egret\resource\assets";
 copyFolder(srcTree,targetTree)
+
+protoSrc = r"..\resource\proto\common.proto"
+dest1 = r"..\Egret\protobuf\protofile\common.proto"
+dest2 = r"..\Egret\resource\assets\proto\common.proto"
+dest3 = r"..\Nodejs\protobuf\common.proto"
+copy(protoSrc,dest1) 
+copy(protoSrc,dest2)
+copy(protoSrc,dest3) 
+
+

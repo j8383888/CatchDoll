@@ -7,5 +7,5 @@ del /Q .\*.json
 call ImageStudio
 call ImagePack egret .\* -margin:1
 
-popd
+REM popd
 REM if "%1"=="" pause

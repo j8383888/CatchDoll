@@ -32,15 +32,19 @@ def openProto():
 				pkg = pkgName[0:-1]
 		writeProtoExtendition(pkg,msgAry);
 
-def copy():
-	sorcePath = r"..\resource\proto\ProtoExtendtion.ts"
-	targetPath = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
+def copy(sorcePath,targetPath):
 	if(os.path.exists(targetPath)):
 		os.remove(targetPath)
 	shutil.copyfile(sorcePath,targetPath)
 
 openProto();
-copy()
+
+sorcePath = r"..\resource\proto\ProtoExtendtion.ts"
+targetPath1 = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
+copy(sorcePath,targetPath1);
+
+targetPath2 = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
+copy(sorcePath,targetPath2);
 
 
 

@@ -38,7 +38,7 @@ src = r"..\resource\table"
 clientJosnDst = r"..\Egret\resource\assets\table"
 clientTsDst = r"..\Egret\src\Table"
 
-SevreJosnDst = r"..\Nodejs3\resource\table"
-SevreTsDst = r"..\Nodejs3\src\Table"
+SevreJosnDst = r"..\Nodejs\resource\table"
+SevreTsDst = r"..\Nodejs\src\Table"
 copy(src,clientJosnDst,clientTsDst)
 copy(src,SevreJosnDst,SevreTsDst)
