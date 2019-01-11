@@ -28,5 +28,11 @@ message ItemUpdate_CS
     repeated ItemInfo_CS itemInfo = 2;
 }
 
+/* 心跳包 */
+message Heartbeat_CS
+{
+    required int32 uid = 1;
+} 
+
 
 

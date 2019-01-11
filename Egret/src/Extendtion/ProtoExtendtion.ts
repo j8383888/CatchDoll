@@ -11,6 +11,9 @@ declare namespace Cmd{
 	interface ItemUpdate_CS {
 		GetType(): string;
 	}
+	interface Heartbeat_CS {
+		GetType(): string;
+	}
 }
 Cmd.Login_C.prototype.GetType = function () {
 	return "Cmd.Login_C";
@@ -23,4 +26,7 @@ Cmd.PlayerInfo_S.prototype.GetType = function () {
 }
 Cmd.ItemUpdate_CS.prototype.GetType = function () {
 	return "Cmd.ItemUpdate_CS";
+}
+Cmd.Heartbeat_CS.prototype.GetType = function () {
+	return "Cmd.Heartbeat_CS";
 }

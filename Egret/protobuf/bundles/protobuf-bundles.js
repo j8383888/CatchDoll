@@ -941,5 +941,192 @@ $root.Cmd = (function() {
         return ItemUpdate_CS;
     })();
 
+    Cmd.Heartbeat_CS = (function() {
+
+        /**
+         * Properties of a Heartbeat_CS.
+         * @memberof Cmd
+         * @interface IHeartbeat_CS
+         * @property {number} uid Heartbeat_CS uid
+         */
+
+        /**
+         * Constructs a new Heartbeat_CS.
+         * @memberof Cmd
+         * @classdesc Represents a Heartbeat_CS.
+         * @implements IHeartbeat_CS
+         * @constructor
+         * @param {Cmd.IHeartbeat_CS=} [properties] Properties to set
+         */
+        function Heartbeat_CS(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Heartbeat_CS uid.
+         * @member {number} uid
+         * @memberof Cmd.Heartbeat_CS
+         * @instance
+         */
+        Heartbeat_CS.prototype.uid = 0;
+
+        /**
+         * Creates a new Heartbeat_CS instance using the specified properties.
+         * @function create
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Cmd.IHeartbeat_CS=} [properties] Properties to set
+         * @returns {Cmd.Heartbeat_CS} Heartbeat_CS instance
+         */
+        Heartbeat_CS.create = function create(properties) {
+            return new Heartbeat_CS(properties);
+        };
+
+        /**
+         * Encodes the specified Heartbeat_CS message. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Cmd.IHeartbeat_CS} message Heartbeat_CS message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Heartbeat_CS.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Heartbeat_CS message, length delimited. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Cmd.IHeartbeat_CS} message Heartbeat_CS message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Heartbeat_CS.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Heartbeat_CS message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.Heartbeat_CS} Heartbeat_CS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Heartbeat_CS.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.Heartbeat_CS();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.uid = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("uid"))
+                throw $util.ProtocolError("missing required 'uid'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a Heartbeat_CS message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Cmd.Heartbeat_CS} Heartbeat_CS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Heartbeat_CS.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Heartbeat_CS message.
+         * @function verify
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Heartbeat_CS.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.uid))
+                return "uid: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a Heartbeat_CS message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Cmd.Heartbeat_CS} Heartbeat_CS
+         */
+        Heartbeat_CS.fromObject = function fromObject(object) {
+            if (object instanceof $root.Cmd.Heartbeat_CS)
+                return object;
+            var message = new $root.Cmd.Heartbeat_CS();
+            if (object.uid != null)
+                message.uid = object.uid | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Heartbeat_CS message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Cmd.Heartbeat_CS
+         * @static
+         * @param {Cmd.Heartbeat_CS} message Heartbeat_CS
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Heartbeat_CS.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.uid = 0;
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                object.uid = message.uid;
+            return object;
+        };
+
+        /**
+         * Converts this Heartbeat_CS to JSON.
+         * @function toJSON
+         * @memberof Cmd.Heartbeat_CS
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Heartbeat_CS.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Heartbeat_CS;
+    })();
+
     return Cmd;
 })();
