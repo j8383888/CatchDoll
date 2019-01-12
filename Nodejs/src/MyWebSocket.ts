@@ -13,10 +13,17 @@ export class MyWebSocket {
 
     /* 链接字典 */
     public connectMap: Dictionary = new Dictionary();
+    /* 心跳字典 */
+    public heartMap: Dictionary = new Dictionary();
+    /* 最大心跳次数 */
+    private readonly MAX_COUNT: number = 3;
+
+    private _timer: NodeJS.Timeout;
 
 
 
     constructor() {
+        this._heartCheck();
     }
 
     /* 获取单例 */
@@ -59,8 +66,31 @@ export class MyWebSocket {
         buffer.writeUInt16BE(dataLen, 2 + titleLen);
         /* 写入协议数据*/
         buffer.fill(data, 4 + titleLen);
-
         connect.sendBinary(buffer);
+    }
+
+    /**
+     * 心跳检测
+     */
+    private _heartCheck(): void {
+        this._timer = setInterval(this._heartJump.bind(this), 1000);
+    }
+
+    private _heartJump(): void {
+        for (let i: number = 0; i < this.heartMap.length; i++) {
+            let value: number = this.heartMap.values[i];
+            value++;
+            if (value > this.MAX_COUNT) {
+                let uid: number = this.heartMap.keys[i]
+                console.log("uid为:" + uid + "心跳异常")
+                this._onPlayerOffline(uid);
+            }
+        }
+    }
+
+    /* 释放 */
+    public dispose(): void {
+        clearInterval(this._timer);
     }
 
     private _onReceive(conn): void {
@@ -77,42 +107,68 @@ export class MyWebSocket {
                 var protoType: protobuf.Type = ProtoParse.Root.lookupType(cmdName);
 
                 let message: protobuf.Message<{}> = protoType.decode(rawData.slice(4 + nameLen, 4 + nameLen + rawDataLen));
-                /* 登陆协议 */
-                if (cmdName == "Cmd.Login_C") {
-                    let data: Cmd.Login_C = message.toJSON() as Cmd.Login_C;
-                    MyWebSocket.instance.connectMap.set(data.uid, conn);
-                    SQLServe.instance.seekLogin(data)
-                }
-                /* 物品变更 */
-                else if (cmdName == "Cmd.ItemUpdate_CS") {
-                    let data: Cmd.ItemUpdate_CS = message.toJSON() as Cmd.ItemUpdate_CS;
-                    let itemInfo = data.itemInfo;
-                    let uid = data.uid;
-                    PlayerCenter.clearUpdateNum(uid);
-                    for (let item of itemInfo) {
-                        if (item.itemUpdateNum && item.itemUpdateNum != 0) {
-                            PlayerCenter.updateProp(uid, item.itemID, item.itemUpdateNum);
+                let jsonData = message.toJSON()
+                let uid: number;
+                switch (cmdName) {
+                    /* 登陆协议 */
+                    case "Cmd.Login_C":
+                        let data: Cmd.Login_C = jsonData as Cmd.Login_C;
+                        MyWebSocket.instance.connectMap.set(data.uid, conn);
+                        MyWebSocket.instance.heartMap.set(data.uid, 0);
+                        SQLServe.instance.seekLogin(data)
+
+
+                        break;
+                    /* 物品变更 */
+                    case "Cmd.ItemUpdate_CS":
+                        let data2: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
+                        let itemInfo = data2.itemInfo;
+                        uid = data.uid;
+                        PlayerCenter.clearUpdateNum(uid);
+                        for (let item of itemInfo) {
+                            if (item.itemUpdateNum && item.itemUpdateNum != 0) {
+                                PlayerCenter.updateProp(uid, item.itemID, item.itemUpdateNum);
+                            }
                         }
-                    }
-                    PlayerCenter.sendPlayerData(uid);
+                        PlayerCenter.sendPlayerData(uid);
+                        break;
+                    case "Cmd.Heartbeat_CS":
+                        let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
+                        uid = data3.uid;
+                        let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
+                        cmd.uid = uid;
+                        MyWebSocket.instance.heartMap.set(uid, 0)
+                        MyWebSocket.instance.sendMsg(uid, cmd);
+                        break;
                 }
+
                 console.log("[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
             })
         })
-        conn.once("close", function (code, reason) {
+        conn.once("close", (code, reason) => {
             let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn);
             if (uid == null) {
                 return;
             }
-            let itemData: Cmd.ItemInfo_CS[] = PlayerCenter.playerMap.get(uid);
-            SQLServe.instance.setUserData(uid, itemData);
-            PlayerCenter.playerMap.remove(uid);
-            MyWebSocket.instance.connectMap.removeValue(conn);
-            conn = null;
+            MyWebSocket.instance._onPlayerOffline(uid);
             console.log("关闭连接")
         });
         conn.once("error", (code, reason) => {
             console.log("异常关闭" + "code:" + code + "     " + "reason" + reason)
         });
+    }
+
+    /**
+     * 玩家离线操作
+     * @param uid 
+     */
+    private _onPlayerOffline(uid: number): void {
+        let itemData: Cmd.ItemInfo_CS[] = PlayerCenter.playerMap.get(uid);
+        let conn = this.connectMap.get(uid);
+        SQLServe.instance.setUserData(uid, itemData);
+        PlayerCenter.playerMap.remove(uid);
+        MyWebSocket.instance.connectMap.removeValue(conn);
+        MyWebSocket.instance.heartMap.remove(uid);
+        conn = null;
     }
 }
