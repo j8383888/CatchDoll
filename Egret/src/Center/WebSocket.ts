@@ -17,12 +17,8 @@ module catchDoll {
 
 		private _protoRoot = new protobuf.Root();
 
-		private _curTime: number = 0;  // 当前检测次数
-		private _maxTime: number = 5; // 最大检测次数
-		private _checkTime: number = 1000; // 检测时间间隔
-		private _isOpenHeart: boolean = true; // 是否开始心跳检测
-		private _heartTimer: any = null; // 心跳检测函数
-		private _isGetRep: boolean = true; // 是否收到回复
+		private _curHeartCount: number = 0;  // 当前检测次数
+		private readonly MAX_COUNT: number = 3; // 最大检测次数
 
 
 		public constructor() {
@@ -93,35 +89,27 @@ module catchDoll {
 		 */
 		private _onSocketOpen(e: egret.Event): void {
 			console.log("webScoket链接成功")
-			// this._login();
-			this.heartCheck();
+			this._login();
+			
 		}
 		/**
 		 *  心跳检测
 		 */
-		public heartCheck(): void {
-			if (this._isOpenHeart) {
-				this._heartTimer = setTimeout(this.sendHeartMsg.bind(this), this._checkTime);
-			}
+		private _heartCheck(): void {
+			Laya.timer.loop(1000, this, this._sendHeartMsg);
 		}
 		/**
 		 *  发送心跳消息
 		 */
-		public sendHeartMsg(): void {
-			console.log("send heartMsg");
-			if (this._isGetRep) {
-				// 发送心跳协议到服务器
-				this._isGetRep = false;
-				this._curTime = 0;
-			} else{
-				this._curTime++;
-			}
-			if (this._curTime > this._maxTime) {
+		private _sendHeartMsg(): void {
+			this._curHeartCount++;
+			if (this._curHeartCount >= this.MAX_COUNT) {
 				console.log("心跳异常");
-				clearTimeout(this._heartTimer);
-			} else{
-				this.heartCheck();
+				Laya.timer.clear(this, this._sendHeartMsg);
 			}
+			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
+			cmd.uid = Master.instance.uid;
+			this.sendMsg(cmd);
 		}
 		/**
 		 * 接受数据
@@ -129,10 +117,6 @@ module catchDoll {
 		private _onReceiveMessage(e: egret.ProgressEvent): void {
 
 			//todo 在这里收到心跳协议回复，将_isGetRep置为true
-			if ("是不是心跳判断") {
-				this._isGetRep = true;
-			}
-
 			let ws: egret.WebSocket = e.target as egret.WebSocket;
 			this._readByteAry.clear();
 			ws.readBytes(this._readByteAry);
@@ -149,18 +133,30 @@ module catchDoll {
 			/* 登陆协议 */
 			switch (cmdTitle) {
 				case "Cmd.Login_C":
-					let accurateData: Cmd.Login_C = jsonData as Cmd.Login_C;
+					// let accurateData: Cmd.Login_C = jsonData as Cmd.Login_C;
 					break;
 				case "Cmd.PlayerInfo_S":
 					let accurateData2: Cmd.PlayerInfo_S = jsonData as Cmd.PlayerInfo_S;
 					Master.instance.uid = accurateData2.uid;
 					Master.instance.itemData = accurateData2.itemInfo;
 					EventManager.fireEvent(EVENT_ID.SERVE_COMPLETE);
+					this._heartCheck();
+					
 					break;
 				case "Cmd.ItemUpdate_CS":
 					let accurateData3: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
 					Master.instance.itemData = accurateData3.itemInfo;
 					EventManager.fireEvent(EVENT_ID.UPDATE_ITEM_INFO);
+					
+					break;
+				case "Cmd.Heartbeat_CS":
+					let accurateData4: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
+					if (Master.instance.uid == accurateData4.uid) {
+						this._curHeartCount = 0;
+					}
+					else {
+						console.assert(false, "逻辑有误")
+					}
 					break;
 			}
 		}
@@ -216,6 +212,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			Laya.timer.clear(this, this._sendHeartMsg);
 			this._webSocket.removeEventListener(egret.Event.CONNECT, this._onSocketOpen, this)
 			this._webSocket.removeEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.removeEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);

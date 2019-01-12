@@ -38,6 +38,7 @@ module catchDoll {
 			this._view.startBtn.enabled = true;
 			egret.Tween.get(this._view.startBtn.root, { loop: true }).to({ scaleX: 1.2, scaleY: 1.2 }, 600 * 1.5).
 				to({ scaleX: 0.9, scaleY: 0.9 }, 900 * 1.5).to({ scaleX: 1, scaleY: 1 }, 300 * 1.5);
+			
 		}
 
 		/**
