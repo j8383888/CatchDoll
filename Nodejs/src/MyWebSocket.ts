@@ -48,39 +48,41 @@ export class MyWebSocket {
     public sendMsg(uid: number, cmd: any): void {
 
         let connect = this.connectMap.get(uid);
+        if (connect) {
+            let constructor = cmd.constructor
+            let protoName: string = "Cmd." + constructor.name
+            const protoType = ProtoParse.Root.lookupType(protoName)
+            let writer: protobuf.Writer = protoType.encode(cmd);
+            let data: Uint8Array = writer.finish();
 
-        let constructor = cmd.constructor
-        let protoName: string = "Cmd." + constructor.name
-        const protoType = ProtoParse.Root.lookupType(protoName)
-        let writer: protobuf.Writer = protoType.encode(cmd);
-        let data: Uint8Array = writer.finish();
+            let titleLen: number = Buffer.byteLength(protoName)
+            let dataLen: number = Buffer.byteLength(data)
+            let buffer: Buffer = Buffer.alloc(4 + titleLen + dataLen);
+            /* 写入协议标题长度 */
+            buffer.writeUInt16BE(titleLen, 0);
+            /* 写入协议标题 */
+            buffer.write(protoName, 2);
+            /* 写入协议数据长度 */
+            buffer.writeUInt16BE(dataLen, 2 + titleLen);
+            /* 写入协议数据*/
+            buffer.fill(data, 4 + titleLen);
+            connect.sendBinary(buffer);
+        }
 
-        let titleLen: number = Buffer.byteLength(protoName)
-        let dataLen: number = Buffer.byteLength(data)
-        let buffer: Buffer = Buffer.alloc(4 + titleLen + dataLen);
-        /* 写入协议标题长度 */
-        buffer.writeUInt16BE(titleLen, 0);
-        /* 写入协议标题 */
-        buffer.write(protoName, 2);
-        /* 写入协议数据长度 */
-        buffer.writeUInt16BE(dataLen, 2 + titleLen);
-        /* 写入协议数据*/
-        buffer.fill(data, 4 + titleLen);
-        connect.sendBinary(buffer);
     }
 
     /**
      * 心跳检测
      */
     private _heartCheck(): void {
-        this._timer = setInterval(this._heartJump.bind(this), 1000);
+        this._timer = setInterval(this._heartJump.bind(this), 1000 * 10);
     }
 
     private _heartJump(): void {
         for (let i: number = 0; i < this.heartMap.length; i++) {
             let value: number = this.heartMap.values[i];
             value++;
-            if (value > this.MAX_COUNT) {
+            if (value >= this.MAX_COUNT) {
                 let uid: number = this.heartMap.keys[i]
                 console.log("uid为:" + uid + "心跳异常")
                 this._onPlayerOffline(uid);
@@ -116,14 +118,12 @@ export class MyWebSocket {
                         MyWebSocket.instance.connectMap.set(data.uid, conn);
                         MyWebSocket.instance.heartMap.set(data.uid, 0);
                         SQLServe.instance.seekLogin(data)
-
-
                         break;
                     /* 物品变更 */
                     case "Cmd.ItemUpdate_CS":
                         let data2: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
                         let itemInfo = data2.itemInfo;
-                        uid = data.uid;
+                        uid = data2.uid;
                         PlayerCenter.clearUpdateNum(uid);
                         for (let item of itemInfo) {
                             if (item.itemUpdateNum && item.itemUpdateNum != 0) {
@@ -169,6 +169,7 @@ export class MyWebSocket {
         PlayerCenter.playerMap.remove(uid);
         MyWebSocket.instance.connectMap.removeValue(conn);
         MyWebSocket.instance.heartMap.remove(uid);
+        console.log("uid为:" + uid + "玩家断线")
         conn = null;
     }
 }
