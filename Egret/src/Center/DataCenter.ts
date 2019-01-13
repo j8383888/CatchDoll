@@ -13,8 +13,25 @@ module catchDoll {
 		public level: number = 0;
 		/*配置*/
 		public table: TableCenter = TableCenter.instance;
+		/*是否调试模式*/
+		public isDebug: boolean = false;
+		/*地址*/
+		public host: string = "";
+		/*端口*/
+		public post: number = -1
 
 		public constructor() {
+			let configData = RES.getRes("config_json");
+			this.isDebug = configData["isDebug"];
+			if (this.isDebug) {
+				this.host = configData["debug"]["host"];
+				this.post = configData["debug"]["post"];
+			}
+			else {
+				this.host = configData["dev"]["host"];
+				this.post = configData["dev"]["post"];
+			}
+
 		}
 
 		/**

@@ -1,14 +1,9 @@
 {
 	"groups":[{
-			"keys":"description_json,sceneChoose_png,scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,selectLevelBg_png,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,selectLevelBg2_png,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,munaiyi_tex_json,munaiyi_tex_png,munaiyi_ske_dbbin,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto",
+			"keys":"sceneChoose_png,scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,selectLevelBg_png,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,selectLevelBg2_png,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,munaiyi_tex_json,munaiyi_tex_png,munaiyi_ske_dbbin,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json",
 			"name":"preload"
 		}],
 	"resources":[
-		{
-			"name":"description_json",
-			"type":"json",
-			"url":"config/description.json"
-		},
 		{
 			"name":"sceneChoose_png",
 			"type":"image",
@@ -376,6 +371,16 @@
 			"name":"common_proto",
 			"type":"text",
 			"url":"assets/proto/common.proto"
+		},
+		{
+			"name":"config_json",
+			"type":"json",
+			"url":"config/config.json"
+		},
+		{
+			"name":"description_json",
+			"type":"json",
+			"url":"config/description.json"
 		}
 	]
 }

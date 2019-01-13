@@ -64,11 +64,18 @@ targetTree = r"..\Egret\resource\assets";
 copyFolder(srcTree,targetTree)
 
 protoSrc = r"..\resource\proto\common.proto"
-dest1 = r"..\Egret\protobuf\protofile\common.proto"
-dest2 = r"..\Egret\resource\assets\proto\common.proto"
-dest3 = r"..\Nodejs\protobuf\common.proto"
-copy(protoSrc,dest1) 
-copy(protoSrc,dest2)
-copy(protoSrc,dest3) 
+protoDest1 = r"..\Egret\protobuf\protofile\common.proto"
+protoDest2 = r"..\Egret\resource\assets\proto\common.proto"
+protoDest3 = r"..\Nodejs\protobuf\common.proto"
+copy(protoSrc,protoDest1) 
+copy(protoSrc,protoDest2)
+copy(protoSrc,protoDest3)
+
+configSrc = r"..\resource\config.json"
+configDest1 = r"..\Egret\resource\config\config.json"
+configDest2 = r"..\Nodejs\resource\config.json"
+copy(configSrc,configDest1) 
+copy(configSrc,configDest2)
+
 
 

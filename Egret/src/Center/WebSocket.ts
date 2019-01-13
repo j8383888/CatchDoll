@@ -16,9 +16,16 @@ module catchDoll {
 		private _readByteAry: egret.ByteArray = new egret.ByteArray();
 
 		private _protoRoot = new protobuf.Root();
+		/**
+		 * 当前检测次数
+		 */
+		private _curHeartCount: number = 0;
+		/**
+		 * 最大检测次数
+		 **/ 
+		private readonly MAX_COUNT: number = 3;
 
-		private _curHeartCount: number = 0;  // 当前检测次数
-		private readonly MAX_COUNT: number = 3; // 最大检测次数
+
 
 
 		public constructor() {
@@ -46,8 +53,7 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
-			this._webSocket.connect("127.0.0.1", 8001);
-			// this._webSocket.connect("129.28.87.105", 8001);
+			this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
@@ -90,13 +96,13 @@ module catchDoll {
 		private _onSocketOpen(e: egret.Event): void {
 			console.log("webScoket链接成功")
 			this._login();
-			
+
 		}
 		/**
 		 *  心跳检测
 		 */
 		private _heartCheck(): void {
-			Laya.timer.loop(1000, this, this._sendHeartMsg);
+			Laya.timer.loop(1000 * 10, this, this._sendHeartMsg);
 		}
 		/**
 		 *  发送心跳消息
@@ -104,7 +110,7 @@ module catchDoll {
 		private _sendHeartMsg(): void {
 			this._curHeartCount++;
 			if (this._curHeartCount >= this.MAX_COUNT) {
-				console.log("心跳异常");
+				console.log("连接失败，请检查网络");
 				Laya.timer.clear(this, this._sendHeartMsg);
 			}
 			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
@@ -141,13 +147,13 @@ module catchDoll {
 					Master.instance.itemData = accurateData2.itemInfo;
 					EventManager.fireEvent(EVENT_ID.SERVE_COMPLETE);
 					this._heartCheck();
-					
+
 					break;
 				case "Cmd.ItemUpdate_CS":
 					let accurateData3: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
 					Master.instance.itemData = accurateData3.itemInfo;
 					EventManager.fireEvent(EVENT_ID.UPDATE_ITEM_INFO);
-					
+
 					break;
 				case "Cmd.Heartbeat_CS":
 					let accurateData4: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;

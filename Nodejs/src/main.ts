@@ -4,8 +4,8 @@ import { ProtoParse } from "./ProtoParse";
 import { JsonParse } from "./JsonParse";
 import { PlayerCenter } from "./PlayerCenter";
 require('../out/Extendtion.js');
-ProtoParse.init();
 JsonParse.init();
+ProtoParse.init();
 SQLServe.instance.createConnection();
 MyWebSocket.instance.creatWebSocket();
 

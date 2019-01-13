@@ -30,10 +30,10 @@ export class SQLServe {
     public createConnection() {
         //创建一个connection
         this.connection = SQL.createConnection({
-            host: '172.27.16.17', //主机
+            host: JsonParse.SQLHost, //主机
             user: 'root', //MySQL认证用户名
             password: 'JYM8398337', //MySQL认证用户密码
-            port: '3306', //端口号
+            port: JsonParse.SQLPost, //端口号
             database: 'test',
             debug: false,
         });

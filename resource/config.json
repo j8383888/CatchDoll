@@ -1,0 +1,16 @@
+{
+	"isDebug":true,
+	"debug":{	
+		"host":"127.0.0.1",
+		"post":8001,
+		"SQLHost":"cd-cdb-j2jts13i.sql.tencentcdb.com",
+		"SQLPost":63369
+	},
+	"dev":{
+		"host":"129.28.87.105",
+		"post":8001,
+		"SQLHost":"172.27.16.17",
+		"SQLPost":3306
+	}
+}
+
