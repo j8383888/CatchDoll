@@ -70,7 +70,7 @@ export class SQLServe {
         var userDelSql = 'delete from Login';
         this.connection.query(userDelSql, this._onSQLDelete);
 
-        var userDelSql = 'delete from UserInfo';
+        var userDelSql = 'delete from PropInfo';
         this.connection.query(userDelSql, this._onSQLDelete);
     }
 
@@ -78,7 +78,7 @@ export class SQLServe {
      * 添加列
      */
     private _addCow(): void {
-        var sql = 'SELECT * FROM UserInfo'
+        var sql = 'SELECT * FROM PropInfo'
         this.connection.query(sql, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
@@ -92,7 +92,7 @@ export class SQLServe {
                 }
             }
             for (let item of propIDAry) {
-                let addSqlCow: string = "alter table UserInfo add " + item + " int(20)"
+                let addSqlCow: string = "alter table PropInfo add " + item + " int(20)"
                 this.connection.query(addSqlCow, (err, result, fields) => {
                     if (err) {
                         console.log('[query] - :' + err);
@@ -132,7 +132,7 @@ export class SQLServe {
      * @param data 
      */
     private _seekPlayerData(data: Cmd.Login_C): void {
-        var sql = 'SELECT * FROM UserInfo where uid=' + data.uid;
+        var sql = 'SELECT * FROM PropInfo where uid=' + data.uid;
         this.connection.query(sql, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
@@ -194,7 +194,7 @@ export class SQLServe {
         rowName = rowName.slice(0, rowName.length - 1);
         rowName = "(" + rowName + ")"
         valueStr = " values(" + valueStr + ")"
-        var addUser = 'INSERT INTO UserInfo ' + rowName + valueStr;
+        var addUser = 'INSERT INTO PropInfo ' + rowName + valueStr;
         this.connection.query(addUser, addUserParams, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
@@ -204,6 +204,22 @@ export class SQLServe {
             console.log('数据库插入:', result);
             if (ready1 && ready2) {
                 PlayerCenter.sendInitPlayerData(data);
+            }
+        })
+
+        var addSql = 'INSERT INTO OtherInfo' + '(account,password,uid)' + ' VALUES(?,?,?)';
+        var addSqlParams = [data.account, data.password, data.uid];
+        this.connection.query(addSql, addSqlParams, (err, result, fields) => {
+            if (err) {
+                console.log('数据库[INSERT ERROR] - ', err.message);
+                return;
+            }
+            ready1 = true;
+            console.log('--------------------------INSERT----------------------------');
+            console.log('insert:', result);
+            console.log('-----------------------------------------------------------------\n\n');
+            if (ready1 && ready2) {
+                PlayerCenter.sendInitPlayerData(data)
             }
         })
     }
@@ -271,7 +287,7 @@ export class SQLServe {
         rowName = rowName.slice(0, rowName.length - 1)
         sqlParams.push(uid);
 
-        var sql = 'UPDATE UserInfo SET ' + rowName + ' WHERE uid = ?';
+        var sql = 'UPDATE PropInfo SET ' + rowName + ' WHERE uid = ?';
         this.connection.query(sql, sqlParams, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
