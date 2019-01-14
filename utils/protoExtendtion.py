@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 import os,shutil,time
 
 def writeProtoExtendition(pkg,msgAry):
-	t = time.strftime('%Y-%m-%d',time.localtime())  #将指定格式的当前时间以字符串输出
+	t = time.strftime('%Y-%m-%d',time.localtime())  
 	newfile= r"..\resource\proto\ProtoExtendtion.ts"
 	with open(newfile,'w') as f:
 		f.write("declare namespace "+ pkg +"{\n");
@@ -15,6 +15,7 @@ def writeProtoExtendition(pkg,msgAry):
 			f.write(pkg+ "."+item+".prototype.GetType = function () {\n")
 			f.write("\treturn \""+pkg+"."+item +"\";\n")
 			f.write("}\n")
+	print(u"生成protoExtendition成功")
 
 def openProto():
 	with open(r"..\resource\proto\common.proto", 'r') as f:
@@ -32,19 +33,9 @@ def openProto():
 				pkg = pkgName[0:-1]
 		writeProtoExtendition(pkg,msgAry);
 
-def copy(sorcePath,targetPath):
-	if(os.path.exists(targetPath)):
-		os.remove(targetPath)
-	shutil.copyfile(sorcePath,targetPath)
-
 openProto();
 
-sorcePath = r"..\resource\proto\ProtoExtendtion.ts"
-targetPath1 = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
-copy(sorcePath,targetPath1);
 
-targetPath2 = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
-copy(sorcePath,targetPath2);
 
 
 

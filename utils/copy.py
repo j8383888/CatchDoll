@@ -77,5 +77,10 @@ configDest2 = r"..\Nodejs\resource\config.json"
 copy(configSrc,configDest1) 
 copy(configSrc,configDest2)
 
+srcExtendtion = r"..\resource\proto\ProtoExtendtion.ts"
+destExtendtion = r"..\Egret\src\Extendtion\ProtoExtendtion.ts"
+copy(srcExtendtion,destExtendtion)
+
+
 
 
