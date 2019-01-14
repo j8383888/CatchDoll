@@ -37,8 +37,12 @@ message Heartbeat_CS
 message TaskUpdate_CS
 {
     required int32 uid = 1;
-    required int32 taskID = 2;
-	required int32 taskState = 3;
+    repeated TaskInfo taskInfo = 2;
+	
+	message TaskInfo{
+		required int32 taskID = 1;
+		required int32 taskState = 2;
+	}
 }
 
 enum TASK_STATE

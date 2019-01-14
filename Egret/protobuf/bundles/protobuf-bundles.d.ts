@@ -235,11 +235,8 @@ declare namespace Cmd {
         /** TaskUpdate_CS uid */
         uid: number;
 
-        /** TaskUpdate_CS taskID */
-        taskID: number;
-
-        /** TaskUpdate_CS taskState */
-        taskState: number;
+        /** TaskUpdate_CS taskInfo */
+        taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -254,11 +251,8 @@ declare namespace Cmd {
         /** TaskUpdate_CS uid. */
         public uid: number;
 
-        /** TaskUpdate_CS taskID. */
-        public taskID: number;
-
-        /** TaskUpdate_CS taskState. */
-        public taskState: number;
+        /** TaskUpdate_CS taskInfo. */
+        public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
 
         /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.
@@ -277,6 +271,53 @@ declare namespace Cmd {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.TaskUpdate_CS;
+    }
+
+    namespace TaskUpdate_CS {
+
+        /** Properties of a TaskInfo. */
+        interface ITaskInfo {
+
+            /** TaskInfo taskID */
+            taskID: number;
+
+            /** TaskInfo taskState */
+            taskState: number;
+        }
+
+        /** Represents a TaskInfo. */
+        class TaskInfo implements ITaskInfo {
+
+            /**
+             * Constructs a new TaskInfo.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: Cmd.TaskUpdate_CS.ITaskInfo);
+
+            /** TaskInfo taskID. */
+            public taskID: number;
+
+            /** TaskInfo taskState. */
+            public taskState: number;
+
+            /**
+             * Encodes the specified TaskInfo message. Does not implicitly {@link Cmd.TaskUpdate_CS.TaskInfo.verify|verify} messages.
+             * @param message TaskInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: Cmd.TaskUpdate_CS.ITaskInfo, writer?: protobuf.Writer): protobuf.Writer;
+
+            /**
+             * Decodes a TaskInfo message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns TaskInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.TaskUpdate_CS.TaskInfo;
+        }
     }
 
     /** TASK_STATE enum. */

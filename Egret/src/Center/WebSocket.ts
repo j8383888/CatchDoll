@@ -49,6 +49,7 @@ module catchDoll {
 
 
 			this._webSocket.type = egret.WebSocket.TYPE_BINARY;
+
 			this._webSocket.addEventListener(egret.Event.CONNECT, this._onSocketOpen, this)
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
@@ -72,8 +73,11 @@ module catchDoll {
 				let StrAry = location.search.split("?uid=")
 				let uid = StrAry[StrAry.length - 1];
 				cmd.uid = Number(uid);
-				this.sendMsg(cmd);
 			}
+			else{
+				cmd.uid = 9999;
+			}
+			this.sendMsg(cmd);
 
 		}
 		/**
