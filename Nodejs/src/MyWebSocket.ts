@@ -3,6 +3,7 @@ import { Cmd } from "../protobuf/common";
 import { ProtoParse } from "./ProtoParse";
 import { Dictionary } from "./util/Dictionary";
 import { PlayerCenter } from "./PlayerCenter";
+import { MsgHandler } from "./MsgHandler";
 var ws = require("nodejs-websocket");
 /**
  * NODE-JS 里面已经有了个websocket  
@@ -110,38 +111,18 @@ export class MyWebSocket {
 
                 let message: protobuf.Message<{}> = protoType.decode(rawData.slice(4 + nameLen, 4 + nameLen + rawDataLen));
                 let jsonData = message.toJSON()
-                let uid: number;
-                switch (cmdName) {
-                    /* 登陆协议 */
-                    case "Cmd.Login_C":
-                        let data: Cmd.Login_C = jsonData as Cmd.Login_C;
-                        MyWebSocket.instance.connectMap.set(data.uid, conn);
-                        MyWebSocket.instance.heartMap.set(data.uid, 0);
-                        SQLServe.instance.seekLogin(data)
-                        break;
-                    /* 物品变更 */
-                    case "Cmd.ItemUpdate_CS":
-                        let data2: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
-                        let itemInfo = data2.itemInfo;
-                        uid = data2.uid;
-                        PlayerCenter.clearUpdateNum(uid);
-                        for (let item of itemInfo) {
-                            if (item.itemUpdateNum && item.itemUpdateNum != 0) {
-                                PlayerCenter.updateProp(uid, item.itemID, item.itemUpdateNum);
-                            }
-                        }
-                        PlayerCenter.sendPlayerData(uid);
-                        break;
-                    case "Cmd.Heartbeat_CS":
-                        let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
-                        uid = data3.uid;
-                        let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
-                        cmd.uid = uid;
-                        MyWebSocket.instance.heartMap.set(uid, 0)
-                        MyWebSocket.instance.sendMsg(uid, cmd);
-                        break;
-                }
 
+                if (cmdName == "Cmd.Heartbeat_CS") {
+                    console.log("心跳，自行处理");
+                    let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
+                    // uid = data3.uid;
+                    let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
+                    cmd.uid = data3.uid;
+                    MyWebSocket.instance.heartMap.set(data3.uid, 0)
+                    MyWebSocket.instance.sendMsg(data3.uid, cmd);
+                } else{
+                    MsgHandler.getInstance(MyWebSocket.instance, conn).handler(cmdName, jsonData);
+                }
                 console.log("[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
             })
         })
