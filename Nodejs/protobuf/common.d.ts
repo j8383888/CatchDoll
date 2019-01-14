@@ -35,55 +35,6 @@ export namespace Cmd {
         public uid: number;
 
         /**
-         * Creates a new Login_C instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Login_C instance
-         */
-        public static create(properties?: Cmd.ILogin_C): Cmd.Login_C;
-
-        /**
-         * Encodes the specified Login_C message. Does not implicitly {@link Cmd.Login_C.verify|verify} messages.
-         * @param message Login_C message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.ILogin_C, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Login_C message, length delimited. Does not implicitly {@link Cmd.Login_C.verify|verify} messages.
-         * @param message Login_C message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Cmd.ILogin_C, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Login_C message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Login_C
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Cmd.Login_C;
-
-        /**
-         * Decodes a Login_C message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Login_C
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Cmd.Login_C;
-
-        /**
-         * Verifies a Login_C message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
          * Creates a Login_C message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Login_C
@@ -137,55 +88,6 @@ export namespace Cmd {
         public itemUpdateNum: number;
 
         /**
-         * Creates a new ItemInfo_CS instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ItemInfo_CS instance
-         */
-        public static create(properties?: Cmd.IItemInfo_CS): Cmd.ItemInfo_CS;
-
-        /**
-         * Encodes the specified ItemInfo_CS message. Does not implicitly {@link Cmd.ItemInfo_CS.verify|verify} messages.
-         * @param message ItemInfo_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.IItemInfo_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ItemInfo_CS message, length delimited. Does not implicitly {@link Cmd.ItemInfo_CS.verify|verify} messages.
-         * @param message ItemInfo_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Cmd.IItemInfo_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an ItemInfo_CS message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ItemInfo_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Cmd.ItemInfo_CS;
-
-        /**
-         * Decodes an ItemInfo_CS message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ItemInfo_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Cmd.ItemInfo_CS;
-
-        /**
-         * Verifies an ItemInfo_CS message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
          * Creates an ItemInfo_CS message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns ItemInfo_CS
@@ -231,55 +133,6 @@ export namespace Cmd {
 
         /** PlayerInfo_S itemInfo. */
         public itemInfo: Cmd.IItemInfo_CS[];
-
-        /**
-         * Creates a new PlayerInfo_S instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PlayerInfo_S instance
-         */
-        public static create(properties?: Cmd.IPlayerInfo_S): Cmd.PlayerInfo_S;
-
-        /**
-         * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
-         * @param message PlayerInfo_S message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.IPlayerInfo_S, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PlayerInfo_S message, length delimited. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
-         * @param message PlayerInfo_S message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Cmd.IPlayerInfo_S, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PlayerInfo_S message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PlayerInfo_S
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Cmd.PlayerInfo_S;
-
-        /**
-         * Decodes a PlayerInfo_S message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PlayerInfo_S
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Cmd.PlayerInfo_S;
-
-        /**
-         * Verifies a PlayerInfo_S message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PlayerInfo_S message from a plain object. Also converts values to their respective internal types.
@@ -329,55 +182,6 @@ export namespace Cmd {
         public itemInfo: Cmd.IItemInfo_CS[];
 
         /**
-         * Creates a new ItemUpdate_CS instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ItemUpdate_CS instance
-         */
-        public static create(properties?: Cmd.IItemUpdate_CS): Cmd.ItemUpdate_CS;
-
-        /**
-         * Encodes the specified ItemUpdate_CS message. Does not implicitly {@link Cmd.ItemUpdate_CS.verify|verify} messages.
-         * @param message ItemUpdate_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.IItemUpdate_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ItemUpdate_CS message, length delimited. Does not implicitly {@link Cmd.ItemUpdate_CS.verify|verify} messages.
-         * @param message ItemUpdate_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Cmd.IItemUpdate_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an ItemUpdate_CS message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ItemUpdate_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Cmd.ItemUpdate_CS;
-
-        /**
-         * Decodes an ItemUpdate_CS message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ItemUpdate_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Cmd.ItemUpdate_CS;
-
-        /**
-         * Verifies an ItemUpdate_CS message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
          * Creates an ItemUpdate_CS message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns ItemUpdate_CS
@@ -419,55 +223,6 @@ export namespace Cmd {
         public uid: number;
 
         /**
-         * Creates a new Heartbeat_CS instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Heartbeat_CS instance
-         */
-        public static create(properties?: Cmd.IHeartbeat_CS): Cmd.Heartbeat_CS;
-
-        /**
-         * Encodes the specified Heartbeat_CS message. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
-         * @param message Heartbeat_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.IHeartbeat_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Heartbeat_CS message, length delimited. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
-         * @param message Heartbeat_CS message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Cmd.IHeartbeat_CS, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Heartbeat_CS message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Heartbeat_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Cmd.Heartbeat_CS;
-
-        /**
-         * Decodes a Heartbeat_CS message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Heartbeat_CS
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Cmd.Heartbeat_CS;
-
-        /**
-         * Verifies a Heartbeat_CS message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
          * Creates a Heartbeat_CS message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Heartbeat_CS
@@ -487,5 +242,64 @@ export namespace Cmd {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a TaskUpdate_CS. */
+    interface ITaskUpdate_CS {
+
+        /** TaskUpdate_CS uid */
+        uid: number;
+
+        /** TaskUpdate_CS taskID */
+        taskID: number;
+
+        /** TaskUpdate_CS taskState */
+        taskState: number;
+    }
+
+    /** Represents a TaskUpdate_CS. */
+    class TaskUpdate_CS implements ITaskUpdate_CS {
+
+        /**
+         * Constructs a new TaskUpdate_CS.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.ITaskUpdate_CS);
+
+        /** TaskUpdate_CS uid. */
+        public uid: number;
+
+        /** TaskUpdate_CS taskID. */
+        public taskID: number;
+
+        /** TaskUpdate_CS taskState. */
+        public taskState: number;
+
+        /**
+         * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns TaskUpdate_CS
+         */
+        public static fromObject(object: { [k: string]: any }): Cmd.TaskUpdate_CS;
+
+        /**
+         * Creates a plain object from a TaskUpdate_CS message. Also converts values to other types if specified.
+         * @param message TaskUpdate_CS
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Cmd.TaskUpdate_CS, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this TaskUpdate_CS to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** TASK_STATE enum. */
+    enum TASK_STATE {
+        undone = 0,
+        done = 1
     }
 }

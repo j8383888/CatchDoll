@@ -14,6 +14,9 @@ declare namespace Cmd{
 	interface Heartbeat_CS {
 		GetType(): string;
 	}
+	interface TaskUpdate_CS {
+		GetType(): string;
+	}
 }
 Cmd.Login_C.prototype.GetType = function () {
 	return "Cmd.Login_C";
@@ -29,4 +32,7 @@ Cmd.ItemUpdate_CS.prototype.GetType = function () {
 }
 Cmd.Heartbeat_CS.prototype.GetType = function () {
 	return "Cmd.Heartbeat_CS";
+}
+Cmd.TaskUpdate_CS.prototype.GetType = function () {
+	return "Cmd.TaskUpdate_CS";
 }
