@@ -32,11 +32,20 @@
  * @author suo
  */
 class Main extends eui.UILayer {
-
+    /**
+     * 是否微信小游戏
+     */
+    public isWXGame: boolean = false;
 
     protected createChildren(): void {
+        egret.ImageLoader.crossOrigin = "anonymous";
+        if(this.isWXGame){
+            egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH
+        }
+        else{
+            egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.SHOW_ALL
+        }
         super.createChildren();
-
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
         })
@@ -55,7 +64,6 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
-
         this.runGame().catch(e => {
             console.log(e);
         })
@@ -65,7 +73,6 @@ class Main extends eui.UILayer {
         await this.loadResource()
         this.createGameScene();
         const result = await RES.getResAsync("description_json")
-        // this.startAnimation(result);
         await platform.login();
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
@@ -76,7 +83,12 @@ class Main extends eui.UILayer {
         try {
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            await RES.loadConfig("resource/default.res.json", "resource/");
+            if (this.isWXGame) {
+                await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
+            }
+            else {
+                await RES.loadConfig("resource/default.res.json", "resource/");
+            }
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
@@ -90,7 +102,13 @@ class Main extends eui.UILayer {
         return new Promise((resolve, reject) => {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-            let theme = new eui.Theme("resource/default.thm.json", this.stage);
+            let theme;
+            if (this.isWXGame) {
+                theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
+            }
+            else {
+                theme = new eui.Theme("resource/default.thm.json", this.stage);
+            }
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
             }, this);

@@ -552,8 +552,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {number} uid TaskUpdate_CS uid
-         * @property {number} taskID TaskUpdate_CS taskID
-         * @property {number} taskState TaskUpdate_CS taskState
+         * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
          */
 
         /**
@@ -565,6 +564,7 @@ $root.Cmd = (function() {
          * @param {Cmd.ITaskUpdate_CS=} [properties] Properties to set
          */
         function TaskUpdate_CS(properties) {
+            this.taskInfo = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -580,20 +580,12 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.uid = 0;
 
         /**
-         * TaskUpdate_CS taskID.
-         * @member {number} taskID
+         * TaskUpdate_CS taskInfo.
+         * @member {Array.<Cmd.TaskUpdate_CS.ITaskInfo>} taskInfo
          * @memberof Cmd.TaskUpdate_CS
          * @instance
          */
-        TaskUpdate_CS.prototype.taskID = 0;
-
-        /**
-         * TaskUpdate_CS taskState.
-         * @member {number} taskState
-         * @memberof Cmd.TaskUpdate_CS
-         * @instance
-         */
-        TaskUpdate_CS.prototype.taskState = 0;
+        TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
          * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
@@ -609,10 +601,16 @@ $root.Cmd = (function() {
             var message = new $root.Cmd.TaskUpdate_CS();
             if (object.uid != null)
                 message.uid = object.uid | 0;
-            if (object.taskID != null)
-                message.taskID = object.taskID | 0;
-            if (object.taskState != null)
-                message.taskState = object.taskState | 0;
+            if (object.taskInfo) {
+                if (!Array.isArray(object.taskInfo))
+                    throw TypeError(".Cmd.TaskUpdate_CS.taskInfo: array expected");
+                message.taskInfo = [];
+                for (var i = 0; i < object.taskInfo.length; ++i) {
+                    if (typeof object.taskInfo[i] !== "object")
+                        throw TypeError(".Cmd.TaskUpdate_CS.taskInfo: object expected");
+                    message.taskInfo[i] = $root.Cmd.TaskUpdate_CS.TaskInfo.fromObject(object.taskInfo[i]);
+                }
+            }
             return message;
         };
 
@@ -629,17 +627,17 @@ $root.Cmd = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults) {
+            if (options.arrays || options.defaults)
+                object.taskInfo = [];
+            if (options.defaults)
                 object.uid = 0;
-                object.taskID = 0;
-                object.taskState = 0;
-            }
             if (message.uid != null && message.hasOwnProperty("uid"))
                 object.uid = message.uid;
-            if (message.taskID != null && message.hasOwnProperty("taskID"))
-                object.taskID = message.taskID;
-            if (message.taskState != null && message.hasOwnProperty("taskState"))
-                object.taskState = message.taskState;
+            if (message.taskInfo && message.taskInfo.length) {
+                object.taskInfo = [];
+                for (var j = 0; j < message.taskInfo.length; ++j)
+                    object.taskInfo[j] = $root.Cmd.TaskUpdate_CS.TaskInfo.toObject(message.taskInfo[j], options);
+            }
             return object;
         };
 
@@ -653,6 +651,104 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        TaskUpdate_CS.TaskInfo = (function() {
+
+            /**
+             * Properties of a TaskInfo.
+             * @memberof Cmd.TaskUpdate_CS
+             * @interface ITaskInfo
+             * @property {number} taskID TaskInfo taskID
+             * @property {number} taskState TaskInfo taskState
+             */
+
+            /**
+             * Constructs a new TaskInfo.
+             * @memberof Cmd.TaskUpdate_CS
+             * @classdesc Represents a TaskInfo.
+             * @implements ITaskInfo
+             * @constructor
+             * @param {Cmd.TaskUpdate_CS.ITaskInfo=} [properties] Properties to set
+             */
+            function TaskInfo(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * TaskInfo taskID.
+             * @member {number} taskID
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @instance
+             */
+            TaskInfo.prototype.taskID = 0;
+
+            /**
+             * TaskInfo taskState.
+             * @member {number} taskState
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @instance
+             */
+            TaskInfo.prototype.taskState = 0;
+
+            /**
+             * Creates a TaskInfo message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {Cmd.TaskUpdate_CS.TaskInfo} TaskInfo
+             */
+            TaskInfo.fromObject = function fromObject(object) {
+                if (object instanceof $root.Cmd.TaskUpdate_CS.TaskInfo)
+                    return object;
+                var message = new $root.Cmd.TaskUpdate_CS.TaskInfo();
+                if (object.taskID != null)
+                    message.taskID = object.taskID | 0;
+                if (object.taskState != null)
+                    message.taskState = object.taskState | 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a TaskInfo message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @static
+             * @param {Cmd.TaskUpdate_CS.TaskInfo} message TaskInfo
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            TaskInfo.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.taskID = 0;
+                    object.taskState = 0;
+                }
+                if (message.taskID != null && message.hasOwnProperty("taskID"))
+                    object.taskID = message.taskID;
+                if (message.taskState != null && message.hasOwnProperty("taskState"))
+                    object.taskState = message.taskState;
+                return object;
+            };
+
+            /**
+             * Converts this TaskInfo to JSON.
+             * @function toJSON
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            TaskInfo.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return TaskInfo;
+        })();
 
         return TaskUpdate_CS;
     })();

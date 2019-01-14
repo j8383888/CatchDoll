@@ -250,11 +250,8 @@ export namespace Cmd {
         /** TaskUpdate_CS uid */
         uid: number;
 
-        /** TaskUpdate_CS taskID */
-        taskID: number;
-
-        /** TaskUpdate_CS taskState */
-        taskState: number;
+        /** TaskUpdate_CS taskInfo */
+        taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -269,11 +266,8 @@ export namespace Cmd {
         /** TaskUpdate_CS uid. */
         public uid: number;
 
-        /** TaskUpdate_CS taskID. */
-        public taskID: number;
-
-        /** TaskUpdate_CS taskState. */
-        public taskState: number;
+        /** TaskUpdate_CS taskInfo. */
+        public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
 
         /**
          * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
@@ -295,6 +289,56 @@ export namespace Cmd {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+
+    namespace TaskUpdate_CS {
+
+        /** Properties of a TaskInfo. */
+        interface ITaskInfo {
+
+            /** TaskInfo taskID */
+            taskID: number;
+
+            /** TaskInfo taskState */
+            taskState: number;
+        }
+
+        /** Represents a TaskInfo. */
+        class TaskInfo implements ITaskInfo {
+
+            /**
+             * Constructs a new TaskInfo.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: Cmd.TaskUpdate_CS.ITaskInfo);
+
+            /** TaskInfo taskID. */
+            public taskID: number;
+
+            /** TaskInfo taskState. */
+            public taskState: number;
+
+            /**
+             * Creates a TaskInfo message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns TaskInfo
+             */
+            public static fromObject(object: { [k: string]: any }): Cmd.TaskUpdate_CS.TaskInfo;
+
+            /**
+             * Creates a plain object from a TaskInfo message. Also converts values to other types if specified.
+             * @param message TaskInfo
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: Cmd.TaskUpdate_CS.TaskInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this TaskInfo to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
     }
 
     /** TASK_STATE enum. */

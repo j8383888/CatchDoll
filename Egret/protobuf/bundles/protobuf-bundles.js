@@ -525,8 +525,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {number} uid TaskUpdate_CS uid
-         * @property {number} taskID TaskUpdate_CS taskID
-         * @property {number} taskState TaskUpdate_CS taskState
+         * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
          */
 
         /**
@@ -538,6 +537,7 @@ $root.Cmd = (function() {
          * @param {Cmd.ITaskUpdate_CS=} [properties] Properties to set
          */
         function TaskUpdate_CS(properties) {
+            this.taskInfo = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -553,20 +553,12 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.uid = 0;
 
         /**
-         * TaskUpdate_CS taskID.
-         * @member {number} taskID
+         * TaskUpdate_CS taskInfo.
+         * @member {Array.<Cmd.TaskUpdate_CS.ITaskInfo>} taskInfo
          * @memberof Cmd.TaskUpdate_CS
          * @instance
          */
-        TaskUpdate_CS.prototype.taskID = 0;
-
-        /**
-         * TaskUpdate_CS taskState.
-         * @member {number} taskState
-         * @memberof Cmd.TaskUpdate_CS
-         * @instance
-         */
-        TaskUpdate_CS.prototype.taskState = 0;
+        TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.
@@ -581,8 +573,9 @@ $root.Cmd = (function() {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.taskID);
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.taskState);
+            if (message.taskInfo != null && message.taskInfo.length)
+                for (var i = 0; i < message.taskInfo.length; ++i)
+                    $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -608,10 +601,9 @@ $root.Cmd = (function() {
                     message.uid = reader.int32();
                     break;
                 case 2:
-                    message.taskID = reader.int32();
-                    break;
-                case 3:
-                    message.taskState = reader.int32();
+                    if (!(message.taskInfo && message.taskInfo.length))
+                        message.taskInfo = [];
+                    message.taskInfo.push($root.Cmd.TaskUpdate_CS.TaskInfo.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -620,12 +612,105 @@ $root.Cmd = (function() {
             }
             if (!message.hasOwnProperty("uid"))
                 throw $util.ProtocolError("missing required 'uid'", { instance: message });
-            if (!message.hasOwnProperty("taskID"))
-                throw $util.ProtocolError("missing required 'taskID'", { instance: message });
-            if (!message.hasOwnProperty("taskState"))
-                throw $util.ProtocolError("missing required 'taskState'", { instance: message });
             return message;
         };
+
+        TaskUpdate_CS.TaskInfo = (function() {
+
+            /**
+             * Properties of a TaskInfo.
+             * @memberof Cmd.TaskUpdate_CS
+             * @interface ITaskInfo
+             * @property {number} taskID TaskInfo taskID
+             * @property {number} taskState TaskInfo taskState
+             */
+
+            /**
+             * Constructs a new TaskInfo.
+             * @memberof Cmd.TaskUpdate_CS
+             * @classdesc Represents a TaskInfo.
+             * @implements ITaskInfo
+             * @constructor
+             * @param {Cmd.TaskUpdate_CS.ITaskInfo=} [properties] Properties to set
+             */
+            function TaskInfo(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * TaskInfo taskID.
+             * @member {number} taskID
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @instance
+             */
+            TaskInfo.prototype.taskID = 0;
+
+            /**
+             * TaskInfo taskState.
+             * @member {number} taskState
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @instance
+             */
+            TaskInfo.prototype.taskState = 0;
+
+            /**
+             * Encodes the specified TaskInfo message. Does not implicitly {@link Cmd.TaskUpdate_CS.TaskInfo.verify|verify} messages.
+             * @function encode
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @static
+             * @param {Cmd.TaskUpdate_CS.ITaskInfo} message TaskInfo message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            TaskInfo.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.taskID);
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.taskState);
+                return writer;
+            };
+
+            /**
+             * Decodes a TaskInfo message from the specified reader or buffer.
+             * @function decode
+             * @memberof Cmd.TaskUpdate_CS.TaskInfo
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {Cmd.TaskUpdate_CS.TaskInfo} TaskInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            TaskInfo.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.TaskUpdate_CS.TaskInfo();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.taskID = reader.int32();
+                        break;
+                    case 2:
+                        message.taskState = reader.int32();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("taskID"))
+                    throw $util.ProtocolError("missing required 'taskID'", { instance: message });
+                if (!message.hasOwnProperty("taskState"))
+                    throw $util.ProtocolError("missing required 'taskState'", { instance: message });
+                return message;
+            };
+
+            return TaskInfo;
+        })();
 
         return TaskUpdate_CS;
     })();
