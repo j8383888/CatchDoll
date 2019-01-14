@@ -4,6 +4,7 @@ import { ProtoParse } from "./ProtoParse";
 import { Dictionary } from "./util/Dictionary";
 import { PlayerCenter } from "./PlayerCenter";
 import { MsgHandler } from "./MsgHandler";
+import { TaskMgr } from "./Task/TaskMgr";
 var ws = require("nodejs-websocket");
 /**
  * NODE-JS 里面已经有了个websocket  
@@ -40,10 +41,8 @@ export class MyWebSocket {
         console.log("WebSocket开始建立连接...")
         var server = ws.createServer(this._onReceive).listen(8001)
         console.log("WebSocket建立完毕");
+        TaskMgr.getInstance().taskTimer();  // 开启任务刷新的计时
     }
-
-
-
 
     /*发送数据 */
     public sendMsg(uid: number, cmd: any): void {

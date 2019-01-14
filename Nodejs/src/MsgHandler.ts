@@ -3,10 +3,12 @@ import { Cmd } from "../protobuf/common";
 import { ProtoParse } from "./ProtoParse";
 import { Dictionary } from "./util/Dictionary";
 import { PlayerCenter } from "./PlayerCenter";
+import { TaskMgr } from "./Task/TaskMgr";
 export class MsgHandler {
     private static _handler: MsgHandler = null; // 实例
     private _target: any = null; // 外部应用（MyWebScoket实例）
     private _curWs: any = null; //  当前的连接
+    private _taskTimer: any = null;
     /**
      * 获取单例
      * @param target 
@@ -29,12 +31,7 @@ export class MsgHandler {
             /* 登陆协议 */
             case "Cmd.Login_C":{
                 console.log("玩家登陆");
-
-                // 测试
-                var timer = setInterval(() => {
-                    console.log("发送任务列表");
-                }, 1000);
-
+                // this.taskTimer();
                 let data: Cmd.Login_C = msgData as Cmd.Login_C;
                 this._target.connectMap.set(data.uid, this._curWs);
                 this._target.heartMap.set(data.uid, 0);
