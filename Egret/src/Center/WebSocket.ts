@@ -22,7 +22,7 @@ module catchDoll {
 		private _curHeartCount: number = 0;
 		/**
 		 * 最大检测次数
-		 **/ 
+		 **/
 		private readonly MAX_COUNT: number = 3;
 
 
@@ -56,7 +56,6 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
 			this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
-
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
 		}
 
@@ -74,7 +73,7 @@ module catchDoll {
 				let uid = StrAry[StrAry.length - 1];
 				cmd.uid = Number(uid);
 			}
-			else{
+			else {
 				cmd.uid = 9999;
 			}
 			this.sendMsg(cmd);
@@ -135,18 +134,38 @@ module catchDoll {
 			let cmdTitle = this._readByteAry.readUTFBytes(nameLen);
 			let rawDataLen: number = this._readByteAry.readUnsignedShort();
 			let rawData: Uint8Array = this._readByteAry.bytes.slice(4 + nameLen, 4 + nameLen + rawDataLen);
-			const protoType: protobuf.Type = this._protoRoot.lookupType(cmdTitle);
-			let message: protobuf.Message<{}> = protoType.decode(rawData)
-
+			let protoType: any;
+			let message: any;
+			if (GlobeConst.isWXGame) {
+				switch (cmdTitle) {
+					case "Cmd.Login_C":
+						protoType = Cmd.Login_C
+						break;
+					case "Cmd.PlayerInfo_S":
+						protoType = Cmd.PlayerInfo_S
+						break;
+					case "Cmd.ItemUpdate_CS":
+						protoType = Cmd.ItemUpdate_CS
+						break;
+					case "Cmd.Heartbeat_CS":
+						protoType = Cmd.Heartbeat_CS
+						break;
+				}
+				message = protoType.decode(rawData)
+			}
+			else {
+				protoType = this._protoRoot.lookupType(cmdTitle);
+				message = (protoType.decode(rawData) as protobuf.Message<{}>).toJSON()
+			}
+			
 			console.log("[收到服务器数据: " + cmdTitle + ":" + JSON.stringify(message) + "]");
-			let jsonData = message.toJSON();
 			/* 登陆协议 */
 			switch (cmdTitle) {
 				case "Cmd.Login_C":
 					// let accurateData: Cmd.Login_C = jsonData as Cmd.Login_C;
 					break;
 				case "Cmd.PlayerInfo_S":
-					let accurateData2: Cmd.PlayerInfo_S = jsonData as Cmd.PlayerInfo_S;
+					let accurateData2: Cmd.PlayerInfo_S = message as Cmd.PlayerInfo_S;
 					Master.instance.uid = accurateData2.uid;
 					Master.instance.itemData = accurateData2.itemInfo;
 					EventManager.fireEvent(EVENT_ID.SERVE_COMPLETE);
@@ -154,13 +173,13 @@ module catchDoll {
 
 					break;
 				case "Cmd.ItemUpdate_CS":
-					let accurateData3: Cmd.ItemUpdate_CS = jsonData as Cmd.ItemUpdate_CS;
+					let accurateData3: Cmd.ItemUpdate_CS = message as Cmd.ItemUpdate_CS;
 					Master.instance.itemData = accurateData3.itemInfo;
 					EventManager.fireEvent(EVENT_ID.UPDATE_ITEM_INFO);
 
 					break;
 				case "Cmd.Heartbeat_CS":
-					let accurateData4: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
+					let accurateData4: Cmd.Heartbeat_CS = message as Cmd.Heartbeat_CS;
 					if (Master.instance.uid == accurateData4.uid) {
 						this._curHeartCount = 0;
 					}
@@ -183,15 +202,19 @@ module catchDoll {
 		 * 发送字节二进制             
 		 */
 		public sendMsg(cmd: any): void {
-			// let constructor = cmd.constructor
 			if (cmd["GetType"] === void 0) {
 				console.assert(false, "cmd未扩展GetType")
 				return
 			}
 
 			let protoName: string = cmd["GetType"]()
-			console.error("协议标题：" + protoName)
-			const protoType = this._protoRoot.lookupType(protoName)
+			let protoType: any;
+			if (GlobeConst.isWXGame) {
+				protoType = cmd.constructor;
+			}
+			else {
+				protoType = this._protoRoot.lookupType(protoName)
+			}
 			let writer: protobuf.Writer = protoType.encode(cmd);
 			let data: Uint8Array = writer.finish();
 			this._writeByteAry.clear();

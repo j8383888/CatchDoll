@@ -24,6 +24,7 @@ module catchDoll {
 		/*舞台高*/
 		public static stageH: number = 0;
 
+
 		public constructor() {
 			super();
 			this._init();

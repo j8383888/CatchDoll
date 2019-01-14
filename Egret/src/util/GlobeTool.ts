@@ -5,7 +5,7 @@
 module catchDoll {
 	export class GlobeTool {
 
-
+		
 
 		public constructor() {
 		}

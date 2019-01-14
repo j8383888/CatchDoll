@@ -16,7 +16,7 @@ module catchDoll {
 		/*是否调试模式*/
 		public isDebug: boolean = false;
 		/*地址*/
-		public host: string = "";
+		public host: string = "";  
 		/*端口*/
 		public post: number = -1
 
@@ -31,7 +31,9 @@ module catchDoll {
 				this.host = configData["dev"]["host"];
 				this.post = configData["dev"]["post"];
 			}
-
+			GlobeConst.isDebug = this.isDebug;
+			GlobeConst.host = this.host;
+			GlobeConst.post = this.post;
 		}
 
 		/**

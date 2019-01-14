@@ -121,6 +121,7 @@
 		"bin-debug/util/CustomerImage.js",
 		"bin-debug/CatchDoll/BattleEnterPanel/BattleEnterPanelView.js",
 		"bin-debug/util/EventManager.js",
+		"bin-debug/util/GlobeConst.js",
 		"bin-debug/util/GlobeTool.js",
 		"bin-debug/util/Handler.js",
 		"bin-debug/util/MathUtil.js",

@@ -32,14 +32,10 @@
  * @author suo
  */
 class Main extends eui.UILayer {
-    /**
-     * 是否微信小游戏
-     */
-    public isWXGame: boolean = false;
 
     protected createChildren(): void {
         egret.ImageLoader.crossOrigin = "anonymous";
-        if(this.isWXGame){
+        if(catchDoll.GlobeConst.isWXGame){
             egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH
         }
         else{
@@ -83,7 +79,7 @@ class Main extends eui.UILayer {
         try {
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            if (this.isWXGame) {
+            if (catchDoll.GlobeConst.isWXGame) {
                 await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
             }
             else {
@@ -103,7 +99,7 @@ class Main extends eui.UILayer {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme;
-            if (this.isWXGame) {
+            if (catchDoll.GlobeConst.isWXGame) {
                 theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
             }
             else {
