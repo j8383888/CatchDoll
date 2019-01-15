@@ -7,8 +7,6 @@ import { MyWebSocket } from "../MyWebSocket";
 export class TaskMgr {
     private static _taskMgr: TaskMgr = null;
     private _taskTimer: any = null;
-    private _ws = null;
-    private _taskNum: number = 3;
     /**
      * 获取单例
      */
@@ -30,10 +28,10 @@ export class TaskMgr {
             var hour = time.getHours();
             var min = time.getMinutes();
             var ys = hour % 2;
-            this.pushTaskList();      
+            this.pushTaskList();
             if (ys == 0) {
                 if (min < 2 || min > 58) {
-                    this.pushTaskList();       
+                    this.pushTaskList();
                 } else {
                     // console.log(`还有${60 - min}分钟刷新任务列表`);
                 }
@@ -45,7 +43,7 @@ export class TaskMgr {
     /**
      * 清空任务计时
      */
-    public clealTsskTimer(): void {
+    public clealTaskTimer(): void {
         if (this._taskTimer) {
             clearInterval(this._taskTimer);
             this._taskTimer = null;
@@ -55,37 +53,46 @@ export class TaskMgr {
      *  推送任务列表
      */
     public pushTaskList(): void {
-        let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
-        let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
-        Utils.getInstance().getFile("../resource/table/TaskTable.json", (data) => {
-            console.log('任务列表', data);
-            const curTaskIndex = [];
-            const func = () => {
-                if (curTaskIndex.length >= this._taskNum) {
-                    console.log("刷新的任务下表列表：", curTaskIndex);
-                    curTaskIndex.forEach((item) => {
-                        // console.log("任务： ", data[item - 1]);
-                        taskInfo.taskID = data[item - 1].id;
-                        taskInfo.taskState = Cmd.TASK_STATE.undone;
-                        cmd.taskInfo.push(taskInfo);
-                        // MyWebSocket.instance.connectMap
-                    });
-                } else {
-                    let canAdd = true;
-                    const curNum = Utils.getInstance().getRandom(1, data.length);
-                    curTaskIndex.forEach((item) => {
-                        if (item == curNum) {
-                            canAdd = false;
-                        }
-                    });
-                    if (canAdd) {
-                        curTaskIndex.push(curNum);
-                    }
-                    func();
-                }
-            };
-            func();
-        });
+        let len = MyWebSocket.instance.connectMap.length;
+        for (let i: number = 0; i < len; i++) {
+            let uid = MyWebSocket.instance.connectMap.keys[i];
+
+            let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
+            cmd.uid = uid;
+            cmd.remainTime = 2 * 60 * 60;
+            let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
+
+        }
+
+        // Utils.getInstance().getFile("../resource/table/TaskTable.json", (data) => {
+        //     console.log('任务列表', data);
+        //     const curTaskIndex = [];
+        //     const func = () => {
+        //         if (curTaskIndex.length >= this._taskNum) {
+        //             console.log("刷新的任务下表列表：", curTaskIndex);
+        //             curTaskIndex.forEach((item) => {
+        //                 // console.log("任务： ", data[item - 1]);
+        //                 taskInfo.taskID = data[item - 1].id;
+        //                 taskInfo.taskState = Cmd.TASK_STATE.undone;
+        //                 cmd.taskInfo.push(taskInfo);
+        //                 // MyWebSocket.instance.connectMap
+        //             });
+        //         } else {
+        //             let canAdd = true;
+        //             const curNum = Utils.getInstance().getRandom(1, data.length);
+        //             curTaskIndex.forEach((item) => {
+        //                 if (item == curNum) {
+        //                     canAdd = false;
+        //                 }
+        //             });
+        //             if (canAdd) {
+        //                 curTaskIndex.push(curNum);
+        //             }
+        //             func();
+        //         }
+        //     };
+        //     func();
+        // });
         // this._target.sendMsg(1, data);
     };
 };

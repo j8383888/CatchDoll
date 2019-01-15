@@ -1,12 +1,11 @@
+
 import { readFileSync } from "fs";
 
 export class JsonParse {
-
-    private static readonly PropPath: string = "resource/table/PropTable.json"
-
-    private static readonly ConfigPath: string = "resource/config.json"
-
+    
     public static propData: table.PropTable[];
+
+    public static taskData: table.TaskTable[]
 
     public static propDataID: string[] = [];
     /* 道具前缀 */
@@ -26,24 +25,34 @@ export class JsonParse {
      * 初始化
      */
     public static init(): void {
-        let buffer: Buffer = readFileSync(this.ConfigPath);
-        let configData = JSON.parse(buffer.toString());
+        let configData = this.getJSon("resource/config.json");
         this.isDebug = configData["isDebug"];
         if (this.isDebug) {
             this.SQLHost = configData["debug"]["SQLHost"];
             this.SQLPost = configData["debug"]["SQLPost"];
         }
-        else{
+        else {
             this.SQLHost = configData["dev"]["SQLHost"];
             this.SQLPost = configData["dev"]["SQLPost"];
         }
 
-        let buffer2: Buffer = readFileSync(this.PropPath);
-        this.propData = JSON.parse(buffer2.toString());
+
+        this.propData = this.getJSon("resource/table/TaskTable.json")
         for (let item of this.propData) {
             this.propDataID.push(this.propForm + item.id);
         }
 
+        this.taskData = this.getJSon("resource/table/TaskTable.json")
+
+    }
+
+    /**
+     * 获得Json数据
+     * @param path 
+     */
+    public static getJSon(path: string): any {
+        let buffer: Buffer = readFileSync(path);
+        return JSON.parse(buffer.toString());
     }
 
 }
