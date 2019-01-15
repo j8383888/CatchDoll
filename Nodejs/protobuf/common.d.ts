@@ -252,6 +252,9 @@ export namespace Cmd {
 
         /** TaskUpdate_CS taskInfo */
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
+
+        /** TaskUpdate_CS remainTime */
+        remainTime: number;
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -268,6 +271,9 @@ export namespace Cmd {
 
         /** TaskUpdate_CS taskInfo. */
         public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
+
+        /** TaskUpdate_CS remainTime. */
+        public remainTime: number;
 
         /**
          * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
@@ -300,7 +306,7 @@ export namespace Cmd {
             taskID: number;
 
             /** TaskInfo taskState */
-            taskState: number;
+            taskState: Cmd.TASK_STATE;
         }
 
         /** Represents a TaskInfo. */
@@ -316,7 +322,7 @@ export namespace Cmd {
             public taskID: number;
 
             /** TaskInfo taskState. */
-            public taskState: number;
+            public taskState: Cmd.TASK_STATE;
 
             /**
              * Creates a TaskInfo message from a plain object. Also converts values to their respective internal types.

@@ -237,6 +237,9 @@ declare namespace Cmd {
 
         /** TaskUpdate_CS taskInfo */
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
+
+        /** TaskUpdate_CS remainTime */
+        remainTime: number;
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -253,6 +256,9 @@ declare namespace Cmd {
 
         /** TaskUpdate_CS taskInfo. */
         public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
+
+        /** TaskUpdate_CS remainTime. */
+        public remainTime: number;
 
         /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.
@@ -282,7 +288,7 @@ declare namespace Cmd {
             taskID: number;
 
             /** TaskInfo taskState */
-            taskState: number;
+            taskState: Cmd.TASK_STATE;
         }
 
         /** Represents a TaskInfo. */
@@ -298,7 +304,7 @@ declare namespace Cmd {
             public taskID: number;
 
             /** TaskInfo taskState. */
-            public taskState: number;
+            public taskState: Cmd.TASK_STATE;
 
             /**
              * Encodes the specified TaskInfo message. Does not implicitly {@link Cmd.TaskUpdate_CS.TaskInfo.verify|verify} messages.

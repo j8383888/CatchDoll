@@ -553,6 +553,7 @@ $root.Cmd = (function() {
          * @interface ITaskUpdate_CS
          * @property {number} uid TaskUpdate_CS uid
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
+         * @property {number} remainTime TaskUpdate_CS remainTime
          */
 
         /**
@@ -588,6 +589,14 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
+         * TaskUpdate_CS remainTime.
+         * @member {number} remainTime
+         * @memberof Cmd.TaskUpdate_CS
+         * @instance
+         */
+        TaskUpdate_CS.prototype.remainTime = 0;
+
+        /**
          * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
          * @memberof Cmd.TaskUpdate_CS
@@ -611,6 +620,8 @@ $root.Cmd = (function() {
                     message.taskInfo[i] = $root.Cmd.TaskUpdate_CS.TaskInfo.fromObject(object.taskInfo[i]);
                 }
             }
+            if (object.remainTime != null)
+                message.remainTime = object.remainTime | 0;
             return message;
         };
 
@@ -629,8 +640,10 @@ $root.Cmd = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.taskInfo = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.uid = 0;
+                object.remainTime = 0;
+            }
             if (message.uid != null && message.hasOwnProperty("uid"))
                 object.uid = message.uid;
             if (message.taskInfo && message.taskInfo.length) {
@@ -638,6 +651,8 @@ $root.Cmd = (function() {
                 for (var j = 0; j < message.taskInfo.length; ++j)
                     object.taskInfo[j] = $root.Cmd.TaskUpdate_CS.TaskInfo.toObject(message.taskInfo[j], options);
             }
+            if (message.remainTime != null && message.hasOwnProperty("remainTime"))
+                object.remainTime = message.remainTime;
             return object;
         };
 
@@ -659,7 +674,7 @@ $root.Cmd = (function() {
              * @memberof Cmd.TaskUpdate_CS
              * @interface ITaskInfo
              * @property {number} taskID TaskInfo taskID
-             * @property {number} taskState TaskInfo taskState
+             * @property {Cmd.TASK_STATE} taskState TaskInfo taskState
              */
 
             /**
@@ -687,7 +702,7 @@ $root.Cmd = (function() {
 
             /**
              * TaskInfo taskState.
-             * @member {number} taskState
+             * @member {Cmd.TASK_STATE} taskState
              * @memberof Cmd.TaskUpdate_CS.TaskInfo
              * @instance
              */
@@ -707,8 +722,16 @@ $root.Cmd = (function() {
                 var message = new $root.Cmd.TaskUpdate_CS.TaskInfo();
                 if (object.taskID != null)
                     message.taskID = object.taskID | 0;
-                if (object.taskState != null)
-                    message.taskState = object.taskState | 0;
+                switch (object.taskState) {
+                case "undone":
+                case 0:
+                    message.taskState = 0;
+                    break;
+                case "done":
+                case 1:
+                    message.taskState = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -727,12 +750,12 @@ $root.Cmd = (function() {
                 var object = {};
                 if (options.defaults) {
                     object.taskID = 0;
-                    object.taskState = 0;
+                    object.taskState = options.enums === String ? "undone" : 0;
                 }
                 if (message.taskID != null && message.hasOwnProperty("taskID"))
                     object.taskID = message.taskID;
                 if (message.taskState != null && message.hasOwnProperty("taskState"))
-                    object.taskState = message.taskState;
+                    object.taskState = options.enums === String ? $root.Cmd.TASK_STATE[message.taskState] : message.taskState;
                 return object;
             };
 

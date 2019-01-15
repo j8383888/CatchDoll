@@ -526,6 +526,7 @@ $root.Cmd = (function() {
          * @interface ITaskUpdate_CS
          * @property {number} uid TaskUpdate_CS uid
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
+         * @property {number} remainTime TaskUpdate_CS remainTime
          */
 
         /**
@@ -561,6 +562,14 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
+         * TaskUpdate_CS remainTime.
+         * @member {number} remainTime
+         * @memberof Cmd.TaskUpdate_CS
+         * @instance
+         */
+        TaskUpdate_CS.prototype.remainTime = 0;
+
+        /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.
          * @function encode
          * @memberof Cmd.TaskUpdate_CS
@@ -576,6 +585,7 @@ $root.Cmd = (function() {
             if (message.taskInfo != null && message.taskInfo.length)
                 for (var i = 0; i < message.taskInfo.length; ++i)
                     $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.remainTime);
             return writer;
         };
 
@@ -605,6 +615,9 @@ $root.Cmd = (function() {
                         message.taskInfo = [];
                     message.taskInfo.push($root.Cmd.TaskUpdate_CS.TaskInfo.decode(reader, reader.uint32()));
                     break;
+                case 3:
+                    message.remainTime = reader.int32();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -612,6 +625,8 @@ $root.Cmd = (function() {
             }
             if (!message.hasOwnProperty("uid"))
                 throw $util.ProtocolError("missing required 'uid'", { instance: message });
+            if (!message.hasOwnProperty("remainTime"))
+                throw $util.ProtocolError("missing required 'remainTime'", { instance: message });
             return message;
         };
 
@@ -622,7 +637,7 @@ $root.Cmd = (function() {
              * @memberof Cmd.TaskUpdate_CS
              * @interface ITaskInfo
              * @property {number} taskID TaskInfo taskID
-             * @property {number} taskState TaskInfo taskState
+             * @property {Cmd.TASK_STATE} taskState TaskInfo taskState
              */
 
             /**
@@ -650,7 +665,7 @@ $root.Cmd = (function() {
 
             /**
              * TaskInfo taskState.
-             * @member {number} taskState
+             * @member {Cmd.TASK_STATE} taskState
              * @memberof Cmd.TaskUpdate_CS.TaskInfo
              * @instance
              */
