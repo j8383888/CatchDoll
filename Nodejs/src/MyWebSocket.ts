@@ -5,6 +5,7 @@ import { Dictionary } from "./util/Dictionary";
 import { PlayerCenter } from "./PlayerCenter";
 import { MsgHandler } from "./MsgHandler";
 import { TaskMgr } from "./Task/TaskMgr";
+import { Utils } from "./util/Utils";
 var ws = require("nodejs-websocket");
 /**
  * NODE-JS 里面已经有了个websocket  

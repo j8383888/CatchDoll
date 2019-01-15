@@ -1,8 +1,14 @@
+/**
+ *  任务系统管理类，任何任务有关放在这
+ */
 import { Cmd } from "../../protobuf/common";
+import { Utils } from "../util/Utils";
+import { MyWebSocket } from "../MyWebSocket";
 export class TaskMgr {
     private static _taskMgr: TaskMgr = null;
     private _taskTimer: any = null;
     private _ws = null;
+    private _taskNum: number = 3;
     /**
      * 获取单例
      */
@@ -24,16 +30,17 @@ export class TaskMgr {
             var hour = time.getHours();
             var min = time.getMinutes();
             var ys = hour % 2;
+            this.pushTaskList();      
             if (ys == 0) {
                 if (min < 2 || min > 58) {
                     this.pushTaskList();       
                 } else {
-                    console.log(`还有${60 - min}分钟刷新任务列表`);
+                    // console.log(`还有${60 - min}分钟刷新任务列表`);
                 }
             } else {
-                console.log(`还有${ys}小时${60 - min}分钟刷新任务列表`);
+                // console.log(`还有${ys}小时${60 - min}分钟刷新任务列表`);
             }
-        }, 1000);
+        }, 2000);
     };
     /**
      * 清空任务计时
@@ -48,15 +55,37 @@ export class TaskMgr {
      *  推送任务列表
      */
     public pushTaskList(): void {
-        let data: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
+        let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
         let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
-        data.uid = 1;
-        taskInfo.taskID = 2;
-        taskInfo.taskState = Cmd.TASK_STATE.undone;
-        data.taskInfo.push(taskInfo);
-        for (let index in this._ws.connectMap) {
-            console.log(index);
-        }
+        Utils.getInstance().getFile("../resource/table/TaskTable.json", (data) => {
+            console.log('任务列表', data);
+            const curTaskIndex = [];
+            const func = () => {
+                if (curTaskIndex.length >= this._taskNum) {
+                    console.log("刷新的任务下表列表：", curTaskIndex);
+                    curTaskIndex.forEach((item) => {
+                        // console.log("任务： ", data[item - 1]);
+                        taskInfo.taskID = data[item - 1].id;
+                        taskInfo.taskState = Cmd.TASK_STATE.undone;
+                        cmd.taskInfo.push(taskInfo);
+                        // MyWebSocket.instance.connectMap
+                    });
+                } else {
+                    let canAdd = true;
+                    const curNum = Utils.getInstance().getRandom(1, data.length);
+                    curTaskIndex.forEach((item) => {
+                        if (item == curNum) {
+                            canAdd = false;
+                        }
+                    });
+                    if (canAdd) {
+                        curTaskIndex.push(curNum);
+                    }
+                    func();
+                }
+            };
+            func();
+        });
         // this._target.sendMsg(1, data);
     };
 };
