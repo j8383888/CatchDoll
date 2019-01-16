@@ -24,7 +24,8 @@ def openProto():
 		list = f.readlines();
 		for item in list:
 			if item.find('message') == 0:
-				msgType = item[len('message'):];
+				msgType = item[len('message'):]
+				msgType = msgType.replace('{','')
 				msgType = msgType.strip();
 				msgAry.append(msgType);
 			elif item.find('package') == 0:
