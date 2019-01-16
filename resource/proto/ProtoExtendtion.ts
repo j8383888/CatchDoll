@@ -17,6 +17,9 @@ declare namespace Cmd{
 	interface TaskUpdate_CS {
 		GetType(): string;
 	}
+	interface SameUidLogin_S{ {
+		GetType(): string;
+	}
 }
 Cmd.Login_C.prototype.GetType = function () {
 	return "Cmd.Login_C";
@@ -35,4 +38,7 @@ Cmd.Heartbeat_CS.prototype.GetType = function () {
 }
 Cmd.TaskUpdate_CS.prototype.GetType = function () {
 	return "Cmd.TaskUpdate_CS";
+}
+Cmd.SameUidLogin_S{.prototype.GetType = function () {
+	return "Cmd.SameUidLogin_S{";
 }

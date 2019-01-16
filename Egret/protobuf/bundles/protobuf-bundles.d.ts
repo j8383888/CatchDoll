@@ -331,4 +331,42 @@ declare namespace Cmd {
         undone = 0,
         done = 1
     }
+
+    /** Properties of a SameUidLogin_S. */
+    interface ISameUidLogin_S {
+
+        /** SameUidLogin_S uid */
+        uid: number;
+    }
+
+    /** Represents a SameUidLogin_S. */
+    class SameUidLogin_S implements ISameUidLogin_S {
+
+        /**
+         * Constructs a new SameUidLogin_S.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.ISameUidLogin_S);
+
+        /** SameUidLogin_S uid. */
+        public uid: number;
+
+        /**
+         * Encodes the specified SameUidLogin_S message. Does not implicitly {@link Cmd.SameUidLogin_S.verify|verify} messages.
+         * @param message SameUidLogin_S message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Cmd.ISameUidLogin_S, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a SameUidLogin_S message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SameUidLogin_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.SameUidLogin_S;
+    }
 }

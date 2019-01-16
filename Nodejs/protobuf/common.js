@@ -790,6 +790,89 @@ $root.Cmd = (function() {
         return values;
     })();
 
+    Cmd.SameUidLogin_S = (function() {
+
+        /**
+         * Properties of a SameUidLogin_S.
+         * @memberof Cmd
+         * @interface ISameUidLogin_S
+         * @property {number} uid SameUidLogin_S uid
+         */
+
+        /**
+         * Constructs a new SameUidLogin_S.
+         * @memberof Cmd
+         * @classdesc Represents a SameUidLogin_S.
+         * @implements ISameUidLogin_S
+         * @constructor
+         * @param {Cmd.ISameUidLogin_S=} [properties] Properties to set
+         */
+        function SameUidLogin_S(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SameUidLogin_S uid.
+         * @member {number} uid
+         * @memberof Cmd.SameUidLogin_S
+         * @instance
+         */
+        SameUidLogin_S.prototype.uid = 0;
+
+        /**
+         * Creates a SameUidLogin_S message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Cmd.SameUidLogin_S
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Cmd.SameUidLogin_S} SameUidLogin_S
+         */
+        SameUidLogin_S.fromObject = function fromObject(object) {
+            if (object instanceof $root.Cmd.SameUidLogin_S)
+                return object;
+            var message = new $root.Cmd.SameUidLogin_S();
+            if (object.uid != null)
+                message.uid = object.uid | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SameUidLogin_S message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Cmd.SameUidLogin_S
+         * @static
+         * @param {Cmd.SameUidLogin_S} message SameUidLogin_S
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SameUidLogin_S.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.uid = 0;
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                object.uid = message.uid;
+            return object;
+        };
+
+        /**
+         * Converts this SameUidLogin_S to JSON.
+         * @function toJSON
+         * @memberof Cmd.SameUidLogin_S
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SameUidLogin_S.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return SameUidLogin_S;
+    })();
+
     return Cmd;
 })();
 

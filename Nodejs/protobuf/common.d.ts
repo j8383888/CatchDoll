@@ -352,4 +352,45 @@ export namespace Cmd {
         undone = 0,
         done = 1
     }
+
+    /** Properties of a SameUidLogin_S. */
+    interface ISameUidLogin_S {
+
+        /** SameUidLogin_S uid */
+        uid: number;
+    }
+
+    /** Represents a SameUidLogin_S. */
+    class SameUidLogin_S implements ISameUidLogin_S {
+
+        /**
+         * Constructs a new SameUidLogin_S.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.ISameUidLogin_S);
+
+        /** SameUidLogin_S uid. */
+        public uid: number;
+
+        /**
+         * Creates a SameUidLogin_S message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SameUidLogin_S
+         */
+        public static fromObject(object: { [k: string]: any }): Cmd.SameUidLogin_S;
+
+        /**
+         * Creates a plain object from a SameUidLogin_S message. Also converts values to other types if specified.
+         * @param message SameUidLogin_S
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Cmd.SameUidLogin_S, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SameUidLogin_S to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }

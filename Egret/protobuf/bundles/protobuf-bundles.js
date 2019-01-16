@@ -744,5 +744,87 @@ $root.Cmd = (function() {
         return values;
     })();
 
+    Cmd.SameUidLogin_S = (function() {
+
+        /**
+         * Properties of a SameUidLogin_S.
+         * @memberof Cmd
+         * @interface ISameUidLogin_S
+         * @property {number} uid SameUidLogin_S uid
+         */
+
+        /**
+         * Constructs a new SameUidLogin_S.
+         * @memberof Cmd
+         * @classdesc Represents a SameUidLogin_S.
+         * @implements ISameUidLogin_S
+         * @constructor
+         * @param {Cmd.ISameUidLogin_S=} [properties] Properties to set
+         */
+        function SameUidLogin_S(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SameUidLogin_S uid.
+         * @member {number} uid
+         * @memberof Cmd.SameUidLogin_S
+         * @instance
+         */
+        SameUidLogin_S.prototype.uid = 0;
+
+        /**
+         * Encodes the specified SameUidLogin_S message. Does not implicitly {@link Cmd.SameUidLogin_S.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.SameUidLogin_S
+         * @static
+         * @param {Cmd.ISameUidLogin_S} message SameUidLogin_S message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SameUidLogin_S.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            return writer;
+        };
+
+        /**
+         * Decodes a SameUidLogin_S message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.SameUidLogin_S
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.SameUidLogin_S} SameUidLogin_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SameUidLogin_S.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.SameUidLogin_S();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.uid = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("uid"))
+                throw $util.ProtocolError("missing required 'uid'", { instance: message });
+            return message;
+        };
+
+        return SameUidLogin_S;
+    })();
+
     return Cmd;
 })();

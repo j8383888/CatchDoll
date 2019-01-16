@@ -34,6 +34,7 @@ message Heartbeat_CS
     required int32 uid = 1;
 }
 
+/* 任务更新 */
 message TaskUpdate_CS
 {
     required int32 uid = 1;
@@ -49,6 +50,11 @@ enum TASK_STATE
 {
 	undone = 0;//未完成
 	done = 1;//完成
+}
+
+/* 相同ID登陆 */
+message SameUidLogin_S{
+    required int32 uid = 1;
 }
 
 
