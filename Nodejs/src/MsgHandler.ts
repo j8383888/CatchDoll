@@ -33,26 +33,41 @@ export class MsgHandler {
                 console.log("玩家登陆");
                 // this.taskTimer();
                 let data: Cmd.Login_C = msgData as Cmd.Login_C;
-                this._target.connectMap.set(data.uid, this._curWs);
-                this._target.heartMap.set(data.uid, 0);
-                SQLServe.instance.seekLogin(data)
+                this._login(data);
             }
             break;
             /* 物品变更 */
             case "Cmd.ItemUpdate_CS":{
                 let data2: Cmd.ItemUpdate_CS = msgData as Cmd.ItemUpdate_CS;
-                let itemInfo = data2.itemInfo;
-                // data2.uid = data2.uid;
-                PlayerCenter.clearUpdateNum(data2.uid);
-                for (let item of itemInfo) {
-                    if (item.itemUpdateNum && item.itemUpdateNum != 0) {
-                        PlayerCenter.updateProp(data2.uid, item.itemID, item.itemUpdateNum);
-                    }
-                }
-                PlayerCenter.sendPlayerData(data2.uid);
+                this._itemUpdate(data2);
                 break;
             }
         }
+    };
+    private _login(data): void{
+        let user = this._target.connectMap.get(data.uid);
+        if (user) {
+            console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
+            const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
+            info.uid = data.udi;
+            user.sendMsg(data.uid, info);
+            this._target.connectMap.removeValue(user);
+            this._target.heartMap.remove(data.uid);
+        }
+        this._target.connectMap.set(data.uid, this._curWs);
+        this._target.heartMap.set(data.uid, 0);
+        SQLServe.instance.seekLogin(data)
+    };
+    private _itemUpdate(data): void {
+        let itemInfo = data.itemInfo;
+        // data2.uid = data2.uid;
+        PlayerCenter.clearUpdateNum(data.uid);
+        for (let item of itemInfo) {
+            if (item.itemUpdateNum && item.itemUpdateNum != 0) {
+                PlayerCenter.updateProp(data.uid, item.itemID, item.itemUpdateNum);
+            }
+        }
+        PlayerCenter.sendPlayerData(data.uid);
     };
 };
 global["MsgHandler"] = MsgHandler;
