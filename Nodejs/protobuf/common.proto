@@ -53,7 +53,8 @@ enum TASK_STATE
 }
 
 /* 相同ID登陆 */
-message SameUidLogin_S{
+message SameUidLogin_S
+{
     required int32 uid = 1;
 }
 
