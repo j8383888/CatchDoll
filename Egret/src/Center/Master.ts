@@ -11,21 +11,18 @@ module catchDoll {
 		/*玩家的钩锁*/
 		public MasterPaws: Paws;
 		/**
-		 * 当前任务
-		 */
-		public curTask: { taskID: number, state: number }[] = [];
-		/**
 		 * 道具数据
 		 */
 		public itemData: Cmd.IItemInfo_CS[] = [];
+		/**
+		 * 任务数据
+		 */
+		public taskData: Cmd.ITaskUpdate_CS;
 
 
 
 		public constructor() {
 			EventManager.registerEvent(EVENT_ID.UPDATE_ITEM_INFO, Handler.create(this, this._updateItem));
-			this.curTask.push({ taskID: 1, state: TASK_STATE.UN_ACHIEVE },
-				{ taskID: 2, state: TASK_STATE.UN_ACHIEVE },
-				{ taskID: 3, state: TASK_STATE.UN_ACHIEVE })
 		}
 
 		/**
@@ -81,7 +78,7 @@ module catchDoll {
 		public dispose(): void {
 			EventManager.unregisterEvent(EVENT_ID.UPDATE_ITEM_INFO, this, this._updateItem);
 			this.uid = -1;
- 
+
 		}
 
 	}

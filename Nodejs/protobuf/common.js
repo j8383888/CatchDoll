@@ -68,66 +68,61 @@ $root.Cmd = (function() {
          */
         Login_C.prototype.uid = 0;
 
-        /**
-         * Creates a Login_C message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.Login_C
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.Login_C} Login_C
-         */
-        Login_C.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.Login_C)
-                return object;
-            var message = new $root.Cmd.Login_C();
-            if (object.account != null)
-                message.account = String(object.account);
-            if (object.password != null)
-                message.password = String(object.password);
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a Login_C message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.Login_C
-         * @static
-         * @param {Cmd.Login_C} message Login_C
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Login_C.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.account = "";
-                object.password = "";
-                object.uid = 0;
-            }
-            if (message.account != null && message.hasOwnProperty("account"))
-                object.account = message.account;
-            if (message.password != null && message.hasOwnProperty("password"))
-                object.password = message.password;
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            return object;
-        };
-
-        /**
-         * Converts this Login_C to JSON.
-         * @function toJSON
-         * @memberof Cmd.Login_C
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        Login_C.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
         return Login_C;
+    })();
+
+    Cmd.PlayerInfo_S = (function() {
+
+        /**
+         * Properties of a PlayerInfo_S.
+         * @memberof Cmd
+         * @interface IPlayerInfo_S
+         * @property {number} uid PlayerInfo_S uid
+         * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
+         * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
+         */
+
+        /**
+         * Constructs a new PlayerInfo_S.
+         * @memberof Cmd
+         * @classdesc Represents a PlayerInfo_S.
+         * @implements IPlayerInfo_S
+         * @constructor
+         * @param {Cmd.IPlayerInfo_S=} [properties] Properties to set
+         */
+        function PlayerInfo_S(properties) {
+            this.itemInfo = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PlayerInfo_S uid.
+         * @member {number} uid
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.uid = 0;
+
+        /**
+         * PlayerInfo_S itemInfo.
+         * @member {Array.<Cmd.IItemInfo_CS>} itemInfo
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.itemInfo = $util.emptyArray;
+
+        /**
+         * PlayerInfo_S taskInfo.
+         * @member {Cmd.ITaskUpdate_CS} taskInfo
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.taskInfo = null;
+
+        return PlayerInfo_S;
     })();
 
     Cmd.ItemInfo_CS = (function() {
@@ -180,176 +175,7 @@ $root.Cmd = (function() {
          */
         ItemInfo_CS.prototype.itemUpdateNum = 0;
 
-        /**
-         * Creates an ItemInfo_CS message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.ItemInfo_CS
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.ItemInfo_CS} ItemInfo_CS
-         */
-        ItemInfo_CS.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.ItemInfo_CS)
-                return object;
-            var message = new $root.Cmd.ItemInfo_CS();
-            if (object.itemID != null)
-                message.itemID = object.itemID | 0;
-            if (object.itemNum != null)
-                message.itemNum = object.itemNum | 0;
-            if (object.itemUpdateNum != null)
-                message.itemUpdateNum = object.itemUpdateNum | 0;
-            return message;
-        };
-
-        /**
-         * Creates a plain object from an ItemInfo_CS message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.ItemInfo_CS
-         * @static
-         * @param {Cmd.ItemInfo_CS} message ItemInfo_CS
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        ItemInfo_CS.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.itemID = 0;
-                object.itemNum = 0;
-                object.itemUpdateNum = 0;
-            }
-            if (message.itemID != null && message.hasOwnProperty("itemID"))
-                object.itemID = message.itemID;
-            if (message.itemNum != null && message.hasOwnProperty("itemNum"))
-                object.itemNum = message.itemNum;
-            if (message.itemUpdateNum != null && message.hasOwnProperty("itemUpdateNum"))
-                object.itemUpdateNum = message.itemUpdateNum;
-            return object;
-        };
-
-        /**
-         * Converts this ItemInfo_CS to JSON.
-         * @function toJSON
-         * @memberof Cmd.ItemInfo_CS
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        ItemInfo_CS.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
         return ItemInfo_CS;
-    })();
-
-    Cmd.PlayerInfo_S = (function() {
-
-        /**
-         * Properties of a PlayerInfo_S.
-         * @memberof Cmd
-         * @interface IPlayerInfo_S
-         * @property {number} uid PlayerInfo_S uid
-         * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
-         */
-
-        /**
-         * Constructs a new PlayerInfo_S.
-         * @memberof Cmd
-         * @classdesc Represents a PlayerInfo_S.
-         * @implements IPlayerInfo_S
-         * @constructor
-         * @param {Cmd.IPlayerInfo_S=} [properties] Properties to set
-         */
-        function PlayerInfo_S(properties) {
-            this.itemInfo = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * PlayerInfo_S uid.
-         * @member {number} uid
-         * @memberof Cmd.PlayerInfo_S
-         * @instance
-         */
-        PlayerInfo_S.prototype.uid = 0;
-
-        /**
-         * PlayerInfo_S itemInfo.
-         * @member {Array.<Cmd.IItemInfo_CS>} itemInfo
-         * @memberof Cmd.PlayerInfo_S
-         * @instance
-         */
-        PlayerInfo_S.prototype.itemInfo = $util.emptyArray;
-
-        /**
-         * Creates a PlayerInfo_S message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.PlayerInfo_S
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.PlayerInfo_S} PlayerInfo_S
-         */
-        PlayerInfo_S.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.PlayerInfo_S)
-                return object;
-            var message = new $root.Cmd.PlayerInfo_S();
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            if (object.itemInfo) {
-                if (!Array.isArray(object.itemInfo))
-                    throw TypeError(".Cmd.PlayerInfo_S.itemInfo: array expected");
-                message.itemInfo = [];
-                for (var i = 0; i < object.itemInfo.length; ++i) {
-                    if (typeof object.itemInfo[i] !== "object")
-                        throw TypeError(".Cmd.PlayerInfo_S.itemInfo: object expected");
-                    message.itemInfo[i] = $root.Cmd.ItemInfo_CS.fromObject(object.itemInfo[i]);
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a PlayerInfo_S message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.PlayerInfo_S
-         * @static
-         * @param {Cmd.PlayerInfo_S} message PlayerInfo_S
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        PlayerInfo_S.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.itemInfo = [];
-            if (options.defaults)
-                object.uid = 0;
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            if (message.itemInfo && message.itemInfo.length) {
-                object.itemInfo = [];
-                for (var j = 0; j < message.itemInfo.length; ++j)
-                    object.itemInfo[j] = $root.Cmd.ItemInfo_CS.toObject(message.itemInfo[j], options);
-            }
-            return object;
-        };
-
-        /**
-         * Converts this PlayerInfo_S to JSON.
-         * @function toJSON
-         * @memberof Cmd.PlayerInfo_S
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        PlayerInfo_S.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return PlayerInfo_S;
     })();
 
     Cmd.ItemUpdate_CS = (function() {
@@ -394,71 +220,6 @@ $root.Cmd = (function() {
          */
         ItemUpdate_CS.prototype.itemInfo = $util.emptyArray;
 
-        /**
-         * Creates an ItemUpdate_CS message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.ItemUpdate_CS
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.ItemUpdate_CS} ItemUpdate_CS
-         */
-        ItemUpdate_CS.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.ItemUpdate_CS)
-                return object;
-            var message = new $root.Cmd.ItemUpdate_CS();
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            if (object.itemInfo) {
-                if (!Array.isArray(object.itemInfo))
-                    throw TypeError(".Cmd.ItemUpdate_CS.itemInfo: array expected");
-                message.itemInfo = [];
-                for (var i = 0; i < object.itemInfo.length; ++i) {
-                    if (typeof object.itemInfo[i] !== "object")
-                        throw TypeError(".Cmd.ItemUpdate_CS.itemInfo: object expected");
-                    message.itemInfo[i] = $root.Cmd.ItemInfo_CS.fromObject(object.itemInfo[i]);
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from an ItemUpdate_CS message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.ItemUpdate_CS
-         * @static
-         * @param {Cmd.ItemUpdate_CS} message ItemUpdate_CS
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        ItemUpdate_CS.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.itemInfo = [];
-            if (options.defaults)
-                object.uid = 0;
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            if (message.itemInfo && message.itemInfo.length) {
-                object.itemInfo = [];
-                for (var j = 0; j < message.itemInfo.length; ++j)
-                    object.itemInfo[j] = $root.Cmd.ItemInfo_CS.toObject(message.itemInfo[j], options);
-            }
-            return object;
-        };
-
-        /**
-         * Converts this ItemUpdate_CS to JSON.
-         * @function toJSON
-         * @memberof Cmd.ItemUpdate_CS
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        ItemUpdate_CS.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
         return ItemUpdate_CS;
     })();
 
@@ -494,54 +255,6 @@ $root.Cmd = (function() {
          */
         Heartbeat_CS.prototype.uid = 0;
 
-        /**
-         * Creates a Heartbeat_CS message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.Heartbeat_CS
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.Heartbeat_CS} Heartbeat_CS
-         */
-        Heartbeat_CS.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.Heartbeat_CS)
-                return object;
-            var message = new $root.Cmd.Heartbeat_CS();
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a Heartbeat_CS message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.Heartbeat_CS
-         * @static
-         * @param {Cmd.Heartbeat_CS} message Heartbeat_CS
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Heartbeat_CS.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults)
-                object.uid = 0;
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            return object;
-        };
-
-        /**
-         * Converts this Heartbeat_CS to JSON.
-         * @function toJSON
-         * @memberof Cmd.Heartbeat_CS
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        Heartbeat_CS.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
         return Heartbeat_CS;
     })();
 
@@ -551,7 +264,6 @@ $root.Cmd = (function() {
          * Properties of a TaskUpdate_CS.
          * @memberof Cmd
          * @interface ITaskUpdate_CS
-         * @property {number} uid TaskUpdate_CS uid
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
          * @property {number} remainTime TaskUpdate_CS remainTime
          */
@@ -573,14 +285,6 @@ $root.Cmd = (function() {
         }
 
         /**
-         * TaskUpdate_CS uid.
-         * @member {number} uid
-         * @memberof Cmd.TaskUpdate_CS
-         * @instance
-         */
-        TaskUpdate_CS.prototype.uid = 0;
-
-        /**
          * TaskUpdate_CS taskInfo.
          * @member {Array.<Cmd.TaskUpdate_CS.ITaskInfo>} taskInfo
          * @memberof Cmd.TaskUpdate_CS
@@ -596,77 +300,6 @@ $root.Cmd = (function() {
          */
         TaskUpdate_CS.prototype.remainTime = 0;
 
-        /**
-         * Creates a TaskUpdate_CS message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.TaskUpdate_CS
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.TaskUpdate_CS} TaskUpdate_CS
-         */
-        TaskUpdate_CS.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.TaskUpdate_CS)
-                return object;
-            var message = new $root.Cmd.TaskUpdate_CS();
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            if (object.taskInfo) {
-                if (!Array.isArray(object.taskInfo))
-                    throw TypeError(".Cmd.TaskUpdate_CS.taskInfo: array expected");
-                message.taskInfo = [];
-                for (var i = 0; i < object.taskInfo.length; ++i) {
-                    if (typeof object.taskInfo[i] !== "object")
-                        throw TypeError(".Cmd.TaskUpdate_CS.taskInfo: object expected");
-                    message.taskInfo[i] = $root.Cmd.TaskUpdate_CS.TaskInfo.fromObject(object.taskInfo[i]);
-                }
-            }
-            if (object.remainTime != null)
-                message.remainTime = object.remainTime | 0;
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a TaskUpdate_CS message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.TaskUpdate_CS
-         * @static
-         * @param {Cmd.TaskUpdate_CS} message TaskUpdate_CS
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TaskUpdate_CS.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.arrays || options.defaults)
-                object.taskInfo = [];
-            if (options.defaults) {
-                object.uid = 0;
-                object.remainTime = 0;
-            }
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            if (message.taskInfo && message.taskInfo.length) {
-                object.taskInfo = [];
-                for (var j = 0; j < message.taskInfo.length; ++j)
-                    object.taskInfo[j] = $root.Cmd.TaskUpdate_CS.TaskInfo.toObject(message.taskInfo[j], options);
-            }
-            if (message.remainTime != null && message.hasOwnProperty("remainTime"))
-                object.remainTime = message.remainTime;
-            return object;
-        };
-
-        /**
-         * Converts this TaskUpdate_CS to JSON.
-         * @function toJSON
-         * @memberof Cmd.TaskUpdate_CS
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        TaskUpdate_CS.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
         TaskUpdate_CS.TaskInfo = (function() {
 
             /**
@@ -674,7 +307,7 @@ $root.Cmd = (function() {
              * @memberof Cmd.TaskUpdate_CS
              * @interface ITaskInfo
              * @property {number} taskID TaskInfo taskID
-             * @property {Cmd.TASK_STATE} taskState TaskInfo taskState
+             * @property {number} taskState TaskInfo taskState
              */
 
             /**
@@ -702,92 +335,16 @@ $root.Cmd = (function() {
 
             /**
              * TaskInfo taskState.
-             * @member {Cmd.TASK_STATE} taskState
+             * @member {number} taskState
              * @memberof Cmd.TaskUpdate_CS.TaskInfo
              * @instance
              */
             TaskInfo.prototype.taskState = 0;
 
-            /**
-             * Creates a TaskInfo message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof Cmd.TaskUpdate_CS.TaskInfo
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {Cmd.TaskUpdate_CS.TaskInfo} TaskInfo
-             */
-            TaskInfo.fromObject = function fromObject(object) {
-                if (object instanceof $root.Cmd.TaskUpdate_CS.TaskInfo)
-                    return object;
-                var message = new $root.Cmd.TaskUpdate_CS.TaskInfo();
-                if (object.taskID != null)
-                    message.taskID = object.taskID | 0;
-                switch (object.taskState) {
-                case "undone":
-                case 0:
-                    message.taskState = 0;
-                    break;
-                case "done":
-                case 1:
-                    message.taskState = 1;
-                    break;
-                }
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a TaskInfo message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof Cmd.TaskUpdate_CS.TaskInfo
-             * @static
-             * @param {Cmd.TaskUpdate_CS.TaskInfo} message TaskInfo
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            TaskInfo.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.taskID = 0;
-                    object.taskState = options.enums === String ? "undone" : 0;
-                }
-                if (message.taskID != null && message.hasOwnProperty("taskID"))
-                    object.taskID = message.taskID;
-                if (message.taskState != null && message.hasOwnProperty("taskState"))
-                    object.taskState = options.enums === String ? $root.Cmd.TASK_STATE[message.taskState] : message.taskState;
-                return object;
-            };
-
-            /**
-             * Converts this TaskInfo to JSON.
-             * @function toJSON
-             * @memberof Cmd.TaskUpdate_CS.TaskInfo
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            TaskInfo.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
             return TaskInfo;
         })();
 
         return TaskUpdate_CS;
-    })();
-
-    /**
-     * TASK_STATE enum.
-     * @name Cmd.TASK_STATE
-     * @enum {string}
-     * @property {number} undone=0 undone value
-     * @property {number} done=1 done value
-     */
-    Cmd.TASK_STATE = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "undone"] = 0;
-        values[valuesById[1] = "done"] = 1;
-        return values;
     })();
 
     Cmd.SameUidLogin_S = (function() {
@@ -821,54 +378,6 @@ $root.Cmd = (function() {
          * @instance
          */
         SameUidLogin_S.prototype.uid = 0;
-
-        /**
-         * Creates a SameUidLogin_S message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Cmd.SameUidLogin_S
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Cmd.SameUidLogin_S} SameUidLogin_S
-         */
-        SameUidLogin_S.fromObject = function fromObject(object) {
-            if (object instanceof $root.Cmd.SameUidLogin_S)
-                return object;
-            var message = new $root.Cmd.SameUidLogin_S();
-            if (object.uid != null)
-                message.uid = object.uid | 0;
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a SameUidLogin_S message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Cmd.SameUidLogin_S
-         * @static
-         * @param {Cmd.SameUidLogin_S} message SameUidLogin_S
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        SameUidLogin_S.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults)
-                object.uid = 0;
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
-            return object;
-        };
-
-        /**
-         * Converts this SameUidLogin_S to JSON.
-         * @function toJSON
-         * @memberof Cmd.SameUidLogin_S
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        SameUidLogin_S.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
 
         return SameUidLogin_S;
     })();

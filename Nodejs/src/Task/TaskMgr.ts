@@ -58,7 +58,6 @@ export class TaskMgr {
             let uid = MyWebSocket.instance.connectMap.keys[i];
 
             let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
-            cmd.uid = uid;
             cmd.remainTime = 2 * 60 * 60;
             let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
 

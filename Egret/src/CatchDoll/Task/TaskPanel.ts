@@ -69,10 +69,10 @@ module catchDoll {
 
 			this._toggleButtonGroup.push(toggle1);
 			this._toggleButtonGroup.push(toggle2);
-			let data: table.TaskTable[] = TableCenter.instance.TaskTable;
+			let taskData: Cmd.ITaskUpdate_CS = Master.instance.taskData;
 			for (let i: number = 0; i < 3; i++) {
 				let item: TaskItem = new TaskItem();
-				item.setData(data[i].id)
+				item.setData(taskData.taskInfo[i])
 				this.taskBox.addChild(item);
 				this.itemList.push(item);
 			}

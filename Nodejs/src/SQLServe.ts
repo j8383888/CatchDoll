@@ -2,7 +2,6 @@ import { Connection } from "mysql";
 import { Cmd } from "../protobuf/common";
 import { JsonParse } from "./JsonParse";
 import { PlayerCenter } from "./PlayerCenter";
-import { Handler } from "./util/Handler";
 var SQL = require('mysql');
 export class SQLServe {
     private uidIndex = 100;
@@ -14,7 +13,6 @@ export class SQLServe {
     /*  */
     private _isReconnet: boolean = false;
 
-    private _reconnetHandler: Handler[] = [];
 
     constructor() {
     }
@@ -32,7 +30,7 @@ export class SQLServe {
         this.connection = SQL.createConnection({
             host: JsonParse.SQLHost, //主机
             user: 'root', //MySQL认证用户名
-            password: 'JYM8398337', //MySQL认证用户密码
+            password: 'jym8398337', //MySQL认证用户密码
             port: JsonParse.SQLPost, //端口号
             database: 'test',
             debug: false,
@@ -45,9 +43,10 @@ export class SQLServe {
                 setTimeout(SQLServe.instance.createConnection, 2000);
                 return;
             }
+            this._clearSQL
             this._isReconnet = true;
             this._addCow();
-            // this._clearSQL();
+            this._clearSQL();
             console.log('数据库[connection connect]  succeed!');
         });
 
@@ -70,8 +69,11 @@ export class SQLServe {
         var userDelSql = 'delete from Login';
         this.connection.query(userDelSql, this._onSQLDelete);
 
-        var userDelSql = 'delete from PropInfo';
-        this.connection.query(userDelSql, this._onSQLDelete);
+        var userDelSql2 = 'delete from PropInfo';
+        this.connection.query(userDelSql2, this._onSQLDelete);
+
+        var userDelSql3 = 'delete from PlayerInfo';
+        this.connection.query(userDelSql3, this._onSQLDelete);
     }
 
     /**
@@ -133,13 +135,16 @@ export class SQLServe {
      */
     private _seekPlayerData(data: Cmd.Login_C): void {
         var sql = 'SELECT * FROM PropInfo where uid=' + data.uid;
+        const COMPELETE_NUM: number = 2;
+        let num: number = 0;
+        let itemInfoAry: Cmd.ItemInfo_CS[] = [];
+        let task: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
         this.connection.query(sql, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
             }
             let playerData: Object = result[0];
-            let itemInfoAry: Cmd.ItemInfo_CS[] = [];
             for (let item in playerData) {
                 if (item != "uid") {
                     let itemInfo: Cmd.ItemInfo_CS = new Cmd.ItemInfo_CS();
@@ -148,7 +153,24 @@ export class SQLServe {
                     itemInfoAry.push(itemInfo);
                 }
             }
-            PlayerCenter.sendPlayerData(data.uid, itemInfoAry);
+            num++;
+            if (num == COMPELETE_NUM) {
+                PlayerCenter.sendPlayerData(data.uid, itemInfoAry, task);
+            }
+        })
+
+        var sql = 'SELECT * FROM PlayerInfo where uid=' + data.uid;
+        this.connection.query(sql, (err, result, fields) => {
+            if (err) {
+                console.log('[query] - :' + err);
+                return;
+            }
+            let res: string = result[0].task;
+            task = JSON.parse(res);
+            num++;
+            if (num == COMPELETE_NUM) {
+                PlayerCenter.sendPlayerData(data.uid, itemInfoAry, task);
+            }
         })
     }
 
@@ -158,24 +180,41 @@ export class SQLServe {
      * @param data 
      */
     private _initPlayerData(data: Cmd.Login_C): void {
-        let ready1: boolean = false;
-        let ready2: boolean = false;
+        let readyNum: number = 0;
+        const COMPLETE_NUM: number = 3;
+        let uid = data.uid;
+        let itemInfoAry: Cmd.ItemInfo_CS[] = [];
+        let task: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
 
         var addSql = 'INSERT INTO Login ' + '(account,password,uid)' + ' VALUES(?,?,?)';
         var addSqlParams = [data.account, data.password, data.uid];
+
         this.connection.query(addSql, addSqlParams, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
             }
-            ready1 = true;
+            readyNum++;
             console.log('--------------------------INSERT----------------------------');
             console.log('insert:', result);
             console.log('-----------------------------------------------------------------\n\n');
-            if (ready1 && ready2) {
-                PlayerCenter.sendInitPlayerData(data)
+            if (readyNum == COMPLETE_NUM) {
+                PlayerCenter.sendPlayerData(uid, itemInfoAry, task)
             }
         })
+
+
+        for (let item of JsonParse.propData) {
+            let itemInfo: Cmd.ItemInfo_CS = new Cmd.ItemInfo_CS();
+            itemInfo.itemID = item.id;
+            if (item.id == 1 || item.id == 2 || item.id == 3) {
+                itemInfo.itemNum = 100
+            }
+            else {
+                itemInfo.itemNum = 0;
+            }
+            itemInfoAry.push(itemInfo);
+        }
 
         let rowName = "uid,";
         let valueStr = "?,";
@@ -200,26 +239,42 @@ export class SQLServe {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
             }
-            ready2 = true;
             console.log('数据库插入:', result);
-            if (ready1 && ready2) {
-                PlayerCenter.sendInitPlayerData(data);
+            readyNum++;
+            if (readyNum == COMPLETE_NUM) {
+                PlayerCenter.sendPlayerData(uid, itemInfoAry, task)
             }
         })
 
-        var addSql = 'INSERT INTO OtherInfo' + '(account,password,uid)' + ' VALUES(?,?,?)';
-        var addSqlParams = [data.account, data.password, data.uid];
-        this.connection.query(addSql, addSqlParams, (err, result, fields) => {
+        var addSql3 = 'INSERT INTO PlayerInfo' + '(uid,task)' + ' VALUES(?,?)';
+        let date = new Date();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        let second = date.getSeconds();
+        let time: number = 0;
+        time = 60 * 60 * 2 - 60 * 60 * (hour % 2) + minutes * 60 + second;
+
+        task.remainTime = time;
+        let taskAry: Cmd.TaskUpdate_CS.TaskInfo[] = []
+        for (let i: number = 0; i < 3; i++) {
+            let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
+            taskInfo.taskID = 1 + i;
+            taskInfo.taskState = 1;
+            taskAry.push(taskInfo);
+        }
+        task.taskInfo = taskAry;
+        let json: string = JSON.stringify(task);
+
+        var addSqlParams3 = [data.uid, json];
+        this.connection.query(addSql3, addSqlParams3, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
             }
-            ready1 = true;
-            console.log('--------------------------INSERT----------------------------');
-            console.log('insert:', result);
-            console.log('-----------------------------------------------------------------\n\n');
-            if (ready1 && ready2) {
-                PlayerCenter.sendInitPlayerData(data)
+            console.log('数据库插入:', result);
+            readyNum++;
+            if (readyNum == COMPLETE_NUM) {
+                PlayerCenter.sendPlayerData(uid, itemInfoAry, task)
             }
         })
     }

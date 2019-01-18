@@ -157,7 +157,7 @@ module catchDoll {
 				protoType = this._protoRoot.lookupType(cmdTitle);
 				message = (protoType.decode(rawData) as protobuf.Message<{}>).toJSON()
 			}
-			
+
 			console.log("[收到服务器数据: " + cmdTitle + ":" + JSON.stringify(message) + "]");
 			/* 登陆协议 */
 			switch (cmdTitle) {
@@ -168,6 +168,7 @@ module catchDoll {
 					let accurateData2: Cmd.PlayerInfo_S = message as Cmd.PlayerInfo_S;
 					Master.instance.uid = accurateData2.uid;
 					Master.instance.itemData = accurateData2.itemInfo;
+					Master.instance.taskData = accurateData2.taskInfo;
 					EventManager.fireEvent(EVENT_ID.SERVE_COMPLETE);
 					this._heartCheck();
 

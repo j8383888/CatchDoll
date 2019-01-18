@@ -126,6 +126,121 @@ $root.Cmd = (function() {
         return Login_C;
     })();
 
+    Cmd.PlayerInfo_S = (function() {
+
+        /**
+         * Properties of a PlayerInfo_S.
+         * @memberof Cmd
+         * @interface IPlayerInfo_S
+         * @property {number} uid PlayerInfo_S uid
+         * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
+         * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
+         */
+
+        /**
+         * Constructs a new PlayerInfo_S.
+         * @memberof Cmd
+         * @classdesc Represents a PlayerInfo_S.
+         * @implements IPlayerInfo_S
+         * @constructor
+         * @param {Cmd.IPlayerInfo_S=} [properties] Properties to set
+         */
+        function PlayerInfo_S(properties) {
+            this.itemInfo = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PlayerInfo_S uid.
+         * @member {number} uid
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.uid = 0;
+
+        /**
+         * PlayerInfo_S itemInfo.
+         * @member {Array.<Cmd.IItemInfo_CS>} itemInfo
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.itemInfo = $util.emptyArray;
+
+        /**
+         * PlayerInfo_S taskInfo.
+         * @member {Cmd.ITaskUpdate_CS} taskInfo
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.taskInfo = null;
+
+        /**
+         * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.PlayerInfo_S
+         * @static
+         * @param {Cmd.IPlayerInfo_S} message PlayerInfo_S message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PlayerInfo_S.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            if (message.itemInfo != null && message.itemInfo.length)
+                for (var i = 0; i < message.itemInfo.length; ++i)
+                    $root.Cmd.ItemInfo_CS.encode(message.itemInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            $root.Cmd.TaskUpdate_CS.encode(message.taskInfo, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Decodes a PlayerInfo_S message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.PlayerInfo_S
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.PlayerInfo_S} PlayerInfo_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PlayerInfo_S.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.PlayerInfo_S();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.uid = reader.int32();
+                    break;
+                case 2:
+                    if (!(message.itemInfo && message.itemInfo.length))
+                        message.itemInfo = [];
+                    message.itemInfo.push($root.Cmd.ItemInfo_CS.decode(reader, reader.uint32()));
+                    break;
+                case 3:
+                    message.taskInfo = $root.Cmd.TaskUpdate_CS.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("uid"))
+                throw $util.ProtocolError("missing required 'uid'", { instance: message });
+            if (!message.hasOwnProperty("taskInfo"))
+                throw $util.ProtocolError("missing required 'taskInfo'", { instance: message });
+            return message;
+        };
+
+        return PlayerInfo_S;
+    })();
+
     Cmd.ItemInfo_CS = (function() {
 
         /**
@@ -234,106 +349,6 @@ $root.Cmd = (function() {
         };
 
         return ItemInfo_CS;
-    })();
-
-    Cmd.PlayerInfo_S = (function() {
-
-        /**
-         * Properties of a PlayerInfo_S.
-         * @memberof Cmd
-         * @interface IPlayerInfo_S
-         * @property {number} uid PlayerInfo_S uid
-         * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
-         */
-
-        /**
-         * Constructs a new PlayerInfo_S.
-         * @memberof Cmd
-         * @classdesc Represents a PlayerInfo_S.
-         * @implements IPlayerInfo_S
-         * @constructor
-         * @param {Cmd.IPlayerInfo_S=} [properties] Properties to set
-         */
-        function PlayerInfo_S(properties) {
-            this.itemInfo = [];
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * PlayerInfo_S uid.
-         * @member {number} uid
-         * @memberof Cmd.PlayerInfo_S
-         * @instance
-         */
-        PlayerInfo_S.prototype.uid = 0;
-
-        /**
-         * PlayerInfo_S itemInfo.
-         * @member {Array.<Cmd.IItemInfo_CS>} itemInfo
-         * @memberof Cmd.PlayerInfo_S
-         * @instance
-         */
-        PlayerInfo_S.prototype.itemInfo = $util.emptyArray;
-
-        /**
-         * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
-         * @function encode
-         * @memberof Cmd.PlayerInfo_S
-         * @static
-         * @param {Cmd.IPlayerInfo_S} message PlayerInfo_S message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        PlayerInfo_S.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
-            if (message.itemInfo != null && message.itemInfo.length)
-                for (var i = 0; i < message.itemInfo.length; ++i)
-                    $root.Cmd.ItemInfo_CS.encode(message.itemInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Decodes a PlayerInfo_S message from the specified reader or buffer.
-         * @function decode
-         * @memberof Cmd.PlayerInfo_S
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Cmd.PlayerInfo_S} PlayerInfo_S
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        PlayerInfo_S.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.PlayerInfo_S();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.uid = reader.int32();
-                    break;
-                case 2:
-                    if (!(message.itemInfo && message.itemInfo.length))
-                        message.itemInfo = [];
-                    message.itemInfo.push($root.Cmd.ItemInfo_CS.decode(reader, reader.uint32()));
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("uid"))
-                throw $util.ProtocolError("missing required 'uid'", { instance: message });
-            return message;
-        };
-
-        return PlayerInfo_S;
     })();
 
     Cmd.ItemUpdate_CS = (function() {
@@ -524,7 +539,6 @@ $root.Cmd = (function() {
          * Properties of a TaskUpdate_CS.
          * @memberof Cmd
          * @interface ITaskUpdate_CS
-         * @property {number} uid TaskUpdate_CS uid
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
          * @property {number} remainTime TaskUpdate_CS remainTime
          */
@@ -544,14 +558,6 @@ $root.Cmd = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * TaskUpdate_CS uid.
-         * @member {number} uid
-         * @memberof Cmd.TaskUpdate_CS
-         * @instance
-         */
-        TaskUpdate_CS.prototype.uid = 0;
 
         /**
          * TaskUpdate_CS taskInfo.
@@ -581,7 +587,6 @@ $root.Cmd = (function() {
         TaskUpdate_CS.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
             if (message.taskInfo != null && message.taskInfo.length)
                 for (var i = 0; i < message.taskInfo.length; ++i)
                     $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
@@ -607,9 +612,6 @@ $root.Cmd = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.uid = reader.int32();
-                    break;
                 case 2:
                     if (!(message.taskInfo && message.taskInfo.length))
                         message.taskInfo = [];
@@ -623,8 +625,6 @@ $root.Cmd = (function() {
                     break;
                 }
             }
-            if (!message.hasOwnProperty("uid"))
-                throw $util.ProtocolError("missing required 'uid'", { instance: message });
             if (!message.hasOwnProperty("remainTime"))
                 throw $util.ProtocolError("missing required 'remainTime'", { instance: message });
             return message;
@@ -637,7 +637,7 @@ $root.Cmd = (function() {
              * @memberof Cmd.TaskUpdate_CS
              * @interface ITaskInfo
              * @property {number} taskID TaskInfo taskID
-             * @property {Cmd.TASK_STATE} taskState TaskInfo taskState
+             * @property {number} taskState TaskInfo taskState
              */
 
             /**
@@ -665,7 +665,7 @@ $root.Cmd = (function() {
 
             /**
              * TaskInfo taskState.
-             * @member {Cmd.TASK_STATE} taskState
+             * @member {number} taskState
              * @memberof Cmd.TaskUpdate_CS.TaskInfo
              * @instance
              */
@@ -728,20 +728,6 @@ $root.Cmd = (function() {
         })();
 
         return TaskUpdate_CS;
-    })();
-
-    /**
-     * TASK_STATE enum.
-     * @name Cmd.TASK_STATE
-     * @enum {string}
-     * @property {number} undone=0 undone value
-     * @property {number} done=1 done value
-     */
-    Cmd.TASK_STATE = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "undone"] = 0;
-        values[valuesById[1] = "done"] = 1;
-        return values;
     })();
 
     Cmd.SameUidLogin_S = (function() {

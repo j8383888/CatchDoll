@@ -86,7 +86,7 @@ export class MyWebSocket {
             if (value >= this.MAX_COUNT) {
                 let uid: number = this.heartMap.keys[i]
                 console.log("uid为:" + uid + "心跳异常")
-                this._onPlayerOffline(uid);
+                this.onPlayerOffline(uid);
             }
         }
     }
@@ -114,15 +114,14 @@ export class MyWebSocket {
                 let jsonData = message.toJSON()
 
                 if (cmdName == "Cmd.Heartbeat_CS") {
-                    console.log("心跳，自行处理");
                     let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
-                    // uid = data3.uid;
                     let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
                     cmd.uid = data3.uid;
                     MyWebSocket.instance.heartMap.set(data3.uid, 0)
                     MyWebSocket.instance.sendMsg(data3.uid, cmd);
-                } else{
-                    MsgHandler.getInstance(MyWebSocket.instance, conn).handler(cmdName, jsonData);
+                } else {
+
+                    MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, conn);
                 }
                 console.log("[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
             })
@@ -132,11 +131,11 @@ export class MyWebSocket {
             if (uid == null) {
                 return;
             }
-            MyWebSocket.instance._onPlayerOffline(uid);
+            MyWebSocket.instance.onPlayerOffline(uid);
             console.log("关闭连接")
         });
         conn.once("error", (code, reason) => {
-            console.log("异常关闭" + "code:" + code + "     " + "reason" + reason)
+            console.log("异常关闭" + "code:" + code + "     " + "reason:" + reason)
         });
     }
 
@@ -144,11 +143,11 @@ export class MyWebSocket {
      * 玩家离线操作
      * @param uid 
      */
-    private _onPlayerOffline(uid: number): void {
-        let itemData: Cmd.ItemInfo_CS[] = PlayerCenter.playerMap.get(uid);
+    public onPlayerOffline(uid: number): void {
+        let itemData: Cmd.ItemInfo_CS[] = PlayerCenter.propMap.get(uid);
         let conn = this.connectMap.get(uid);
         SQLServe.instance.setUserData(uid, itemData);
-        PlayerCenter.playerMap.remove(uid);
+        PlayerCenter.propMap.remove(uid);
         MyWebSocket.instance.connectMap.removeValue(conn);
         MyWebSocket.instance.heartMap.remove(uid);
         console.log("uid为:" + uid + "玩家断线")

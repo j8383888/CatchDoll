@@ -53,6 +53,56 @@ declare namespace Cmd {
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.Login_C;
     }
 
+    /** Properties of a PlayerInfo_S. */
+    interface IPlayerInfo_S {
+
+        /** PlayerInfo_S uid */
+        uid: number;
+
+        /** PlayerInfo_S itemInfo */
+        itemInfo?: (Cmd.IItemInfo_CS[]|null);
+
+        /** PlayerInfo_S taskInfo */
+        taskInfo: Cmd.ITaskUpdate_CS;
+    }
+
+    /** Represents a PlayerInfo_S. */
+    class PlayerInfo_S implements IPlayerInfo_S {
+
+        /**
+         * Constructs a new PlayerInfo_S.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.IPlayerInfo_S);
+
+        /** PlayerInfo_S uid. */
+        public uid: number;
+
+        /** PlayerInfo_S itemInfo. */
+        public itemInfo: Cmd.IItemInfo_CS[];
+
+        /** PlayerInfo_S taskInfo. */
+        public taskInfo: Cmd.ITaskUpdate_CS;
+
+        /**
+         * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
+         * @param message PlayerInfo_S message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Cmd.IPlayerInfo_S, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a PlayerInfo_S message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PlayerInfo_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.PlayerInfo_S;
+    }
+
     /** Properties of an ItemInfo_CS. */
     interface IItemInfo_CS {
 
@@ -101,50 +151,6 @@ declare namespace Cmd {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.ItemInfo_CS;
-    }
-
-    /** Properties of a PlayerInfo_S. */
-    interface IPlayerInfo_S {
-
-        /** PlayerInfo_S uid */
-        uid: number;
-
-        /** PlayerInfo_S itemInfo */
-        itemInfo?: (Cmd.IItemInfo_CS[]|null);
-    }
-
-    /** Represents a PlayerInfo_S. */
-    class PlayerInfo_S implements IPlayerInfo_S {
-
-        /**
-         * Constructs a new PlayerInfo_S.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Cmd.IPlayerInfo_S);
-
-        /** PlayerInfo_S uid. */
-        public uid: number;
-
-        /** PlayerInfo_S itemInfo. */
-        public itemInfo: Cmd.IItemInfo_CS[];
-
-        /**
-         * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
-         * @param message PlayerInfo_S message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Cmd.IPlayerInfo_S, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Decodes a PlayerInfo_S message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PlayerInfo_S
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.PlayerInfo_S;
     }
 
     /** Properties of an ItemUpdate_CS. */
@@ -232,9 +238,6 @@ declare namespace Cmd {
     /** Properties of a TaskUpdate_CS. */
     interface ITaskUpdate_CS {
 
-        /** TaskUpdate_CS uid */
-        uid: number;
-
         /** TaskUpdate_CS taskInfo */
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
 
@@ -250,9 +253,6 @@ declare namespace Cmd {
          * @param [properties] Properties to set
          */
         constructor(properties?: Cmd.ITaskUpdate_CS);
-
-        /** TaskUpdate_CS uid. */
-        public uid: number;
 
         /** TaskUpdate_CS taskInfo. */
         public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
@@ -288,7 +288,7 @@ declare namespace Cmd {
             taskID: number;
 
             /** TaskInfo taskState */
-            taskState: Cmd.TASK_STATE;
+            taskState: number;
         }
 
         /** Represents a TaskInfo. */
@@ -304,7 +304,7 @@ declare namespace Cmd {
             public taskID: number;
 
             /** TaskInfo taskState. */
-            public taskState: Cmd.TASK_STATE;
+            public taskState: number;
 
             /**
              * Encodes the specified TaskInfo message. Does not implicitly {@link Cmd.TaskUpdate_CS.TaskInfo.verify|verify} messages.
@@ -324,12 +324,6 @@ declare namespace Cmd {
              */
             public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.TaskUpdate_CS.TaskInfo;
         }
-    }
-
-    /** TASK_STATE enum. */
-    enum TASK_STATE {
-        undone = 0,
-        done = 1
     }
 
     /** Properties of a SameUidLogin_S. */

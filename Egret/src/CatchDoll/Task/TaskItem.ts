@@ -26,8 +26,8 @@ module catchDoll {
 		/**
 		 * 设置数据
 		 */
-		public setData(id: number, state?: TASK_STATE): void {
-			let data: table.TaskTable = ConfigParse.getWholeByProperty(TableCenter.instance.TaskTable, "id", id.toString());
+		public setData(task: Cmd.TaskUpdate_CS.ITaskInfo): void {
+			let data: table.TaskTable = ConfigParse.getWholeByProperty(TableCenter.instance.TaskTable, "id", task.taskID.toString());
 			for (let i: number = 0; i < data.taskLevel; i++) {
 				let img: eui.Image = new eui.Image();
 				img.source = "otherRes2_47";

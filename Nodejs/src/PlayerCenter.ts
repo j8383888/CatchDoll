@@ -5,7 +5,9 @@ import { JsonParse } from "./JsonParse";
 
 export class PlayerCenter {
 
-    public static playerMap: Dictionary = new Dictionary()
+    public static propMap: Dictionary = new Dictionary()
+
+    public static infoMap: Dictionary = new Dictionary()
 
     public constructor() {
 
@@ -16,7 +18,7 @@ export class PlayerCenter {
 	 * 获得玩家道具数量
 	 */
     public static getProp(uid: number, propID: number): number {
-        let propData: Cmd.IItemInfo_CS[] = this.playerMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
                 return item.itemNum;
@@ -28,7 +30,7 @@ export class PlayerCenter {
      * 设置玩家道具数量
      */
     public static updateProp(uid: number, propID: number, updateNum: number): number {
-        let propData: Cmd.IItemInfo_CS[] = this.playerMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
                 item.itemNum += updateNum;
@@ -39,7 +41,7 @@ export class PlayerCenter {
     }
 
     public static clearUpdateNum(uid: number): void {
-        let propData: Cmd.IItemInfo_CS[] = this.playerMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
         for (let item of propData) {
             item.itemUpdateNum = 0;
         }
@@ -50,7 +52,7 @@ export class PlayerCenter {
     * 设置玩家道具数量
     */
     public static setProp(uid: number, propID: number, num: number): void {
-        let propData: Cmd.IItemInfo_CS[] = this.playerMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
                 item.itemNum = num;
@@ -64,35 +66,43 @@ export class PlayerCenter {
      * @param uid 
      * @param itemInfoAry 
      */
-    public static sendPlayerData(uid: number, itemInfoAry?: Cmd.ItemInfo_CS[]): void {
+    public static sendPlayerData(uid: number, itemInfoAry: Cmd.ItemInfo_CS[], task: Cmd.TaskUpdate_CS): void {
         let cmd: Cmd.PlayerInfo_S = new Cmd.PlayerInfo_S();
         cmd.uid = uid;
-        if (itemInfoAry === void 0) {
-            itemInfoAry = PlayerCenter.playerMap.get(uid);
-        }
         cmd.itemInfo = itemInfoAry;
-        this.playerMap.set(uid, itemInfoAry);
+        cmd.taskInfo = task;
+
+        this.propMap.set(uid, itemInfoAry);
+        this.infoMap.set(uid, task);
         MyWebSocket.instance.sendMsg(uid, cmd);
     }
+
+    /**
+     * 发送道具数据
+     * @param uid 
+     * @param itemInfoAry 
+     */
+    public static sendPropData(uid: number, itemInfoAry?: Cmd.ItemInfo_CS[]): void {
+        let cmd: Cmd.ItemUpdate_CS = new Cmd.ItemUpdate_CS();
+        cmd.uid = uid;
+        if (itemInfoAry === void 0) {
+            itemInfoAry = PlayerCenter.propMap.get(uid);
+        }
+        cmd.itemInfo = itemInfoAry;
+        this.propMap.set(uid, itemInfoAry);
+        MyWebSocket.instance.sendMsg(uid, cmd);
+    }
+
+
 
     /**
      * 发送初始化玩家数据
      * @param data 
      */
-    public static sendInitPlayerData(data: Cmd.Login_C): void {
-        let itemInfoAry: Cmd.ItemInfo_CS[] = []
-        for (let item of JsonParse.propData) {
-            let itemInfo: Cmd.ItemInfo_CS = new Cmd.ItemInfo_CS();
-            itemInfo.itemID = item.id;
-            if (item.id == 1 || item.id == 2 || item.id == 3) {
-                itemInfo.itemNum = 100
-            }
-            else {
-                itemInfo.itemNum = 0;
-            }
-            itemInfoAry.push(itemInfo);
-        }
-        PlayerCenter.sendPlayerData(data.uid, itemInfoAry);
+    public static sendInitPlayerData(data: Cmd.Login_C, task: Cmd.TaskUpdate_CS): void {
+
+
+
     }
 
 
