@@ -80,6 +80,7 @@ $root.Cmd = (function() {
          * @property {number} uid PlayerInfo_S uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
          * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
+         * @property {number} serveTime PlayerInfo_S serveTime
          */
 
         /**
@@ -121,6 +122,14 @@ $root.Cmd = (function() {
          * @instance
          */
         PlayerInfo_S.prototype.taskInfo = null;
+
+        /**
+         * PlayerInfo_S serveTime.
+         * @member {number} serveTime
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.serveTime = 0;
 
         return PlayerInfo_S;
     })();
@@ -265,7 +274,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number} remainTime TaskUpdate_CS remainTime
+         * @property {number} endTime TaskUpdate_CS endTime
          */
 
         /**
@@ -293,12 +302,12 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
-         * TaskUpdate_CS remainTime.
-         * @member {number} remainTime
+         * TaskUpdate_CS endTime.
+         * @member {number} endTime
          * @memberof Cmd.TaskUpdate_CS
          * @instance
          */
-        TaskUpdate_CS.prototype.remainTime = 0;
+        TaskUpdate_CS.prototype.endTime = 0;
 
         TaskUpdate_CS.TaskInfo = (function() {
 

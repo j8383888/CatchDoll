@@ -19,6 +19,7 @@ export namespace Cmd {
         uid: number;
         itemInfo?: (Cmd.IItemInfo_CS[]|null);
         taskInfo: Cmd.ITaskUpdate_CS;
+        serveTime: number;
     }
 
     class PlayerInfo_S implements IPlayerInfo_S {
@@ -26,6 +27,7 @@ export namespace Cmd {
         public uid: number;
         public itemInfo: Cmd.IItemInfo_CS[];
         public taskInfo: Cmd.ITaskUpdate_CS;
+        public serveTime: number;
     }
 
     interface IItemInfo_CS {
@@ -63,13 +65,13 @@ export namespace Cmd {
 
     interface ITaskUpdate_CS {
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
-        remainTime: number;
+        endTime: number;
     }
 
     class TaskUpdate_CS implements ITaskUpdate_CS {
         constructor(properties?: Cmd.ITaskUpdate_CS);
         public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
-        public remainTime: number;
+        public endTime: number;
     }
 
     namespace TaskUpdate_CS {

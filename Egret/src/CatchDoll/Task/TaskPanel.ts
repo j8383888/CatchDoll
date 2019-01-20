@@ -25,17 +25,32 @@ module catchDoll {
 		 * treasureItemList
 		 */
 		public treasureItemList: TaskTreasureItem[] = [];
+		/**
+		 * 时间文本
+		 */
+		public timeLabel: eui.Label;
 
 
 		public constructor() {
 			super(POP_EFFECT.CENTER, true);
 			this.skinName = "TaskPanelSkin";
+			this._update();
+
+		}
+
+		private _update(): void {
+			let time = (Master.instance.taskData.endTime - Master.instance.serveTime) / 1000
+			if (time > 0) {
+				this.timeLabel.text = GlobeTool.formatTime_HHMMSS(time);
+			}
 		}
 
 		/**
 		 * 初始化
 		 */
 		public onInit(): void {
+			Laya.timer.loop(1000, this, this._update)
+
 			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
 			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
 			toggle1.selectHandler = Handler.create(null, () => {
@@ -120,6 +135,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			Laya.timer.clear(this, this._update)
 			for (let item of this.itemList) {
 				item.dispose();
 				item = null;

@@ -16,6 +16,8 @@ class Button extends InteractiveObject {
 	/*携带数据*/
 	public data: any = null;
 
+	public label: eui.Label = new eui.Label();
+
 	public constructor(root: egret.DisplayObject, soundName: string = null, canExpand: boolean = false, isOffset: boolean = false) {
 		super(root);
 		if (root instanceof egret.DisplayObjectContainer) {
@@ -44,8 +46,8 @@ class Button extends InteractiveObject {
 	/**
 	 * 设置文本
 	 */
-	public setLabel(str: string, size: number, OffsetX: number = 0, offsetY: number = 0): void {
-		let label: eui.Label = new eui.Label();
+	public setLabel(str: string, size: number = 30, OffsetX: number = 0, offsetY: number = 0): void {
+		let label = this.label;
 		label.text = str;
 		label.size = size;
 		if (this._root instanceof egret.DisplayObjectContainer) {
@@ -124,6 +126,7 @@ class Button extends InteractiveObject {
 	 * 释放
 	 */
 	public dispose(): void {
+		this.label = null;
 		super.dispose();
 	}
 

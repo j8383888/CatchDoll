@@ -4,9 +4,11 @@
 import { Cmd } from "../../protobuf/common";
 import { Utils } from "../util/Utils";
 import { MyWebSocket } from "../MyWebSocket";
+import { util } from "protobufjs";
+import { JsonParse } from "../JsonParse";
 export class TaskMgr {
     private static _taskMgr: TaskMgr = null;
-    private _taskTimer: any = null;
+    private _taskTimer: NodeJS.Timer = null;
     /**
      * 获取单例
      */
@@ -23,22 +25,17 @@ export class TaskMgr {
      *  任务刷新计时
      */
     public taskTimer(): void {
+        this._pushTaskList();
         this._taskTimer = setInterval(() => {
-            var time = new Date();
-            var hour = time.getHours();
-            var min = time.getMinutes();
-            var ys = hour % 2;
-            this.pushTaskList();
-            if (ys == 0) {
-                if (min < 2 || min > 58) {
-                    this.pushTaskList();
-                } else {
-                    // console.log(`还有${60 - min}分钟刷新任务列表`);
-                }
-            } else {
-                // console.log(`还有${ys}小时${60 - min}分钟刷新任务列表`);
+            let date = new Date();
+            var min = date.getUTCMinutes();
+            let second = date.getUTCSeconds();
+            if (min == 0 && second == 0) {
+                this._pushTaskList()
             }
-        }, 2000);
+
+        }, 1000)
+        // console.log(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 25, date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds()), Date.now())
     };
     /**
      * 清空任务计时
@@ -52,15 +49,22 @@ export class TaskMgr {
     /**
      *  推送任务列表
      */
-    public pushTaskList(): void {
+    private _pushTaskList(): void {
         let len = MyWebSocket.instance.connectMap.length;
         for (let i: number = 0; i < len; i++) {
             let uid = MyWebSocket.instance.connectMap.keys[i];
 
             let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
-            cmd.remainTime = 2 * 60 * 60;
-            let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
-
+            for (let i: number = 0; i < 3; i++) {
+                let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
+                taskInfo.taskID = Utils.getInstance().getRandom(0, JsonParse.taskData.length)
+                taskInfo.taskState = 0;
+                cmd.taskInfo.push(taskInfo);
+            }
+            let date = new Date();
+            let endTime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
+            cmd.endTime = endTime;
+            MyWebSocket.instance.sendMsg(uid, cmd);
         }
 
         // Utils.getInstance().getFile("../resource/table/TaskTable.json", (data) => {

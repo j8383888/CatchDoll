@@ -5,7 +5,7 @@
 			"name": "Launch Wing Player",
 			"type": "chrome",
 			"request": "launch",
-			"file": "index.html?uid=6",
+			"file": "index.html?uid=2",
 			"runtimeExecutable": "${execPath}",
 			"useBuildInServer": true,
 			"sourceMaps": true,

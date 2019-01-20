@@ -18,7 +18,7 @@
 	<e:Group x="253.9" y="1052.05">
 		<e:Image x="0" y="0" source="otherRes2_41" scaleX="1" scaleY="1"/>
 		<e:Image x="86.01" y="16.52" source="otherRes2_45" scaleX="1" scaleY="1"/>
-		<e:Label text="02:00" x="92.04" y="45" stroke="2"/>
+		<e:Label id="timeLabel" text="02:00" x="73.04" y="45" stroke="2" anchorOffsetX="0" width="129" textAlign="center"/>
 	</e:Group>
 	<e:Group id="treasureBox" x="70.33" y="215" width="507" height="737.33">
 		<e:layout>

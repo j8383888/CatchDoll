@@ -18,6 +18,10 @@ module catchDoll {
 		 * 任务数据
 		 */
 		public taskData: Cmd.ITaskUpdate_CS;
+		/**
+		 * 服务器时间
+		 */
+		public serveTime: number = -1;
 
 
 
@@ -36,6 +40,19 @@ module catchDoll {
 					}
 				}
 			}
+		}
+
+		public setServeTime(time: number): void {
+			this.serveTime = time;
+			Laya.timer.loop(1000, this, this._updateServeTime)
+
+		}
+
+		/**
+		 * 更新服务器时间
+		 */
+		private _updateServeTime(): void {
+			this.serveTime += 1000;
 		}
 
 		/**
@@ -76,6 +93,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			Laya.timer.clear(this, this._updateServeTime)
 			EventManager.unregisterEvent(EVENT_ID.UPDATE_ITEM_INFO, this, this._updateItem);
 			this.uid = -1;
 

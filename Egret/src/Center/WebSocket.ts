@@ -150,6 +150,9 @@ module catchDoll {
 					case "Cmd.Heartbeat_CS":
 						protoType = Cmd.Heartbeat_CS
 						break;
+					case "Cmd.TaskUpdate_CS":
+						protoType = Cmd.TaskUpdate_CS;
+						break;
 				}
 				message = protoType.decode(rawData)
 			}
@@ -162,13 +165,13 @@ module catchDoll {
 			/* 登陆协议 */
 			switch (cmdTitle) {
 				case "Cmd.Login_C":
-					// let accurateData: Cmd.Login_C = jsonData as Cmd.Login_C;
 					break;
 				case "Cmd.PlayerInfo_S":
 					let accurateData2: Cmd.PlayerInfo_S = message as Cmd.PlayerInfo_S;
 					Master.instance.uid = accurateData2.uid;
 					Master.instance.itemData = accurateData2.itemInfo;
 					Master.instance.taskData = accurateData2.taskInfo;
+					Master.instance.setServeTime(accurateData2.serveTime);
 					EventManager.fireEvent(EVENT_ID.SERVE_COMPLETE);
 					this._heartCheck();
 
@@ -187,6 +190,11 @@ module catchDoll {
 					else {
 						console.assert(false, "逻辑有误")
 					}
+					break;
+				case "Cmd.TaskUpdate_CS":
+					let accurateData5: Cmd.TaskUpdate_CS = message as Cmd.TaskUpdate_CS;
+					Master.instance.setServeTime(accurateData5.endTime);
+					Master.instance.taskData = accurateData5;
 					break;
 			}
 		}
@@ -230,13 +238,6 @@ module catchDoll {
 			this._writeByteAry.writeUTFBytes(protoName);
 			this._writeByteAry.writeUnsignedShort(len2);
 			this._writeByteAry._writeUint8Array(data);
-
-
-
-			// this._writeByteAry.position = 0;
-			// let len3: number = this._writeByteAry.readUnsignedShort();
-			// let TypeName = this._writeByteAry.readUTFBytes(len3);
-
 
 			this._webSocket.writeBytes(this._writeByteAry);
 			this._webSocket.flush();

@@ -46,7 +46,7 @@ export class SQLServe {
             this._clearSQL
             this._isReconnet = true;
             this._addCow();
-            this._clearSQL();
+            // this._clearSQL();
             console.log('数据库[connection connect]  succeed!');
         });
 
@@ -195,9 +195,7 @@ export class SQLServe {
                 return;
             }
             readyNum++;
-            console.log('--------------------------INSERT----------------------------');
             console.log('insert:', result);
-            console.log('-----------------------------------------------------------------\n\n');
             if (readyNum == COMPLETE_NUM) {
                 PlayerCenter.sendPlayerData(uid, itemInfoAry, task)
             }
@@ -247,19 +245,15 @@ export class SQLServe {
         })
 
         var addSql3 = 'INSERT INTO PlayerInfo' + '(uid,task)' + ' VALUES(?,?)';
-        let date = new Date();
-        let hour = date.getHours();
-        let minutes = date.getMinutes();
-        let second = date.getSeconds();
-        let time: number = 0;
-        time = 60 * 60 * 2 - 60 * 60 * (hour % 2) + minutes * 60 + second;
+        let date: Date = new Date()
+        let endIime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
+        task.endTime = endIime;
 
-        task.remainTime = time;
         let taskAry: Cmd.TaskUpdate_CS.TaskInfo[] = []
         for (let i: number = 0; i < 3; i++) {
             let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
             taskInfo.taskID = 1 + i;
-            taskInfo.taskState = 1;
+            taskInfo.taskState = 0;
             taskAry.push(taskInfo);
         }
         task.taskInfo = taskAry;
@@ -322,17 +316,21 @@ export class SQLServe {
             if (err) {
                 console.log('数据库[SELECT ERROR] - ', err.message);
             } else {
-                console.log('--------------------------SELECT----------------------------');
                 console.log(result);
-                console.log('------------------------------------------------------------\n\n');
-
                 this.uidIndex = result[result.length - 1].uid + 1
             }
         });
     }
 
-    public setUserData(uid: number, itemInfo: Cmd.ItemInfo_CS[]): void {
+    /**
+     * 设置玩家数据
+     * @param uid 
+     * @param userData 
+     */
+    public setUserData(uid: number): void {
 
+        /* 道具 */
+        let itemInfo: Cmd.ItemInfo_CS[] = PlayerCenter.getItemInfo(uid);
         let rowName = "";
         var sqlParams = [];
         for (let item of itemInfo) {
@@ -341,15 +339,29 @@ export class SQLServe {
         }
         rowName = rowName.slice(0, rowName.length - 1)
         sqlParams.push(uid);
-
         var sql = 'UPDATE PropInfo SET ' + rowName + ' WHERE uid = ?';
         this.connection.query(sql, sqlParams, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
             }
-            console.log("数据库修改:" + result);
+            console.log("数据库道具表修改:" + result);
+        })
 
+        /* 任务 */
+        let taskInfo: Cmd.TaskUpdate_CS = PlayerCenter.getTaskInfo(uid);
+        let date: Date = new Date()
+        let endIime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
+        taskInfo.endTime = endIime;
+        let sql2 = 'UPDATE PlayerInfo SET ' + 'task=?' + ' WHERE uid = ?';
+        let json: string = JSON.stringify(taskInfo);
+        let sqlParams2 = [json, uid];
+        this.connection.query(sql2, sqlParams2, (err, result, fields) => {
+            if (err) {
+                console.log('[query] - :' + err);
+                return;
+            }
+            console.log("数据库玩家信息修改:" + result);
         })
     }
 

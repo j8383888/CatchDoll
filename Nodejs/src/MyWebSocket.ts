@@ -144,10 +144,9 @@ export class MyWebSocket {
      * @param uid 
      */
     public onPlayerOffline(uid: number): void {
-        let itemData: Cmd.ItemInfo_CS[] = PlayerCenter.propMap.get(uid);
         let conn = this.connectMap.get(uid);
-        SQLServe.instance.setUserData(uid, itemData);
-        PlayerCenter.propMap.remove(uid);
+        SQLServe.instance.setUserData(uid);
+        PlayerCenter.remove(uid);
         MyWebSocket.instance.connectMap.removeValue(conn);
         MyWebSocket.instance.heartMap.remove(uid);
         console.log("uid为:" + uid + "玩家断线")

@@ -135,6 +135,7 @@ $root.Cmd = (function() {
          * @property {number} uid PlayerInfo_S uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
          * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
+         * @property {number} serveTime PlayerInfo_S serveTime
          */
 
         /**
@@ -178,6 +179,14 @@ $root.Cmd = (function() {
         PlayerInfo_S.prototype.taskInfo = null;
 
         /**
+         * PlayerInfo_S serveTime.
+         * @member {number} serveTime
+         * @memberof Cmd.PlayerInfo_S
+         * @instance
+         */
+        PlayerInfo_S.prototype.serveTime = 0;
+
+        /**
          * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
          * @function encode
          * @memberof Cmd.PlayerInfo_S
@@ -194,6 +203,7 @@ $root.Cmd = (function() {
                 for (var i = 0; i < message.itemInfo.length; ++i)
                     $root.Cmd.ItemInfo_CS.encode(message.itemInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             $root.Cmd.TaskUpdate_CS.encode(message.taskInfo, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.serveTime);
             return writer;
         };
 
@@ -226,6 +236,9 @@ $root.Cmd = (function() {
                 case 3:
                     message.taskInfo = $root.Cmd.TaskUpdate_CS.decode(reader, reader.uint32());
                     break;
+                case 4:
+                    message.serveTime = reader.int32();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -235,6 +248,8 @@ $root.Cmd = (function() {
                 throw $util.ProtocolError("missing required 'uid'", { instance: message });
             if (!message.hasOwnProperty("taskInfo"))
                 throw $util.ProtocolError("missing required 'taskInfo'", { instance: message });
+            if (!message.hasOwnProperty("serveTime"))
+                throw $util.ProtocolError("missing required 'serveTime'", { instance: message });
             return message;
         };
 
@@ -540,7 +555,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number} remainTime TaskUpdate_CS remainTime
+         * @property {number} endTime TaskUpdate_CS endTime
          */
 
         /**
@@ -568,12 +583,12 @@ $root.Cmd = (function() {
         TaskUpdate_CS.prototype.taskInfo = $util.emptyArray;
 
         /**
-         * TaskUpdate_CS remainTime.
-         * @member {number} remainTime
+         * TaskUpdate_CS endTime.
+         * @member {number} endTime
          * @memberof Cmd.TaskUpdate_CS
          * @instance
          */
-        TaskUpdate_CS.prototype.remainTime = 0;
+        TaskUpdate_CS.prototype.endTime = 0;
 
         /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.
@@ -589,8 +604,8 @@ $root.Cmd = (function() {
                 writer = $Writer.create();
             if (message.taskInfo != null && message.taskInfo.length)
                 for (var i = 0; i < message.taskInfo.length; ++i)
-                    $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.remainTime);
+                    $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endTime);
             return writer;
         };
 
@@ -612,21 +627,21 @@ $root.Cmd = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
+                case 1:
                     if (!(message.taskInfo && message.taskInfo.length))
                         message.taskInfo = [];
                     message.taskInfo.push($root.Cmd.TaskUpdate_CS.TaskInfo.decode(reader, reader.uint32()));
                     break;
-                case 3:
-                    message.remainTime = reader.int32();
+                case 2:
+                    message.endTime = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
                     break;
                 }
             }
-            if (!message.hasOwnProperty("remainTime"))
-                throw $util.ProtocolError("missing required 'remainTime'", { instance: message });
+            if (!message.hasOwnProperty("endTime"))
+                throw $util.ProtocolError("missing required 'endTime'", { instance: message });
             return message;
         };
 

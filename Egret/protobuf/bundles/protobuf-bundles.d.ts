@@ -64,6 +64,9 @@ declare namespace Cmd {
 
         /** PlayerInfo_S taskInfo */
         taskInfo: Cmd.ITaskUpdate_CS;
+
+        /** PlayerInfo_S serveTime */
+        serveTime: number;
     }
 
     /** Represents a PlayerInfo_S. */
@@ -83,6 +86,9 @@ declare namespace Cmd {
 
         /** PlayerInfo_S taskInfo. */
         public taskInfo: Cmd.ITaskUpdate_CS;
+
+        /** PlayerInfo_S serveTime. */
+        public serveTime: number;
 
         /**
          * Encodes the specified PlayerInfo_S message. Does not implicitly {@link Cmd.PlayerInfo_S.verify|verify} messages.
@@ -241,8 +247,8 @@ declare namespace Cmd {
         /** TaskUpdate_CS taskInfo */
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
 
-        /** TaskUpdate_CS remainTime */
-        remainTime: number;
+        /** TaskUpdate_CS endTime */
+        endTime: number;
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -257,8 +263,8 @@ declare namespace Cmd {
         /** TaskUpdate_CS taskInfo. */
         public taskInfo: Cmd.TaskUpdate_CS.ITaskInfo[];
 
-        /** TaskUpdate_CS remainTime. */
-        public remainTime: number;
+        /** TaskUpdate_CS endTime. */
+        public endTime: number;
 
         /**
          * Encodes the specified TaskUpdate_CS message. Does not implicitly {@link Cmd.TaskUpdate_CS.verify|verify} messages.

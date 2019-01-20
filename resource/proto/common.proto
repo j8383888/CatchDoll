@@ -14,6 +14,7 @@ message PlayerInfo_S
     required int32 uid = 1;
     repeated ItemInfo_CS itemInfo = 2;
     required TaskUpdate_CS taskInfo = 3;
+	required int32 serveTime = 4;
 }
 
 /* 物品信息 */
@@ -41,8 +42,8 @@ message Heartbeat_CS
 /* 任务更新 */
 message TaskUpdate_CS
 {
-    repeated TaskInfo taskInfo = 2;
-	required int32 remainTime = 3;
+    repeated TaskInfo taskInfo = 1;
+	required int32 endTime = 2;
 	
 	message TaskInfo{
 		required int32 taskID = 1;

@@ -20,7 +20,7 @@ module catchDoll {
 
 		public constructor() {
 			super();
-			this.skinName = "TaskItemSkin"
+			this.skinName = "TaskItemSkin";
 		}
 
 		/**
@@ -35,6 +35,18 @@ module catchDoll {
 			}
 			this.taskDec.text = data.taskContent;
 			this.getBtn = new Button(this.skin["_getBtn"]);
+			if (task.taskState == 0) {
+				this.getBtn.setLabel("未完成", 30, -1, -1)
+				this.getBtn.enabled = false;
+			}
+			else if (task.taskState == 1) {
+				this.getBtn.setLabel("领取", 30, -1, -1)
+				this.getBtn.enabled = true;
+			}
+			else if (task.taskState == 2) {
+				this.getBtn.setLabel("已完成", 30, -1, -1)
+				this.getBtn.enabled = false;
+			}
 		}
 
 

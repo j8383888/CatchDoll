@@ -1,16 +1,21 @@
 import { Dictionary } from "./util/Dictionary";
 import { Cmd } from "../protobuf/common";
 import { MyWebSocket } from "./MyWebSocket";
-import { JsonParse } from "./JsonParse";
-
 export class PlayerCenter {
 
-    public static propMap: Dictionary = new Dictionary()
+    public static playerDataMap: Dictionary = new Dictionary()
 
-    public static infoMap: Dictionary = new Dictionary()
 
     public constructor() {
 
+    }
+
+    /**
+     * 移除
+     * @param uid 
+     */
+    public static remove(uid: number): void {
+        this.playerDataMap.remove(uid);
     }
 
 
@@ -18,7 +23,7 @@ export class PlayerCenter {
 	 * 获得玩家道具数量
 	 */
     public static getProp(uid: number, propID: number): number {
-        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
                 return item.itemNum;
@@ -30,7 +35,7 @@ export class PlayerCenter {
      * 设置玩家道具数量
      */
     public static updateProp(uid: number, propID: number, updateNum: number): number {
-        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
                 item.itemNum += updateNum;
@@ -41,7 +46,7 @@ export class PlayerCenter {
     }
 
     public static clearUpdateNum(uid: number): void {
-        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             item.itemUpdateNum = 0;
         }
@@ -52,13 +57,29 @@ export class PlayerCenter {
     * 设置玩家道具数量
     */
     public static setProp(uid: number, propID: number, num: number): void {
-        let propData: Cmd.IItemInfo_CS[] = this.propMap.get(uid)
+        let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid);
         for (let item of propData) {
             if (item.itemID == propID) {
                 item.itemNum = num;
                 break;
             }
         }
+    }
+
+    /**
+     * 获得道具信息
+     * @param uid 
+     */
+    public static getItemInfo(uid: number): Cmd.ItemInfo_CS[] {
+        return this.playerDataMap.get(uid).itemInfo;
+    }
+
+    /**
+     * 获得道具信息
+     * @param uid 
+     */
+    public static getTaskInfo(uid: number): Cmd.TaskUpdate_CS {
+        return this.playerDataMap.get(uid).taskInfo;
     }
 
     /**
@@ -71,9 +92,9 @@ export class PlayerCenter {
         cmd.uid = uid;
         cmd.itemInfo = itemInfoAry;
         cmd.taskInfo = task;
+        cmd.serveTime = Date.now();
 
-        this.propMap.set(uid, itemInfoAry);
-        this.infoMap.set(uid, task);
+        this.playerDataMap.set(uid, cmd);
         MyWebSocket.instance.sendMsg(uid, cmd);
     }
 
@@ -86,25 +107,19 @@ export class PlayerCenter {
         let cmd: Cmd.ItemUpdate_CS = new Cmd.ItemUpdate_CS();
         cmd.uid = uid;
         if (itemInfoAry === void 0) {
-            itemInfoAry = PlayerCenter.propMap.get(uid);
+            itemInfoAry = this.getItemInfo(uid);
         }
         cmd.itemInfo = itemInfoAry;
-        this.propMap.set(uid, itemInfoAry);
+        this.setItemInfo(uid, itemInfoAry);
         MyWebSocket.instance.sendMsg(uid, cmd);
     }
 
-
-
     /**
-     * 发送初始化玩家数据
-     * @param data 
+     * 设置道具数据
      */
-    public static sendInitPlayerData(data: Cmd.Login_C, task: Cmd.TaskUpdate_CS): void {
-
-
-
+    public static setItemInfo(uid: number, itemInfoAry: Cmd.ItemInfo_CS[]): void {
+        this.playerDataMap.get(uid).itemInfo = itemInfoAry;
     }
-
 
 }
 export enum PROP_ID {
