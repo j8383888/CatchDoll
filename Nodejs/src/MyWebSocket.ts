@@ -119,9 +119,26 @@ export class MyWebSocket {
                     cmd.uid = data3.uid;
                     MyWebSocket.instance.heartMap.set(data3.uid, 0)
                     MyWebSocket.instance.sendMsg(data3.uid, cmd);
-                } else {
+                }
+                /* 登陆协议 */
+                else if (cmdName == "Cmd.Login_C") {
+                    console.log("玩家登陆");
+                    let data: Cmd.Login_C = jsonData as Cmd.Login_C;
 
-                    MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, conn);
+                    let oldConn = this._target.connectMap.get(data.uid);
+                    if (oldConn) {
+                        console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
+                        const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
+                        info.uid = data.uid;
+                        oldConn.sendMsg(data.uid, info);
+                    }
+                    this._target.connectMap.set(data.uid, conn);
+                    this._target.heartMap.set(data.uid, 0);
+                    SQLServe.instance.seekLogin(data)
+                }
+                else {
+                    let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn)
+                    MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, uid);
                 }
                 console.log("[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
             })
@@ -138,6 +155,14 @@ export class MyWebSocket {
             console.log("异常关闭" + "code:" + code + "     " + "reason:" + reason)
         });
     }
+
+    /**
+     * 登陆
+     * @param data 
+     */
+    private _login(data: Cmd.Login_C, conn: any): void {
+
+    };
 
     /**
      * 玩家离线操作

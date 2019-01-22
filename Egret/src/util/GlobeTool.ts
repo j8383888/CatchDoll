@@ -22,6 +22,18 @@ module catchDoll {
 			}
 		}
 
+		/**
+		 * 设置任务状态
+		 */
+		public static setTaskItem(taskID: number, taskState: number): void {
+			let taskData = Master.instance.taskData;
+			for (let item of taskData.taskInfo) {
+				if (item.taskID == taskID) {
+					item.taskState = taskState;
+				}
+			}
+		}
+
 		public static formatTime_DDHHMM(totalSeconds: number): string {
 			if (totalSeconds <= 0) {
 				return "";

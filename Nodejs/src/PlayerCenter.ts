@@ -127,21 +127,19 @@ export class PlayerCenter {
      * 获得一个随机任务
      */
     public static getRamdomTask(uid: number, taskID: number): Cmd.TaskUpdate_CS.TaskInfo {
-        for (let i: number = 0; i < 3; i++) {
-            let task: Cmd.TaskUpdate_CS = this.getTaskInfo(uid);
-            let taskIDs: number[] = JsonParse.taskDataID.slice();
-            for (let item of task.taskInfo) {
-                if (item.taskID != taskID) {
-                    taskIDs.remove(item.taskID);
-                }
+        let task: Cmd.TaskUpdate_CS = this.getTaskInfo(uid);
+        let taskIDs: number[] = JsonParse.taskDataID.slice();
+        for (let item of task.taskInfo) {
+            if (item.taskID != taskID) {
+                taskIDs.remove(item.taskID);
             }
+        }
 
-            for (let item of task.taskInfo) {
-                if (item.taskID == taskID) {
-                    item.taskID = taskIDs[Utils.getInstance().random(0, taskIDs.length - 1)];
-                    item.taskState = 0;
-                    return item;
-                }
+        for (let item of task.taskInfo) {
+            if (item.taskID == taskID) {
+                item.taskID = taskIDs[Utils.getInstance().random(0, taskIDs.length - 1)];
+                item.taskState = 0;
+                return item;
             }
         }
         return null

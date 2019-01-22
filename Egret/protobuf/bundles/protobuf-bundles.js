@@ -745,6 +745,88 @@ $root.Cmd = (function() {
         return TaskUpdate_CS;
     })();
 
+    Cmd.AcheiveTask_CS = (function() {
+
+        /**
+         * Properties of an AcheiveTask_CS.
+         * @memberof Cmd
+         * @interface IAcheiveTask_CS
+         * @property {number} taskID AcheiveTask_CS taskID
+         */
+
+        /**
+         * Constructs a new AcheiveTask_CS.
+         * @memberof Cmd
+         * @classdesc Represents an AcheiveTask_CS.
+         * @implements IAcheiveTask_CS
+         * @constructor
+         * @param {Cmd.IAcheiveTask_CS=} [properties] Properties to set
+         */
+        function AcheiveTask_CS(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AcheiveTask_CS taskID.
+         * @member {number} taskID
+         * @memberof Cmd.AcheiveTask_CS
+         * @instance
+         */
+        AcheiveTask_CS.prototype.taskID = 0;
+
+        /**
+         * Encodes the specified AcheiveTask_CS message. Does not implicitly {@link Cmd.AcheiveTask_CS.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.AcheiveTask_CS
+         * @static
+         * @param {Cmd.IAcheiveTask_CS} message AcheiveTask_CS message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AcheiveTask_CS.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.taskID);
+            return writer;
+        };
+
+        /**
+         * Decodes an AcheiveTask_CS message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.AcheiveTask_CS
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.AcheiveTask_CS} AcheiveTask_CS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AcheiveTask_CS.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.AcheiveTask_CS();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.taskID = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("taskID"))
+                throw $util.ProtocolError("missing required 'taskID'", { instance: message });
+            return message;
+        };
+
+        return AcheiveTask_CS;
+    })();
+
     Cmd.SameUidLogin_S = (function() {
 
         /**

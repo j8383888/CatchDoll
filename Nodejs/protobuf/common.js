@@ -356,6 +356,41 @@ $root.Cmd = (function() {
         return TaskUpdate_CS;
     })();
 
+    Cmd.AcheiveTask_CS = (function() {
+
+        /**
+         * Properties of an AcheiveTask_CS.
+         * @memberof Cmd
+         * @interface IAcheiveTask_CS
+         * @property {number} taskID AcheiveTask_CS taskID
+         */
+
+        /**
+         * Constructs a new AcheiveTask_CS.
+         * @memberof Cmd
+         * @classdesc Represents an AcheiveTask_CS.
+         * @implements IAcheiveTask_CS
+         * @constructor
+         * @param {Cmd.IAcheiveTask_CS=} [properties] Properties to set
+         */
+        function AcheiveTask_CS(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AcheiveTask_CS taskID.
+         * @member {number} taskID
+         * @memberof Cmd.AcheiveTask_CS
+         * @instance
+         */
+        AcheiveTask_CS.prototype.taskID = 0;
+
+        return AcheiveTask_CS;
+    })();
+
     Cmd.SameUidLogin_S = (function() {
 
         /**

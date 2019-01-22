@@ -332,6 +332,44 @@ declare namespace Cmd {
         }
     }
 
+    /** Properties of an AcheiveTask_CS. */
+    interface IAcheiveTask_CS {
+
+        /** AcheiveTask_CS taskID */
+        taskID: number;
+    }
+
+    /** Represents an AcheiveTask_CS. */
+    class AcheiveTask_CS implements IAcheiveTask_CS {
+
+        /**
+         * Constructs a new AcheiveTask_CS.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.IAcheiveTask_CS);
+
+        /** AcheiveTask_CS taskID. */
+        public taskID: number;
+
+        /**
+         * Encodes the specified AcheiveTask_CS message. Does not implicitly {@link Cmd.AcheiveTask_CS.verify|verify} messages.
+         * @param message AcheiveTask_CS message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Cmd.IAcheiveTask_CS, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes an AcheiveTask_CS message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AcheiveTask_CS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.AcheiveTask_CS;
+    }
+
     /** Properties of a SameUidLogin_S. */
     interface ISameUidLogin_S {
 

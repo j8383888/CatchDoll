@@ -17,6 +17,10 @@ module catchDoll {
 		 * 星级盒子
 		 */
 		public starBox: eui.Group;
+		/**
+		 * 任务ID
+		 */
+		public taskID: number;
 
 		public constructor() {
 			super();
@@ -27,6 +31,7 @@ module catchDoll {
 		 * 设置数据
 		 */
 		public setData(task: Cmd.TaskUpdate_CS.ITaskInfo): void {
+			this.taskID = task.taskID;
 			let data: table.TaskTable = ConfigParse.getWholeByProperty(TableCenter.instance.TaskTable, "id", task.taskID.toString());
 			for (let i: number = 0; i < data.taskLevel; i++) {
 				let img: eui.Image = new eui.Image();
@@ -47,6 +52,11 @@ module catchDoll {
 				this.getBtn.setLabel("已完成", 30, -1, -1)
 				this.getBtn.enabled = false;
 			}
+			this.getBtn.mouseClickHandler = Handler.create(null, () => {
+				let cmd: Cmd.AcheiveTask_CS = new Cmd.AcheiveTask_CS();
+				cmd.taskID = this.taskID;
+				WebSocket.instance.sendMsg(cmd)
+			}, null, true)
 		}
 
 

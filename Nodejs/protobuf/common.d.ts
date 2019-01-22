@@ -88,6 +88,15 @@ export namespace Cmd {
         }
     }
 
+    interface IAcheiveTask_CS {
+        taskID: number;
+    }
+
+    class AcheiveTask_CS implements IAcheiveTask_CS {
+        constructor(properties?: Cmd.IAcheiveTask_CS);
+        public taskID: number;
+    }
+
     interface ISameUidLogin_S {
         uid: number;
     }
