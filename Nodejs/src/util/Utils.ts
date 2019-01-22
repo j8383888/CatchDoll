@@ -15,13 +15,21 @@ export class Utils {
     /**
      *  获取指定范围的随机数
      */
-    public getRandom(min, max): number {
-        return Math.floor(Math.random() * max + min);
-    };
+    // public getRandom(min, max): number {
+    //     return Math.floor(Math.random() * max + min);
+    // };
+
+    /**
+	 * 两个整数之间随机
+	 */
+    public random(min: number, max: number): number {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+
     /**
      *  读取文件
      */
-    public getFile(path, cb): void{
+    public getFile(path, cb): void {
         fs.readFile(path, (err, file) => {
             if (err) {
                 console.error(`err: ${err}`);

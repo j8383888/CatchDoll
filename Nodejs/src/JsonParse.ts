@@ -2,12 +2,13 @@
 import { readFileSync } from "fs";
 
 export class JsonParse {
-    
+
     public static propData: table.PropTable[];
+    public static propDataID: string[] = [];
 
     public static taskData: table.TaskTable[]
+    public static taskDataID: number[] = []
 
-    public static propDataID: string[] = [];
     /* 道具前缀 */
     public static propForm: string = "propID_"
     /* 是否调试模式 */
@@ -43,6 +44,9 @@ export class JsonParse {
         }
 
         this.taskData = this.getJSon("resource/table/TaskTable.json")
+        for (let item of this.taskData) {
+            this.taskDataID.push(item.id);
+        }
 
     }
 

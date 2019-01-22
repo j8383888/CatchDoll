@@ -1,6 +1,8 @@
 import { Dictionary } from "./util/Dictionary";
 import { Cmd } from "../protobuf/common";
 import { MyWebSocket } from "./MyWebSocket";
+import { JsonParse } from "./JsonParse";
+import { Utils } from "./util/Utils";
 export class PlayerCenter {
 
     public static playerDataMap: Dictionary = new Dictionary()
@@ -121,6 +123,46 @@ export class PlayerCenter {
         this.playerDataMap.get(uid).itemInfo = itemInfoAry;
     }
 
+    /**
+     * 获得一个随机任务
+     */
+    public static getRamdomTask(uid: number, taskID: number): Cmd.TaskUpdate_CS.TaskInfo {
+        for (let i: number = 0; i < 3; i++) {
+            let task: Cmd.TaskUpdate_CS = this.getTaskInfo(uid);
+            let taskIDs: number[] = JsonParse.taskDataID.slice();
+            for (let item of task.taskInfo) {
+                if (item.taskID != taskID) {
+                    taskIDs.remove(item.taskID);
+                }
+            }
+
+            for (let item of task.taskInfo) {
+                if (item.taskID == taskID) {
+                    item.taskID = taskIDs[Utils.getInstance().random(0, taskIDs.length - 1)];
+                    item.taskState = 0;
+                    return item;
+                }
+            }
+        }
+        return null
+    }
+
+    /**
+     * 获得所有随机任务
+     */
+    public static getRamdomTasks(): Cmd.TaskUpdate_CS.TaskInfo[] {
+        let taskAry: Cmd.TaskUpdate_CS.TaskInfo[] = []
+        let taskData: table.TaskTable[] = JsonParse.taskData.slice();
+        for (let i: number = 0; i < 3; i++) {
+            let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
+            let index = Utils.getInstance().random(0, taskData.length - 1)
+            taskData.removeAt(index)
+            taskInfo.taskID = JsonParse.taskData[index].id;
+            taskInfo.taskState = 0;
+            taskAry.push(taskInfo);
+        }
+        return taskAry
+    }
 }
 export enum PROP_ID {
     MONEY = 1,

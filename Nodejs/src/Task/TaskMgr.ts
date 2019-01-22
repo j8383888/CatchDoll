@@ -6,6 +6,7 @@ import { Utils } from "../util/Utils";
 import { MyWebSocket } from "../MyWebSocket";
 import { util } from "protobufjs";
 import { JsonParse } from "../JsonParse";
+import { PlayerCenter } from "../PlayerCenter";
 export class TaskMgr {
     private static _taskMgr: TaskMgr = null;
     private _taskTimer: NodeJS.Timer = null;
@@ -55,47 +56,11 @@ export class TaskMgr {
             let uid = MyWebSocket.instance.connectMap.keys[i];
 
             let cmd: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
-            for (let i: number = 0; i < 3; i++) {
-                let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
-                taskInfo.taskID = Utils.getInstance().getRandom(0, JsonParse.taskData.length)
-                taskInfo.taskState = 0;
-                cmd.taskInfo.push(taskInfo);
-            }
+            cmd.taskInfo = PlayerCenter.getRamdomTasks()
             let date = new Date();
             let endTime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
             cmd.endTime = endTime;
             MyWebSocket.instance.sendMsg(uid, cmd);
         }
-
-        // Utils.getInstance().getFile("../resource/table/TaskTable.json", (data) => {
-        //     console.log('任务列表', data);
-        //     const curTaskIndex = [];
-        //     const func = () => {
-        //         if (curTaskIndex.length >= this._taskNum) {
-        //             console.log("刷新的任务下表列表：", curTaskIndex);
-        //             curTaskIndex.forEach((item) => {
-        //                 // console.log("任务： ", data[item - 1]);
-        //                 taskInfo.taskID = data[item - 1].id;
-        //                 taskInfo.taskState = Cmd.TASK_STATE.undone;
-        //                 cmd.taskInfo.push(taskInfo);
-        //                 // MyWebSocket.instance.connectMap
-        //             });
-        //         } else {
-        //             let canAdd = true;
-        //             const curNum = Utils.getInstance().getRandom(1, data.length);
-        //             curTaskIndex.forEach((item) => {
-        //                 if (item == curNum) {
-        //                     canAdd = false;
-        //                 }
-        //             });
-        //             if (canAdd) {
-        //                 curTaskIndex.push(curNum);
-        //             }
-        //             func();
-        //         }
-        //     };
-        //     func();
-        // });
-        // this._target.sendMsg(1, data);
     };
 };

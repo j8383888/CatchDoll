@@ -2,6 +2,7 @@ import { Connection } from "mysql";
 import { Cmd } from "../protobuf/common";
 import { JsonParse } from "./JsonParse";
 import { PlayerCenter } from "./PlayerCenter";
+import { Utils } from "./util/Utils";
 var SQL = require('mysql');
 export class SQLServe {
     private uidIndex = 100;
@@ -167,6 +168,12 @@ export class SQLServe {
             }
             let res: string = result[0].task;
             task = JSON.parse(res);
+            if (task.endTime < Date.now()) {
+                let date = new Date();
+                let endIime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
+                task.endTime = endIime;
+                task.taskInfo = PlayerCenter.getRamdomTasks();
+            }
             num++;
             if (num == COMPELETE_NUM) {
                 PlayerCenter.sendPlayerData(data.uid, itemInfoAry, task);
@@ -248,15 +255,7 @@ export class SQLServe {
         let date: Date = new Date()
         let endIime = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + 1, 0, 0, 0)
         task.endTime = endIime;
-
-        let taskAry: Cmd.TaskUpdate_CS.TaskInfo[] = []
-        for (let i: number = 0; i < 3; i++) {
-            let taskInfo: Cmd.TaskUpdate_CS.TaskInfo = new Cmd.TaskUpdate_CS.TaskInfo();
-            taskInfo.taskID = 1 + i;
-            taskInfo.taskState = 0;
-            taskAry.push(taskInfo);
-        }
-        task.taskInfo = taskAry;
+        task.taskInfo = PlayerCenter.getRamdomTasks();
         let json: string = JSON.stringify(task);
 
         var addSqlParams3 = [data.uid, json];

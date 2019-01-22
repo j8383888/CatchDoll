@@ -34,6 +34,7 @@ export class MsgHandler {
                 let data2: Cmd.ItemUpdate_CS = msgData as Cmd.ItemUpdate_CS;
                 this._itemUpdate(data2);
                 break;
+            
 
         }
     };
@@ -55,7 +56,7 @@ export class MsgHandler {
         SQLServe.instance.seekLogin(data)
     };
 
-    
+
     private _itemUpdate(data): void {
         let itemInfo = data.itemInfo;
         // data2.uid = data2.uid;
