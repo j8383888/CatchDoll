@@ -74,7 +74,7 @@ module catchDoll {
 				cmd.uid = Number(uid);
 			}
 			else {
-				cmd.uid = 9999;
+				cmd.uid = 9998;
 			}
 			this.sendMsg(cmd);
 

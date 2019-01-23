@@ -1,48 +1,48 @@
 {
-		"engineVersion": "5.2.10",
-		"compilerVersion": "5.2.10",
-		"template": {},
-		"target": {
-				"current": "web"
-		},
-		"modules": [
-				{
-						"name": "egret"
-				},
-				{
-						"name": "eui"
-				},
-				{
-						"name": "assetsmanager" 
-				},
-				{
-						"name": "tween"
-				},
-				{
-						"name": "game"
-				},
-				{
-						"name": "dragonBones"
-				},
-				{
-						"name": "socket"
-				},
-				{
-						"name": "promise"
-				},
-				{
-						"name": "protobuf-library",
-						"path": "protobuf/library"
-				},
-				{
-						"name": "protobuf-bundles",
-						"path": "protobuf/bundles"
-				}
-		],
-		"targets": {
-				"android": {
-						"appname": "娃娃去哪了",
-						"packagename": "com.companyname"
-				}
-		}
+  "engineVersion": "5.2.10",
+  "compilerVersion": "5.2.10",
+  "template": {},
+  "target": {
+    "current": "web"
+  },
+  "modules": [
+    {
+      "name": "egret"
+    },
+    {
+      "name": "eui"
+    },
+    {
+      "name": "assetsmanager"
+    },
+    {
+      "name": "tween"
+    },
+    {
+      "name": "game"
+    },
+    {
+      "name": "dragonBones"
+    },
+    {
+      "name": "socket"
+    },
+    {
+      "name": "promise"
+    },
+    {
+      "name": "protobuf-library",
+      "path": "protobuf/library"
+    },
+    {
+      "name": "protobuf-bundles",
+      "path": "protobuf/bundles"
+    }
+  ],
+  "targets": {
+    "android": {
+      "appname": "娃娃去哪了2",
+      "packagename": "com.companyname"
+    }
+  }
 }
