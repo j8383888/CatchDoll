@@ -125,15 +125,15 @@ export class MyWebSocket {
                     console.log("玩家登陆");
                     let data: Cmd.Login_C = jsonData as Cmd.Login_C;
 
-                    let oldConn = this._target.connectMap.get(data.uid);
+                    let oldConn = MyWebSocket.instance.connectMap.get(data.uid);
                     if (oldConn) {
                         console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
                         const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
                         info.uid = data.uid;
                         oldConn.sendMsg(data.uid, info);
                     }
-                    this._target.connectMap.set(data.uid, conn);
-                    this._target.heartMap.set(data.uid, 0);
+                    MyWebSocket.instance.connectMap.set(data.uid, conn);
+                    MyWebSocket.instance.heartMap.set(data.uid, 0);
                     SQLServe.instance.seekLogin(data)
                 }
                 else {

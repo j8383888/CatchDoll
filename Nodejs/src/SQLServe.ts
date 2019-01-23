@@ -106,7 +106,7 @@ export class SQLServe {
         })
 
     }
-
+ 
     /**
      * 数据库查找
      * @param data 
