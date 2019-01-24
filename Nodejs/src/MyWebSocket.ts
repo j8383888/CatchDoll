@@ -145,7 +145,8 @@ export class MyWebSocket {
         })
         conn.once("close", (code, reason) => {
             let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn);
-            if (uid == null) {
+            let data = PlayerCenter.playerDataMap.get(uid);
+            if (uid == null || data == null) {
                 return;
             }
             MyWebSocket.instance.onPlayerOffline(uid);
