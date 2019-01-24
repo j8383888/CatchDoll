@@ -76,7 +76,7 @@ export class MyWebSocket {
      * 心跳检测
      */
     private _heartCheck(): void {
-        this._timer = setInterval(this._heartJump.bind(this), 1000 * 10);
+        // this._timer = setInterval(this._heartJump.bind(this), 1000 * 10);
     }
 
     private _heartJump(): void {
@@ -93,7 +93,7 @@ export class MyWebSocket {
 
     /* 释放 */
     public dispose(): void {
-        clearInterval(this._timer);
+        // clearInterval(this._timer);
     }
 
     private _onReceive(conn): void {
@@ -130,7 +130,7 @@ export class MyWebSocket {
                         console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
                         const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
                         info.uid = data.uid;
-                        oldConn.sendMsg(data.uid, info);
+                        MyWebSocket.instance.sendMsg(data.uid, info);
                     }
                     MyWebSocket.instance.connectMap.set(data.uid, conn);
                     MyWebSocket.instance.heartMap.set(data.uid, 0);

@@ -36,7 +36,6 @@ export class SQLServe {
             database: 'test',
             debug: false,
         });
-
         this.connection.connect((err) => {
             if (err) {
 
