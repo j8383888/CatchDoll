@@ -23,7 +23,6 @@ module catchDoll {
 		public constructor() {
 			let configData = RES.getRes("config_json");
 			this.isDebug = configData["isDebug"];
-			this.isDebug = false;
 			if (this.isDebug) {
 				this.host = configData["debug"]["host"];
 				this.post = configData["debug"]["post"];

@@ -26,7 +26,6 @@ export class TaskMgr {
      *  任务刷新计时
      */
     public taskTimer(): void {
-        this._pushTaskList();
         this._taskTimer = setInterval(() => {
             let date = new Date();
             var min = date.getUTCMinutes();
