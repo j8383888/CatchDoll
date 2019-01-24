@@ -43,7 +43,7 @@ message Heartbeat_CS
 message TaskUpdate_CS
 {
     repeated TaskInfo taskInfo = 1;
-	required int32 endTime = 2;
+	optional int32 endTime = 2;
 	
 	message TaskInfo{
 		required int32 taskID = 1;

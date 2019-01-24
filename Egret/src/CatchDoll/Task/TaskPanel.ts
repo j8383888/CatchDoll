@@ -34,15 +34,25 @@ module catchDoll {
 		public constructor() {
 			super(POP_EFFECT.CENTER, true);
 			this.skinName = "TaskPanelSkin";
-			this._update();
+			
 
 		}
 
+		/**
+		 * 更新任务
+		 */
 		private _update(): void {
 			let time = (Master.instance.taskData.endTime - Master.instance.serveTime) / 1000
 			if (time > 0) {
 				this.timeLabel.text = GlobeTool.formatTime_HHMMSS(time);
 			}
+			let taskData: Cmd.ITaskUpdate_CS = Master.instance.taskData;
+			let len: number = this.itemList.length;
+			for (let i: number = 0; i < len; i++) {
+				this.itemList[i].setData(taskData.taskInfo[i])
+			}
+
+
 		}
 
 		/**
@@ -50,6 +60,7 @@ module catchDoll {
 		 */
 		public onInit(): void {
 			Laya.timer.loop(1000, this, this._update)
+			EventManager.registerEvent(EVENT_ID.TaskUpdate_CS, Handler.create(this, this._update));
 
 			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
 			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
@@ -84,14 +95,12 @@ module catchDoll {
 
 			this._toggleButtonGroup.push(toggle1);
 			this._toggleButtonGroup.push(toggle2);
-			let taskData: Cmd.ITaskUpdate_CS = Master.instance.taskData;
+
 			for (let i: number = 0; i < 3; i++) {
 				let item: TaskItem = new TaskItem();
-				item.setData(taskData.taskInfo[i])
 				this.taskBox.addChild(item);
 				this.itemList.push(item);
 			}
-
 			let data2: table.TreasureTable[] = TableCenter.instance.treasureTable;
 			for (let i: number = 0; i < 3; i++) {
 				let item: TaskTreasureItem = new TaskTreasureItem();
@@ -99,6 +108,8 @@ module catchDoll {
 				this.treasureBox.addChild(item);
 				this.treasureItemList.push(item);
 			}
+
+			this._update();
 		}
 
 		/**
@@ -146,6 +157,7 @@ module catchDoll {
 				item.dispose();
 				item = null;
 			}
+			EventManager.unregisterEvent(EVENT_ID.TaskUpdate_CS, this, this._update);
 			this.treasureItemList.length = 0;
 			this.treasureItemList = null;
 			super.dispose();

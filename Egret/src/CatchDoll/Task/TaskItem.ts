@@ -33,6 +33,7 @@ module catchDoll {
 		public setData(task: Cmd.TaskUpdate_CS.ITaskInfo): void {
 			this.taskID = task.taskID;
 			let data: table.TaskTable = ConfigParse.getWholeByProperty(TableCenter.instance.TaskTable, "id", task.taskID.toString());
+			this.starBox.removeChildren()
 			for (let i: number = 0; i < data.taskLevel; i++) {
 				let img: eui.Image = new eui.Image();
 				img.source = "otherRes2_47";

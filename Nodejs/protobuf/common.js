@@ -274,7 +274,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number} endTime TaskUpdate_CS endTime
+         * @property {number|null} [endTime] TaskUpdate_CS endTime
          */
 
         /**

@@ -65,7 +65,7 @@ export namespace Cmd {
 
     interface ITaskUpdate_CS {
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
-        endTime: number;
+        endTime?: (number|null);
     }
 
     class TaskUpdate_CS implements ITaskUpdate_CS {

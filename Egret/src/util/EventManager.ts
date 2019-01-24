@@ -190,5 +190,9 @@ const enum EVENT_ID {
 	/**
 	 * 更新道具信息
 	 */
-	UPDATE_ITEM_INFO
+	UPDATE_ITEM_INFO,
+	/**
+	 * 
+	 */
+	TaskUpdate_CS,
 }
