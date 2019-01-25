@@ -16,7 +16,7 @@
 		<e:Image source="otherRes1_18" y="185.66" x="0"/>
 		<e:Image y="203.82" x="65.15" source="otherRes1_19"/>
 	</e:Group>
-	<e:Group x="4" y="752">
+	<e:Group id="_smallGameBtn" x="4" y="752">
 		<e:Image y="0" x="31" source="otherRes1_23"/>
 		<e:Image y="108.5" x="0" source="otherRes1_18"/>
 		<e:Image y="128.5" x="62.5" source="otherRes1_21"/>

@@ -54,7 +54,7 @@ module catchDoll {
 				this.getBtn.enabled = false;
 			}
 			this.getBtn.mouseClickHandler = Handler.create(null, () => {
-				let cmd: Cmd.AcheiveTask_CS = new Cmd.AcheiveTask_CS();
+				let cmd: Cmd.GetTaskAward_C = new Cmd.GetTaskAward_C();
 				cmd.taskID = this.taskID;
 				WebSocket.instance.sendMsg(cmd)
 			}, null, true)

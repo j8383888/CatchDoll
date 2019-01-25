@@ -30,11 +30,13 @@ module catchDoll {
 		 */
 		public timeLabel: eui.Label;
 
+		public refreshBtn: Button;
+
 
 		public constructor() {
 			super(POP_EFFECT.CENTER, true);
 			this.skinName = "TaskPanelSkin";
-			
+
 
 		}
 
@@ -61,7 +63,7 @@ module catchDoll {
 		public onInit(): void {
 			Laya.timer.loop(1000, this, this._update)
 			EventManager.registerEvent(EVENT_ID.TaskUpdate_CS, Handler.create(this, this._update));
-
+			this.refreshBtn = new Button(this.skin["_refreshBtn"]);
 			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
 			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
 			toggle1.selectHandler = Handler.create(null, () => {
@@ -146,6 +148,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			this.refreshBtn.dispose();
+			this.refreshBtn = null;
 			Laya.timer.clear(this, this._update)
 			for (let item of this.itemList) {
 				item.dispose();

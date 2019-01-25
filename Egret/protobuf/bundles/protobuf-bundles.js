@@ -555,7 +555,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number|null} [endTime] TaskUpdate_CS endTime
+         * @property {number} endTime TaskUpdate_CS endTime
          */
 
         /**
@@ -605,8 +605,7 @@ $root.Cmd = (function() {
             if (message.taskInfo != null && message.taskInfo.length)
                 for (var i = 0; i < message.taskInfo.length; ++i)
                     $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.endTime != null && message.hasOwnProperty("endTime"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endTime);
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endTime);
             return writer;
         };
 
@@ -641,6 +640,8 @@ $root.Cmd = (function() {
                     break;
                 }
             }
+            if (!message.hasOwnProperty("endTime"))
+                throw $util.ProtocolError("missing required 'endTime'", { instance: message });
             return message;
         };
 
@@ -744,24 +745,23 @@ $root.Cmd = (function() {
         return TaskUpdate_CS;
     })();
 
-    Cmd.AcheiveTask_CS = (function() {
+    Cmd.RefreshTask_C = (function() {
 
         /**
-         * Properties of an AcheiveTask_CS.
+         * Properties of a RefreshTask_C.
          * @memberof Cmd
-         * @interface IAcheiveTask_CS
-         * @property {number} taskID AcheiveTask_CS taskID
+         * @interface IRefreshTask_C
          */
 
         /**
-         * Constructs a new AcheiveTask_CS.
+         * Constructs a new RefreshTask_C.
          * @memberof Cmd
-         * @classdesc Represents an AcheiveTask_CS.
-         * @implements IAcheiveTask_CS
+         * @classdesc Represents a RefreshTask_C.
+         * @implements IRefreshTask_C
          * @constructor
-         * @param {Cmd.IAcheiveTask_CS=} [properties] Properties to set
+         * @param {Cmd.IRefreshTask_C=} [properties] Properties to set
          */
-        function AcheiveTask_CS(properties) {
+        function RefreshTask_C(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -769,23 +769,91 @@ $root.Cmd = (function() {
         }
 
         /**
-         * AcheiveTask_CS taskID.
-         * @member {number} taskID
-         * @memberof Cmd.AcheiveTask_CS
-         * @instance
-         */
-        AcheiveTask_CS.prototype.taskID = 0;
-
-        /**
-         * Encodes the specified AcheiveTask_CS message. Does not implicitly {@link Cmd.AcheiveTask_CS.verify|verify} messages.
+         * Encodes the specified RefreshTask_C message. Does not implicitly {@link Cmd.RefreshTask_C.verify|verify} messages.
          * @function encode
-         * @memberof Cmd.AcheiveTask_CS
+         * @memberof Cmd.RefreshTask_C
          * @static
-         * @param {Cmd.IAcheiveTask_CS} message AcheiveTask_CS message or plain object to encode
+         * @param {Cmd.IRefreshTask_C} message RefreshTask_C message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AcheiveTask_CS.encode = function encode(message, writer) {
+        RefreshTask_C.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Decodes a RefreshTask_C message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.RefreshTask_C
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.RefreshTask_C} RefreshTask_C
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RefreshTask_C.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.RefreshTask_C();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return RefreshTask_C;
+    })();
+
+    Cmd.GetTaskAward_C = (function() {
+
+        /**
+         * Properties of a GetTaskAward_C.
+         * @memberof Cmd
+         * @interface IGetTaskAward_C
+         * @property {number} taskID GetTaskAward_C taskID
+         */
+
+        /**
+         * Constructs a new GetTaskAward_C.
+         * @memberof Cmd
+         * @classdesc Represents a GetTaskAward_C.
+         * @implements IGetTaskAward_C
+         * @constructor
+         * @param {Cmd.IGetTaskAward_C=} [properties] Properties to set
+         */
+        function GetTaskAward_C(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetTaskAward_C taskID.
+         * @member {number} taskID
+         * @memberof Cmd.GetTaskAward_C
+         * @instance
+         */
+        GetTaskAward_C.prototype.taskID = 0;
+
+        /**
+         * Encodes the specified GetTaskAward_C message. Does not implicitly {@link Cmd.GetTaskAward_C.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.GetTaskAward_C
+         * @static
+         * @param {Cmd.IGetTaskAward_C} message GetTaskAward_C message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetTaskAward_C.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.taskID);
@@ -793,20 +861,20 @@ $root.Cmd = (function() {
         };
 
         /**
-         * Decodes an AcheiveTask_CS message from the specified reader or buffer.
+         * Decodes a GetTaskAward_C message from the specified reader or buffer.
          * @function decode
-         * @memberof Cmd.AcheiveTask_CS
+         * @memberof Cmd.GetTaskAward_C
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {Cmd.AcheiveTask_CS} AcheiveTask_CS
+         * @returns {Cmd.GetTaskAward_C} GetTaskAward_C
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AcheiveTask_CS.decode = function decode(reader, length) {
+        GetTaskAward_C.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.AcheiveTask_CS();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.GetTaskAward_C();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -823,7 +891,7 @@ $root.Cmd = (function() {
             return message;
         };
 
-        return AcheiveTask_CS;
+        return GetTaskAward_C;
     })();
 
     Cmd.SameUidLogin_S = (function() {

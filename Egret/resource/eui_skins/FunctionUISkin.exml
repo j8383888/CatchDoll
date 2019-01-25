@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="FunctionUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
+
 	<e:Image id="_leftBtn" x="686.08" y="1193.7" source="functionUI_4" scaleX="-1" anchorOffsetX="35.5" anchorOffsetY="60.5"/>
 	<e:Group id="bottomMenu" x="0" y="1092.03">
 		<e:Image x="0" y="0" source="functionUI_12" scale9Grid="100,47,600,96" anchorOffsetX="0" width="871"/>
@@ -31,15 +32,15 @@
 		</e:Group>
 	</e:Group>
 	<e:Group id="leftMenu" x="545" y="288.18" scaleY="1">
-		<e:Image id="leftMenuBg" x="17.57" y="0" anchorOffsetY="0" anchorOffsetX="0" source="functionUI_26" fillMode="clip"/>
-		<e:Scroller width="145.33" height="436" x="20.65" y="88.98" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyH="off">
+		<e:Image id="leftMenuBg" x="17.57" y="0" anchorOffsetY="0" anchorOffsetX="0" source="functionUI_26" fillMode="clip" scale9Grid="20,90,120,438"/>
+		<e:Scroller id="scroller" width="145" height="436" x="20.65" y="88.98" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyH="off">
 			<e:Group>
 			<e:Group id="_shopBtn" x="75.86" y="69.78" anchorOffsetX="70" anchorOffsetY="70" scaleX="1" scaleY="1">
 				<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
 				<e:Image x="6.65" y="6.65" source="functionUI_22"/>
 				<e:Image x="-32.23" y="49.46" source="functionUI_23" scaleX="1" scaleY="1"/>
 			</e:Group>
-			<e:Group id="_rankBtn" x="77.86" y="219.37" anchorOffsetX="70" anchorOffsetY="70" scaleX="1" scaleY="1">
+			<e:Group id="_rankBtn" x="77.86" y="226.97" anchorOffsetX="70" anchorOffsetY="70" scaleX="1" scaleY="1">
 				<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
 				<e:Image x="17.34" y="17.64" scaleX="0.8" scaleY="0.8" source="functionUI_19"/>
 				<e:Image x="-34.94" y="54.76" source="functionUI_3"/>

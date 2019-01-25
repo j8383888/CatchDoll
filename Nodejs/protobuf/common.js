@@ -274,7 +274,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number|null} [endTime] TaskUpdate_CS endTime
+         * @property {number} endTime TaskUpdate_CS endTime
          */
 
         /**
@@ -356,24 +356,50 @@ $root.Cmd = (function() {
         return TaskUpdate_CS;
     })();
 
-    Cmd.AcheiveTask_CS = (function() {
+    Cmd.RefreshTask_C = (function() {
 
         /**
-         * Properties of an AcheiveTask_CS.
+         * Properties of a RefreshTask_C.
          * @memberof Cmd
-         * @interface IAcheiveTask_CS
-         * @property {number} taskID AcheiveTask_CS taskID
+         * @interface IRefreshTask_C
          */
 
         /**
-         * Constructs a new AcheiveTask_CS.
+         * Constructs a new RefreshTask_C.
          * @memberof Cmd
-         * @classdesc Represents an AcheiveTask_CS.
-         * @implements IAcheiveTask_CS
+         * @classdesc Represents a RefreshTask_C.
+         * @implements IRefreshTask_C
          * @constructor
-         * @param {Cmd.IAcheiveTask_CS=} [properties] Properties to set
+         * @param {Cmd.IRefreshTask_C=} [properties] Properties to set
          */
-        function AcheiveTask_CS(properties) {
+        function RefreshTask_C(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        return RefreshTask_C;
+    })();
+
+    Cmd.GetTaskAward_C = (function() {
+
+        /**
+         * Properties of a GetTaskAward_C.
+         * @memberof Cmd
+         * @interface IGetTaskAward_C
+         * @property {number} taskID GetTaskAward_C taskID
+         */
+
+        /**
+         * Constructs a new GetTaskAward_C.
+         * @memberof Cmd
+         * @classdesc Represents a GetTaskAward_C.
+         * @implements IGetTaskAward_C
+         * @constructor
+         * @param {Cmd.IGetTaskAward_C=} [properties] Properties to set
+         */
+        function GetTaskAward_C(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -381,14 +407,14 @@ $root.Cmd = (function() {
         }
 
         /**
-         * AcheiveTask_CS taskID.
+         * GetTaskAward_C taskID.
          * @member {number} taskID
-         * @memberof Cmd.AcheiveTask_CS
+         * @memberof Cmd.GetTaskAward_C
          * @instance
          */
-        AcheiveTask_CS.prototype.taskID = 0;
+        GetTaskAward_C.prototype.taskID = 0;
 
-        return AcheiveTask_CS;
+        return GetTaskAward_C;
     })();
 
     Cmd.SameUidLogin_S = (function() {

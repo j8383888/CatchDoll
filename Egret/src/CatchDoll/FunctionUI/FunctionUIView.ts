@@ -77,6 +77,10 @@ module catchDoll {
 		 * 左侧菜单背景
 		 */
 		public leftMenuBg: eui.Image;
+		/**
+		 * 滑动条
+		 */
+		public scroller:eui.Scroller;
 
 
 		public constructor() {

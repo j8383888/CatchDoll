@@ -65,7 +65,7 @@ export namespace Cmd {
 
     interface ITaskUpdate_CS {
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
-        endTime?: (number|null);
+        endTime: number;
     }
 
     class TaskUpdate_CS implements ITaskUpdate_CS {
@@ -88,12 +88,19 @@ export namespace Cmd {
         }
     }
 
-    interface IAcheiveTask_CS {
+    interface IRefreshTask_C {
+    }
+
+    class RefreshTask_C implements IRefreshTask_C {
+        constructor(properties?: Cmd.IRefreshTask_C);
+    }
+
+    interface IGetTaskAward_C {
         taskID: number;
     }
 
-    class AcheiveTask_CS implements IAcheiveTask_CS {
-        constructor(properties?: Cmd.IAcheiveTask_CS);
+    class GetTaskAward_C implements IGetTaskAward_C {
+        constructor(properties?: Cmd.IGetTaskAward_C);
         public taskID: number;
     }
 

@@ -248,7 +248,7 @@ declare namespace Cmd {
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
 
         /** TaskUpdate_CS endTime */
-        endTime?: (number|null);
+        endTime: number;
     }
 
     /** Represents a TaskUpdate_CS. */
@@ -332,42 +332,74 @@ declare namespace Cmd {
         }
     }
 
-    /** Properties of an AcheiveTask_CS. */
-    interface IAcheiveTask_CS {
-
-        /** AcheiveTask_CS taskID */
-        taskID: number;
+    /** Properties of a RefreshTask_C. */
+    interface IRefreshTask_C {
     }
 
-    /** Represents an AcheiveTask_CS. */
-    class AcheiveTask_CS implements IAcheiveTask_CS {
+    /** Represents a RefreshTask_C. */
+    class RefreshTask_C implements IRefreshTask_C {
 
         /**
-         * Constructs a new AcheiveTask_CS.
+         * Constructs a new RefreshTask_C.
          * @param [properties] Properties to set
          */
-        constructor(properties?: Cmd.IAcheiveTask_CS);
-
-        /** AcheiveTask_CS taskID. */
-        public taskID: number;
+        constructor(properties?: Cmd.IRefreshTask_C);
 
         /**
-         * Encodes the specified AcheiveTask_CS message. Does not implicitly {@link Cmd.AcheiveTask_CS.verify|verify} messages.
-         * @param message AcheiveTask_CS message or plain object to encode
+         * Encodes the specified RefreshTask_C message. Does not implicitly {@link Cmd.RefreshTask_C.verify|verify} messages.
+         * @param message RefreshTask_C message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: Cmd.IAcheiveTask_CS, writer?: protobuf.Writer): protobuf.Writer;
+        public static encode(message: Cmd.IRefreshTask_C, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Decodes an AcheiveTask_CS message from the specified reader or buffer.
+         * Decodes a RefreshTask_C message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns AcheiveTask_CS
+         * @returns RefreshTask_C
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.AcheiveTask_CS;
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.RefreshTask_C;
+    }
+
+    /** Properties of a GetTaskAward_C. */
+    interface IGetTaskAward_C {
+
+        /** GetTaskAward_C taskID */
+        taskID: number;
+    }
+
+    /** Represents a GetTaskAward_C. */
+    class GetTaskAward_C implements IGetTaskAward_C {
+
+        /**
+         * Constructs a new GetTaskAward_C.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.IGetTaskAward_C);
+
+        /** GetTaskAward_C taskID. */
+        public taskID: number;
+
+        /**
+         * Encodes the specified GetTaskAward_C message. Does not implicitly {@link Cmd.GetTaskAward_C.verify|verify} messages.
+         * @param message GetTaskAward_C message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Cmd.IGetTaskAward_C, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a GetTaskAward_C message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetTaskAward_C
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.GetTaskAward_C;
     }
 
     /** Properties of a SameUidLogin_S. */

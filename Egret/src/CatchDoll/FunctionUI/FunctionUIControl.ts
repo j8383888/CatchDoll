@@ -44,20 +44,17 @@ module catchDoll {
 				egret.Tween.removeTweens(this._view.leftMenu)
 				if (this._view.furlBtn.root.scaleX == 0.6) {
 					this._view.furlBtn.root.scaleX = -0.6;
-					egret.Tween.get(this._view.shopBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
-					egret.Tween.get(this._view.rankBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
-					egret.Tween.get(this._view.turnTableBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
+					// egret.Tween.get(this._view.shopBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
+					// egret.Tween.get(this._view.rankBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
+					// egret.Tween.get(this._view.turnTableBtn.root, null, null, true).to({ scaleX: 0, scaleY: 0 }, 500, egret.Ease.quadIn);
 
-					egret.Tween.get(this._view.leftMenuBg).to({ height: 140 }, 500, egret.Ease.quadIn)
+					egret.Tween.get(this._view.leftMenuBg).to({ height: 110 }, 500, egret.Ease.quadIn)
+					egret.Tween.get(this._view.scroller).to({ height: 0 }, 500, egret.Ease.quadIn)
 				}
 				else {
 					this._view.furlBtn.root.scaleX = 0.6;
-
-					egret.Tween.get(this._view.leftMenuBg).to({ height: 600 }, 500, egret.Ease.quadIn).call(() => {
-						egret.Tween.get(this._view.shopBtn.root, null, null, true).to({ scaleX: 1, scaleY: 1 }, 500, egret.Ease.quadIn);
-						egret.Tween.get(this._view.rankBtn.root, null, null, true).to({ scaleX: 1, scaleY: 1 }, 500, egret.Ease.quadIn);
-						egret.Tween.get(this._view.turnTableBtn.root, null, null, true).to({ scaleX: 1, scaleY: 1 }, 500, egret.Ease.quadIn);
-					});
+					egret.Tween.get(this._view.leftMenuBg).to({ height: 546 }, 500, egret.Ease.quadIn);
+					egret.Tween.get(this._view.scroller).to({ height: 436 }, 500, egret.Ease.quadIn)
 				}
 			})
 

@@ -43,7 +43,7 @@ message Heartbeat_CS
 message TaskUpdate_CS
 {
     repeated TaskInfo taskInfo = 1;
-	optional int32 endTime = 2;
+	required int32 endTime = 2;
 	
 	message TaskInfo{
 		required int32 taskID = 1;
@@ -52,8 +52,13 @@ message TaskUpdate_CS
     }
 }
 
-/* 任务完成 */
-message AcheiveTask_CS{
+/* 任务刷新 */
+message RefreshTask_C{
+
+}
+
+/* 任务领取奖励 */
+message GetTaskAward_C{
 	required int32 taskID = 1;
 }
 

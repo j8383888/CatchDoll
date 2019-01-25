@@ -30,8 +30,8 @@ export class MsgHandler {
                 break;
 
 
-            case "Cmd.AcheiveTask_CS":
-                let data2: Cmd.AcheiveTask_CS = msgData as Cmd.AcheiveTask_CS;
+            case "Cmd.GetTaskAward_C":
+                let data2: Cmd.GetTaskAward_C = msgData as Cmd.GetTaskAward_C;
                 let task: Cmd.TaskUpdate_CS = PlayerCenter.getTaskInfo(uid)
                 for (let item of task.taskInfo) {
                     if (item.taskID == data2.taskID) {

@@ -14,6 +14,14 @@ module catchDoll {
 		 * 图鉴按钮
 		 */
 		public illustrationsBtn: Button;
+		/**
+		 * 风车
+		 */
+		public fengche: egret.MovieClip;
+		/**
+		 * 小游戏按钮 
+		 */
+		public smallGameBtn:Button;
 
 
 		public constructor() {
@@ -27,6 +35,15 @@ module catchDoll {
 		public onInit(): void {
 			this.battleBtn = new Button(this.skin["_battleBtn"]);
 			this.illustrationsBtn = new Button(this.skin["_illustrationsBtn"]);
+			this.fengche = UIUtil.creatMovieClip("fengche");
+			this.fengche.gotoAndPlay(1, -1);
+			this.fengche.x = 107;
+			this.fengche.y = 25;
+
+			this.skin["_smallGameBtn"].addChild(this.fengche);
+			this.smallGameBtn = new Button(this.skin["_smallGameBtn"]);
+			
+			
 		}
 
 
