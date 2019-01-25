@@ -248,7 +248,7 @@ declare namespace Cmd {
         taskInfo?: (Cmd.TaskUpdate_CS.ITaskInfo[]|null);
 
         /** TaskUpdate_CS endTime */
-        endTime: number;
+        endTime?: (number|null);
     }
 
     /** Represents a TaskUpdate_CS. */

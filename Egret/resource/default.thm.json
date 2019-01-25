@@ -6,6 +6,7 @@
 		"resource/eui_skins/BattleEnterPanelSkin.exml",
 		"resource/eui_skins/BattleSceneSkin.exml",
 		"resource/eui_skins/BuyItemPanel/BuyItemPanelSkin.exml",
+		"resource/eui_skins/ConfirmSkin.exml",
 		"resource/eui_skins/FunctionUISkin.exml",
 		"resource/eui_skins/Illustrations/illstationsClipItemSkin.exml",
 		"resource/eui_skins/Illustrations/illstationsDollItemSkin.exml",

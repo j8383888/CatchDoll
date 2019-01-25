@@ -1,5 +1,5 @@
 {
-	"isDebug":false,
+	"isDebug":true,
 	"debug":{	
 		"host":"127.0.0.1",
 		"post":8001,

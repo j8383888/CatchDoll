@@ -1,4 +1,4 @@
-import { Connection } from "mysql";
+import { Connection, Pool, PoolConnection } from "mysql";
 import { Cmd } from "../protobuf/common";
 import { JsonParse } from "./JsonParse";
 import { PlayerCenter } from "./PlayerCenter";
@@ -10,9 +10,11 @@ export class SQLServe {
     /* 单例 */
     private static _instance: SQLServe = null;
     /* 链接 */
-    private connection: Connection;
+    // private connection: Connection;
     /*  */
     private _isReconnet: boolean = false;
+    /* 连接池 */
+    private pool: Pool;
 
 
     constructor() {
@@ -28,52 +30,89 @@ export class SQLServe {
 
     public createConnection() {
         //创建一个connection
-        this.connection = SQL.createConnection({
+        // this.connection = SQL.createConnection({
+        //     host: JsonParse.SQLHost, //主机
+        //     user: 'root', //MySQL认证用户名
+        //     password: 'jym8398337', //MySQL认证用户密码
+        //     port: JsonParse.SQLPost, //端口号
+        //     database: 'test',
+        //     debug: false,
+        // });
+        // this.connection.connect((err) => {
+        //     if (err) {
+
+        //         console.log('[query] - :' + err);
+        //         setTimeout(SQLServe.instance.createConnection, 2000);
+        //         return;
+        //     }
+        //     this._clearSQL
+        //     this._isReconnet = true;
+        //     this._addCow();
+        //     // this._clearSQL();
+        //     console.log('数据库[connection connect]  succeed!');
+        // });
+
+        // this.connection.on('error', function (err) {
+        //     console.error('sql error', err);
+        //     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+        //         this._isReconnet = true;
+        //         console.error('sql error执行重连:' + err.message);
+        //         SQLServe.instance.createConnection();
+        //     } else {
+        //         throw err;
+        //     }
+        // })
+
+        this.pool = SQL.createPool({
             host: JsonParse.SQLHost, //主机
             user: 'root', //MySQL认证用户名
             password: 'jym8398337', //MySQL认证用户密码
             port: JsonParse.SQLPost, //端口号
             database: 'test',
             debug: false,
-        });
-        this.connection.connect((err) => {
-            if (err) {
-
-                console.log('[query] - :' + err);
-                setTimeout(SQLServe.instance.createConnection, 2000);
-                return;
-            }
-            this._clearSQL
-            this._isReconnet = true;
-            this._addCow();
-            // this._clearSQL();
-            console.log('数据库[connection connect]  succeed!');
-        });
-
-        this.connection.on('error', function (err) {
-            console.error('sql error', err);
-            if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-                this._isReconnet = true;
-                console.error('sql error执行重连:' + err.message);
-                SQLServe.instance.createConnection();
-            } else {
-                throw err;
-            }
         })
+
     }
+
+    public getConnection(sql, sqlParam?, callback?) {
+        //建立链接
+        this.pool.getConnection((err, connection: PoolConnection) => {
+            if (err) { throw err; return; }
+            if (sqlParam) {
+                connection.query(sql, sqlParam, (error, results, fields) => {
+                    //将链接返回到连接池中，准备由其他人重复使用
+                    connection.release();
+                    if (error) throw error;
+                    //执行回调函数，将数据返回
+                    callback && callback(err, results, fields);
+                });
+            }
+            else {
+                connection.query(sql, (error, results, fields) => {
+                    //将链接返回到连接池中，准备由其他人重复使用
+                    connection.release();
+                    if (error) throw error;
+                    //执行回调函数，将数据返回
+                    callback && callback(err, results, fields);
+                });
+            }
+        });
+    }
+
+
 
     /**
      * 清除数据库
      */
     private _clearSQL(): void {
         var userDelSql = 'delete from Login';
-        this.connection.query(userDelSql, this._onSQLDelete);
+        this.getConnection(userDelSql, null, this._onSQLDelete);
 
         var userDelSql2 = 'delete from PropInfo';
-        this.connection.query(userDelSql2, this._onSQLDelete);
+        this.getConnection(userDelSql2, null, this._onSQLDelete);
 
         var userDelSql3 = 'delete from PlayerInfo';
-        this.connection.query(userDelSql3, this._onSQLDelete);
+        this.getConnection(userDelSql3, null, this._onSQLDelete);
     }
 
     /**
@@ -81,7 +120,7 @@ export class SQLServe {
      */
     private _addCow(): void {
         var sql = 'SELECT * FROM PropInfo'
-        this.connection.query(sql, (err, result, fields) => {
+        this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
@@ -95,7 +134,7 @@ export class SQLServe {
             }
             for (let item of propIDAry) {
                 let addSqlCow: string = "alter table PropInfo add " + item + " int(20)"
-                this.connection.query(addSqlCow, (err, result, fields) => {
+                this.getConnection(addSqlCow, null, (err, result, fields) => {
                     if (err) {
                         console.log('[query] - :' + err);
                         return;
@@ -105,14 +144,14 @@ export class SQLServe {
         })
 
     }
- 
+
     /**
      * 数据库查找
      * @param data 
      */
     public seekLogin(data: Cmd.Login_C) {
         var sql = 'SELECT * FROM Login where uid=' + data.uid;
-        this.connection.query(sql, (err, result, fields) => {
+        this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('数据库[SELsECT ERROR] - ', err.message);
             } else {
@@ -139,7 +178,7 @@ export class SQLServe {
         let num: number = 0;
         let itemInfoAry: Cmd.ItemInfo_CS[] = [];
         let task: Cmd.TaskUpdate_CS = new Cmd.TaskUpdate_CS();
-        this.connection.query(sql, (err, result, fields) => {
+        this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
@@ -160,7 +199,7 @@ export class SQLServe {
         })
 
         var sql = 'SELECT * FROM PlayerInfo where uid=' + data.uid;
-        this.connection.query(sql, (err, result, fields) => {
+        this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
@@ -195,7 +234,7 @@ export class SQLServe {
         var addSql = 'INSERT INTO Login ' + '(account,password,uid)' + ' VALUES(?,?,?)';
         var addSqlParams = [data.account, data.password, data.uid];
 
-        this.connection.query(addSql, addSqlParams, (err, result, fields) => {
+        this.getConnection(addSql, addSqlParams, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
@@ -238,7 +277,7 @@ export class SQLServe {
         rowName = "(" + rowName + ")"
         valueStr = " values(" + valueStr + ")"
         var addUser = 'INSERT INTO PropInfo ' + rowName + valueStr;
-        this.connection.query(addUser, addUserParams, (err, result, fields) => {
+        this.getConnection(addUser, addUserParams, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
@@ -258,7 +297,7 @@ export class SQLServe {
         let json: string = JSON.stringify(task);
 
         var addSqlParams3 = [data.uid, json];
-        this.connection.query(addSql3, addSqlParams3, (err, result, fields) => {
+        this.getConnection(addSql3, addSqlParams3, (err, result, fields) => {
             if (err) {
                 console.log('数据库[INSERT ERROR] - ', err.message);
                 return;
@@ -279,7 +318,7 @@ export class SQLServe {
 
     public deleteSQL() {
         var userDelSql = 'DELETE FROM Login';
-        this.connection.query(userDelSql, this._onSQLDelete);
+        this.getConnection(userDelSql, null, this._onSQLDelete);
     }
 
     /**
@@ -310,7 +349,7 @@ export class SQLServe {
     public getUidIndex() {
         var sql = 'SELECT * FROM Login where uid';
         //查
-        this.connection.query(sql, function (err, result) {
+        this.getConnection(sql, null, function (err, result) {
             if (err) {
                 console.log('数据库[SELECT ERROR] - ', err.message);
             } else {
@@ -338,7 +377,7 @@ export class SQLServe {
         rowName = rowName.slice(0, rowName.length - 1)
         sqlParams.push(uid);
         var sql = 'UPDATE PropInfo SET ' + rowName + ' WHERE uid = ?';
-        this.connection.query(sql, sqlParams, (err, result, fields) => {
+        this.getConnection(sql, sqlParams, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
@@ -354,7 +393,7 @@ export class SQLServe {
         let sql2 = 'UPDATE PlayerInfo SET ' + 'task=?' + ' WHERE uid = ?';
         let json: string = JSON.stringify(taskInfo);
         let sqlParams2 = [json, uid];
-        this.connection.query(sql2, sqlParams2, (err, result, fields) => {
+        this.getConnection(sql2, sqlParams2, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
                 return;
@@ -365,7 +404,7 @@ export class SQLServe {
 
     public close() {
         // 关闭connection
-        this.connection.end(function (err) {
+        this.pool.end(function (err) {
             if (err) {
                 return;
             }

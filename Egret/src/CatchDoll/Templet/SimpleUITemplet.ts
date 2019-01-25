@@ -4,6 +4,9 @@
  */
 module catchDoll {
 	export class SimpleUITemplet extends BasePopPanel implements IBaseSimpleUI {
+
+		
+
 		public constructor() {
 			super()
 			this.skinName = "";

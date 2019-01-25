@@ -25,8 +25,9 @@ module catchDoll {
 			this.addUI(SIMPLE_UI.taskPanel, TaskPanel);
 			this.addUI(SIMPLE_UI.rankPanel, RankPanel);
 			this.addUI(SIMPLE_UI.SettlePanel, SettlePanel);
-			this.addUI(SIMPLE_UI.illustrations,IllustrationsPanel)
-			this.addUI(SIMPLE_UI.buyItemPanel,BuyItemPanel)
+			this.addUI(SIMPLE_UI.illustrations, IllustrationsPanel)
+			this.addUI(SIMPLE_UI.buyItemPanel, BuyItemPanel)
+			this.addUI(SIMPLE_UI.ConfirmPanel, ConfirmPanel)
 		}
 
 		/**
@@ -120,6 +121,8 @@ module catchDoll {
 		/*碎片面板*/
 		illustrations,
 		/*购买道具面板*/
-		buyItemPanel
+		buyItemPanel,
+		/*确认面板*/
+		ConfirmPanel,
 	}
 }

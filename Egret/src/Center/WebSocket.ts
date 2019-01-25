@@ -197,6 +197,16 @@ module catchDoll {
 					Master.instance.taskData = accurateData5;
 					EventManager.fireEvent(EVENT_ID.TaskUpdate_CS);
 					break;
+				case "Cmd.SameUidLogin_S":
+					let accurateData6: Cmd.SameUidLogin_S = message as Cmd.SameUidLogin_S;
+					if (accurateData6.uid == Master.instance.uid) {
+						ConfirmUtil.showPanel("账号重复登陆，请检查")
+					}
+					else {
+						console.assert(false, "逻辑有误")
+					}
+
+					break;
 			}
 		}
 

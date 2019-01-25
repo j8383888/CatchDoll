@@ -282,7 +282,7 @@
 		},
 		{
 			"name":"otherRes2_json",
-			"subkeys":"otherRes2_1,otherRes2_12,otherRes2_13,otherRes2_14,otherRes2_15,otherRes2_16,otherRes2_17,otherRes2_19,otherRes2_2,otherRes2_20,otherRes2_21,otherRes2_22,otherRes2_23,otherRes2_24,otherRes2_25,otherRes2_26,otherRes2_27,otherRes2_28,otherRes2_29,otherRes2_3,otherRes2_30,otherRes2_31,otherRes2_32,otherRes2_33,otherRes2_34,otherRes2_35,otherRes2_36,otherRes2_37,otherRes2_38,otherRes2_39,otherRes2_4,otherRes2_40,otherRes2_41,otherRes2_42,otherRes2_43,otherRes2_44,otherRes2_45,otherRes2_46,otherRes2_47,otherRes2_48,otherRes2_49,otherRes2_5,otherRes2_50,otherRes2_6,otherRes2_7,otherRes2_9",
+			"subkeys":"otherRes2_1,otherRes2_10,otherRes2_12,otherRes2_13,otherRes2_14,otherRes2_15,otherRes2_16,otherRes2_17,otherRes2_19,otherRes2_2,otherRes2_20,otherRes2_21,otherRes2_22,otherRes2_23,otherRes2_24,otherRes2_25,otherRes2_26,otherRes2_27,otherRes2_28,otherRes2_29,otherRes2_3,otherRes2_30,otherRes2_31,otherRes2_32,otherRes2_33,otherRes2_34,otherRes2_35,otherRes2_36,otherRes2_37,otherRes2_38,otherRes2_39,otherRes2_4,otherRes2_40,otherRes2_41,otherRes2_42,otherRes2_43,otherRes2_44,otherRes2_45,otherRes2_46,otherRes2_47,otherRes2_48,otherRes2_49,otherRes2_5,otherRes2_50,otherRes2_6,otherRes2_7,otherRes2_8,otherRes2_9",
 			"type":"sheet",
 			"url":"assets/atlas/otherRes2.json"
 		},

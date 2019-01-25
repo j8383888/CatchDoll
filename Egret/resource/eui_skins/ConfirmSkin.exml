@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ConfirmSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="otherRes2_8"/>
+	<e:Image id="closeBtn" y="196.42" source="otherRes2_10" scaleX="0.6" scaleY="0.6" horizontalCenter="0"/>
+	<e:Label id="msgLabel" text="" y="65.04" anchorOffsetX="0" anchorOffsetY="0" height="116.36" width="355.66" x="30.67" textAlign="center"/>
+</e:Skin>

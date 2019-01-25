@@ -555,7 +555,7 @@ $root.Cmd = (function() {
          * @memberof Cmd
          * @interface ITaskUpdate_CS
          * @property {Array.<Cmd.TaskUpdate_CS.ITaskInfo>|null} [taskInfo] TaskUpdate_CS taskInfo
-         * @property {number} endTime TaskUpdate_CS endTime
+         * @property {number|null} [endTime] TaskUpdate_CS endTime
          */
 
         /**
@@ -605,7 +605,8 @@ $root.Cmd = (function() {
             if (message.taskInfo != null && message.taskInfo.length)
                 for (var i = 0; i < message.taskInfo.length; ++i)
                     $root.Cmd.TaskUpdate_CS.TaskInfo.encode(message.taskInfo[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endTime);
+            if (message.endTime != null && message.hasOwnProperty("endTime"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endTime);
             return writer;
         };
 
@@ -640,8 +641,6 @@ $root.Cmd = (function() {
                     break;
                 }
             }
-            if (!message.hasOwnProperty("endTime"))
-                throw $util.ProtocolError("missing required 'endTime'", { instance: message });
             return message;
         };
 

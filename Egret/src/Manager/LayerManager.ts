@@ -102,4 +102,5 @@ const enum LAYER {
 	BLACK_BG,
 	POP,
 	EFFECT,
+	LOADING,
 }
