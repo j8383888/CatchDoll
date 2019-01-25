@@ -24,13 +24,55 @@ module catchDoll {
 		 * 最大检测次数
 		 **/
 		private readonly MAX_COUNT: number = 3;
+		/**
+		 * 转圈菊花
+		 */
+		public loadingCircle: egret.MovieClip;
+		/**
+		 * 黑色底板
+		 */
+		private _blakBG: egret.Shape = new egret.Shape();
 
 
 
 
 		public constructor() {
 			this._init();
+
+
+			this._blakBG.graphics.beginFill(0x000000, 0.6);
+			this._blakBG.graphics.drawRect(0, 0, GameCenter.stageW, GameCenter.stageH);
+			this._blakBG.graphics.endFill();
+			this._blakBG.touchEnabled = true;
+			this._blakBG.visible = false;
+			LayerManager.instance.addToLayer(this._blakBG, LAYER.LOADING);
+
+
+			this.loadingCircle = UIUtil.creatMovieClip("loading_1")
+			this.loadingCircle.x = GameCenter.stageW / 2;
+			this.loadingCircle.y = GameCenter.stageH / 2;
+			this.loadingCircle.scaleX = this.loadingCircle.scaleY = 2
+			this.loadingCircle.visible = false;
+			LayerManager.instance.addToLayer(this.loadingCircle, LAYER.LOADING);
 		}
+
+		/**
+		 * 显示loading
+		 */
+		private _showLoading(isShow: boolean): void {
+			if (isShow) {
+				this.loadingCircle.gotoAndPlay(1, -1);
+				this.loadingCircle.visible = true;
+				this._blakBG.visible = true;
+			}
+			else {
+				this.loadingCircle.stop();
+				this.loadingCircle.visible = false;
+				this._blakBG.visible = false;
+
+			}
+		}
+
 
 		/**
 		 * 获得单例
@@ -112,8 +154,10 @@ module catchDoll {
 		 */
 		private _sendHeartMsg(): void {
 			this._curHeartCount++;
+			Laya.timer.once(3000, this, this._showLoading, [true])
+
 			if (this._curHeartCount >= this.MAX_COUNT) {
-				console.log("连接失败，请检查网络");
+				ConfirmUtil.showPanel("网络连接失败，请检查网络")
 				Laya.timer.clear(this, this._sendHeartMsg);
 			}
 			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
@@ -185,6 +229,8 @@ module catchDoll {
 				case "Cmd.Heartbeat_CS":
 					let accurateData4: Cmd.Heartbeat_CS = message as Cmd.Heartbeat_CS;
 					if (Master.instance.uid == accurateData4.uid) {
+						Laya.timer.clear(this, this._showLoading);
+						this._showLoading(false);
 						this._curHeartCount = 0;
 					}
 					else {
@@ -200,7 +246,7 @@ module catchDoll {
 				case "Cmd.SameUidLogin_S":
 					let accurateData6: Cmd.SameUidLogin_S = message as Cmd.SameUidLogin_S;
 					if (accurateData6.uid == Master.instance.uid) {
-						ConfirmUtil.showPanel("账号重复登陆，请检查")
+						ConfirmUtil.showPanel("账号重复登陆，请检查", Handler.create(window.location, window.location.reload, null, true))
 					}
 					else {
 						console.assert(false, "逻辑有误")
@@ -258,6 +304,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			this.loadingCircle.stop();
+			this.loadingCircle = null;
 			Laya.timer.clear(this, this._sendHeartMsg);
 			this._webSocket.removeEventListener(egret.Event.CONNECT, this._onSocketOpen, this)
 			this._webSocket.removeEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);

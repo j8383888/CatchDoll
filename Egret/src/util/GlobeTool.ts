@@ -22,6 +22,7 @@ module catchDoll {
 			}
 		}
 
+
 		/**
 		 * 设置任务状态
 		 */

@@ -5,11 +5,18 @@
 module catchDoll {
 	export class ConfirmPanel extends BasePopPanel implements IBaseSimpleUI {
 
-		public openParam: string;
+		/**
+		 * 打开参数
+		 */
+		public openParam: { msg: string, confirm?: Handler };
 		/**
 		 * 消息文本
 		 */
 		public msgLabel: eui.Label;
+		/**
+		 * 确认按钮
+		 */
+		public confirmBtn: Button;
 
 		public constructor() {
 			super(POP_EFFECT.CENTER, true)
@@ -20,7 +27,8 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			this.msgLabel.text = this.openParam;
+			this.confirmBtn = new Button(this.skin["_confirmBtn"])
+
 		}
 
 		/**
@@ -28,9 +36,15 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			this.addToStage(LAYER.LOADING);
-			this.closeBtnHandler = Handler.create(null, () => {
-				SimpleUICenter.instance.closeUI(SIMPLE_UI.ConfirmPanel)
-			})
+			if (this.openParam) {
+				this.confirmBtn.mouseClickHandler = this.openParam.confirm
+			}
+			else {
+				this.confirmBtn.mouseClickHandler = Handler.create(null, () => {
+					SimpleUICenter.instance.closeUI(SIMPLE_UI.ConfirmPanel)
+				})
+			}
+			this.msgLabel.text = this.openParam.msg;
 		}
 
 		/**
@@ -44,6 +58,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			this.confirmBtn.dispose();
+			this.confirmBtn = null;
 			super.dispose();
 		}
 	}

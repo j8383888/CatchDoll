@@ -42,6 +42,7 @@ module catchDoll {
 		 */
 		public addToStage(layer: LAYER = LAYER.POP): void {
 			LayerManager.instance.addToLayer(this, layer);
+			this._showBlackBg(layer);
 		}
 
 		/**
@@ -50,7 +51,6 @@ module catchDoll {
 		private _creationComplete(e: egret.Event): void {
 			this._selfAdaption();
 			this.showEnterEff();
-			this._showBlackBg();
 			this._drawDragRect();
 		}
 
@@ -154,14 +154,15 @@ module catchDoll {
 		/**
 		 * 绘制黑色背景
 		 */
-		public _showBlackBg(): void {
+		public _showBlackBg(layerType: LAYER): void {
 			if (this._hasBlackBg) {
 				this._blakBG.graphics.beginFill(0x000000, this._alpha);
 				this._blakBG.graphics.drawRect(0, 0, GameCenter.stageW, GameCenter.stageH);
 				this._blakBG.graphics.endFill();
 				this._blakBG.touchEnabled = true;
 				this._blakBG.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickBlackBg, this)
-				LayerManager.instance.addToLayer(this._blakBG, LAYER.BLACK_BG)
+				let layer = LayerManager.instance.getLayer(layerType);
+				layer.addChildAt(this._blakBG, 0);
 			}
 		}
 

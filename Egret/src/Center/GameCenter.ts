@@ -8,7 +8,7 @@ module catchDoll {
 		/*单例*/
 		private static _instance: GameCenter = null;
 		/*网络*/
-		public webSocket: WebSocket = WebSocket.instance;
+		public webSocket: WebSocket;
 		/*事件收发中心*/
 		public eventManager: EventManager = EventManager.instance;
 		/*数据中心*/
@@ -38,6 +38,7 @@ module catchDoll {
 			this.gameObjectManager = GameObjectManager.instance;
 			this.layerManager = LayerManager.instance;
 			this.operationManager = OperationManager.instance;
+			this.webSocket = WebSocket.instance;
 		}
 
 

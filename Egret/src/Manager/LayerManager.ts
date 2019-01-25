@@ -19,7 +19,7 @@ module catchDoll {
 
 		constructor() {
 			egret.MainContext.instance.stage.addChild(this._root);
-			for (let i: number = LAYER.BG; i < LAYER.EFFECT + 1; i++) {
+			for (let i: number = LAYER.BG; i < LAYER.LOADING + 1; i++) {
 				let layer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
 				// layer.touchChildren = false;
 				this._layerMap.set(i, layer);
@@ -99,7 +99,6 @@ const enum LAYER {
 	UI,
 	BATTLE,
 	MONSTER,
-	BLACK_BG,
 	POP,
 	EFFECT,
 	LOADING,
