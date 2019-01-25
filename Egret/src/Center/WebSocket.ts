@@ -169,7 +169,6 @@ module catchDoll {
 		 */
 		private _onReceiveMessage(e: egret.ProgressEvent): void {
 
-			//todo 在这里收到心跳协议回复，将_isGetRep置为true
 			let ws: egret.WebSocket = e.target as egret.WebSocket;
 			this._readByteAry.clear();
 			ws.readBytes(this._readByteAry);

@@ -36,7 +36,7 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			this.addToStage(LAYER.LOADING);
-			if (this.openParam) {
+			if (this.openParam.confirm) {
 				this.confirmBtn.mouseClickHandler = this.openParam.confirm
 			}
 			else {
