@@ -20,6 +20,7 @@
 		"resource/eui_skins/Shop/ShopItemSkin.exml",
 		"resource/eui_skins/Shop/ShopPanelSkin.exml",
 		"resource/eui_skins/StartSceneSkin.exml",
+		"resource/eui_skins/SystemTipsSkin.exml",
 		"resource/eui_skins/Task/TaskItemSkin.exml",
 		"resource/eui_skins/Task/TaskPanelSkin.exml",
 		"resource/eui_skins/Task/TaskTreasureItemSkin.exml",

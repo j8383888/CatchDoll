@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"sceneChoose_png,scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,selectLevelBg_png,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,selectLevelBg2_png,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,munaiyi_tex_json,munaiyi_tex_png,munaiyi_ske_dbbin,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png",
+			"keys":"sceneChoose_png,scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,selectLevelBg_png,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,selectLevelBg2_png,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,munaiyi_ske_dbbin,munaiyi_tex_json,munaiyi_tex_png",
 			"name":"preload"
 		}],
 	"resources":[
@@ -303,51 +303,6 @@
 			"url":"assets/table/TreasureTable.json"
 		},
 		{
-			"name":"munaiyi_tex_json",
-			"type":"json",
-			"url":"assets/dragonbones/munaiyi_tex.json"
-		},
-		{
-			"name":"munaiyi_tex_png",
-			"type":"image",
-			"url":"assets/dragonbones/munaiyi_tex.png"
-		},
-		{
-			"name":"munaiyi_ske_dbbin",
-			"type":"bin",
-			"url":"assets/dragonbones/munaiyi_ske.dbbin"
-		},
-		{
-			"name":"munaiyi2_ske_dbbin",
-			"type":"bin",
-			"url":"assets/dragonbones/munaiyi2_ske.dbbin"
-		},
-		{
-			"name":"munaiyi2_tex_json",
-			"type":"json",
-			"url":"assets/dragonbones/munaiyi2_tex.json"
-		},
-		{
-			"name":"munaiyi2_tex_png",
-			"type":"image",
-			"url":"assets/dragonbones/munaiyi2_tex.png"
-		},
-		{
-			"name":"skeleton_ske_dbbin",
-			"type":"bin",
-			"url":"assets/dragonbones/skeleton_ske.dbbin"
-		},
-		{
-			"name":"skeleton_tex_json",
-			"type":"json",
-			"url":"assets/dragonbones/skeleton_tex.json"
-		},
-		{
-			"name":"skeleton_tex_png",
-			"type":"image",
-			"url":"assets/dragonbones/skeleton_tex.png"
-		},
-		{
 			"name":"fengche_png",
 			"type":"image",
 			"url":"assets/effect/fengche.png"
@@ -391,6 +346,51 @@
 			"name":"loading_1_png",
 			"type":"image",
 			"url":"assets/effect/loading_1.png"
+		},
+		{
+			"name":"munaiyi2_ske_dbbin",
+			"type":"bin",
+			"url":"assets/dragonBones/munaiyi2_ske.dbbin"
+		},
+		{
+			"name":"munaiyi2_tex_json",
+			"type":"json",
+			"url":"assets/dragonBones/munaiyi2_tex.json"
+		},
+		{
+			"name":"munaiyi2_tex_png",
+			"type":"image",
+			"url":"assets/dragonBones/munaiyi2_tex.png"
+		},
+		{
+			"name":"skeleton_ske_dbbin",
+			"type":"bin",
+			"url":"assets/dragonBones/skeleton_ske.dbbin"
+		},
+		{
+			"name":"skeleton_tex_json",
+			"type":"json",
+			"url":"assets/dragonBones/skeleton_tex.json"
+		},
+		{
+			"name":"skeleton_tex_png",
+			"type":"image",
+			"url":"assets/dragonBones/skeleton_tex.png"
+		},
+		{
+			"name":"munaiyi_ske_dbbin",
+			"type":"bin",
+			"url":"assets/dragonBones/munaiyi_ske.dbbin"
+		},
+		{
+			"name":"munaiyi_tex_json",
+			"type":"json",
+			"url":"assets/dragonBones/munaiyi_tex.json"
+		},
+		{
+			"name":"munaiyi_tex_png",
+			"type":"image",
+			"url":"assets/dragonBones/munaiyi_tex.png"
 		}
 	]
 }
