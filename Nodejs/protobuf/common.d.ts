@@ -112,4 +112,13 @@ export namespace Cmd {
         constructor(properties?: Cmd.ISameUidLogin_S);
         public uid: number;
     }
+
+    interface IServeTips_S {
+        tips: string;
+    }
+
+    class ServeTips_S implements IServeTips_S {
+        constructor(properties?: Cmd.IServeTips_S);
+        public tips: string;
+    }
 }

@@ -1,6 +1,6 @@
 import { Dictionary } from "./util/Dictionary";
 import { Cmd } from "../protobuf/common";
-import { MyWebSocket } from "./MyWebSocket";
+import { MyWebSocket } from "./WebSocket/MyWebSocket";
 import { JsonParse } from "./JsonParse";
 import { Utils } from "./util/Utils";
 export class PlayerCenter {
@@ -9,7 +9,7 @@ export class PlayerCenter {
 
 
     public constructor() {
-
+      
     }
 
     /**
@@ -29,6 +29,23 @@ export class PlayerCenter {
         for (let item of propData) {
             if (item.itemID == propID) {
                 return item.itemNum;
+            }
+        }
+    }
+
+    /**
+     * 检测玩家道具数量
+     */
+    public static checkPropEnough(uid: number, propID: number, checkNum: number): boolean {
+        let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
+        for (let item of propData) {
+            if (item.itemID == propID) {
+                if(item.itemNum >= checkNum){
+                    return true
+                }
+                else{
+                    return false;
+                }
             }
         }
     }
@@ -74,6 +91,7 @@ export class PlayerCenter {
      */
     public static getItemInfo(uid: number): Cmd.ItemInfo_CS[] {
         return this.playerDataMap.get(uid).itemInfo;
+
     }
 
     /**

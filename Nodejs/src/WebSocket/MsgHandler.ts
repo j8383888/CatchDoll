@@ -1,6 +1,6 @@
-import { SQLServe } from "./SQLServe";
-import { Cmd } from "../protobuf/common";
-import { PlayerCenter } from "./PlayerCenter";
+import { SQLServe } from "../SQLServe";
+import { Cmd } from "../../protobuf/common";
+import { PlayerCenter, PROP_ID } from "../PlayerCenter";
 import { MyWebSocket } from "./MyWebSocket";
 export class MsgHandler {
     private static _handler: MsgHandler = null; // 实例
@@ -46,6 +46,28 @@ export class MsgHandler {
                         break;
                     }
                 }
+                break;
+            case "Cmd.RefreshTask_C":
+                let itemInfo = PlayerCenter.getItemInfo(uid);
+
+                if (PlayerCenter.checkPropEnough(uid, PROP_ID.DIMOND, 2)) {
+                    PlayerCenter.updateProp(uid, PROP_ID.DIMOND, -2);
+                    let cmd2 = new Cmd.ItemUpdate_CS();
+                    cmd2.uid = uid;
+                    cmd2.itemInfo = itemInfo;
+                    MyWebSocket.instance.sendMsg(uid, cmd2);
+
+                    let task2: Cmd.TaskUpdate_CS = PlayerCenter.getTaskInfo(uid);
+                    let cmd = new Cmd.TaskUpdate_CS();
+                    cmd.taskInfo = PlayerCenter.getRamdomTasks();
+                    cmd.endTime = task2.endTime;
+                    MyWebSocket.instance.sendMsg(uid, cmd);
+                }
+                else{
+                    
+                }
+
+
                 break;
         }
     };

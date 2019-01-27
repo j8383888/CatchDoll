@@ -54,7 +54,6 @@ module catchDoll {
 				this.itemList[i].setData(taskData.taskInfo[i])
 			}
 
-
 		}
 
 		/**
@@ -64,6 +63,10 @@ module catchDoll {
 			Laya.timer.loop(1000, this, this._update)
 			EventManager.registerEvent(EVENT_ID.TaskUpdate_CS, Handler.create(this, this._update));
 			this.refreshBtn = new Button(this.skin["_refreshBtn"]);
+			this.refreshBtn.mouseClickHandler = Handler.create(null, () => {
+				let cmd: Cmd.RefreshTask_C = new Cmd.RefreshTask_C();
+				WebSocket.instance.sendMsg(cmd);
+			})
 			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
 			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
 			toggle1.selectHandler = Handler.create(null, () => {

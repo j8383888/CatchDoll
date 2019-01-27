@@ -2,7 +2,6 @@ import { Connection, Pool, PoolConnection } from "mysql";
 import { Cmd } from "../protobuf/common";
 import { JsonParse } from "./JsonParse";
 import { PlayerCenter } from "./PlayerCenter";
-import { Utils } from "./util/Utils";
 var SQL = require('mysql');
 export class SQLServe {
     private uidIndex = 100;

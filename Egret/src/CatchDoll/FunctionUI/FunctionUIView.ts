@@ -108,6 +108,7 @@ module catchDoll {
 
 			this.bottomMenu.x = 720;
 			EventManager.registerEvent(EVENT_ID.UPDATE_MONEY, Handler.create(this, this._updateMoney));
+			EventManager.registerEvent(EVENT_ID.UPDATE_DIAMOND, Handler.create(this, this._updateDiamond));
 		}
 
 		/**
@@ -117,13 +118,20 @@ module catchDoll {
 			this.money.text = GlobeTool.getProp(ITEM_ID.MONEY).toString();
 		}
 
+		/**
+		 * 更新钱
+		 */
+		private _updateDiamond(): void {
+			this.diamond.text = GlobeTool.getProp(ITEM_ID.DIAMOND).toString();
+		}
+
 
 
 		/**
 		 * 展示时
 		 */
 		public onShow(): void {
-			this.diamond.text = GlobeTool.getProp(ITEM_ID.DIMOND).toString();
+			this.diamond.text = GlobeTool.getProp(ITEM_ID.DIAMOND).toString();
 			this.money.text = GlobeTool.getProp(ITEM_ID.MONEY).toString();
 			this.addToStage(LAYER.UI)
 

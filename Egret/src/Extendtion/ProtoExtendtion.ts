@@ -26,6 +26,9 @@ declare namespace Cmd{
 	interface SameUidLogin_S {
 		GetType(): string;
 	}
+	interface ServeTips_S {
+		GetType(): string;
+	}
 }
 Cmd.Login_C.prototype.GetType = function () {
 	return "Cmd.Login_C";
@@ -53,4 +56,7 @@ Cmd.GetTaskAward_C.prototype.GetType = function () {
 }
 Cmd.SameUidLogin_S.prototype.GetType = function () {
 	return "Cmd.SameUidLogin_S";
+}
+Cmd.ServeTips_S.prototype.GetType = function () {
+	return "Cmd.ServeTips_S";
 }

@@ -452,6 +452,41 @@ $root.Cmd = (function() {
         return SameUidLogin_S;
     })();
 
+    Cmd.ServeTips_S = (function() {
+
+        /**
+         * Properties of a ServeTips_S.
+         * @memberof Cmd
+         * @interface IServeTips_S
+         * @property {string} tips ServeTips_S tips
+         */
+
+        /**
+         * Constructs a new ServeTips_S.
+         * @memberof Cmd
+         * @classdesc Represents a ServeTips_S.
+         * @implements IServeTips_S
+         * @constructor
+         * @param {Cmd.IServeTips_S=} [properties] Properties to set
+         */
+        function ServeTips_S(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ServeTips_S tips.
+         * @member {string} tips
+         * @memberof Cmd.ServeTips_S
+         * @instance
+         */
+        ServeTips_S.prototype.tips = "";
+
+        return ServeTips_S;
+    })();
+
     return Cmd;
 })();
 

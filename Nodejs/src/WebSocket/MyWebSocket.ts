@@ -1,11 +1,11 @@
-import { SQLServe } from "./SQLServe";
-import { Cmd } from "../protobuf/common";
-import { ProtoParse } from "./ProtoParse";
-import { Dictionary } from "./util/Dictionary";
-import { PlayerCenter } from "./PlayerCenter";
+import { SQLServe } from "../SQLServe";
+import { Cmd } from "../../protobuf/common";
+import { ProtoParse } from "../ProtoParse";
+import { Dictionary } from "../util/Dictionary";
+import { PlayerCenter } from "../PlayerCenter";
 import { MsgHandler } from "./MsgHandler";
-import { TaskMgr } from "./Task/TaskMgr";
-import { Utils } from "./util/Utils";
+import { TaskMgr } from "../Task/TaskMgr";
+import { Utils } from "../util/Utils";
 var ws = require("nodejs-websocket");
 /**
  * NODE-JS 里面已经有了个websocket  
@@ -50,8 +50,11 @@ export class MyWebSocket {
 
         let connect = this.connectMap.get(uid);
         if (connect) {
-            let constructor = cmd.constructor
-            let protoName: string = "Cmd." + constructor.name
+            if (cmd["GetType"] == undefined) {
+                console.assert(false, "cmd未扩展GetType")
+                return;
+            }
+            let protoName: string = cmd["GetType"]
             const protoType = ProtoParse.Root.lookupType(protoName)
             let writer: protobuf.Writer = protoType.encode(cmd);
             let data: Uint8Array = writer.finish();

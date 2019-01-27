@@ -1,4 +1,5 @@
 /**
+ * 数组的扩展方法
  * @author suo
  */
 declare interface Array<T> {

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import os,shutil,time
 
-def writeProtoExtendition(pkg,msgAry):
+def writeProtoExtendition(pkg,msgAry,clientFile,serveFile):
 	t = time.strftime('%Y-%m-%d',time.localtime())  
-	newfile= r"..\resource\proto\ProtoExtendtion.ts"
-	with open(newfile,'w') as f:
+
+	with open(clientFile,'w') as f:
 		f.write("declare namespace "+ pkg +"{\n");
 		for item in msgAry:
 			f.write("\tinterface "+item+ " {\n")
@@ -15,9 +15,15 @@ def writeProtoExtendition(pkg,msgAry):
 			f.write(pkg+ "."+item+".prototype.GetType = function () {\n")
 			f.write("\treturn \""+pkg+"."+item +"\";\n")
 			f.write("}\n")
-	print(u"生成protoExtendition成功")
+		print(u"生成客户端protoExtendition成功")
 
-def openProto():
+	with open(serveFile,'w') as f:
+		f.write("import { Cmd } from \"" + r"../../protobuf/common" + "\";\n");
+		for item in msgAry:
+			f.write(pkg + "." + item + ".prototype['GetType'] = \"" + pkg + "." + item + "\";\n")
+		print(u"生成服务器protoExtendition成功")
+
+def openProto(clientFile,serveFile):
 	with open(r"..\resource\proto\common.proto", 'r') as f:
 		msgAry = [];
 		pkg = '';
@@ -32,9 +38,11 @@ def openProto():
 				pkgName = item[len('package'):];
 				pkgName = pkgName.strip()
 				pkg = pkgName[0:-1]
-		writeProtoExtendition(pkg,msgAry);
+		writeProtoExtendition(pkg,msgAry,clientFile,serveFile);
 
-openProto();
+clientFile = r"..\Egret\src\Extendtion\ProtoExtendtion.ts";
+serveFile = r"..\Nodejs\src\Extendtion\ProtoExtendtion.ts"
+openProto(clientFile,serveFile);
 
 
 

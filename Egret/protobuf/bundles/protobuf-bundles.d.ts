@@ -439,4 +439,42 @@ declare namespace Cmd {
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.SameUidLogin_S;
     }
+
+    /** Properties of a ServeTips_S. */
+    interface IServeTips_S {
+
+        /** ServeTips_S tips */
+        tips: string;
+    }
+
+    /** Represents a ServeTips_S. */
+    class ServeTips_S implements IServeTips_S {
+
+        /**
+         * Constructs a new ServeTips_S.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Cmd.IServeTips_S);
+
+        /** ServeTips_S tips. */
+        public tips: string;
+
+        /**
+         * Encodes the specified ServeTips_S message. Does not implicitly {@link Cmd.ServeTips_S.verify|verify} messages.
+         * @param message ServeTips_S message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Cmd.IServeTips_S, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a ServeTips_S message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ServeTips_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): Cmd.ServeTips_S;
+    }
 }

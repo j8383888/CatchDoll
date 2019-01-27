@@ -68,6 +68,11 @@ message SameUidLogin_S{
     required int32 uid = 1;
 }
 
+/* 系统消息Tips */
+message ServeTips_S{
+	required string tips = 1;
+}
+
 
 
 

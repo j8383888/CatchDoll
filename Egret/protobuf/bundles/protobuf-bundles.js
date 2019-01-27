@@ -976,5 +976,87 @@ $root.Cmd = (function() {
         return SameUidLogin_S;
     })();
 
+    Cmd.ServeTips_S = (function() {
+
+        /**
+         * Properties of a ServeTips_S.
+         * @memberof Cmd
+         * @interface IServeTips_S
+         * @property {string} tips ServeTips_S tips
+         */
+
+        /**
+         * Constructs a new ServeTips_S.
+         * @memberof Cmd
+         * @classdesc Represents a ServeTips_S.
+         * @implements IServeTips_S
+         * @constructor
+         * @param {Cmd.IServeTips_S=} [properties] Properties to set
+         */
+        function ServeTips_S(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ServeTips_S tips.
+         * @member {string} tips
+         * @memberof Cmd.ServeTips_S
+         * @instance
+         */
+        ServeTips_S.prototype.tips = "";
+
+        /**
+         * Encodes the specified ServeTips_S message. Does not implicitly {@link Cmd.ServeTips_S.verify|verify} messages.
+         * @function encode
+         * @memberof Cmd.ServeTips_S
+         * @static
+         * @param {Cmd.IServeTips_S} message ServeTips_S message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ServeTips_S.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.tips);
+            return writer;
+        };
+
+        /**
+         * Decodes a ServeTips_S message from the specified reader or buffer.
+         * @function decode
+         * @memberof Cmd.ServeTips_S
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Cmd.ServeTips_S} ServeTips_S
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ServeTips_S.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cmd.ServeTips_S();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.tips = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("tips"))
+                throw $util.ProtocolError("missing required 'tips'", { instance: message });
+            return message;
+        };
+
+        return ServeTips_S;
+    })();
+
     return Cmd;
 })();

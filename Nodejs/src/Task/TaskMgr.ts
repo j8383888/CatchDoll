@@ -3,7 +3,7 @@
  */
 import { Cmd } from "../../protobuf/common";
 import { Utils } from "../util/Utils";
-import { MyWebSocket } from "../MyWebSocket";
+import { MyWebSocket } from "../WebSocket/MyWebSocket";
 import { util } from "protobufjs";
 import { JsonParse } from "../JsonParse";
 import { PlayerCenter } from "../PlayerCenter";

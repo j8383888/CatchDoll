@@ -238,7 +238,6 @@ module catchDoll {
 					break;
 				case "Cmd.TaskUpdate_CS":
 					let accurateData5: Cmd.TaskUpdate_CS = message as Cmd.TaskUpdate_CS;
-					Master.instance.setServeTime(accurateData5.endTime);
 					Master.instance.taskData = accurateData5;
 					EventManager.fireEvent(EVENT_ID.TaskUpdate_CS);
 					break;

@@ -38,6 +38,9 @@ module catchDoll {
 					if (item.itemID == ITEM_ID.MONEY) {
 						EventManager.fireEvent(EVENT_ID.UPDATE_MONEY);
 					}
+					else if(item.itemID == ITEM_ID.DIAMOND) {
+						EventManager.fireEvent(EVENT_ID.UPDATE_DIAMOND);
+					}
 				}
 			}
 		}

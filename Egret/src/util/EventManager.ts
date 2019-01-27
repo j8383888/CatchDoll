@@ -180,9 +180,13 @@ const enum EVENT_ID {
 	 */
 	CREAT_MONSTER,
 	/**
-	 * 更新前
+	 * 更新钱
 	 */
 	UPDATE_MONEY,
+	/**
+	 * 更新钻石
+	 */
+	UPDATE_DIAMOND,
 	/**
 	 * 初始化玩家数据
 	 */

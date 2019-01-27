@@ -92,7 +92,7 @@ module catchDoll {
 
 	export enum ITEM_ID {
 		MONEY = 1,
-		DIMOND = 2,
+		DIAMOND = 2,
 		HONOR = 3,
 	}
 }
