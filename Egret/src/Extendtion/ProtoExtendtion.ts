@@ -1,8 +1,9 @@
 /** 
  * @description Auto Generate By protoExtendtion.py
- * @version 2019-01-28 10:56:13 
+ * @version 2019-01-28 11:31:38 
  * @author suo
- */class ProtoExtendtion {
+ */
+class ProtoExtendtion {
 	public static protoMap: Dictionary;
 	public static init(): void {
 		this.protoMap = new Dictionary();

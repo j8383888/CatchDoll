@@ -1,3 +1,8 @@
+/** 
+ * @description Auto Generate By protoExtendtion.py
+ * @version 2019-01-28 11:31:38 
+ * @author suo
+ */
 import { Cmd } from "../../protobuf/common";
 Cmd.Login_C.prototype['GetType'] = "Cmd.Login_C";
 Cmd.PlayerInfo_S.prototype['GetType'] = "Cmd.PlayerInfo_S";
