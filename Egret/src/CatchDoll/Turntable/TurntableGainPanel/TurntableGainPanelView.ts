@@ -27,7 +27,7 @@ module catchDoll {
 			let data: Object = TurntableData.awardMap.get(awardKey)
 			this.awardImg.source = data["source"];
 			this.awardDec.text = data["dec"];
-			Master.instance.sendItemUpdateMsg(ITEM_ID.MONEY, data["money"]);
+			Master.instance.sendItemUpdateMsg(PROP_ID.MONEY, data["money"]);
 			this.closeBtnHandler = Handler.create(null, () => { UICenter.instance.closeUI(commonUI.TurnTable) }, null, true);
 		}
 

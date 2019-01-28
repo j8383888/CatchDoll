@@ -35,10 +35,10 @@ module catchDoll {
 		private _updateItem(): void {
 			for (let item of this.itemData) {
 				if (item.itemUpdateNum != 0) {
-					if (item.itemID == ITEM_ID.MONEY) {
+					if (item.itemID == PROP_ID.MONEY) {
 						EventManager.fireEvent(EVENT_ID.UPDATE_MONEY);
 					}
-					else if(item.itemID == ITEM_ID.DIAMOND) {
+					else if(item.itemID == PROP_ID.DIAMOND) {
 						EventManager.fireEvent(EVENT_ID.UPDATE_DIAMOND);
 					}
 				}

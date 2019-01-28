@@ -412,7 +412,6 @@ export class SQLServe {
     }
 }
 
-global["SQLServe"] = SQLServe;
 
 
 

@@ -92,7 +92,6 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			let item = this.skin["_menuBtn"]
 			this.menuBtn = new Button(this.skin["_menuBtn"])
 			this.registerBtn = new Button(this.skin["_registerBtn"]);
 			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
@@ -115,14 +114,14 @@ module catchDoll {
 		 * 更新钱
 		 */
 		private _updateMoney(): void {
-			this.money.text = GlobeTool.getProp(ITEM_ID.MONEY).toString();
+			this.money.text = GlobeTool.getProp(PROP_ID.MONEY).toString();
 		}
 
 		/**
 		 * 更新钱
 		 */
 		private _updateDiamond(): void {
-			this.diamond.text = GlobeTool.getProp(ITEM_ID.DIAMOND).toString();
+			this.diamond.text = GlobeTool.getProp(PROP_ID.DIAMOND).toString();
 		}
 
 
@@ -131,8 +130,8 @@ module catchDoll {
 		 * 展示时
 		 */
 		public onShow(): void {
-			this.diamond.text = GlobeTool.getProp(ITEM_ID.DIAMOND).toString();
-			this.money.text = GlobeTool.getProp(ITEM_ID.MONEY).toString();
+			this.diamond.text = GlobeTool.getProp(PROP_ID.DIAMOND).toString();
+			this.money.text = GlobeTool.getProp(PROP_ID.MONEY).toString();
 			this.addToStage(LAYER.UI)
 
 		}

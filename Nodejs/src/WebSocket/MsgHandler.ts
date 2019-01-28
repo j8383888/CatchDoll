@@ -63,11 +63,11 @@ export class MsgHandler {
                     cmd.endTime = task2.endTime;
                     MyWebSocket.instance.sendMsg(uid, cmd);
                 }
-                else{
-                    
+                else {
+                    let cmd = new Cmd.ServeTips_S();
+                    cmd.tips = "钻石不够啦~！";
+                    MyWebSocket.instance.sendMsg(uid, cmd);
                 }
-
-
                 break;
         }
     };

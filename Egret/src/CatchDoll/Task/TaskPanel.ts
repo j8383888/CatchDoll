@@ -64,6 +64,10 @@ module catchDoll {
 			EventManager.registerEvent(EVENT_ID.TaskUpdate_CS, Handler.create(this, this._update));
 			this.refreshBtn = new Button(this.skin["_refreshBtn"]);
 			this.refreshBtn.mouseClickHandler = Handler.create(null, () => {
+				if (GlobeTool.getProp(PROP_ID.DIAMOND) < 2) {
+					SystemTipsUtil.showTips("钻石不足！");
+					return;
+				}
 				let cmd: Cmd.RefreshTask_C = new Cmd.RefreshTask_C();
 				WebSocket.instance.sendMsg(cmd);
 			})

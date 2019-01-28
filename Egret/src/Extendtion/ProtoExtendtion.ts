@@ -1,3 +1,23 @@
+/** 
+ * @description Auto Generate By protoExtendtion.py
+ * @version 2019-01-28 10:56:13 
+ * @author suo
+ */class ProtoExtendtion {
+	public static protoMap: Dictionary;
+	public static init(): void {
+		this.protoMap = new Dictionary();
+		this.protoMap.set("Login_C",Cmd.Login_C);
+		this.protoMap.set("PlayerInfo_S",Cmd.PlayerInfo_S);
+		this.protoMap.set("ItemInfo_CS",Cmd.ItemInfo_CS);
+		this.protoMap.set("ItemUpdate_CS",Cmd.ItemUpdate_CS);
+		this.protoMap.set("Heartbeat_CS",Cmd.Heartbeat_CS);
+		this.protoMap.set("TaskUpdate_CS",Cmd.TaskUpdate_CS);
+		this.protoMap.set("RefreshTask_C",Cmd.RefreshTask_C);
+		this.protoMap.set("GetTaskAward_C",Cmd.GetTaskAward_C);
+		this.protoMap.set("SameUidLogin_S",Cmd.SameUidLogin_S);
+		this.protoMap.set("ServeTips_S",Cmd.ServeTips_S);
+	}
+}
 declare namespace Cmd{
 	interface Login_C {
 		GetType(): string;

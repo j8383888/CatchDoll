@@ -17,11 +17,17 @@ module catchDoll {
 		public onInit(): void {
 			this._view = this._viewCenter.getView(FunctionUIView);
 		}
-		c
+
+		private _onClick(btn: Button): void {
+			if (btn == this._view.menuBtn) {
+			}
+		}
+
 		/**
 		 * 显示时
 		 */
 		public onShow(): void {
+			this._view.menuBtn.mouseClickHandler = Handler.create(this, this._onClick);
 			this._view.turnTableBtn.mouseClickHandler = Handler.create(this, this._onClicTurnTable)
 			this._view.registerBtn.mouseClickHandler = Handler.create(this, this._onClicRegister)
 			this._view.setUpBtn.mouseUpHandler = Handler.create(this, this._onClicSetUp)

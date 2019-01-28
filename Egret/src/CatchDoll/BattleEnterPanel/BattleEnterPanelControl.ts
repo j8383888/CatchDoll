@@ -33,7 +33,7 @@ module catchDoll {
 			LayerManager.instance.addToLayer(coin, LAYER.EFFECT);
 			egret.Tween.get(coin).to({ x: targetX, y: targetY }, 1000, egret.Ease.quadIn).call(() => {
 
-				Master.instance.sendItemUpdateMsg(ITEM_ID.MONEY, -2);
+				Master.instance.sendItemUpdateMsg(PROP_ID.MONEY, -2);
 			}).wait(1000).call(() => {
 				coin.stop();
 				LayerManager.instance.removeFromLayer(coin, LAYER.EFFECT);

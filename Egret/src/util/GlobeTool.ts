@@ -90,7 +90,7 @@ module catchDoll {
 		}
 	}
 
-	export enum ITEM_ID {
+	export enum PROP_ID {
 		MONEY = 1,
 		DIAMOND = 2,
 		HONOR = 3,

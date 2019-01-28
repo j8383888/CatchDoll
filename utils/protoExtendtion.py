@@ -2,9 +2,22 @@
 import os,shutil,time
 
 def writeProtoExtendition(pkg,msgAry,clientFile,serveFile):
-	t = time.strftime('%Y-%m-%d',time.localtime())  
-
+	t = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())  
+	print(t);
 	with open(clientFile,'w') as f:
+
+		f.write("/** \n * @description Auto Generate By protoExtendtion.py\n * @version %s \n * @author suo\n */" %t);
+
+		f.write("class ProtoExtendtion {\n");
+		f.write("\tpublic static protoMap: Dictionary;\n");
+		f.write("\tpublic static init(): void {\n");
+		f.write("\t\tthis.protoMap = new Dictionary();\n");
+		for item in msgAry:
+			f.write("\t\tthis.protoMap.set(\""+ item +"\","+pkg+"."+item+");\n")
+		f.write("\t}\n");
+		f.write("}\n");
+
+
 		f.write("declare namespace "+ pkg +"{\n");
 		for item in msgAry:
 			f.write("\tinterface "+item+ " {\n")

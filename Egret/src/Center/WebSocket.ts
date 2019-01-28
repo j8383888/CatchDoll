@@ -89,9 +89,8 @@ module catchDoll {
 		 */
 		private _init(): void {
 
-
+			ProtoExtendtion.init();
 			this._webSocket.type = egret.WebSocket.TYPE_BINARY;
-
 			this._webSocket.addEventListener(egret.Event.CONNECT, this._onSocketOpen, this)
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
@@ -180,23 +179,7 @@ module catchDoll {
 			let protoType: any;
 			let message: any;
 			if (GlobeConst.isWXGame) {
-				switch (cmdTitle) {
-					case "Cmd.Login_C":
-						protoType = Cmd.Login_C
-						break;
-					case "Cmd.PlayerInfo_S":
-						protoType = Cmd.PlayerInfo_S
-						break;
-					case "Cmd.ItemUpdate_CS":
-						protoType = Cmd.ItemUpdate_CS
-						break;
-					case "Cmd.Heartbeat_CS":
-						protoType = Cmd.Heartbeat_CS
-						break;
-					case "Cmd.TaskUpdate_CS":
-						protoType = Cmd.TaskUpdate_CS;
-						break;
-				}
+				protoType = ProtoExtendtion.protoMap.get(cmdTitle); 
 				message = protoType.decode(rawData)
 			}
 			else {
@@ -249,7 +232,10 @@ module catchDoll {
 					else {
 						console.assert(false, "逻辑有误")
 					}
-
+					break;
+				case "Cmd.ServeTips_S":
+					let accurateData7: Cmd.ServeTips_S = message as Cmd.ServeTips_S
+					SystemTipsUtil.showTips(accurateData7.tips);
 					break;
 			}
 		}
