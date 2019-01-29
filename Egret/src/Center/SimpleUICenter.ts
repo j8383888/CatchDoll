@@ -29,6 +29,7 @@ module catchDoll {
 			this.addUI(SIMPLE_UI.buyItemPanel, BuyItemPanel);
 			this.addUI(SIMPLE_UI.ConfirmPanel, ConfirmPanel);
 			this.addUI(SIMPLE_UI.SystemTips, SystemTips);
+			this.addUI(SIMPLE_UI.BattleSelect, BattleSelect);
 		}
 
 		/**
@@ -126,6 +127,8 @@ module catchDoll {
 		/*确认面板*/
 		ConfirmPanel,
 		/*系统提示*/
-		SystemTips
+		SystemTips,
+		/*战役选关*/
+		BattleSelect
 	}
 }

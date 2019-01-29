@@ -95,4 +95,9 @@ module catchDoll {
 		DIAMOND = 2,
 		HONOR = 3,
 	}
+
+	export function isInteger(obj) {
+		return typeof obj === 'number' && obj % 1 === 0
+	}
 }
+

@@ -77,6 +77,17 @@
 		<field column="是否热销" code="isHot" type="int32" />		
 	</output>
 	
+	<output type="json-ts" code="battleTable" file="游戏配置.xlsx" sheet="关卡配置">
+		<field column="章节" code="chapter" type="int32" />
+		<field column="关卡" code="level" type="int32" />
+		<field column="怪物组" code="monsterAry" type="array" >
+			<field column="value" type="object" >
+				<field column="monsterID" code="monsterID" type="int32" />
+				<field column="rate" code="rate" type="int32" />
+			</field>
+		</field>		
+	</output>
+	
 	
 
 	<!-- <output type="lua-table" code="TablePlayTypeList" file="玩法配置.xlsx" sheet="玩法配置"> -->

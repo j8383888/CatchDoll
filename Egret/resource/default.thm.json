@@ -3,8 +3,9 @@
 	"autoGenerateExmlsList": true,
 	"exmls": [
 		"resource/eui_skins/BagPanelSkin.exml",
-		"resource/eui_skins/BattleEnterPanelSkin.exml",
-		"resource/eui_skins/BattleSceneSkin.exml",
+		"resource/eui_skins/Battle/BattleEnterPanelSkin.exml",
+		"resource/eui_skins/Battle/BattleSceneSkin.exml",
+		"resource/eui_skins/Battle/BattleSelectSkin.exml",
 		"resource/eui_skins/BuyItemPanel/BuyItemPanelSkin.exml",
 		"resource/eui_skins/ConfirmSkin.exml",
 		"resource/eui_skins/FunctionUISkin.exml",

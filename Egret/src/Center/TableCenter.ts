@@ -35,6 +35,10 @@ module catchDoll {
 		 * 商店配置
 		 */
 		public treasureTable: table.TreasureTable[];
+		/**
+		 * 商店配置
+		 */
+		public battleTable: table.battleTable[];
 
 		/**
 		 * 初始化配置
@@ -45,15 +49,16 @@ module catchDoll {
 			this.TaskTable = ConfigParse.getJosn("TaskTable_json");
 			this.PropTable = ConfigParse.getJosn("PropTable_json");
 			this.TurnTable = ConfigParse.getJosn("TurntableList_json");
-			this.ShopTable = ConfigParse.getJosn("shopTable_json")
-			this.treasureTable = ConfigParse.getJosn("TreasureTable_json")
+			this.ShopTable = ConfigParse.getJosn("shopTable_json");
+			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
+			this.battleTable = ConfigParse.getJosn("battleTable_json")
 		}
 
 		/**
 		 * 根据ID获得物品数据
 		 */
-		public getPropDataByID(id:number):table.PropTable{
-			return ConfigParse.getWholeByProperty(this.PropTable,"id",id.toString());
+		public getPropDataByID(id: number): table.PropTable {
+			return ConfigParse.getWholeByProperty(this.PropTable, "id", id.toString());
 		}
 
 		public constructor() {
@@ -68,6 +73,19 @@ module catchDoll {
 				this._instance = new TableCenter();
 			}
 			return this._instance;
+		}
+
+		/**
+		 * 获得指定章节的关卡
+		 */
+		public getLevelsFromChapter(chapter: number): table.battleTable[] {
+			let levelAry = []
+			for (let item of this.battleTable) {
+				if (item.chapter == chapter) {
+					levelAry.push(item);
+				}
+			}
+			return levelAry;
 		}
 
 		/**
@@ -88,6 +106,8 @@ module catchDoll {
 			this.ShopTable = null;
 			this.treasureTable.length = 0;
 			this.treasureTable = null;
+			this.battleTable.length = 0;
+			this.battleTable = null;
 		}
 	}
 }
