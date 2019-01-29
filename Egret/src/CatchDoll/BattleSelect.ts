@@ -11,13 +11,13 @@ module catchDoll {
 		/**
 		 * 间距
 		 */
-		private leading: number = 240
+		private leading: number = 300
 
 		public itemGroup: eui.Group;
 
 		private lastItem: eui.Image;
 
-		public offsetRate:number = 0.25
+		public offsetRate: number = 0.3
 
 
 
@@ -32,37 +32,43 @@ module catchDoll {
 		public onInit(): void {
 			let middle = this.scroller.width / 2;
 			this.scroller.addEventListener(egret.Event.CHANGE, this._onChange, this);
+			
+			this._onChange();
 		}
 
 		/**
 		 * 改变
 		 */
-		private _onChange(e: egret.Event): void {
+		private _onChange(): void {
 			let scrollH = this.scroller.viewport.scrollH
-			let index = scrollH / 180 + 1;
-			let indexUint = Math.floor(scrollH / this.leading) + 1;
+			let index = scrollH / this.leading;
+			let indexUint = Math.floor(scrollH / this.leading);
 			let DValue = index - indexUint;
 
-			if (index > 0 && index < 5 && (DValue > (1-this.offsetRate) || DValue < this.offsetRate)) {
-				if (DValue > 0.9) {
-					index += 1;
+			if (index >= 0 && index < 5) {
+				if (DValue > (1 - this.offsetRate) || DValue < this.offsetRate) {
+					index++;
+					if (DValue > (1 - this.offsetRate)) {
+						index += 1;
+					}
 
-				}
-				if (this.lastItem) {
-					this.lastItem.scaleX = this.lastItem.scaleY = 1;
-				}
-				if (index >= 5) {
-					index = 4
-				}
-				let item = this.itemGroup.getChildAt(index) as eui.Image;
-				item.scaleX = item.scaleY = 2;
-				this.lastItem = item;
-			}
+					if (index >= 5) {
+						index = 4
+					}
+					let item = this.itemGroup.getChildAt(index) as eui.Image;
+					if (this.lastItem && this.lastItem != item) {
+						this.lastItem.scaleX = this.lastItem.scaleY = 1;
 
-
-			if (scrollH < 0) {
-			}
-			else {
+					}
+					item.scaleX = item.scaleY = 2;
+					this.lastItem = item;
+				}
+				// else {
+				// 	if (this.lastItem) {
+				// 		this.lastItem.scaleX = this.lastItem.scaleY = 1;
+				// 		this.lastItem = null;
+				// 	}
+				// }
 			}
 		}
 
