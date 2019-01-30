@@ -11,11 +11,13 @@ module catchDoll {
 		/**
 		 * 间距
 		 */
-		private leading: number = 300
+		private leading: number = 180
 
 		public itemGroup: eui.Group;
 
-		private lastItem: eui.Image;
+		private _lastItem: eui.Image;
+
+		private _lastIndex: number = 0;
 
 		public offsetRate: number = 0.3
 
@@ -31,9 +33,19 @@ module catchDoll {
 		 */
 		public onInit(): void {
 			let middle = this.scroller.width / 2;
-			this.scroller.addEventListener(egret.Event.CHANGE, this._onChange, this);
-			
+			this.scroller.addEventListener(eui.UIEvent.CHANGE, this._onChange, this);
+			this.scroller.addEventListener(eui.UIEvent.CHANGE_START, this._onChangeStart, this);
+			this.scroller.addEventListener(eui.UIEvent.CHANGE_END, this._onChangeEnd, this);
 			this._onChange();
+		}
+
+		private _onChangeStart(): void {
+			egret.Tween.removeTweens(this.scroller.viewport);
+		}
+
+		private _onChangeEnd(): void {
+			let scrollH = (this._lastIndex - 2) * this.leading
+			egret.Tween.get(this.scroller.viewport).to({ scrollH: scrollH }, 200, egret.Ease.quadIn);
 		}
 
 		/**
@@ -44,31 +56,26 @@ module catchDoll {
 			let index = scrollH / this.leading;
 			let indexUint = Math.floor(scrollH / this.leading);
 			let DValue = index - indexUint;
+			let maxIndex = this.itemGroup.numElements;
 
-			if (index >= 0 && index < 5) {
+			if (index >= 0 && index < maxIndex) {
 				if (DValue > (1 - this.offsetRate) || DValue < this.offsetRate) {
-					index++;
+					indexUint += 2;
 					if (DValue > (1 - this.offsetRate)) {
-						index += 1;
+						indexUint += 1;
 					}
 
-					if (index >= 5) {
-						index = 4
+					if (indexUint >= maxIndex) {
+						indexUint = maxIndex - 2;
 					}
-					let item = this.itemGroup.getChildAt(index) as eui.Image;
-					if (this.lastItem && this.lastItem != item) {
-						this.lastItem.scaleX = this.lastItem.scaleY = 1;
-
+					let item = this.itemGroup.getChildAt(indexUint) as eui.Image;
+					if (this._lastItem && this._lastItem != item) {
+						this._lastItem.scaleX = this._lastItem.scaleY = 1;
 					}
-					item.scaleX = item.scaleY = 2;
-					this.lastItem = item;
+					item.scaleX = item.scaleY = 1.5;
+					this._lastItem = item;
+					this._lastIndex = indexUint;
 				}
-				// else {
-				// 	if (this.lastItem) {
-				// 		this.lastItem.scaleX = this.lastItem.scaleY = 1;
-				// 		this.lastItem = null;
-				// 	}
-				// }
 			}
 		}
 
@@ -90,7 +97,9 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			this.scroller.removeEventListener(egret.Event.CHANGE, this._onChange, this);
+			this.scroller.removeEventListener(eui.UIEvent.CHANGE, this._onChange, this);
+			this.scroller.removeEventListener(eui.UIEvent.CHANGE_START, this._onChange, this);
+			this.scroller.removeEventListener(eui.UIEvent.CHANGE_END, this._onChange, this);
 			super.dispose();
 		}
 	}
