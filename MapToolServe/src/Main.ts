@@ -7,12 +7,14 @@ var port = 4000;
 //创建服务
 var server = http.createServer(function (req, res) {
     res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Access-Control-Allow-Origin',"*")
+    res.setHeader('Access-Control-Allow-Origin', "*")
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.end("hello nodejs");
-    console.log(req, res)
+    req.on('data', function (chunk: Buffer) {
+        let data = chunk.toString();
+        console.log('source: ' + data);
+    });
 
-})
+}).listen(port);
 
 
 server.listen(port, hostName, function () {
