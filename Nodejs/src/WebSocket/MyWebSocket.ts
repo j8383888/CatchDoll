@@ -24,6 +24,7 @@ export class MyWebSocket {
 
 
 
+
     constructor() {
         this._heartCheck();
     }
@@ -146,7 +147,8 @@ export class MyWebSocket {
                     let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn)
                     MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, uid);
                 }
-                console.log("[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
+                let dateStr = new Date().toLocaleString();
+                console.log(dateStr, "[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
             })
         })
         conn.once("close", (code, reason) => {

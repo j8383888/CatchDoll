@@ -28,7 +28,6 @@ export class JsonParse {
     public static init(): void {
         let configData = this.getJSon("resource/config.json");
         this.isDebug = configData["isDebug"];
-        this.isDebug = false;
         if (this.isDebug) {
             this.SQLHost = configData["debug"]["SQLHost"];
             this.SQLPost = configData["debug"]["SQLPost"];

@@ -13,6 +13,7 @@ var battleJson: string;
 
 battleJson = getJSon(battleJsonPath);
 
+
 /**
  * 获得Json数据
  * @param path 
@@ -27,7 +28,8 @@ var server = http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', "*")
     // res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.method == "GET") {
-        console.log("发送battle数据")
+        let date = new Date()
+        console.log(date.toLocaleString(),"发送battle数据")
         res.end(battleJson)
     }
     else if (req.method == "POST") {
@@ -42,7 +44,7 @@ var server = http.createServer(function (req, res) {
         });
     }
 
-}).listen(port);
+}).listen(4000);
 
 
 server.listen(port, hostName, function () {

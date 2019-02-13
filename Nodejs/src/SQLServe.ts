@@ -154,7 +154,6 @@ export class SQLServe {
             if (err) {
                 console.log('数据库[SELsECT ERROR] - ', err.message);
             } else {
-                console.log('--------------------------SELECT----------------------------');
                 console.log(result);
                 if (result.length) {
                     this._seekPlayerData(data);
@@ -162,7 +161,6 @@ export class SQLServe {
                 else {
                     this._initPlayerData(data);
                 }
-                console.log('------------------------------------------------------------\n\n');
             }
         })
     }
