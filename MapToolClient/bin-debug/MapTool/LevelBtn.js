@@ -18,9 +18,10 @@ var LevelBtn = (function (_super) {
     /**
      * 设置数据
      */
-    LevelBtn.prototype.setData = function (level, mapData) {
+    LevelBtn.prototype.setData = function (level, chapterID, mapData) {
         this.levelID = level;
         this.labelDisplay.text = level.toString();
+        this.belongChapterID = chapterID;
         this.mapData = mapData;
     };
     LevelBtn.prototype.addListen = function () {
@@ -32,6 +33,11 @@ var LevelBtn = (function (_super) {
             MapEditor.instance.curLevel.onSelect(false);
         }
         MapEditor.instance.curLevel = e.currentTarget;
+        /**
+         * 记录
+         */
+        MapEditor.instance.lastChapterID = MapEditor.instance.curLevel.belongChapterID;
+        MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.levelID;
         MapEditor.instance.curLevel.onSelect(true);
         MapEditor.instance.sceneCanvas.removeChildren();
         for (var _i = 0, _a = this.mapData; _i < _a.length; _i++) {

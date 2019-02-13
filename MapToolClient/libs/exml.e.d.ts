@@ -44,6 +44,8 @@ declare module skins{
 	class TextInputSkin extends eui.Skin{
 	}
 }
+declare class SystemTipsSkin extends eui.Skin{
+}
 declare module skins{
 	class ToggleSwitchSkin extends eui.Skin{
 	}

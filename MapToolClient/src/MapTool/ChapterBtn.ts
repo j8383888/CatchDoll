@@ -35,10 +35,10 @@ class ChapterBtn extends eui.Component {
 		if (this.isOpen) {
 			for (let subitem of this.levelData) {
 				let levelBtn = new LevelBtn();
-				levelBtn.setData(subitem.level, subitem.mapData);
+				levelBtn.setData(subitem.level, this.chapterID, subitem.mapData);
 				levelBtn.addListen();
 				this.parent.addChild(levelBtn);
-				if (MapEditor.instance.curLevel && levelBtn.levelID == MapEditor.instance.curLevel.levelID) {
+				if (MapEditor.instance.lastLevelID == levelBtn.levelID && MapEditor.instance.lastChapterID == levelBtn.belongChapterID) {
 					MapEditor.instance.curLevel = levelBtn;
 					levelBtn.onSelect(true);
 				}

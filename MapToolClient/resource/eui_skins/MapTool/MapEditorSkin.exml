@@ -25,14 +25,14 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group x="720" y="1074">
-		<e:Button id="saveBtn" label="保存" x="0" y="100" anchorOffsetY="0" height="94" />
+	<e:Group x="730" y="1086">
+		<e:Button id="saveBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
+		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
-		<e:Button id="removeLevel" label="删除关卡" x="202" y="4" anchorOffsetY="0" />
-		<e:Button id="upLoadBtn" label="保存" x="10" y="110" anchorOffsetY="0" height="94"/>
+		<e:Button id="removeLevelBtn" label="删除关卡" x="202" y="4" anchorOffsetY="0" />
 		<e:Button id="removeDecorate" label="删除场景装饰" x="390" y="10" anchorOffsetY="0" />
-		<e:Button id="clearScene" label="清空当前场景" x="210" y="90" anchorOffsetY="0" />
-		<e:Button label="添加章节" x="410" y="92" anchorOffsetY="0" />
+		<e:Button id="addChapter" label="添加章节" x="410" y="92" anchorOffsetY="0" />
+		<e:Button id="upLoadBtn" label="上传" x="10" y="110" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout requestedRowCount="2" />
 		</e:layout>

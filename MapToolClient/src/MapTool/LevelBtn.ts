@@ -5,6 +5,10 @@ class LevelBtn extends eui.Component {
 	public mapData: { source, x, y }[];
 
 	public levelID: number;
+	/**
+	 * 隶属于章节ID
+	 */
+	public belongChapterID: number;
 
 
 	public constructor() {
@@ -15,9 +19,10 @@ class LevelBtn extends eui.Component {
 	/**
 	 * 设置数据
 	 */
-	public setData(level: number, mapData: any): void {
+	public setData(level: number, chapterID: number, mapData: any): void {
 		this.levelID = level
 		this.labelDisplay.text = level.toString();
+		this.belongChapterID = chapterID
 		this.mapData = mapData;
 	}
 
@@ -31,7 +36,14 @@ class LevelBtn extends eui.Component {
 		if (MapEditor.instance.curLevel) {
 			MapEditor.instance.curLevel.onSelect(false)
 		}
+
 		MapEditor.instance.curLevel = e.currentTarget;
+		/**
+		 * 记录
+		 */
+		MapEditor.instance.lastChapterID = MapEditor.instance.curLevel.belongChapterID;
+		MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.levelID;
+
 		MapEditor.instance.curLevel.onSelect(true)
 		MapEditor.instance.sceneCanvas.removeChildren();
 		for (let item of this.mapData) {
@@ -44,6 +56,7 @@ class LevelBtn extends eui.Component {
 			MapEditor.instance.addListener(img);
 		}
 	}
+
 
 	public onSelect(value: boolean) {
 		value ? UIUtil.setLight(this) : UIUtil.setNomarl(this);

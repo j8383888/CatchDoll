@@ -17,6 +17,14 @@ var MapEditor = (function (_super) {
          * 当前场景的物品数据
          */
         _this.curMapGoods = [];
+        /**
+         * 上一次点击章节ID
+         */
+        _this.lastChapterID = -1;
+        /**
+         * 上一次点击关卡ID
+         */
+        _this.lastLevelID = -1;
         _this.skinName = "MapEditorSkin";
         _this._init();
         return _this;
@@ -41,14 +49,63 @@ var MapEditor = (function (_super) {
             var item = this.itemGroup.getElementAt(i);
             item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this);
         }
+        this.addChapter.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddChapter, this);
         this.saveBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSave, this);
-        this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAdd, this);
-        var len2 = this.levelGroup.numChildren;
-        for (var i = 0; i < len2; i++) {
-            var item = this.levelGroup.getElementAt(i);
-            var btn = item.getChildAt(0);
-            // btn.addEventListener(egret.TouchEvent.TOUCH_TAP,this._)
+        this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddLevel, this);
+        this.clearSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearScene, this);
+        this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
+    };
+    /**
+     * 添加章节
+     */
+    MapEditor.prototype._onAddChapter = function () {
+        var group = new eui.Group();
+        var layoutV = new eui.VerticalLayout();
+        layoutV.gap = 0;
+        layoutV.horizontalAlign = "center";
+        group.layout = layoutV;
+        var chapterID = this._getLastChapterID();
+        chapterID++;
+        var chapterBtn = new ChapterBtn();
+        chapterBtn.setData("新的章节", chapterID, []);
+        group.addChild(chapterBtn);
+        this.levelGroup.addChild(group);
+        chapterBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickChapter, this);
+        this._addChapterData(chapterBtn);
+    };
+    /**
+     * 添加章节数据
+     */
+    MapEditor.prototype._addChapterData = function (chapterBtn) {
+        var chapterID = chapterBtn.chapterID;
+        /**
+         * 总数据
+         */
+        this.chapterData.push({
+            chapterID: chapterID,
+            chapterName: "新的章节",
+            levelData: []
+        });
+    };
+    MapEditor.prototype._getLastChapterID = function () {
+        return this.chapterData[this.chapterData.length - 1].chapterID;
+    };
+    MapEditor.prototype._onRemoveLevel = function () {
+        if (this.curLevel) {
+            this.curChapter.parent.removeChild(this.curLevel);
+            this.deleteLevelData(this.curChapter, this.curLevel);
+            this.curLevel = null;
         }
+        else {
+            SystemTipsUtil.showTips("请先选中要删除的关卡！！");
+        }
+    };
+    /**
+     * 清除场景
+     */
+    MapEditor.prototype._onClearScene = function () {
+        this.curMapGoods.length = 0;
+        this.sceneCanvas.removeChildren();
     };
     MapEditor.prototype._getServeInfo = function () {
         var request = new egret.HttpRequest();
@@ -78,6 +135,7 @@ var MapEditor = (function (_super) {
             this.levelGroup.addChild(group);
             chapterBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickChapter, this);
         }
+        SystemTipsUtil.showTips("加载成功");
     };
     MapEditor.prototype._onClickChapter = function (e) {
         if (this.curChapter) {
@@ -94,8 +152,32 @@ var MapEditor = (function (_super) {
     /**
      * 添加关卡
      */
-    MapEditor.prototype._onAdd = function () {
-        // let levelBtn = 
+    MapEditor.prototype._onAddLevel = function () {
+        var group = this.curChapter.parent;
+        var level = new LevelBtn();
+        var levelID = this.getLastLevel(this.curChapter.chapterID);
+        levelID++;
+        level.addListen();
+        level.setData(levelID, this.curChapter.chapterID, []);
+        group.addChild(level);
+        this.addLevelData(this.curChapter, level);
+    };
+    /**
+     * 获得最后一个关卡
+     */
+    MapEditor.prototype.getLastLevel = function (chapterID) {
+        for (var _i = 0, _a = this.chapterData; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.chapterID == chapterID) {
+                var levelData = item.levelData;
+                if (levelData.length) {
+                    return levelData[levelData.length - 1].level;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
     };
     /**
      * 保存
@@ -146,6 +228,49 @@ var MapEditor = (function (_super) {
         target.y = e.stageY - target.height / 2;
     };
     /**
+     * 删除关卡数据
+     */
+    MapEditor.prototype.deleteLevelData = function (chapterBtn, levelBtn) {
+        var chapterID = chapterBtn.chapterID;
+        var levelID = levelBtn.levelID;
+        /**
+         * 章节上的数据
+         */
+        for (var _i = 0, _a = chapterBtn.levelData; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.level == levelID) {
+                chapterBtn.levelData.remove(item);
+                break;
+            }
+        }
+        /**
+         * 总数据
+         */
+        for (var _b = 0, _c = this.chapterData; _b < _c.length; _b++) {
+            var item = _c[_b];
+            if (item.chapterID == chapterID) {
+                for (var _d = 0, _e = item.levelData; _d < _e.length; _d++) {
+                    var subitem = _e[_d];
+                    if (subitem.level == levelID) {
+                        item.levelData.remove(subitem);
+                        return;
+                    }
+                }
+            }
+        }
+    };
+    /**
+     * 添加关卡数据
+     */
+    MapEditor.prototype.addLevelData = function (chapterBtn, levelBtn) {
+        var chapterID = chapterBtn.chapterID;
+        var levelID = levelBtn.levelID;
+        /**
+         * 章节上的数据
+         */
+        chapterBtn.levelData.push({ level: levelBtn.levelID, mapData: [] });
+    };
+    /**
      * 设置地图数据
      */
     MapEditor.prototype.setMapData = function (chapterBtn, levelBtn) {
@@ -171,21 +296,6 @@ var MapEditor = (function (_super) {
          * 关卡按钮上的数据
          */
         levelBtn.mapData = mapData;
-        /**
-         * 总数据
-         */
-        for (var _b = 0, _c = this.chapterData; _b < _c.length; _b++) {
-            var item = _c[_b];
-            if (item.chapterID == chapterID) {
-                for (var _d = 0, _e = item.levelData; _d < _e.length; _d++) {
-                    var subitem = _e[_d];
-                    if (subitem.level == levelID) {
-                        subitem.mapData = mapData;
-                        return;
-                    }
-                }
-            }
-        }
     };
     MapEditor.prototype._remove = function () {
         var len = this.itemGroup.numChildren;

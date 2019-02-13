@@ -33,10 +33,11 @@ var ChapterBtn = (function (_super) {
             for (var _i = 0, _a = this.levelData; _i < _a.length; _i++) {
                 var subitem = _a[_i];
                 var levelBtn = new LevelBtn();
-                levelBtn.setData(subitem.level, subitem.mapData);
+                levelBtn.setData(subitem.level, this.chapterID, subitem.mapData);
                 levelBtn.addListen();
                 this.parent.addChild(levelBtn);
-                if (MapEditor.instance.curLevel && levelBtn.levelID == MapEditor.instance.curLevel.levelID) {
+                if (MapEditor.instance.lastLevelID == levelBtn.levelID && MapEditor.instance.lastChapterID == levelBtn.belongChapterID) {
+                    MapEditor.instance.curLevel = levelBtn;
                     levelBtn.onSelect(true);
                 }
             }
