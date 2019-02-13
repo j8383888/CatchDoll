@@ -169,7 +169,7 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.createGameScene = function () {
-        var mapEditor = new MapEditor();
+        var mapEditor = MapEditor.instance;
         this.addChild(mapEditor);
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);

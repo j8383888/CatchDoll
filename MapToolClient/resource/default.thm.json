@@ -21,6 +21,8 @@
 		"resource/eui_skins/HScrollBarSkin.exml",
 		"resource/eui_skins/HSliderSkin.exml",
 		"resource/eui_skins/ItemRendererSkin.exml",
+		"resource/eui_skins/MapTool/ChapterBtnSkin.exml",
+		"resource/eui_skins/MapTool/LevelBtnSkin.exml",
 		"resource/eui_skins/MapTool/MapEditorSkin.exml",
 		"resource/eui_skins/PanelSkin.exml",
 		"resource/eui_skins/ProgressBarSkin.exml",
