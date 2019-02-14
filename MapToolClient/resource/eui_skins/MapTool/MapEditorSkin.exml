@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MapEditorSkin" width="1500" height="1280" xmlns:e="http://ns.egret.com/eui"
+<e:Skin class="MapEditorSkin" width="1800" height="1280" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing">
-	<e:Scroller width="577.7" x="723.97" y="0" anchorOffsetX="0" anchorOffsetY="0" height="1070">
+	<e:Scroller width="577.7" x="923.97" y="0" anchorOffsetX="0" anchorOffsetY="0" height="1070">
 		<e:Group id="itemGroup" anchorOffsetY="0" height="1057.7" anchorOffsetX="0" width="573.7">
 			<e:Image x="143" y="258" source="item_1" />
 			<e:Image x="153" y="268" source="item_2" />
@@ -15,8 +15,10 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="sceneGroup" width="720" x="0" y="0">
+	<e:Group id="sceneGroup" width="720" x="100" y="0">
 		<e:Rect width="720" height="1280" fillColor="0x0d607c" />
+		<e:Group id="sceneCanvas"/>
+		<e:Group id="pathCanvas" x="10" y="10"/>
 	</e:Group>
 	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="1070" y="0" right="0">
 		<e:Group id="levelGroup" anchorOffsetY="0" height="1058">
@@ -25,7 +27,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group x="730" y="1086">
+	<e:Group x="924" y="1086">
 		<e:Button id="saveBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
@@ -38,7 +40,6 @@
 			<e:TileLayout requestedRowCount="2" />
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="showGridCbx" label="显示网格" x="530.72" y="1240.37"/>
-	<e:Group id="sceneCanvas">
-	</e:Group>
+	<e:CheckBox id="showGridCbx" label="显示网格" x="1589" y="1234.37"/>
+	<e:CheckBox id="editorPathBtn" label="编辑路径" x="1589" y="1190.37"/>
 </e:Skin>

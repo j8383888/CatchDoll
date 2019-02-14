@@ -12,6 +12,8 @@ class MapEditor extends eui.Component {
 
 	private _chapterID: number = 0;
 
+	public pathCanvas: eui.Group;
+
 	/**
 	 * 当前选择章节
 	 */
@@ -69,6 +71,8 @@ class MapEditor extends eui.Component {
 	public sceneGroup: eui.Group;
 	public showGridCbx: eui.CheckBox;    //是否显示网格;
 
+	public editorPathBtn: eui.Button;
+
 
 
 
@@ -116,7 +120,7 @@ class MapEditor extends eui.Component {
 			shp.graphics.lineTo(this.mainViewWidth, i);
 		}
 		this.gridContainer.alpha = 0.5;
-		this.sceneGroup.addChild(this.gridContainer);
+		this.sceneGroup.addChildAt(this.gridContainer, 1);
 	}
 
 	/**
@@ -375,7 +379,7 @@ class MapEditor extends eui.Component {
 		if (this.curLevel && this.curChapter) {
 			let target = e.target;
 			let img = new eui.Image(target.source);
-			img.x = e.stageX - target.width / 2;
+			img.x = e.stageX - target.width / 2 - this.sceneGroup.x;
 			img.y = e.stageY - target.height / 2;
 			this.sceneCanvas.addChild(img);
 			this.curMapGoods.push(img);
@@ -415,7 +419,7 @@ class MapEditor extends eui.Component {
 	 */
 	private _onMove(e: egret.TouchEvent): void {
 		let target = e.target;
-		target.x = e.stageX - target.width / 2;
+		target.x = e.stageX - target.width / 2 - this.sceneGroup.x;
 		target.y = e.stageY - target.height / 2;
 	}
 

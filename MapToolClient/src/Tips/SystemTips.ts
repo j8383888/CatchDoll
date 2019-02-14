@@ -35,6 +35,7 @@ class SystemTips extends eui.Component {
 	public onShow(): void {
 		this.msgLabel.text = this.openParam;
 		this.msgLabel.textColor = this.color
+		this.x = MapEditor.instance.sceneGroup.x;
 		this.y = egret.MainContext.instance.stage.stageHeight;
 		egret.Tween.get(this).to({ y: (egret.MainContext.instance.stage.stageHeight - this.height) / 2 }, 400, egret.Ease.quadOut).wait(1500).to({ y: 0 - this.height }, 400, egret.Ease.quadIn).call(() => {
 			this.onHide();

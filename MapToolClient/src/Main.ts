@@ -101,6 +101,7 @@ class Main extends eui.UILayer {
      */
     protected createGameScene(): void {
         let mapEditor: MapEditor = MapEditor.instance;
+        let pathEditor: PathEditor = PathEditor.instance;
         this.addChild(mapEditor);
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);
