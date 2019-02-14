@@ -7,11 +7,8 @@ var hostName = '127.0.0.1';
 //设置端口
 var port = 4000;
 
+
 var battleJsonPath: string = "./BattleJson2.json"
-
-var battleJson: string;
-
-battleJson = getJSon(battleJsonPath);
 
 
 /**
@@ -29,7 +26,8 @@ var server = http.createServer(function (req, res) {
     // res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.method == "GET") {
         let date = new Date()
-        console.log(date.toLocaleString(),"发送battle数据")
+        console.log(date.toLocaleString(), "发送battle数据")
+        var battleJson: string = getJSon(battleJsonPath);
         res.end(battleJson)
     }
     else if (req.method == "POST") {
@@ -40,6 +38,7 @@ var server = http.createServer(function (req, res) {
             console.log('source: ' + data);
             writeFile(battleJsonPath, data, () => {
                 console.log("生成关卡配置json完毕！")
+                res.end("success!")
             })
         });
     }

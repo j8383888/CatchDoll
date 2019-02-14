@@ -37,6 +37,10 @@ class MapEditor extends eui.Component {
 	 * 上一次点击章节ID
 	 */
 	public lastChapterID: number = -1;
+	/**
+	 * 上一次点击章节ID
+	 */
+	public lastChapter: ChapterBtn;
 
 	/**
 	 * 上一次点击关卡ID
@@ -44,6 +48,14 @@ class MapEditor extends eui.Component {
 	public lastLevelID: number = -1;
 
 	public addChapter: eui.Button;
+
+	public chapterMap: Dictionary = new Dictionary();
+
+	public isDel: boolean = false;
+	/**
+	 * 上传
+	 */
+	public upLoadBtn: eui.Button;
 
 
 
@@ -87,6 +99,20 @@ class MapEditor extends eui.Component {
 		this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddLevel, this);
 		this.clearSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearScene, this);
 		this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
+		this.removeDecorate.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveDecorate, this)
+		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
+	}
+
+	/**
+	 * 上传
+	 */
+	private _upLoad(): void {
+		this._saveDataOnServe()
+	}
+
+	private _onRemoveDecorate(): void {
+		(this.isDel = !this.isDel) ? UIUtil.setLight(this.removeDecorate) : UIUtil.setNomarl(this.removeDecorate)
+
 	}
 
 	/**
@@ -102,17 +128,19 @@ class MapEditor extends eui.Component {
 		let chapterID = this._getLastChapterID();
 		chapterID++;
 		let chapterBtn = new ChapterBtn();
-		chapterBtn.setData("新的章节", chapterID, []);
+		let levelData = []
+		chapterBtn.setData("新的章节", chapterID, levelData);
+		this.chapterMap.set(chapterID, chapterBtn);
 		group.addChild(chapterBtn);
 		this.levelGroup.addChild(group);
 		chapterBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickChapter, this)
-		this._addChapterData(chapterBtn);
+		this._addChapterData(chapterBtn, levelData);
 	}
 
 	/**
 	 * 添加章节数据
 	 */
-	private _addChapterData(chapterBtn: ChapterBtn): void {
+	private _addChapterData(chapterBtn: ChapterBtn, levelData: any): void {
 		let chapterID: number = chapterBtn.chapterID;
 
 
@@ -122,7 +150,7 @@ class MapEditor extends eui.Component {
 		this.chapterData.push({
 			chapterID: chapterID,
 			chapterName: "新的章节",
-			levelData: []
+			levelData: levelData
 		})
 	}
 
@@ -132,13 +160,19 @@ class MapEditor extends eui.Component {
 
 	private _onRemoveLevel(): void {
 		if (this.curLevel) {
-			this.curChapter.parent.removeChild(this.curLevel);
-			this.deleteLevelData(this.curChapter, this.curLevel);
+			this._clearGoods();
+			this.curLevel.parent.removeChild(this.curLevel);
+			this.deleteLevelData(this.curLevel);
 			this.curLevel = null
 		}
 		else {
-			SystemTipsUtil.showTips("请先选中要删除的关卡！！")
+			SystemTipsUtil.showTips("请先选中要删除的关卡！！", ColorUtil.COLOR_RED)
 		}
+	}
+
+	private _clearGoods(): void {
+		this.sceneCanvas.removeChildren();
+		this.curMapGoods.length = 0;
 	}
 
 	/**
@@ -175,6 +209,7 @@ class MapEditor extends eui.Component {
 			chapterBtn.setData(item.chapterName, item.chapterID, item.levelData);
 			group.addChild(chapterBtn);
 			this.levelGroup.addChild(group);
+			this.chapterMap.set(item.chapterID, chapterBtn);
 			chapterBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickChapter, this)
 		}
 		SystemTipsUtil.showTips("加载成功");
@@ -203,7 +238,16 @@ class MapEditor extends eui.Component {
 	 * 添加关卡
 	 */
 	private _onAddLevel(): void {
+		if (!this.curChapter) {
+			SystemTipsUtil.showTips("请先选择章节！", ColorUtil.COLOR_RED)
+			return;
+		}
+
+		if (!this.curChapter.isOpen) {
+			this.curChapter.onClick()
+		}
 		let group = this.curChapter.parent;
+
 		let level: LevelBtn = new LevelBtn();
 		let levelID: number = this.getLastLevel(this.curChapter.chapterID);
 		levelID++;
@@ -236,14 +280,18 @@ class MapEditor extends eui.Component {
 	 */
 	private _onSave(): void {
 		if (MapEditor.instance.curChapter && MapEditor.instance.curLevel) {
-			MapEditor.instance.setMapData(MapEditor.instance.curChapter, MapEditor.instance.curLevel)
+			MapEditor.instance.setMapData(MapEditor.instance.curLevel)
+			SystemTipsUtil.showTips("保存成功！")
+		}
+		else {
+			SystemTipsUtil.showTips("请选中关卡和章节！", ColorUtil.COLOR_RED)
 		}
 	}
 
 	/**
 	 * 保存数据到服务器
 	 */
-	private _saveDataOnServe(json: string): void {
+	private _saveDataOnServe(): void {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
@@ -252,29 +300,51 @@ class MapEditor extends eui.Component {
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// request.setRequestHeader("Access-control-allow-methods", "GET, POST, OPTIONS, PUT, DELETE");
-		request.send(json);
-		request.addEventListener(egret.Event.COMPLETE, () => { }, this);
-		request.addEventListener(egret.IOErrorEvent.IO_ERROR, () => { }, this);
+		request.send(JSON.stringify(this.chapterData));
+		request.addEventListener(egret.Event.COMPLETE, () => {
+			SystemTipsUtil.showTips("提交成功！")
+		}, this);
+		request.addEventListener(egret.IOErrorEvent.IO_ERROR, () => {
+			SystemTipsUtil.showTips("提交失败", ColorUtil.COLOR_RED)
+		}, this);
 		request.addEventListener(egret.ProgressEvent.PROGRESS, () => { }, this);
 	}
 
 
 
 	private _onDown(e: egret.TouchEvent): void {
-		let target = e.target;
-		let img = new eui.Image(target.source);
-		img.x = e.stageX - target.width / 2;
-		img.y = e.stageY - target.height / 2;
-		this.sceneCanvas.addChild(img);
-		this.curMapGoods.push(img);
-		this.addListener(img);
+		if (this.curLevel && this.curChapter) {
+			let target = e.target;
+			let img = new eui.Image(target.source);
+			img.x = e.stageX - target.width / 2;
+			img.y = e.stageY - target.height / 2;
+			this.sceneCanvas.addChild(img);
+			this.curMapGoods.push(img);
+			this.addListener(img);
+		}
+		else {
+			SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
+		}
+
 	}
 
 	public addListener(img: eui.Image): void {
-		img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, (e: egret.TouchEvent) => {
-			this.sceneCanvas.addChild(e.target)
-		}, this)
+		img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
 		img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
+	}
+
+	private _onGoodsTouch(e: egret.TouchEvent): void {
+		if (this.isDel) {
+			let target = e.target
+			target.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
+			target.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
+			this.sceneCanvas.removeChild(target);
+			this.curMapGoods.remove(target)
+			target = null;
+		}
+		else {
+			this.sceneCanvas.addChild(e.target)
+		}
 	}
 
 
@@ -291,14 +361,16 @@ class MapEditor extends eui.Component {
 	/**
 	 * 删除关卡数据
 	 */
-	public deleteLevelData(chapterBtn: ChapterBtn, levelBtn: LevelBtn) {
-		let chapterID: number = chapterBtn.chapterID;
+	public deleteLevelData(levelBtn: LevelBtn) {
+		let chapterID: number = levelBtn.belongChapterID;
 		let levelID: number = levelBtn.levelID;
 
 
 		/**
 		 * 章节上的数据
 		 */
+		let chapterBtn = this.chapterMap.get(chapterID)
+
 		for (let item of chapterBtn.levelData) {
 			if (item.level == levelID) {
 				chapterBtn.levelData.remove(item);
@@ -306,19 +378,19 @@ class MapEditor extends eui.Component {
 			}
 		}
 
-		/**
-		 * 总数据
-		 */
-		for (let item of this.chapterData) {
-			if (item.chapterID == chapterID) {
-				for (let subitem of item.levelData) {
-					if (subitem.level == levelID) {
-						item.levelData.remove(subitem);
-						return;
-					}
-				}
-			}
-		}
+		// /**
+		//  * 总数据
+		//  */
+		// for (let item of this.chapterData) {
+		// 	if (item.chapterID == chapterID) {
+		// 		for (let subitem of item.levelData) {
+		// 			if (subitem.level == levelID) {
+		// 				item.levelData.remove(subitem);
+		// 				return;
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 	/**
 	 * 添加关卡数据
@@ -335,8 +407,8 @@ class MapEditor extends eui.Component {
 	/**
 	 * 设置地图数据
 	 */
-	public setMapData(chapterBtn: ChapterBtn, levelBtn: LevelBtn) {
-		let chapterID: number = chapterBtn.chapterID;
+	public setMapData(levelBtn: LevelBtn) {
+		let chapterID: number = levelBtn.belongChapterID;
 		let levelID: number = levelBtn.levelID;
 		let mapData: { source, x, y }[] = [];
 		for (let i: number = 0; i < this.curMapGoods.length; i++) {
@@ -349,6 +421,8 @@ class MapEditor extends eui.Component {
 		/**
 		 * 章节上的数据
 		 */
+		let chapterBtn = this.chapterMap.get(chapterID)
+
 		for (let item of chapterBtn.levelData) {
 			if (item.level == levelID) {
 				item.mapData = mapData;

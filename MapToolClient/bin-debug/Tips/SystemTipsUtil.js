@@ -4,8 +4,9 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 var SystemTipsUtil = (function () {
     function SystemTipsUtil() {
     }
-    SystemTipsUtil.showTips = function (msg) {
-        new SystemTips(msg);
+    SystemTipsUtil.showTips = function (msg, color) {
+        if (color === void 0) { color = ColorUtil.COLOR_WHITE; }
+        new SystemTips(msg, color);
     };
     return SystemTipsUtil;
 }());

@@ -36,7 +36,16 @@ var LevelBtn = (function (_super) {
         /**
          * 记录
          */
-        MapEditor.instance.lastChapterID = MapEditor.instance.curLevel.belongChapterID;
+        var chapterID = MapEditor.instance.curLevel.belongChapterID;
+        if (MapEditor.instance.lastChapterID != chapterID) {
+            if (MapEditor.instance.curChapter) {
+                MapEditor.instance.curChapter.onSelect(false);
+            }
+            MapEditor.instance.lastChapterID = chapterID;
+            var chapterBtn = MapEditor.instance.chapterMap.get(chapterID);
+            chapterBtn.onSelect(true);
+            MapEditor.instance.curChapter = chapterBtn;
+        }
         MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.levelID;
         MapEditor.instance.curLevel.onSelect(true);
         MapEditor.instance.sceneCanvas.removeChildren();

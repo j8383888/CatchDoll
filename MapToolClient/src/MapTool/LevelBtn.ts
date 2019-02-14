@@ -11,6 +11,7 @@ class LevelBtn extends eui.Component {
 	public belongChapterID: number;
 
 
+
 	public constructor() {
 		super();
 		this.skinName = "LevelBtnSkin";
@@ -41,7 +42,17 @@ class LevelBtn extends eui.Component {
 		/**
 		 * 记录
 		 */
-		MapEditor.instance.lastChapterID = MapEditor.instance.curLevel.belongChapterID;
+		let chapterID: number = MapEditor.instance.curLevel.belongChapterID
+		if (MapEditor.instance.lastChapterID != chapterID) {
+			if (MapEditor.instance.curChapter) {
+				MapEditor.instance.curChapter.onSelect(false)
+			}
+			MapEditor.instance.lastChapterID = chapterID;
+			let chapterBtn: ChapterBtn = MapEditor.instance.chapterMap.get(chapterID);
+			chapterBtn.onSelect(true);
+			MapEditor.instance.curChapter = chapterBtn;
+
+		}
 		MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.levelID;
 
 		MapEditor.instance.curLevel.onSelect(true)

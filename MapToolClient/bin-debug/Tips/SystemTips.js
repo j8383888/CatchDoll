@@ -10,9 +10,10 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var SystemTips = (function (_super) {
     __extends(SystemTips, _super);
-    function SystemTips(msg) {
+    function SystemTips(msg, color) {
         var _this = _super.call(this) || this;
         _this.openParam = msg;
+        _this.color = color;
         _this.skinName = "SystemTipsSkin";
         _this.onInit();
         _this.onShow();
@@ -30,6 +31,7 @@ var SystemTips = (function (_super) {
     SystemTips.prototype.onShow = function () {
         var _this = this;
         this.msgLabel.text = this.openParam;
+        this.msgLabel.textColor = this.color;
         this.y = egret.MainContext.instance.stage.stageHeight;
         egret.Tween.get(this).to({ y: (egret.MainContext.instance.stage.stageHeight - this.height) / 2 }, 400, egret.Ease.quadOut).wait(1500).to({ y: 0 - this.height }, 400, egret.Ease.quadIn).call(function () {
             _this.onHide();
