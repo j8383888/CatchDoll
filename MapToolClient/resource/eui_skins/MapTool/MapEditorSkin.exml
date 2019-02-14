@@ -15,7 +15,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group width="720" x="0" y="0">
+	<e:Group id="sceneGroup" width="720" x="0" y="0">
 		<e:Rect width="720" height="1280" fillColor="0x0d607c" />
 	</e:Group>
 	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="1070" y="0" right="0">
@@ -29,15 +29,16 @@
 		<e:Button id="saveBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
-		<e:Button id="removeDecorate" label="删除场景装饰" x="390" y="10" anchorOffsetY="0" />
 		<e:Button id="removeLevelBtn" label="删除关卡" x="202" y="4" anchorOffsetY="0"/>
+		<e:Button id="removeDecorate" label="删除场景装饰" x="390" y="10" anchorOffsetY="0" />
 		<e:Button id="addChapter" label="添加章节" x="410" y="92" anchorOffsetY="0" />
 		<e:Button id="changeChapterName" label="完成章节名字修改" x="10" y="110" anchorOffsetY="0" height="94"/>
-		<e:Button id="upLoadBtn0" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
+		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout requestedRowCount="2" />
 		</e:layout>
 	</e:Group>
+	<e:CheckBox id="showGridCbx" label="显示网格" x="530.72" y="1240.37"/>
 	<e:Group id="sceneCanvas">
 	</e:Group>
 </e:Skin>

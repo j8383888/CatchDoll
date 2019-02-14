@@ -56,6 +56,19 @@ class MapEditor extends eui.Component {
 	 * 上传
 	 */
 	public upLoadBtn: eui.Button;
+	/**
+	 * 改章节名字
+	 */
+	public changeChapterName: eui.Button;
+
+	private gridContainer: egret.DisplayObjectContainer;
+	private static GRID_SIZE: number = 40;
+	private static GRID_COLOR: number = 0x00ff00;
+	private mainViewWidth: number = 720;       //主视图宽;
+	private mainViewHeight: number = 1280;      //主视图高;
+	public sceneGroup: eui.Group;
+	public showGridCbx: eui.CheckBox;    //是否显示网格;
+
 
 
 
@@ -84,11 +97,35 @@ class MapEditor extends eui.Component {
 	}
 
 	/**
+	 * 创建网格
+	 */
+	private _createGrid() {
+		this.gridContainer = new egret.DisplayObjectContainer();
+		this.gridContainer.width = this.mainViewWidth;
+		this.gridContainer.height = this.mainViewHeight;
+		var shp: egret.Shape = new egret.Shape();
+		shp.graphics.lineStyle(1, MapEditor.GRID_COLOR);
+		this.gridContainer.addChild(shp);
+		for (let i = 0; i < this.mainViewWidth; i += MapEditor.GRID_SIZE) {
+			shp.graphics.moveTo(i, 0);
+			shp.graphics.lineTo(i, this.mainViewHeight);
+
+		}
+		for (let i = 0; i < this.mainViewHeight; i += MapEditor.GRID_SIZE) {
+			shp.graphics.moveTo(0, i);
+			shp.graphics.lineTo(this.mainViewWidth, i);
+		}
+		this.gridContainer.alpha = 0.5;
+		this.sceneGroup.addChild(this.gridContainer);
+	}
+
+	/**
 	 * 初始化
 	 */
 	private _init(): void {
-		this._getServeInfo()
-
+		this._getServeInfo();
+		this._createGrid();
+		this.showGridCbx.selected = true;
 		let len = this.itemGroup.numChildren;
 		for (let i: number = 0; i < len; i++) {
 			let item = this.itemGroup.getElementAt(i);
@@ -101,6 +138,28 @@ class MapEditor extends eui.Component {
 		this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
 		this.removeDecorate.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveDecorate, this)
 		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
+		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
+		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
+	}
+
+	private _onShowGrid(): void {
+		this.gridContainer.visible = this.showGridCbx.selected;
+	}
+
+	/**
+	 * 改变
+	 */
+	private _onChanegChapter(): void {
+		let len = this.chapterMap.length;
+		for (let i: number = 0; i < len; i++) {
+			let btn: ChapterBtn = this.chapterMap.values[i];
+			for (let item of this.chapterData) {
+				if (item.chapterID == btn.chapterID) {
+					item.chapterName = btn.labelDisplay.text;
+				}
+			}
+		}
+		SystemTipsUtil.showTips("修改成功")
 	}
 
 	/**
@@ -331,6 +390,7 @@ class MapEditor extends eui.Component {
 	public addListener(img: eui.Image): void {
 		img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
 		img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
+		img.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this, true)
 	}
 
 	private _onGoodsTouch(e: egret.TouchEvent): void {
@@ -338,6 +398,7 @@ class MapEditor extends eui.Component {
 			let target = e.target
 			target.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
 			target.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
+			target.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this, true)
 			this.sceneCanvas.removeChild(target);
 			this.curMapGoods.remove(target)
 			target = null;

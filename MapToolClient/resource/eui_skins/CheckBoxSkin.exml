@@ -9,8 +9,8 @@
                  source.upAndSelected="checkbox_select_up_png"
                  source.downAndSelected="checkbox_select_down_png"
                  source.disabledAndSelected="checkbox_select_disabled_png"/>
-        <e:Label id="labelDisplay" size="20" textColor="0x707070"
+        <e:Label id="labelDisplay" size="40"
                  textAlign="center" verticalAlign="middle"
-                 fontFamily="Tahoma"/>
+                 fontFamily="Tahoma" textColor="0xffffff"/>
     </e:Group>
 </e:Skin>
