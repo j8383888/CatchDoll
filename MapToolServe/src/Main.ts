@@ -3,9 +3,9 @@ import { writeFile, readFileSync } from "fs";
 //引入http模块
 var http = require("http");
 //设置主机名
-var hostName = '127.0.0.1';
+var hostName = '0.0.0.0';
 //设置端口
-var port = 4000;
+var port = 8080;
 
 
 var battleJsonPath: string = "./BattleJson2.json"
@@ -23,7 +23,7 @@ function getJSon(path: string): any {
 var server = http.createServer(function (req, res) {
     res.setHeader('Content-Type', 'text/plain');
     res.setHeader('Access-Control-Allow-Origin', "*")
-    // res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.method == "GET") {
         let date = new Date()
         console.log(date.toLocaleString(), "发送battle数据")
@@ -43,7 +43,7 @@ var server = http.createServer(function (req, res) {
         });
     }
 
-}).listen(4000);
+})
 
 
 server.listen(port, hostName, function () {
