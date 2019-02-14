@@ -130,7 +130,7 @@ var MapEditor = (function (_super) {
     MapEditor.prototype._getServeInfo = function () {
         var request = new egret.HttpRequest();
         request.responseType = egret.HttpResponseType.TEXT;
-        request.open("http://127.0.0.1:4000", egret.HttpMethod.GET);
+        request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         // request.setRequestHeader('Access-Control-Allow-Origin', '*')
         // request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -225,7 +225,7 @@ var MapEditor = (function (_super) {
     MapEditor.prototype._saveDataOnServe = function () {
         var request = new egret.HttpRequest();
         request.responseType = egret.HttpResponseType.TEXT;
-        request.open("http://127.0.0.1:4000", egret.HttpMethod.POST);
+        request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         // request.setRequestHeader('Access-Control-Allow-Origin', '*')
         // request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
