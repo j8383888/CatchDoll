@@ -5,8 +5,21 @@ class PathEditor {
 	private _mapEditor: MapEditor;
 
 	public static readonly EXPORT_LINE_INTERVAL_DISTANCE: number = 10
+	/**
+	 * 上一个点
+	 */
+	public finalPoint: PathPoint;
+	/**
+	 * 上一条线
+	 */
+	public finalLine: PathLine;
+	/**
+	 * 上一次操作的点
+	 */
+	public lastPoint: PathPoint
 
-	private lastPoint: PathPoint;
+	public pointAry: PathPoint[] = [];
+
 	public constructor() {
 		this._init();
 	}
@@ -19,27 +32,39 @@ class PathEditor {
 	}
 
 	public _init(): void {
-		this._mapEditor = MapEditor.instance
+		this._mapEditor = MapEditor.instance;
 		MapEditor.instance.editorPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._editorPath, this)
+		let pathEditArea = this._mapEditor.pathEditArea;
+		pathEditArea.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
+		this._editorPath();
 	}
 
 	private _editorPath(): void {
-		GlobeConst.isEditPath = !GlobeConst.isEditPath;
-		let sceneGroup = MapEditor.instance.sceneGroup;
-		if (GlobeConst.isEditPath) {
-			let startP = { x: 0, y: 0 };
-			let crtl1P = { x: 20, y: 20 };
-			let crtl2P = { x: 0, y: 600 };
-			let endP = { x: 500, y: 500 };
-			let line = this.newBezierLine(startP, crtl1P, crtl2P, endP)
-			this._mapEditor.pathCanvas.addChild(line);
-			let result = this.getExportPaths(startP, crtl1P, crtl2P, endP);
-			this._test(result);
 
-			sceneGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
+		if (this._mapEditor.editorPathBtn.selected) {
+			// let startP = { x: 0, y: 0 };
+			// let crtl1P = { x: 0, y: 0 };
+			// let crtl2P = { x: 0, y: 0 };
+			// let endP = { x: 500, y: 500 };
+			// let line = this.newBezierLine(startP, crtl1P, crtl2P, endP)
+			// this._mapEditor.pathCanvas.addChild(line);
+			// let result = this.getExportPaths(startP, crtl1P, crtl2P, endP);
+			// this._test(result);
+			this._mapEditor.deletPathNode.visible = true;
+
+			this._mapEditor.sceneCanvas.touchEnabled = false;
+			this._mapEditor.sceneCanvas.touchChildren = false;
+			this._mapEditor.pathEditArea.touchEnabled = true;
+			this._mapEditor.pathEditArea.touchChildren = true;
+
 		}
 		else {
-			sceneGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
+			this._mapEditor.sceneCanvas.touchEnabled = true;
+			this._mapEditor.sceneCanvas.touchChildren = true;
+			this._mapEditor.pathEditArea.touchEnabled = false;
+			this._mapEditor.pathEditArea.touchChildren = false;
+			this._mapEditor.deletPathNode.visible = false;
+			this._mapEditor.deletPathNode.selected = false;
 		}
 	}
 
@@ -55,30 +80,26 @@ class PathEditor {
 		// shape.graphics.drawCircle()
 	}
 
-	/**
-	 * 三次贝塞尔曲线
-	 */
-	protected newBezierLine(startP, ctrl1P, ctrl2P, endP, color: number = 0xff0000, lineBold: number = 2): egret.Shape {
-		let line: egret.Shape = new egret.Shape();
-		line.graphics.lineStyle(lineBold, color);
-		line.graphics.moveTo(startP.x, startP.y);
-		line.graphics.cubicCurveTo(ctrl1P.x, ctrl1P.y, ctrl2P.x, ctrl2P.y, endP.x, endP.y);
-		line.x = 0;
-		line.y = 0;
-		// line.alpha = 0.5;
-		return line;
-	}
+	// /**
+	//  * 三次贝塞尔曲线
+	//  */
+	// protected newBezierLine(startP, ctrl1P, ctrl2P, endP, color: number = 0xff0000, lineBold: number = 2): egret.Shape {
+	// 	let line: egret.Shape = new egret.Shape();
+	// 	line.graphics.lineStyle(lineBold, color);
+	// 	line.graphics.moveTo(startP.x, startP.y);
+	// 	line.graphics.cubicCurveTo(ctrl1P.x, ctrl1P.y, ctrl2P.x, ctrl2P.y, endP.x, endP.y);
+	// 	line.x = 0;
+	// 	line.y = 0;
+	// 	// line.alpha = 0.5;
+	// 	return line;
+	// }
 
-	public getExportPaths(fromP, ctrl1P, ctrl2P, EndP): Array<{ x, y }> {
-		// if (this.lastCtrlPoint == null) {
-		// 	return [{ x: this.x, y: this.y }];
-		// }
-		egret.log("call ControlPoint, getExportPath");
-		let lastPos = new egret.Point(fromP.x, fromP.y);
+	public getExportPaths(startP, ctrl1P, ctrl2P, EndP): Array<{ x, y }> {
+		let lastPos = new egret.Point(startP.x, startP.y);
 		let nextPos = new egret.Point(EndP.x, EndP.y);
 		let nCount = Math.floor(lastPos.subtract(nextPos).length / PathEditor.EXPORT_LINE_INTERVAL_DISTANCE);
-		if (nCount > 10) {
-			nCount = 10;
+		if (nCount > 20) {
+			nCount = 20;
 		}
 		let result: Array<{ x, y }> = [];
 		for (let i: number = 1; i <= nCount; i++) {
@@ -95,21 +116,53 @@ class PathEditor {
 	 * 按下
 	 */
 	private _onDown(e: egret.TouchEvent): void {
-		if (this.lastPoint) {
-			let old = this.lastPoint;
-			
-			let p = this._mapEditor.globalToLocal(e.stageX, e.stageY)
-			this.lastPoint = this.drawPoint(p.x, p.y);
+		if (this._mapEditor.deletPathNode.selected) {
+			return;
 		}
+
+		if (this.finalPoint) {
+			/*隐藏控制线*/
+			this.lastPoint.showCtrlOp(false)
+			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+
+			let point = this.creatPoint(p);
+			point.showCtrlOp(true);
+
+			let line = this.creatLine(this.finalPoint, point)
+			point.setFromLine(line);
+			this.finalLine = line;
+			this.finalPoint.setBackLine(this.finalLine);
+
+			this.finalPoint = point;
+			this.lastPoint = this.finalPoint
+		}
+		else {
+			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+			this.finalPoint = this.creatPoint(p);
+
+			this.lastPoint = this.finalPoint
+			this.finalPoint.showCtrlOp(true);
+		}
+		this.pointAry.push(this.finalPoint)
 	}
 
 	/**
 	 * 画点
 	 */
-	private drawPoint(x: number, y: number): PathPoint {
+	public creatPoint(p: egret.Point): PathPoint {
 		let point = new PathPoint();
-		point.x = x;
-		point.y = y;
+		point.setData(p);
+		this._mapEditor.pathPoint.addChild(point);
 		return point
+	}
+
+	/**
+	 * 划线
+	 */
+	public creatLine(startP: PathPoint, endP: PathPoint): PathLine {
+		let line = new PathLine();
+		line.setData(startP, endP)
+		this._mapEditor.pathLine.addChild(line);
+		return line
 	}
 }

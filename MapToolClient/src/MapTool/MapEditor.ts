@@ -71,7 +71,14 @@ class MapEditor extends eui.Component {
 	public sceneGroup: eui.Group;
 	public showGridCbx: eui.CheckBox;    //是否显示网格;
 
-	public editorPathBtn: eui.Button;
+	public editorPathBtn: eui.CheckBox;
+	public pathLine: eui.Group;
+	public pathPoint: eui.Group;
+	public pathEditArea: eui.Rect;
+
+	public deletPathNode: eui.CheckBox;
+
+
 
 
 
@@ -105,6 +112,8 @@ class MapEditor extends eui.Component {
 	 */
 	private _createGrid() {
 		this.gridContainer = new egret.DisplayObjectContainer();
+		this.gridContainer.touchEnabled = false;
+		this.gridContainer.touchChildren = false;
 		this.gridContainer.width = this.mainViewWidth;
 		this.gridContainer.height = this.mainViewHeight;
 		var shp: egret.Shape = new egret.Shape();
@@ -144,7 +153,15 @@ class MapEditor extends eui.Component {
 		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
 		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
 		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
+
+		// this.deletPathNode.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
 	}
+
+	// private _onDelPathNode():void{
+	// 	if(this.deletPathNode.selected){
+
+	// 	}
+	// }
 
 	private _onShowGrid(): void {
 		this.gridContainer.visible = this.showGridCbx.selected;
