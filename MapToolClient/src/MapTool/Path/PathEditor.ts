@@ -42,6 +42,7 @@ class PathEditor {
 	private _editorPath(): void {
 
 		if (this._mapEditor.editorPathBtn.selected) {
+
 			// let startP = { x: 0, y: 0 };
 			// let crtl1P = { x: 0, y: 0 };
 			// let crtl2P = { x: 0, y: 0 };
@@ -119,21 +120,19 @@ class PathEditor {
 		if (this._mapEditor.deletPathNode.selected) {
 			return;
 		}
-
 		if (this.finalPoint) {
 			/*隐藏控制线*/
 			this.lastPoint.showCtrlOp(false)
 			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
 
-			let point = this.creatPoint(p);
-			point.showCtrlOp(true);
+			let newPoint = this.creatPoint(p);
+			newPoint.showCtrlOp(true);
 
-			let line = this.creatLine(this.finalPoint, point)
-			point.setFromLine(line);
+			let line = this.creatLine(this.finalPoint, newPoint)
+			newPoint.setFromLine(line);
 			this.finalLine = line;
 			this.finalPoint.setBackLine(this.finalLine);
-
-			this.finalPoint = point;
+			this.finalPoint = newPoint;
 			this.lastPoint = this.finalPoint
 		}
 		else {
@@ -144,6 +143,40 @@ class PathEditor {
 			this.finalPoint.showCtrlOp(true);
 		}
 		this.pointAry.push(this.finalPoint)
+
+
+
+	}
+
+	/**
+	 * 保存路径数据
+	 */
+	private _savePath(monsterID: number): void {
+
+		let pathDataAry: {
+			origin: { x, y },
+			ctrlP1: { x, y },
+			ctrlP2: { x, y },
+			beforeAnchor: { x, y },
+			nextAnchor: { x, y },
+		}[] = []
+
+		let len = this.pointAry.length;
+		for (let i: number = 0; i < len; i++) {
+			let pathNode = this.pointAry[i]
+			let data = {
+				origin: { x: pathNode.x, y: pathNode.y },
+				ctrlP1: { x: pathNode.ctrl1Shape.x, y: pathNode.ctrl2Shape.y },
+				ctrlP2: { x: pathNode.ctrl2Shape.x, y: pathNode.ctrl2Shape.y },
+				beforeAnchor: { x: pathNode.beforeAnchor.x, y: pathNode.beforeAnchor.y },
+				nextAnchor: { x: pathNode.nextAnchor.x, y: pathNode.nextAnchor.y },
+			}
+			pathDataAry.push(data);
+		}
+		// JSON.stringify(pathDataAry);
+
+
+
 	}
 
 	/**

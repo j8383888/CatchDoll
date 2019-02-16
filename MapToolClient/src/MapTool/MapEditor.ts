@@ -78,10 +78,9 @@ class MapEditor extends eui.Component {
 
 	public deletPathNode: eui.CheckBox;
 
+	public monsterBox: eui.Group;
 
-
-
-
+	public monsterShowBox: eui.Group;
 
 	private static _instance: MapEditor = null;
 
@@ -90,7 +89,18 @@ class MapEditor extends eui.Component {
 		chapterName: string,
 		levelData: {
 			level: number,
-			mapData: { source, x, y }[]
+			bgSource: string,
+			monster: {
+				monsterID: number,
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			mapData: { source, x, y }[],
 		}[]
 	}[];
 
@@ -133,11 +143,54 @@ class MapEditor extends eui.Component {
 	}
 
 	/**
+	 * 创建怪物
+	 */
+	private _creatMonster(): void {
+		let monsterAry: string[] = [
+			"duyanhei", "duyanhong", "duyanlan", "duyanlv", "xiaozhuhei", "xiaozhuhong", "xiaozhuhuang"
+			, "xiaozhulan"
+		]
+		let blank = new eui.Group();
+		blank.width = this.monsterBox.width;
+		blank.height = 100;
+		this.monsterBox.addChild(blank);
+		for (let i: number = 0; i < monsterAry.length; i++) {
+			let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(monsterAry[i]);
+			dragon.touchEnabled = true;
+			let group = new eui.Group();
+			group.width = this.monsterBox.width;
+			group.height = dragon.height + 15;
+
+			dragon.animation.play(null, 0)
+			dragon.x = group.width / 2
+			group.addChild(dragon);
+			dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
+			dragon.name = monsterAry[i]
+			this.monsterBox.addChild(group);
+		}
+	}
+
+	private _clickMonster(e: egret.TouchEvent): void {
+		if (this.curLevel && this.curChapter) {
+
+			let name = e.target.name
+			let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(name);
+			let btn = new MonsterBtn(dragon);
+
+			this.monsterShowBox.addChild(btn);
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节！", ColorUtil.COLOR_RED)
+		}
+	}
+
+	/**
 	 * 初始化
 	 */
 	private _init(): void {
 		this._getServeInfo();
 		this._createGrid();
+		this._creatMonster();
 		this.showGridCbx.selected = true;
 		let len = this.itemGroup.numChildren;
 		for (let i: number = 0; i < len; i++) {
@@ -278,6 +331,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private onGetComplete(e: egret.Event) {
+
 		this.chapterData = JSON.parse(e.target.response);
 		for (let item of this.chapterData) {
 			let group = new eui.Group();
@@ -364,7 +418,7 @@ class MapEditor extends eui.Component {
 			SystemTipsUtil.showTips("保存成功！")
 		}
 		else {
-			SystemTipsUtil.showTips("请选中关卡和章节！", ColorUtil.COLOR_RED)
+			SystemTipsUtil.showTips("请先选中关卡和章节！", ColorUtil.COLOR_RED)
 		}
 	}
 
@@ -393,6 +447,12 @@ class MapEditor extends eui.Component {
 
 
 	private _onDown(e: egret.TouchEvent): void {
+		if (this.editorPathBtn.selected) {
+			SystemTipsUtil.showTips("请先取消编辑路径勾选!", ColorUtil.COLOR_RED);
+			return;
+		}
+
+
 		if (this.curLevel && this.curChapter) {
 			let target = e.target;
 			let img = new eui.Image(target.source);

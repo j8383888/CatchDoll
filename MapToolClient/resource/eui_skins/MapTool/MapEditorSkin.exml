@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MapEditorSkin" width="1800" height="1280" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing">
-	<e:Scroller width="577.7" x="923.97" y="0" anchorOffsetX="0" anchorOffsetY="0" height="1070">
-		<e:Group id="itemGroup" anchorOffsetY="0" height="1057.7" anchorOffsetX="0" width="573.7">
+	<e:Scroller width="389.7" x="923.97" y="0" anchorOffsetX="0" anchorOffsetY="0" height="1070" scrollPolicyH="off">
+		<e:Group id="itemGroup" anchorOffsetY="0" height="1057.7" anchorOffsetX="0" width="541.7">
+			<e:Button label="场景装饰" x="-10" y="0" anchorOffsetX="0" width="396"/>
 			<e:Image x="143" y="258" source="item_1" />
 			<e:Image x="153" y="268" source="item_2" />
 			<e:Image x="163" y="278" source="item_3" />
@@ -23,12 +24,34 @@
 			<e:Group id="pathLine" scaleX="1" scaleY="1"/>
 			<e:Group id="pathPoint" scaleX="1" scaleY="1"/>
 		</e:Group>
+		<e:Group id="monsterShowBox" width="718" height="626" x="0" y="654" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+			<e:layout>
+				<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
+			</e:layout>
+		</e:Group>
 	</e:Group>
-	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="1070" y="0" right="0">
+	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="1070" y="0" right="0" scrollPolicyH="off">
 		<e:Group id="levelGroup" anchorOffsetY="0" height="1058">
 			<e:layout>
-				<e:VerticalLayout/>
+				<e:VerticalLayout gap="0"/>
 			</e:layout>
+			<e:Button label="关卡" x="-1600" y="10" anchorOffsetX="0" width="206" scaleX="1" scaleY="1"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="606" y="0" x="1316" scrollPolicyH="off">
+		<e:Group id="monsterBox" anchorOffsetY="0" height="1058">
+		<e:layout>
+			<e:VerticalLayout gap="0" horizontalAlign="center"/>
+		</e:layout>
+			<e:Button label="怪物" x="-8" y="0" anchorOffsetX="0" width="274" scaleX="1" scaleY="1"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="458" y="608" x="1316" scrollPolicyH="off">
+		<e:Group anchorOffsetY="0" height="472">
+		<e:layout>
+			<e:VerticalLayout gap="0" horizontalAlign="center"/>
+		</e:layout>
+			<e:Button label="场景背景" x="-1324" y="-608" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
 		</e:Group>
 	</e:Scroller>
 	<e:Group x="924" y="1086">

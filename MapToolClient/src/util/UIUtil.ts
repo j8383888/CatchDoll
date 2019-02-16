@@ -124,7 +124,7 @@ class UIUtil {
 	public static circleAdd(value: number, addNum: number, maxNum: number): number {
 		value += addNum;
 		if (value > maxNum) {
-			value -= maxNum ;
+			value -= maxNum;
 		}
 		return value;
 	}
@@ -193,6 +193,22 @@ class UIUtil {
 		let y: number = p.y;
 		Point.release(p);
 		return [x, y];
+	}
+
+	/**
+	 * 创建龙骨
+	 */
+	public static creatDragonbones(groupName: string, armatureName = "armatureName"): dragonBones.EgretArmatureDisplay {
+		let egretFactory: dragonBones.EgretFactory = dragonBones.EgretFactory.factory;
+		if (egretFactory.getDragonBonesData(groupName) == null) {
+			var dragonbonesData = RES.getRes(groupName + "_ske_dbbin");
+			var textureData = RES.getRes(groupName + "_tex_json");
+			var texture = RES.getRes(groupName + "_tex_png");
+			egretFactory.parseDragonBonesData(dragonbonesData, groupName);
+			egretFactory.parseTextureAtlasData(textureData, texture, groupName);
+		}
+		let armatureDisplay: dragonBones.EgretArmatureDisplay = egretFactory.buildArmatureDisplay(armatureName, groupName);
+		return armatureDisplay;
 	}
 
 }

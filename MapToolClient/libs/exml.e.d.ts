@@ -24,6 +24,8 @@ declare class LevelBtnSkin extends eui.Skin{
 }
 declare class MapEditorSkin extends eui.Skin{
 }
+declare class MonsterBtnSkin extends eui.Skin{
+}
 declare module skins{
 	class PanelSkin extends eui.Skin{
 	}

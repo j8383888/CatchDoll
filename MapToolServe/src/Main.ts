@@ -8,7 +8,7 @@ var hostName = '0.0.0.0';
 var port = 8080;
 
 
-var battleJsonPath: string = "./BattleJson2.json"
+var battleJsonPath: string = "./BattleJson.json"
 
 
 /**
