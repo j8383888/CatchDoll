@@ -1,16 +1,28 @@
 class LevelBtn extends eui.Component {
 
 	public labelDisplay: eui.Label;
-
-	public mapData: { source, x, y }[];
-
-	public levelID: number;
 	/**
 	 * 隶属于章节ID
 	 */
 	public belongChapterID: number;
 
 
+
+	public data: {
+		level: number,
+		bgSource: string,
+		monster: {
+			monsterID: number,
+			pathData: {
+				origin: { x, y },
+				ctrlP1: { x, y },
+				ctrlP2: { x, y },
+				beforeAnchor: { x, y },
+				nextAnchor: { x, y },
+			}[]
+		}[],
+		mapData: { source, x, y }[],
+	};
 
 	public constructor() {
 		super();
@@ -20,24 +32,50 @@ class LevelBtn extends eui.Component {
 	/**
 	 * 设置数据
 	 */
-	public setData(level: number, chapterID: number, mapData: any): void {
-		this.levelID = level
-		this.labelDisplay.text = level.toString();
+	public setData(chapterID: number, data: {
+		level: number,
+		bgSource: string,
+		monster: {
+			monsterID: number,
+			pathData: {
+				origin: { x, y },
+				ctrlP1: { x, y },
+				ctrlP2: { x, y },
+				beforeAnchor: { x, y },
+				nextAnchor: { x, y },
+			}[]
+		}[],
+		mapData: { source, x, y }[],
+	}): void {
 		this.belongChapterID = chapterID
-		this.mapData = mapData;
+		this.data = data;
+		this.labelDisplay.text = this.data.level.toString();
+		
 	}
 
 	public addListen(): void {
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClick, this)
+	}
 
+	private _clear(): void {
+		MapEditor.instance.curMapGoods.length = 0;
+		PathEditor.instance.pathPoints.length = 0;
+		PathEditor.instance.finalLine = null;
+		PathEditor.instance.finalPoint = null;
+		PathEditor.instance.lastPoint = null;
+		MapEditor.instance.curMonsterBtn = null;
+
+		MapEditor.instance.pathLine.removeChildren();
+		MapEditor.instance.pathPoint.removeChildren();
+		MapEditor.instance.monsterShowBox.removeChildren();
 	}
 
 	private _onClick(e: egret.TouchEvent): void {
-		MapEditor.instance.curMapGoods.length = 0;
+		this._clear();
 		if (MapEditor.instance.curLevel) {
 			MapEditor.instance.curLevel.onSelect(false)
 		}
-
+		MapEditor.instance.levelBg.source = this.data.bgSource;
 		MapEditor.instance.curLevel = e.currentTarget;
 		/**
 		 * 记录
@@ -53,11 +91,11 @@ class LevelBtn extends eui.Component {
 			MapEditor.instance.curChapter = chapterBtn;
 
 		}
-		MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.levelID;
+		MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.data.level;
 
 		MapEditor.instance.curLevel.onSelect(true)
 		MapEditor.instance.sceneCanvas.removeChildren();
-		for (let item of this.mapData) {
+		for (let item of this.data.mapData) {
 			let img = new eui.Image();
 			img.source = item.source;
 			img.x = item.x;
@@ -65,6 +103,15 @@ class LevelBtn extends eui.Component {
 			MapEditor.instance.curMapGoods.push(img);
 			MapEditor.instance.sceneCanvas.addChild(img);
 			MapEditor.instance.addListener(img);
+		}
+
+
+
+		/*生成怪物Btn*/
+		for (let i: number = 0; i < this.data.monster.length; i++) {
+			let data = this.data.monster[i]
+			let monsterBtn = new MonsterBtn(data, this);
+			MapEditor.instance.monsterShowBox.addChild(monsterBtn);
 		}
 	}
 

@@ -1,13 +1,28 @@
 class ChapterBtn extends eui.Component {
 
 	public labelDisplay: eui.Label;
-	public chapterID: number;
 	public btnBg: eui.Rect;
 
-	public levelData: {
-		level: number,
-		mapData: { source, x, y }[]
-	}[];
+
+	public data: {
+		chapterID: number,
+		chapterName: string,
+		levelData: {
+			level: number,
+			bgSource: string,
+			monster: {
+				monsterID: number,
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			mapData: { source, x, y }[],
+		}[]
+	}
 
 	public isOpen: boolean = false;
 
@@ -21,10 +36,9 @@ class ChapterBtn extends eui.Component {
 	/**
 	 * 设置数据
 	 */
-	public setData(label: string, chapterID: number, levelData): void {
-		this.labelDisplay.text = label;
-		this.chapterID = chapterID;
-		this.levelData = levelData;
+	public setData(data: any): void {
+		this.labelDisplay.text = data.chapterName;
+		this.data = data;
 	}
 
 	/**
@@ -33,12 +47,12 @@ class ChapterBtn extends eui.Component {
 	public onClick() {
 		this.isOpen = !this.isOpen
 		if (this.isOpen) {
-			for (let subitem of this.levelData) {
+			for (let subitem of this.data.levelData) {
 				let levelBtn = new LevelBtn();
-				levelBtn.setData(subitem.level, this.chapterID, subitem.mapData);
+				levelBtn.setData(this.data.chapterID, subitem);
 				levelBtn.addListen();
 				this.parent.addChild(levelBtn);
-				if (MapEditor.instance.lastLevelID == levelBtn.levelID && MapEditor.instance.lastChapterID == levelBtn.belongChapterID) {
+				if (MapEditor.instance.lastLevelID == levelBtn.data.level && MapEditor.instance.lastChapterID == levelBtn.belongChapterID) {
 					MapEditor.instance.curLevel = levelBtn;
 					levelBtn.onSelect(true);
 				}

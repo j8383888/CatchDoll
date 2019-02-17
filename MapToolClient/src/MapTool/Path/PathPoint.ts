@@ -50,6 +50,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 		this.orginPoint.touchEnabled = true;
 		this.ctrl1Shape.touchEnabled = true;
 		this.ctrl2Shape.touchEnabled = true;
+		this.showCtrlOp(false);
 		this.orginPoint.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onOriginDown, this)
 		this.orginPoint.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMoveOrgin, this)
 		this.ctrl1Shape.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this)
@@ -69,7 +70,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 	 * 删除
 	 */
 	private _onDelete(): void {
-		PathEditor.instance.pointAry.remove(this);
+		PathEditor.instance.pathPoints.remove(this);
 		this.parent.removeChild(this);
 
 		if (this.fromline && this.backline) {
@@ -119,10 +120,10 @@ class PathPoint extends egret.DisplayObjectContainer {
 		}
 		else {
 
-			this.showCtrlOp(true);
 			if (PathEditor.instance.lastPoint) {
 				PathEditor.instance.lastPoint.showCtrlOp(false);
 			}
+			this.showCtrlOp(true);
 			PathEditor.instance.lastPoint = this;
 		}
 
@@ -134,6 +135,19 @@ class PathPoint extends egret.DisplayObjectContainer {
 
 	public setBackLine(backline: PathLine): void {
 		this.backline = backline;
+	}
+
+	public setAnchor(beforeAnchor: egret.Point, nextAnchor: egret.Point): void {
+		this.beforeAnchor = beforeAnchor;
+		this.nextAnchor = nextAnchor;
+	}
+
+	public setCtrlOp(ctrl1: { x: number, y: number }, ctrl2: { x: number, y: number }): void {
+		this.ctrl1Shape.x = ctrl1.x;
+		this.ctrl1Shape.y = ctrl1.y;
+		this.ctrl2Shape.x = ctrl2.x;
+		this.ctrl2Shape.y = ctrl2.y;
+		this._updateCrtlLine(ctrl1.x, ctrl1.y);
 	}
 
 	/**

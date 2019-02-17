@@ -24,6 +24,7 @@
 		"bin-debug/MapTool/Path/PathEditor.js",
 		"bin-debug/MapTool/Path/PathLine.js",
 		"bin-debug/MapTool/Path/PathPoint.js",
+		"bin-debug/Table/MonsterTable.js",
 		"bin-debug/Tips/SystemTips.js",
 		"bin-debug/Tips/SystemTipsUtil.js",
 		"bin-debug/AssetAdapter.js",

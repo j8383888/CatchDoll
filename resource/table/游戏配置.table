@@ -46,15 +46,9 @@
 	</output>
 	
 	<output type="json-ts" code="MonsterTable" file="游戏配置.xlsx" sheet="怪兽配置">
-		<key code="id"/>
 		<field column="id" code="id" type="int32" />
 		<field column="怪兽名称" code="name" type="string" />
-		<field column="渲染源" code="imageAry" type="array" >
-			<field column="value" type="object" >
-				<field column="keyName" type="string" />
-				<field column="sourceName" type="string" />
-			</field>
-		</field>
+		<field column="渲染源" code="dragonBones" type="string" />
 		<field column="生命值" code="life" type="int32" />
 		<field column="移动速度" code="moveSpeed" type="int32" />
 	</output>

@@ -2,10 +2,12 @@
     {
         "chapterID": 1,
         "chapterName": "森林",
+
         "levelData": [
             {
                 "level": 1,
                 "bgSource": "scene1",
+				"monster":[],
                 "mapData": [
                     {
                         "source": "item_7",
@@ -17,6 +19,7 @@
             {
                 "level": 2,
                 "bgSource": "scene2",
+				"monster":[],
                 "mapData": [
                     {
                         "source": "item_5",
@@ -34,6 +37,7 @@
             {
                 "level": 1,
                 "bgSource": "scene3",
+				"monster":[],
                 "mapData": [
                     {
                         "source": "item_4",
@@ -60,6 +64,7 @@
             {
                 "level": 2,
                 "bgSource": "scene4",
+				"monster":[],
                 "mapData": [
                     {
                         "source": "item_2",

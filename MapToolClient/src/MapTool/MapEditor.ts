@@ -81,8 +81,23 @@ class MapEditor extends eui.Component {
 	public monsterBox: eui.Group;
 
 	public monsterShowBox: eui.Group;
+	public savePath: eui.Button;
+
 
 	private static _instance: MapEditor = null;
+
+	public MonsterTable: table.MonsterTable[];
+
+	public levelBg: eui.Image;
+
+	/**
+	 * 当前选择怪物
+	 */
+	public curMonsterBtn: MonsterBtn;
+
+	public bgGroup: eui.Group;
+	public lookPathBtn: eui.CheckBox;
+	public lookGoodsBtn: eui.CheckBox;
 
 	public chapterData: {
 		chapterID: number,
@@ -146,16 +161,14 @@ class MapEditor extends eui.Component {
 	 * 创建怪物
 	 */
 	private _creatMonster(): void {
-		let monsterAry: string[] = [
-			"duyanhei", "duyanhong", "duyanlan", "duyanlv", "xiaozhuhei", "xiaozhuhong", "xiaozhuhuang"
-			, "xiaozhulan"
-		]
+		this.MonsterTable = RES.getRes("MonsterTable_json");
+
 		let blank = new eui.Group();
 		blank.width = this.monsterBox.width;
 		blank.height = 100;
 		this.monsterBox.addChild(blank);
-		for (let i: number = 0; i < monsterAry.length; i++) {
-			let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(monsterAry[i]);
+		for (let i: number = 0; i < this.MonsterTable.length; i++) {
+			let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(this.MonsterTable[i].dragonBones);
 			dragon.touchEnabled = true;
 			let group = new eui.Group();
 			group.width = this.monsterBox.width;
@@ -165,18 +178,21 @@ class MapEditor extends eui.Component {
 			dragon.x = group.width / 2
 			group.addChild(dragon);
 			dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
-			dragon.name = monsterAry[i]
+			dragon.name = this.MonsterTable[i].id.toString();
 			this.monsterBox.addChild(group);
 		}
 	}
 
 	private _clickMonster(e: egret.TouchEvent): void {
 		if (this.curLevel && this.curChapter) {
+			let id = e.target.name;
 
-			let name = e.target.name
-			let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(name);
-			let btn = new MonsterBtn(dragon);
-
+			let data = {
+				monsterID: id,
+				pathData: []
+			};
+			let btn = new MonsterBtn(data, this.curLevel);
+			this.curLevel.data.monster.push(data);
 			this.monsterShowBox.addChild(btn);
 		}
 		else {
@@ -206,15 +222,50 @@ class MapEditor extends eui.Component {
 		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
 		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
 		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
+		this.savePath.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSavePath, this);
+		this.lookPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookPath, this)
+		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
 
-		// this.deletPathNode.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
+		this.lookPathBtn.selected = this.lookGoodsBtn.selected = true;
+		let len2 = this.bgGroup.numChildren;
+		for (let i: number = 0; i < len2; i++) {
+			let item = this.bgGroup.getElementAt(i);
+			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
+		}
 	}
 
-	// private _onDelPathNode():void{
-	// 	if(this.deletPathNode.selected){
+	private _onLookPath(e: egret.TouchEvent): void {
+		this.editorPathBtn.visible = this.pathCanvas.visible = this.lookPathBtn.selected;
+		if (!this.pathCanvas.visible) {
+			this.editorPathBtn.visible = this.editorPathBtn.selected = false;
+			this.deletPathNode.visible = this.deletPathNode.selected = false;
+		}
+	}
 
-	// 	}
-	// }
+	private _onLookGoods(e: egret.TouchEvent): void {
+		this.sceneCanvas.visible = this.lookGoodsBtn.selected;
+	}
+
+	private _onBgDown(e: egret.TouchEvent): void {
+		if (this.curChapter && this.curLevel) {
+			this.levelBg.source = e.target.source;
+			this.curLevel.data.bgSource = e.target.source
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节！", ColorUtil.COLOR_RED)
+		}
+	}
+
+	private _onSavePath(e: egret.TouchEvent): void {
+
+		if (this.curChapter && this.curLevel && this.curMonsterBtn) {
+			PathEditor.instance.savePath();
+			SystemTipsUtil.showTips("保存路径成功！")
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
+		}
+	}
 
 	private _onShowGrid(): void {
 		this.gridContainer.visible = this.showGridCbx.selected;
@@ -228,7 +279,7 @@ class MapEditor extends eui.Component {
 		for (let i: number = 0; i < len; i++) {
 			let btn: ChapterBtn = this.chapterMap.values[i];
 			for (let item of this.chapterData) {
-				if (item.chapterID == btn.chapterID) {
+				if (item.chapterID == btn.data.chapterID) {
 					item.chapterName = btn.labelDisplay.text;
 				}
 			}
@@ -261,20 +312,25 @@ class MapEditor extends eui.Component {
 		let chapterID = this._getLastChapterID();
 		chapterID++;
 		let chapterBtn = new ChapterBtn();
-		let levelData = []
-		chapterBtn.setData("新的章节", chapterID, levelData);
+		let data = {
+			chapterID: chapterID,
+			chapterName: "新的章节",
+			levelData: []
+		};
+
+		chapterBtn.setData(data);
 		this.chapterMap.set(chapterID, chapterBtn);
 		group.addChild(chapterBtn);
 		this.levelGroup.addChild(group);
 		chapterBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickChapter, this)
-		this._addChapterData(chapterBtn, levelData);
+		this._addChapterData(chapterBtn, data.levelData);
 	}
 
 	/**
 	 * 添加章节数据
 	 */
 	private _addChapterData(chapterBtn: ChapterBtn, levelData: any): void {
-		let chapterID: number = chapterBtn.chapterID;
+		let chapterID: number = chapterBtn.data.chapterID;
 
 
 		/**
@@ -293,7 +349,7 @@ class MapEditor extends eui.Component {
 
 	private _onRemoveLevel(): void {
 		if (this.curLevel) {
-			this._clearGoods();
+			this._clear();
 			this.curLevel.parent.removeChild(this.curLevel);
 			this.deleteLevelData(this.curLevel);
 			this.curLevel = null
@@ -303,9 +359,18 @@ class MapEditor extends eui.Component {
 		}
 	}
 
-	private _clearGoods(): void {
+	private _clear(): void {
 		this.sceneCanvas.removeChildren();
 		this.curMapGoods.length = 0;
+
+		PathEditor.instance.finalLine = null;
+		PathEditor.instance.finalPoint = null;
+		PathEditor.instance.lastPoint = null;
+		MapEditor.instance.curMonsterBtn = null;
+		PathEditor.instance.pathPoints.length = 0;
+		MapEditor.instance.pathLine.removeChildren();
+		MapEditor.instance.pathPoint.removeChildren();
+		MapEditor.instance.monsterShowBox.removeChildren();
 	}
 
 	/**
@@ -319,7 +384,8 @@ class MapEditor extends eui.Component {
 	private _getServeInfo(): void {
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		// request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		request.open("http://127.0.0.1:8080/", egret.HttpMethod.GET);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -340,7 +406,7 @@ class MapEditor extends eui.Component {
 			layoutV.horizontalAlign = "center";
 			group.layout = layoutV;
 			let chapterBtn = new ChapterBtn();
-			chapterBtn.setData(item.chapterName, item.chapterID, item.levelData);
+			chapterBtn.setData(item);
 			group.addChild(chapterBtn);
 			this.levelGroup.addChild(group);
 			this.chapterMap.set(item.chapterID, chapterBtn);
@@ -383,10 +449,16 @@ class MapEditor extends eui.Component {
 		let group = this.curChapter.parent;
 
 		let level: LevelBtn = new LevelBtn();
-		let levelID: number = this.getLastLevel(this.curChapter.chapterID);
+		let levelID: number = this.getLastLevel(this.curChapter.data.chapterID);
 		levelID++;
+		let data = {
+			level: levelID,
+			bgSource: "scene",
+			monster: [],
+			mapData: []
+		};
 		level.addListen();
-		level.setData(levelID, this.curChapter.chapterID, [])
+		level.setData(this.curChapter.data.chapterID, data)
 		group.addChild(level);
 		this.addLevelData(this.curChapter, level);
 	}
@@ -429,7 +501,8 @@ class MapEditor extends eui.Component {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		// request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -505,20 +578,13 @@ class MapEditor extends eui.Component {
 	 */
 	public deleteLevelData(levelBtn: LevelBtn) {
 		let chapterID: number = levelBtn.belongChapterID;
-		let levelID: number = levelBtn.levelID;
 
 
 		/**
 		 * 章节上的数据
 		 */
-		let chapterBtn = this.chapterMap.get(chapterID)
-
-		for (let item of chapterBtn.levelData) {
-			if (item.level == levelID) {
-				chapterBtn.levelData.remove(item);
-				break;
-			}
-		}
+		let chapterBtn: ChapterBtn = this.chapterMap.get(chapterID)
+		chapterBtn.data.levelData.remove(levelBtn.data);
 
 		// /**
 		//  * 总数据
@@ -538,12 +604,10 @@ class MapEditor extends eui.Component {
 	 * 添加关卡数据
 	 */
 	public addLevelData(chapterBtn: ChapterBtn, levelBtn: LevelBtn) {
-		let chapterID: number = chapterBtn.chapterID;
-		let levelID: number = levelBtn.levelID;
 		/**
 		 * 章节上的数据
 		 */
-		chapterBtn.levelData.push({ level: levelBtn.levelID, mapData: [] })
+		chapterBtn.data.levelData.push(levelBtn.data)
 	}
 
 	/**
@@ -551,30 +615,32 @@ class MapEditor extends eui.Component {
 	 */
 	public setMapData(levelBtn: LevelBtn) {
 		let chapterID: number = levelBtn.belongChapterID;
-		let levelID: number = levelBtn.levelID;
+		let levelID: number = levelBtn.data.level;
+
 		let mapData: { source, x, y }[] = [];
 		for (let i: number = 0; i < this.curMapGoods.length; i++) {
 			let item = this.curMapGoods[i];
 			let data = { source: item.source, x: item.x, y: item.y };
 			mapData.push(data);
 		}
+		levelBtn.data.mapData = mapData
 
 
-		/**
-		 * 章节上的数据
-		 */
-		let chapterBtn = this.chapterMap.get(chapterID)
+		// /**
+		//  * 章节上的数据
+		//  */
+		// let chapterBtn = this.chapterMap.get(chapterID)
 
-		for (let item of chapterBtn.levelData) {
-			if (item.level == levelID) {
-				item.mapData = mapData;
-				break;
-			}
-		}
-		/**
-		 * 关卡按钮上的数据
-		 */
-		levelBtn.mapData = mapData;
+		// for (let item of chapterBtn.levelData) {
+		// 	if (item.level == levelID) {
+		// 		item.mapData = mapData;
+		// 		break;
+		// 	}
+		// }
+		// /**
+		//  * 关卡按钮上的数据
+		//  */
+		// levelBtn. = mapData;
 	}
 
 	private _remove(): void {

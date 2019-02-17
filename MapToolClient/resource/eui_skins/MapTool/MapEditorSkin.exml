@@ -19,6 +19,7 @@
 	<e:Rect id="pathEditArea" width="920" height="1280" fillColor="0x0d7a60" anchorOffsetX="0"/>
 	<e:Group id="sceneGroup" width="720" x="100" y="0" touchEnabled="false">
 		<e:Rect width="720" height="1280" fillColor="0x0d607c"  touchEnabled="false"/>
+		<e:Image id="levelBg" width="720" height="1280"/>
 		<e:Group id="sceneCanvas"/>
 		<e:Group id="pathCanvas">
 			<e:Group id="pathLine" scaleX="1" scaleY="1"/>
@@ -47,11 +48,16 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="458" y="608" x="1316" scrollPolicyH="off">
-		<e:Group anchorOffsetY="0" height="472">
-		<e:layout>
-			<e:VerticalLayout gap="0" horizontalAlign="center"/>
-		</e:layout>
+		<e:Group id="bgGroup" anchorOffsetY="0" height="472">
+			<e:layout>
+				<e:TileLayout/>
+			</e:layout>
+
 			<e:Button label="场景背景" x="-1324" y="-608" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
+			<e:Image width="200" height="18" x="106" y="158" source="scene1_png"/>
+			<e:Image width="200" height="18" x="116" y="168" source="scene2_png"/>
+			<e:Image width="200" height="18" x="126" y="178" source="scene3_png"/>
+			<e:Image width="200" height="18" x="136" y="188" source="scene4_png"/>
 		</e:Group>
 	</e:Scroller>
 	<e:Group x="924" y="1086">
@@ -68,6 +74,9 @@
 		</e:layout>
 	</e:Group>
 	<e:CheckBox id="showGridCbx" label="显示网格" x="1591" y="1248.37"/>
-	<e:CheckBox id="editorPathBtn" label="编辑路径" x="1591" y="1203.37"/>
-	<e:CheckBox id="deletPathNode" label="删除路径点" x="1589" y="1158.37"/>
+	<e:CheckBox id="editorPathBtn" label="编辑路径" x="1591" y="1129.87"/>
+	<e:CheckBox id="lookPathBtn" label="显示路径" x="1593" y="1169.37"/>
+	<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="1593" y="1208.87"/>
+	<e:Button id="savePath" label="保存当前怪物路径" x="1614.5" y="1001.17" anchorOffsetY="0" height="94" scaleX="0.8" scaleY="0.8"/>
+	<e:CheckBox id="deletPathNode" label="删除路径点" x="1589" y="1090.37"/>
 </e:Skin>

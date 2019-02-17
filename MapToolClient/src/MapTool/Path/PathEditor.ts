@@ -17,8 +17,11 @@ class PathEditor {
 	 * 上一次操作的点
 	 */
 	public lastPoint: PathPoint
+	/**
+	 * 路径点
+	 */
+	public pathPoints: PathPoint[] = [];
 
-	public pointAry: PathPoint[] = [];
 
 	public constructor() {
 		this._init();
@@ -57,6 +60,7 @@ class PathEditor {
 			this._mapEditor.sceneCanvas.touchChildren = false;
 			this._mapEditor.pathEditArea.touchEnabled = true;
 			this._mapEditor.pathEditArea.touchChildren = true;
+			this._mapEditor.pathCanvas.touchChildren = true;
 
 		}
 		else {
@@ -64,6 +68,7 @@ class PathEditor {
 			this._mapEditor.sceneCanvas.touchChildren = true;
 			this._mapEditor.pathEditArea.touchEnabled = false;
 			this._mapEditor.pathEditArea.touchChildren = false;
+			this._mapEditor.pathCanvas.touchChildren = false;
 			this._mapEditor.deletPathNode.visible = false;
 			this._mapEditor.deletPathNode.selected = false;
 		}
@@ -120,38 +125,72 @@ class PathEditor {
 		if (this._mapEditor.deletPathNode.selected) {
 			return;
 		}
-		if (this.finalPoint) {
-			/*隐藏控制线*/
-			this.lastPoint.showCtrlOp(false)
-			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
 
-			let newPoint = this.creatPoint(p);
-			newPoint.showCtrlOp(true);
+			if (this.finalPoint) {
+				/*隐藏控制线*/
+				this.lastPoint.showCtrlOp(false)
+				let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
 
-			let line = this.creatLine(this.finalPoint, newPoint)
-			newPoint.setFromLine(line);
-			this.finalLine = line;
-			this.finalPoint.setBackLine(this.finalLine);
-			this.finalPoint = newPoint;
-			this.lastPoint = this.finalPoint
+				let newPoint = this.creatPoint(p);
+				newPoint.showCtrlOp(true);
+
+				let line = this.creatLine(this.finalPoint, newPoint)
+				newPoint.setFromLine(line);
+				this.finalLine = line;
+				this.finalPoint.setBackLine(this.finalLine);
+				this.finalPoint = newPoint;
+				this.lastPoint = this.finalPoint
+			}
+			else {
+				let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+				this.finalPoint = this.creatPoint(p);
+
+				this.lastPoint = this.finalPoint
+				this.finalPoint.showCtrlOp(true);
+			}
+			this.pathPoints.push(this.finalPoint)
 		}
 		else {
-			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
-			this.finalPoint = this.creatPoint(p);
+			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
+		}
+	}
 
-			this.lastPoint = this.finalPoint
+	public drawPath(pathNodes: {
+		origin: { x, y },
+		ctrlP1: { x, y },
+		ctrlP2: { x, y },
+		beforeAnchor: { x, y },
+		nextAnchor: { x, y },
+	}[]): void {
+
+		for (let item of pathNodes) {
+			if (this.finalPoint) {
+				let newPoint = this.creatPoint(new egret.Point(item.origin.x, item.origin.y));
+				newPoint.setCtrlOp(item.ctrlP1, item.ctrlP2);
+				newPoint.setAnchor(new egret.Point(item.beforeAnchor.x, item.beforeAnchor.y), new egret.Point(item.nextAnchor.x, item.nextAnchor.y))
+				let line = this.creatLine(this.finalPoint, newPoint)
+				newPoint.setFromLine(line);
+				this.finalLine = line;
+				this.finalPoint.setBackLine(this.finalLine);
+				this.finalPoint = newPoint;
+				this.lastPoint = this.finalPoint
+			}
+			else {
+				this.finalPoint = this.creatPoint(new egret.Point(item.origin.x, item.origin.y));
+				this.lastPoint = this.finalPoint
+			}
+			this.pathPoints.push(this.finalPoint)
+		}
+		if (this.finalPoint) {
 			this.finalPoint.showCtrlOp(true);
 		}
-		this.pointAry.push(this.finalPoint)
-
-
-
 	}
 
 	/**
 	 * 保存路径数据
 	 */
-	private _savePath(monsterID: number): void {
+	public savePath(): void {
 
 		let pathDataAry: {
 			origin: { x, y },
@@ -159,24 +198,20 @@ class PathEditor {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[] = []
-
-		let len = this.pointAry.length;
+		}[] = MapEditor.instance.curMonsterBtn.data.pathData;
+		pathDataAry.length = 0;
+		let len = this.pathPoints.length;
 		for (let i: number = 0; i < len; i++) {
-			let pathNode = this.pointAry[i]
+			let pathNode = this.pathPoints[i]
 			let data = {
 				origin: { x: pathNode.x, y: pathNode.y },
-				ctrlP1: { x: pathNode.ctrl1Shape.x, y: pathNode.ctrl2Shape.y },
+				ctrlP1: { x: pathNode.ctrl1Shape.x, y: pathNode.ctrl1Shape.y },
 				ctrlP2: { x: pathNode.ctrl2Shape.x, y: pathNode.ctrl2Shape.y },
 				beforeAnchor: { x: pathNode.beforeAnchor.x, y: pathNode.beforeAnchor.y },
 				nextAnchor: { x: pathNode.nextAnchor.x, y: pathNode.nextAnchor.y },
 			}
 			pathDataAry.push(data);
 		}
-		// JSON.stringify(pathDataAry);
-
-
-
 	}
 
 	/**
