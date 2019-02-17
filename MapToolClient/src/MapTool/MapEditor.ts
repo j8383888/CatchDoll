@@ -397,8 +397,9 @@ class MapEditor extends eui.Component {
 	}
 
 	private onGetComplete(e: egret.Event) {
-
-		this.chapterData = JSON.parse(e.target.response);
+		let data: string = e.target.response
+		data = data.slice(0, data.length - 1)
+		this.chapterData = JSON.parse(data);
 		for (let item of this.chapterData) {
 			let group = new eui.Group();
 			let layoutV = new eui.VerticalLayout();
@@ -453,7 +454,7 @@ class MapEditor extends eui.Component {
 		levelID++;
 		let data = {
 			level: levelID,
-			bgSource: "scene",
+			bgSource: "",
 			monster: [],
 			mapData: []
 		};
@@ -507,7 +508,8 @@ class MapEditor extends eui.Component {
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// request.setRequestHeader("Access-control-allow-methods", "GET, POST, OPTIONS, PUT, DELETE");
-		request.send(JSON.stringify(this.chapterData));
+		let data = JSON.stringify(this.chapterData)
+		request.send(data + "$");
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("提交成功！")
 		}, this);

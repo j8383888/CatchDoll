@@ -7,6 +7,7 @@ var hostName = '0.0.0.0';
 //设置端口
 var port = 8080;
 
+var battleData: string;
 
 var battleJsonPath: string = "./BattleJson.json"
 
@@ -29,19 +30,23 @@ var server = http.createServer(function (req, res) {
         console.log(date.toLocaleString(), "发送battle数据")
         var battleJson: string = getJSon(battleJsonPath);
         res.end(battleJson)
-    }
+    }                           
     else if (req.method == "POST") {
 
         req.on('data', function (chunk: Buffer) {
             let data = chunk.toString();
-            console.log("生成关卡配置json开始")
-            console.log('source: ' + data);
-            writeFile(battleJsonPath, data, () => {
-                console.log("生成关卡配置json完毕！")
-                res.end("success!")
-            })
+            console.log(data);
+            battleData += data;
+            if (data.charAt(data.length - 1) == "$") {
+                writeFile(battleJsonPath, battleData, () => {
+                    console.log("生成关卡配置json完毕！")
+                    res.end("success!")
+                })
+                battleData = "";
+            }
+
         });
-    }                                    
+    }
 
 })
 
