@@ -100,6 +100,7 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected createGameScene(): void {
+        Globe.instance;
         let mapEditor: MapEditor = MapEditor.instance;
         let pathEditor: PathEditor = PathEditor.instance;
         this.addChild(mapEditor);

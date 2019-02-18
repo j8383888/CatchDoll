@@ -69,6 +69,7 @@
 		<e:Button id="addChapter" label="添加章节" x="410" y="92" anchorOffsetY="0" />
 
 		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
+		<e:Button id="aniTestBtn" label="动画测试" x="30" y="130" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout requestedRowCount="2" />
 		</e:layout>
@@ -80,4 +81,5 @@
 	<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="1593" y="1208.87"/>
 	<e:Button id="savePath" label="保存当前怪物路径" x="1089.97" y="988.8" anchorOffsetY="0" height="94" scaleY="1"/>
 	<e:CheckBox id="deletPathNode" label="删除路径点" x="1589" y="1090.37"/>
+	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0"/>
 </e:Skin>

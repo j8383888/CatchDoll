@@ -211,9 +211,9 @@ class PathPoint extends egret.DisplayObjectContainer {
 	 */
 	private _drawPoint(shape: egret.Shape, isCtrl: boolean): void {
 		let color = isCtrl ? ColorUtil.COLOR_GREEN : ColorUtil.COLOR_RED
-
+		let radius = isCtrl ? 13 : 20
 		shape.graphics.beginFill(color);
-		shape.graphics.drawCircle(0, 0, 20);
+		shape.graphics.drawCircle(0, 0, radius);
 		shape.graphics.endFill();
 		this.addChild(shape);
 	}

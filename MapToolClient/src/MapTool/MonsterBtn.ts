@@ -4,6 +4,8 @@ class MonsterBtn extends eui.Component {
 	public group: eui.Group;
 	public dragonBones: dragonBones.EgretArmatureDisplay;
 	public levelBtn: LevelBtn;
+	public startTime: number;
+	public colliderShape: egret.Shape = new egret.Shape();
 
 	public data: {
 		monsterID: number,
@@ -16,6 +18,17 @@ class MonsterBtn extends eui.Component {
 		}[]
 	};
 
+	public runDragonBones: dragonBones.EgretArmatureDisplay;
+
+
+	public exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = [];
+
+
+	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+
+	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+
+	public pathNodeIndex = 0;
 
 	public constructor(data: {
 		monsterID: number,
@@ -33,7 +46,7 @@ class MonsterBtn extends eui.Component {
 		this.levelBtn = levelBtn
 		let grounName = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.monsterID.toString(), "dragonBones")
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(grounName);
-
+		this.runDragonBones = UIUtil.creatDragonbones(grounName);
 		this.dragonBones = dragon;
 		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);
 		dragon.animation.play(null, 0);
@@ -45,8 +58,26 @@ class MonsterBtn extends eui.Component {
 		this.scaleX = this.scaleY = 0.8;
 		dragon.touchEnabled = true;
 		dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onEditPath, this);
+
+		this._drawPoint();
 	}
 
+	/**
+	 * 画点 
+	 * @param 是否控制点
+	 */
+	private _drawPoint(): void {
+		let shape = this.colliderShape;
+		shape.graphics.beginFill(ColorUtil.COLOR_GOLD);
+		shape.graphics.drawCircle(0, 0, 30);
+		shape.graphics.endFill();
+		this.runDragonBones.addChild(shape);
+		
+	}
+
+	/**
+	 * 编辑路径
+	 */
 	private _onEditPath(e: egret.Event): void {
 		if (MapEditor.instance.curMonsterBtn) {
 			UIUtil.setNomarl(MapEditor.instance.curMonsterBtn.dragonBones);
@@ -69,6 +100,12 @@ class MonsterBtn extends eui.Component {
 		this.dragonBones.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onEditPath, this);
 		this.dragonBones.dispose();
 		this.dragonBones = null;
+		this.runDragonBones.dispose();
+		this.runDragonBones = null;
+		this.exportData.length = 0;
+		this.exportData = null;
+		this.curPathNode = null;
+		this.nextPathNode = null;
 		this.levelBtn.data.monster.remove(this.data)
 		if (MapEditor.instance.curMonsterBtn == this) {
 			MapEditor.instance.curMonsterBtn = null;

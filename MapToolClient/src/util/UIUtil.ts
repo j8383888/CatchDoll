@@ -210,5 +210,51 @@ class UIUtil {
 		let armatureDisplay: dragonBones.EgretArmatureDisplay = egretFactory.buildArmatureDisplay(armatureName, groupName);
 		return armatureDisplay;
 	}
+	/**
+	 * 获取俩点的弧度
+	 */
+	public static getRadianByPoint(p1: { x: number, y: number }, p2: { x: number, y: number }): number {
+		let px = p1.x;
+		let py = p1.y;
+		let mx = p2.x;
+		let my = p2.y;
+		var x = Math.abs(px - mx);
+		var y = Math.abs(py - my);
+		var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		var cos = y / z;
+		var radina = Math.acos(cos);
+		var radian = Math.floor(180 / (Math.PI / radina));
 
+		if (mx > px && my > py) {
+			radian = 180 - radian;
+		}
+		if (mx == px && my > py) {
+			radian = 180;
+		}
+		if (mx > px && my == py) {
+			radian = 90;
+		}
+		if (mx < px && my > py) {
+			radian = 180 + radian;
+		}
+		if (mx < px && my == py) {
+			radian = 270;
+		}
+		if (mx < px && my < py) {
+			radian = 360 - radian;
+		}
+		return radian;
+	}
+	/**
+	 *获取俩点的距离 
+	 */
+	public static getDistanceByPoint(p1: { x: number, y: number }, p2: { x: number, y: number }): number {
+		var x = Math.abs(p1.x - p2.x);
+		var y = Math.abs(p1.y - p2.y);
+		return Math.sqrt(x * x + y * y);
+	}
 }
+
+
+
+

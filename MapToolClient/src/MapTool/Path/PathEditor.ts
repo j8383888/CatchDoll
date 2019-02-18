@@ -4,7 +4,7 @@ class PathEditor {
 
 	private _mapEditor: MapEditor;
 
-	public static readonly EXPORT_LINE_INTERVAL_DISTANCE: number = 10
+	public static readonly EXPORT_LINE_INTERVAL_DISTANCE: number = 40
 	/**
 	 * 上一个点
 	 */
@@ -39,21 +39,36 @@ class PathEditor {
 		MapEditor.instance.editorPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._editorPath, this)
 		let pathEditArea = this._mapEditor.pathEditArea;
 		pathEditArea.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
+		this._mapEditor.aniTestBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAnimtionTest, this)
 		this._editorPath();
 	}
 
+	/**
+	 * 动画测试
+	 */
+	private _onAnimtionTest(): void {
+		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
+			let monsterBtn = this._mapEditor.curMonsterBtn
+			let pathData = monsterBtn.data.pathData;
+			if (pathData.length == 0) {
+				SystemTipsUtil.showTips("请先保存怪物路径数据！", ColorUtil.COLOR_RED)
+				return;
+			}
+			let exportData: { x, y }[] = this.getExportPaths(pathData);
+
+			this._formatExprotResult(monsterBtn, exportData)
+			Globe.instance.start(monsterBtn);
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
+		}
+	}
+
+	/**
+	 * 编辑路径
+	 */
 	private _editorPath(): void {
-
 		if (this._mapEditor.editorPathBtn.selected) {
-
-			// let startP = { x: 0, y: 0 };
-			// let crtl1P = { x: 0, y: 0 };
-			// let crtl2P = { x: 0, y: 0 };
-			// let endP = { x: 500, y: 500 };
-			// let line = this.newBezierLine(startP, crtl1P, crtl2P, endP)
-			// this._mapEditor.pathCanvas.addChild(line);
-			// let result = this.getExportPaths(startP, crtl1P, crtl2P, endP);
-			// this._test(result);
 			this._mapEditor.deletPathNode.visible = true;
 
 			this._mapEditor.sceneCanvas.touchEnabled = false;
@@ -74,7 +89,7 @@ class PathEditor {
 		}
 	}
 
-	private _test(data: { x: number, y: number }[]): void {
+	private _drawTest(data: { x: number, y: number }[]): void {
 		let shape = new egret.Shape();
 
 		for (let i: number = 0; i < data.length; i++) {
@@ -83,38 +98,87 @@ class PathEditor {
 			shape.graphics.endFill();
 		}
 		this._mapEditor.pathCanvas.addChild(shape);
-		// shape.graphics.drawCircle()
+
 	}
 
-	// /**
-	//  * 三次贝塞尔曲线
-	//  */
-	// protected newBezierLine(startP, ctrl1P, ctrl2P, endP, color: number = 0xff0000, lineBold: number = 2): egret.Shape {
-	// 	let line: egret.Shape = new egret.Shape();
-	// 	line.graphics.lineStyle(lineBold, color);
-	// 	line.graphics.moveTo(startP.x, startP.y);
-	// 	line.graphics.cubicCurveTo(ctrl1P.x, ctrl1P.y, ctrl2P.x, ctrl2P.y, endP.x, endP.y);
-	// 	line.x = 0;
-	// 	line.y = 0;
-	// 	// line.alpha = 0.5;
-	// 	return line;
-	// }
+	/**
+	 * 格式化导出数据
+	 */
+	private _formatExprotResult(monsterBtn: MonsterBtn, data: { x: number, y: number }[]): void {
+		let len: number = data.length
+		let angle = 0;
+		let distNext = 0;
+		let distTotal = 0;
+		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = []
+		for (let i: number = 0; i < len; i++) {
+			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
+			let pathNode = data[i];
+			if (i == len - 1) {
+				item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotal }
+				result.push(item);
+			}
+			else {
+				/**
+				 * @param angle：下个点构成的角度
+				 * @param distNext 距下个点的距离
+				 * @param distTotal 与起始点的距离
+				 */
+				let nextPathNode = data[i + 1];
+				distNext = UIUtil.getDistanceByPoint(pathNode, nextPathNode);
+				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotal }
+				result.push(item);
+				distTotal += distNext;
+			}
+		}
+		monsterBtn.exportData = result;
+	}
 
-	public getExportPaths(startP, ctrl1P, ctrl2P, EndP): Array<{ x, y }> {
-		let lastPos = new egret.Point(startP.x, startP.y);
-		let nextPos = new egret.Point(EndP.x, EndP.y);
-		let nCount = Math.floor(lastPos.subtract(nextPos).length / PathEditor.EXPORT_LINE_INTERVAL_DISTANCE);
-		if (nCount > 20) {
-			nCount = 20;
-		}
+
+	/**
+	 * 导出路径
+	 */
+	public getExportPaths(pathNode: {
+		origin: { x, y },
+		ctrlP1: { x, y },
+		ctrlP2: { x, y },
+		beforeAnchor: { x, y },
+		nextAnchor: { x, y },
+	}[]): Array<{ x, y }> {
+
+		let startNode;
+		let endNode;
+		let len = pathNode.length;
 		let result: Array<{ x, y }> = [];
-		for (let i: number = 1; i <= nCount; i++) {
-			let t: number = i / nCount;
-			let px: number = (1 - t) * (1 - t) * (1 - t) * lastPos.x + 3 * (1 - t) * (1 - t) * t * ctrl1P.x + 3 * (1 - t) * t * t * ctrl2P.x + t * t * t * nextPos.x;
-			let py: number = (1 - t) * (1 - t) * (1 - t) * lastPos.y + 3 * (1 - t) * (1 - t) * t * ctrl1P.y + 3 * (1 - t) * t * t * ctrl2P.y + t * t * t * nextPos.y;
-			result.push({ x: parseFloat(px.toFixed(2)), y: parseFloat(py.toFixed(2)) });
+		for (let i: number = 0; i < len; i++) {
+			if (i == len - 1) {
+				result.push({ x: pathNode[i].origin.x, y: pathNode[i].origin.y })
+			}
+			else {
+				startNode = pathNode[i];
+				endNode = pathNode[i + 1];
+
+				let start = startNode.origin;
+				let end = endNode.origin;
+				let ctrl1P = startNode.nextAnchor;
+				let ctrl2P = endNode.beforeAnchor;
+
+				let lastPos = new egret.Point(start.x, start.y);
+				let nextPos = new egret.Point(end.x, end.y);
+				let nCount = Math.floor(lastPos.subtract(nextPos).length / PathEditor.EXPORT_LINE_INTERVAL_DISTANCE);
+				if (nCount > 10) {
+					nCount = 10;
+				}
+
+				for (let j: number = 0; j < nCount; j++) {
+					let t: number = j / nCount;
+					let px: number = (1 - t) * (1 - t) * (1 - t) * lastPos.x + 3 * (1 - t) * (1 - t) * t * ctrl1P.x + 3 * (1 - t) * t * t * ctrl2P.x + t * t * t * nextPos.x;
+					let py: number = (1 - t) * (1 - t) * (1 - t) * lastPos.y + 3 * (1 - t) * (1 - t) * t * ctrl1P.y + 3 * (1 - t) * t * t * ctrl2P.y + t * t * t * nextPos.y;
+					result.push({ x: parseFloat(px.toFixed(2)), y: parseFloat(py.toFixed(2)) });
+				}
+			}
 		}
-		egret.log(" result:" + JSON.stringify(result));
+		// this._drawTest(result);
 		return result;
 	}
 
