@@ -7,9 +7,15 @@ var hostName = '0.0.0.0';
 //设置端口
 var port = 8080;
 
-var battleData: string;
+var editorData: string = "";
+
+var exportData: string = "";
 
 var battleJsonPath: string = "./BattleJson.json"
+
+var ExportJsonPath: string = "./ExportJson.json"
+
+var type: DATA_TYPE = DATA_TYPE.editor;
 
 
 /**
@@ -30,21 +36,40 @@ var server = http.createServer(function (req, res) {
         console.log(date.toLocaleString(), "发送battle数据")
         var battleJson: string = getJSon(battleJsonPath);
         res.end(battleJson)
-    }                           
+    }
     else if (req.method == "POST") {
-
         req.on('data', function (chunk: Buffer) {
             let data = chunk.toString();
             console.log(data);
-            battleData += data;
-            if (data.charAt(data.length - 1) == "$") {
-                writeFile(battleJsonPath, battleData, () => {
-                    console.log("生成关卡配置json完毕！")
-                    res.end("success!")
-                })
-                battleData = "";
+            let dataType = data.slice(0, 20)
+            if (dataType.indexOf("editorData") != -1) {
+                type = DATA_TYPE.editor;
+                data = data.replace("editorData", "");
             }
-
+            else if (dataType.indexOf("exportData") != -1) {
+                type = DATA_TYPE.export;
+                data = data.replace("exportData", "");
+            }
+            if (type == DATA_TYPE.editor) {
+                editorData += data;
+                if (data.charAt(data.length - 1) == "$") {
+                    writeFile(battleJsonPath, editorData, () => {
+                        console.log("生成编辑器json完毕！")
+                        res.end("success!")
+                    })
+                    editorData = "";
+                }
+            }
+            else if (type == DATA_TYPE.export) {
+                exportData += data;
+                if (data.charAt(data.length - 1) == "$") {
+                    writeFile(ExportJsonPath, exportData, () => {
+                        console.log("导出游戏json完毕！")
+                        res.end("success!")
+                    })
+                    exportData = "";
+                }
+            }
         });
     }
 
@@ -54,3 +79,8 @@ var server = http.createServer(function (req, res) {
 server.listen(port, hostName, function () {
     console.log(`服务器运行在http://${hostName}:${port}`);
 });
+
+const enum DATA_TYPE {
+    editor,
+    export
+}
