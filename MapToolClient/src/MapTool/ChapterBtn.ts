@@ -12,13 +12,17 @@ class ChapterBtn extends eui.Component {
 			bgSource: string,
 			monster: {
 				monsterID: number,
+				pathMirror: boolean,
+				fixedRotation: number,
+
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
-				}[]
+				}[],
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
 			}[],
 			mapData: { source, x, y }[],
 		}[]

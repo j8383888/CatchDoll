@@ -9,36 +9,39 @@ class MonsterBtn extends eui.Component {
 
 	public data: {
 		monsterID: number,
+		pathMirror: boolean,
+		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[]
+		}[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 	};
+
+
 
 	public runDragonBones: dragonBones.EgretArmatureDisplay;
 
 
-	public exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = [];
-
-
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
-
 	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
-
 	public pathNodeIndex = 0;
 
 	public constructor(data: {
 		monsterID: number,
+		pathMirror: boolean,
+		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[]
+		}[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 	}, levelBtn: LevelBtn) {
 		super();
 		this.skinName = "MonsterBtnSkin"
@@ -72,7 +75,7 @@ class MonsterBtn extends eui.Component {
 		shape.graphics.drawCircle(0, 0, 30);
 		shape.graphics.endFill();
 		this.runDragonBones.addChild(shape);
-		
+
 	}
 
 	/**
@@ -82,7 +85,14 @@ class MonsterBtn extends eui.Component {
 		if (MapEditor.instance.curMonsterBtn) {
 			UIUtil.setNomarl(MapEditor.instance.curMonsterBtn.dragonBones);
 		}
-
+		MapEditor.instance.fixedRotation.visible = MapEditor.instance.pathMirror.visible = true;
+		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
+		if (this.data.fixedRotation == 0) {
+			MapEditor.instance.fixedRotation.selected = true
+		}
+		else {
+			MapEditor.instance.fixedRotation.selected = false;
+		}
 		UIUtil.setLight(e.target);
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
@@ -102,8 +112,6 @@ class MonsterBtn extends eui.Component {
 		this.dragonBones = null;
 		this.runDragonBones.dispose();
 		this.runDragonBones = null;
-		this.exportData.length = 0;
-		this.exportData = null;
 		this.curPathNode = null;
 		this.nextPathNode = null;
 		this.levelBtn.data.monster.remove(this.data)

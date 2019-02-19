@@ -13,6 +13,8 @@ class LevelBtn extends eui.Component {
 		bgSource: string,
 		monster: {
 			monsterID: number,
+			pathMirror: boolean,
+			fixedRotation: number,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -20,6 +22,7 @@ class LevelBtn extends eui.Component {
 				beforeAnchor: { x, y },
 				nextAnchor: { x, y },
 			}[]
+			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
 		mapData: { source, x, y }[],
 	};
@@ -37,20 +40,24 @@ class LevelBtn extends eui.Component {
 		bgSource: string,
 		monster: {
 			monsterID: number,
+			pathMirror: boolean,
+			fixedRotation: number,
+
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
 				ctrlP2: { x, y },
 				beforeAnchor: { x, y },
 				nextAnchor: { x, y },
-			}[]
+			}[],
+			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
 		mapData: { source, x, y }[],
 	}): void {
 		this.belongChapterID = chapterID
 		this.data = data;
 		this.labelDisplay.text = this.data.level.toString();
-		
+
 	}
 
 	public addListen(): void {
@@ -64,6 +71,7 @@ class LevelBtn extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 		MapEditor.instance.curMonsterBtn = null;
+		MapEditor.instance.fixedRotation.visible = MapEditor.instance.pathMirror.visible = false;
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
@@ -92,7 +100,6 @@ class LevelBtn extends eui.Component {
 
 		}
 		MapEditor.instance.lastLevelID = MapEditor.instance.curLevel.data.level;
-
 		MapEditor.instance.curLevel.onSelect(true)
 		MapEditor.instance.sceneCanvas.removeChildren();
 		for (let item of this.data.mapData) {

@@ -43,20 +43,18 @@ class PathEditor {
 		this._editorPath();
 	}
 
+
 	/**
 	 * 动画测试
 	 */
 	private _onAnimtionTest(): void {
 		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
 			let monsterBtn = this._mapEditor.curMonsterBtn
-			let pathData = monsterBtn.data.pathData;
-			if (pathData.length == 0) {
+			let exportData = monsterBtn.data.exportData;
+			if (exportData.length == 0) {
 				SystemTipsUtil.showTips("请先保存怪物路径数据！", ColorUtil.COLOR_RED)
 				return;
 			}
-			let exportData: { x, y }[] = this.getExportPaths(pathData);
-
-			this._formatExprotResult(monsterBtn, exportData)
 			Globe.instance.start(monsterBtn);
 		}
 		else {
@@ -86,6 +84,8 @@ class PathEditor {
 			this._mapEditor.pathCanvas.touchChildren = false;
 			this._mapEditor.deletPathNode.visible = false;
 			this._mapEditor.deletPathNode.selected = false;
+
+
 		}
 	}
 
@@ -104,12 +104,14 @@ class PathEditor {
 	/**
 	 * 格式化导出数据
 	 */
-	private _formatExprotResult(monsterBtn: MonsterBtn, data: { x: number, y: number }[]): void {
+	private _formatExprotResult(monsterBtn: MonsterBtn, data: { x: number, y: number }[], ): void {
 		let len: number = data.length
 		let angle = 0;
 		let distNext = 0;
 		let distTotal = 0;
+		let isMirror: boolean = monsterBtn.data.pathMirror;
 		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = []
+
 		for (let i: number = 0; i < len; i++) {
 			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
 			let pathNode = data[i];
@@ -131,7 +133,32 @@ class PathEditor {
 				distTotal += distNext;
 			}
 		}
-		monsterBtn.exportData = result;
+
+		if (isMirror) {
+			data = data.reverse();
+			for (let i: number = 0; i < len; i++) {
+				let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
+				let pathNode = data[i];
+				if (i == len - 1) {
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotal }
+					result.push(item);
+				}
+				else {
+					/**
+					 * @param angle：下个点构成的角度
+					 * @param distNext 距下个点的距离
+					 * @param distTotal 与起始点的距离
+					 */
+					let nextPathNode = data[i + 1];
+					distNext = UIUtil.getDistanceByPoint(pathNode, nextPathNode);
+					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
+					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotal }
+					result.push(item);
+					distTotal += distNext;
+				}
+			}
+			monsterBtn.data.exportData = result;
+		}
 	}
 
 
@@ -264,6 +291,19 @@ class PathEditor {
 			nextAnchor: { x, y },
 		}[] = MapEditor.instance.curMonsterBtn.data.pathData;
 		pathDataAry.length = 0;
+		if (MapEditor.instance.pathMirror.selected) {
+			MapEditor.instance.curMonsterBtn.data.pathMirror = true;
+		}
+		else {
+			MapEditor.instance.curMonsterBtn.data.pathMirror = false;
+		}
+		if (this._mapEditor.fixedRotation.selected) {
+			MapEditor.instance.curMonsterBtn.data.fixedRotation = 0;
+		}
+		else {
+			MapEditor.instance.curMonsterBtn.data.fixedRotation = -1;
+		}
+
 		let len = this.pathPoints.length;
 		for (let i: number = 0; i < len; i++) {
 			let pathNode = this.pathPoints[i]
@@ -276,6 +316,9 @@ class PathEditor {
 			}
 			pathDataAry.push(data);
 		}
+
+		let exportData: { x, y }[] = this.getExportPaths(pathDataAry);
+		this._formatExprotResult(MapEditor.instance.curMonsterBtn, exportData);
 	}
 
 	/**
