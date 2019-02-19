@@ -109,15 +109,22 @@ class PathEditor {
 		let angle = 0;
 		let distNext = 0;
 		let distTotal = 0;
+		let distTotalParse = 0;
 		let isMirror: boolean = monsterBtn.data.pathMirror;
 		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = []
 
 		for (let i: number = 0; i < len; i++) {
 			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
 			let pathNode = data[i];
+			distTotalParse = Number(distTotal.toFixed(2));
 			if (i == len - 1) {
-				item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotal }
-				result.push(item);
+				if (isMirror) {
+
+				}
+				else {
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse }
+					result.push(item);
+				}
 			}
 			else {
 				/**
@@ -126,9 +133,10 @@ class PathEditor {
 				 * @param distTotal 与起始点的距离
 				 */
 				let nextPathNode = data[i + 1];
-				distNext = UIUtil.getDistanceByPoint(pathNode, nextPathNode);
+				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
+				
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
-				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotal }
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal:distTotalParse }
 				result.push(item);
 				distTotal += distNext;
 			}
@@ -139,8 +147,9 @@ class PathEditor {
 			for (let i: number = 0; i < len; i++) {
 				let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
 				let pathNode = data[i];
+				distTotalParse = Number(distTotal.toFixed(2));
 				if (i == len - 1) {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotal }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse }
 					result.push(item);
 				}
 				else {
@@ -150,15 +159,16 @@ class PathEditor {
 					 * @param distTotal 与起始点的距离
 					 */
 					let nextPathNode = data[i + 1];
-					distNext = UIUtil.getDistanceByPoint(pathNode, nextPathNode);
+					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
-					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotal }
+					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse }
 					result.push(item);
 					distTotal += distNext;
 				}
 			}
-			monsterBtn.data.exportData = result;
+			
 		}
+		monsterBtn.data.exportData = result;
 	}
 
 

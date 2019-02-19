@@ -259,62 +259,26 @@ class MapEditor extends eui.Component {
 		}
 	}
 
-	private _formatData(): any {
-		let exportDatas: {
-			chapterID: number,
-			chapterName: string,
-			levelData: {
-				level: number,
-				bgSource: string,
-				monster: {
-					monsterID: number,
-					fixedRotation: number,
-					pathMirror: boolean,
-					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
-				}[],
-				mapData: { source, x, y }[],
-			}[]
-		}[] = [];
-
-
-
-		// for (let item of this.chapterData) {
-
-		// 	for (let subItem of item.levelData) {
-		// 		for (let subsubItem of subItem.monster) {
-		// 			subsubItem.
-		// 		}
-		// 	}
-
-		let exportDataItem: {
-			chapterID: number,
-			chapterName: string,
-			levelData: {
-				level: number,
-				bgSource: string,
-				monster: {
-					monsterID: number,
-					fixedRotation: number,
-					pathMirror: boolean,
-					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
-				}[],
-				mapData: { source, x, y }[],
-			}[]
-		};
-		// }
-	}
 
 	private _onExportData(): void {
-
-
-
+		let exportData = this.chapterData.slice();
+		for (let item of exportData) {
+			for (let subItem of item.levelData) {
+				for (let subItem2 of item.levelData) {
+					for (let subItem3 of subItem2.monster) {
+						delete subItem3.pathData
+					}
+				}
+			}
+		}
+		
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
 		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 		let data = JSON.stringify(this.chapterData)
-		request.send("exportData:" + data + "$");
+		request.send("exportData" + data + "$");
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("导出数据成功！")
 		}, this);
@@ -606,7 +570,7 @@ class MapEditor extends eui.Component {
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// request.setRequestHeader("Access-control-allow-methods", "GET, POST, OPTIONS, PUT, DELETE");
 		let data = JSON.stringify(this.chapterData)
-		request.send("editorData:" + data + "$");
+		request.send("editorData" + data + "$");
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("提交成功！")
 		}, this);
