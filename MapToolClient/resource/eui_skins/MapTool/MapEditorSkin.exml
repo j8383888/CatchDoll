@@ -72,6 +72,7 @@
 
 		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
 		<e:Button id="aniTestBtn" label="动画测试" x="30" y="130" anchorOffsetY="0" height="94"/>
+		<e:Button id="exportDataBtn" label="导出编辑器数据" x="40" y="140" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout  requestedRowCount="3"/>
 		</e:layout>
@@ -92,7 +93,7 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="pathMirror" label="路径镜像" x="1261" scaleX="1" scaleY="1" bottom="22"/>
-	<e:CheckBox id="fixedRotation" label="锁定宠物角度（0度）" x="1261" scaleX="1" scaleY="1" bottom="56"/>
+	<e:CheckBox id="pathMirror" label="路径镜像" x="601" scaleX="1" scaleY="1" bottom="6"/>
+	<e:CheckBox id="fixedRotation" label="锁定宠物角度（0度）" x="601" scaleX="1" scaleY="1" bottom="40"/>
 	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0" visible="false"/>
 </e:Skin>

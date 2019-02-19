@@ -17,13 +17,14 @@ class MonsterBtn extends eui.Component {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[]
+		}[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 	};
+
+
 
 	public runDragonBones: dragonBones.EgretArmatureDisplay;
 
-
-	public exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = [];
 
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
 	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
@@ -39,7 +40,8 @@ class MonsterBtn extends eui.Component {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[]
+		}[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 	}, levelBtn: LevelBtn) {
 		super();
 		this.skinName = "MonsterBtnSkin"
@@ -110,8 +112,6 @@ class MonsterBtn extends eui.Component {
 		this.dragonBones = null;
 		this.runDragonBones.dispose();
 		this.runDragonBones = null;
-		this.exportData.length = 0;
-		this.exportData = null;
 		this.curPathNode = null;
 		this.nextPathNode = null;
 		this.levelBtn.data.monster.remove(this.data)

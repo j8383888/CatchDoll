@@ -109,6 +109,8 @@ class MapEditor extends eui.Component {
 
 	public fixedRotation: eui.CheckBox;
 
+	public exportDataBtn: eui.Button;
+
 	public chapterData: {
 		chapterID: number,
 		chapterName: string,
@@ -119,6 +121,7 @@ class MapEditor extends eui.Component {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -129,7 +132,8 @@ class MapEditor extends eui.Component {
 			}[],
 			mapData: { source, x, y }[],
 		}[]
-	}[] = []
+	}[] = [];
+
 
 	public constructor() {
 		super();
@@ -203,7 +207,8 @@ class MapEditor extends eui.Component {
 				monsterID: id,
 				pathMirror: false,
 				fixedRotation: -1,
-				pathData: []
+				pathData: [],
+				exportData: []
 			};
 			let btn = new MonsterBtn(data, this.curLevel);
 			this.curLevel.data.monster.push(data);
@@ -239,7 +244,7 @@ class MapEditor extends eui.Component {
 		this.savePath.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSavePath, this);
 		this.lookPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookPath, this)
 		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
-
+		this.exportDataBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onExportData, this)
 		this.stopClick.visible = false;
 
 		this.stopClick.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
@@ -252,6 +257,71 @@ class MapEditor extends eui.Component {
 			let item = this.bgGroup.getElementAt(i);
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
+	}
+
+	private _formatData(): any {
+		let exportDatas: {
+			chapterID: number,
+			chapterName: string,
+			levelData: {
+				level: number,
+				bgSource: string,
+				monster: {
+					monsterID: number,
+					fixedRotation: number,
+					pathMirror: boolean,
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
+				}[],
+				mapData: { source, x, y }[],
+			}[]
+		}[] = [];
+
+
+
+		// for (let item of this.chapterData) {
+
+		// 	for (let subItem of item.levelData) {
+		// 		for (let subsubItem of subItem.monster) {
+		// 			subsubItem.
+		// 		}
+		// 	}
+
+		let exportDataItem: {
+			chapterID: number,
+			chapterName: string,
+			levelData: {
+				level: number,
+				bgSource: string,
+				monster: {
+					monsterID: number,
+					fixedRotation: number,
+					pathMirror: boolean,
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
+				}[],
+				mapData: { source, x, y }[],
+			}[]
+		};
+		// }
+	}
+
+	private _onExportData(): void {
+
+
+
+		var request = new egret.HttpRequest();
+		request.responseType = egret.HttpResponseType.TEXT;
+		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		let data = JSON.stringify(this.chapterData)
+		request.send("exportData:" + data + "$");
+		request.addEventListener(egret.Event.COMPLETE, () => {
+			SystemTipsUtil.showTips("导出数据成功！")
+		}, this);
+		request.addEventListener(egret.IOErrorEvent.IO_ERROR, () => {
+			SystemTipsUtil.showTips("导出数据失败", ColorUtil.COLOR_RED)
+		}, this);
+		request.addEventListener(egret.ProgressEvent.PROGRESS, () => { }, this);
 	}
 
 	private _onLookPath(e: egret.TouchEvent): void {
@@ -536,7 +606,7 @@ class MapEditor extends eui.Component {
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// request.setRequestHeader("Access-control-allow-methods", "GET, POST, OPTIONS, PUT, DELETE");
 		let data = JSON.stringify(this.chapterData)
-		request.send(data + "$");
+		request.send("editorData:" + data + "$");
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("提交成功！")
 		}, this);

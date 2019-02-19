@@ -25,10 +25,8 @@ class Globe extends egret.DisplayObject {
 		this.runMonsters.push(monsterBtn);
 
 		monsterBtn.startTime = egret.getTimer();
-		monsterBtn.curPathNode = monsterBtn.exportData[0];
-		monsterBtn.nextPathNode = monsterBtn.exportData[1];
-
-
+		monsterBtn.curPathNode = monsterBtn.data.exportData[0];
+		monsterBtn.nextPathNode = monsterBtn.data.exportData[1];
 	}
 
 
@@ -45,7 +43,7 @@ class Globe extends egret.DisplayObject {
 			let time = egret.getTimer();
 			let runTime = (time - monsterBtn.startTime) / 1000;
 			let curMoveDistance = runTime * 200
-			let lastPath = monsterBtn.exportData[monsterBtn.exportData.length - 1]
+			let lastPath = monsterBtn.data.exportData[monsterBtn.data.exportData.length - 1]
 			let total = lastPath.distTotal
 			let monster = monsterBtn.runDragonBones;
 
@@ -63,12 +61,12 @@ class Globe extends egret.DisplayObject {
 			}
 
 			if (curMoveDistance > monsterBtn.nextPathNode.distTotal) {
-				let len = monsterBtn.exportData.length;
+				let len = monsterBtn.data.exportData.length;
 				for (let i: number = monsterBtn.pathNodeIndex; i < len; i++) {
-					if (monsterBtn.exportData[i].distTotal > curMoveDistance) {
+					if (monsterBtn.data.exportData[i].distTotal > curMoveDistance) {
 						monsterBtn.pathNodeIndex = i;
-						monsterBtn.nextPathNode = monsterBtn.exportData[i];
-						monsterBtn.curPathNode = monsterBtn.exportData[i - 1];
+						monsterBtn.nextPathNode = monsterBtn.data.exportData[i];
+						monsterBtn.curPathNode = monsterBtn.data.exportData[i - 1];
 						break;
 					}
 				}

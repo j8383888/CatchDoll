@@ -50,15 +50,11 @@ class PathEditor {
 	private _onAnimtionTest(): void {
 		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
 			let monsterBtn = this._mapEditor.curMonsterBtn
-			let pathData = monsterBtn.data.pathData;
-			if (pathData.length == 0) {
+			let exportData = monsterBtn.data.exportData;
+			if (exportData.length == 0) {
 				SystemTipsUtil.showTips("请先保存怪物路径数据！", ColorUtil.COLOR_RED)
 				return;
 			}
-
-			let exportData: { x, y }[] = this.getExportPaths(pathData);
-			this._formatExprotResult(monsterBtn, exportData);
-
 			Globe.instance.start(monsterBtn);
 		}
 		else {
@@ -161,7 +157,7 @@ class PathEditor {
 					distTotal += distNext;
 				}
 			}
-			monsterBtn.exportData = result;
+			monsterBtn.data.exportData = result;
 		}
 	}
 
@@ -320,6 +316,9 @@ class PathEditor {
 			}
 			pathDataAry.push(data);
 		}
+
+		let exportData: { x, y }[] = this.getExportPaths(pathDataAry);
+		this._formatExprotResult(MapEditor.instance.curMonsterBtn, exportData);
 	}
 
 	/**
