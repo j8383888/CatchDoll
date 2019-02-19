@@ -43,6 +43,7 @@ class PathEditor {
 		this._editorPath();
 	}
 
+
 	/**
 	 * 动画测试
 	 */
@@ -294,11 +295,17 @@ class PathEditor {
 			nextAnchor: { x, y },
 		}[] = MapEditor.instance.curMonsterBtn.data.pathData;
 		pathDataAry.length = 0;
-		if (MapEditor.instance.pathMirror) {
+		if (MapEditor.instance.pathMirror.selected) {
 			MapEditor.instance.curMonsterBtn.data.pathMirror = true;
 		}
 		else {
 			MapEditor.instance.curMonsterBtn.data.pathMirror = false;
+		}
+		if (this._mapEditor.fixedRotation.selected) {
+			MapEditor.instance.curMonsterBtn.data.fixedRotation = 0;
+		}
+		else {
+			MapEditor.instance.curMonsterBtn.data.fixedRotation = -1;
 		}
 
 		let len = this.pathPoints.length;

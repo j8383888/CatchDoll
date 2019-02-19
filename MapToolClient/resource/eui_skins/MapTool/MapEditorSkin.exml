@@ -82,7 +82,7 @@
 
 
 
-	<e:Group x="1589" y="1070.37">
+	<e:Group x="1589" y="1090.37">
 		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
 		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
 		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
@@ -92,6 +92,7 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="pathMirror" label="路径镜像" x="669" scaleX="1" scaleY="1" bottom="2" visible="false"/>
+	<e:CheckBox id="pathMirror" label="路径镜像" x="1261" scaleX="1" scaleY="1" bottom="22"/>
+	<e:CheckBox id="fixedRotation" label="锁定宠物角度（0度）" x="1261" scaleX="1" scaleY="1" bottom="56"/>
 	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0" visible="false"/>
 </e:Skin>

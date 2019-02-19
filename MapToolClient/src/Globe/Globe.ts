@@ -88,17 +88,22 @@ class Globe extends egret.DisplayObject {
 			monster.x = (curPath.x + offsetx);
 			monster.y = (curPath.y + offsety)
 
-			let angle = curPath.angle - 90;
-			let rotation = monster.rotation;
+			if (monsterBtn.data.fixedRotation == -1) {
+				let angle = curPath.angle - 90;
+				let rotation = monster.rotation;
 
-			let diff = angle - rotation;
-			if (diff < -180) {
-				angle += 360;
-			} else if (diff > 180) {
-				angle -= 360;
+				let diff = angle - rotation;
+				if (diff < -180) {
+					angle += 360;
+				} else if (diff > 180) {
+					angle -= 360;
+				}
+				let speedRotation = (angle - rotation) / 10;
+				monster.rotation = rotation + speedRotation;
 			}
-			let speedRotation = (angle - rotation) / 10;
-			monster.rotation = rotation + speedRotation;
+			else {
+				monster.rotation = 0;
+			}
 		}
 	}
 }

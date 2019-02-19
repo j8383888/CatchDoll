@@ -107,6 +107,8 @@ class MapEditor extends eui.Component {
 
 	public pathMirror: eui.CheckBox;
 
+	public fixedRotation: eui.CheckBox;
+
 	public chapterData: {
 		chapterID: number,
 		chapterName: string,
@@ -115,7 +117,8 @@ class MapEditor extends eui.Component {
 			bgSource: string,
 			monster: {
 				monsterID: number,
-				pathMirror: boolean
+				fixedRotation: number,
+				pathMirror: boolean,
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -126,7 +129,7 @@ class MapEditor extends eui.Component {
 			}[],
 			mapData: { source, x, y }[],
 		}[]
-	}[];
+	}[] = []
 
 	public constructor() {
 		super();
@@ -163,7 +166,7 @@ class MapEditor extends eui.Component {
 			shp.graphics.lineTo(this.mainViewWidth, i);
 		}
 		this.gridContainer.alpha = 0.5;
-		this.sceneGroup.addChildAt(this.gridContainer, 1);
+		this.sceneGroup.addChildAt(this.gridContainer, 2);
 	}
 
 	/**
@@ -199,6 +202,7 @@ class MapEditor extends eui.Component {
 			let data = {
 				monsterID: id,
 				pathMirror: false,
+				fixedRotation: -1,
 				pathData: []
 			};
 			let btn = new MonsterBtn(data, this.curLevel);
@@ -235,7 +239,9 @@ class MapEditor extends eui.Component {
 		this.savePath.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSavePath, this);
 		this.lookPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookPath, this)
 		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
+
 		this.stopClick.visible = false;
+
 		this.stopClick.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
 			SystemTipsUtil.showTips("正在播放动画！禁止操作！(不然容易报错)", ColorUtil.COLOR_RED)
 		}, null)
@@ -357,6 +363,9 @@ class MapEditor extends eui.Component {
 	}
 
 	private _getLastChapterID(): number {
+		if (this.chapterData.length == 0) {
+			return 1;
+		}
 		return this.chapterData[this.chapterData.length - 1].chapterID
 	}
 
@@ -412,6 +421,10 @@ class MapEditor extends eui.Component {
 	private onGetComplete(e: egret.Event) {
 		let data: string = e.target.response
 		data = data.slice(0, data.length - 1)
+		if (data == "") {
+			SystemTipsUtil.showTips("暂无数据");
+			return;
+		}
 		this.chapterData = JSON.parse(data);
 		for (let item of this.chapterData) {
 			let group = new eui.Group();
@@ -433,7 +446,7 @@ class MapEditor extends eui.Component {
 		if (this.curChapter) {
 			this.curChapter.onSelect(false)
 		}
-		MapEditor.instance.pathMirror.visible = false;
+		this.fixedRotation.visible = this.pathMirror.visible = false;
 		this.curChapter = e.currentTarget;
 		this.curChapter.onClick();
 		this.curChapter.onSelect(true);

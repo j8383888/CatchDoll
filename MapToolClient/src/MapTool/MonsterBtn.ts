@@ -10,6 +10,7 @@ class MonsterBtn extends eui.Component {
 	public data: {
 		monsterID: number,
 		pathMirror: boolean,
+		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -31,6 +32,7 @@ class MonsterBtn extends eui.Component {
 	public constructor(data: {
 		monsterID: number,
 		pathMirror: boolean,
+		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -81,8 +83,14 @@ class MonsterBtn extends eui.Component {
 		if (MapEditor.instance.curMonsterBtn) {
 			UIUtil.setNomarl(MapEditor.instance.curMonsterBtn.dragonBones);
 		}
-		MapEditor.instance.pathMirror.visible = true;
+		MapEditor.instance.fixedRotation.visible = MapEditor.instance.pathMirror.visible = true;
 		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
+		if (this.data.fixedRotation == 0) {
+			MapEditor.instance.fixedRotation.selected = true
+		}
+		else {
+			MapEditor.instance.fixedRotation.selected = false;
+		}
 		UIUtil.setLight(e.target);
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
