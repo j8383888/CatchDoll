@@ -105,6 +105,8 @@ class MapEditor extends eui.Component {
 	 */
 	public stopClick: eui.Rect;
 
+	public pathMirror: eui.CheckBox;
+
 	public chapterData: {
 		chapterID: number,
 		chapterName: string,
@@ -113,6 +115,7 @@ class MapEditor extends eui.Component {
 			bgSource: string,
 			monster: {
 				monsterID: number,
+				pathMirror: boolean
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -195,6 +198,7 @@ class MapEditor extends eui.Component {
 
 			let data = {
 				monsterID: id,
+				pathMirror: false,
 				pathData: []
 			};
 			let btn = new MonsterBtn(data, this.curLevel);
@@ -267,7 +271,6 @@ class MapEditor extends eui.Component {
 	}
 
 	private _onSavePath(e: egret.TouchEvent): void {
-
 		if (this.curChapter && this.curLevel && this.curMonsterBtn) {
 			PathEditor.instance.savePath();
 			SystemTipsUtil.showTips("保存路径成功！")
@@ -430,6 +433,7 @@ class MapEditor extends eui.Component {
 		if (this.curChapter) {
 			this.curChapter.onSelect(false)
 		}
+		MapEditor.instance.pathMirror.visible = false;
 		this.curChapter = e.currentTarget;
 		this.curChapter.onClick();
 		this.curChapter.onSelect(true);

@@ -13,6 +13,7 @@ class LevelBtn extends eui.Component {
 		bgSource: string,
 		monster: {
 			monsterID: number,
+			pathMirror: boolean
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -37,6 +38,7 @@ class LevelBtn extends eui.Component {
 		bgSource: string,
 		monster: {
 			monsterID: number,
+			pathMirror: boolean,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -50,7 +52,7 @@ class LevelBtn extends eui.Component {
 		this.belongChapterID = chapterID
 		this.data = data;
 		this.labelDisplay.text = this.data.level.toString();
-		
+
 	}
 
 	public addListen(): void {
@@ -64,6 +66,7 @@ class LevelBtn extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 		MapEditor.instance.curMonsterBtn = null;
+		MapEditor.instance.pathMirror.visible = false;
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();

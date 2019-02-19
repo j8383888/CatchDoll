@@ -9,6 +9,7 @@ class MonsterBtn extends eui.Component {
 
 	public data: {
 		monsterID: number,
+		pathMirror: boolean,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -23,15 +24,13 @@ class MonsterBtn extends eui.Component {
 
 	public exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = [];
 
-
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
-
 	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
-
 	public pathNodeIndex = 0;
 
 	public constructor(data: {
 		monsterID: number,
+		pathMirror: boolean,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -72,7 +71,7 @@ class MonsterBtn extends eui.Component {
 		shape.graphics.drawCircle(0, 0, 30);
 		shape.graphics.endFill();
 		this.runDragonBones.addChild(shape);
-		
+
 	}
 
 	/**
@@ -82,7 +81,8 @@ class MonsterBtn extends eui.Component {
 		if (MapEditor.instance.curMonsterBtn) {
 			UIUtil.setNomarl(MapEditor.instance.curMonsterBtn.dragonBones);
 		}
-
+		MapEditor.instance.pathMirror.visible = true;
+		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
 		UIUtil.setLight(e.target);
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;

@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 module table {
 	/**
-	 * FILE: 游戏配置.xlsx SHEET: 怪兽配置 KEY: id
+	 * FILE: 游戏配置.xlsx SHEET: 怪兽配置
 	 */
 	export class MonsterTable {
 		id: number;
@@ -19,7 +19,7 @@ module table {
 		/**
 		 * 渲染源
 		 */
-		imageAry: MonsterTable.ImageAryItem[];
+		dragonBones: string;
 		/**
 		 * 生命值
 		 */
@@ -30,11 +30,5 @@ module table {
 		moveSpeed: number;
 
 		GetType(): string { return 'table.MonsterTable'; }
-	}
-	export module MonsterTable {
-		export class ImageAryItem {
-			keyName: string;
-			sourceName: string;
-		}
 	}
 }

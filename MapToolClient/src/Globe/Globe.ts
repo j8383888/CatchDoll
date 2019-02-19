@@ -20,13 +20,15 @@ class Globe extends egret.DisplayObject {
 
 	public start(monsterBtn: MonsterBtn): void {
 		MapEditor.instance.stopClick.visible = true;
+		monsterBtn.runDragonBones.animation.play("Walk", null);
+		MapEditor.instance.pathCanvas.addChild(monsterBtn.runDragonBones);
+		this.runMonsters.push(monsterBtn);
+
 		monsterBtn.startTime = egret.getTimer();
 		monsterBtn.curPathNode = monsterBtn.exportData[0];
 		monsterBtn.nextPathNode = monsterBtn.exportData[1];
-		monsterBtn.runDragonBones.animation.play("Walk", null);
 
-		MapEditor.instance.pathCanvas.addChild(monsterBtn.runDragonBones);
-		this.runMonsters.push(monsterBtn);
+
 	}
 
 
@@ -47,16 +49,17 @@ class Globe extends egret.DisplayObject {
 			let total = lastPath.distTotal
 			let monster = monsterBtn.runDragonBones;
 
-			let transform = monster.armature.getBone("tou-hei").global
+			let transform = monster.armature.getBone("centre").global
 
-			console.log(transform.x, transform.y)
 			monsterBtn.colliderShape.x = transform.x;
 			monsterBtn.colliderShape.y = transform.y;
 
 			if (curMoveDistance >= total) {
+
 				monsterBtn.pathNodeIndex = 0;
 				MapEditor.instance.pathCanvas.removeChild(monster);
 				this.runMonsters.remove(monsterBtn);
+
 			}
 
 			if (curMoveDistance > monsterBtn.nextPathNode.distTotal) {

@@ -39,7 +39,7 @@
 			<e:Button label="关卡" x="-1600" y="10" anchorOffsetX="0" width="206" scaleX="1" scaleY="1"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="606" y="0" x="1316" scrollPolicyH="off">
+	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="510" y="0" x="1316" scrollPolicyH="off">
 		<e:Group id="monsterBox" anchorOffsetY="0" height="1058">
 		<e:layout>
 			<e:VerticalLayout gap="0" horizontalAlign="center"/>
@@ -47,20 +47,22 @@
 			<e:Button label="怪物" x="-8" y="0" anchorOffsetX="0" width="274" scaleX="1" scaleY="1"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="458" y="608" x="1316" scrollPolicyH="off">
+	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="458" y="508" x="1316" scrollPolicyH="off">
 		<e:Group id="bgGroup" anchorOffsetY="0" height="472">
 			<e:layout>
-				<e:TileLayout/>
+				<e:TileLayout orientation="rows"/>
 			</e:layout>
 
 			<e:Button label="场景背景" x="-1324" y="-608" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
-			<e:Image width="200" height="18" x="106" y="158" source="scene1_png"/>
+			<e:Image width="50" height="18" x="106" y="158" source="scene1_png"/>
 			<e:Image width="200" height="18" x="116" y="168" source="scene2_png"/>
 			<e:Image width="200" height="18" x="126" y="178" source="scene3_png"/>
 			<e:Image width="200" height="18" x="136" y="188" source="scene4_png"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Group x="924" y="1086">
+	<e:Group x="924" y="976" anchorOffsetY="0" height="298" anchorOffsetX="0" width="660">
+		<e:Button id="changeChapterName" label="保存章节名字" x="2" y="-98" anchorOffsetY="0" height="94" scaleX="1" scaleY="1"/>
+		<e:Button id="savePath" label="保存当前怪物路径" x="165.97000000000003" y="-97.20000000000005" anchorOffsetY="0" height="94" scaleY="1" scaleX="1"/>
 		<e:Button id="saveBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
@@ -71,15 +73,25 @@
 		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
 		<e:Button id="aniTestBtn" label="动画测试" x="30" y="130" anchorOffsetY="0" height="94"/>
 		<e:layout>
-			<e:TileLayout requestedRowCount="2" />
+			<e:TileLayout  requestedRowCount="3"/>
 		</e:layout>
 	</e:Group>
-	<e:Button id="changeChapterName" label="保存章节名字" x="926" y="988" anchorOffsetY="0" height="94"/>
-	<e:CheckBox id="showGridCbx" label="显示网格" x="1591" y="1248.37"/>
-	<e:CheckBox id="editorPathBtn" label="编辑路径" x="1591" y="1129.87"/>
-	<e:CheckBox id="lookPathBtn" label="显示路径" x="1593" y="1169.37"/>
-	<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="1593" y="1208.87"/>
-	<e:Button id="savePath" label="保存当前怪物路径" x="1089.97" y="988.8" anchorOffsetY="0" height="94" scaleY="1"/>
-	<e:CheckBox id="deletPathNode" label="删除路径点" x="1589" y="1090.37"/>
-	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0"/>
+
+
+
+
+
+
+	<e:Group x="1589" y="1070.37">
+		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
+		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
+		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
+		<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="4" y="118.5"/>
+		<e:CheckBox id="showGridCbx" label="显示网格" x="2" y="158"/>
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:CheckBox id="pathMirror" label="路径镜像" x="669" scaleX="1" scaleY="1" bottom="2" visible="false"/>
+	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0" visible="false"/>
 </e:Skin>
