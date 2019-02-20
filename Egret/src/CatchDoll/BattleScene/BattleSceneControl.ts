@@ -87,7 +87,6 @@ module catchDoll {
 		private _clickReturnBtn(): void {
 			LevelCreate.instance.dispose();
 			UICenter.instance.closeUI(commonUI.BattleScene);
-			UICenter.instance.openUI(commonUI.SelectLevel);
 		}
 
 		/**

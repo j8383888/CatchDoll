@@ -37,7 +37,7 @@ module catchDoll {
 			}).wait(1000).call(() => {
 				coin.stop();
 				LayerManager.instance.removeFromLayer(coin, LAYER.EFFECT);
-				UICenter.instance.closeUI(commonUI.SelectLevel);
+				UICenter.instance.closeUI(commonUI.WorldMap);
 				UICenter.instance.closeUI(commonUI.BattleEnterPanel);
 				UICenter.instance.openUI(commonUI.BattleScene);
 			});

@@ -3,7 +3,7 @@
  * @author suo 
  */
 module catchDoll {
-	export class BattleSelect extends BasePopPanel implements IBaseSimpleUI {
+	export class BattleSelectLevel extends BasePopPanel implements IBaseSimpleUI {
 		/**
 		 * 滑动条
 		 */
@@ -25,7 +25,7 @@ module catchDoll {
 
 		public constructor() {
 			super()
-			this.skinName = "BattleSelectSkin";
+			this.skinName = "BattleSelectLevelSkin";
 		}
 
 		/**

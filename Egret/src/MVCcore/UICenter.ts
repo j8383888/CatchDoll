@@ -9,7 +9,7 @@ class UICenter extends BaseUICenter {
         super();
 
         this.addManager(commonUI.BattleScene, catchDoll.BattleSceneManager);
-        this.addManager(commonUI.SelectLevel, catchDoll.WorldMapManager);
+        this.addManager(commonUI.WorldMap, catchDoll.WorldMapManager);
         this.addManager(commonUI.TurnTable, catchDoll.TurntableManager);
         this.addManager(commonUI.StartScene, catchDoll.StartSceneManager);
         this.addManager(commonUI.BattleEnterPanel, catchDoll.BattleEnterPanelManager);
@@ -33,7 +33,7 @@ const enum commonUI {
     /*抓娃娃战斗场景*/
     BattleScene,
     /*选择关卡场景*/
-    SelectLevel,
+    WorldMap,
     /*转盘*/
     TurnTable,
     /*开始界面*/

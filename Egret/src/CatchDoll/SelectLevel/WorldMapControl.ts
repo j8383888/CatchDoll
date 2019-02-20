@@ -32,13 +32,15 @@ module catchDoll {
 		public onShow(): void {
 			let view: FunctionUIView = UICenter.instance.getManager(commonUI.FunctionUI).getView(FunctionUIView);
 			view.visible = true;
-			this._view.illustrationsBtn.mouseClickHandler = Handler.create(null, () => {
-				SimpleUICenter.instance.openUI(SIMPLE_UI.illustrations);
-			})
 
-			this._view.battleBtn.mouseClickHandler = Handler.create(null, () => {
-				UICenter.instance.openUI(commonUI.BattleEnterPanel);
-			})
+			for (let item of this._view.chapterBtns) {
+				item.mouseClickHandler = Handler.create(this, this._onClickChapter)
+			}
+		}
+
+		private _onClickChapter(btn: Button): void {
+			let chapterID = btn.data;
+
 		}
 
 

@@ -9,19 +9,12 @@ module catchDoll {
 		/**
 		 * 战斗按钮
 		 */
-		public battleBtn: Button;
-		/**
-		 * 图鉴按钮
-		 */
-		public illustrationsBtn: Button;
+		public chapterBtns: Button[] = [];
+
 		/**
 		 * 风车
 		 */
 		public fengche: egret.MovieClip;
-		/**
-		 * 小游戏按钮 
-		 */
-		public smallGameBtn:Button;
 
 
 		public constructor() {
@@ -33,17 +26,18 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			this.battleBtn = new Button(this.skin["_battleBtn"]);
-			this.illustrationsBtn = new Button(this.skin["_illustrationsBtn"]);
+			for (let i: number = 1; i <= 2; i++) {
+				let btn = new Button(this.skin["_chapterBtn" + i]);
+				btn.data = i;
+				this.chapterBtns.push(btn);
+			}
 			this.fengche = UIUtil.creatMovieClip("fengche");
 			this.fengche.gotoAndPlay(1, -1);
 			this.fengche.x = 107;
 			this.fengche.y = 25;
 
-			this.skin["_smallGameBtn"].addChild(this.fengche);
-			this.smallGameBtn = new Button(this.skin["_smallGameBtn"]);
-			
-			
+
+
 		}
 
 
@@ -75,11 +69,12 @@ module catchDoll {
 		 */
 		public dispose(): void {
 
-
-			this.battleBtn.dispose();
-			this.battleBtn = null;
-			this.illustrationsBtn.dispose();
-			this.illustrationsBtn = null;
+			for (let item of this.chapterBtns) {
+				item.dispose();
+				item = null;
+			}
+			this.chapterBtns.length = 0
+			this.chapterBtns = null;
 			super.dispose();
 		}
 	}

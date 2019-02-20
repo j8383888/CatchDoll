@@ -95,6 +95,7 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
+			let host = DataCenter.instance.host
 			this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
@@ -179,7 +180,7 @@ module catchDoll {
 			let protoType: any;
 			let message: any;
 			if (GlobeConst.isWXGame) {
-				protoType = ProtoExtendtion.protoMap.get(cmdTitle); 
+				protoType = ProtoExtendtion.protoMap.get(cmdTitle);
 				message = protoType.decode(rawData)
 			}
 			else {

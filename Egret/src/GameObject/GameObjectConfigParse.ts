@@ -19,29 +19,28 @@ module catchDoll {
 			for (let item of TableCenter.instance.MonsterTable) {
 				GameObjectConfigParse.configDic.set(item.id, {
 					configAsset: {
-
-						imageAry: item.imageAry
+						dragonBonesName: item.dragonBones
 					}, configData: { speed: item.moveSpeed, life: item.life }
 				});
 			}
 
-			GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_ROBOT, {
-				configAsset: {
-					dragonBonesName: "munaiyi"
-				}, configData: { speed: 4, life: 100 }
-			});
+			// GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_ROBOT, {
+			// 	configAsset: {
+			// 		dragonBonesName: "munaiyi"
+			// 	}, configData: { speed: 4, life: 100 }
+			// });
 
-			GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_ROBOT_2, {
-				configAsset: {
-					dragonBonesName: "munaiyi2"
-				}, configData: { speed: 6, life: 100 }
-			});
+			// GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_ROBOT_2, {
+			// 	configAsset: {
+			// 		dragonBonesName: "munaiyi2"
+			// 	}, configData: { speed: 6, life: 100 }
+			// });
 
-			GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_Cactus, {
-				configAsset: {
-					dragonBonesName: "skeleton"
-				}, configData: { speed: 8, life: 100 }
-			});
+			// GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.MONSTER_Cactus, {
+			// 	configAsset: {
+			// 		dragonBonesName: "skeleton"
+			// 	}, configData: { speed: 8, life: 100 }
+			// });
 		}
 
 

@@ -74,7 +74,7 @@ module catchDoll {
 				LevelCreate.instance.dispose();
 				SimpleUICenter.instance.closeUI(SIMPLE_UI.SettlePanel);
 				UICenter.instance.closeUI(commonUI.BattleScene);
-				UICenter.instance.openUI(commonUI.SelectLevel);
+				UICenter.instance.openUI(commonUI.WorldMap);
 			}, null, true)
 
 			let rope1: eui.Image = this.skin["rope1"];

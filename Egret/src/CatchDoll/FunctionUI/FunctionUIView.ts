@@ -54,10 +54,6 @@ module catchDoll {
 		 */
 		public taskBtn: Button;
 		/**
-		 * 背包按钮
-		 */
-		public bagBtn: Button;
-		/**
 		 * 排行榜
 		 */
 		public rankBtn: Button;
@@ -100,7 +96,6 @@ module catchDoll {
 			this.rightBtn = new Button(this.skin["_rightBtn"]);
 			this.shopBtn = new Button(this.skin["_shopBtn"]);
 			this.taskBtn = new Button(this.skin["_taskBtn"]);
-			this.bagBtn = new Button(this.skin["_bagBtn"]);
 			this.rankBtn = new Button(this.skin["_rankBtn"]);
 			this.inventBtn = new Button(this.skin["_inventBtn"])
 			this.furlBtn = new Button(this.skin["_furlBtn"])
@@ -169,8 +164,6 @@ module catchDoll {
 			this.rightBtn = null;
 			this.shopBtn.dispose();
 			this.shopBtn = null;
-			this.bagBtn.dispose();
-			this.bagBtn = null;
 			this.taskBtn.dispose();
 			this.taskBtn = null;
 			this.rankBtn.dispose();

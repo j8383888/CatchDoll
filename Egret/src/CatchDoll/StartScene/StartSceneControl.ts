@@ -27,7 +27,7 @@ module catchDoll {
 			this._view.startBtn.mouseClickHandler = Handler.create(null, () => {
 				UICenter.instance.closeUI(commonUI.StartScene);
 				UICenter.instance.openUI(commonUI.FunctionUI);
-				UICenter.instance.openUI(commonUI.SelectLevel);
+				UICenter.instance.openUI(commonUI.WorldMap);
 			})
 		}
 

@@ -1,14 +1,9 @@
 {
 	"groups":[{
-			"keys":"sceneChoose_png,scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,selectLevelBg_png,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,selectLevelBg2_png,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,munaiyi_ske_dbbin,munaiyi_tex_json,munaiyi_tex_png,battleTable_json",
+			"keys":"scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,munaiyi_ske_dbbin,munaiyi_tex_json,munaiyi_tex_png,battleTable_json",
 			"name":"preload"
 		}],
 	"resources":[
-		{
-			"name":"sceneChoose_png",
-			"type":"image",
-			"url":"assets/image/sceneChoose.png"
-		},
 		{
 			"name":"scene1_png",
 			"type":"image",
@@ -90,11 +85,6 @@
 			"url":"assets/atlas/start.json"
 		},
 		{
-			"name":"selectLevelBg_png",
-			"type":"image",
-			"url":"assets/image/selectLevelBg.png"
-		},
-		{
 			"name":"coinRotation_json",
 			"type":"json",
 			"url":"assets/effect/coinRotation.json"
@@ -106,7 +96,7 @@
 		},
 		{
 			"name":"functionUI_json",
-			"subkeys":"functionPanel_1,functionPanel_2,functionUI_1,functionUI_10,functionUI_11,functionUI_12,functionUI_13,functionUI_14,functionUI_15,functionUI_16,functionUI_17,functionUI_18,functionUI_19,functionUI_2,functionUI_20,functionUI_21,functionUI_22,functionUI_23,functionUI_24,functionUI_25,functionUI_26,functionUI_27,functionUI_28,functionUI_29,functionUI_3,functionUI_4,functionUI_5,functionUI_6,functionUI_7,functionUI_8,functionUI_9",
+			"subkeys":"functionPanel_1,functionPanel_2,functionUI_1,functionUI_10,functionUI_11,functionUI_12,functionUI_13,functionUI_14,functionUI_16,functionUI_17,functionUI_18,functionUI_19,functionUI_2,functionUI_22,functionUI_24,functionUI_25,functionUI_26,functionUI_4,functionUI_5,functionUI_6,functionUI_7,functionUI_8,functionUI_9",
 			"type":"sheet",
 			"url":"assets/atlas/functionUI.json"
 		},
@@ -115,11 +105,6 @@
 			"subkeys":"functionPanel_10,functionPanel_11,functionPanel_12,functionPanel_13,functionPanel_14,functionPanel_15,functionPanel_16,functionPanel_17,functionPanel_18,functionPanel_19,functionPanel_20,functionPanel_21,functionPanel_3,functionPanel_4,functionPanel_5,functionPanel_6,functionPanel_9",
 			"type":"sheet",
 			"url":"assets/atlas/functionPanel.json"
-		},
-		{
-			"name":"selectLevelBg2_png",
-			"type":"image",
-			"url":"assets/image/selectLevelBg2.png"
 		},
 		{
 			"name":"item_json",
@@ -180,7 +165,7 @@
 		},
 		{
 			"name":"otherRes1_json",
-			"subkeys":"otherRes1_1,otherRes1_10,otherRes1_11,otherRes1_12,otherRes1_13,otherRes1_14,otherRes1_15,otherRes1_16,otherRes1_17,otherRes1_18,otherRes1_19,otherRes1_2,otherRes1_20,otherRes1_21,otherRes1_22,otherRes1_23,otherRes1_3,otherRes1_4,otherRes1_5,otherRes1_6,otherRes1_7,otherRes1_8,otherRes1_9",
+			"subkeys":"otherRes1_1,otherRes1_10,otherRes1_14,otherRes1_15,otherRes1_16,otherRes1_17,otherRes1_18,otherRes1_19,otherRes1_2,otherRes1_20,otherRes1_21,otherRes1_23,otherRes1_3,otherRes1_32,otherRes1_4,otherRes1_5,otherRes1_6,otherRes1_7,otherRes1_8,otherRes1_9",
 			"type":"sheet",
 			"url":"assets/atlas/otherRes1.json"
 		},
@@ -288,7 +273,7 @@
 		},
 		{
 			"name":"fragment_json",
-			"subkeys":"fragment_1,fragment_101,fragment_102,fragment_103,fragment_104,fragment_105,fragment_2,fragment_3,fragment_4,fragment_5",
+			"subkeys":"fragment_1,fragment_101,fragment_102,fragment_103,fragment_104,fragment_105,fragment_2,fragment_201,fragment_202,fragment_203,fragment_3,fragment_301,fragment_302,fragment_303,fragment_4,fragment_5",
 			"type":"sheet",
 			"url":"assets/atlas/fragment.json"
 		},
