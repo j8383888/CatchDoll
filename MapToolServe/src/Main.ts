@@ -11,9 +11,9 @@ var editorData: string = "";
 
 var exportData: string = "";
 
-var battleJsonPath: string = "./BattleJson.json"
+var battleJsonPath: string = "./EditorData.json"
 
-var ExportJsonPath: string = "./ExportJson.json"
+var ExportJsonPath: string = "./ChapterData.json"
 
 var type: DATA_TYPE = DATA_TYPE.editor;
 
