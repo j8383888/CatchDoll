@@ -36,9 +36,30 @@ module catchDoll {
 		 */
 		public treasureTable: table.TreasureTable[];
 		/**
-		 * 商店配置
+		 * 章节数据配置
 		 */
-		public battleTable: table.battleTable[];
+		public ChapterData: {
+			chapterID: number,
+			chapterName: string,
+			levelData: {
+				level: number,
+				bgSource: string,
+				monster: {
+					monsterID: number,
+					fixedRotation: number,
+					pathMirror: boolean,
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+					pathData: {
+						origin: { x, y },
+						ctrlP1: { x, y },
+						ctrlP2: { x, y },
+						beforeAnchor: { x, y },
+						nextAnchor: { x, y },
+					}[]
+				}[],
+				mapData: { source, x, y }[],
+			}[]
+		}[] = [];
 
 		/**
 		 * 初始化配置
@@ -51,7 +72,7 @@ module catchDoll {
 			this.TurnTable = ConfigParse.getJosn("TurntableList_json");
 			this.ShopTable = ConfigParse.getJosn("shopTable_json");
 			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
-			this.battleTable = ConfigParse.getJosn("battleTable_json")
+			this.ChapterData = ConfigParse.getJosn("ChapterData_json")
 		}
 
 		/**
@@ -59,6 +80,42 @@ module catchDoll {
 		 */
 		public getPropDataByID(id: number): table.PropTable {
 			return ConfigParse.getWholeByProperty(this.PropTable, "id", id.toString());
+		}
+
+		/**
+		 * 根据ID获得物品数据
+		 */
+		public getMonsterDataByID(id: number): table.MonsterTable {
+			return ConfigParse.getWholeByProperty(this.MonsterTable, "id", id.toString());
+		}
+
+
+		/**
+		 * 根据ChapterID获得关卡数数据
+		 */
+		public getLevelsByChapterID(chapterID: number): {
+			level: number,
+			bgSource: string,
+			monster: {
+				monsterID: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			mapData: { source, x, y }[],
+		}[] {
+			for (let item of this.ChapterData) {
+				if (item.chapterID == chapterID) {
+					return item.levelData;
+				}
+			}
 		}
 
 		public constructor() {
@@ -75,18 +132,6 @@ module catchDoll {
 			return this._instance;
 		}
 
-		/**
-		 * 获得指定章节的关卡
-		 */
-		public getLevelsFromChapter(chapter: number): table.battleTable[] {
-			let levelAry = []
-			for (let item of this.battleTable) {
-				if (item.chapter == chapter) {
-					levelAry.push(item);
-				}
-			}
-			return levelAry;
-		}
 
 		/**
 		 * 释放
@@ -106,8 +151,8 @@ module catchDoll {
 			this.ShopTable = null;
 			this.treasureTable.length = 0;
 			this.treasureTable = null;
-			this.battleTable.length = 0;
-			this.battleTable = null;
+			this.ChapterData.length = 0;
+			this.ChapterData = null;
 		}
 	}
 }

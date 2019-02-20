@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="WorldMapSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
 	<e:Image source="otherRes1_14" y="-2" scaleX="8" scaleY="8"/>
-	<e:Image y="526" x="110" scaleX="-1" scaleY="1" source="otherRes1_19"/>
-	<e:Image y="526" x="600" scaleX="1" scaleY="1" source="otherRes1_19"/>
 
 
 	<e:Scroller width="720" height="588" x="0" y="264" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Group>
-			<e:Group id="_chapterBtn1" x="147" y="39.66" width="425">
-				<e:Group x="19" y="0">
-					<e:Image source="otherRes1_18" y="0" x="0"/>
-					<e:Image source="otherRes1_7" x="147" y="15"/>
-					<e:Image y="18.34" x="12" scaleX="1" scaleY="1" source="fragment_101"/>
-					<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_301"/>
-				</e:Group>
-				<e:Image source="otherRes1_20" y="106"/>
-			</e:Group>
 			<e:Group id="_chapterBtn2" x="157" y="49.66" width="425">
 				<e:Group x="19" y="0">
 				<e:Image source="otherRes1_18" y="0" x="0"/>
@@ -30,5 +19,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
+	<e:Image y="526" x="110" scaleX="-1" scaleY="1" source="otherRes1_19"/>
+	<e:Image y="526" x="600" scaleX="1" scaleY="1" source="otherRes1_19"/>
 
 </e:Skin>

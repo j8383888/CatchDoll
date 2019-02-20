@@ -15,13 +15,10 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			this._view = this._viewCenter.getView(FunctionUIView);4
+			this._view = this._viewCenter.getView(FunctionUIView);
 		}
 
 		private _onClick(btn: Button): void {
-			if (btn == this._view.menuBtn) {
-				SimpleUICenter.instance.openUI(SIMPLE_UI.BattleSelect);
-			}
 		}
 
 		/**

@@ -40,6 +40,7 @@ module catchDoll {
 
 		private _onClickChapter(btn: Button): void {
 			let chapterID = btn.data;
+			SimpleUICenter.instance.openUI(SIMPLE_UI.BattleSelect, chapterID)
 
 		}
 

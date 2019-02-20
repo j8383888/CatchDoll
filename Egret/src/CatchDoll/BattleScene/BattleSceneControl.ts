@@ -27,7 +27,9 @@ module catchDoll {
 		 * 显示时
 		 */
 		public onShow(): void {
-			catchDoll.LevelCreate.instance.init();
+			let levelData = this._dataCenter.openParam
+			LevelCreate.instance.init(levelData);
+			
 			this._view.rightBtn.mouseClickHandler = Handler.create(this, this._clickRightBtn);
 			this._view.leftBtn.mouseClickHandler = Handler.create(this, this._clickLeftBtn);
 			this._view.middleBtn.mouseClickHandler = Handler.create(this, this._clickMiddleBtn);

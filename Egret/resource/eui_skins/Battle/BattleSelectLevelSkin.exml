@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="BattleSelectLevelSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Scroller id="scroller" width="720" height="559.52" anchorOffsetX="0" horizontalCenter="0" anchorOffsetY="0" verticalCenter="-101" bounces="false">
-		<e:Group id="itemGroup" anchorOffsetY="0" height="160.67">
-			<e:Image x="0" y="241.2" width="120" source="" anchorOffsetX="60" height="120" anchorOffsetY="60" scaleX="1" scaleY="1"/>
-			<e:Image x="180" y="241.2" width="120" source="" anchorOffsetX="60" height="120" anchorOffsetY="60" scaleX="1" scaleY="1"/>
-			<e:Image x="360" y="241.2" anchorOffsetX="150" anchorOffsetY="210" scaleX="1" scaleY="1" source="fragment_201"/>
-			<e:Image y="241.2" source="item_3" x="540" anchorOffsetX="60" width="120" anchorOffsetY="60" height="120" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="item_3" x="720" anchorOffsetX="60" width="120" anchorOffsetY="60" height="120" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="item_7" x="900" width="120" height="120" anchorOffsetX="60" anchorOffsetY="60" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="item_7" x="1080" width="120" height="120" anchorOffsetX="60" anchorOffsetY="60" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="item_7" x="1260" width="120" height="120" anchorOffsetX="60" anchorOffsetY="60" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="" width="120" anchorOffsetX="60" anchorOffsetY="60" height="120" x="1440" scaleX="1" scaleY="1"/>
-			<e:Image y="241.2" source="" width="120" anchorOffsetX="60" anchorOffsetY="60" height="120" x="1620" scaleX="1" scaleY="1"/>
+	<e:Scroller id="scroller" width="720" height="560" anchorOffsetX="0" horizontalCenter="0" anchorOffsetY="0" verticalCenter="-71" bounces="false" scrollPolicyH="auto" scrollPolicyV="off">
+		<e:Group id="itemGroup" anchorOffsetY="0" width="720" height="560">
 			<e:layout>
 				<e:BasicLayout/>
 			</e:layout>

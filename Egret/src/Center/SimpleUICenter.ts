@@ -29,7 +29,7 @@ module catchDoll {
 			this.addUI(SIMPLE_UI.buyItemPanel, BuyItemPanel);
 			this.addUI(SIMPLE_UI.ConfirmPanel, ConfirmPanel);
 			this.addUI(SIMPLE_UI.SystemTips, SystemTips);
-			this.addUI(SIMPLE_UI.BattleSelect, BattleSelectLevel);
+			this.addUI(SIMPLE_UI.BattleSelect, BattleSelectLevelPanel);
 		}
 
 		/**

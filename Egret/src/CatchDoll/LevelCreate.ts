@@ -14,6 +14,25 @@ module catchDoll {
 		 */
 		private static _instance: LevelCreate;
 
+		private curLevelData: {
+			level: number,
+			bgSource: string,
+			monster: {
+				monsterID: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			mapData: { source, x, y }[],
+		};
+
 		public constructor() {
 
 		}
@@ -21,7 +40,25 @@ module catchDoll {
 		/**
 		 * 初始化
 		 */
-		public init(): void {
+		public init(levelData: {
+			level: number,
+			bgSource: string,
+			monster: {
+				monsterID: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			mapData: { source, x, y }[],
+		}): void {
+			this.curLevelData = levelData
 			this._creatMonster();
 			this._creatMaster();
 			EventManager.registerEvent(EVENT_ID.CREAT_MONSTER, Handler.create(this, this._creatRandomMonster));
@@ -41,6 +78,7 @@ module catchDoll {
 		 * 创建怪物
 		 */
 		private _creatMonster(): void {
+
 			for (let i: number = GAMEOBJECT_SIGN.MONSTER_ROBOT; i <= GAMEOBJECT_SIGN.MONSTER_Cactus; i++) {
 				let varsData: IMonsterVars = <IMonsterVars>{};
 				varsData.bornX = 500;

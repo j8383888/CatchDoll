@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BattleLevelItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group" scaleX="1" anchorOffsetX="150" anchorOffsetY="210">
+		<e:Image y="0" scaleX="1" scaleY="1" source="fragment_201" x="0"/>
+		<e:Image y="33" scaleX="1" scaleY="1" source="otherRes1_16" horizontalCenter="0"/>
+		<e:Rect id="dragoneP" x="150" y="210"/>
+		<e:Rect id="enterLevel" width="70" height="59" y="323.25" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0"/>
+	</e:Group>
+</e:Skin>
