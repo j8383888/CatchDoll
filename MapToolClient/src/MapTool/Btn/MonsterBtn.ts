@@ -98,7 +98,7 @@ class MonsterBtn extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 
-		PathEditor.instance.pathPoints.length = 0;
+		
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.curMonsterBtn = this;

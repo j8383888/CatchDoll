@@ -242,7 +242,7 @@ class MapEditor extends eui.Component {
 		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
 		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
 		this.savePath.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSavePath, this);
-		this.lookPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookPath, this)
+		this.lookPathBtn.addEventListener(egret.TouchEvent.CHANGE, this._onLookPath, this)
 		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
 		this.exportDataBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onExportData, this)
 		this.stopClick.visible = false;
@@ -257,7 +257,12 @@ class MapEditor extends eui.Component {
 			let item = this.bgGroup.getElementAt(i);
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
+
+		
 	}
+
+
+	
 
 
 	private _onExportData(): void {
@@ -271,7 +276,7 @@ class MapEditor extends eui.Component {
 				}
 			}
 		}
-		
+
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
 		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);

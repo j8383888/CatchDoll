@@ -123,6 +123,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 			if (PathEditor.instance.lastPoint) {
 				PathEditor.instance.lastPoint.showCtrlOp(false);
 			}
+		
 			this.showCtrlOp(true);
 			PathEditor.instance.lastPoint = this;
 		}

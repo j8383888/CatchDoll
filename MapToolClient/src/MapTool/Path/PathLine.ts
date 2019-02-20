@@ -46,7 +46,7 @@ class PathLine extends egret.Shape {
 		this.graphics.moveTo(startP.x, startP.y);
 		this.graphics.cubicCurveTo(ctrl1P.x, ctrl1P.y, ctrl2P.x, ctrl2P.y, endP.x, endP.y);
 
-		this.graphics.lineStyle(20, ColorUtil.COLOR_GOLD, 0.1);
+		this.graphics.lineStyle(20, ColorUtil.COLOR_GOLD, 0.2);
 		this.graphics.moveTo(startP.x, startP.y);
 		this.graphics.cubicCurveTo(ctrl1P.x, ctrl1P.y, ctrl2P.x, ctrl2P.y, endP.x, endP.y);
 	}

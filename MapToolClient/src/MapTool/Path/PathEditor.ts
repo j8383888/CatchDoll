@@ -23,6 +23,7 @@ class PathEditor {
 	public pathPoints: PathPoint[] = [];
 
 
+
 	public constructor() {
 		this._init();
 	}
@@ -36,12 +37,47 @@ class PathEditor {
 
 	public _init(): void {
 		this._mapEditor = MapEditor.instance;
-		MapEditor.instance.editorPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._editorPath, this)
+		MapEditor.instance.editorPathBtn.addEventListener(egret.TouchEvent.CHANGE, this._editorPath, this)
 		let pathEditArea = this._mapEditor.pathEditArea;
 		pathEditArea.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
 		this._mapEditor.aniTestBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAnimtionTest, this)
+
 		this._editorPath();
+		document.addEventListener("keydown", this._onKeyDown);
+		document.addEventListener("keyup", this._onKeyUp);
 	}
+
+	private _onKeyUp(e: KeyboardEvent): void {
+		if (e.key == 'a') {
+			for (let item of PathEditor.instance.pathPoints) {
+				item.ctrl1Shape.touchEnabled = true;
+				item.ctrl2Shape.touchEnabled = true;
+			}
+		}
+	}
+
+	private _onKeyDown(e: KeyboardEvent): void {
+		if (e.key == 'a') {
+			for (let item of PathEditor.instance.pathPoints) {
+				item.ctrl1Shape.touchEnabled = false;
+				item.ctrl2Shape.touchEnabled = false;
+			}
+		}
+		else if (e.key == 's') {
+			if (MapEditor.instance.editorPathBtn.selected) {
+				if (PathEditor.instance.pathPoints.length > 1) {
+					let node = PathEditor.instance.pathPoints[0];
+					PathEditor.instance._addPathNode(new egret.Point(node.x, node.y))
+				}
+			}
+		}
+		else if (e.key == 'd') {
+			MapEditor.instance.editorPathBtn.selected = !MapEditor.instance.editorPathBtn.selected;
+			PathEditor.instance._editorPath();
+		}
+	}
+
+
 
 
 	/**
@@ -134,9 +170,9 @@ class PathEditor {
 				 */
 				let nextPathNode = data[i + 1];
 				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
-				
+
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
-				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal:distTotalParse }
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse }
 				result.push(item);
 				distTotal += distNext;
 			}
@@ -166,7 +202,7 @@ class PathEditor {
 					distTotal += distNext;
 				}
 			}
-			
+
 		}
 		monsterBtn.data.exportData = result;
 	}
@@ -228,33 +264,38 @@ class PathEditor {
 		}
 		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
 
-			if (this.finalPoint) {
-				/*隐藏控制线*/
-				this.lastPoint.showCtrlOp(false)
-				let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
-
-				let newPoint = this.creatPoint(p);
-				newPoint.showCtrlOp(true);
-
-				let line = this.creatLine(this.finalPoint, newPoint)
-				newPoint.setFromLine(line);
-				this.finalLine = line;
-				this.finalPoint.setBackLine(this.finalLine);
-				this.finalPoint = newPoint;
-				this.lastPoint = this.finalPoint
-			}
-			else {
-				let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
-				this.finalPoint = this.creatPoint(p);
-
-				this.lastPoint = this.finalPoint
-				this.finalPoint.showCtrlOp(true);
-			}
-			this.pathPoints.push(this.finalPoint)
+			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+			this._addPathNode(p);
 		}
 		else {
 			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
 		}
+	}
+
+	/**
+	 * 添加路径点
+	 */
+	private _addPathNode(p: egret.Point): void {
+		if (this.finalPoint) {
+			/*隐藏控制线*/
+			this.lastPoint.showCtrlOp(false)
+			let newPoint = this.creatPoint(p);
+			newPoint.showCtrlOp(true);
+
+			let line = this.creatLine(this.finalPoint, newPoint)
+			newPoint.setFromLine(line);
+			this.finalLine = line;
+			this.finalPoint.setBackLine(this.finalLine);
+			this.finalPoint = newPoint;
+			this.lastPoint = this.finalPoint
+		}
+		else {
+			this.finalPoint = this.creatPoint(p);
+
+			this.lastPoint = this.finalPoint
+			this.finalPoint.showCtrlOp(true);
+		}
+		this.pathPoints.push(this.finalPoint)
 	}
 
 	public drawPath(pathNodes: {
@@ -265,6 +306,7 @@ class PathEditor {
 		nextAnchor: { x, y },
 	}[]): void {
 
+		PathEditor.instance.pathPoints.length = 0;
 		for (let item of pathNodes) {
 			if (this.finalPoint) {
 				let newPoint = this.creatPoint(new egret.Point(item.origin.x, item.origin.y));

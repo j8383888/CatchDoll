@@ -1,5 +1,0 @@
-class GlobeConst {
-
-	public constructor() {
-	}
-}

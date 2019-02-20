@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MapEditorSkin" width="1800" height="1280" xmlns:e="http://ns.egret.com/eui"
+<e:Skin class="MapEditorSkin" width="1920" height="1280" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing">
 	<e:Scroller width="389.7" x="923.97" y="0" anchorOffsetX="0" anchorOffsetY="0" height="964" scrollPolicyH="off">
 		<e:Group id="itemGroup" anchorOffsetY="0" height="944" anchorOffsetX="0" width="541.7">
@@ -25,18 +25,18 @@
 			<e:Group id="pathLine" scaleX="1" scaleY="1"/>
 			<e:Group id="pathPoint" scaleX="1" scaleY="1"/>
 		</e:Group>
-		<e:Group id="monsterShowBox" width="718" height="626" x="0" y="654" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+		<e:Group id="monsterShowBox" width="714" height="294" x="0" y="986" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
 			<e:layout>
 				<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="1070" y="0" right="0" scrollPolicyH="off">
-		<e:Group id="levelGroup" anchorOffsetY="0" height="1058">
+	<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="872" y="0" scrollPolicyH="off" x="1600">
+		<e:Group id="levelGroup" anchorOffsetY="0" height="838">
 			<e:layout>
 				<e:VerticalLayout gap="0"/>
 			</e:layout>
-			<e:Button label="关卡" x="-1600" y="10" anchorOffsetX="0" width="206" scaleX="1" scaleY="1"/>
+			<e:Button label="关卡" x="-1600" y="10" anchorOffsetX="0" width="206" scaleX="1" scaleY="1" rotation="0.03"/>
 		</e:Group>
 	</e:Scroller>
 	<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="510" y="0" x="1316" scrollPolicyH="off">
@@ -60,7 +60,7 @@
 			<e:Image width="200" height="18" x="136" y="188" source="scene4_png"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Group x="924" y="976" anchorOffsetY="0" height="298" anchorOffsetX="0" width="660">
+	<e:Group x="926" y="978" anchorOffsetY="0" height="298" anchorOffsetX="0" width="660">
 		<e:Button id="changeChapterName" label="保存章节名字" x="2" y="-98" anchorOffsetY="0" height="94" scaleX="1" scaleY="1"/>
 		<e:Button id="savePath" label="保存当前怪物路径" x="165.97000000000003" y="-97.20000000000005" anchorOffsetY="0" height="94" scaleY="1" scaleX="1"/>
 		<e:Button id="saveBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
@@ -77,13 +77,14 @@
 			<e:TileLayout  requestedRowCount="3"/>
 		</e:layout>
 	</e:Group>
+	<e:Button label="导出编辑器数据" x="1590" y="1022" anchorOffsetY="0" height="94" scaleX="0.8" scaleY="0.8" visible="false"/>
 
 
 
 
 
 
-	<e:Group x="1589" y="1090.37">
+	<e:Group x="1709" y="1106.37">
 		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
 		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
 		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
@@ -93,7 +94,8 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="pathMirror" label="路径镜像" x="601" scaleX="1" scaleY="1" bottom="6"/>
-	<e:CheckBox id="fixedRotation" label="锁定宠物角度（0度）" x="601" scaleX="1" scaleY="1" bottom="40"/>
+	<e:CheckBox id="pathMirror" label="路径镜像" x="1437" scaleX="1" scaleY="1" bottom="14"/>
+	<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="1437" scaleX="1" scaleY="1" bottom="48"/>
+	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点s：闭合首尾路径点\nd：编辑路径点" x="1591" y="974" anchorOffsetY="0" height="126" anchorOffsetX="0" width="319"/>
 	<e:Rect id="stopClick" width="1800" height="1280" fillAlpha="0" visible="false"/>
 </e:Skin>
