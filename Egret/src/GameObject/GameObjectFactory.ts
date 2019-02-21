@@ -19,7 +19,7 @@ module catchDoll {
 		public gid: number = 0;
 
 		constructor() {
-			for (let i: number = GAMEOBJECT_SIGN.MONSTER_1; i <= GAMEOBJECT_SIGN.MONSTER_Cactus; i++) {
+			for (let i: number = 1; i <= 9; i++) {
 				this._objClassDic.set(i, Monster);
 			}
 			this._objClassDic.set(GAMEOBJECT_SIGN.PAWS, Paws);
@@ -67,8 +67,8 @@ module catchDoll {
 				return;
 			}
 			if (egret.is(gameObj, "catchDoll.Monster")) {
-				let map: Dictionary = LevelCreate.inViewMonsterMap
-				if (LevelCreate.inViewMonsterMap.remove(gameObj.uID)) {
+				let map: Dictionary = LevelCreate.inSenceMonsterMap
+				if (LevelCreate.inSenceMonsterMap.remove(gameObj.uID)) {
 				}
 				else {
 					console.assert(false, "逻辑有误")
@@ -98,11 +98,11 @@ module catchDoll {
 		 */
 		private _writeInMap(gameObj: GameObject, varsData: IGameObjectVars): void {
 			if (egret.is(gameObj, "catchDoll.Monster")) {
-				if (LevelCreate.inViewMonsterMap.isExist(gameObj)) {
+				if (LevelCreate.inSenceMonsterMap.isExist(gameObj)) {
 					console.assert(false, "逻辑有误")
 				}
 				else {
-					LevelCreate.inViewMonsterMap.set(gameObj.uID, gameObj)
+					LevelCreate.inSenceMonsterMap.set(gameObj.uID, gameObj)
 				}
 			}
 		}

@@ -23,6 +23,7 @@ module catchDoll {
          * 初始化一次
          */
 		public loadConfigData(data: IColliderConfigData): void {
+			super.loadConfigData(data);
 			for (let i: number = 0; i < data.colliderAry.length; i++) {
 				let colliderData: ICollider = data.colliderAry[i];
 				let collider: catchDoll.Collider = Collider.creat(colliderData.posX, colliderData.posY, colliderData.radius)

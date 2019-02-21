@@ -24,6 +24,10 @@ module catchDoll {
 		bornY: number,
 		/*旋转角度*/
 		rotation?: number,
+		/*锁定角度*/
+		fixedRotation:number,
+		/*路径数据*/
+		exportData:{ x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 
 	}
 
@@ -41,6 +45,7 @@ module catchDoll {
 	export interface IOperation {
 		/*类型*/
 		type: OPERATION_TYPE,
+
 	}
 
 	/**
@@ -160,7 +165,7 @@ module catchDoll {
 		/*y坐标*/
 		posY: number,
 		/*半径*/
-		radius?: number,
+		radius: number,
 	}
 
 }

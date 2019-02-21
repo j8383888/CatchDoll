@@ -176,10 +176,6 @@ const enum EVENT_ID {
 	 */
 	MASTER_DOWN,
 	/**
-	 * 创建怪物
-	 */
-	CREAT_MONSTER,
-	/**
 	 * 更新钱
 	 */
 	UPDATE_MONEY,

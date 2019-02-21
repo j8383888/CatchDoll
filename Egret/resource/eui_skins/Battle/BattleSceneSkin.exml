@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 
-	<e:Image x="0" y="-100" source="scene2_png"/>
+	<e:Image id="bgSource" x="0" y="-100" source="scene2_png"/>
 	<e:Image id="curtain2" source="battle_20" right="0" top="0"/>
 	<e:Image id="curtain1" source="battle_21" left="0" top="0"/>
 	<e:Image source="battle_16" left="0" top="0"/>

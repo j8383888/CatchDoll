@@ -6,9 +6,28 @@ module catchDoll {
 		 */
 		public _gameObj: Monster;
 		/**
-		 * 是否反转
+		 * 开始时间
 		 */
-		public isReverse: boolean = false;
+		public startTime: number = -1;
+		/**
+		 * 路径节点序列
+		 */
+		public pathNodes: { x: number, y: number, angle: number, distNext: number, distTotal: number }[];
+
+		/**
+		 * 当前路径节点
+		 */
+		public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+		/**
+		 * 下一个路径节点
+		 */
+		public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+		/**
+		 * 当前路径节点索引
+		 */
+		public pathNodeIndex = 0;
+
+		public fixedRotation: number = 0;
 
 		public constructor() {
 			super();
@@ -19,35 +38,97 @@ module catchDoll {
 	 	 */
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Monster;
+
+
+			this.startTime = egret.getTimer();
+			let monsterVars = gameObj.varsData as IMonsterVars
+			this.fixedRotation = monsterVars.fixedRotation
+			this.pathNodes = monsterVars.exportData;
+			this.curPathNode = this.pathNodes[0];
+			this.nextPathNode = this.pathNodes[1];
 		}
 
 		/**
          * 反注册
          */
 		public unregister(): void {
+			this._gameObj = null;
+			this.pathNodes.length = 0;
+			this.curPathNode = null;
+			this.nextPathNode = null;
 		}
 
 		/**
 		 * 帧循环
 		 */
 		public enterFrame(): void {
-			if (this._gameObj.x > GameCenter.stageW) {
-				this.isReverse = true;
+			let time = egret.getTimer();
+			let runTime = (time - this.startTime) / 1000;
+			let curMoveDistance = runTime * 200
+			let lastPath = this.pathNodes[this.pathNodes.length - 1]
+			let total = lastPath.distTotal
+			let monster = this._gameObj as Monster;
+
+			let transform = monster.dragonBones.armature.getBone("centre").global
+
+			// monster.colliderShape.x = transform.x;
+			// monster.colliderShape.y = transform.y;
+
+			if (curMoveDistance >= total) {
+
+				this.pathNodeIndex = 0;
+				this.curPathNode = this.pathNodes[0];
+				this.nextPathNode = this.pathNodes[1];
+				this.startTime = egret.getTimer();
+				// GameObjectFactory.instance.recoverGameObject(monster);
+				return;
+
 			}
-			else if (this._gameObj.x < 0) {
-				this.isReverse = false;
-			}
-			if (this.isReverse) {
-				if (this._gameObj.imagePlayer) {
-					this._gameObj.imagePlayer.scaleX = -1;
+
+			if (curMoveDistance > this.nextPathNode.distTotal) {
+				let len = this.pathNodes.length;
+				for (let i: number = this.pathNodeIndex; i < len; i++) {
+					if (this.pathNodes[i].distTotal > curMoveDistance) {
+						this.pathNodeIndex = i;
+						this.nextPathNode = this.pathNodes[i];
+						this.curPathNode = this.pathNodes[i - 1];
+						break;
+					}
 				}
-				this._gameObj.x -= this._gameObj.speed;
+			}
+
+			let curPath = this.curPathNode;
+			let nextPath = this.nextPathNode;
+
+			curPath = curPath == null ? lastPath : curPath;
+			nextPath = nextPath == null ? lastPath : nextPath;
+
+			let distNext = curPath.distNext;
+			let offsetDist = curMoveDistance - curPath.distTotal;
+			let offsetx = offsetDist / distNext * (nextPath.x - curPath.x);
+			let offsety = offsetDist / distNext * (nextPath.y - curPath.y);
+
+			monster.x = (curPath.x + offsetx);
+			monster.y = (curPath.y + offsety)
+
+			/**
+			 * 未锁定角度
+			 */
+			if (this.fixedRotation == -1) {
+				let angle = curPath.angle - 90;
+				let rotation = monster.rotation;
+
+				let diff = angle - rotation;
+				if (diff < -180) {
+					angle += 360;
+				} else if (diff > 180) {
+					angle -= 360;
+				}
+				let speedRotation = (angle - rotation) / 10;
+				monster.rotation = rotation + speedRotation;
 			}
 			else {
-				if (this._gameObj.imagePlayer) {
-					this._gameObj.imagePlayer.scaleX = 1;
-				}
-				this._gameObj.x += this._gameObj.speed;
+				monster.rotation = 0;
 			}
 		}
 	}

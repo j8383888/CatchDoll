@@ -28,8 +28,9 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			let levelData = this._dataCenter.openParam
+			this._view.bgSource.source = levelData.bgSource
 			LevelCreate.instance.init(levelData);
-			
+
 			this._view.rightBtn.mouseClickHandler = Handler.create(this, this._clickRightBtn);
 			this._view.leftBtn.mouseClickHandler = Handler.create(this, this._clickLeftBtn);
 			this._view.middleBtn.mouseClickHandler = Handler.create(this, this._clickMiddleBtn);

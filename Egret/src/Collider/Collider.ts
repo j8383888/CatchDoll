@@ -108,13 +108,6 @@ module catchDoll {
 			}
 
 			let disSquare = disx * disx + disy * disy;
-			// let c1hostRotation: number = c1.host.rotation;
-			// let c2hostRotation: number = c2.host.rotation;
-			// let p1X: number = c1.x * Math.cos(c1hostRotation) - c1.y * Math.sin(c1hostRotation) + c1.host.x;
-			// let p1Y: number = c1.y * Math.cos(c1hostRotation) + c1.x * Math.sin(c1hostRotation) + c1.host.y;
-			// let p2X: number = c2.x * Math.cos(c2hostRotation) - c2.y * Math.sin(c2hostRotation) + c2.host.x;
-			// let p2Y: number = c2.y * Math.cos(c2hostRotation) + c2.x * Math.sin(c2hostRotation) + c2.host.y;
-			// let dis = Math.sqrt((p1X - p2X) * (p1X - p2X) + (p1Y - p2Y) * (p1Y - p2Y));
 
 			if (disSquare < (dist * dist)) {
 				return true;

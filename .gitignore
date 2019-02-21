@@ -9,3 +9,5 @@ Egret_wxgame_remote/
 MapToolClient/bin-release
 MapToolClient/bin-debug/
 MapToolServe/out
+ColliderEditor/libs
+ColliderEditor/bin-debug

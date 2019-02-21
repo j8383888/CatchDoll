@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainEditorSkin" width="1400" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect id="editAreaRect" width="1000" height="1000" fillColor="0x0098bc" fillAlpha="0.5"/>
+	<e:Group id="gridBox" width="200" height="200"/>
+	<e:Group id="monsterShowBox" width="200" height="200" x="0" y="0"/>
+	<e:Group id="monsterColliderBox" width="200" height="200"/>
+	<e:Button id="clearBtn" label="清空" x="1000" y="642.91"/>
+	<e:Scroller width="400" height="640.91" x="1000" y="2" anchorOffsetY="0">
+		<e:Group id="monsterBox">
+			<e:layout>
+				<e:TileLayout requestedColumnCount="2" horizontalAlign="center" horizontalGap="0" verticalGap="0" verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

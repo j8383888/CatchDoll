@@ -51,11 +51,10 @@ module catchDoll {
 		}
 
 
+
 		public loadConfigAsset(assetData: IConfigAsset): void {
 			super.loadConfigAsset(assetData);
-			if (this._dragonBones) {
-				this.originScale = this._dragonBones.scaleX = this._dragonBones.scaleY = 0.4
-			}
+
 		}
 
 		/**
@@ -99,6 +98,10 @@ module catchDoll {
 					this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));
 				}
 			}
+		}
+
+		public get dragonBones(): dragonBones.EgretArmatureDisplay {
+			return this._dragonBones;
 		}
 
 		/**

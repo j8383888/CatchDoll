@@ -10,12 +10,7 @@ module catchDoll {
  * 物体对象标志（一般将相同资源的对象 命名同一个sign）
  */
 const enum GAMEOBJECT_SIGN {
-    MONSTER_1 = 1,
-    MONSTER_2 = 2,
-    MONSTER_3 = 3,
-    MONSTER_ROBOT = 4,
-    MONSTER_ROBOT_2 = 5,
-    MONSTER_Cactus = 6,
+
     /**
      * 夹子
      */

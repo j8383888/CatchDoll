@@ -45,8 +45,10 @@ module catchDoll {
 		 * 窗帘效果
 		 */
 		public curtainEffR: egret.MovieClip;
-
-
+		/**
+		 * 背景
+		 */
+		public bgSource: eui.Image;
 
 
 		public constructor() {
@@ -75,7 +77,7 @@ module catchDoll {
 			// this.curtainEffR.gotoAndPlay(1, 1);
 			// this.curtainEffR.scaleX = this.curtainEffR.scaleY = 1.2
 			// this.addChild(this.curtainEffR);
-
+			
 		}
 
 		/**

@@ -54,7 +54,7 @@ module catchDoll {
 					this._gameObj.confirmRopeHeight();
 				}
 			}).wait(100).to({ y: 660 }, 500, egret.Ease.quadIn).call(() => {
-				let monsterMap: Dictionary = LevelCreate.inViewMonsterMap;
+				let monsterMap: Dictionary = LevelCreate.inSenceMonsterMap;
 				let globePosx: number = this._gameObj.x;
 				for (let i: number = 0; i < monsterMap.length; i++) {
 					let monster: Monster = monsterMap.values[i];

@@ -8,7 +8,11 @@ module catchDoll {
 		/**
 		 * 在视野内的怪物
 		 */
-		public static inViewMonsterMap: Dictionary = new Dictionary();
+		public static inSenceMonsterMap: Dictionary = new Dictionary();
+		/**
+		 * 爪子是否下降
+		 */
+		public pawsDown: boolean = false;
 		/**
 		 * 单例
 		 */
@@ -21,14 +25,7 @@ module catchDoll {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
-				pathData: {
-					origin: { x, y },
-					ctrlP1: { x, y },
-					ctrlP2: { x, y },
-					beforeAnchor: { x, y },
-					nextAnchor: { x, y },
-				}[]
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 			}[],
 			mapData: { source, x, y }[],
 		};
@@ -47,21 +44,28 @@ module catchDoll {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
-				pathData: {
-					origin: { x, y },
-					ctrlP1: { x, y },
-					ctrlP2: { x, y },
-					beforeAnchor: { x, y },
-					nextAnchor: { x, y },
-				}[]
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 			}[],
 			mapData: { source, x, y }[],
 		}): void {
 			this.curLevelData = levelData
 			this._creatMonster();
 			this._creatMaster();
-			EventManager.registerEvent(EVENT_ID.CREAT_MONSTER, Handler.create(this, this._creatRandomMonster));
+
+			Laya.timer.frameLoop(1, this, this._checkHit)
+		}
+
+		/**
+		 * 检测碰撞
+		 */
+		private _checkHit(): void {
+			if (this.pawsDown) {
+				let monsterMap = LevelCreate.inSenceMonsterMap
+				let len: number = monsterMap.length;
+				for (let i: number = 0; i < len; i++) {
+					let monster: Monster = monsterMap.values[i];
+				}
+			}
 		}
 
 		/**
@@ -78,16 +82,18 @@ module catchDoll {
 		 * 创建怪物
 		 */
 		private _creatMonster(): void {
+			for (let item of this.curLevelData.monster) {
 
-			for (let i: number = GAMEOBJECT_SIGN.MONSTER_ROBOT; i <= GAMEOBJECT_SIGN.MONSTER_Cactus; i++) {
 				let varsData: IMonsterVars = <IMonsterVars>{};
-				varsData.bornX = 500;
-				varsData.bornY = 980;
+				varsData.fixedRotation = item.fixedRotation;
+				varsData.exportData = item.exportData;
 				varsData.operation = [<IOperation>{
 					type: OPERATION_TYPE.MONSTER
+
 				}]
-				GameObjectFactory.instance.creatGameObject(i, varsData)
+				GameObjectFactory.instance.creatGameObject(item.monsterID, varsData)
 			}
+
 		}
 
 		/**
@@ -101,24 +107,11 @@ module catchDoll {
 		}
 
 		/**
-		 * 随机创建怪物
-		 */
-		private _creatRandomMonster(): void {
-			let varsData: IMonsterVars = <IMonsterVars>{};
-			varsData.bornX = 500;
-			varsData.bornY = 925;
-			varsData.operation = [<IOperation>{
-				type: OPERATION_TYPE.MONSTER
-			}]
-			GameObjectFactory.instance.creatGameObject(MathUtil.random(GAMEOBJECT_SIGN.MONSTER_1, GAMEOBJECT_SIGN.MONSTER_ROBOT), varsData)
-		}
-
-		/**
 		 * 释放
 		 */
 		public dispose(): void {
-			let len: number = LevelCreate.inViewMonsterMap.length;
-			let map: Dictionary = LevelCreate.inViewMonsterMap.copy();
+			let len: number = LevelCreate.inSenceMonsterMap.length;
+			let map: Dictionary = LevelCreate.inSenceMonsterMap.copy();
 			for (let i: number = 0; i < len; i++) {
 				let monster: Monster = map.values[i];
 				GameObjectFactory.instance.recoverGameObject(monster);
@@ -127,8 +120,8 @@ module catchDoll {
 				GameObjectFactory.instance.recoverGameObject(Master.instance.MasterPaws);
 				Master.instance.MasterPaws = null;
 			}
+			this.curLevelData = null;
 
-			EventManager.unregisterEvent(EVENT_ID.CREAT_MONSTER, this, this._creatRandomMonster);
 		}
 	}
 }

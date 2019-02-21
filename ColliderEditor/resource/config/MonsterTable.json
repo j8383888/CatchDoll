@@ -1,0 +1,11 @@
+[
+{"id":1,"name":"大眼黑","dragonBones":"duyanhei","life":50,"moveSpeed":2},
+{"id":2,"name":"大眼红","dragonBones":"duyanhong","life":50,"moveSpeed":4},
+{"id":3,"name":"大眼蓝","dragonBones":"duyanlan","life":50,"moveSpeed":6},
+{"id":4,"name":"大眼绿","dragonBones":"duyanlv","life":50,"moveSpeed":8},
+{"id":5,"name":"小猪黑","dragonBones":"xiaozhuhei","life":50,"moveSpeed":10},
+{"id":6,"name":"小猪红","dragonBones":"xiaozhuhong","life":50,"moveSpeed":12},
+{"id":7,"name":"小猪红","dragonBones":"xiaozhuhuang","life":50,"moveSpeed":14},
+{"id":8,"name":"小猪蓝","dragonBones":"xiaozhulan","life":50,"moveSpeed":16},
+{"id":9,"name":"小猪绿","dragonBones":"xiaozhulv","life":50,"moveSpeed":18}
+]

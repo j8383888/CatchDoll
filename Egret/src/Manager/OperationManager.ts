@@ -34,13 +34,19 @@ module catchDoll {
 		 * 更新
 		 */
 		private _update(): void {
-			let len: number = this._resgisterOprDic.length
-			for (let i: number = 0; i < len; i++) {
-				let item: BaseOperation = this._resgisterOprDic.values[i];
-				// if (egret.is(item, "catchDoll.MonsterOperation")) {
-				item.enterFrame()
-				// }
+			let values: BaseOperation[] = this._resgisterOprDic.values;
+			for (let item of values) {
+				item.enterFrame();
 			}
+
+			// let len: number = this._resgisterOprDic.length
+
+			// for (let i: number = 0; i < len; i++) {
+			// 	let item: BaseOperation = this._resgisterOprDic.values[i];
+			// 	// if (egret.is(item, "catchDoll.MonsterOperation")) {
+			// 	item.enterFrame()
+			// 	// }
+			// }
 		}
 
 

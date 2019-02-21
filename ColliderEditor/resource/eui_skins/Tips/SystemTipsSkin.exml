@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SystemTipsSkin" width="720" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="65">
+	<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0x3d3535"/>
+
+	<e:Label id="msgLabel" text="" x="18.24" anchorOffsetX="0" width="693.7" anchorOffsetY="0" textAlign="center" height="30" verticalCenter="0" fontFamily="SimHei" bold="true"/>
+</e:Skin>
