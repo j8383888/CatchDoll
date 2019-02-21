@@ -101,7 +101,9 @@ class Main extends eui.UILayer {
      */
     protected createGameScene(): void {
         let mainEditor = MainEditor.instance
+
         this.addChild(mainEditor);
+        mainEditor.init();
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -118,29 +120,7 @@ class Main extends eui.UILayer {
      * Description file loading is successful, start to play the animation
      */
     private startAnimation(result: Array<any>): void {
-        let parser = new egret.HtmlTextParser();
-
-        let textflowArr = result.map(text => parser.parse(text));
-        let textfield = this.textfield;
-        let count = -1;
-        let change = () => {
-            count++;
-            if (count >= textflowArr.length) {
-                count = 0;
-            }
-            let textFlow = textflowArr[count];
-
-            // 切换描述内容
-            // Switch to described content
-            textfield.textFlow = textFlow;
-            let tw = egret.Tween.get(textfield);
-            tw.to({ "alpha": 1 }, 200);
-            tw.wait(2000);
-            tw.to({ "alpha": 0 }, 200);
-            tw.call(change, this);
-        };
-
-        change();
+        
     }
 
     /**

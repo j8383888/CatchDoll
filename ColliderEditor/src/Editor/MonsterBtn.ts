@@ -10,10 +10,10 @@ class MonsterBtn {
 
 	public id: number = - 1;
 
-	public constructor(id: number,dragonSource:string) {
+	public constructor(id: number, dragonSource: string) {
 		this.id = id;
 
-		
+
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(dragonSource);
 		this.runDragon = UIUtil.creatDragonbones(dragonSource);
 		this.runDragon.x = this.runDragon.y = 500;
@@ -40,9 +40,9 @@ class MonsterBtn {
 		MainEditor.instance.monsterColliderBox.removeChildren();
 
 		for (let item of this.data.colliderAry) {
-			let shape = new egret.Shape();
-			MainEditor.instance.drawShape = shape;
-			MainEditor.instance.monsterColliderBox.addChild(shape);
+
+
+			MainEditor.instance.creatShape()
 			MainEditor.instance.drawCollider(item.x, item.y, item.radius)
 		}
 		MainEditor.instance.monsterShowBox.addChild(this.runDragon)

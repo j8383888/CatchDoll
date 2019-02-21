@@ -28,15 +28,12 @@ class MainEditor extends eui.Component {
 	 */
 	public monsterColliderBox: eui.Group;
 
-
+	public isDraw: boolean = false;
 
 	private static _instance: MainEditor = null;
 
-	public drawShape: egret.Shape;
-
+	public curColliderShape: ColliderShape;
 	private _originP: { x: number, y: number } = { x: 0, y: 0 };
-
-	public curCicrle: { x: number, y: number, radius: number };
 
 	public colliderMap: {
 		id: number,
@@ -45,21 +42,50 @@ class MainEditor extends eui.Component {
 
 	public clearBtn: eui.Button;
 
+	private _colliderShapes: egret.Shape[] = [];
+
+
 	public constructor() {
 		super();
 		this.skinName = "MainEditorSkin"
+	}
 
+	public clear(): void {
+
+		this.monsterColliderBox.removeChildren();
+	}
+
+	public init(): void {
 		this.monsterTable = RES.getRes("MonsterTable_json");
+		this.monsterShowBox.touchEnabled = false;
+		this.monsterShowBox.touchChildren = false;
+		this.monsterColliderBox.touchEnabled = false;
+		this.monsterColliderBox.touchChildren = false;
 		this._createGrid();
 		this._creatMonster();
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this);
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this);
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_END, this._onEnd, this);
-		this.clearBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClear, this)
+		this.clearBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClear, this);
+		document.addEventListener("keydown", this._onKeyDown);
+		document.addEventListener("keyup", this._onKeyUp);
 		// this._loadColliderData();
 	}
 
-	public i
+	private _onKeyUp(e: KeyboardEvent): void {
+		if (e.key == 'a') {
+			MainEditor.instance.monsterColliderBox.touchChildren = false;
+		}
+		else if (e.key == 's') {
+			// MainEditor.instance.
+		}
+	}
+
+	private _onKeyDown(e: KeyboardEvent): void {
+		if (e.key == 'a') {
+			MainEditor.instance.monsterColliderBox.touchChildren = true;
+		}
+	}
 
 	private _loadColliderData(): void {
 		var request = new egret.HttpRequest();
@@ -92,7 +118,7 @@ class MainEditor extends eui.Component {
 	}
 
 	private onGetIOError() {
-
+		SystemTipsUtil.showTips("异常！", ColorUtil.COLOR_RED);
 	}
 
 	private onGetProgress() {
@@ -113,50 +139,67 @@ class MainEditor extends eui.Component {
 	}
 
 	private _onDown(e: egret.TouchEvent): void {
+		this.isDraw = true;
 		this._originP.x = e.stageX;
 		this._originP.y = e.stageY;
-		let shape = new egret.Shape();
-		this.drawShape = shape;
-		this.addChild(this.drawShape);
+		this.creatShape();
+
 	}
 
+	public creatShape(): void {
+
+		let shape = new ColliderShape();
+
+		this.curColliderShape = shape;
+		this._colliderShapes.push(shape);
+		this.monsterColliderBox.addChild(this.curColliderShape);
+	}
+
+
+
 	private _onEnd(): void {
+		this.isDraw = false;
+		if (!this.curMonsterBtn) {
+			SystemTipsUtil.showTips("请先选中宠物！");
+			this.monsterColliderBox.removeChildren();
+			return;
+		}
+
 		for (let item of this.colliderMap) {
 			if (item.id == this.curMonsterBtn.data.id) {
-				item.colliderAry.push(this.curCicrle);
 				return;
 			}
 		}
+
 	}
 
 	private _onMove(e: egret.TouchEvent): void {
-		let radius = UIUtil.getDistanceByPoint(this._originP, { x: e.stageX, y: e.stageY });
-		this.drawCollider(this.drawShape.x, this.drawShape.y, radius);
+		if (this.isDraw) {
+			let radius = UIUtil.getDistanceByPoint(this._originP, { x: e.stageX, y: e.stageY });
+			this.drawCollider(this._originP.x, this._originP.y, radius);
+		}
 	}
 
 	/**
 	 * 画碰撞
 	 */
 	public drawCollider(x: number, y: number, radius: number): void {
-		let shape = this.drawShape;
+		let shape = this.curColliderShape;
 		shape.graphics.clear();
 		shape.graphics.beginFill(ColorUtil.COLOR_RED, 0.5);
 		shape.graphics.drawCircle(0, 0, radius);
 		shape.graphics.endFill();
-
 		shape.x = x;
 		shape.y = y;
-		this.curCicrle = { x: this._originP.x, y: this._originP.y, radius: radius }
-
 	}
 
-	public setData(id: number, data: { x: number, y: number, radius: number }[]): void {
-		for (let item of this.colliderMap) {
-			if (item.id == id) {
-				item.colliderAry = data;
-			}
-		}
-	}
+	// public setData(id: number, data: { x: number, y: number, radius: number }[]): void {
+	// 	for (let item of this.colliderMap) {
+	// 		if (item.id == id) {
+	// 			item.colliderAry = data;
+	// 		}
+	// 	}
+	// }
 
 	public getColliderData(id: number): { id: number, colliderAry: { x: number, y: number, radius: number }[] } {
 		for (let item of this.colliderMap) {
@@ -180,8 +223,6 @@ class MainEditor extends eui.Component {
 	 * 创建怪物
 	 */
 	private _creatMonster(): void {
-
-
 		for (let i: number = 0; i < 2; i++) {
 			let blank = new eui.Group();
 			blank.width = 100
@@ -196,6 +237,7 @@ class MainEditor extends eui.Component {
 				id: item.id,
 				colliderAry: [{ x: 0, y: 0, radius: 0 }]
 			}
+			btn.setData(dataItem);
 			this.colliderMap.push(dataItem);
 			this.monsterBtns.push(btn);
 		}
