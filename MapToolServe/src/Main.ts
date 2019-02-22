@@ -9,13 +9,13 @@ var port = 8080;
 
 var levelEdit: string = "";
 var levelData: string = "";
-var colliderEdit: string = "";
-var colliderData: string = "";
+var body: string = "";
 
 var levelEditPath: string = "./LevelEdit.json"
 var levelDataPath: string = "./LevelData.json"
 var colliderEditPath: string = "./ColliderEdit.json"
-var colliderDataPath: string = "./COlliderData.csv"
+var colliderDataPath: string = "./ColliderData.csv"
+
 
 var type: DATA_TYPE = DATA_TYPE.LEVEL_EDIT;
 
@@ -33,22 +33,20 @@ var server = http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', "*")
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.method == "GET") {
-        req.on('data', function (chunk: Buffer) {
-            let data = chunk.toString();
-            console.log(data);
-            let date = new Date();
-            if (data == "Collider Edit") {
-                console.log(date.toLocaleString(), "发送碰撞体数据");
-                var colliderJson: string = getJSon(colliderEditPath);
-                res.end(colliderJson);
+        let date = new Date();
+        if (req.url == "/ColliderEdit") {
+            console.log(date.toLocaleString(), "发送碰撞体数据");
+            var colliderJson: string = getJSon(colliderEditPath);
+            res.end(colliderJson);
 
-            }
-            else {
-                console.log(date.toLocaleString(), "发送关卡数据");
-                var battleJson: string = getJSon(levelEditPath);
-                res.end(battleJson);
-            }
-        })
+        }
+        else {
+            console.log(date.toLocaleString(), "发送关卡数据");
+            var battleJson: string = getJSon(levelEditPath);
+            res.end(battleJson);
+        }
+
+
     }
     else if (req.method == "POST") {
         req.on('data', function (chunk: Buffer) {
@@ -56,9 +54,7 @@ var server = http.createServer(function (req, res) {
             let data = chunk.toString();
             console.log(data);
             let dataType = data.slice(0, 20)
-            /**
-             * 关卡数据
-             */
+
             if (dataType.indexOf("editorData") != -1) {
                 type = DATA_TYPE.LEVEL_EDIT;
                 data = data.replace("editorData", "");
@@ -67,18 +63,14 @@ var server = http.createServer(function (req, res) {
                 type = DATA_TYPE.LEVEL_DATA;
                 data = data.replace("exportData", "");
             }
-            /**
-             * 碰撞体数据
-             */
-            else if (dataType.indexOf("colliderEdit") != -1) {
-                type = DATA_TYPE.COLLIDER_EDIT;
-                data = data.replace("colliderEdit", "");
-            }
-            else if (dataType.indexOf("colliderData") != -1) {
-                type = DATA_TYPE.COLLIDER_DATA;
-                data = data.replace("colliderData", "");
-            }
 
+            else if (dataType.indexOf("collider") != -1) {
+                type = DATA_TYPE.COLLIDER;
+                data = data.replace("collider", "");
+            }
+            /**
+             * 关卡数据
+             */
             if (type == DATA_TYPE.LEVEL_EDIT) {
                 levelEdit += data;
                 if (data.charAt(data.length - 1) == "$") {
@@ -99,39 +91,69 @@ var server = http.createServer(function (req, res) {
                     levelData = "";
                 }
             }
-            else if (type == DATA_TYPE.COLLIDER_EDIT) {
-                colliderEdit += data;
-                if (data.charAt(data.length - 1) == "$") {
-                    writeFile(colliderEditPath, colliderEdit, () => {
-                        console.log("生成编辑器碰撞体数据json完毕！")
-                        res.end("success!")
-                    })
-                    colliderEdit = "";
-                }
+
+            /**
+             * 碰撞体数据
+             */
+            else if (type == DATA_TYPE.COLLIDER) {
+                body += data;
             }
-            else if (type == DATA_TYPE.COLLIDER_DATA) {
-                colliderData += data;
-                if (data.charAt(data.length - 1) == "$") {
-                    writeFile(colliderDataPath, colliderData, () => {
-                        console.log("生成游戏碰撞体数据csv完毕！")
-                        res.end("success!")
-                    })
-                    colliderData = "";
-                }
-            }
+
         });
+        req.on('end', function () {
+            if (type == DATA_TYPE.COLLIDER) {
+                writeFile(colliderEditPath, body, () => {
+                    console.log("生成编辑器碰撞体数据json完毕！")
+                    res.end("success!")
+                })
+
+                let csv: string = formatResult(JSON.parse(body));
+                writeFile(colliderDataPath, csv, () => {
+                    console.log("生成游戏碰撞体数据csv完毕！")
+                    // res.end("success!")
+                })
+                body = "";
+            }
+        })
     }
 
 })
+
 
 
 server.listen(port, hostName, function () {
     console.log(`服务器运行在http://${hostName}:${port}`);
 });
 
+//格式化保存的数据;
+function formatResult(colliderMap: {
+    id: number,
+    colliderAry: { x: number, y: number, radius: number }[]
+}[]): string {
+    let result: string = "";
+    let outputStr = function (msg: string) {
+        result = result + msg + "\n";
+    }
+    outputStr("sign,colliderAry");
+    for (let item of colliderMap) {
+        let regions = item.colliderAry
+        // regions.removeAll(v => v.radius < 20);
+        let region = "\"[";
+        for (let j: number = 0; j < regions.length; j++) {
+            let item = regions[j];
+            region += ("[" + item.x + "," + item.y + "," + Math.floor(item.radius) + "," + "]");
+            if (j != regions.length - 1) {
+                region += ",";
+            }
+        }
+        region += "]\"";
+        outputStr("" + item.id + "," + region);
+    }
+    return result;
+}
+
 const enum DATA_TYPE {
     LEVEL_EDIT,
     LEVEL_DATA,
-    COLLIDER_EDIT,
-    COLLIDER_DATA,
+    COLLIDER,
 }

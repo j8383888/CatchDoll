@@ -9,9 +9,6 @@ class MainEditor extends eui.Component {
 	public monsterBox: eui.Group;
 
 	public monsterTable: table.MonsterTable[];
-
-	// public colliderMap: { [sign: number]: { posX: number, posY: number, radius: number }[] } = {};
-
 	public curMonsterBtn: MonsterBtn = null;
 	/**
 	 * 怪兽按钮组
@@ -37,6 +34,7 @@ class MainEditor extends eui.Component {
 		colliderAry: { x: number, y: number, radius: number }[]
 	}[] = []
 	public clearBtn: eui.Button;
+	public uploadBtn: eui.Button;
 
 	public curColliderShape: ColliderShape;
 	private _originP: { x: number, y: number } = { x: 0, y: 0 };
@@ -68,17 +66,33 @@ class MainEditor extends eui.Component {
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this);
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_END, this._onEnd, this);
 		this.clearBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClear, this);
+		this.uploadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onUpload, this);
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
-		// this._loadColliderData();
+		this._loadColliderData();
+	}
+
+	private _onUpload(): void {
+		var request = new egret.HttpRequest();
+		request.responseType = egret.HttpResponseType.TEXT;
+		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		// request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
+		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		let data = JSON.stringify(this.colliderMap)
+		request.send("collider" + data);
+		request.addEventListener(egret.Event.COMPLETE, () => {
+			SystemTipsUtil.showTips("提交成功！")
+		}, this);
+		request.addEventListener(egret.IOErrorEvent.IO_ERROR, () => {
+			SystemTipsUtil.showTips("提交失败", ColorUtil.COLOR_RED)
+		}, this);
+		request.addEventListener(egret.ProgressEvent.PROGRESS, () => { }, this);
 	}
 
 	private _onKeyUp(e: KeyboardEvent): void {
 		if (e.key == 'a') {
 			MainEditor.instance.monsterColliderBox.touchChildren = false;
-		}
-		else if (e.key == 's') {
-			// MainEditor.instance.
 		}
 	}
 
@@ -92,16 +106,16 @@ class MainEditor extends eui.Component {
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
 		request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		// request.open("http://127.0.0.1:8080/ColliderEdit", egret.HttpMethod.GET);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		request.addEventListener(egret.Event.COMPLETE, this.onGetComplete, this);
 		request.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onGetIOError, this);
 		request.addEventListener(egret.ProgressEvent.PROGRESS, this.onGetProgress, this);
-		request.send("Collider Edit");
+		request.send("");
 	}
 
 	private onGetComplete(e: egret.Event) {
 		let data: string = e.target.response
-		data = data.slice(0, data.length - 1)
 		if (data == "") {
 			SystemTipsUtil.showTips("暂无数据");
 			return;
@@ -130,8 +144,13 @@ class MainEditor extends eui.Component {
 	 * 清除
 	 */
 	private _onClear(): void {
-		this.monsterColliderBox.removeChildren();
-		this.curMonsterBtn.data.colliderAry.length = 0
+		if (this.curMonsterBtn) {
+			this.monsterColliderBox.removeChildren();
+			this.curMonsterBtn.data.colliderAry.length = 0
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中宠物！", ColorUtil.COLOR_RED)
+		}
 	}
 
 	private _onDown(e: egret.TouchEvent): void {
@@ -163,6 +182,9 @@ class MainEditor extends eui.Component {
 			this.monsterColliderBox.removeChildren();
 			return;
 		}
+		if (!this.curColliderShape) {
+			return;
+		}
 		if (this.curColliderShape.radius < 20) {
 			this._colliderShapes.remove(this.curColliderShape);
 			if (this.curColliderShape.parent) {
@@ -182,7 +204,8 @@ class MainEditor extends eui.Component {
 			colliderAry.push(data);
 
 		}
-		this.curMonsterBtn.data = { id: this.curMonsterBtn.id, colliderAry: colliderAry }
+		this.curMonsterBtn.data.colliderAry = colliderAry
+
 	}
 
 
@@ -199,6 +222,7 @@ class MainEditor extends eui.Component {
 	 * 画碰撞
 	 */
 	public drawCollider(x: number, y: number, radius: number, shape: ColliderShape): void {
+		radius = Number(radius.toFixed(2));
 		shape.graphics.clear();
 		shape.graphics.beginFill(ColorUtil.COLOR_RED, 0.5);
 		shape.graphics.drawCircle(0, 0, radius);
@@ -286,7 +310,7 @@ class MainEditor extends eui.Component {
 	}
 
 	//格式化保存的数据;
-	protected formatResult(): string {
+	private _formatResult(): string {
 		let result: string = "";
 		let outputStr = function (msg: string) {
 			result = result + msg + "\n";
@@ -294,7 +318,7 @@ class MainEditor extends eui.Component {
 		outputStr("sign,region");
 		for (let item of this.colliderMap) {
 			let regions = item.colliderAry
-			regions.removeAll(v => v.radius < 5);
+			// regions.removeAll(v => v.radius < 20);
 			let region = "\"[";
 			for (let j: number = 0; j < regions.length; j++) {
 				let item = regions[j];
