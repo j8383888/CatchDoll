@@ -6,8 +6,8 @@ Nodejs/out
 Nodejs/.idea
 Egret_wxgame/
 Egret_wxgame_remote/
-MapToolClient/bin-release
-MapToolClient/bin-debug/
-MapToolServe/out
+LevelEditor/bin-release
+LevelEditor/bin-debug/
+EditorServe/out
 ColliderEditor/libs
 ColliderEditor/bin-debug
