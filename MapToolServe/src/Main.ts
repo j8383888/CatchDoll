@@ -7,16 +7,17 @@ var hostName = '0.0.0.0';
 //设置端口
 var port = 8080;
 
-var editorData: string = "";
+var levelEdit: string = "";
+var levelData: string = "";
+var colliderEdit: string = "";
+var colliderData: string = "";
 
-var exportData: string = "";
+var levelEditPath: string = "./LevelEdit.json"
+var levelDataPath: string = "./LevelData.json"
+var colliderEditPath: string = "./ColliderEdit.json"
+var colliderDataPath: string = "./COlliderData.csv"
 
-var battleJsonPath: string = "./EditorData.json"
-
-var ExportJsonPath: string = "./ChapterData.json"
-
-var type: DATA_TYPE = DATA_TYPE.editor;
-
+var type: DATA_TYPE = DATA_TYPE.LEVEL_EDIT;
 
 /**
  * 获得Json数据
@@ -32,42 +33,90 @@ var server = http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', "*")
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.method == "GET") {
-        let date = new Date()
-        console.log(date.toLocaleString(), "发送battle数据")
-        var battleJson: string = getJSon(battleJsonPath);
-        res.end(battleJson)
-    }
-    else if (req.method == "POST") {
         req.on('data', function (chunk: Buffer) {
             let data = chunk.toString();
             console.log(data);
+            let date = new Date();
+            if (data == "Collider Edit") {
+                console.log(date.toLocaleString(), "发送碰撞体数据");
+                var colliderJson: string = getJSon(colliderEditPath);
+                res.end(colliderJson);
+
+            }
+            else {
+                console.log(date.toLocaleString(), "发送关卡数据");
+                var battleJson: string = getJSon(levelEditPath);
+                res.end(battleJson);
+            }
+        })
+    }
+    else if (req.method == "POST") {
+        req.on('data', function (chunk: Buffer) {
+
+            let data = chunk.toString();
+            console.log(data);
             let dataType = data.slice(0, 20)
+            /**
+             * 关卡数据
+             */
             if (dataType.indexOf("editorData") != -1) {
-                type = DATA_TYPE.editor;
+                type = DATA_TYPE.LEVEL_EDIT;
                 data = data.replace("editorData", "");
             }
             else if (dataType.indexOf("exportData") != -1) {
-                type = DATA_TYPE.export;
+                type = DATA_TYPE.LEVEL_DATA;
                 data = data.replace("exportData", "");
             }
-            if (type == DATA_TYPE.editor) {
-                editorData += data;
+            /**
+             * 碰撞体数据
+             */
+            else if (dataType.indexOf("colliderEdit") != -1) {
+                type = DATA_TYPE.COLLIDER_EDIT;
+                data = data.replace("colliderEdit", "");
+            }
+            else if (dataType.indexOf("colliderData") != -1) {
+                type = DATA_TYPE.COLLIDER_DATA;
+                data = data.replace("colliderData", "");
+            }
+
+            if (type == DATA_TYPE.LEVEL_EDIT) {
+                levelEdit += data;
                 if (data.charAt(data.length - 1) == "$") {
-                    writeFile(battleJsonPath, editorData, () => {
-                        console.log("生成编辑器json完毕！")
+                    writeFile(levelEditPath, levelEdit, () => {
+                        console.log("生成编辑器关卡数据完毕！")
                         res.end("success!")
                     })
-                    editorData = "";
+                    levelEdit = "";
                 }
             }
-            else if (type == DATA_TYPE.export) {
-                exportData += data;
+            else if (type == DATA_TYPE.LEVEL_DATA) {
+                levelData += data;
                 if (data.charAt(data.length - 1) == "$") {
-                    writeFile(ExportJsonPath, exportData, () => {
-                        console.log("导出游戏json完毕！")
+                    writeFile(levelDataPath, levelData, () => {
+                        console.log("导出游戏关卡数据完毕！")
                         res.end("success!")
                     })
-                    exportData = "";
+                    levelData = "";
+                }
+            }
+            else if (type == DATA_TYPE.COLLIDER_EDIT) {
+                colliderEdit += data;
+                if (data.charAt(data.length - 1) == "$") {
+                    writeFile(colliderEditPath, colliderEdit, () => {
+                        console.log("生成编辑器碰撞体数据json完毕！")
+                        res.end("success!")
+                    })
+                    colliderEdit = "";
+                }
+            }
+            else if (type == DATA_TYPE.COLLIDER_DATA) {
+                colliderData += data;
+                if (data.charAt(data.length - 1) == "$") {
+                    writeFile(colliderDataPath, colliderData, () => {
+                        console.log("生成游戏碰撞体数据csv完毕！")
+                        res.end("success!")
+                    })
+                    colliderData = "";
                 }
             }
         });
@@ -81,6 +130,8 @@ server.listen(port, hostName, function () {
 });
 
 const enum DATA_TYPE {
-    editor,
-    export
+    LEVEL_EDIT,
+    LEVEL_DATA,
+    COLLIDER_EDIT,
+    COLLIDER_DATA,
 }
