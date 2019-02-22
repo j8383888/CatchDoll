@@ -4,7 +4,8 @@
 	<e:Group id="gridBox" width="200" height="200"/>
 	<e:Group id="monsterShowBox" width="200" height="200" x="0" y="0"/>
 	<e:Group id="monsterColliderBox" width="200" height="200"/>
-	<e:Button id="clearBtn" label="清空" x="1000" y="709.56"/>
+	<e:Button id="clearBtn" label="清空所有碰撞体" x="1000" y="709.56"/>
+	<e:Button id="clearBtn0" label="上传" x="1000" y="763.54"/>
 	<e:Scroller width="400" height="704.91" x="1000" y="2" anchorOffsetY="0">
 		<e:Group id="monsterBox" anchorOffsetY="0" height="706.24">
 			<e:layout>
@@ -12,4 +13,5 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
+	<e:Label text="按住A可以拖动碰撞体" x="1000" y="957.97"/>
 </e:Skin>

@@ -15,7 +15,7 @@ class ColliderShape extends egret.Shape {
 	}
 
 	private _onTouchEnd(e: egret.TouchEvent): void {
-
+		MainEditor.instance.saveData();
 	}
 
 	private _onTouchShape(e: egret.TouchEvent): void {
@@ -26,7 +26,9 @@ class ColliderShape extends egret.Shape {
 	 * 移动
 	 */
 	private _onMoveShape(e: egret.TouchEvent): void {
-		e.target.x = e.stageX;
-		e.target.y = e.stageY;
+		this.x = e.stageX;
+		this.y = e.stageY;
+
+
 	}
 }

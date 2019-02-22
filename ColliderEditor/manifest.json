@@ -15,7 +15,7 @@
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
-		"bin-debug/Editor/Collider.js",
+		"bin-debug/Editor/ColliderShape.js",
 		"bin-debug/Editor/MainEditor.js",
 		"bin-debug/Editor/MonsterBtn.js",
 		"bin-debug/LoadingUI.js",

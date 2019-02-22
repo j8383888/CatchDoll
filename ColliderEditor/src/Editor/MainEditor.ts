@@ -32,17 +32,15 @@ class MainEditor extends eui.Component {
 
 	private static _instance: MainEditor = null;
 
-	public curColliderShape: ColliderShape;
-	private _originP: { x: number, y: number } = { x: 0, y: 0 };
-
 	public colliderMap: {
 		id: number,
 		colliderAry: { x: number, y: number, radius: number }[]
 	}[] = []
-
 	public clearBtn: eui.Button;
 
-	private _colliderShapes: egret.Shape[] = [];
+	public curColliderShape: ColliderShape;
+	private _originP: { x: number, y: number } = { x: 0, y: 0 };
+	private _colliderShapes: ColliderShape[] = [];
 
 
 	public constructor() {
@@ -50,9 +48,12 @@ class MainEditor extends eui.Component {
 		this.skinName = "MainEditorSkin"
 	}
 
-	public clear(): void {
-
+	public switchMonster(): void {
+		this._originP = { x: 0, y: 0 };
+		this.curColliderShape = null;
+		this._colliderShapes.length = 0;
 		this.monsterColliderBox.removeChildren();
+		this.monsterShowBox.removeChildren();
 	}
 
 	public init(): void {
@@ -130,12 +131,7 @@ class MainEditor extends eui.Component {
 	 */
 	private _onClear(): void {
 		this.monsterColliderBox.removeChildren();
-		for (let item of this.colliderMap) {
-			if (item.id == this.curMonsterBtn.data.id) {
-				item.colliderAry.length = 0;
-				return;
-			}
-		}
+		this.curMonsterBtn.data.colliderAry.length = 0
 	}
 
 	private _onDown(e: egret.TouchEvent): void {
@@ -144,15 +140,18 @@ class MainEditor extends eui.Component {
 		this._originP.y = e.stageY;
 		this.creatShape();
 
+
 	}
 
-	public creatShape(): void {
-
+	/**
+	 * 画一个圆
+	 */
+	public creatShape(): ColliderShape {
 		let shape = new ColliderShape();
-
 		this.curColliderShape = shape;
 		this._colliderShapes.push(shape);
 		this.monsterColliderBox.addChild(this.curColliderShape);
+		return shape
 	}
 
 
@@ -164,42 +163,61 @@ class MainEditor extends eui.Component {
 			this.monsterColliderBox.removeChildren();
 			return;
 		}
-
-		for (let item of this.colliderMap) {
-			if (item.id == this.curMonsterBtn.data.id) {
-				return;
+		if (this.curColliderShape.radius < 20) {
+			this._colliderShapes.remove(this.curColliderShape);
+			if (this.curColliderShape.parent) {
+				this.curColliderShape.parent.removeChild(this.curColliderShape)
 			}
+			SystemTipsUtil.showTips("圆半径不得小于20!", ColorUtil.COLOR_RED);
+			return;
 		}
 
+		this.saveData();
 	}
+
+	public saveData(): void {
+		let colliderAry: { x: number, y: number, radius: number }[] = []
+		for (let item of this._colliderShapes) {
+			let data = { x: item.x, y: item.y, radius: item.radius }
+			colliderAry.push(data);
+
+		}
+		this.curMonsterBtn.data = { id: this.curMonsterBtn.id, colliderAry: colliderAry }
+	}
+
+
 
 	private _onMove(e: egret.TouchEvent): void {
 		if (this.isDraw) {
 			let radius = UIUtil.getDistanceByPoint(this._originP, { x: e.stageX, y: e.stageY });
-			this.drawCollider(this._originP.x, this._originP.y, radius);
+			this.drawCollider(this._originP.x, this._originP.y, radius, this.curColliderShape);
+
 		}
 	}
 
 	/**
 	 * 画碰撞
 	 */
-	public drawCollider(x: number, y: number, radius: number): void {
-		let shape = this.curColliderShape;
+	public drawCollider(x: number, y: number, radius: number, shape: ColliderShape): void {
 		shape.graphics.clear();
 		shape.graphics.beginFill(ColorUtil.COLOR_RED, 0.5);
 		shape.graphics.drawCircle(0, 0, radius);
 		shape.graphics.endFill();
+		shape.radius = radius
 		shape.x = x;
 		shape.y = y;
 	}
 
-	// public setData(id: number, data: { x: number, y: number, radius: number }[]): void {
-	// 	for (let item of this.colliderMap) {
-	// 		if (item.id == id) {
-	// 			item.colliderAry = data;
-	// 		}
-	// 	}
-	// }
+	/**
+	 * 设置数据
+	 */
+	public setData(id: number, datas: { x: number, y: number, radius: number }[]): void {
+		for (let item of this.colliderMap) {
+			if (item.id == id) {
+				item.colliderAry = datas;
+			}
+		}
+	}
 
 	public getColliderData(id: number): { id: number, colliderAry: { x: number, y: number, radius: number }[] } {
 		for (let item of this.colliderMap) {
@@ -235,7 +253,7 @@ class MainEditor extends eui.Component {
 			let btn = new MonsterBtn(item.id, source);
 			let dataItem = {
 				id: item.id,
-				colliderAry: [{ x: 0, y: 0, radius: 0 }]
+				colliderAry: []
 			}
 			btn.setData(dataItem);
 			this.colliderMap.push(dataItem);

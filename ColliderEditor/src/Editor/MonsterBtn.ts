@@ -36,14 +36,11 @@ class MonsterBtn {
 	}
 
 	private _clickMonster(e: egret.TouchEvent): void {
-		MainEditor.instance.monsterShowBox.removeChildren();
-		MainEditor.instance.monsterColliderBox.removeChildren();
+		MainEditor.instance.switchMonster();
 
 		for (let item of this.data.colliderAry) {
-
-
-			MainEditor.instance.creatShape()
-			MainEditor.instance.drawCollider(item.x, item.y, item.radius)
+			let shape = MainEditor.instance.creatShape()
+			MainEditor.instance.drawCollider(item.x, item.y, item.radius, shape)
 		}
 		MainEditor.instance.monsterShowBox.addChild(this.runDragon)
 		MainEditor.instance.curMonsterBtn = this;
