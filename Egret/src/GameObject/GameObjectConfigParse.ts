@@ -13,14 +13,20 @@ module catchDoll {
 		public constructor() {
 			GameObjectConfigParse.configDic.set(GAMEOBJECT_SIGN.PAWS, {
 				configAsset: {
-				}, configData: {}
+				}, configData: {
+					colliderAry: [{
+						posX: 90,
+						posY: 120,
+						radius: 50
+					}]
+				}
 			});
 
 			for (let item of TableCenter.instance.MonsterTable) {
 				GameObjectConfigParse.configDic.set(item.id, {
 					configAsset: {
 						dragonBonesName: item.dragonBones
-					}, configData: {colliderAry:[], speed: item.moveSpeed, life: item.life }
+					}, configData: { colliderAry: item.colliderAry, speed: item.moveSpeed, life: item.life }
 				});
 			}
 		}

@@ -21,10 +21,7 @@ module catchDoll {
 		 * 全局坐标
 		 */
 		public globePosPoint: egret.Point;
-		/**
-		 * 宿主对象
-		 */
-		public host: catchDoll.GameObject;
+
 		/**
 		 * 复用点
 		 */
@@ -60,7 +57,7 @@ module catchDoll {
 			this.posX = x;
 			this.posY = y;
 			if (this.isShow) {
-				this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.3)
+				this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.8)
 				this.graphics.drawCircle(0, 0, radius);
 				this.graphics.endFill();
 			}
@@ -69,9 +66,8 @@ module catchDoll {
 		/**
 		 * 设值父物体
 		 */
-		public setParent(value: catchDoll.GameObject) {
+		public setParent(value: egret.DisplayObjectContainer) {
 			value.addChild(this);
-			this.host = value;
 		}
 
 		/**
@@ -82,7 +78,6 @@ module catchDoll {
 			this.posX = NaN;
 			this.posY = NaN;
 			this.radius = NaN;
-			this.host = null;
 		}
 
 		/**

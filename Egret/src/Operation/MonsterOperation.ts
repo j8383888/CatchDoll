@@ -46,6 +46,9 @@ module catchDoll {
 			this.pathNodes = monsterVars.exportData;
 			this.curPathNode = this.pathNodes[0];
 			this.nextPathNode = this.pathNodes[1];
+			if(this.pathNodes.length == 0){
+				console.assert(false,"逻辑有误")
+			}
 		}
 
 		/**
@@ -53,7 +56,6 @@ module catchDoll {
          */
 		public unregister(): void {
 			this._gameObj = null;
-			this.pathNodes.length = 0;
 			this.curPathNode = null;
 			this.nextPathNode = null;
 		}

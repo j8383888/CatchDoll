@@ -12,11 +12,15 @@ module catchDoll {
 		/**
 		 * 爪子是否下降
 		 */
-		public pawsDown: boolean = false;
+		public isCheck: boolean = false;
 		/**
 		 * 单例
 		 */
 		private static _instance: LevelCreate;
+		/**
+		* 碰撞标记 偶数帧 奇数帧
+		*/
+		private _colliderFlag: number = 0;
 
 		private curLevelData: {
 			level: number,
@@ -29,6 +33,7 @@ module catchDoll {
 			}[],
 			mapData: { source, x, y }[],
 		};
+
 
 		public constructor() {
 
@@ -53,20 +58,141 @@ module catchDoll {
 			this._creatMaster();
 
 			Laya.timer.frameLoop(1, this, this._checkHit)
+
 		}
 
 		/**
 		 * 检测碰撞
 		 */
 		private _checkHit(): void {
-			if (this.pawsDown) {
+			if (this.isCheck) {
 				let monsterMap = LevelCreate.inSenceMonsterMap
-				let len: number = monsterMap.length;
-				for (let i: number = 0; i < len; i++) {
+				let monsterMapLen: number = monsterMap.length;
+				if (monsterMapLen == 0) {
+					return;
+				}
+				if (this._colliderFlag == 0) {
+					this._colliderFlag = 1;
+				}
+				else {
+					this._colliderFlag = 0;
+				}
+
+				let paw = Master.instance.MasterPaws;
+				let i: number = 0;
+				/**
+				 * 设置全局坐标
+				 */
+				let pawColliderArylen = paw.colliderAry.length
+				for (i = 0; i < pawColliderArylen; i++) {
+					paw.colliderAry[i].setGlobePos();
+				}
+				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
+					let monsterP: Monster = monsterMap.values[i];
+					let monsterPColliderAry = monsterP.colliderAry
+					let monsterPColliderAryLen = monsterPColliderAry.length;
+					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
+						let monsterPCollider = monsterPColliderAry[m]
+						let p = monsterP.dragonBones.armature.getBone("centre").global
+						monsterPCollider.x = p.x
+						monsterPCollider.y = p.y
+						monsterPCollider.setGlobePos();
+					}
+				}
+
+				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 					let monster: Monster = monsterMap.values[i];
+					let monsterColliderAry = monster.colliderAry
+					let monsterColliderAryLen = monsterColliderAry.length;
+					let pawColliderAry = paw.colliderAry
+					let pawColliderAryLen = pawColliderAry.length;
+					for (let k: number = 0; k < pawColliderAryLen; k++) {
+						let pawCollider = pawColliderAry[k];
+						for (let j: number = 0; j < monsterColliderAryLen; j++) {
+							let monsterCollider = monsterColliderAry[j];
+							if (Collider.isIntersect(pawCollider, monsterCollider)) {
+								this.isCheck = false;
+								monster.unregisterOperation();
+								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
+								monster.x = paw.x;
+								monster.y = paw.pawsSkinBox.pawsHead.y + 300
+
+								egret.Tween.removeTweens(paw.pawsSkinBox.pawsHead);
+								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+								egret.Tween.get(paw.pawsSkinBox.pawsHead, {
+									onChange: () => {
+										paw.confirmRopeHeight();
+										if (monster) {
+											monster.x = paw.x;
+											monster.y = paw.pawsSkinBox.pawsHead.y + 300;
+										}
+									},
+									onChangeObj: this,
+								}).wait(300).to({ y: paw.pawsSkinBox.pawsHeadStartPosY }, time, egret.Ease.getBackOut(1.3)).call(() => {
+									GameObjectFactory.instance.recoverGameObject(monster);
+									paw.isDown = false;
+								})
+
+								return;
+							}
+						}
+					}
 				}
 			}
 		}
+
+
+
+		// let monsterMap: Dictionary = LevelCreate.inSenceMonsterMap;
+		// 	let globePosx: number = this._gameObj.x;
+		// 	for (let i: number = 0; i < monsterMap.length; i++) {
+		// 		let monster: Monster = monsterMap.values[i];
+		// 		let monsterGlobePosx: number = monster.x;
+		// 		egret.log("钩子跟怪的距离：" + Math.abs(monsterGlobePosx - globePosx));
+		// 		if (Math.abs(monsterGlobePosx - globePosx) <= 60) {
+		// 			this._catchMonster = monster;
+		// 			break;
+		// 		}
+		// 	}
+		// 	if (this._catchMonster) {
+		// 		/*血条缩短*/
+		// 		let targetWidth: number = 0;
+		// 		// this._catchMonster.life -= this._gameObj.hurt;
+
+		// 		if (this._catchMonster.life <= 0) {
+		// 			this._catchMonster.life = 0;
+		// 			targetWidth = 0;
+		// 			this._catchMonster.x = this._gameObj.x;
+		// 			this._catchMonster.y = this._gameObj.pawsHead.y + 300;
+		// 			this._catchMonster.unregisterOperation();
+		// 		}
+		// 		else {
+		// 			egret.log(this._catchMonster.life + " " + this._catchMonster.maxLife + " " + this._catchMonster.haemalStrandWidth)
+		// 			targetWidth = this._catchMonster.life / this._catchMonster.maxLife * this._catchMonster.haemalStrandWidth;
+		// 		}
+		// 		egret.log("targetWidth:" + targetWidth)
+		// 		egret.Tween.get(this._catchMonster.haemalStrand).to({ width: targetWidth }, 300, egret.Ease.quadIn).call(() => {
+		// 			if (targetWidth == 0) {
+		// 				egret.Tween.get(this._gameObj.pawsHead, {
+		// 					onChange: this._pwdUpAction,
+		// 					onChangeObj: this
+		// 				}).wait(200).to({ y: this._gameObj.pawsHeadStartPosY }, 600, egret.Ease.quadIn).call(() => {
+		// 					GameObjectFactory.instance.recoverGameObject(this._catchMonster);
+		// 					this._catchMonster = null;
+		// 					this._isDown = false;
+		// 					/*抓住了就2s后再创建一个*/
+		// 					// Laya.timer.once(2000, this, this._addMonster)
+
+		// 				});
+		// 			}
+		// 			else {
+		// 				this._noCatchAction();
+		// 			}
+		// 		});
+		// 	}
+		// 	else {
+		// 		this._noCatchAction();
+		// 	}
 
 		/**
 		 * 获得单例
@@ -101,7 +227,7 @@ module catchDoll {
 		 */
 		private _creatMaster(): void {
 			Master.instance.MasterPaws = GameObjectFactory.instance.creatGameObject(GAMEOBJECT_SIGN.PAWS)
-			Master.instance.MasterPaws.switchClip(1);
+			Master.instance.MasterPaws.pawsSkinBox.switchClip(1);
 			Master.instance.MasterPaws.y = 160;
 			Master.instance.MasterPaws.x = 500;
 		}

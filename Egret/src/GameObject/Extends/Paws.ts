@@ -11,9 +11,27 @@ module catchDoll {
 		 * 夹子容器
 		 */
 		public pawsSkinBox: PawsSkinBox;
+		/**
+		 * 下夹子
+		 */
+		public isDown: boolean = false;
 
 		public constructor() {
 			super();
+		}
+
+		/**
+         * 初始化一次
+         */
+		public loadConfigData(data: IColliderConfigData): void {
+			this.pawsSkinBox = new PawsSkinBox();
+			for (let i: number = 0; i < data.colliderAry.length; i++) {
+				let colliderData: ICollider = data.colliderAry[i];
+				let collider: catchDoll.Collider = Collider.creat(colliderData.posX, colliderData.posY, colliderData.radius)
+				collider.setParent(this.pawsSkinBox.pawsHead);
+				this.colliderAry.push(collider);
+			}
+
 		}
 
 
@@ -22,9 +40,11 @@ module catchDoll {
 		 * 只初始化一次（在loadConfigData之后调用）
 		 */
 		public initOther(): void {
-			this.pawsSkinBox = new PawsSkinBox();
+
 			this.confirmRopeHeight();
 			this.addChild(this.pawsSkinBox);
+
+
 		}
 
 		/**

@@ -143,7 +143,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-
+			super.dispose();
 		}
 	}
 }

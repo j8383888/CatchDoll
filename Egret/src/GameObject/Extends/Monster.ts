@@ -61,6 +61,7 @@ module catchDoll {
          * 加载配置
          */
 		public loadConfigData(data: IMonsterConfigData): void {
+			super.loadConfigData(data)
 			this.speed = data.speed;
 
 			this.maxLife = data.life;

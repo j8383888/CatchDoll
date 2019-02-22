@@ -28,7 +28,18 @@ module table {
 		 * 移动速度
 		 */
 		moveSpeed: number;
+		/**
+		 * 碰撞体
+		 */
+		colliderAry: MonsterTable.ColliderAryItem[];
 
 		GetType(): string { return 'table.MonsterTable'; }
+	}
+	export module MonsterTable {
+		export class ColliderAryItem {
+			posX: number;
+			posY: number;
+			radius: number;
+		}
 	}
 }

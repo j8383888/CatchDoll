@@ -73,20 +73,22 @@ module catchDoll {
          * 初始化
          */
         public initialize(): void {
-            if (this.varsData.bornX) {
-                this.x = this.varsData.bornX;
-            }
-            else {
-                this.x = -1000;
-            }
-            if (this.varsData.bornY) {
-                this.y = this.varsData.bornY;
-            }
-            else {
-                this.y = -1000;
-            }
-            if (this.varsData.rotation) {
-                this.rotation = this.varsData.rotation;
+            if (this.varsData) {
+                if (this.varsData.bornX) {
+                    this.x = this.varsData.bornX;
+                }
+                else {
+                    this.x = -1000;
+                }
+                if (this.varsData.bornY) {
+                    this.y = this.varsData.bornY;
+                }
+                else {
+                    this.y = -1000;
+                }
+                if (this.varsData.rotation) {
+                    this.rotation = this.varsData.rotation;
+                }
             }
             LayerManager.instance.addToLayer(this, this.layerType);
             this.isInView = true;
