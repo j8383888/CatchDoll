@@ -128,7 +128,7 @@ server.listen(port, hostName, function () {
 //格式化保存的数据;
 function formatResult(colliderMap: {
     id: number,
-    colliderAry: { x: number, y: number, radius: number }[]
+    colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[]
 }[]): string {
     let result: string = "";
     let outputStr = function (msg: string) {
@@ -141,7 +141,7 @@ function formatResult(colliderMap: {
         let region = "\"[";
         for (let j: number = 0; j < regions.length; j++) {
             let item = regions[j];
-            region += ("[" + item.x + "," + item.y + "," + Math.floor(item.radius) + "," + "]");
+            region += ("[" + item.localX + "," + item.localY + "," + Math.floor(item.radius) + "," + "]");
             if (j != regions.length - 1) {
                 region += ",";
             }
