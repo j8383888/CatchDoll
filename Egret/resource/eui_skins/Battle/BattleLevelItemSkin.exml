@@ -3,7 +3,12 @@
 	<e:Group id="group" scaleX="1" anchorOffsetX="150" anchorOffsetY="210">
 		<e:Image y="0" scaleX="1" scaleY="1" source="fragment_201" x="0"/>
 		<e:Image y="33" scaleX="1" scaleY="1" source="otherRes1_16" horizontalCenter="0"/>
-		<e:Rect id="dragoneP" x="150" y="210"/>
-		<e:Rect id="enterLevel" width="70" height="59" y="323.25" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0"/>
+		<e:Group id="enterLevel" x="37.34" y="319.66">
+			<e:Image y="0" scaleX="1" scaleY="1" source="otherRes1_8" x="0"/>
+			<e:Image y="13.33" scaleX="1" scaleY="1" source="otherRes1_32" x="129"/>
+			<e:Label id="costLabel" text="x2" x="71.99" y="19.33"/>
+		</e:Group>
+		<e:Image y="226.35" scaleX="1" scaleY="1" horizontalCenter="4" source="otherRes1_17"/>
+		<e:Rect id="dragoneP" x="150" y="196.67"/>
 	</e:Group>
 </e:Skin>

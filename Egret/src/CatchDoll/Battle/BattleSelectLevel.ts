@@ -31,9 +31,6 @@ module catchDoll {
 		 */
 		private _offsetX: number = 30 + 180 / 2;
 
-
-
-
 		public constructor() {
 			super(POP_EFFECT.CENTER, true)
 			this.skinName = "BattleSelectLevelSkin";
@@ -80,7 +77,7 @@ module catchDoll {
 		}
 
 		private _onChangeEnd(): void {
-			let scrollH = (this._lastIndex - 1) * this.leading
+			let scrollH = (this._lastIndex) * this.leading
 			egret.Tween.get(this.scroller.viewport).to({ scrollH: scrollH }, 200, egret.Ease.quadIn);
 		}
 
@@ -110,7 +107,7 @@ module catchDoll {
 					}
 					item.scaleX = item.scaleY = 1;
 					this._lastItem = item;
-					this._lastIndex = indexUint;
+					this._lastIndex = indexUint - 1;
 				}
 			}
 			else if (index <= 0) {
@@ -120,6 +117,7 @@ module catchDoll {
 				}
 				item.scaleX = item.scaleY = 1;
 				this._lastItem = item;
+				this._lastIndex = 0;
 			}
 			else {
 				let item = this.itemGroup.getChildAt(numElements - 2) as BattleLevelItem;
@@ -128,6 +126,7 @@ module catchDoll {
 				}
 				item.scaleX = item.scaleY = 1;
 				this._lastItem = item;
+				this._lastIndex = 0;
 			}
 		}
 

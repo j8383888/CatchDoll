@@ -3,29 +3,30 @@
 	<e:Image source="otherRes1_14" y="-2" scaleX="8" scaleY="8"/>
 
 
-	<e:Scroller width="720" height="588" x="0" y="264" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Group>
-			<e:Group id="_chapterBtn1" x="157" y="49.66" width="425">
-				<e:Group x="19" y="0">
+	<e:Scroller id="scroller" width="720" height="588" x="0" y="264" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="itemGroup">
+			<e:Group id="_chapterBtn1" x="0" y="50" width="720">
+				<e:Group y="0" horizontalCenter="0">
 				<e:Image source="otherRes1_18" y="0" x="0"/>
 				<e:Image source="otherRes1_7" x="147" y="15"/>
 				<e:Image y="17.93" x="14.96" scaleX="1" scaleY="1" source="fragment_101"/>
 				<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_301"/>
 				</e:Group>
-				<e:Image y="106" source="otherRes1_23"/>
+				<e:Image y="106" source="otherRes1_20" horizontalCenter="0"/>
 			</e:Group>
-			<e:Group id="_chapterBtn2" x="167" y="59.66" width="425">
-				<e:Group x="19" y="0">
+			<e:Group id="_chapterBtn2" x="720" y="50" width="720">
+				<e:Group y="0" horizontalCenter="0">
 				<e:Image source="otherRes1_18" y="0" x="0"/>
 				<e:Image source="otherRes1_7" x="147" y="15"/>
 				<e:Image y="10.34" x="18" scaleX="1" scaleY="1" source="fragment_102"/>
 				<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_302"/>
 				</e:Group>
-				<e:Image y="106" source="otherRes1_23"/>
+				<e:Image y="106" source="otherRes1_23" horizontalCenter="0"/>
 			</e:Group>
 			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle" paddingLeft="142" gap="295"/>
+				<e:BasicLayout/>
 			</e:layout>
+
 		</e:Group>
 	</e:Scroller>
 	<e:Image y="526" x="110" scaleX="-1" scaleY="1" source="otherRes1_19"/>

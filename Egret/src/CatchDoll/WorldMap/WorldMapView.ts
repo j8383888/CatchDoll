@@ -16,6 +16,13 @@ module catchDoll {
 		 */
 		public fengche: egret.MovieClip;
 
+		/**
+		 * 滑动条
+		 */
+		public scroller: eui.Scroller;
+
+		public scrollerTool: ScollerTool;
+
 
 		public constructor() {
 			super();
@@ -35,9 +42,6 @@ module catchDoll {
 			this.fengche.gotoAndPlay(1, -1);
 			this.fengche.x = 107;
 			this.fengche.y = 25;
-
-
-
 		}
 
 
@@ -46,9 +50,11 @@ module catchDoll {
 		 * 展示时
 		 */
 		public onShow(): void {
-
+			this.scrollerTool = new ScollerTool(this.scroller, 720, false);
 			this.addToStage(LAYER.SCENE);
 		}
+
+
 
 		/**
 		 * 清除
