@@ -31,7 +31,7 @@ class MainEditor extends eui.Component {
 
 	public colliderMap: {
 		id: number,
-		colliderAry: { x: number, y: number, radius: number }[]
+		colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[]
 	}[] = []
 	public clearBtn: eui.Button;
 	public uploadBtn: eui.Button;
@@ -105,13 +105,13 @@ class MainEditor extends eui.Component {
 	private _loadColliderData(): void {
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		request.open("http://129.28.87.105:8080/ColliderEdit", egret.HttpMethod.GET);
 		// request.open("http://127.0.0.1:8080/ColliderEdit", egret.HttpMethod.GET);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		request.addEventListener(egret.Event.COMPLETE, this.onGetComplete, this);
 		request.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onGetIOError, this);
 		request.addEventListener(egret.ProgressEvent.PROGRESS, this.onGetProgress, this);
-		request.send("");
+		request.send();
 	}
 
 	private onGetComplete(e: egret.Event) {
@@ -147,6 +147,7 @@ class MainEditor extends eui.Component {
 		if (this.curMonsterBtn) {
 			this.monsterColliderBox.removeChildren();
 			this.curMonsterBtn.data.colliderAry.length = 0
+			this._colliderShapes.length = 0;
 		}
 		else {
 			SystemTipsUtil.showTips("请先选中宠物！", ColorUtil.COLOR_RED)
@@ -155,8 +156,8 @@ class MainEditor extends eui.Component {
 
 	private _onDown(e: egret.TouchEvent): void {
 		this.isDraw = true;
-		this._originP.x = e.stageX;
-		this._originP.y = e.stageY;
+		this._originP.x = Number(e.stageX.toFixed(2));
+		this._originP.y = Number(e.stageY.toFixed(2));
 		this.creatShape();
 
 
@@ -198,12 +199,13 @@ class MainEditor extends eui.Component {
 	}
 
 	public saveData(): void {
-		let colliderAry: { x: number, y: number, radius: number }[] = []
+		let colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] = []
 		for (let item of this._colliderShapes) {
-			let data = { x: item.x, y: item.y, radius: item.radius }
+			let p = this.curMonsterBtn.runDragon.globalToLocal(item.x, item.y);
+			let data = { x: item.x, y: item.y, radius: item.radius, localX: p.x, localY: p.y }
 			colliderAry.push(data);
-
 		}
+
 		this.curMonsterBtn.data.colliderAry = colliderAry
 
 	}
@@ -235,7 +237,7 @@ class MainEditor extends eui.Component {
 	/**
 	 * 设置数据
 	 */
-	public setData(id: number, datas: { x: number, y: number, radius: number }[]): void {
+	public setData(id: number, datas: { x: number, y: number, radius: number, localX: number, localY: number }[]): void {
 		for (let item of this.colliderMap) {
 			if (item.id == id) {
 				item.colliderAry = datas;

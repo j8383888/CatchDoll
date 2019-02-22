@@ -2,7 +2,7 @@ class MonsterBtn {
 	/**
 	 * 数据
 	 */
-	public data: { id: number, colliderAry: { x: number, y: number, radius: number }[] };
+	public data: { id: number, colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] };
 
 	public dragon: dragonBones.EgretArmatureDisplay;
 
@@ -30,7 +30,7 @@ class MonsterBtn {
 		MainEditor.instance.monsterBox.addChild(group)
 	}
 
-	public setData(data: { id: number, colliderAry: { x: number, y: number, radius: number }[] }): void {
+	public setData(data: { id: number, colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] }): void {
 		this.data = data;
 
 	}
