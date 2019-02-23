@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,munaiyi_ske_dbbin,munaiyi_tex_json,munaiyi_tex_png,battleTable_json,ChapterData_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png",
+			"keys":"scene1_png,scene2_png,scene3_png,scene4_png,monster_json,battle_json,selectLevel_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,munaiyi2_ske_dbbin,munaiyi2_tex_json,munaiyi2_tex_png,skeleton_ske_dbbin,skeleton_tex_json,skeleton_tex_png,munaiyi_ske_dbbin,munaiyi_tex_json,munaiyi_tex_png,battleTable_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png,LevelData_json,BattleScene_json,commonRes_json",
 			"name":"preload"
 		}],
 	"resources":[
@@ -383,11 +383,6 @@
 			"url":"assets/table/battleTable.json"
 		},
 		{
-			"name":"ChapterData_json",
-			"type":"json",
-			"url":"assets/table/ChapterData.json"
-		},
-		{
 			"name":"duyanhong_ske_dbbin",
 			"type":"bin",
 			"url":"assets/dragonBones/duyanhong_ske.dbbin"
@@ -541,6 +536,23 @@
 			"name":"effect_2_png",
 			"type":"image",
 			"url":"assets/effect/effect_2.png"
+		},
+		{
+			"name":"LevelData_json",
+			"type":"json",
+			"url":"assets/table/LevelData.json"
+		},
+		{
+			"name":"BattleScene_json",
+			"subkeys":"BattleScene_1,BattleScene_2,BattleScene_3,BattleScene_4,BattleScene_5,BattleScene_6",
+			"type":"sheet",
+			"url":"assets/atlas/BattleScene.json"
+		},
+		{
+			"name":"commonRes_json",
+			"subkeys":"closeBtnBig,closeBtnSmall,otherRes2_18,selectBg1,selectBg2",
+			"type":"sheet",
+			"url":"assets/atlas/commonRes.json"
 		}
 	]
 }

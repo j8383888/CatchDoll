@@ -2,143 +2,145 @@
  * 简易消息收发类
  * @author suo
  */
-class EventManager {
+module catchDoll {
+	export class EventManager {
 
-	/*单例*/
-	private static _instance: EventManager = null;
-	/*事件字典*/
-	private _eventDic: SimpleMap<Handler[]> = new SimpleMap<Handler[]>();
-	/*缓存发送事件队列 key:事件ID value:data*/
-	private _cacheEventDic: SimpleMap<any> = new SimpleMap<any>();
+		/*单例*/
+		private static _instance: EventManager = null;
+		/*事件字典*/
+		private _eventDic: SimpleMap<Handler[]> = new SimpleMap<Handler[]>();
+		/*缓存发送事件队列 key:事件ID value:data*/
+		private _cacheEventDic: SimpleMap<any> = new SimpleMap<any>();
 
-	public constructor() {
+		public constructor() {
 
-	}
-
-	/**
-	 * 获得单例
-	 */
-	public static get instance(): EventManager {
-		if (this._instance == null) {
-			this._instance = new EventManager();
 		}
-		return this._instance;
-	}
 
-	/**
-	 * @param id事件
-	 * @param func回调函数
-	 * @param regType注册回调类型
-	 * @param withClearCacheEvent是否清理缓存事件
-	 * 注册事件侦听
-	 */
-	public static registerEvent(id: number, func: Handler, regType: REG_TYPE = REG_TYPE.COMMON, withClearCacheEvent: boolean = false): void {
-
-		if (regType == REG_TYPE.COMMON) {
-			/*处理缓存事件*/
-			if (EventManager.instance._cacheEventDic.isExist(id)) {
-				var data: any = EventManager.instance._cacheEventDic.get(id);
-				func.runWith(data);
-				if (withClearCacheEvent) {
-					EventManager.removeCacheEvent(id);
-				}
+		/**
+		 * 获得单例
+		 */
+		public static get instance(): EventManager {
+			if (this._instance == null) {
+				this._instance = new EventManager();
 			}
-
-			let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
-			if (funcs != null) {
-			}
-			else {
-				funcs = new Array<Handler>();
-			}
-			funcs.push(func);
-			EventManager.instance._eventDic.set(id, funcs);
+			return this._instance;
 		}
-		else if (regType == REG_TYPE.ONCE) {
-			/*处理缓存事件*/
-			if (EventManager.instance._cacheEventDic.isExist(id)) {
-				var data: any = EventManager.instance._cacheEventDic.get(id);
-				func.once = true;
-				func.runWith(data);
-				if (withClearCacheEvent) {
-					EventManager.removeCacheEvent(id);
+
+		/**
+		 * @param id事件
+		 * @param func回调函数
+		 * @param regType注册回调类型
+		 * @param withClearCacheEvent是否清理缓存事件
+		 * 注册事件侦听
+		 */
+		public static registerEvent(id: number, func: Handler, regType: REG_TYPE = REG_TYPE.COMMON, withClearCacheEvent: boolean = false): void {
+
+			if (regType == REG_TYPE.COMMON) {
+				/*处理缓存事件*/
+				if (EventManager.instance._cacheEventDic.isExist(id)) {
+					var data: any = EventManager.instance._cacheEventDic.get(id);
+					func.runWith(data);
+					if (withClearCacheEvent) {
+						EventManager.removeCacheEvent(id);
+					}
 				}
-			}
-			else {
+
 				let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
 				if (funcs != null) {
 				}
 				else {
 					funcs = new Array<Handler>();
 				}
-				func.once = true;
 				funcs.push(func);
 				EventManager.instance._eventDic.set(id, funcs);
 			}
-		}
-	}
-
-	/**
-	 * @param id事件
-	 * @param func回调函数
-	 * 反注册 
-	 */
-	public static unregisterEvent(id: number, caller: any, func: Function) {
-		let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
-		if (funcs != null && funcs.length != 0) {
-			for (var i: number = 0; i < funcs.length; i++) {
-				if (funcs[i].caller == caller && funcs[i].method == func) {
-					funcs[i].recover();
-					funcs.remove(funcs[i]);
-					break;
+			else if (regType == REG_TYPE.ONCE) {
+				/*处理缓存事件*/
+				if (EventManager.instance._cacheEventDic.isExist(id)) {
+					var data: any = EventManager.instance._cacheEventDic.get(id);
+					func.once = true;
+					func.runWith(data);
+					if (withClearCacheEvent) {
+						EventManager.removeCacheEvent(id);
+					}
+				}
+				else {
+					let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
+					if (funcs != null) {
+					}
+					else {
+						funcs = new Array<Handler>();
+					}
+					func.once = true;
+					funcs.push(func);
+					EventManager.instance._eventDic.set(id, funcs);
 				}
 			}
 		}
-	}
 
-	/**
-	 * 移除缓存事件
-	 */
-	public static removeCacheEvent(id: number) {
-		EventManager.instance._cacheEventDic.remove(id);
-	}
-
-	/**
-	 * @param id事件
-	 * 发送事件 
-	 */
-	public static fireEvent(id: number, data: any = null, fireType: FIRE_TYPE = FIRE_TYPE.COMMON) {
-		let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
-		if (funcs != null && funcs.length != 0) {
-			/*先拷贝一份 防止在循环过程中改变数组长度引发bug*/
-			let temp: Array<Handler> = funcs.slice();
-			let len: number = temp.length;
-
-			for (var i: number = 0; i < len; i++) {
-				var func: Handler = temp[i];
-				if (func.once) {
-					EventManager.instance._cacheEventDic.remove(id);
+		/**
+		 * @param id事件
+		 * @param func回调函数
+		 * 反注册 
+		 */
+		public static unregisterEvent(id: number, caller: any, func: Function) {
+			let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
+			if (funcs != null && funcs.length != 0) {
+				for (var i: number = 0; i < funcs.length; i++) {
+					if (funcs[i].caller == caller && funcs[i].method == func) {
+						funcs[i].recover();
+						funcs.remove(funcs[i]);
+						break;
+					}
 				}
-				func.runWith(data);
 			}
 		}
-		else {
-			if (fireType == FIRE_TYPE.FIRE_OR_CACHE) {
+
+		/**
+		 * 移除缓存事件
+		 */
+		public static removeCacheEvent(id: number) {
+			EventManager.instance._cacheEventDic.remove(id);
+		}
+
+		/**
+		 * @param id事件
+		 * 发送事件 
+		 */
+		public static fireEvent(id: number, data: any = null, fireType: FIRE_TYPE = FIRE_TYPE.COMMON) {
+			let funcs: Array<Handler> = EventManager.instance._eventDic.get(id);
+			if (funcs != null && funcs.length != 0) {
+				/*先拷贝一份 防止在循环过程中改变数组长度引发bug*/
+				let temp: Array<Handler> = funcs.slice();
+				let len: number = temp.length;
+
+				for (var i: number = 0; i < len; i++) {
+					var func: Handler = temp[i];
+					if (func.once) {
+						EventManager.instance._cacheEventDic.remove(id);
+					}
+					func.runWith(data);
+				}
+			}
+			else {
+				if (fireType == FIRE_TYPE.FIRE_OR_CACHE) {
+					EventManager.instance._cacheEventDic.set(id, data);
+				}
+			}
+			if (fireType == FIRE_TYPE.FIRE_AND_CHCHE) {
 				EventManager.instance._cacheEventDic.set(id, data);
 			}
 		}
-		if (fireType == FIRE_TYPE.FIRE_AND_CHCHE) {
-			EventManager.instance._cacheEventDic.set(id, data);
+
+		/**
+		 * 释放
+		 */
+		public dispose(): void {
+			EventManager.instance._eventDic.clear();
+			EventManager.instance._cacheEventDic.clear();
 		}
-	}
 
-	/**
-	 * 释放
-	 */
-	public dispose(): void {
-		EventManager.instance._eventDic.clear();
-		EventManager.instance._cacheEventDic.clear();
 	}
-
 }
 
 /**

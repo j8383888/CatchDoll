@@ -49,6 +49,9 @@ module catchDoll {
 		 * 背景
 		 */
 		public bgSource: eui.Image;
+		public battleSceneBox: eui.Group;
+		public sceneImgBox: eui.Group;
+
 
 
 		public constructor() {
@@ -77,7 +80,7 @@ module catchDoll {
 			// this.curtainEffR.gotoAndPlay(1, 1);
 			// this.curtainEffR.scaleX = this.curtainEffR.scaleY = 1.2
 			// this.addChild(this.curtainEffR);
-			
+
 		}
 
 		/**

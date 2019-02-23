@@ -16,13 +16,14 @@ module catchDoll {
 		/*是否调试模式*/
 		public isDebug: boolean = false;
 		/*地址*/
-		public host: string = "";  
+		public host: string = "";
 		/*端口*/
 		public post: number = -1
 
 		public constructor() {
 			let configData = RES.getRes("config_json");
 			this.isDebug = configData["isDebug"];
+			this.isDebug = false;
 			if (this.isDebug) {
 				this.host = configData["debug"]["host"];
 				this.post = configData["debug"]["post"];

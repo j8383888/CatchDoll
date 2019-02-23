@@ -13,6 +13,9 @@ module catchDoll {
 		 */
 		private _isLeft: boolean = false;
 
+		private _sceneBox: eui.Group;
+
+		private _monsterBox: egret.DisplayObjectContainer;
 
 		public constructor() {
 			super();
@@ -25,6 +28,8 @@ module catchDoll {
 			this._gameObj = gameObj as Paws;
 			EventManager.registerEvent(EVENT_ID.MASTER_MOVE, Handler.create(this, this._masterMove));
 			EventManager.registerEvent(EVENT_ID.MASTER_DOWN, Handler.create(this, this._masterDown));
+			this._sceneBox = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView).sceneImgBox;
+			this._monsterBox = LayerManager.instance.getLayer(LAYER.MONSTER);
 		}
 
 		/**
@@ -77,6 +82,11 @@ module catchDoll {
          */
 		public unregister(): void {
 			// Laya.timer.clear(this, this._addMonster)
+			this._sceneBox.x = 0;
+			this._monsterBox.x = 0;
+			this._sceneBox = null;
+			this._monsterBox = null;
+
 			egret.Tween.removeTweens(this._gameObj.pawsSkinBox.pawsHead);
 			this._gameObj.pawsSkinBox.pawsHead.y = this._gameObj.pawsSkinBox.pawsHeadStartPosY
 			this._gameObj.confirmRopeHeight();
@@ -92,7 +102,9 @@ module catchDoll {
 			if (this._gameObj.isDown) {
 				return;
 			}
-			let moveSpeed: number = 2.5;
+			let value = 720 / 2
+
+			let moveSpeed: number = 2.5 * 4;
 			if (this._isLeft) {
 				if (this._gameObj.x - moveSpeed > 10) {
 					this._gameObj.x -= moveSpeed
@@ -102,12 +114,24 @@ module catchDoll {
 				}
 			}
 			else {
-				if (this._gameObj.x + moveSpeed < GameCenter.stageW - 20) {
+				if (this._gameObj.x + moveSpeed < 1920 - 20) {
 					this._gameObj.x += moveSpeed
 				}
 				else {
 					this._isLeft = true;
 				}
+			}
+			if (this._gameObj.x > 1920 - value || this._gameObj.x < value) {
+				return;
+			}
+			if (this._isLeft) {
+				this._sceneBox.x += moveSpeed;
+				this._monsterBox.x += moveSpeed;
+			}
+			else {
+				this._sceneBox.x -= moveSpeed;
+				this._monsterBox.x -= moveSpeed;
+
 			}
 		}
 	}

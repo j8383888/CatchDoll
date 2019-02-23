@@ -21,6 +21,10 @@ module catchDoll {
 		* 碰撞标记 偶数帧 奇数帧
 		*/
 		private _colliderFlag: number = 0;
+		/**
+		 * 场景图片
+		 */
+		private _sceneImgs: eui.Image[] = [];
 
 		private curLevelData: {
 			level: number,
@@ -31,7 +35,7 @@ module catchDoll {
 				pathMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 			}[],
-			mapData: { source, x, y }[],
+			mapData: { source, x, y, width, height }[],
 		};
 
 
@@ -51,14 +55,36 @@ module catchDoll {
 				pathMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 			}[],
-			mapData: { source, x, y }[],
+			mapData: { source, x, y, width, height }[],
 		}): void {
 			this.curLevelData = levelData
+			this._creatSence();
 			this._creatMonster();
 			this._creatMaster();
 
 			Laya.timer.frameLoop(1, this, this._checkHit)
 
+		}
+
+		private _creatSence() {
+			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView);
+			for (let item of this.curLevelData.mapData) {
+				let img: eui.Image = Pool.getItemByCreateFun(Pool.sceneImg, Handler.create(this, this._creatSecneImg, null, true))
+				img.x = item.x;
+				img.y = item.y;
+				img.width = item.width;
+				img.height = item.height;
+				img.source = item.source;
+				view.sceneImgBox.addChild(img);
+				this._sceneImgs.push(img);
+			}
+
+		};
+
+		private _creatSecneImg(): eui.Image {
+			let img = new eui.Image();
+			img.fillMode = egret.BitmapFillMode.REPEAT;
+			return img;
 		}
 
 		/**
@@ -229,7 +255,18 @@ module catchDoll {
 			Master.instance.MasterPaws = GameObjectFactory.instance.creatGameObject(GAMEOBJECT_SIGN.PAWS)
 			Master.instance.MasterPaws.pawsSkinBox.switchClip(1);
 			Master.instance.MasterPaws.y = 160;
-			Master.instance.MasterPaws.x = 500;
+			Master.instance.MasterPaws.x = 360;
+		}
+
+		private _recoveSceneImg(): void {
+			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView);
+			for (let item of this._sceneImgs) {
+				Pool.recover(Pool.sceneImg, item)
+			}
+			this._sceneImgs.length = 0;
+			if (view) {
+				view.sceneImgBox.removeChildren();
+			}
 		}
 
 		/**
@@ -246,6 +283,9 @@ module catchDoll {
 				GameObjectFactory.instance.recoverGameObject(Master.instance.MasterPaws);
 				Master.instance.MasterPaws = null;
 			}
+			this._recoveSceneImg();
+
+
 			this.curLevelData = null;
 
 		}
