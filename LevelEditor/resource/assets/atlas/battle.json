@@ -1,0 +1,225 @@
+{
+  "file": "battle.png",
+  "frames": {
+    "battle_1": {
+      "x": 602,
+      "y": 341,
+      "w": 106,
+      "h": 112,
+      "offX": 9,
+      "offY": 2,
+      "sourceW": 126,
+      "sourceH": 131
+    },
+    "battle_2": {
+      "x": 126,
+      "y": 712,
+      "w": 117,
+      "h": 116,
+      "offX": 6,
+      "offY": 6,
+      "sourceW": 128,
+      "sourceH": 128
+    },
+    "battle_3": {
+      "x": 1032,
+      "y": 0,
+      "w": 6,
+      "h": 187,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 6,
+      "sourceH": 187
+    },
+    "battle_4": {
+      "x": 196,
+      "y": 829,
+      "w": 123,
+      "h": 59,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 123,
+      "sourceH": 59
+    },
+    "battle_5": {
+      "x": 0,
+      "y": 712,
+      "w": 125,
+      "h": 125,
+      "offX": 2,
+      "offY": 1,
+      "sourceW": 128,
+      "sourceH": 128
+    },
+    "battle_6": {
+      "x": 331,
+      "y": 488,
+      "w": 117,
+      "h": 126,
+      "offX": 6,
+      "offY": 2,
+      "sourceW": 128,
+      "sourceH": 128
+    },
+    "battle_7": {
+      "x": 0,
+      "y": 488,
+      "w": 185,
+      "h": 185,
+      "offX": 8,
+      "offY": 7,
+      "sourceW": 200,
+      "sourceH": 200
+    },
+    "battle_8": {
+      "x": 0,
+      "y": 838,
+      "w": 117,
+      "h": 126,
+      "offX": 6,
+      "offY": 2,
+      "sourceW": 128,
+      "sourceH": 128
+    },
+    "battle_9": {
+      "x": 186,
+      "y": 488,
+      "w": 144,
+      "h": 144,
+      "offX": 3,
+      "offY": 3,
+      "sourceW": 150,
+      "sourceH": 150
+    },
+    "battle_10": {
+      "x": 186,
+      "y": 647,
+      "w": 49,
+      "h": 23,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 49,
+      "sourceH": 23
+    },
+    "battle_11": {
+      "x": 126,
+      "y": 829,
+      "w": 69,
+      "h": 129,
+      "offX": 28,
+      "offY": 2,
+      "sourceW": 126,
+      "sourceH": 131
+    },
+    "battle_12": {
+      "x": 921,
+      "y": 0,
+      "w": 110,
+      "h": 110,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 110,
+      "sourceH": 110
+    },
+    "battle_13": {
+      "x": 236,
+      "y": 647,
+      "w": 48,
+      "h": 23,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 48,
+      "sourceH": 23
+    },
+    "battle_14": {
+      "x": 244,
+      "y": 712,
+      "w": 90,
+      "h": 90,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 90,
+      "sourceH": 90
+    },
+    "battle_15": {
+      "x": 0,
+      "y": 674,
+      "w": 720,
+      "h": 37,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 720,
+      "sourceH": 37
+    },
+    "battle_16": {
+      "x": 449,
+      "y": 488,
+      "w": 110,
+      "h": 110,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 110,
+      "sourceH": 110
+    },
+    "battle_17": {
+      "x": 186,
+      "y": 633,
+      "w": 1136,
+      "h": 13,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 1136,
+      "sourceH": 13
+    },
+    "battle_18": {
+      "x": 721,
+      "y": 0,
+      "w": 199,
+      "h": 450,
+      "offX": 0,
+      "offY": 6,
+      "sourceW": 200,
+      "sourceH": 460
+    },
+    "battle_19": {
+      "x": 921,
+      "y": 111,
+      "w": 75,
+      "h": 75,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 75,
+      "sourceH": 75
+    },
+    "battle_20": {
+      "x": 0,
+      "y": 341,
+      "w": 300,
+      "h": 146,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 300,
+      "sourceH": 150
+    },
+    "battle_21": {
+      "x": 301,
+      "y": 341,
+      "w": 300,
+      "h": 146,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 300,
+      "sourceH": 150
+    },
+    "battle_22": {
+      "x": 0,
+      "y": 0,
+      "w": 720,
+      "h": 340,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 720,
+      "sourceH": 340
+    }
+  }
+}

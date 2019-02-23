@@ -8,6 +8,7 @@ Egret_wxgame/
 Egret_wxgame_remote/
 LevelEditor/bin-release
 LevelEditor/bin-debug/
+LevelEditor/libs/
 EditorServe/out
 ColliderEditor/libs
 ColliderEditor/bin-debug

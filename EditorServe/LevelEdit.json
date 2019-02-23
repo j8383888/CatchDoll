@@ -1,1 +1,1560 @@
-[{"chapterID":2,"chapterName":"森林","levelData":[{"level":1,"bgSource":"scene1_png","monster":[{"monsterID":"2","pathMirror":true,"pathData":[{"origin":{"x":39,"y":997},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":39,"y":997},"nextAnchor":{"x":39,"y":997}},{"origin":{"x":682,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":682,"y":998},"nextAnchor":{"x":682,"y":998}}],"fixedRotation":0,"exportData":[{"x":39,"y":997,"angle":91,"distNext":18,"distTotal":0},{"x":57,"y":997.03,"angle":91,"distNext":48.87,"distTotal":18},{"x":105.87,"y":997.1,"angle":91,"distNext":72.02,"distTotal":66.87},{"x":177.89,"y":997.22,"angle":91,"distNext":87.45,"distTotal":138.89},{"x":265.34,"y":997.35,"angle":91,"distNext":95.16,"distTotal":226.34},{"x":360.5,"y":997.5,"angle":91,"distNext":95.16,"distTotal":321.5},{"x":455.66,"y":997.65,"angle":91,"distNext":87.45,"distTotal":416.66},{"x":543.11,"y":997.78,"angle":91,"distNext":72.02,"distTotal":504.11},{"x":615.13,"y":997.9,"angle":91,"distNext":48.87,"distTotal":576.13},{"x":664,"y":997.97,"angle":91,"distNext":18,"distTotal":625},{"x":682,"y":998,"angle":451,"distNext":18,"distTotal":643},{"x":664,"y":997.97,"angle":451,"distNext":48.87,"distTotal":661},{"x":615.13,"y":997.9,"angle":451,"distNext":72.02,"distTotal":709.87},{"x":543.11,"y":997.78,"angle":451,"distNext":87.45,"distTotal":781.89},{"x":455.66,"y":997.65,"angle":451,"distNext":95.16,"distTotal":869.34},{"x":360.5,"y":997.5,"angle":451,"distNext":95.16,"distTotal":964.5},{"x":265.34,"y":997.35,"angle":451,"distNext":87.45,"distTotal":1059.66},{"x":177.89,"y":997.22,"angle":451,"distNext":72.02,"distTotal":1147.11},{"x":105.87,"y":997.1,"angle":451,"distNext":48.87,"distTotal":1219.13},{"x":57,"y":997.03,"angle":451,"distNext":18,"distTotal":1268},{"x":39,"y":997,"angle":0,"distNext":0,"distTotal":1286}]},{"monsterID":"1","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":18,"y":670},"ctrlP1":{"x":-1,"y":1},"ctrlP2":{"x":1,"y":-1},"beforeAnchor":{"x":19,"y":669},"nextAnchor":{"x":17,"y":671}},{"origin":{"x":638,"y":670},"ctrlP1":{"x":-2,"y":-4},"ctrlP2":{"x":2,"y":4},"beforeAnchor":{"x":640,"y":674},"nextAnchor":{"x":636,"y":666}}],"exportData":[{"x":18,"y":670,"angle":92,"distNext":17.17,"distTotal":0},{"x":35.17,"y":670.35,"angle":91,"distNext":47.12,"distTotal":17.17},{"x":82.29,"y":670.77,"angle":91,"distNext":69.57,"distTotal":64.29},{"x":151.86,"y":671.2,"angle":91,"distNext":84.52,"distTotal":133.86},{"x":236.38,"y":671.58,"angle":91,"distNext":92,"distTotal":218.38},{"x":328.38,"y":671.88,"angle":91,"distNext":91.96,"distTotal":310.38},{"x":420.34,"y":672.02,"angle":89,"distNext":84.43,"distTotal":402.34},{"x":504.77,"y":671.95,"angle":89,"distNext":69.42,"distTotal":486.77},{"x":574.19,"y":671.63,"angle":89,"distNext":46.91,"distTotal":556.19},{"x":621.1,"y":671,"angle":86,"distNext":16.93,"distTotal":603.1},{"x":638,"y":670,"angle":446,"distNext":16.93,"distTotal":620.03},{"x":621.1,"y":671,"angle":449,"distNext":46.91,"distTotal":636.96},{"x":574.19,"y":671.63,"angle":449,"distNext":69.42,"distTotal":683.87},{"x":504.77,"y":671.95,"angle":449,"distNext":84.43,"distTotal":753.29},{"x":420.34,"y":672.02,"angle":451,"distNext":91.96,"distTotal":837.72},{"x":328.38,"y":671.88,"angle":451,"distNext":92,"distTotal":929.68},{"x":236.38,"y":671.58,"angle":451,"distNext":84.52,"distTotal":1021.68},{"x":151.86,"y":671.2,"angle":451,"distNext":69.57,"distTotal":1106.2},{"x":82.29,"y":670.77,"angle":451,"distNext":47.12,"distTotal":1175.77},{"x":35.17,"y":670.35,"angle":452,"distNext":17.17,"distTotal":1222.89},{"x":18,"y":670,"angle":0,"distNext":0,"distTotal":1240.06}]},{"monsterID":"3","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":728,"y":1001},"ctrlP1":{"x":-1,"y":0},"ctrlP2":{"x":1,"y":0},"beforeAnchor":{"x":729,"y":1001},"nextAnchor":{"x":727,"y":1001}},{"origin":{"x":1866,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1866,"y":998},"nextAnchor":{"x":1866,"y":998}}],"exportData":[{"x":728,"y":1001,"angle":89,"distNext":31.62,"distTotal":0},{"x":759.62,"y":1000.92,"angle":89,"distNext":86.35,"distTotal":31.62},{"x":845.97,"y":1000.69,"angle":89,"distNext":127.4,"distTotal":117.97},{"x":973.37,"y":1000.35,"angle":89,"distNext":154.77,"distTotal":245.37},{"x":1128.14,"y":999.94,"angle":89,"distNext":168.49,"distTotal":400.14},{"x":1296.63,"y":999.5,"angle":89,"distNext":168.51,"distTotal":568.63},{"x":1465.14,"y":999.06,"angle":89,"distNext":154.86,"distTotal":737.14},{"x":1620,"y":998.65,"angle":89,"distNext":127.55,"distTotal":892},{"x":1747.55,"y":998.31,"angle":89,"distNext":86.56,"distTotal":1019.55},{"x":1834.11,"y":998.08,"angle":89,"distNext":31.89,"distTotal":1106.11},{"x":1866,"y":998,"angle":449,"distNext":31.89,"distTotal":1138},{"x":1834.11,"y":998.08,"angle":449,"distNext":86.56,"distTotal":1169.89},{"x":1747.55,"y":998.31,"angle":449,"distNext":127.55,"distTotal":1256.45},{"x":1620,"y":998.65,"angle":449,"distNext":154.86,"distTotal":1384},{"x":1465.14,"y":999.06,"angle":449,"distNext":168.51,"distTotal":1538.86},{"x":1296.63,"y":999.5,"angle":449,"distNext":168.49,"distTotal":1707.37},{"x":1128.14,"y":999.94,"angle":449,"distNext":154.77,"distTotal":1875.86},{"x":973.37,"y":1000.35,"angle":449,"distNext":127.4,"distTotal":2030.63},{"x":845.97,"y":1000.69,"angle":449,"distNext":86.35,"distTotal":2158.03},{"x":759.62,"y":1000.92,"angle":449,"distNext":31.62,"distTotal":2244.38},{"x":728,"y":1001,"angle":0,"distNext":0,"distTotal":2276}]},{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":1321,"y":1001},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1321,"y":1001},"nextAnchor":{"x":1321,"y":1001}},{"origin":{"x":679,"y":997},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":679,"y":997},"nextAnchor":{"x":679,"y":997}}],"exportData":[{"x":1321,"y":1001,"angle":271,"distNext":17.98,"distTotal":0},{"x":1303.02,"y":1000.89,"angle":271,"distNext":48.79,"distTotal":17.98},{"x":1254.23,"y":1000.58,"angle":271,"distNext":71.9,"distTotal":66.77},{"x":1182.33,"y":1000.14,"angle":271,"distNext":87.31,"distTotal":138.67},{"x":1095.02,"y":999.59,"angle":271,"distNext":95.02,"distTotal":225.98},{"x":1000,"y":999,"angle":271,"distNext":95.02,"distTotal":321},{"x":904.98,"y":998.41,"angle":271,"distNext":87.31,"distTotal":416.02},{"x":817.67,"y":997.86,"angle":271,"distNext":71.9,"distTotal":503.33},{"x":745.77,"y":997.42,"angle":271,"distNext":48.79,"distTotal":575.23},{"x":696.98,"y":997.11,"angle":271,"distNext":17.98,"distTotal":624.02},{"x":679,"y":997,"angle":271,"distNext":17.98,"distTotal":642},{"x":696.98,"y":997.11,"angle":271,"distNext":48.79,"distTotal":659.98},{"x":745.77,"y":997.42,"angle":271,"distNext":71.9,"distTotal":708.77},{"x":817.67,"y":997.86,"angle":271,"distNext":87.31,"distTotal":780.67},{"x":904.98,"y":998.41,"angle":271,"distNext":95.02,"distTotal":867.98},{"x":1000,"y":999,"angle":271,"distNext":95.02,"distTotal":963},{"x":1095.02,"y":999.59,"angle":271,"distNext":87.31,"distTotal":1058.02},{"x":1182.33,"y":1000.14,"angle":271,"distNext":71.9,"distTotal":1145.33},{"x":1254.23,"y":1000.58,"angle":271,"distNext":48.79,"distTotal":1217.23},{"x":1303.02,"y":1000.89,"angle":271,"distNext":17.98,"distTotal":1266.02},{"x":1321,"y":1001,"angle":0,"distNext":0,"distTotal":1284}]}],"mapData":[{"source":"BattleScene_2","x":-3,"y":1029,"width":1925},{"source":"BattleScene_2","x":-3,"y":702,"width":658}]},{"level":2,"bgSource":"scene2_png","monster":[{"monsterID":"1","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":3,"y":995},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":3,"y":995},"nextAnchor":{"x":3,"y":995}},{"origin":{"x":840,"y":995},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":840,"y":995},"nextAnchor":{"x":840,"y":995}}],"exportData":[{"x":3,"y":995,"angle":90,"distNext":23.44,"distTotal":0},{"x":26.44,"y":995,"angle":90,"distNext":63.61,"distTotal":23.44},{"x":90.05,"y":995,"angle":90,"distNext":93.74,"distTotal":87.05},{"x":183.79,"y":995,"angle":90,"distNext":113.83,"distTotal":180.79},{"x":297.62,"y":995,"angle":90,"distNext":123.88,"distTotal":294.62},{"x":421.5,"y":995,"angle":90,"distNext":123.88,"distTotal":418.5},{"x":545.38,"y":995,"angle":90,"distNext":113.83,"distTotal":542.38},{"x":659.21,"y":995,"angle":90,"distNext":93.74,"distTotal":656.21},{"x":752.95,"y":995,"angle":90,"distNext":63.61,"distTotal":749.95},{"x":816.56,"y":995,"angle":90,"distNext":23.44,"distTotal":813.56},{"x":840,"y":995,"angle":450,"distNext":23.44,"distTotal":837},{"x":816.56,"y":995,"angle":450,"distNext":63.61,"distTotal":860.44},{"x":752.95,"y":995,"angle":450,"distNext":93.74,"distTotal":924.05},{"x":659.21,"y":995,"angle":450,"distNext":113.83,"distTotal":1017.79},{"x":545.38,"y":995,"angle":450,"distNext":123.88,"distTotal":1131.62},{"x":421.5,"y":995,"angle":450,"distNext":123.88,"distTotal":1255.5},{"x":297.62,"y":995,"angle":450,"distNext":113.83,"distTotal":1379.38},{"x":183.79,"y":995,"angle":450,"distNext":93.74,"distTotal":1493.21},{"x":90.05,"y":995,"angle":450,"distNext":63.61,"distTotal":1586.95},{"x":26.44,"y":995,"angle":450,"distNext":23.44,"distTotal":1650.56},{"x":3,"y":995,"angle":0,"distNext":0,"distTotal":1674}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":1418,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1418,"y":998},"nextAnchor":{"x":1418,"y":998}},{"origin":{"x":1780,"y":755},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1780,"y":755},"nextAnchor":{"x":1780,"y":755}},{"origin":{"x":1927,"y":754},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1924,"y":760},"nextAnchor":{"x":1924,"y":760}}],"exportData":[{"x":1418,"y":998,"angle":56,"distNext":12.21,"distTotal":0},{"x":1428.14,"y":991.2,"angle":56,"distNext":33.14,"distTotal":12.21},{"x":1455.65,"y":972.73,"angle":56,"distNext":48.83,"distTotal":45.35},{"x":1496.19,"y":945.51,"angle":56,"distNext":59.29,"distTotal":94.18},{"x":1545.42,"y":912.46,"angle":56,"distNext":64.53,"distTotal":153.47},{"x":1599,"y":876.5,"angle":56,"distNext":64.53,"distTotal":218},{"x":1652.58,"y":840.54,"angle":56,"distNext":59.29,"distTotal":282.53},{"x":1701.81,"y":807.49,"angle":56,"distNext":48.83,"distTotal":341.82},{"x":1742.35,"y":780.27,"angle":56,"distNext":33.14,"distTotal":390.65},{"x":1769.86,"y":761.8,"angle":56,"distNext":12.21,"distTotal":423.79},{"x":1780,"y":755,"angle":92,"distNext":37.46,"distTotal":436},{"x":1817.44,"y":756.07,"angle":91,"distNext":70.13,"distTotal":473.46},{"x":1887.56,"y":756.93,"angle":85,"distNext":39.55,"distTotal":543.59},{"x":1927,"y":754,"angle":445,"distNext":39.55,"distTotal":583.14},{"x":1887.56,"y":756.93,"angle":451,"distNext":70.13,"distTotal":622.69},{"x":1817.44,"y":756.07,"angle":452,"distNext":37.46,"distTotal":692.82},{"x":1780,"y":755,"angle":416,"distNext":12.21,"distTotal":730.28},{"x":1769.86,"y":761.8,"angle":416,"distNext":33.14,"distTotal":742.49},{"x":1742.35,"y":780.27,"angle":416,"distNext":48.83,"distTotal":775.63},{"x":1701.81,"y":807.49,"angle":416,"distNext":59.29,"distTotal":824.46},{"x":1652.58,"y":840.54,"angle":416,"distNext":64.53,"distTotal":883.75},{"x":1599,"y":876.5,"angle":416,"distNext":64.53,"distTotal":948.28},{"x":1545.42,"y":912.46,"angle":416,"distNext":59.29,"distTotal":1012.81},{"x":1496.19,"y":945.51,"angle":416,"distNext":48.83,"distTotal":1072.1},{"x":1455.65,"y":972.73,"angle":416,"distNext":33.14,"distTotal":1120.93},{"x":1428.14,"y":991.2,"angle":416,"distNext":12.21,"distTotal":1154.07},{"x":1418,"y":998,"angle":0,"distNext":0,"distTotal":1166.28}]},{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":-2,"y":647},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":-2,"y":647},"nextAnchor":{"x":-2,"y":647}},{"origin":{"x":795,"y":643},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":795,"y":643},"nextAnchor":{"x":795,"y":643}}],"exportData":[{"x":-2,"y":647,"angle":89,"distNext":22.32,"distTotal":0},{"x":20.32,"y":646.89,"angle":89,"distNext":60.57,"distTotal":22.32},{"x":80.89,"y":646.58,"angle":89,"distNext":89.26,"distTotal":82.89},{"x":170.15,"y":646.14,"angle":89,"distNext":108.39,"distTotal":172.15},{"x":278.54,"y":645.59,"angle":89,"distNext":117.96,"distTotal":280.54},{"x":396.5,"y":645,"angle":89,"distNext":117.96,"distTotal":398.5},{"x":514.46,"y":644.41,"angle":89,"distNext":108.39,"distTotal":516.46},{"x":622.85,"y":643.86,"angle":89,"distNext":89.26,"distTotal":624.85},{"x":712.11,"y":643.42,"angle":89,"distNext":60.57,"distTotal":714.11},{"x":772.68,"y":643.11,"angle":89,"distNext":22.32,"distTotal":774.68},{"x":795,"y":643,"angle":449,"distNext":22.32,"distTotal":797},{"x":772.68,"y":643.11,"angle":449,"distNext":60.57,"distTotal":819.32},{"x":712.11,"y":643.42,"angle":449,"distNext":89.26,"distTotal":879.89},{"x":622.85,"y":643.86,"angle":449,"distNext":108.39,"distTotal":969.15},{"x":514.46,"y":644.41,"angle":449,"distNext":117.96,"distTotal":1077.54},{"x":396.5,"y":645,"angle":449,"distNext":117.96,"distTotal":1195.5},{"x":278.54,"y":645.59,"angle":449,"distNext":108.39,"distTotal":1313.46},{"x":170.15,"y":646.14,"angle":449,"distNext":89.26,"distTotal":1421.85},{"x":80.89,"y":646.58,"angle":449,"distNext":60.57,"distTotal":1511.11},{"x":20.32,"y":646.89,"angle":449,"distNext":22.32,"distTotal":1571.68},{"x":-2,"y":647,"angle":0,"distNext":0,"distTotal":1594}]}],"mapData":[{"source":"BattleScene_2","x":-0.5,"y":1022,"width":1474.5},{"source":"BattleScene_2","x":1551,"y":929,"width":82},{"source":"BattleScene_2","x":1630.5,"y":871,"width":83},{"source":"BattleScene_2","x":1710,"y":821,"width":82},{"source":"BattleScene_2","x":1791,"y":775,"width":82},{"source":"BattleScene_2","x":1872,"y":775,"width":82},{"source":"BattleScene_2","x":1470,"y":980,"width":82},{"source":"BattleScene_1","x":-2,"y":687.5,"width":256},{"source":"BattleScene_1","x":279,"y":686.5,"width":256},{"source":"BattleScene_1","x":563,"y":686.5,"width":256}]},{"level":3,"bgSource":"scene3_png","monster":[{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":13,"y":995},"ctrlP1":{"x":-1,"y":-2},"ctrlP2":{"x":1,"y":2},"beforeAnchor":{"x":14,"y":997},"nextAnchor":{"x":12,"y":993}},{"origin":{"x":1918,"y":991},"ctrlP1":{"x":-3,"y":0},"ctrlP2":{"x":3,"y":0},"beforeAnchor":{"x":1921,"y":991},"nextAnchor":{"x":1915,"y":991}}],"exportData":[{"x":13,"y":995,"angle":89,"distNext":53.18,"distTotal":0},{"x":66.18,"y":994.4,"angle":89,"distNext":144.84,"distTotal":53.18},{"x":211.02,"y":993.82,"angle":89,"distNext":213.59,"distTotal":198.02},{"x":424.61,"y":993.25,"angle":89,"distNext":259.38,"distTotal":411.61},{"x":683.99,"y":992.73,"angle":89,"distNext":282.26,"distTotal":670.99},{"x":966.25,"y":992.25,"angle":89,"distNext":282.2,"distTotal":953.25},{"x":1248.45,"y":991.83,"angle":89,"distNext":259.2,"distTotal":1235.45},{"x":1507.65,"y":991.49,"angle":89,"distNext":213.29,"distTotal":1494.65},{"x":1720.94,"y":991.22,"angle":89,"distNext":144.42,"distTotal":1707.94},{"x":1865.36,"y":991.06,"angle":89,"distNext":52.64,"distTotal":1852.36},{"x":1918,"y":991,"angle":449,"distNext":52.64,"distTotal":1905},{"x":1865.36,"y":991.06,"angle":449,"distNext":144.42,"distTotal":1957.64},{"x":1720.94,"y":991.22,"angle":449,"distNext":213.29,"distTotal":2102.06},{"x":1507.65,"y":991.49,"angle":449,"distNext":259.2,"distTotal":2315.35},{"x":1248.45,"y":991.83,"angle":449,"distNext":282.2,"distTotal":2574.55},{"x":966.25,"y":992.25,"angle":449,"distNext":282.26,"distTotal":2856.75},{"x":683.99,"y":992.73,"angle":449,"distNext":259.38,"distTotal":3139.01},{"x":424.61,"y":993.25,"angle":449,"distNext":213.59,"distTotal":3398.39},{"x":211.02,"y":993.82,"angle":449,"distNext":144.84,"distTotal":3611.98},{"x":66.18,"y":994.4,"angle":449,"distNext":53.18,"distTotal":3756.82},{"x":13,"y":995,"angle":0,"distNext":0,"distTotal":3810}]},{"monsterID":"3","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":417,"y":702},"ctrlP1":{"x":1,"y":0},"ctrlP2":{"x":-1,"y":0},"beforeAnchor":{"x":416,"y":702},"nextAnchor":{"x":418,"y":702}},{"origin":{"x":1500,"y":702},"ctrlP1":{"x":1,"y":0},"ctrlP2":{"x":-1,"y":0},"beforeAnchor":{"x":1499,"y":702},"nextAnchor":{"x":1501,"y":702}}],"exportData":[{"x":417,"y":702,"angle":90,"distNext":30.54,"distTotal":0},{"x":447.54,"y":702,"angle":90,"distNext":82.38,"distTotal":30.54},{"x":529.92,"y":702,"angle":90,"distNext":121.26,"distTotal":112.92},{"x":651.18,"y":702,"angle":90,"distNext":147.18,"distTotal":234.18},{"x":798.36,"y":702,"angle":90,"distNext":160.14,"distTotal":381.36},{"x":958.5,"y":702,"angle":90,"distNext":160.14,"distTotal":541.5},{"x":1118.64,"y":702,"angle":90,"distNext":147.18,"distTotal":701.64},{"x":1265.82,"y":702,"angle":90,"distNext":121.26,"distTotal":848.82},{"x":1387.08,"y":702,"angle":90,"distNext":82.38,"distTotal":970.08},{"x":1469.46,"y":702,"angle":90,"distNext":30.54,"distTotal":1052.46},{"x":1500,"y":702,"angle":450,"distNext":30.54,"distTotal":1083},{"x":1469.46,"y":702,"angle":450,"distNext":82.38,"distTotal":1113.54},{"x":1387.08,"y":702,"angle":450,"distNext":121.26,"distTotal":1195.92},{"x":1265.82,"y":702,"angle":450,"distNext":147.18,"distTotal":1317.18},{"x":1118.64,"y":702,"angle":450,"distNext":160.14,"distTotal":1464.36},{"x":958.5,"y":702,"angle":450,"distNext":160.14,"distTotal":1624.5},{"x":798.36,"y":702,"angle":450,"distNext":147.18,"distTotal":1784.64},{"x":651.18,"y":702,"angle":450,"distNext":121.26,"distTotal":1931.82},{"x":529.92,"y":702,"angle":450,"distNext":82.38,"distTotal":2053.08},{"x":447.54,"y":702,"angle":450,"distNext":30.54,"distTotal":2135.46},{"x":417,"y":702,"angle":0,"distNext":0,"distTotal":2166}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":595,"y":465},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":591,"y":457},"nextAnchor":{"x":591,"y":457}},{"origin":{"x":1283,"y":464},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1282,"y":465},"nextAnchor":{"x":1282,"y":[{"chapterID":2,"chapterName":"森林","levelData":[{"level":1,"bgSource":"scene1_png","monster":[{"monsterID":"2","pathMirror":true,"pathData":[{"origin":{"x":39,"y":997},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":39,"y":997},"nextAnchor":{"x":39,"y":997}},{"origin":{"x":682,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":682,"y":998},"nextAnchor":{"x":682,"y":998}}],"fixedRotation":0,"exportData":[{"x":39,"y":997,"angle":91,"distNext":18,"distTotal":0},{"x":57,"y":997.03,"angle":91,"distNext":48.87,"distTotal":18},{"x":105.87,"y":997.1,"angle":91,"distNext":72.02,"distTotal":66.87},{"x":177.89,"y":997.22,"angle":91,"distNext":87.45,"distTotal":138.89},{"x":265.34,"y":997.35,"angle":91,"distNext":95.16,"distTotal":226.34},{"x":360.5,"y":997.5,"angle":91,"distNext":95.16,"distTotal":321.5},{"x":455.66,"y":997.65,"angle":91,"distNext":87.45,"distTotal":416.66},{"x":543.11,"y":997.78,"angle":91,"distNext":72.02,"distTotal":504.11},{"x":615.13,"y":997.9,"angle":91,"distNext":48.87,"distTotal":576.13},{"x":664,"y":997.97,"angle":91,"distNext":18,"distTotal":625},{"x":682,"y":998,"angle":451,"distNext":18,"distTotal":643},{"x":664,"y":997.97,"angle":451,"distNext":48.87,"distTotal":661},{"x":615.13,"y":997.9,"angle":451,"distNext":72.02,"distTotal":709.87},{"x":543.11,"y":997.78,"angle":451,"distNext":87.45,"distTotal":781.89},{"x":455.66,"y":997.65,"angle":451,"distNext":95.16,"distTotal":869.34},{"x":360.5,"y":997.5,"angle":451,"distNext":95.16,"distTotal":964.5},{"x":265.34,"y":997.35,"angle":451,"distNext":87.45,"distTotal":1059.66},{"x":177.89,"y":997.22,"angle":451,"distNext":72.02,"distTotal":1147.11},{"x":105.87,"y":997.1,"angle":451,"distNext":48.87,"distTotal":1219.13},{"x":57,"y":997.03,"angle":451,"distNext":18,"distTotal":1268},{"x":39,"y":997,"angle":0,"distNext":0,"distTotal":1286}]},{"monsterID":"1","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":18,"y":670},"ctrlP1":{"x":-1,"y":1},"ctrlP2":{"x":1,"y":-1},"beforeAnchor":{"x":19,"y":669},"nextAnchor":{"x":17,"y":671}},{"origin":{"x":638,"y":670},"ctrlP1":{"x":-2,"y":-4},"ctrlP2":{"x":2,"y":4},"beforeAnchor":{"x":640,"y":674},"nextAnchor":{"x":636,"y":666}}],"exportData":[{"x":18,"y":670,"angle":92,"distNext":17.17,"distTotal":0},{"x":35.17,"y":670.35,"angle":91,"distNext":47.12,"distTotal":17.17},{"x":82.29,"y":670.77,"angle":91,"distNext":69.57,"distTotal":64.29},{"x":151.86,"y":671.2,"angle":91,"distNext":84.52,"distTotal":133.86},{"x":236.38,"y":671.58,"angle":91,"distNext":92,"distTotal":218.38},{"x":328.38,"y":671.88,"angle":91,"distNext":91.96,"distTotal":310.38},{"x":420.34,"y":672.02,"angle":89,"distNext":84.43,"distTotal":402.34},{"x":504.77,"y":671.95,"angle":89,"distNext":69.42,"distTotal":486.77},{"x":574.19,"y":671.63,"angle":89,"distNext":46.91,"distTotal":556.19},{"x":621.1,"y":671,"angle":86,"distNext":16.93,"distTotal":603.1},{"x":638,"y":670,"angle":446,"distNext":16.93,"distTotal":620.03},{"x":621.1,"y":671,"angle":449,"distNext":46.91,"distTotal":636.96},{"x":574.19,"y":671.63,"angle":449,"distNext":69.42,"distTotal":683.87},{"x":504.77,"y":671.95,"angle":449,"distNext":84.43,"distTotal":753.29},{"x":420.34,"y":672.02,"angle":451,"distNext":91.96,"distTotal":837.72},{"x":328.38,"y":671.88,"angle":451,"distNext":92,"distTotal":929.68},{"x":236.38,"y":671.58,"angle":451,"distNext":84.52,"distTotal":1021.68},{"x":151.86,"y":671.2,"angle":451,"distNext":69.57,"distTotal":1106.2},{"x":82.29,"y":670.77,"angle":451,"distNext":47.12,"distTotal":1175.77},{"x":35.17,"y":670.35,"angle":452,"distNext":17.17,"distTotal":1222.89},{"x":18,"y":670,"angle":0,"distNext":0,"distTotal":1240.06}]},{"monsterID":"3","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":728,"y":1001},"ctrlP1":{"x":-1,"y":0},"ctrlP2":{"x":1,"y":0},"beforeAnchor":{"x":729,"y":1001},"nextAnchor":{"x":727,"y":1001}},{"origin":{"x":1866,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1866,"y":998},"nextAnchor":{"x":1866,"y":998}}],"exportData":[{"x":728,"y":1001,"angle":89,"distNext":31.62,"distTotal":0},{"x":759.62,"y":1000.92,"angle":89,"distNext":86.35,"distTotal":31.62},{"x":845.97,"y":1000.69,"angle":89,"distNext":127.4,"distTotal":117.97},{"x":973.37,"y":1000.35,"angle":89,"distNext":154.77,"distTotal":245.37},{"x":1128.14,"y":999.94,"angle":89,"distNext":168.49,"distTotal":400.14},{"x":1296.63,"y":999.5,"angle":89,"distNext":168.51,"distTotal":568.63},{"x":1465.14,"y":999.06,"angle":89,"distNext":154.86,"distTotal":737.14},{"x":1620,"y":998.65,"angle":89,"distNext":127.55,"distTotal":892},{"x":1747.55,"y":998.31,"angle":89,"distNext":86.56,"distTotal":1019.55},{"x":1834.11,"y":998.08,"angle":89,"distNext":31.89,"distTotal":1106.11},{"x":1866,"y":998,"angle":449,"distNext":31.89,"distTotal":1138},{"x":1834.11,"y":998.08,"angle":449,"distNext":86.56,"distTotal":1169.89},{"x":1747.55,"y":998.31,"angle":449,"distNext":127.55,"distTotal":1256.45},{"x":1620,"y":998.65,"angle":449,"distNext":154.86,"distTotal":1384},{"x":1465.14,"y":999.06,"angle":449,"distNext":168.51,"distTotal":1538.86},{"x":1296.63,"y":999.5,"angle":449,"distNext":168.49,"distTotal":1707.37},{"x":1128.14,"y":999.94,"angle":449,"distNext":154.77,"distTotal":1875.86},{"x":973.37,"y":1000.35,"angle":449,"distNext":127.4,"distTotal":2030.63},{"x":845.97,"y":1000.69,"angle":449,"distNext":86.35,"distTotal":2158.03},{"x":759.62,"y":1000.92,"angle":449,"distNext":31.62,"distTotal":2244.38},{"x":728,"y":1001,"angle":0,"distNext":0,"distTotal":2276}]},{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":1321,"y":1001},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1321,"y":1001},"nextAnchor":{"x":1321,"y":1001}},{"origin":{"x":679,"y":997},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":679,"y":997},"nextAnchor":{"x":679,"y":997}}],"exportData":[{"x":1321,"y":1001,"angle":271,"distNext":17.98,"distTotal":0},{"x":1303.02,"y":1000.89,"angle":271,"distNext":48.79,"distTotal":17.98},{"x":1254.23,"y":1000.58,"angle":271,"distNext":71.9,"distTotal":66.77},{"x":1182.33,"y":1000.14,"angle":271,"distNext":87.31,"distTotal":138.67},{"x":1095.02,"y":999.59,"angle":271,"distNext":95.02,"distTotal":225.98},{"x":1000,"y":999,"angle":271,"distNext":95.02,"distTotal":321},{"x":904.98,"y":998.41,"angle":271,"distNext":87.31,"distTotal":416.02},{"x":817.67,"y":997.86,"angle":271,"distNext":71.9,"distTotal":503.33},{"x":745.77,"y":997.42,"angle":271,"distNext":48.79,"distTotal":575.23},{"x":696.98,"y":997.11,"angle":271,"distNext":17.98,"distTotal":624.02},{"x":679,"y":997,"angle":271,"distNext":17.98,"distTotal":642},{"x":696.98,"y":997.11,"angle":271,"distNext":48.79,"distTotal":659.98},{"x":745.77,"y":997.42,"angle":271,"distNext":71.9,"distTotal":708.77},{"x":817.67,"y":997.86,"angle":271,"distNext":87.31,"distTotal":780.67},{"x":904.98,"y":998.41,"angle":271,"distNext":95.02,"distTotal":867.98},{"x":1000,"y":999,"angle":271,"distNext":95.02,"distTotal":963},{"x":1095.02,"y":999.59,"angle":271,"distNext":87.31,"distTotal":1058.02},{"x":1182.33,"y":1000.14,"angle":271,"distNext":71.9,"distTotal":1145.33},{"x":1254.23,"y":1000.58,"angle":271,"distNext":48.79,"distTotal":1217.23},{"x":1303.02,"y":1000.89,"angle":271,"distNext":17.98,"distTotal":1266.02},{"x":1321,"y":1001,"angle":0,"distNext":0,"distTotal":1284}]}],"mapData":[{"source":"BattleScene_2","x":-3,"y":1029,"width":1925},{"source":"BattleScene_2","x":-3,"y":702,"width":658}]},{"level":2,"bgSource":"scene2_png","monster":[{"monsterID":"1","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":3,"y":995},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":3,"y":995},"nextAnchor":{"x":3,"y":995}},{"origin":{"x":840,"y":995},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":840,"y":995},"nextAnchor":{"x":840,"y":995}}],"exportData":[{"x":3,"y":995,"angle":90,"distNext":23.44,"distTotal":0},{"x":26.44,"y":995,"angle":90,"distNext":63.61,"distTotal":23.44},{"x":90.05,"y":995,"angle":90,"distNext":93.74,"distTotal":87.05},{"x":183.79,"y":995,"angle":90,"distNext":113.83,"distTotal":180.79},{"x":297.62,"y":995,"angle":90,"distNext":123.88,"distTotal":294.62},{"x":421.5,"y":995,"angle":90,"distNext":123.88,"distTotal":418.5},{"x":545.38,"y":995,"angle":90,"distNext":113.83,"distTotal":542.38},{"x":659.21,"y":995,"angle":90,"distNext":93.74,"distTotal":656.21},{"x":752.95,"y":995,"angle":90,"distNext":63.61,"distTotal":749.95},{"x":816.56,"y":995,"angle":90,"distNext":23.44,"distTotal":813.56},{"x":840,"y":995,"angle":450,"distNext":23.44,"distTotal":837},{"x":816.56,"y":995,"angle":450,"distNext":63.61,"distTotal":860.44},{"x":752.95,"y":995,"angle":450,"distNext":93.74,"distTotal":924.05},{"x":659.21,"y":995,"angle":450,"distNext":113.83,"distTotal":1017.79},{"x":545.38,"y":995,"angle":450,"distNext":123.88,"distTotal":1131.62},{"x":421.5,"y":995,"angle":450,"distNext":123.88,"distTotal":1255.5},{"x":297.62,"y":995,"angle":450,"distNext":113.83,"distTotal":1379.38},{"x":183.79,"y":995,"angle":450,"distNext":93.74,"distTotal":1493.21},{"x":90.05,"y":995,"angle":450,"distNext":63.61,"distTotal":1586.95},{"x":26.44,"y":995,"angle":450,"distNext":23.44,"distTotal":1650.56},{"x":3,"y":995,"angle":0,"distNext":0,"distTotal":1674}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":1418,"y":998},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1418,"y":998},"nextAnchor":{"x":1418,"y":998}},{"origin":{"x":1780,"y":755},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1780,"y":755},"nextAnchor":{"x":1780,"y":755}},{"origin":{"x":1927,"y":754},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1924,"y":760},"nextAnchor":{"x":1924,"y":760}}],"exportData":[{"x":1418,"y":998,"angle":56,"distNext":12.21,"distTotal":0},{"x":1428.14,"y":991.2,"angle":56,"distNext":33.14,"distTotal":12.21},{"x":1455.65,"y":972.73,"angle":56,"distNext":48.83,"distTotal":45.35},{"x":1496.19,"y":945.51,"angle":56,"distNext":59.29,"distTotal":94.18},{"x":1545.42,"y":912.46,"angle":56,"distNext":64.53,"distTotal":153.47},{"x":1599,"y":876.5,"angle":56,"distNext":64.53,"distTotal":218},{"x":1652.58,"y":840.54,"angle":56,"distNext":59.29,"distTotal":282.53},{"x":1701.81,"y":807.49,"angle":56,"distNext":48.83,"distTotal":341.82},{"x":1742.35,"y":780.27,"angle":56,"distNext":33.14,"distTotal":390.65},{"x":1769.86,"y":761.8,"angle":56,"distNext":12.21,"distTotal":423.79},{"x":1780,"y":755,"angle":92,"distNext":37.46,"distTotal":436},{"x":1817.44,"y":756.07,"angle":91,"distNext":70.13,"distTotal":473.46},{"x":1887.56,"y":756.93,"angle":85,"distNext":39.55,"distTotal":543.59},{"x":1927,"y":754,"angle":445,"distNext":39.55,"distTotal":583.14},{"x":1887.56,"y":756.93,"angle":451,"distNext":70.13,"distTotal":622.69},{"x":1817.44,"y":756.07,"angle":452,"distNext":37.46,"distTotal":692.82},{"x":1780,"y":755,"angle":416,"distNext":12.21,"distTotal":730.28},{"x":1769.86,"y":761.8,"angle":416,"distNext":33.14,"distTotal":742.49},{"x":1742.35,"y":780.27,"angle":416,"distNext":48.83,"distTotal":775.63},{"x":1701.81,"y":807.49,"angle":416,"distNext":59.29,"distTotal":824.46},{"x":1652.58,"y":840.54,"angle":416,"distNext":64.53,"distTotal":883.75},{"x":1599,"y":876.5,"angle":416,"distNext":64.53,"distTotal":948.28},{"x":1545.42,"y":912.46,"angle":416,"distNext":59.29,"distTotal":1012.81},{"x":1496.19,"y":945.51,"angle":416,"distNext":48.83,"distTotal":1072.1},{"x":1455.65,"y":972.73,"angle":416,"distNext":33.14,"distTotal":1120.93},{"x":1428.14,"y":991.2,"angle":416,"distNext":12.21,"distTotal":1154.07},{"x":1418,"y":998,"angle":0,"distNext":0,"distTotal":1166.28}]},{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":-2,"y":647},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":-2,"y":647},"nextAnchor":{"x":-2,"y":647}},{"origin":{"x":795,"y":643},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":795,"y":643},"nextAnchor":{"x":795,"y":643}}],"exportData":[{"x":-2,"y":647,"angle":89,"distNext":22.32,"distTotal":0},{"x":20.32,"y":646.89,"angle":89,"distNext":60.57,"distTotal":22.32},{"x":80.89,"y":646.58,"angle":89,"distNext":89.26,"distTotal":82.89},{"x":170.15,"y":646.14,"angle":89,"distNext":108.39,"distTotal":172.15},{"x":278.54,"y":645.59,"angle":89,"distNext":117.96,"distTotal":280.54},{"x":396.5,"y":645,"angle":89,"distNext":117.96,"distTotal":398.5},{"x":514.46,"y":644.41,"angle":89,"distNext":108.39,"distTotal":516.46},{"x":622.85,"y":643.86,"angle":89,"distNext":89.26,"distTotal":624.85},{"x":712.11,"y":643.42,"angle":89,"distNext":60.57,"distTotal":714.11},{"x":772.68,"y":643.11,"angle":89,"distNext":22.32,"distTotal":774.68},{"x":795,"y":643,"angle":449,"distNext":22.32,"distTotal":797},{"x":772.68,"y":643.11,"angle":449,"distNext":60.57,"distTotal":819.32},{"x":712.11,"y":643.42,"angle":449,"distNext":89.26,"distTotal":879.89},{"x":622.85,"y":643.86,"angle":449,"distNext":108.39,"distTotal":969.15},{"x":514.46,"y":644.41,"angle":449,"distNext":117.96,"distTotal":1077.54},{"x":396.5,"y":645,"angle":449,"distNext":117.96,"distTotal":1195.5},{"x":278.54,"y":645.59,"angle":449,"distNext":108.39,"distTotal":1313.46},{"x":170.15,"y":646.14,"angle":449,"distNext":89.26,"distTotal":1421.85},{"x":80.89,"y":646.58,"angle":449,"distNext":60.57,"distTotal":1511.11},{"x":20.32,"y":646.89,"angle":449,"distNext":22.32,"distTotal":1571.68},{"x":-2,"y":647,"angle":0,"distNext":0,"distTotal":1594}]}],"mapData":[{"source":"BattleScene_2","x":-0.5,"y":1022,"width":1474.5},{"source":"BattleScene_2","x":1551,"y":929,"width":82},{"source":"BattleScene_2","x":1630.5,"y":871,"width":83},{"source":"BattleScene_2","x":1710,"y":821,"width":82},{"source":"BattleScene_2","x":1791,"y":775,"width":82},{"source":"BattleScene_2","x":1872,"y":775,"width":82},{"source":"BattleScene_2","x":1470,"y":980,"width":82},{"source":"BattleScene_1","x":-2,"y":687.5,"width":256},{"source":"BattleScene_1","x":279,"y":686.5,"width":256},{"source":"BattleScene_1","x":563,"y":686.5,"width":256}]},{"level":3,"bgSource":"scene3_png","monster":[{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":13,"y":995},"ctrlP1":{"x":-1,"y":-2},"ctrlP2":{"x":1,"y":2},"beforeAnchor":{"x":14,"y":997},"nextAnchor":{"x":12,"y":993}},{"origin":{"x":1918,"y":991},"ctrlP1":{"x":-3,"y":0},"ctrlP2":{"x":3,"y":0},"beforeAnchor":{"x":1921,"y":991},"nextAnchor":{"x":1915,"y":991}}],"exportData":[{"x":13,"y":995,"angle":89,"distNext":53.18,"distTotal":0},{"x":66.18,"y":994.4,"angle":89,"distNext":144.84,"distTotal":53.18},{"x":211.02,"y":993.82,"angle":89,"distNext":213.59,"distTotal":198.02},{"x":424.61,"y":993.25,"angle":89,"distNext":259.38,"distTotal":411.61},{"x":683.99,"y":992.73,"angle":89,"distNext":282.26,"distTotal":670.99},{"x":966.25,"y":992.25,"angle":89,"distNext":282.2,"distTotal":953.25},{"x":1248.45,"y":991.83,"angle":89,"distNext":259.2,"distTotal":1235.45},{"x":1507.65,"y":991.49,"angle":89,"distNext":213.29,"distTotal":1494.65},{"x":1720.94,"y":991.22,"angle":89,"distNext":144.42,"distTotal":1707.94},{"x":1865.36,"y":991.06,"angle":89,"distNext":52.64,"distTotal":1852.36},{"x":1918,"y":991,"angle":449,"distNext":52.64,"distTotal":1905},{"x":1865.36,"y":991.06,"angle":449,"distNext":144.42,"distTotal":1957.64},{"x":1720.94,"y":991.22,"angle":449,"distNext":213.29,"distTotal":2102.06},{"x":1507.65,"y":991.49,"angle":449,"distNext":259.2,"distTotal":2315.35},{"x":1248.45,"y":991.83,"angle":449,"distNext":282.2,"distTotal":2574.55},{"x":966.25,"y":992.25,"angle":449,"distNext":282.26,"distTotal":2856.75},{"x":683.99,"y":992.73,"angle":449,"distNext":259.38,"distTotal":3139.01},{"x":424.61,"y":993.25,"angle":449,"distNext":213.59,"distTotal":3398.39},{"x":211.02,"y":993.82,"angle":449,"distNext":144.84,"distTotal":3611.98},{"x":66.18,"y":994.4,"angle":449,"distNext":53.18,"distTotal":3756.82},{"x":13,"y":995,"angle":0,"distNext":0,"distTotal":3810}]},{"monsterID":"3","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":417,"y":702},"ctrlP1":{"x":1,"y":0},"ctrlP2":{"x":-1,"y":0},"beforeAnchor":{"x":416,"y":702},"nextAnchor":{"x":418,"y":702}},{"origin":{"x":1500,"y":702},"ctrlP1":{"x":1,"y":0},"ctrlP2":{"x":-1,"y":0},"beforeAnchor":{"x":1499,"y":702},"nextAnchor":{"x":1501,"y":702}}],"exportData":[{"x":417,"y":702,"angle":90,"distNext":30.54,"distTotal":0},{"x":447.54,"y":702,"angle":90,"distNext":82.38,"distTotal":30.54},{"x":529.92,"y":702,"angle":90,"distNext":121.26,"distTotal":112.92},{"x":651.18,"y":702,"angle":90,"distNext":147.18,"distTotal":234.18},{"x":798.36,"y":702,"angle":90,"distNext":160.14,"distTotal":381.36},{"x":958.5,"y":702,"angle":90,"distNext":160.14,"distTotal":541.5},{"x":1118.64,"y":702,"angle":90,"distNext":147.18,"distTotal":701.64},{"x":1265.82,"y":702,"angle":90,"distNext":121.26,"distTotal":848.82},{"x":1387.08,"y":702,"angle":90,"distNext":82.38,"distTotal":970.08},{"x":1469.46,"y":702,"angle":90,"distNext":30.54,"distTotal":1052.46},{"x":1500,"y":702,"angle":450,"distNext":30.54,"distTotal":1083},{"x":1469.46,"y":702,"angle":450,"distNext":82.38,"distTotal":1113.54},{"x":1387.08,"y":702,"angle":450,"distNext":121.26,"distTotal":1195.92},{"x":1265.82,"y":702,"angle":450,"distNext":147.18,"distTotal":1317.18},{"x":1118.64,"y":702,"angle":450,"distNext":160.14,"distTotal":1464.36},{"x":958.5,"y":702,"angle":450,"distNext":160.14,"distTotal":1624.5},{"x":798.36,"y":702,"angle":450,"distNext":147.18,"distTotal":1784.64},{"x":651.18,"y":702,"angle":450,"distNext":121.26,"distTotal":1931.82},{"x":529.92,"y":702,"angle":450,"distNext":82.38,"distTotal":2053.08},{"x":447.54,"y":702,"angle":450,"distNext":30.54,"distTotal":2135.46},{"x":417,"y":702,"angle":0,"distNext":0,"distTotal":2166}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":595,"y":465},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":591,"y":457},"nextAnchor":{"x":591,"y":457}},{"origin":{"x":1283,"y":464},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1282,"y":465},"nextAnchor":{"x":1282,"y":465}}],"exportData":[{"x":595,"y":465,"angle":83,"distNext":18.37,"distTotal":0},{"x":613.27,"y":463.06,"angle":88,"distNext":51.66,"distTotal":18.37},{"x":664.92,"y":461.92,"angle":89,"distNext":76.73,"distTotal":70.03},{"x":741.65,"y":461.44,"angle":91,"distNext":93.51,"distTotal":146.76},{"x":835.16,"y":461.48,"angle":91,"distNext":101.97,"distTotal":240.27},{"x":937.13,"y":461.88,"angle":91,"distNext":102.11,"distTotal":342.24},{"x":1039.24,"y":462.48,"angle":91,"distNext":93.95,"distTotal":444.35},{"x":1133.19,"y":463.14,"angle":91,"distNext":77.49,"distTotal":538.3},{"x":1210.68,"y":463.72,"angle":91,"distNext":52.71,"distTotal":615.79},{"x":1263.39,"y":464.06,"angle":89,"distNext":19.61,"distTotal":668.5},{"x":1283,"y":464,"angle":449,"distNext":19.61,"distTotal":688.11},{"x":1263.39,"y":464.06,"angle":451,"distNext":52.71,"distTotal":707.72},{"x":1210.68,"y":463.72,"angle":451,"distNext":77.49,"distTotal":760.43},{"x":1133.19,"y":463.14,"angle":451,"distNext":93.95,"distTotal":837.92},{"x":1039.24,"y":462.48,"angle":451,"distNext":102.11,"distTotal":931.87},{"x":937.13,"y":461.88,"angle":451,"distNext":101.97,"distTotal":1033.98},{"x":835.16,"y":461.48,"angle":451,"distNext":93.51,"distTotal":1135.95},{"x":741.65,"y":461.44,"angle":449,"distNext":76.73,"distTotal":1229.46},{"x":664.92,"y":461.92,"angle":448,"distNext":51.66,"distTotal":1306.19},{"x":613.27,"y":463.06,"angle":443,"distNext":18.37,"distTotal":1357.85},{"x":595,"y":465,"angle":0,"distNext":0,"distTotal":1376.22}]}],"mapData":[{"source":"BattleScene_6","x":-2,"y":1025,"width":1927},{"source":"BattleScene_6","x":395.5,"y":730,"width":1119},{"source":"BattleScene_6","x":577,"y":497,"width":738}]},{"level":4,"bgSource":"scene4_png","monster":[{"monsterID":"1","pathMirror":true,"fixedRotation":-1,"pathData":[{"origin":{"x":4,"y":601},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":4,"y":601},"nextAnchor":{"x":4,"y":601}},{"origin":{"x":80,"y":602},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":80,"y":602},"nextAnchor":{"x":80,"y":602}},{"origin":{"x":750,"y":1000},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":750,"y":1000},"nextAnchor":{"x":750,"y":1000}},{"origin":{"x":873,"y":1001},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":873,"y":1001},"nextAnchor":{"x":873,"y":1001}}],"exportData":[{"x":4,"y":601,"angle":91,"distNext":76.01,"distTotal":0},{"x":80,"y":602,"angle":121,"distNext":21.82,"distTotal":76.01},{"x":98.76,"y":613.14,"angle":121,"distNext":59.23,"distTotal":97.83},{"x":149.68,"y":643.39,"angle":121,"distNext":87.28,"distTotal":157.06},{"x":224.72,"y":687.97,"angle":121,"distNext":105.99,"distTotal":244.34},{"x":315.84,"y":742.1,"angle":121,"distNext":115.33,"distTotal":350.33},{"x":415,"y":801,"angle":121,"distNext":115.33,"distTotal":465.66},{"x":514.16,"y":859.9,"angle":121,"distNext":105.99,"distTotal":580.99},{"x":605.28,"y":914.03,"angle":121,"distNext":87.28,"distTotal":686.98},{"x":680.32,"y":958.61,"angle":121,"distNext":59.23,"distTotal":774.26},{"x":731.24,"y":988.86,"angle":121,"distNext":21.82,"distTotal":833.49},{"x":750,"y":1000,"angle":91,"distNext":31.89,"distTotal":855.31},{"x":781.89,"y":1000.26,"angle":91,"distNext":59.22,"distTotal":887.2},{"x":841.11,"y":1000.74,"angle":91,"distNext":31.89,"distTotal":946.42},{"x":873,"y":1001,"angle":451,"distNext":31.89,"distTotal":978.31},{"x":841.11,"y":1000.74,"angle":451,"distNext":59.22,"distTotal":1010.2},{"x":781.89,"y":1000.26,"angle":451,"distNext":31.89,"distTotal":1069.42},{"x":750,"y":1000,"angle":481,"distNext":21.82,"distTotal":1101.31},{"x":731.24,"y":988.86,"angle":481,"distNext":59.23,"distTotal":1123.13},{"x":680.32,"y":958.61,"angle":481,"distNext":87.28,"distTotal":1182.36},{"x":605.28,"y":914.03,"angle":481,"distNext":105.99,"distTotal":1269.64},{"x":514.16,"y":859.9,"angle":481,"distNext":115.33,"distTotal":1375.63},{"x":415,"y":801,"angle":481,"distNext":115.33,"distTotal":1490.96},{"x":315.84,"y":742.1,"angle":481,"distNext":105.99,"distTotal":1606.29},{"x":224.72,"y":687.97,"angle":481,"distNext":87.28,"distTotal":1712.28},{"x":149.68,"y":643.39,"angle":481,"distNext":59.23,"distTotal":1799.56},{"x":98.76,"y":613.14,"angle":481,"distNext":21.82,"distTotal":1858.79},{"x":80,"y":602,"angle":451,"distNext":76.01,"distTotal":1880.61},{"x":4,"y":601,"angle":0,"distNext":0,"distTotal":1956.62}]},{"monsterID":"3","pathMirror":true,"fixedRotation":-1,"pathData":[{"origin":{"x":1138,"y":997},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1138,"y":997},"nextAnchor":{"x":1138,"y":997}},{"origin":{"x":1267,"y":1001},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1267,"y":1001},"nextAnchor":{"x":1267,"y":1001}},{"origin":{"x":1836,"y":641},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1836,"y":641},"nextAnchor":{"x":1836,"y":641}},{"origin":{"x":1921,"y":638},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1918,"y":642},"nextAnchor":{"x":1918,"y":642}}],"exportData":[{"x":1138,"y":997,"angle":92,"distNext":33.46,"distTotal":0},{"x":1171.44,"y":998.04,"angle":92,"distNext":62.15,"distTotal":33.46},{"x":1233.56,"y":999.96,"angle":92,"distNext":33.46,"distTotal":95.61},{"x":1267,"y":1001,"angle":57,"distNext":18.85,"distTotal":129.07},{"x":1282.93,"y":990.92,"angle":57,"distNext":51.18,"distTotal":147.92},{"x":1326.18,"y":963.56,"angle":57,"distNext":75.41,"distTotal":199.1},{"x":1389.9,"y":923.24,"angle":57,"distNext":91.58,"distTotal":274.51},{"x":1467.29,"y":874.28,"angle":57,"distNext":99.65,"distTotal":366.09},{"x":1551.5,"y":821,"angle":57,"distNext":99.65,"distTotal":465.74},{"x":1635.71,"y":767.72,"angle":57,"distNext":91.58,"distTotal":565.39},{"x":1713.1,"y":718.76,"angle":57,"distNext":75.41,"distTotal":656.97},{"x":1776.82,"y":678.44,"angle":57,"distNext":51.18,"distTotal":732.38},{"x":1820.07,"y":651.08,"angle":57,"distNext":18.85,"distTotal":783.56},{"x":1836,"y":641,"angle":90,"distNext":41.38,"distTotal":802.41},{"x":1877.38,"y":641,"angle":86,"distNext":43.72,"distTotal":843.79},{"x":1921,"y":638,"angle":446,"distNext":43.72,"distTotal":887.51},{"x":1877.38,"y":641,"angle":450,"distNext":41.38,"distTotal":931.23},{"x":1836,"y":641,"angle":417,"distNext":18.85,"distTotal":972.61},{"x":1820.07,"y":651.08,"angle":417,"distNext":51.18,"distTotal":991.46},{"x":1776.82,"y":678.44,"angle":417,"distNext":75.41,"distTotal":1042.64},{"x":1713.1,"y":718.76,"angle":417,"distNext":91.58,"distTotal":1118.05},{"x":1635.71,"y":767.72,"angle":417,"distNext":99.65,"distTotal":1209.63},{"x":1551.5,"y":821,"angle":417,"distNext":99.65,"distTotal":1309.28},{"x":1467.29,"y":874.28,"angle":417,"distNext":91.58,"distTotal":1408.93},{"x":1389.9,"y":923.24,"angle":417,"distNext":75.41,"distTotal":1500.51},{"x":1326.18,"y":963.56,"angle":417,"distNext":51.18,"distTotal":1575.92},{"x":1282.93,"y":990.92,"angle":417,"distNext":18.85,"distTotal":1627.1},{"x":1267,"y":1001,"angle":452,"distNext":33.46,"distTotal":1645.95},{"x":1233.56,"y":999.96,"angle":452,"distNext":62.15,"distTotal":1679.41},{"x":1171.44,"y":998.04,"angle":452,"distNext":33.46,"distTotal":1741.56},{"x":1138,"y":997,"angle":0,"distNext":0,"distTotal":1775.02}]},{"monsterID":"4","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":737,"y":720},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":737,"y":720},"nextAnchor":{"x":737,"y":720}},{"origin":{"x":794,"y":678},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":794,"y":678},"nextAnchor":{"x":794,"y":678}},{"origin":{"x":859,"y":679},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":859,"y":679},"nextAnchor":{"x":859,"y":679}},{"origin":{"x":910,"y":707},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":910,"y":707},"nextAnchor":{"x":910,"y":707}},{"origin":{"x":955,"y":679},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":955,"y":679},"nextAnchor":{"x":955,"y":679}},{"origin":{"x":1032,"y":678},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1032,"y":678},"nextAnchor":{"x":1032,"y":678}},{"origin":{"x":1075,"y":716},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1075,"y":716},"nextAnchor":{"x":1075,"y":716}},{"origin":{"x":1117,"y":682},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1117,"y":682},"nextAnchor":{"x":1117,"y":682}},{"origin":{"x":1197,"y":680},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1194,"y":687},"nextAnchor":{"x":1194,"y":687}},{"origin":{"x":1247,"y":718},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1247,"y":718},"nextAnchor":{"x":1247,"y":718}}],"exportData":[{"x":737,"y":720,"angle":53,"distNext":70.8,"distTotal":0},{"x":794,"y":678,"angle":91,"distNext":65.01,"distTotal":70.8},{"x":859,"y":679,"angle":119,"distNext":58.18,"distTotal":135.81},{"x":910,"y":707,"angle":58,"distNext":53,"distTotal":193.99},{"x":955,"y":679,"angle":89,"distNext":77.01,"distTotal":246.99},{"x":1032,"y":678,"angle":132,"distNext":57.38,"distTotal":324},{"x":1075,"y":716,"angle":51,"distNext":54.04,"distTotal":381.38},{"x":1117,"y":682,"angle":93,"distNext":38.91,"distTotal":435.42},{"x":1155.88,"y":683.63,"angle":84,"distNext":41.28,"distTotal":474.33},{"x":1197,"y":680,"angle":128,"distNext":62.8,"distTotal":515.61},{"x":1247,"y":718,"angle":488,"distNext":62.8,"distTotal":578.41},{"x":1197,"y":680,"angle":444,"distNext":41.28,"distTotal":641.21},{"x":1155.88,"y":683.63,"angle":453,"distNext":38.91,"distTotal":682.49},{"x":1117,"y":682,"angle":411,"distNext":54.04,"distTotal":721.4},{"x":1075,"y":716,"angle":492,"distNext":57.38,"distTotal":775.44},{"x":1032,"y":678,"angle":449,"distNext":77.01,"distTotal":832.82},{"x":955,"y":679,"angle":418,"distNext":53,"distTotal":909.83},{"x":910,"y":707,"angle":479,"distNext":58.18,"distTotal":962.83},{"x":859,"y":679,"angle":451,"distNext":65.01,"distTotal":1021.01},{"x":794,"y":678,"angle":413,"distNext":70.8,"distTotal":1086.02},{"x":737,"y":720,"angle":0,"distNext":0,"distTotal":1156.82}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":90,"y":379},"ctrlP1":{"x":-1,"y":1},"ctrlP2":{"x":1,"y":-1},"beforeAnchor":{"x":91,"y":378},"nextAnchor":{"x":89,"y":380}},{"origin":{"x":546,"y":379},"ctrlP1":{"x":4,"y":0},"ctrlP2":{"x":-4,"y":0},"beforeAnchor":{"x":542,"y":379},"nextAnchor":{"x":550,"y":379}}],"exportData":[{"x":90,"y":379,"angle":92,"distNext":12.42,"distTotal":0},{"x":102.42,"y":379.24,"angle":91,"distNext":34.24,"distTotal":12.42},{"x":136.66,"y":379.38,"angle":91,"distNext":50.64,"distTotal":46.66},{"x":187.3,"y":379.44,"angle":89,"distNext":61.63,"distTotal":97.3},{"x":248.93,"y":379.43,"angle":89,"distNext":67.2,"distTotal":158.93},{"x":316.13,"y":379.38,"angle":89,"distNext":67.34,"distTotal":226.13},{"x":383.47,"y":379.29,"angle":89,"distNext":62.08,"distTotal":293.47},{"x":445.55,"y":379.19,"angle":89,"distNext":51.39,"distTotal":355.55},{"x":496.94,"y":379.1,"angle":89,"distNext":35.29,"distTotal":406.94},{"x":532.23,"y":379.03,"angle":89,"distNext":13.77,"distTotal":442.23},{"x":546,"y":379,"angle":449,"distNext":13.77,"distTotal":456},{"x":532.23,"y":379.03,"angle":449,"distNext":35.29,"distTotal":469.77},{"x":496.94,"y":379.1,"angle":449,"distNext":51.39,"distTotal":505.06},{"x":445.55,"y":379.19,"angle":449,"distNext":62.08,"distTotal":556.45},{"x":383.47,"y":379.29,"angle":449,"distNext":67.34,"distTotal":618.53},{"x":316.13,"y":379.38,"angle":449,"distNext":67.2,"distTotal":685.87},{"x":248.93,"y":379.43,"angle":449,"distNext":61.63,"distTotal":753.07},{"x":187.3,"y":379.44,"angle":451,"distNext":50.64,"distTotal":814.7},{"x":136.66,"y":379.38,"angle":451,"distNext":34.24,"distTotal":865.34},{"x":102.42,"y":379.24,"angle":452,"distNext":12.42,"distTotal":899.58},{"x":90,"y":379,"angle":0,"distNext":0,"distTotal":912}]},{"monsterID":"2","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":1364,"y":392},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1364,"y":392},"nextAnchor":{"x":1364,"y":392}},{"origin":{"x":1840,"y":393},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":1840,"y":393},"nextAnchor":{"x":1840,"y":393}}],"exportData":[{"x":1364,"y":392,"angle":91,"distNext":13.33,"distTotal":0},{"x":1377.33,"y":392.03,"angle":91,"distNext":36.17,"distTotal":13.33},{"x":1413.5,"y":392.1,"angle":91,"distNext":53.32,"distTotal":49.5},{"x":1466.82,"y":392.22,"angle":91,"distNext":64.73,"distTotal":102.82},{"x":1531.55,"y":392.35,"angle":91,"distNext":70.45,"distTotal":167.55},{"x":1602,"y":392.5,"angle":91,"distNext":70.45,"distTotal":238},{"x":1672.45,"y":392.65,"angle":91,"distNext":64.73,"distTotal":308.45},{"x":1737.18,"y":392.78,"angle":91,"distNext":53.32,"distTotal":373.18},{"x":1790.5,"y":392.9,"angle":91,"distNext":36.17,"distTotal":426.5},{"x":1826.67,"y":392.97,"angle":91,"distNext":13.33,"distTotal":462.67},{"x":1840,"y":393,"angle":451,"distNext":13.33,"distTotal":476},{"x":1826.67,"y":392.97,"angle":451,"distNext":36.17,"distTotal":489.33},{"x":1790.5,"y":392.9,"angle":451,"distNext":53.32,"distTotal":525.5},{"x":1737.18,"y":392.78,"angle":451,"distNext":64.73,"distTotal":578.82},{"x":1672.45,"y":392.65,"angle":451,"distNext":70.45,"distTotal":643.55},{"x":1602,"y":392.5,"angle":451,"distNext":70.45,"distTotal":714},{"x":1531.55,"y":392.35,"angle":451,"distNext":64.73,"distTotal":784.45},{"x":1466.82,"y":392.22,"angle":451,"distNext":53.32,"distTotal":849.18},{"x":1413.5,"y":392.1,"angle":451,"distNext":36.17,"distTotal":902.5},{"x":1377.33,"y":392.03,"angle":451,"distNext":13.33,"distTotal":938.67},{"x":1364,"y":392,"angle":0,"distNext":0,"distTotal":952}]}],"mapData":[{"source":"BattleScene_6","x":720.75,"y":1035,"width":572.5},{"source":"BattleScene_6","x":0,"y":635,"width":82},{"source":"BattleScene_6","x":80,"y":674,"width":82},{"source":"BattleScene_6","x":163,"y":729,"width":82},{"source":"BattleScene_6","x":240,"y":780,"width":82},{"source":"BattleScene_6","x":320,"y":830,"width":82},{"source":"BattleScene_6","x":397,"y":878,"width":82},{"source":"BattleScene_6","x":479,"y":920,"width":82},{"source":"BattleScene_6","x":560,"y":962,"width":82},{"source":"BattleScene_6","x":641,"y":1002,"width":82},{"source":"BattleScene_6","x":717,"y":748,"width":82},{"source":"BattleScene_6","x":796,"y":706,"width":82},{"source":"BattleScene_6","x":877,"y":745,"width":82},{"source":"BattleScene_6","x":955,"y":703,"width":82},{"source":"BattleScene_6","x":1036,"y":748,"width":82},{"source":"BattleScene_6","x":1116,"y":703,"width":82},{"source":"BattleScene_6","x":1194,"y":756,"width":82},{"source":"BattleScene_6","x":1291,"y":990,"width":82},{"source":"BattleScene_6","x":1369,"y":948,"width":82},{"source":"BattleScene_6","x":1452,"y":899,"width":82},{"source":"BattleScene_6","x":1535,"y":852,"width":82},{"source":"BattleScene_6","x":1614,"y":801,"width":82},{"source":"BattleScene_6","x":1695,"y":752,"width":82},{"source":"BattleScene_6","x":1776,"y":702,"width":82},{"source":"BattleScene_6","x":1857,"y":662,"width":82},{"source":"BattleScene_6","x":70.5,"y":409,"width":491},{"source":"BattleScene_6","x":1360,"y":417,"width":490}]},{"level":5,"bgSource":"scene4_png","monster":[{"monsterID":"8","pathMirror":true,"fixedRotation":0,"pathData":[{"origin":{"x":80,"y":906},"ctrlP1":{"x":0,"y":0},"ctrlP2":{"x":0,"y":0},"beforeAnchor":{"x":80,"y":906},"nextAnchor":{"x":80,"y":906}},{"origin":{"x":159,"y":853},"ctrlP1":{"x":95,"y":-7},"ctrlP2":{"x":-95,"y":7},"beforeAnchor":{"x":64,"y":860},"nextAnchor":{"x":254,"y":846}},{"origin":{"x":191,"y":1094},"ctrlP1":{"x":116,"y":40},"ctrlP2":{"x":-116,"y":-40},"beforeAnchor":{"x":108,"y":1020},"nextAnchor":{"x":340,"y":1100}},{"origin":{"x":365,"y":1127},"ctrlP1":{"x":84,"y":-3},"ctrlP2":{"x":-84,"y":3},"beforeAnchor":{"x":263,"y":1107},"nextAnchor":{"x":431,"y":1101}},{"origin":{"x":497,"y":1086},"ctrlP1":{"x":91,"y":-14},"ctrlP2":{"x":-91,"y":14},"beforeAnchor":{"x":213,"y":920},"nextAnchor":{"x":395,"y":892}},{"origin":{"x":592,"y":1023},"ctrlP1":{"x":83,"y":-85},"ctrlP2":{"x":-83,"y":85},"beforeAnchor":{"x":277,"y":928},"nextAnchor":{"x":443,"y":758}},{"origin":{"x":707,"y":865},"ctrlP1":{"x":-80,"y":-15},"ctrlP2":{"x":80,"y":15},"beforeAnchor":{"x":481,"y":881},"nextAnchor":{"x":321,"y":851}}],"exportData":[{"x":80,"y":906,"angle":9,"distNext":24.18,"distTotal":0},{"x":83.88,"y":882.13,"angle":68,"distNext":80.57,"distTotal":24.18},{"x":159,"y":853,"angle":110,"distNext":31.32,"distTotal":104.75},{"x":188.59,"y":863.28,"angle":176,"distNext":32.74,"distTotal":136.07},{"x":191.07,"y":895.93,"angle":193,"distNext":48.6,"distTotal":168.81},{"x":179.5,"y":943.13,"angle":193,"distNext":55.39,"distTotal":217.41},{"x":166.93,"y":997.07,"angle":180,"distNext":52.9,"distTotal":272.8},{"x":166.41,"y":1049.97,"angle":151,"distNext":50.43,"distTotal":325.7},{"x":191,"y":1094,"angle":94,"distNext":75.86,"distTotal":376.13},{"x":266.7,"y":1098.88,"angle":103,"distNext":29.62,"distTotal":451.99},{"x":295.63,"y":1105.25,"angle":115,"distNext":22.02,"distTotal":481.61},{"x":315.73,"y":1114.25,"angle":105,"distNext":50.89,"distTotal":503.63},{"x":365,"y":1127,"angle":0,"distNext":59.07,"distTotal":554.52},{"x":365.44,"y":1067.93,"angle":345,"distNext":52.81,"distTotal":613.59},{"x":351.22,"y":1017.07,"angle":116,"distNext":161.25,"distTotal":666.4},{"x":497,"y":1086,"angle":323,"distNext":177.25,"distTotal":827.65},{"x":388.13,"y":946.13,"angle":111,"distNext":217.88,"distTotal":1004.9},{"x":592,"y":1023,"angle":331,"distNext":154.58,"distTotal":1222.78},{"x":515.33,"y":888.77,"angle":351,"distNext":38.68,"distTotal":1377.36},{"x":508.88,"y":850.63,"angle":98,"distNext":64.42,"distTotal":1416.04},{"x":572.73,"y":859.17,"angle":93,"distNext":134.4,"distTotal":1480.46},{"x":707,"y":865,"angle":453,"distNext":134.4,"distTotal":1614.86},{"x":572.73,"y":859.17,"angle":458,"distNext":64.42,"distTotal":1749.26},{"x":508.88,"y":850.63,"angle":351,"distNext":38.68,"distTotal":1813.68},{"x":515.33,"y":888.77,"angle":331,"distNext":154.58,"distTotal":1852.36},{"x":592,"y":1023,"angle":471,"distNext":217.88,"distTotal":2006.94},{"x":388.13,"y":946.13,"angle":323,"distNext":177.25,"distTotal":2224.82},{"x":497,"y":1086,"angle":476,"distNext":161.25,"distTotal":2402.07},{"x":351.22,"y":1017.07,"angle":345,"distNext":52.81,"distTotal":2563.32},{"x":365.44,"y":1067.93,"angle":360,"distNext":59.07,"distTotal":2616.13},{"x":365,"y":1127,"angle":465,"distNext":50.89,"distTotal":2675.2},{"x":315.73,"y":1114.25,"angle":475,"distNext":22.02,"distTotal":2726.09},{"x":295.63,"y":1105.25,"angle":463,"distNext":29.62,"distTotal":2748.11},{"x":266.7,"y":1098.88,"angle":454,"distNext":75.86,"distTotal":2777.73},{"x":191,"y":1094,"angle":511,"distNext":50.43,"distTotal":2853.59},{"x":166.41,"y":1049.97,"angle":180,"distNext":52.9,"distTotal":2904.02},{"x":166.93,"y":997.07,"angle":193,"distNext":55.39,"distTotal":2956.92},{"x":179.5,"y":943.13,"angle":193,"distNext":48.6,"distTotal":3012.31},{"x":191.07,"y":895.93,"angle":536,"distNext":32.74,"distTotal":3060.91},{"x":188.59,"y":863.28,"angle":470,"distNext":31.32,"distTotal":3093.65},{"x":159,"y":853,"angle":428,"distNext":80.57,"distTotal":3124.97},{"x":83.88,"y":882.13,"angle":369,"distNext":24.18,"distTotal":3205.54},{"x":80,"y":906,"angle":0,"distNext":0,"distTotal":3229.72}]}],"mapData":[]}]}]$
+[
+    {
+        "chapterID": 2,
+        "chapterName": "森林",
+        "levelData": [
+            {
+                "level": 1,
+                "bgSource": "scene1_png",
+                "monster": [
+                    {
+                        "monsterID": "2",
+                        "pathMirror": true,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 39,
+                                    "y": 997
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 39,
+                                    "y": 997
+                                },
+                                "nextAnchor": {
+                                    "x": 39,
+                                    "y": 997
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 682,
+                                    "y": 998
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 682,
+                                    "y": 998
+                                },
+                                "nextAnchor": {
+                                    "x": 682,
+                                    "y": 998
+                                }
+                            }
+                        ],
+                        "fixedRotation": 0,
+                        "exportData": [
+                            {
+                                "x": 39,
+                                "y": 997,
+                                "angle": 91,
+                                "distNext": 18,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 57,
+                                "y": 997.03,
+                                "angle": 91,
+                                "distNext": 48.87,
+                                "distTotal": 18
+                            },
+                            {
+                                "x": 105.87,
+                                "y": 997.1,
+                                "angle": 91,
+                                "distNext": 72.02,
+                                "distTotal": 66.87
+                            },
+                            {
+                                "x": 177.89,
+                                "y": 997.22,
+                                "angle": 91,
+                                "distNext": 87.45,
+                                "distTotal": 138.89
+                            },
+                            {
+                                "x": 265.34,
+                                "y": 997.35,
+                                "angle": 91,
+                                "distNext": 95.16,
+                                "distTotal": 226.34
+                            },
+                            {
+                                "x": 360.5,
+                                "y": 997.5,
+                                "angle": 91,
+                                "distNext": 95.16,
+                                "distTotal": 321.5
+                            },
+                            {
+                                "x": 455.66,
+                                "y": 997.65,
+                                "angle": 91,
+                                "distNext": 87.45,
+                                "distTotal": 416.66
+                            },
+                            {
+                                "x": 543.11,
+                                "y": 997.78,
+                                "angle": 91,
+                                "distNext": 72.02,
+                                "distTotal": 504.11
+                            },
+                            {
+                                "x": 615.13,
+                                "y": 997.9,
+                                "angle": 91,
+                                "distNext": 48.87,
+                                "distTotal": 576.13
+                            },
+                            {
+                                "x": 664,
+                                "y": 997.97,
+                                "angle": 91,
+                                "distNext": 18,
+                                "distTotal": 625
+                            },
+                            {
+                                "x": 682,
+                                "y": 998,
+                                "angle": 451,
+                                "distNext": 18,
+                                "distTotal": 643
+                            },
+                            {
+                                "x": 664,
+                                "y": 997.97,
+                                "angle": 451,
+                                "distNext": 48.87,
+                                "distTotal": 661
+                            },
+                            {
+                                "x": 615.13,
+                                "y": 997.9,
+                                "angle": 451,
+                                "distNext": 72.02,
+                                "distTotal": 709.87
+                            },
+                            {
+                                "x": 543.11,
+                                "y": 997.78,
+                                "angle": 451,
+                                "distNext": 87.45,
+                                "distTotal": 781.89
+                            },
+                            {
+                                "x": 455.66,
+                                "y": 997.65,
+                                "angle": 451,
+                                "distNext": 95.16,
+                                "distTotal": 869.34
+                            },
+                            {
+                                "x": 360.5,
+                                "y": 997.5,
+                                "angle": 451,
+                                "distNext": 95.16,
+                                "distTotal": 964.5
+                            },
+                            {
+                                "x": 265.34,
+                                "y": 997.35,
+                                "angle": 451,
+                                "distNext": 87.45,
+                                "distTotal": 1059.66
+                            },
+                            {
+                                "x": 177.89,
+                                "y": 997.22,
+                                "angle": 451,
+                                "distNext": 72.02,
+                                "distTotal": 1147.11
+                            },
+                            {
+                                "x": 105.87,
+                                "y": 997.1,
+                                "angle": 451,
+                                "distNext": 48.87,
+                                "distTotal": 1219.13
+                            },
+                            {
+                                "x": 57,
+                                "y": 997.03,
+                                "angle": 451,
+                                "distNext": 18,
+                                "distTotal": 1268
+                            },
+                            {
+                                "x": 39,
+                                "y": 997,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1286
+                            }
+                        ]
+                    },
+                    {
+                        "monsterID": "1",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 18,
+                                    "y": 670
+                                },
+                                "ctrlP1": {
+                                    "x": -1,
+                                    "y": 1
+                                },
+                                "ctrlP2": {
+                                    "x": 1,
+                                    "y": -1
+                                },
+                                "beforeAnchor": {
+                                    "x": 19,
+                                    "y": 669
+                                },
+                                "nextAnchor": {
+                                    "x": 17,
+                                    "y": 671
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 638,
+                                    "y": 670
+                                },
+                                "ctrlP1": {
+                                    "x": -2,
+                                    "y": -4
+                                },
+                                "ctrlP2": {
+                                    "x": 2,
+                                    "y": 4
+                                },
+                                "beforeAnchor": {
+                                    "x": 640,
+                                    "y": 674
+                                },
+                                "nextAnchor": {
+                                    "x": 636,
+                                    "y": 666
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": 18,
+                                "y": 670,
+                                "angle": 92,
+                                "distNext": 17.17,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 35.17,
+                                "y": 670.35,
+                                "angle": 91,
+                                "distNext": 47.12,
+                                "distTotal": 17.17
+                            },
+                            {
+                                "x": 82.29,
+                                "y": 670.77,
+                                "angle": 91,
+                                "distNext": 69.57,
+                                "distTotal": 64.29
+                            },
+                            {
+                                "x": 151.86,
+                                "y": 671.2,
+                                "angle": 91,
+                                "distNext": 84.52,
+                                "distTotal": 133.86
+                            },
+                            {
+                                "x": 236.38,
+                                "y": 671.58,
+                                "angle": 91,
+                                "distNext": 92,
+                                "distTotal": 218.38
+                            },
+                            {
+                                "x": 328.38,
+                                "y": 671.88,
+                                "angle": 91,
+                                "distNext": 91.96,
+                                "distTotal": 310.38
+                            },
+                            {
+                                "x": 420.34,
+                                "y": 672.02,
+                                "angle": 89,
+                                "distNext": 84.43,
+                                "distTotal": 402.34
+                            },
+                            {
+                                "x": 504.77,
+                                "y": 671.95,
+                                "angle": 89,
+                                "distNext": 69.42,
+                                "distTotal": 486.77
+                            },
+                            {
+                                "x": 574.19,
+                                "y": 671.63,
+                                "angle": 89,
+                                "distNext": 46.91,
+                                "distTotal": 556.19
+                            },
+                            {
+                                "x": 621.1,
+                                "y": 671,
+                                "angle": 86,
+                                "distNext": 16.93,
+                                "distTotal": 603.1
+                            },
+                            {
+                                "x": 638,
+                                "y": 670,
+                                "angle": 446,
+                                "distNext": 16.93,
+                                "distTotal": 620.03
+                            },
+                            {
+                                "x": 621.1,
+                                "y": 671,
+                                "angle": 449,
+                                "distNext": 46.91,
+                                "distTotal": 636.96
+                            },
+                            {
+                                "x": 574.19,
+                                "y": 671.63,
+                                "angle": 449,
+                                "distNext": 69.42,
+                                "distTotal": 683.87
+                            },
+                            {
+                                "x": 504.77,
+                                "y": 671.95,
+                                "angle": 449,
+                                "distNext": 84.43,
+                                "distTotal": 753.29
+                            },
+                            {
+                                "x": 420.34,
+                                "y": 672.02,
+                                "angle": 451,
+                                "distNext": 91.96,
+                                "distTotal": 837.72
+                            },
+                            {
+                                "x": 328.38,
+                                "y": 671.88,
+                                "angle": 451,
+                                "distNext": 92,
+                                "distTotal": 929.68
+                            },
+                            {
+                                "x": 236.38,
+                                "y": 671.58,
+                                "angle": 451,
+                                "distNext": 84.52,
+                                "distTotal": 1021.68
+                            },
+                            {
+                                "x": 151.86,
+                                "y": 671.2,
+                                "angle": 451,
+                                "distNext": 69.57,
+                                "distTotal": 1106.2
+                            },
+                            {
+                                "x": 82.29,
+                                "y": 670.77,
+                                "angle": 451,
+                                "distNext": 47.12,
+                                "distTotal": 1175.77
+                            },
+                            {
+                                "x": 35.17,
+                                "y": 670.35,
+                                "angle": 452,
+                                "distNext": 17.17,
+                                "distTotal": 1222.89
+                            },
+                            {
+                                "x": 18,
+                                "y": 670,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1240.06
+                            }
+                        ]
+                    },
+                    {
+                        "monsterID": "3",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 728,
+                                    "y": 1001
+                                },
+                                "ctrlP1": {
+                                    "x": -1,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 1,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 729,
+                                    "y": 1001
+                                },
+                                "nextAnchor": {
+                                    "x": 727,
+                                    "y": 1001
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 1866,
+                                    "y": 998
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 1866,
+                                    "y": 998
+                                },
+                                "nextAnchor": {
+                                    "x": 1866,
+                                    "y": 998
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": 728,
+                                "y": 1001,
+                                "angle": 89,
+                                "distNext": 31.62,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 759.62,
+                                "y": 1000.92,
+                                "angle": 89,
+                                "distNext": 86.35,
+                                "distTotal": 31.62
+                            },
+                            {
+                                "x": 845.97,
+                                "y": 1000.69,
+                                "angle": 89,
+                                "distNext": 127.4,
+                                "distTotal": 117.97
+                            },
+                            {
+                                "x": 973.37,
+                                "y": 1000.35,
+                                "angle": 89,
+                                "distNext": 154.77,
+                                "distTotal": 245.37
+                            },
+                            {
+                                "x": 1128.14,
+                                "y": 999.94,
+                                "angle": 89,
+                                "distNext": 168.49,
+                                "distTotal": 400.14
+                            },
+                            {
+                                "x": 1296.63,
+                                "y": 999.5,
+                                "angle": 89,
+                                "distNext": 168.51,
+                                "distTotal": 568.63
+                            },
+                            {
+                                "x": 1465.14,
+                                "y": 999.06,
+                                "angle": 89,
+                                "distNext": 154.86,
+                                "distTotal": 737.14
+                            },
+                            {
+                                "x": 1620,
+                                "y": 998.65,
+                                "angle": 89,
+                                "distNext": 127.55,
+                                "distTotal": 892
+                            },
+                            {
+                                "x": 1747.55,
+                                "y": 998.31,
+                                "angle": 89,
+                                "distNext": 86.56,
+                                "distTotal": 1019.55
+                            },
+                            {
+                                "x": 1834.11,
+                                "y": 998.08,
+                                "angle": 89,
+                                "distNext": 31.89,
+                                "distTotal": 1106.11
+                            },
+                            {
+                                "x": 1866,
+                                "y": 998,
+                                "angle": 449,
+                                "distNext": 31.89,
+                                "distTotal": 1138
+                            },
+                            {
+                                "x": 1834.11,
+                                "y": 998.08,
+                                "angle": 449,
+                                "distNext": 86.56,
+                                "distTotal": 1169.89
+                            },
+                            {
+                                "x": 1747.55,
+                                "y": 998.31,
+                                "angle": 449,
+                                "distNext": 127.55,
+                                "distTotal": 1256.45
+                            },
+                            {
+                                "x": 1620,
+                                "y": 998.65,
+                                "angle": 449,
+                                "distNext": 154.86,
+                                "distTotal": 1384
+                            },
+                            {
+                                "x": 1465.14,
+                                "y": 999.06,
+                                "angle": 449,
+                                "distNext": 168.51,
+                                "distTotal": 1538.86
+                            },
+                            {
+                                "x": 1296.63,
+                                "y": 999.5,
+                                "angle": 449,
+                                "distNext": 168.49,
+                                "distTotal": 1707.37
+                            },
+                            {
+                                "x": 1128.14,
+                                "y": 999.94,
+                                "angle": 449,
+                                "distNext": 154.77,
+                                "distTotal": 1875.86
+                            },
+                            {
+                                "x": 973.37,
+                                "y": 1000.35,
+                                "angle": 449,
+                                "distNext": 127.4,
+                                "distTotal": 2030.63
+                            },
+                            {
+                                "x": 845.97,
+                                "y": 1000.69,
+                                "angle": 449,
+                                "distNext": 86.35,
+                                "distTotal": 2158.03
+                            },
+                            {
+                                "x": 759.62,
+                                "y": 1000.92,
+                                "angle": 449,
+                                "distNext": 31.62,
+                                "distTotal": 2244.38
+                            },
+                            {
+                                "x": 728,
+                                "y": 1001,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 2276
+                            }
+                        ]
+                    },
+                    {
+                        "monsterID": "4",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 1321,
+                                    "y": 1001
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 1321,
+                                    "y": 1001
+                                },
+                                "nextAnchor": {
+                                    "x": 1321,
+                                    "y": 1001
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 679,
+                                    "y": 997
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 679,
+                                    "y": 997
+                                },
+                                "nextAnchor": {
+                                    "x": 679,
+                                    "y": 997
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": 1321,
+                                "y": 1001,
+                                "angle": 271,
+                                "distNext": 17.98,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 1303.02,
+                                "y": 1000.89,
+                                "angle": 271,
+                                "distNext": 48.79,
+                                "distTotal": 17.98
+                            },
+                            {
+                                "x": 1254.23,
+                                "y": 1000.58,
+                                "angle": 271,
+                                "distNext": 71.9,
+                                "distTotal": 66.77
+                            },
+                            {
+                                "x": 1182.33,
+                                "y": 1000.14,
+                                "angle": 271,
+                                "distNext": 87.31,
+                                "distTotal": 138.67
+                            },
+                            {
+                                "x": 1095.02,
+                                "y": 999.59,
+                                "angle": 271,
+                                "distNext": 95.02,
+                                "distTotal": 225.98
+                            },
+                            {
+                                "x": 1000,
+                                "y": 999,
+                                "angle": 271,
+                                "distNext": 95.02,
+                                "distTotal": 321
+                            },
+                            {
+                                "x": 904.98,
+                                "y": 998.41,
+                                "angle": 271,
+                                "distNext": 87.31,
+                                "distTotal": 416.02
+                            },
+                            {
+                                "x": 817.67,
+                                "y": 997.86,
+                                "angle": 271,
+                                "distNext": 71.9,
+                                "distTotal": 503.33
+                            },
+                            {
+                                "x": 745.77,
+                                "y": 997.42,
+                                "angle": 271,
+                                "distNext": 48.79,
+                                "distTotal": 575.23
+                            },
+                            {
+                                "x": 696.98,
+                                "y": 997.11,
+                                "angle": 271,
+                                "distNext": 17.98,
+                                "distTotal": 624.02
+                            },
+                            {
+                                "x": 679,
+                                "y": 997,
+                                "angle": 271,
+                                "distNext": 17.98,
+                                "distTotal": 642
+                            },
+                            {
+                                "x": 696.98,
+                                "y": 997.11,
+                                "angle": 271,
+                                "distNext": 48.79,
+                                "distTotal": 659.98
+                            },
+                            {
+                                "x": 745.77,
+                                "y": 997.42,
+                                "angle": 271,
+                                "distNext": 71.9,
+                                "distTotal": 708.77
+                            },
+                            {
+                                "x": 817.67,
+                                "y": 997.86,
+                                "angle": 271,
+                                "distNext": 87.31,
+                                "distTotal": 780.67
+                            },
+                            {
+                                "x": 904.98,
+                                "y": 998.41,
+                                "angle": 271,
+                                "distNext": 95.02,
+                                "distTotal": 867.98
+                            },
+                            {
+                                "x": 1000,
+                                "y": 999,
+                                "angle": 271,
+                                "distNext": 95.02,
+                                "distTotal": 963
+                            },
+                            {
+                                "x": 1095.02,
+                                "y": 999.59,
+                                "angle": 271,
+                                "distNext": 87.31,
+                                "distTotal": 1058.02
+                            },
+                            {
+                                "x": 1182.33,
+                                "y": 1000.14,
+                                "angle": 271,
+                                "distNext": 71.9,
+                                "distTotal": 1145.33
+                            },
+                            {
+                                "x": 1254.23,
+                                "y": 1000.58,
+                                "angle": 271,
+                                "distNext": 48.79,
+                                "distTotal": 1217.23
+                            },
+                            {
+                                "x": 1303.02,
+                                "y": 1000.89,
+                                "angle": 271,
+                                "distNext": 17.98,
+                                "distTotal": 1266.02
+                            },
+                            {
+                                "x": 1321,
+                                "y": 1001,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1284
+                            }
+                        ]
+                    }
+                ],
+                "mapData": [
+                    {
+                        "source": "BattleScene_2",
+                        "x": -3,
+                        "y": 1029,
+                        "width": 1925
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": -3,
+                        "y": 702,
+                        "width": 658
+                    }
+                ]
+            },
+            {
+                "level": 2,
+                "bgSource": "scene2_png",
+                "monster": [
+                    {
+                        "monsterID": "1",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 3,
+                                    "y": 995
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 3,
+                                    "y": 995
+                                },
+                                "nextAnchor": {
+                                    "x": 3,
+                                    "y": 995
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 840,
+                                    "y": 995
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 840,
+                                    "y": 995
+                                },
+                                "nextAnchor": {
+                                    "x": 840,
+                                    "y": 995
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": 3,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 23.44,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 26.44,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 63.61,
+                                "distTotal": 23.44
+                            },
+                            {
+                                "x": 90.05,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 93.74,
+                                "distTotal": 87.05
+                            },
+                            {
+                                "x": 183.79,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 113.83,
+                                "distTotal": 180.79
+                            },
+                            {
+                                "x": 297.62,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 123.88,
+                                "distTotal": 294.62
+                            },
+                            {
+                                "x": 421.5,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 123.88,
+                                "distTotal": 418.5
+                            },
+                            {
+                                "x": 545.38,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 113.83,
+                                "distTotal": 542.38
+                            },
+                            {
+                                "x": 659.21,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 93.74,
+                                "distTotal": 656.21
+                            },
+                            {
+                                "x": 752.95,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 63.61,
+                                "distTotal": 749.95
+                            },
+                            {
+                                "x": 816.56,
+                                "y": 995,
+                                "angle": 90,
+                                "distNext": 23.44,
+                                "distTotal": 813.56
+                            },
+                            {
+                                "x": 840,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 23.44,
+                                "distTotal": 837
+                            },
+                            {
+                                "x": 816.56,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 63.61,
+                                "distTotal": 860.44
+                            },
+                            {
+                                "x": 752.95,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 93.74,
+                                "distTotal": 924.05
+                            },
+                            {
+                                "x": 659.21,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 113.83,
+                                "distTotal": 1017.79
+                            },
+                            {
+                                "x": 545.38,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 123.88,
+                                "distTotal": 1131.62
+                            },
+                            {
+                                "x": 421.5,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 123.88,
+                                "distTotal": 1255.5
+                            },
+                            {
+                                "x": 297.62,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 113.83,
+                                "distTotal": 1379.38
+                            },
+                            {
+                                "x": 183.79,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 93.74,
+                                "distTotal": 1493.21
+                            },
+                            {
+                                "x": 90.05,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 63.61,
+                                "distTotal": 1586.95
+                            },
+                            {
+                                "x": 26.44,
+                                "y": 995,
+                                "angle": 450,
+                                "distNext": 23.44,
+                                "distTotal": 1650.56
+                            },
+                            {
+                                "x": 3,
+                                "y": 995,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1674
+                            }
+                        ]
+                    },
+                    {
+                        "monsterID": "2",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": 1418,
+                                    "y": 998
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 1418,
+                                    "y": 998
+                                },
+                                "nextAnchor": {
+                                    "x": 1418,
+                                    "y": 998
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 1780,
+                                    "y": 755
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 1780,
+                                    "y": 755
+                                },
+                                "nextAnchor": {
+                                    "x": 1780,
+                                    "y": 755
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 1927,
+                                    "y": 754
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 1924,
+                                    "y": 760
+                                },
+                                "nextAnchor": {
+                                    "x": 1924,
+                                    "y": 760
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": 1418,
+                                "y": 998,
+                                "angle": 56,
+                                "distNext": 12.21,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 1428.14,
+                                "y": 991.2,
+                                "angle": 56,
+                                "distNext": 33.14,
+                                "distTotal": 12.21
+                            },
+                            {
+                                "x": 1455.65,
+                                "y": 972.73,
+                                "angle": 56,
+                                "distNext": 48.83,
+                                "distTotal": 45.35
+                            },
+                            {
+                                "x": 1496.19,
+                                "y": 945.51,
+                                "angle": 56,
+                                "distNext": 59.29,
+                                "distTotal": 94.18
+                            },
+                            {
+                                "x": 1545.42,
+                                "y": 912.46,
+                                "angle": 56,
+                                "distNext": 64.53,
+                                "distTotal": 153.47
+                            },
+                            {
+                                "x": 1599,
+                                "y": 876.5,
+                                "angle": 56,
+                                "distNext": 64.53,
+                                "distTotal": 218
+                            },
+                            {
+                                "x": 1652.58,
+                                "y": 840.54,
+                                "angle": 56,
+                                "distNext": 59.29,
+                                "distTotal": 282.53
+                            },
+                            {
+                                "x": 1701.81,
+                                "y": 807.49,
+                                "angle": 56,
+                                "distNext": 48.83,
+                                "distTotal": 341.82
+                            },
+                            {
+                                "x": 1742.35,
+                                "y": 780.27,
+                                "angle": 56,
+                                "distNext": 33.14,
+                                "distTotal": 390.65
+                            },
+                            {
+                                "x": 1769.86,
+                                "y": 761.8,
+                                "angle": 56,
+                                "distNext": 12.21,
+                                "distTotal": 423.79
+                            },
+                            {
+                                "x": 1780,
+                                "y": 755,
+                                "angle": 92,
+                                "distNext": 37.46,
+                                "distTotal": 436
+                            },
+                            {
+                                "x": 1817.44,
+                                "y": 756.07,
+                                "angle": 91,
+                                "distNext": 70.13,
+                                "distTotal": 473.46
+                            },
+                            {
+                                "x": 1887.56,
+                                "y": 756.93,
+                                "angle": 85,
+                                "distNext": 39.55,
+                                "distTotal": 543.59
+                            },
+                            {
+                                "x": 1927,
+                                "y": 754,
+                                "angle": 445,
+                                "distNext": 39.55,
+                                "distTotal": 583.14
+                            },
+                            {
+                                "x": 1887.56,
+                                "y": 756.93,
+                                "angle": 451,
+                                "distNext": 70.13,
+                                "distTotal": 622.69
+                            },
+                            {
+                                "x": 1817.44,
+                                "y": 756.07,
+                                "angle": 452,
+                                "distNext": 37.46,
+                                "distTotal": 692.82
+                            },
+                            {
+                                "x": 1780,
+                                "y": 755,
+                                "angle": 416,
+                                "distNext": 12.21,
+                                "distTotal": 730.28
+                            },
+                            {
+                                "x": 1769.86,
+                                "y": 761.8,
+                                "angle": 416,
+                                "distNext": 33.14,
+                                "distTotal": 742.49
+                            },
+                            {
+                                "x": 1742.35,
+                                "y": 780.27,
+                                "angle": 416,
+                                "distNext": 48.83,
+                                "distTotal": 775.63
+                            },
+                            {
+                                "x": 1701.81,
+                                "y": 807.49,
+                                "angle": 416,
+                                "distNext": 59.29,
+                                "distTotal": 824.46
+                            },
+                            {
+                                "x": 1652.58,
+                                "y": 840.54,
+                                "angle": 416,
+                                "distNext": 64.53,
+                                "distTotal": 883.75
+                            },
+                            {
+                                "x": 1599,
+                                "y": 876.5,
+                                "angle": 416,
+                                "distNext": 64.53,
+                                "distTotal": 948.28
+                            },
+                            {
+                                "x": 1545.42,
+                                "y": 912.46,
+                                "angle": 416,
+                                "distNext": 59.29,
+                                "distTotal": 1012.81
+                            },
+                            {
+                                "x": 1496.19,
+                                "y": 945.51,
+                                "angle": 416,
+                                "distNext": 48.83,
+                                "distTotal": 1072.1
+                            },
+                            {
+                                "x": 1455.65,
+                                "y": 972.73,
+                                "angle": 416,
+                                "distNext": 33.14,
+                                "distTotal": 1120.93
+                            },
+                            {
+                                "x": 1428.14,
+                                "y": 991.2,
+                                "angle": 416,
+                                "distNext": 12.21,
+                                "distTotal": 1154.07
+                            },
+                            {
+                                "x": 1418,
+                                "y": 998,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1166.28
+                            }
+                        ]
+                    },
+                    {
+                        "monsterID": "4",
+                        "pathMirror": true,
+                        "fixedRotation": 0,
+                        "pathData": [
+                            {
+                                "origin": {
+                                    "x": -2,
+                                    "y": 647
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": -2,
+                                    "y": 647
+                                },
+                                "nextAnchor": {
+                                    "x": -2,
+                                    "y": 647
+                                }
+                            },
+                            {
+                                "origin": {
+                                    "x": 795,
+                                    "y": 643
+                                },
+                                "ctrlP1": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "ctrlP2": {
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "beforeAnchor": {
+                                    "x": 795,
+                                    "y": 643
+                                },
+                                "nextAnchor": {
+                                    "x": 795,
+                                    "y": 643
+                                }
+                            }
+                        ],
+                        "exportData": [
+                            {
+                                "x": -2,
+                                "y": 647,
+                                "angle": 89,
+                                "distNext": 22.32,
+                                "distTotal": 0
+                            },
+                            {
+                                "x": 20.32,
+                                "y": 646.89,
+                                "angle": 89,
+                                "distNext": 60.57,
+                                "distTotal": 22.32
+                            },
+                            {
+                                "x": 80.89,
+                                "y": 646.58,
+                                "angle": 89,
+                                "distNext": 89.26,
+                                "distTotal": 82.89
+                            },
+                            {
+                                "x": 170.15,
+                                "y": 646.14,
+                                "angle": 89,
+                                "distNext": 108.39,
+                                "distTotal": 172.15
+                            },
+                            {
+                                "x": 278.54,
+                                "y": 645.59,
+                                "angle": 89,
+                                "distNext": 117.96,
+                                "distTotal": 280.54
+                            },
+                            {
+                                "x": 396.5,
+                                "y": 645,
+                                "angle": 89,
+                                "distNext": 117.96,
+                                "distTotal": 398.5
+                            },
+                            {
+                                "x": 514.46,
+                                "y": 644.41,
+                                "angle": 89,
+                                "distNext": 108.39,
+                                "distTotal": 516.46
+                            },
+                            {
+                                "x": 622.85,
+                                "y": 643.86,
+                                "angle": 89,
+                                "distNext": 89.26,
+                                "distTotal": 624.85
+                            },
+                            {
+                                "x": 712.11,
+                                "y": 643.42,
+                                "angle": 89,
+                                "distNext": 60.57,
+                                "distTotal": 714.11
+                            },
+                            {
+                                "x": 772.68,
+                                "y": 643.11,
+                                "angle": 89,
+                                "distNext": 22.32,
+                                "distTotal": 774.68
+                            },
+                            {
+                                "x": 795,
+                                "y": 643,
+                                "angle": 449,
+                                "distNext": 22.32,
+                                "distTotal": 797
+                            },
+                            {
+                                "x": 772.68,
+                                "y": 643.11,
+                                "angle": 449,
+                                "distNext": 60.57,
+                                "distTotal": 819.32
+                            },
+                            {
+                                "x": 712.11,
+                                "y": 643.42,
+                                "angle": 449,
+                                "distNext": 89.26,
+                                "distTotal": 879.89
+                            },
+                            {
+                                "x": 622.85,
+                                "y": 643.86,
+                                "angle": 449,
+                                "distNext": 108.39,
+                                "distTotal": 969.15
+                            },
+                            {
+                                "x": 514.46,
+                                "y": 644.41,
+                                "angle": 449,
+                                "distNext": 117.96,
+                                "distTotal": 1077.54
+                            },
+                            {
+                                "x": 396.5,
+                                "y": 645,
+                                "angle": 449,
+                                "distNext": 117.96,
+                                "distTotal": 1195.5
+                            },
+                            {
+                                "x": 278.54,
+                                "y": 645.59,
+                                "angle": 449,
+                                "distNext": 108.39,
+                                "distTotal": 1313.46
+                            },
+                            {
+                                "x": 170.15,
+                                "y": 646.14,
+                                "angle": 449,
+                                "distNext": 89.26,
+                                "distTotal": 1421.85
+                            },
+                            {
+                                "x": 80.89,
+                                "y": 646.58,
+                                "angle": 449,
+                                "distNext": 60.57,
+                                "distTotal": 1511.11
+                            },
+                            {
+                                "x": 20.32,
+                                "y": 646.89,
+                                "angle": 449,
+                                "distNext": 22.32,
+                                "distTotal": 1571.68
+                            },
+                            {
+                                "x": -2,
+                                "y": 647,
+                                "angle": 0,
+                                "distNext": 0,
+                                "distTotal": 1594
+                            }
+                        ]
+                    }
+                ],
+                "mapData": [
+                    {
+                        "source": "BattleScene_2",
+                        "x": -0.5,
+                        "y": 1022,
+                        "width": 1474.5
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1551,
+                        "y": 929,
+                        "width": 82
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1630.5,
+                        "y": 871,
+                        "width": 83
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1710,
+                        "y": 821,
+                        "width": 82
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1791,
+                        "y": 775,
+                        "width": 82
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1872,
+                        "y": 775,
+                        "width": 82
+                    },
+                    {
+                        "source": "BattleScene_2",
+                        "x": 1470,
+                        "y": 980,
+                        "width": 82
+                    },
+                    {
+                        "source": "BattleScene_1",
+                        "x": -2,
+                        "y": 687.5,
+                        "width": 256
+                    },
+                    {
+                        "source": "BattleScene_1",
+                        "x": 279,
+                        "y": 686.5,
+                        "width": 256
+                    },
+                    {
+                        "source": "BattleScene_1",
+                        "x": 563,
+                        "y": 686.5,
+                        "width": 256
+                    }
+                ]
+            }
+        ]
+    }
+]

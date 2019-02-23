@@ -24,7 +24,7 @@ class LevelBtn extends eui.Component {
 			}[]
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
-		mapData: { source, x, y }[],
+		mapData: { source, x, y, width }[],
 	};
 
 	public constructor() {
@@ -52,7 +52,7 @@ class LevelBtn extends eui.Component {
 			}[],
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
-		mapData: { source, x, y }[],
+		mapData: { source, x, y, width }[],
 	}): void {
 		this.belongChapterID = chapterID
 		this.data = data;
@@ -103,13 +103,12 @@ class LevelBtn extends eui.Component {
 		MapEditor.instance.curLevel.onSelect(true)
 		MapEditor.instance.sceneCanvas.removeChildren();
 		for (let item of this.data.mapData) {
-			let img = new eui.Image();
-			img.source = item.source;
+			let img = new SceneOrnamentImg(item.source);
 			img.x = item.x;
 			img.y = item.y;
+			img.image.width = item.width;
 			MapEditor.instance.curMapGoods.push(img);
 			MapEditor.instance.sceneCanvas.addChild(img);
-			MapEditor.instance.addListener(img);
 		}
 
 

@@ -43,6 +43,9 @@ module catchDoll {
 			let middle = this.scroller.width / 2;
 
 			let datas = TableCenter.instance.getLevelsByChapterID(this.openParam);
+			if (!datas) {
+				return;
+			}
 			let len = datas.length
 
 			let group = new eui.Group();

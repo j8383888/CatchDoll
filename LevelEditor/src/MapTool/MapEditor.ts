@@ -1,6 +1,6 @@
 class MapEditor extends eui.Component {
 
-	public saveBtn: eui.Button;
+	public saveSceneBtn: eui.Button;
 	public addBtn: eui.Button;
 	public removeLevel: eui.Button;
 	public removeDecorate: eui.Button;
@@ -25,7 +25,7 @@ class MapEditor extends eui.Component {
 	/**
 	 * 当前场景的物品数据
 	 */
-	public curMapGoods: eui.Image[] = [];
+	public curMapGoods: SceneOrnamentImg[] = [];
 	/**
 	 * 场景编辑层
 	 */
@@ -66,7 +66,7 @@ class MapEditor extends eui.Component {
 	private gridContainer: egret.DisplayObjectContainer;
 	private static GRID_SIZE: number = 40;
 	private static GRID_COLOR: number = 0x00ff00;
-	private mainViewWidth: number = 720;       //主视图宽;
+	private mainViewWidth: number = 1920;       //主视图宽;
 	private mainViewHeight: number = 1280;      //主视图高;
 	public sceneGroup: eui.Group;
 	public showGridCbx: eui.CheckBox;    //是否显示网格;
@@ -130,7 +130,7 @@ class MapEditor extends eui.Component {
 					nextAnchor: { x, y },
 				}[]
 			}[],
-			mapData: { source, x, y }[],
+			mapData: { source, x, y, width }[],
 		}[]
 	}[] = [];
 
@@ -233,7 +233,7 @@ class MapEditor extends eui.Component {
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
 		}
 		this.addChapter.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddChapter, this)
-		this.saveBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSave, this)
+		this.saveSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSaveScene, this)
 		this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddLevel, this);
 		this.clearSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearScene, this);
 		this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
@@ -258,11 +258,11 @@ class MapEditor extends eui.Component {
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
 
-		
+
 	}
 
 
-	
+
 
 
 	private _onExportData(): void {
@@ -460,6 +460,7 @@ class MapEditor extends eui.Component {
 	private onGetComplete(e: egret.Event) {
 		let data: string = e.target.response
 		data = data.slice(0, data.length - 1)
+		console.log(data)
 		if (data == "") {
 			SystemTipsUtil.showTips("暂无数据");
 			return;
@@ -551,7 +552,7 @@ class MapEditor extends eui.Component {
 	/**
 	 * 保存
 	 */
-	private _onSave(): void {
+	private _onSaveScene(): void {
 		if (MapEditor.instance.curChapter && MapEditor.instance.curLevel) {
 			MapEditor.instance.setMapData(MapEditor.instance.curLevel)
 			SystemTipsUtil.showTips("保存成功！")
@@ -596,12 +597,11 @@ class MapEditor extends eui.Component {
 
 		if (this.curLevel && this.curChapter) {
 			let target = e.target;
-			let img = new eui.Image(target.source);
+			let img = new SceneOrnamentImg(target.source);
 			img.x = e.stageX - target.width / 2 - this.sceneGroup.x;
 			img.y = e.stageY - target.height / 2;
 			this.sceneCanvas.addChild(img);
 			this.curMapGoods.push(img);
-			this.addListener(img);
 		}
 		else {
 			SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
@@ -609,37 +609,13 @@ class MapEditor extends eui.Component {
 
 	}
 
-	public addListener(img: eui.Image): void {
-		img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
-		img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
-		img.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this, true)
-	}
-
-	private _onGoodsTouch(e: egret.TouchEvent): void {
-		if (this.isDel) {
-			let target = e.target
-			target.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
-			target.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this, true)
-			target.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this, true)
-			this.sceneCanvas.removeChild(target);
-			this.curMapGoods.remove(target)
-			target = null;
-		}
-		else {
-			this.sceneCanvas.addChild(e.target)
-		}
-	}
 
 
 
-	/**
-	 * 点击
-	 */
-	private _onMove(e: egret.TouchEvent): void {
-		let target = e.target;
-		target.x = e.stageX - target.width / 2 - this.sceneGroup.x;
-		target.y = e.stageY - target.height / 2;
-	}
+
+
+
+
 
 	/**
 	 * 删除关卡数据
@@ -654,19 +630,6 @@ class MapEditor extends eui.Component {
 		let chapterBtn: ChapterBtn = this.chapterMap.get(chapterID)
 		chapterBtn.data.levelData.remove(levelBtn.data);
 
-		// /**
-		//  * 总数据
-		//  */
-		// for (let item of this.chapterData) {
-		// 	if (item.chapterID == chapterID) {
-		// 		for (let subitem of item.levelData) {
-		// 			if (subitem.level == levelID) {
-		// 				item.levelData.remove(subitem);
-		// 				return;
-		// 			}
-		// 		}
-		// 	}
-		// }
 	}
 	/**
 	 * 添加关卡数据
@@ -685,37 +648,14 @@ class MapEditor extends eui.Component {
 		let chapterID: number = levelBtn.belongChapterID;
 		let levelID: number = levelBtn.data.level;
 
-		let mapData: { source, x, y }[] = [];
+		let mapData: { source, x, y, width }[] = [];
 		for (let i: number = 0; i < this.curMapGoods.length; i++) {
 			let item = this.curMapGoods[i];
-			let data = { source: item.source, x: item.x, y: item.y };
+			let data = { source: item.image.source, x: item.x, y: item.y, width: item.image.width };
 			mapData.push(data);
 		}
 		levelBtn.data.mapData = mapData
 
-
-		// /**
-		//  * 章节上的数据
-		//  */
-		// let chapterBtn = this.chapterMap.get(chapterID)
-
-		// for (let item of chapterBtn.levelData) {
-		// 	if (item.level == levelID) {
-		// 		item.mapData = mapData;
-		// 		break;
-		// 	}
-		// }
-		// /**
-		//  * 关卡按钮上的数据
-		//  */
-		// levelBtn. = mapData;
 	}
 
-	private _remove(): void {
-		let len = this.itemGroup.numChildren;
-		for (let i: number = 0; i < len; i++) {
-			let item = this.itemGroup.getElementAt(i);
-			item.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this)
-		}
-	}
 }

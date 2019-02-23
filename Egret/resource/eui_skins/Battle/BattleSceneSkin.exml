@@ -16,18 +16,18 @@
 	</e:Group>
 	<e:Image id="_returnBtn" source="battle_12" right="0" top="0"/>
 
-	<e:Image x="-103.14" y="202" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17"/>
+	<e:Image x="-103.14" y="200" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17"/>
 
 
 
 
 
-	<e:Group x="0" y="1019.75">
-		<e:Image x="0" y="0" scaleY="1" scaleX="1" source="battle_15"/>
-		<e:Image x="0" y="34.05" source="battle_22"/>
-		<e:Image id="_rightBtn" x="246.97" y="86.2" source="battle_6"/>
-		<e:Image id="_leftBtn" x="42.29" y="88" source="battle_8"/>
-		<e:Image id="_middleBtn" y="54" x="485.25" source="battle_7" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Group x="0" y="1100">
+
+		<e:Image x="0" y="0" source="battle_22"/>
+		<e:Image id="_rightBtn" x="246.97" y="31.66" source="battle_6"/>
+		<e:Image id="_leftBtn" x="42.29" y="33.46" source="battle_8"/>
+		<e:Image id="_middleBtn" y="2.49" x="485.25" source="battle_7" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9"/>
 	</e:Group>
 	<e:Group y="2.02" horizontalCenter="0">
 		<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>

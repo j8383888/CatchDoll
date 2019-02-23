@@ -12,11 +12,6 @@ module catchDoll {
 		public chapterBtns: Button[] = [];
 
 		/**
-		 * 风车
-		 */
-		public fengche: egret.MovieClip;
-
-		/**
 		 * 滑动条
 		 */
 		public scroller: eui.Scroller;
@@ -34,14 +29,35 @@ module catchDoll {
 		 */
 		public onInit(): void {
 			for (let i: number = 1; i <= 2; i++) {
-				let btn = new Button(this.skin["_chapterBtn" + i]);
+				let group = this.skin["_chapterBtn" + i] as eui.Group
+				let btn = new Button(group);
 				btn.data = i;
+				if (i == 1) {
+					let gouhuo = UIUtil.creatMovieClip("effect_1");
+					gouhuo.gotoAndPlay(1, -1);
+					gouhuo.x = 408;
+					gouhuo.y = 300;
+					gouhuo.blendMode = egret.BlendMode.ADD;
+					gouhuo.frameRate = 12
+					group.addChild(gouhuo);
+
+					let xiaozhu = UIUtil.creatMovieClip("effect_2");
+					xiaozhu.gotoAndPlay(1, -1);
+					xiaozhu.x = 350;
+					xiaozhu.y = 320;
+					group.addChild(xiaozhu);
+				}
+
+				if (i == 2) {
+					let fengche = UIUtil.creatMovieClip("fengche");
+					fengche.gotoAndPlay(1, -1);
+					fengche.x = 320;
+					fengche.y = 170;
+					group.addChild(fengche);
+				}
 				this.chapterBtns.push(btn);
 			}
-			this.fengche = UIUtil.creatMovieClip("fengche");
-			this.fengche.gotoAndPlay(1, -1);
-			this.fengche.x = 107;
-			this.fengche.y = 25;
+
 		}
 
 

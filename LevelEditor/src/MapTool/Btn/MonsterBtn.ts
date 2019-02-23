@@ -71,6 +71,7 @@ class MonsterBtn extends eui.Component {
 	 */
 	private _drawPoint(): void {
 		let shape = this.colliderShape;
+		this.colliderShape.visible = false;
 		shape.graphics.beginFill(ColorUtil.COLOR_GOLD);
 		shape.graphics.drawCircle(0, 0, 30);
 		shape.graphics.endFill();
@@ -98,7 +99,7 @@ class MonsterBtn extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 
-		
+
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.curMonsterBtn = this;
