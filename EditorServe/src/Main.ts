@@ -41,8 +41,8 @@ var server = http.createServer(function (req, res) {
 
         }
         else {
-            console.log(date.toLocaleString(), "发送关卡数据");
             var battleJson: string = getJSon(levelEditPath);
+            console.log(date.toLocaleString(), "发送关卡数据", battleJson);
             res.end(battleJson);
         }
 
