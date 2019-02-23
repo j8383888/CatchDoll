@@ -130,7 +130,7 @@ class MapEditor extends eui.Component {
 					nextAnchor: { x, y },
 				}[]
 			}[],
-			mapData: { source, x, y, width }[],
+			mapData: { source, x, y, width, height }[],
 		}[]
 	}[] = [];
 
@@ -279,11 +279,12 @@ class MapEditor extends eui.Component {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		// request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 		let data = JSON.stringify(this.chapterData)
-		request.send("exportData" + data + "$");
+		request.send("exportData" + data);
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("导出数据成功！")
 		}, this);
@@ -445,8 +446,8 @@ class MapEditor extends eui.Component {
 	private _getServeInfo(): void {
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
-		// request.open("http://127.0.0.1:8080/", egret.HttpMethod.GET);
+		// request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		request.open("http://127.0.0.1:8080/", egret.HttpMethod.GET);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -459,7 +460,6 @@ class MapEditor extends eui.Component {
 
 	private onGetComplete(e: egret.Event) {
 		let data: string = e.target.response
-		data = data.slice(0, data.length - 1)
 		console.log(data)
 		if (data == "") {
 			SystemTipsUtil.showTips("暂无数据");
@@ -569,14 +569,14 @@ class MapEditor extends eui.Component {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
-		// request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
+		// request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// request.setRequestHeader("Access-control-allow-methods", "GET, POST, OPTIONS, PUT, DELETE");
 		let data = JSON.stringify(this.chapterData)
-		request.send("editorData" + data + "$");
+		request.send("editorData" + data);
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("提交成功！")
 		}, this);
@@ -648,10 +648,10 @@ class MapEditor extends eui.Component {
 		let chapterID: number = levelBtn.belongChapterID;
 		let levelID: number = levelBtn.data.level;
 
-		let mapData: { source, x, y, width }[] = [];
+		let mapData: { source, x, y, width, height }[] = [];
 		for (let i: number = 0; i < this.curMapGoods.length; i++) {
 			let item = this.curMapGoods[i];
-			let data = { source: item.image.source, x: item.x, y: item.y, width: item.image.width };
+			let data = { source: item.image.source, x: item.x, y: item.y, width: item.image.width, height: item.image.height };
 			mapData.push(data);
 		}
 		levelBtn.data.mapData = mapData

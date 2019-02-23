@@ -73,23 +73,9 @@ var server = http.createServer(function (req, res) {
              */
             if (type == DATA_TYPE.LEVEL_EDIT) {
                 levelEdit += data;
-                if (data.charAt(data.length - 1) == "$") {
-                    writeFile(levelEditPath, levelEdit, () => {
-                        console.log("生成编辑器关卡数据完毕！")
-                        res.end("success!")
-                    })
-                    levelEdit = "";
-                }
             }
             else if (type == DATA_TYPE.LEVEL_DATA) {
                 levelData += data;
-                if (data.charAt(data.length - 1) == "$") {
-                    writeFile(levelDataPath, levelData, () => {
-                        console.log("导出游戏关卡数据完毕！")
-                        res.end("success!")
-                    })
-                    levelData = "";
-                }
             }
 
             /**
@@ -113,6 +99,26 @@ var server = http.createServer(function (req, res) {
                     // res.end("success!")
                 })
                 body = "";
+            }
+
+            /**
+             * 关卡数据
+             */
+            else if (type == DATA_TYPE.LEVEL_EDIT) {
+
+                writeFile(levelEditPath, levelEdit, () => {
+                    console.log("生成编辑器关卡数据完毕！")
+                    res.end("success!")
+                })
+                levelEdit = "";
+            }
+
+            else if (type == DATA_TYPE.LEVEL_DATA) {
+                writeFile(levelDataPath, levelData, () => {
+                    console.log("导出游戏关卡数据完毕！")
+                    res.end("success!")
+                })
+                levelData = "";
             }
         })
     }

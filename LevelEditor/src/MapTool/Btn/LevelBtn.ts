@@ -24,7 +24,7 @@ class LevelBtn extends eui.Component {
 			}[]
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
-		mapData: { source, x, y, width }[],
+		mapData: { source, x, y, width, height }[],
 	};
 
 	public constructor() {
@@ -52,7 +52,7 @@ class LevelBtn extends eui.Component {
 			}[],
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
 		}[],
-		mapData: { source, x, y, width }[],
+		mapData: { source, x, y, width, height }[],
 	}): void {
 		this.belongChapterID = chapterID
 		this.data = data;
@@ -107,6 +107,7 @@ class LevelBtn extends eui.Component {
 			img.x = item.x;
 			img.y = item.y;
 			img.image.width = item.width;
+			img.image.height = item.height
 			MapEditor.instance.curMapGoods.push(img);
 			MapEditor.instance.sceneCanvas.addChild(img);
 		}
