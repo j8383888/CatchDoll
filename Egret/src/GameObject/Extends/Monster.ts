@@ -86,7 +86,11 @@ module catchDoll {
          * 初始化
          */
 		public initialize(): void {
-			super.initialize();
+			this.x = -1000;
+			this.y = -1000;
+			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView)
+			view.monsterBox.addChild(this);
+
 			if (this._dragonBones) {
 				this._dragonBones.animation.play("Walk", 0);
 			}
@@ -120,7 +124,15 @@ module catchDoll {
          * 反初始化
          */
 		public uninitialize(): void {
-			super.uninitialize();
+			if (this._moviePlayer) {
+				this._moviePlayer.stop();
+			}
+			if (this._dragonBones) {
+				this._dragonBones.animation.stop();
+			}
+			if (this.parent) {
+				this.parent.removeChild(this);
+			}
 			this.unregisterOperation();
 		}
 

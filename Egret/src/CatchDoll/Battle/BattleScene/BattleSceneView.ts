@@ -51,6 +51,8 @@ module catchDoll {
 		public bgSource: eui.Image;
 		public battleSceneBox: eui.Group;
 		public sceneImgBox: eui.Group;
+		public monsterBox: eui.Group;
+
 
 
 

@@ -157,7 +157,7 @@ module catchDoll {
 			Laya.timer.once(3000, this, this._showLoading, [true])
 
 			if (this._curHeartCount >= this.MAX_COUNT) {
-				ConfirmUtil.showPanel("网络连接失败，请检查网络")
+				ConfirmUtil.showPanel("网络连接失败，请检查网络",Handler.create(window.location, window.location.reload, null, true))
 				Laya.timer.clear(this, this._sendHeartMsg);
 			}
 			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();

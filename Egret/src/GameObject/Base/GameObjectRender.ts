@@ -17,10 +17,6 @@ module catchDoll {
          * 龙骨
          */
         protected _dragonBones: dragonBones.EgretArmatureDisplay = null;
-        /**
-         * 是否在视图内
-         */
-        public isInView: boolean = false;
 
         public constructor() {
             super();
@@ -91,7 +87,6 @@ module catchDoll {
                 }
             }
             LayerManager.instance.addToLayer(this, this.layerType);
-            this.isInView = true;
         }
 
         /**
@@ -105,7 +100,6 @@ module catchDoll {
                 this._dragonBones.animation.stop();
             }
             LayerManager.instance.removeFromLayer(this);
-            this.isInView = false;
         }
 
         /**

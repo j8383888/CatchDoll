@@ -1,6 +1,6 @@
 /** 
  * @description Auto Generate By protoExtendtion.py
- * @version 2019-02-23 14:06:26 
+ * @version 2019-02-24 19:06:47 
  * @author suo
  */
 import { Cmd } from "../../protobuf/common";

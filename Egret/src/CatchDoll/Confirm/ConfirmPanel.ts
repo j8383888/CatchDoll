@@ -47,6 +47,8 @@ module catchDoll {
 			this.msgLabel.text = this.openParam.msg;
 		}
 
+
+
 		/**
 		 * 隐藏时
 		 */

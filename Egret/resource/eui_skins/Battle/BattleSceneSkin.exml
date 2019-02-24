@@ -2,15 +2,16 @@
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="bgSource" x="0" source="scene2_png"/>
 	<e:Group id="battleSceneBox" width="200" height="200">
-		<e:Group id="monsterBox" width="200" height="200" visible="false"/>
+
 		<e:Group id="sceneImgBox" width="200" height="200" touchChildren="false" touchEnabled="false"/>
+		<e:Group id="monsterBox" width="200" height="200"/>
 	</e:Group>
 
 
 	<e:Image id="curtain2" source="battle_20" right="0" top="0"/>
 	<e:Image id="curtain1" source="battle_21" left="0" top="0"/>
 	<e:Image source="battle_16" left="0" top="0"/>
-	<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1"/>
+	<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>
 	<e:Group id="propBox" x="-203" y="380" width="203">
 		<e:Image x="0" y="0" source="battle_18"/>
 		<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
