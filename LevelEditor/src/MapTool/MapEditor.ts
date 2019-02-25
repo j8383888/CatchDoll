@@ -205,8 +205,8 @@ class MapEditor extends eui.Component {
 
 			let data = {
 				monsterID: id,
-				pathMirror: false,
-				fixedRotation: -1,
+				pathMirror: true,
+				fixedRotation: 0,
 				pathData: [],
 				exportData: []
 			};
@@ -403,10 +403,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _getLastChapterID(): number {
-		if (this.chapterData.length == 0) {
-			return 1;
-		}
-		return this.chapterData[this.chapterData.length - 1].chapterID
+		return this.chapterData.length;
 	}
 
 	private _onRemoveLevel(): void {

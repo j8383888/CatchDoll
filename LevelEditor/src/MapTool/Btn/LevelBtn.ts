@@ -42,7 +42,6 @@ class LevelBtn extends eui.Component {
 			monsterID: number,
 			pathMirror: boolean,
 			fixedRotation: number,
-
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
