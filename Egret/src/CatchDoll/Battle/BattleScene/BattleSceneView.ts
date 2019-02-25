@@ -6,18 +6,6 @@ module catchDoll {
 	export class BattleSceneView extends BasePopPanel implements BaseUIView {
 
 		/**
-		 * 右按钮
-		 */
-		public rightBtn: Button;
-		/**
-		 * 左按钮
-		 */
-		public leftBtn: Button;
-		/**
-		 * 中间按钮
-		 */
-		public middleBtn: Button;
-		/**
 		 * 返回按钮
 		 */
 		public returnBtn: Button;
@@ -53,6 +41,8 @@ module catchDoll {
 		public sceneImgBox: eui.Group;
 		public monsterBox: eui.Group;
 
+		public downRect:eui.Rect
+
 
 
 
@@ -66,9 +56,6 @@ module catchDoll {
 		 */
 		public onInit(): void {
 
-			this.rightBtn = new Button(this.skin["_rightBtn"])
-			this.leftBtn = new Button(this.skin["_leftBtn"])
-			this.middleBtn = new Button(this.skin["_middleBtn"])
 			this.returnBtn = new Button(this.skin["_returnBtn"])
 			this.propBtn1 = new Button(this.skin["_propBtn1"])
 			this.propBtn2 = new Button(this.skin["_propBtn2"])
@@ -112,12 +99,6 @@ module catchDoll {
 		 */
 		public dispose(): void {
 
-			this.rightBtn.dispose();
-			this.rightBtn = null;
-			this.leftBtn.dispose();
-			this.leftBtn = null;
-			this.middleBtn.dispose();
-			this.middleBtn = null;
 			this.returnBtn.dispose();
 			this.returnBtn = null;
 			this.propBtn1.dispose();

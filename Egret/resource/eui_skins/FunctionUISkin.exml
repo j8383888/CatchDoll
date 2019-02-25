@@ -27,37 +27,7 @@
 			</e:Scroller>
 		</e:Group>
 	</e:Group>
-	<e:Group id="leftMenu" scaleY="1" right="-30" verticalCenter="0">
-		<e:Image id="leftMenuBg" x="17.57" y="0" anchorOffsetY="0" anchorOffsetX="0" source="functionUI_26" fillMode="clip" scale9Grid="20,90,120,438"/>
-		<e:Scroller id="scroller" width="145" height="436" x="20.65" y="88.98" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyH="off">
-			<e:Group>
 
-			<e:Group id="_rankBtn" scaleX="1" scaleY="1" y="136.37">
-				<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
-				<e:Image x="34.01" y="20.68" scaleX="0.8" scaleY="0.8" source="functionUI_19"/>
-				<e:Image x="-0.08" y="69.91" source="otherRes1_9"/>
-			</e:Group>
-			<e:Group id="_turnTableBtn" scaleX="1" scaleY="1" y="287.88" x="12.11">
-				<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
-				<e:Image x="21.08" y="21.07" source="functionUI_14" scaleX="1" scaleY="1"/>
-				<e:Image x="17.85" y="57.59" source="otherRes1_10"/>
-			</e:Group>
-				<e:Group id="_inventBtn" scaleX="1" scaleY="1" y="439.38">
-					<e:Image x="5.530000000000086" y="-12.970000000000027" source="functionUI_18" scaleX="1" scaleY="1"/>
-					<e:Image x="22.2" y="0" source="functionUI_17"/>
-				</e:Group>
-				<e:Group id="_shopBtn" scaleX="1" scaleY="1" visible="false">
-					<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
-					<e:Image x="6.65" y="6.65" source="functionUI_22"/>
-				</e:Group>
-				<e:layout>
-					<e:VerticalLayout/>
-				</e:layout>
-
-			</e:Group>
-		</e:Scroller>
-		<e:Image id="_furlBtn" x="93.74" y="43.25" source="functionUI_25" anchorOffsetX="37.5" anchorOffsetY="37.5" scaleY="-1"/>
-	</e:Group>
 	<e:Group x="388.58" y="52.24">
 		<e:Image source="selectLevel_14" x="0" y="0"/>
 		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45"/>

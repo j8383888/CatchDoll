@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="BattleEnterPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="500">
-	<e:Image id="bg" source="selectLevel_13" x="0"/>
-	<e:Image id="_startBtn" source="selectLevel_12" y="439.99" x="60"/>
-	<e:Image id="closeBtn" y="94.67" x="406.66" source="selectLevel_5"/>
-	<e:Image y="265" x="243.35" source="selectLevel_8" scaleX="0.5" scaleY="0.5"/>
-	<e:Image y="265" x="119.96" source="selectLevel_7" scaleX="0.5" scaleY="0.5"/>
-	<e:Rect id="endPos" width="0" height="0" x="266.67" y="494.34"/>
-</e:Skin>

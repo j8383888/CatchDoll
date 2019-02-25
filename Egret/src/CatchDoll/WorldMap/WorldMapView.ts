@@ -17,6 +17,25 @@ module catchDoll {
 		public scroller: eui.Scroller;
 
 		public scrollerTool: ScollerTool;
+		/**
+		 * 左按钮
+		 */
+		public shopBtn: Button;
+		
+		/**
+		 * 排行榜
+		 */
+		public rankBtn: Button;
+		/**
+		 * 邀请按钮
+		 */
+		public inventBtn: Button
+		/**
+		 * 转盘按钮
+		 */
+		public turnTableBtn: Button;
+		
+
 
 
 		public constructor() {
@@ -58,6 +77,12 @@ module catchDoll {
 				this.chapterBtns.push(btn);
 			}
 
+			this.shopBtn = new Button(this.skin["_shopBtn"]);
+			
+			this.rankBtn = new Button(this.skin["_rankBtn"]);
+			this.inventBtn = new Button(this.skin["_inventBtn"]);
+			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
+
 		}
 
 
@@ -97,6 +122,15 @@ module catchDoll {
 			}
 			this.chapterBtns.length = 0
 			this.chapterBtns = null;
+			this.shopBtn.dispose();
+			this.shopBtn = null;
+			this.turnTableBtn.dispose();
+			this.turnTableBtn = null;
+			
+			this.rankBtn.dispose();
+			this.rankBtn = null;
+			this.inventBtn.dispose();
+			this.inventBtn = null;
 			super.dispose();
 		}
 	}

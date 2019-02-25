@@ -17,10 +17,7 @@ module catchDoll {
 		 * 钱
 		 */
 		public money: eui.Label;
-		/**
-		 * 转盘按钮
-		 */
-		public turnTableBtn: Button;
+
 		/**
 		 * 签到按钮
 		 */
@@ -46,37 +43,11 @@ module catchDoll {
 		 */
 		public bottomBtnGroup: eui.Group;
 		/**
-		 * 左按钮
-		 */
-		public shopBtn: Button;
-		/**
 		 * 任务按钮
 		 */
 		public taskBtn: Button;
-		/**
-		 * 排行榜
-		 */
-		public rankBtn: Button;
-		/**
-		 * 邀请按钮
-		 */
-		public inventBtn: Button
-		/**
-		 * 收拢按钮
-		 */
-		public furlBtn: Button;
-		/**
-		 * 左侧菜单
-		 */
-		public leftMenu: eui.Group;
-		/**
-		 * 左侧菜单背景
-		 */
-		public leftMenuBg: eui.Image;
-		/**
-		 * 滑动条
-		 */
-		public scroller:eui.Scroller;
+
+
 
 
 		public constructor() {
@@ -90,15 +61,12 @@ module catchDoll {
 		public onInit(): void {
 			this.menuBtn = new Button(this.skin["_menuBtn"])
 			this.registerBtn = new Button(this.skin["_registerBtn"]);
-			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
+			this.taskBtn = new Button(this.skin["_taskBtn"]);
 			this.setUpBtn = new Button(this.skin["_setUpBtn"]);
 			this.leftBtn = new Button(this.skin["_leftBtn"]);
 			this.rightBtn = new Button(this.skin["_rightBtn"]);
-			this.shopBtn = new Button(this.skin["_shopBtn"]);
-			this.taskBtn = new Button(this.skin["_taskBtn"]);
-			this.rankBtn = new Button(this.skin["_rankBtn"]);
-			this.inventBtn = new Button(this.skin["_inventBtn"])
-			this.furlBtn = new Button(this.skin["_furlBtn"])
+
+
 
 			this.bottomMenu.x = 720;
 			EventManager.registerEvent(EVENT_ID.UPDATE_MONEY, Handler.create(this, this._updateMoney));
@@ -150,8 +118,8 @@ module catchDoll {
 		 */
 		public dispose(): void {
 			EventManager.unregisterEvent(EVENT_ID.UPDATE_MONEY, this, this._updateMoney);
-			this.turnTableBtn.dispose();
-			this.turnTableBtn = null;
+			this.taskBtn.dispose();
+			this.taskBtn = null;
 			this.menuBtn.dispose();
 			this.menuBtn = null;
 			this.registerBtn.dispose();
@@ -162,16 +130,7 @@ module catchDoll {
 			this.leftBtn = null;
 			this.rightBtn.dispose();
 			this.rightBtn = null;
-			this.shopBtn.dispose();
-			this.shopBtn = null;
-			this.taskBtn.dispose();
-			this.taskBtn = null;
-			this.rankBtn.dispose();
-			this.rankBtn = null;
-			this.inventBtn.dispose();
-			this.inventBtn = null;
-			this.furlBtn.dispose();
-			this.furlBtn = null;
+
 			super.dispose();
 		}
 	}

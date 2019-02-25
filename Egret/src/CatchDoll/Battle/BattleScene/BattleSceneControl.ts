@@ -30,10 +30,7 @@ module catchDoll {
 			let levelData = this._dataCenter.openParam
 			this._view.bgSource.source = levelData.bgSource
 			LevelCreate.instance.init(levelData);
-
-			this._view.rightBtn.mouseClickHandler = Handler.create(this, this._clickRightBtn);
-			this._view.leftBtn.mouseClickHandler = Handler.create(this, this._clickLeftBtn);
-			this._view.middleBtn.mouseClickHandler = Handler.create(this, this._clickMiddleBtn);
+			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
 			this._view.returnBtn.mouseClickHandler = Handler.create(this, this._clickReturnBtn);
 			this._view.timeLabel.text = this._timeNum.toString();
 			Laya.timer.loop(1000, this, this._updateTime)
@@ -93,30 +90,19 @@ module catchDoll {
 		}
 
 		/**
-		 * 点击右按钮
+		 * 点击抓按钮
 		 */
-		private _clickMiddleBtn(): void {
+		private _onClikDown(): void {
 			EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
 		}
 
-		/**
-		 * 点击右按钮
-		 */
-		private _clickRightBtn(): void {
-			EventManager.fireEvent(EVENT_ID.MASTER_MOVE, false);
-		}
 
-		/**
-		 * 点击右按钮
-		 */
-		private _clickLeftBtn(): void {
-			EventManager.fireEvent(EVENT_ID.MASTER_MOVE, true);
-		}
 
 		/**
 		 * 释放
 		 */
 		public dispose(): void {
+			this._view.downRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
 			Laya.timer.clear(this, this._updateTime)
 			egret.Tween.removeTweens(this._view.timeLabel)
 			this._view = null;

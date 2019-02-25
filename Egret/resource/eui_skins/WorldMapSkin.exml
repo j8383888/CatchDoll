@@ -1,34 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="WorldMapSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
 	<e:Image source="otherRes1_14" y="-2" scaleX="8" scaleY="8"/>
-
-
 	<e:Scroller id="scroller" width="720" height="588" x="0" y="264" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Group id="itemGroup">
-			<e:Group id="_chapterBtn1" x="0" y="50" width="720">
-				<e:Group y="0" horizontalCenter="0">
-				<e:Image source="otherRes1_18" y="0" x="0"/>
-				<e:Image source="otherRes1_7" x="147" y="15"/>
-				<e:Image y="17.93" x="14.96" scaleX="1" scaleY="1" source="fragment_101"/>
-				<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_301"/>
-				</e:Group>
-				<e:Image y="106" source="otherRes1_20" horizontalCenter="0"/>
+		<e:Group id="_chapterBtn1" x="0" y="50" width="720">
+			<e:Group y="0" horizontalCenter="0">
+			<e:Image source="otherRes1_18" y="0" x="0"/>
+			<e:Image source="otherRes1_7" x="147" y="15"/>
+			<e:Image y="17.93" x="14.96" scaleX="1" scaleY="1" source="fragment_101"/>
+			<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_301"/>
 			</e:Group>
-			<e:Group id="_chapterBtn2" x="720" y="50" width="720">
-				<e:Group y="0" horizontalCenter="0">
-				<e:Image source="otherRes1_18" y="0" x="0"/>
-				<e:Image source="otherRes1_7" x="147" y="15"/>
-				<e:Image y="10.34" x="18" scaleX="1" scaleY="1" source="fragment_102"/>
-				<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_302"/>
-				</e:Group>
-				<e:Image y="106" source="otherRes1_23" horizontalCenter="0"/>
+			<e:Image y="106" source="otherRes1_20" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group id="_chapterBtn2" x="720" y="50" width="720">
+			<e:Group y="0" horizontalCenter="0">
+			<e:Image source="otherRes1_18" y="0" x="0"/>
+			<e:Image source="otherRes1_7" x="147" y="15"/>
+			<e:Image y="10.34" x="18" scaleX="1" scaleY="1" source="fragment_102"/>
+			<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_302"/>
 			</e:Group>
-			<e:layout>
-				<e:BasicLayout/>
-			</e:layout>
-
+			<e:Image y="106" source="otherRes1_23" horizontalCenter="0"/>
+		</e:Group>
+		<e:layout>
+			<e:BasicLayout/>
+		</e:layout>
 		</e:Group>
 	</e:Scroller>
+	<e:Group x="0" y="94.78" touchEnabled="false">
+		<e:Group id="_rankBtn" scaleX="1" scaleY="1" y="218.49" x="580">
+			<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
+			<e:Image x="34.01" y="20.68" scaleX="0.8" scaleY="0.8" source="functionUI_19"/>
+			<e:Image x="-0.08" y="69.91" source="otherRes1_9"/>
+		</e:Group>
+		<e:Group id="_turnTableBtn" scaleX="1" scaleY="1" y="90" x="580">
+			<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
+			<e:Image x="21.08" y="21.07" source="functionUI_14" scaleX="1" scaleY="1"/>
+			<e:Image x="17.85" y="57.59" source="otherRes1_10"/>
+		</e:Group>
+		<e:Group id="_inventBtn" scaleX="1" scaleY="1" y="675.14" x="574" visible="false">
+			<e:Image x="5.530000000000086" y="-12.970000000000027" source="functionUI_18" scaleX="1" scaleY="1"/>
+			<e:Image x="22.2" y="0" source="functionUI_17"/>
+		</e:Group>
+		<e:Group id="_shopBtn" scaleX="1" scaleY="1" y="796.22" x="578" visible="false">
+			<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
+			<e:Image x="6.65" y="6.65" source="functionUI_22"/>
+		</e:Group>
+	</e:Group>
+
+
+
 	<e:Image y="526" x="110" scaleX="-1" scaleY="1" source="otherRes1_19"/>
 	<e:Image y="526" x="600" scaleX="1" scaleY="1" source="otherRes1_19"/>
 

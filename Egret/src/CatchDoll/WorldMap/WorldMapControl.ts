@@ -36,12 +36,30 @@ module catchDoll {
 			for (let item of this._view.chapterBtns) {
 				item.mouseClickHandler = Handler.create(this, this._onClickChapter)
 			}
+
+			this._view.rankBtn.mouseClickHandler = Handler.create(null, () => {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.rankPanel);
+			})
+			this._view.turnTableBtn.mouseClickHandler = Handler.create(this, this._onClicTurnTable)
+			this._view.shopBtn.mouseClickHandler = Handler.create(null, () => {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.ShopPanel);
+			})
+			this._view.inventBtn.mouseClickHandler = Handler.create(null, () => {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
+			})
 		}
 
 		private _onClickChapter(btn: Button): void {
 			let chapterID = btn.data;
 			SimpleUICenter.instance.openUI(SIMPLE_UI.BattleSelect, chapterID)
 
+		}
+
+		/**
+		 * 点击转盘按钮
+		 */
+		private _onClicTurnTable(): void {
+			UICenter.instance.openUI(commonUI.TurnTable)
 		}
 
 

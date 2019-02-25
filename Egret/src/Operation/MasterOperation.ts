@@ -25,7 +25,6 @@ module catchDoll {
 	 	 */
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Paws;
-			EventManager.registerEvent(EVENT_ID.MASTER_MOVE, Handler.create(this, this._masterMove));
 			EventManager.registerEvent(EVENT_ID.MASTER_DOWN, Handler.create(this, this._masterDown));
 			this._sceneBox = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView).sceneImgBox;
 		}
@@ -67,13 +66,6 @@ module catchDoll {
 		}
 
 
-		/**
-		 * 玩家移动
-		 */
-		private _masterMove(isLeft: boolean): void {
-			this._isLeft = isLeft
-		}
-
 
 		/**
          * 反注册
@@ -87,7 +79,6 @@ module catchDoll {
 			this._gameObj.pawsSkinBox.pawsHead.y = this._gameObj.pawsSkinBox.pawsHeadStartPosY
 			this._gameObj.confirmRopeHeight();
 
-			EventManager.unregisterEvent(EVENT_ID.MASTER_MOVE, this, this._masterMove);
 			EventManager.unregisterEvent(EVENT_ID.MASTER_DOWN, this, this._masterDown);
 		}
 

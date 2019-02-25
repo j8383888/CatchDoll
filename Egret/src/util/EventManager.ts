@@ -170,10 +170,6 @@ const enum FIRE_TYPE {
  */
 const enum EVENT_ID {
 	/**
-	 * 玩家移动
-	 */
-	MASTER_MOVE,
-	/**
 	 * 玩家下钩子
 	 */
 	MASTER_DOWN,

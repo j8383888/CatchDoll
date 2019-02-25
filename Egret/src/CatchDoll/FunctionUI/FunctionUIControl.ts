@@ -26,34 +26,11 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			this._view.menuBtn.mouseClickHandler = Handler.create(this, this._onClick);
-			this._view.turnTableBtn.mouseClickHandler = Handler.create(this, this._onClicTurnTable)
+			
 			this._view.registerBtn.mouseClickHandler = Handler.create(this, this._onClicRegister)
 			this._view.setUpBtn.mouseUpHandler = Handler.create(this, this._onClicSetUp)
-			this._view.rankBtn.mouseClickHandler = Handler.create(null, () => {
-				SimpleUICenter.instance.openUI(SIMPLE_UI.rankPanel);
-			})
 			this._view.taskBtn.mouseClickHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.taskPanel);
-			})
-			this._view.shopBtn.mouseClickHandler = Handler.create(null, () => {
-				SimpleUICenter.instance.openUI(SIMPLE_UI.ShopPanel);
-			})
-			this._view.inventBtn.mouseClickHandler = Handler.create(null, () => {
-				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
-			})
-			this._view.furlBtn.mouseClickHandler = Handler.create(null, () => {
-				egret.Tween.removeTweens(this._view.leftMenu)
-				if (this._view.furlBtn.root.scaleY == -1) {
-					this._view.furlBtn.root.scaleY = 1;
-
-					egret.Tween.get(this._view.leftMenuBg).to({ height: 110 }, 500, egret.Ease.quadIn)
-					egret.Tween.get(this._view.scroller).to({ height: 0 }, 500, egret.Ease.quadIn)
-				}
-				else {
-					this._view.furlBtn.root.scaleY = -1;
-					egret.Tween.get(this._view.leftMenuBg).to({ height: 546 }, 500, egret.Ease.quadIn);
-					egret.Tween.get(this._view.scroller).to({ height: 436 }, 500, egret.Ease.quadIn)
-				}
 			})
 
 
@@ -98,12 +75,7 @@ module catchDoll {
 			UICenter.instance.openUI(commonUI.RegisterPanel)
 		}
 
-		/**
-		 * 点击转盘按钮
-		 */
-		private _onClicTurnTable(): void {
-			UICenter.instance.openUI(commonUI.TurnTable)
-		}
+		
 
 		/**
 		 * 释放

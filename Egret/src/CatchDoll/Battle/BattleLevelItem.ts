@@ -62,6 +62,7 @@ module catchDoll {
 		private _onEnterLevel(): void {
 			UICenter.instance.openUI(commonUI.BattleScene, this.levelData);
 			SimpleUICenter.instance.closeUI(SIMPLE_UI.BattleSelect);
+			UICenter.instance.closeUI(commonUI.WorldMap);
 		}
 
 		public setData(levelData: {
