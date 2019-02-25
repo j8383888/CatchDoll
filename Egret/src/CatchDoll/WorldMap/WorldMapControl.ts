@@ -20,13 +20,6 @@ module catchDoll {
 		}
 
 		/**
-		 * 点击选择关卡按钮
-		 */
-		private _onClickLevelBtn(): void {
-			UICenter.instance.openUI(commonUI.BattleEnterPanel);
-		}
-
-		/**
 		 * 显示时
 		 */
 		public onShow(): void {
