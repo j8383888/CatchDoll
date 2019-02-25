@@ -147,14 +147,14 @@ module catchDoll {
 		 *  心跳检测
 		 */
 		private _heartCheck(): void {
-			Laya.timer.loop(1000 * 10, this, this._sendHeartMsg);
+			Laya.timer.loop(1000 * 60, this, this._sendHeartMsg);
 		}
 		/**
 		 *  发送心跳消息
 		 */
 		private _sendHeartMsg(): void {
 			this._curHeartCount++;
-			Laya.timer.once(3000, this, this._showLoading, [true])
+			Laya.timer.once(1000 * 90, this, this._showLoading, [true])
 
 			if (this._curHeartCount >= this.MAX_COUNT) {
 				ConfirmUtil.showPanel("网络连接失败，请检查网络",Handler.create(window.location, window.location.reload, null, true))

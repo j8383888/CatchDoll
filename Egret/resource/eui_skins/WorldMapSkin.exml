@@ -37,11 +37,11 @@
 			<e:Image x="21.08" y="21.07" source="functionUI_14" scaleX="1" scaleY="1"/>
 			<e:Image x="17.85" y="57.59" source="otherRes1_10"/>
 		</e:Group>
-		<e:Group id="_inventBtn" scaleX="1" scaleY="1" y="675.14" x="574" visible="false">
+		<e:Group id="_inventBtn" scaleX="1" scaleY="1" y="675.14" x="574">
 			<e:Image x="5.530000000000086" y="-12.970000000000027" source="functionUI_18" scaleX="1" scaleY="1"/>
 			<e:Image x="22.2" y="0" source="functionUI_17"/>
 		</e:Group>
-		<e:Group id="_shopBtn" scaleX="1" scaleY="1" y="796.22" x="578" visible="false">
+		<e:Group id="_shopBtn" scaleX="1" scaleY="1" y="796.22" x="578">
 			<e:Image x="0" y="0" source="functionUI_18" scaleX="1" scaleY="1"/>
 			<e:Image x="6.65" y="6.65" source="functionUI_22"/>
 		</e:Group>
