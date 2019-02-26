@@ -67,6 +67,7 @@ class MainEditor extends eui.Component {
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_END, this._onEnd, this);
 		this.clearBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClear, this);
 		this.uploadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onUpload, this);
+	
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
 		this._loadColliderData();

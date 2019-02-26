@@ -250,19 +250,13 @@ class MapEditor extends eui.Component {
 		this.stopClick.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
 			SystemTipsUtil.showTips("正在播放动画！禁止操作！(不然容易报错)", ColorUtil.COLOR_RED)
 		}, null)
-
 		this.lookPathBtn.selected = this.lookGoodsBtn.selected = true;
 		let len2 = this.bgGroup.numChildren;
 		for (let i: number = 0; i < len2; i++) {
 			let item = this.bgGroup.getElementAt(i);
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
-
-
 	}
-
-
-
 
 
 	private _onExportData(): void {
@@ -279,8 +273,8 @@ class MapEditor extends eui.Component {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		// request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
-		request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
+		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		// request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 		let data = JSON.stringify(this.chapterData)
@@ -443,8 +437,8 @@ class MapEditor extends eui.Component {
 	private _getServeInfo(): void {
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		// request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
-		request.open("http://127.0.0.1:8080/", egret.HttpMethod.GET);
+		request.open("http://129.28.87.105:8080/", egret.HttpMethod.GET);
+		// request.open("http://127.0.0.1:8080/", egret.HttpMethod.GET);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -566,8 +560,8 @@ class MapEditor extends eui.Component {
 
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
-		// request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
-		request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
+		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
+		// request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// request.setRequestHeader('Access-Control-Allow-Origin', '*')
 		// request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
