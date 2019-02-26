@@ -5,11 +5,11 @@
 	<e:Group id="monsterShowBox" width="200" height="200" x="0" y="0"/>
 	<e:Group id="monsterColliderBox" width="200" height="200"/>
 	<e:Button id="clearBtn" label="清空当前宠物所有碰撞体" x="1000" y="903.49"/>
-	<e:Button id="uploadBtn" label="上传" x="1000" y="722.65"/>
-	<e:Scroller width="400" height="704.91" x="1000" y="2" anchorOffsetY="0">
+	<e:Button id="uploadBtn" label="上传" x="1000" y="780.21"/>
+	<e:Scroller width="400" height="704.91" x="1000" y="0" anchorOffsetY="0">
 		<e:Group id="monsterBox" anchorOffsetY="0" height="706.24">
 			<e:layout>
-				<e:TileLayout requestedColumnCount="2" horizontalAlign="center" horizontalGap="0" verticalGap="0" verticalAlign="middle"/>
+				<e:TileLayout horizontalAlign="center" verticalGap="0" verticalAlign="middle" requestedColumnCount="3" horizontalGap="8"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>

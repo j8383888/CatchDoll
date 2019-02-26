@@ -32,6 +32,10 @@ module table {
 		 * 碰撞体
 		 */
 		colliderAry: MonsterTable.ColliderAryItem[];
+		/**
+		 * 等级
+		 */
+		level: number;
 
 		GetType(): string { return 'table.MonsterTable'; }
 	}

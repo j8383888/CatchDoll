@@ -67,7 +67,7 @@ class MainEditor extends eui.Component {
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_END, this._onEnd, this);
 		this.clearBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClear, this);
 		this.uploadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onUpload, this);
-	
+
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
 		this._loadColliderData();
@@ -121,7 +121,16 @@ class MainEditor extends eui.Component {
 			SystemTipsUtil.showTips("暂无数据");
 			return;
 		}
-		this.colliderMap = JSON.parse(data);
+		let serveData = JSON.parse(data);
+		for (let item of serveData) {
+			for (let item2 of this.colliderMap) {
+				if (item.id == item2.id) {
+					item2.colliderAry = item.colliderAry
+					break;
+				}
+			}
+		}
+
 		for (let item of this.colliderMap) {
 			for (let monster of this.monsterBtns) {
 				if (item.id == monster.id) {
@@ -268,10 +277,10 @@ class MainEditor extends eui.Component {
 	 * 创建怪物
 	 */
 	private _creatMonster(): void {
-		for (let i: number = 0; i < 2; i++) {
+		for (let i: number = 0; i < 3; i++) {
 			let blank = new eui.Group();
 			blank.width = 100
-			blank.height = 100;
+			blank.height = 50;
 			this.monsterBox.addChild(blank);
 		}
 

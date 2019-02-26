@@ -26,6 +26,8 @@ module catchDoll {
 		 */
 		private _sceneImgs: eui.Image[] = [];
 
+		private _catchMonster: Monster = null;
+
 		private curLevelData: {
 			level: number,
 			bgSource: string,
@@ -139,6 +141,7 @@ module catchDoll {
 							if (Collider.isIntersect(pawCollider, monsterCollider)) {
 								this.isCheck = false;
 								monster.isSpasticity = true;
+								this._catchMonster = monster;
 								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
 								egret.Tween.removeTweens(paw.pawsSkinBox.pawsHead);
 
@@ -192,7 +195,7 @@ module catchDoll {
 			}
 		}
 
-		
+
 
 
 
@@ -300,6 +303,12 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
+			if (this._catchMonster) {
+				egret.Tween.removeTweens(this._catchMonster.haemalStrand)
+			}
+			Master.instance.MasterPaws.isDown = false;
+			egret.Tween.removeTweens(Master.instance.MasterPaws.pawsSkinBox.pawsHead)
+
 			let len: number = LevelCreate.inSenceMonsterMap.length;
 			let map: Dictionary = LevelCreate.inSenceMonsterMap.copy();
 			for (let i: number = 0; i < len; i++) {
