@@ -42,13 +42,14 @@ module catchDoll {
 		 */
 		public haemalGroup: egret.DisplayObjectContainer;
 		/**
-		 * 源缩放
+		 * 僵直
 		 */
-		public originScale: number = 1
+		public isSpasticity: boolean = false;
 
 		public constructor() {
 			super();
 		}
+
 
 
 
@@ -78,8 +79,6 @@ module catchDoll {
 			this.addChild(this.haemalGroup)
 			this.haemalGroup.addChild(this.haemalStrand);
 			this.haemalGroup.addChild(this.haemalStrandFrame);
-			/*暂时屏蔽*/
-			this.haemalGroup.visible = false;
 		}
 
 		/**
@@ -88,11 +87,12 @@ module catchDoll {
 		public initialize(): void {
 			this.x = -1000;
 			this.y = -1000;
+			this.isSpasticity = false;
 			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView)
 			view.monsterBox.addChild(this);
 
 			if (this._dragonBones) {
-				this._dragonBones.animation.play("Walk", 0);
+				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}
 			this.life = this.maxLife;
 			this.haemalStrand.width = this.haemalStrandWidth;

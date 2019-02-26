@@ -31,7 +31,17 @@ module catchDoll {
 				collider.setParent(this.pawsSkinBox.pawsHead);
 				this.colliderAry.push(collider);
 			}
+		}
 
+		public noCatchAction(): void {
+			egret.Tween.get(this.pawsSkinBox.pawsHead, {
+				onChange: () => {
+					this.confirmRopeHeight();
+				}
+			}
+			).wait(300).to({ y: this.pawsSkinBox.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
+				this.isDown = false;
+			})
 		}
 
 
@@ -40,11 +50,8 @@ module catchDoll {
 		 * 只初始化一次（在loadConfigData之后调用）
 		 */
 		public initOther(): void {
-
 			this.confirmRopeHeight();
 			this.addChild(this.pawsSkinBox);
-
-
 		}
 
 		/**

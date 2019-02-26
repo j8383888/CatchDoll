@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bgSource" x="0" source="scene2_png"/>
+	<e:Image id="bgSource" x="0" source="scene2_png" visible="false"/>
+	<e:Rect width="720" height="1280" y="0" fillColor="0x605252"/>
 	<e:Group id="battleSceneBox" width="200" height="200">
 
 		<e:Group id="sceneImgBox" width="200" height="200" touchChildren="false" touchEnabled="false"/>
@@ -15,7 +16,7 @@
 
 
 
-	<e:Image x="0" y="200" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17" width="1920"/>
+	<e:Image x="0" y="200" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17" width="720"/>
 
 
 

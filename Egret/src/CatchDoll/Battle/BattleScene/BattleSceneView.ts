@@ -69,7 +69,6 @@ module catchDoll {
 			// this.curtainEffR.gotoAndPlay(1, 1);
 			// this.curtainEffR.scaleX = this.curtainEffR.scaleY = 1.2
 			// this.addChild(this.curtainEffR);
-
 		}
 
 		/**

@@ -9,18 +9,6 @@ module catchDoll {
 		 */
 		public itemGroup: eui.Group;
 		/**
-		 * 切换按钮组
-		 */
-		private _toggleButtonGroup: ToggleButtonGroup = new ToggleButtonGroup();
-		/**
-		 * 选中背景
-		 */
-		private readonly SELECT_BG_SOURCE: string = "settlePanel_13";
-		/**
-		 * 未选中背景
-		 */
-		private readonly UN_SELECT_BG_SOURCE: string = "settlePanel_14";
-		/**
 		 * 下拉容器
 		 */
 		private _pullDownBox: eui.Group;
@@ -38,23 +26,6 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
-			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
-			toggle1.selectHandler = Handler.create(null, () => {
-				this._getSwitchBtnBG(toggle1).source = this.SELECT_BG_SOURCE;
-			})
-			toggle1.cancelHanlder = Handler.create(null, () => {
-				this._getSwitchBtnBG(toggle1).source = this.UN_SELECT_BG_SOURCE;
-			})
-			toggle2.selectHandler = Handler.create(null, () => {
-				this._getSwitchBtnBG(toggle2).source = this.SELECT_BG_SOURCE;
-			})
-			toggle2.cancelHanlder = Handler.create(null, () => {
-				this._getSwitchBtnBG(toggle2).source = this.UN_SELECT_BG_SOURCE;
-			})
-
-			this._toggleButtonGroup.push(toggle1);
-			this._toggleButtonGroup.push(toggle2);
 
 		}
 

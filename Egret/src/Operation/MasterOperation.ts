@@ -38,40 +38,22 @@ module catchDoll {
 			}
 			this._gameObj.isDown = true;
 			LevelCreate.instance.isCheck = true;
-			// Laya.timer.once(600, null, () => {
-			// 	this._gameObj.downEff.gotoAndPlay(1, 1);
-			// 	this._gameObj.downEff.once(egret.MovieClipEvent.COMPLETE, () => {
-			// 		this._gameObj.downEff.gotoAndStop(1);
-			// 	}, null)
-			// })
+
 			egret.Tween.get(this._gameObj.pawsSkinBox.pawsHead, {
 				onChange: () => {
 					this._gameObj.confirmRopeHeight();
 				}
-			}).wait(100).to({ y: 660 }, 500, egret.Ease.quadIn).call(() => {
+			}).wait(400).to({ y: 650 }, 500, egret.Ease.quadIn).call(() => {
 				LevelCreate.instance.isCheck = false;
-				this._noCatchAction();
+				this._gameObj.noCatchAction();
 			});
 		}
-
-		private _noCatchAction(): void {
-			egret.Tween.get(this._gameObj.pawsSkinBox.pawsHead, {
-				onChange: () => {
-					this._gameObj.confirmRopeHeight();
-				}
-			}
-			).wait(300).to({ y: this._gameObj.pawsSkinBox.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
-				this._gameObj.isDown = false;
-			})
-		}
-
 
 
 		/**
          * 反注册
          */
 		public unregister(): void {
-			// Laya.timer.clear(this, this._addMonster)
 			this._sceneBox.x = 0;
 			this._sceneBox = null;
 
@@ -91,7 +73,7 @@ module catchDoll {
 			}
 			// let value = 720 / 2
 
-			let moveSpeed: number = 2.5;
+			let moveSpeed: number = 4;
 			if (this._isLeft) {
 				if (this._gameObj.x - moveSpeed > 10) {
 					this._gameObj.x -= moveSpeed

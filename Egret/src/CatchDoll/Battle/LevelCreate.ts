@@ -138,27 +138,52 @@ module catchDoll {
 							let monsterCollider = monsterColliderAry[j];
 							if (Collider.isIntersect(pawCollider, monsterCollider)) {
 								this.isCheck = false;
-								monster.unregisterOperation();
+								monster.isSpasticity = true;
 								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
-								monster.x = paw.x;
-								monster.y = paw.pawsSkinBox.pawsHead.y + 300
-
 								egret.Tween.removeTweens(paw.pawsSkinBox.pawsHead);
-								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-								egret.Tween.get(paw.pawsSkinBox.pawsHead, {
-									onChange: () => {
-										paw.confirmRopeHeight();
-										if (monster) {
-											monster.x = paw.x;
-											monster.y = paw.pawsSkinBox.pawsHead.y + 300;
-										}
-									},
-									onChangeObj: this,
-								}).wait(300).to({ y: paw.pawsSkinBox.pawsHeadStartPosY }, time, egret.Ease.getBackOut(1.3)).call(() => {
-									GameObjectFactory.instance.recoverGameObject(monster);
-									paw.isDown = false;
-								})
 
+								/*血条缩短*/
+								let targetWidth: number = 0;
+								monster.life -= paw.pawsSkinBox.hurt;
+								if (monster.life <= 0) {
+									monster.life = 0;
+									targetWidth = 0;
+									monster.x = paw.x;
+									monster.y = paw.pawsSkinBox.pawsHead.y + 300
+									monster.unregisterOperation();
+								}
+								else {
+									targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
+								}
+								egret.Tween.get(monster.haemalStrand).to({ width: targetWidth }, 300, egret.Ease.quadIn).call(() => {
+									monster.isSpasticity = false;
+									/**
+									 * 抓住
+									 */
+									if (targetWidth == 0) {
+										let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+										egret.Tween.get(paw.pawsSkinBox.pawsHead, {
+											onChange: () => {
+												paw.confirmRopeHeight();
+												if (monster) {
+													monster.x = paw.x;
+													monster.y = paw.pawsSkinBox.pawsHead.y + 300;
+												}
+											},
+											onChangeObj: this,
+										}).wait(300).to({ y: paw.pawsSkinBox.pawsHeadStartPosY }, time).call(() => {
+											GameObjectFactory.instance.recoverGameObject(monster);
+											paw.isDown = false;
+										})
+									}
+									/**
+									 * 没抓住
+									 */
+									else {
+										monster.dragonBones.animation.play("Walk", 0);
+										paw.noCatchAction()
+									}
+								})
 								return;
 							}
 						}
@@ -166,6 +191,8 @@ module catchDoll {
 				}
 			}
 		}
+
+		
 
 
 

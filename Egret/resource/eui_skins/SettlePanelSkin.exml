@@ -38,13 +38,7 @@
 	</e:Group>
 	<e:Group id="_pullDownBox" x="21.05" y="759.6">
 		<e:Image x="0" y="0" fillMode="scale" source="settlePanel_12"/>
-		<e:Group id="switchBtn1" x="19.68" y="11.9">
-			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_13"/>
-			<e:Image fillMode="scale" source="settlePanel_7" x="12.52" y="7"/>
-		</e:Group>
-		<e:Group id="switchBtn2" x="184.18" y="11.9">
-			<e:Image fillMode="scale" x="12.52" y="7" source="settlePanel_16"/>
-			<e:Image x="0" y="0" fillMode="scale" source="settlePanel_14"/>
-		</e:Group>
+
+
 	</e:Group>
 </e:Skin>

@@ -39,15 +39,14 @@ module catchDoll {
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Monster;
 
-
 			this.startTime = egret.getTimer();
 			let monsterVars = gameObj.varsData as IMonsterVars
 			this.fixedRotation = monsterVars.fixedRotation
 			this.pathNodes = monsterVars.exportData;
 			this.curPathNode = this.pathNodes[0];
 			this.nextPathNode = this.pathNodes[1];
-			if(this.pathNodes.length == 0){
-				console.assert(false,"逻辑有误")
+			if (this.pathNodes.length == 0) {
+				console.assert(false, "逻辑有误")
 			}
 		}
 
@@ -66,26 +65,24 @@ module catchDoll {
 		public enterFrame(): void {
 			let time = egret.getTimer();
 			let runTime = (time - this.startTime) / 1000;
-			let curMoveDistance = runTime * 200
+			let curMoveDistance = runTime * 300
 			let lastPath = this.pathNodes[this.pathNodes.length - 1]
 			let total = lastPath.distTotal
 			let monster = this._gameObj as Monster;
 
-			let transform = monster.dragonBones.armature.getBone("centre").global
-
-			// monster.colliderShape.x = transform.x;
-			// monster.colliderShape.y = transform.y;
-
 			if (curMoveDistance >= total) {
-
 				this.pathNodeIndex = 0;
 				this.curPathNode = this.pathNodes[0];
 				this.nextPathNode = this.pathNodes[1];
 				this.startTime = egret.getTimer();
 				// GameObjectFactory.instance.recoverGameObject(monster);
 				return;
-
 			}
+			let transform = monster.dragonBones.armature.getBone("centre").global
+
+			monster.haemalGroup.x = transform.x;
+			monster.haemalGroup.y = transform.y;
+
 
 			if (curMoveDistance > this.nextPathNode.distTotal) {
 				let len = this.pathNodes.length;
