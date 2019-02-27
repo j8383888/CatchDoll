@@ -121,7 +121,7 @@ class MapEditor extends eui.Component {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -188,7 +188,7 @@ class MapEditor extends eui.Component {
 			dragon.touchEnabled = true;
 			let group = new eui.Group();
 			group.width = this.monsterBox.width;
-			group.height = dragon.height + 15;
+			group.height = dragon.height + 20;
 
 			dragon.animation.play(null, 0)
 			dragon.x = group.width / 2

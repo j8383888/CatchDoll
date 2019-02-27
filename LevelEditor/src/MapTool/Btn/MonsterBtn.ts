@@ -18,7 +18,7 @@ class MonsterBtn extends eui.Component {
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
 		}[],
-		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	};
 
 
@@ -26,8 +26,8 @@ class MonsterBtn extends eui.Component {
 	public runDragonBones: dragonBones.EgretArmatureDisplay;
 
 
-	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
-	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
+	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 	public pathNodeIndex = 0;
 
 	public constructor(data: {
@@ -41,7 +41,7 @@ class MonsterBtn extends eui.Component {
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
 		}[],
-		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	}, levelBtn: LevelBtn) {
 		super();
 		this.skinName = "MonsterBtnSkin"

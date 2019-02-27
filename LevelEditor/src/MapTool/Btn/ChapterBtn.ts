@@ -22,9 +22,9 @@ class ChapterBtn extends eui.Component {
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
 				}[],
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[]
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX }[]
 			}[],
-			mapData: { source, x, y, width,height }[],
+			mapData: { source, x, y, width, height }[],
 		}[]
 	}
 

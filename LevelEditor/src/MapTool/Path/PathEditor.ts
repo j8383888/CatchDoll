@@ -147,10 +147,10 @@ class PathEditor {
 		let distTotal = 0;
 		let distTotalParse = 0;
 		let isMirror: boolean = monsterBtn.data.pathMirror;
-		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number }[] = []
+		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = []
 
 		for (let i: number = 0; i < len; i++) {
-			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
+			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
 			let pathNode = data[i];
 			distTotalParse = Number(distTotal.toFixed(2));
 			if (i == len - 1) {
@@ -158,7 +158,7 @@ class PathEditor {
 
 				}
 				else {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 }
 					result.push(item);
 				}
 			}
@@ -172,7 +172,7 @@ class PathEditor {
 				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
-				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse }
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 }
 				result.push(item);
 				distTotal += distNext;
 			}
@@ -181,11 +181,11 @@ class PathEditor {
 		if (isMirror) {
 			data = data.reverse();
 			for (let i: number = 0; i < len; i++) {
-				let item: { x: number, y: number, angle: number, distNext: number, distTotal: number }
+				let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
 				let pathNode = data[i];
 				distTotalParse = Number(distTotal.toFixed(2));
 				if (i == len - 1) {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: -1 }
 					result.push(item);
 				}
 				else {
@@ -197,7 +197,7 @@ class PathEditor {
 					let nextPathNode = data[i + 1];
 					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
-					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse }
+					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: -1 }
 					result.push(item);
 					distTotal += distNext;
 				}

@@ -47,6 +47,7 @@ class Globe extends egret.DisplayObject {
 			let total = lastPath.distTotal
 			let monster = monsterBtn.runDragonBones;
 
+
 			let transform = monster.armature.getBone("centre").global
 
 			monsterBtn.colliderShape.x = transform.x;
@@ -85,7 +86,9 @@ class Globe extends egret.DisplayObject {
 
 			monster.x = (curPath.x + offsetx);
 			monster.y = (curPath.y + offsety)
-
+			if (monster.scaleX) {
+				monster.scaleX = curPath.scaleX;
+			}
 			if (monsterBtn.data.fixedRotation == -1) {
 				let angle = curPath.angle - 90;
 				let rotation = monster.rotation;
