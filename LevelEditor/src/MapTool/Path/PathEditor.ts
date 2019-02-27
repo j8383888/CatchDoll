@@ -54,6 +54,9 @@ class PathEditor {
 				item.ctrl2Shape.touchEnabled = true;
 			}
 		}
+		else if (e.key == 'q') {
+			GlobeConst.isEditScene = true;
+		}
 	}
 
 	private _onKeyDown(e: KeyboardEvent): void {
@@ -63,7 +66,7 @@ class PathEditor {
 				item.ctrl2Shape.touchEnabled = false;
 			}
 		}
-		else if (e.key == 's') {
+		else if (e.key == 'z') {
 			if (MapEditor.instance.editorPathBtn.selected) {
 				if (PathEditor.instance.pathPoints.length > 1) {
 					let node = PathEditor.instance.pathPoints[0];
@@ -74,6 +77,9 @@ class PathEditor {
 		else if (e.key == 'd') {
 			MapEditor.instance.editorPathBtn.selected = !MapEditor.instance.editorPathBtn.selected;
 			PathEditor.instance._editorPath();
+		}
+		else if (e.key == 'q') {
+			GlobeConst.isEditScene = false;
 		}
 	}
 

@@ -31,7 +31,7 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 	}
 
 	private _onGoodsTouch(e: egret.TouchEvent): void {
-		if (MapEditor.instance.isDel) {
+		if (MapEditor.instance.delSenceImgBtn.selected) {
 			let target = this
 			MapEditor.instance.sceneCanvas.removeChild(target);
 			MapEditor.instance.curMapGoods.remove(target)

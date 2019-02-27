@@ -3,10 +3,9 @@ class MapEditor extends eui.Component {
 	public saveSceneBtn: eui.Button;
 	public addBtn: eui.Button;
 	public removeLevel: eui.Button;
-	public removeDecorate: eui.Button;
 	public clearScene: eui.Button;
 
-	public itemGroup: eui.Group;
+	public sceneItemGroup: eui.Group;
 
 	public levelGroup: eui.Group;
 
@@ -53,7 +52,7 @@ class MapEditor extends eui.Component {
 
 	public chapterMap: Dictionary = new Dictionary();
 
-	public isDel: boolean = false;
+	public delSenceImgBtn: eui.CheckBox;
 	/**
 	 * 上传
 	 */
@@ -173,6 +172,13 @@ class MapEditor extends eui.Component {
 		this.sceneGroup.addChildAt(this.gridContainer, 2);
 	}
 
+	private _creatBg(): void {
+		for (let i: number = 1; i <= 3; i++) {
+			let img = new eui.Image("BattleBg_" + i + "_png");
+			this.bgGroup.addChild(img);
+		}
+	}
+
 	/**
 	 * 创建怪物
 	 */
@@ -220,24 +226,32 @@ class MapEditor extends eui.Component {
 	}
 
 	/**
+	 * 创建Img
+	 */
+	private _creatSeneceImg(): void {
+		for (let i: number = 1; i <= 20; i++) {
+			let img = new eui.Image("BattleScene_" + i);
+			this.sceneItemGroup.addChild(img);
+			img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
+		}
+	}
+
+	/**
 	 * 初始化
 	 */
 	private _init(): void {
 		this._getServeInfo();
 		this._createGrid();
 		this._creatMonster();
+		this._creatSeneceImg();
+		this._creatBg();
 		this.showGridCbx.selected = true;
-		let len = this.itemGroup.numChildren;
-		for (let i: number = 0; i < len; i++) {
-			let item = this.itemGroup.getElementAt(i);
-			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
-		}
+
 		this.addChapter.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddChapter, this)
 		this.saveSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSaveScene, this)
 		this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAddLevel, this);
 		this.clearSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearScene, this);
 		this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
-		this.removeDecorate.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveDecorate, this)
 		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
 		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
 		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
@@ -345,11 +359,6 @@ class MapEditor extends eui.Component {
 	 */
 	private _upLoad(): void {
 		this._saveDataOnServe()
-	}
-
-	private _onRemoveDecorate(): void {
-		(this.isDel = !this.isDel) ? UIUtil.setLight(this.removeDecorate) : UIUtil.setNomarl(this.removeDecorate)
-
 	}
 
 	/**
@@ -580,24 +589,25 @@ class MapEditor extends eui.Component {
 
 
 	private _onDown(e: egret.TouchEvent): void {
-		if (this.editorPathBtn.selected) {
-			SystemTipsUtil.showTips("请先取消编辑路径勾选!", ColorUtil.COLOR_RED);
-			return;
-		}
+		if (GlobeConst.isEditScene) {
+			if (this.editorPathBtn.selected) {
+				SystemTipsUtil.showTips("请先取消编辑路径勾选!", ColorUtil.COLOR_RED);
+				return;
+			}
 
 
-		if (this.curLevel && this.curChapter) {
-			let target = e.target;
-			let img = new SceneOrnamentImg(target.source);
-			img.x = e.stageX - target.width / 2 - this.sceneGroup.x;
-			img.y = e.stageY - target.height / 2;
-			this.sceneCanvas.addChild(img);
-			this.curMapGoods.push(img);
+			if (this.curLevel && this.curChapter) {
+				let target = e.target;
+				let img = new SceneOrnamentImg(target.source);
+				img.x = e.stageX - target.width / 2 - this.sceneGroup.x;
+				img.y = e.stageY - target.height / 2;
+				this.sceneCanvas.addChild(img);
+				this.curMapGoods.push(img);
+			}
+			else {
+				SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
+			}
 		}
-		else {
-			SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
-		}
-
 	}
 
 
