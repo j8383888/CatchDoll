@@ -83,7 +83,7 @@ export class SQLServe {
         data.uid = -10000;
         data.account = "-10000";
         data.password = "-10000";
-        this.seekLogin(data)
+        SQLServe.instance.seekLogin(data)
     }
 
 

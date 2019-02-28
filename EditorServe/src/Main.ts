@@ -88,42 +88,59 @@ var server = http.createServer(function (req, res) {
         });
         req.on('end', function () {
             if (type == DATA_TYPE.COLLIDER) {
-                writeFile(colliderEditPath, body, () => {
-                    console.log("生成编辑器碰撞体数据json完毕！")
-                    res.end("success!")
-                })
+                if (isJsonString(body)) {
+                    writeFile(colliderEditPath, body, () => {
+                        console.log("生成编辑器碰撞体数据json完毕！")
+                        res.end("success!")
+                    })
 
-                let csv: string = formatResult(JSON.parse(body));
-                writeFile(colliderDataPath, csv, () => {
-                    console.log("生成游戏碰撞体数据csv完毕！")
-                    // res.end("success!")
-                })
-                body = "";
+                    let csv: string = formatResult(JSON.parse(body));
+                    writeFile(colliderDataPath, csv, () => {
+                        console.log("生成游戏碰撞体数据csv完毕！")
+                        // res.end("success!")
+                    })
+                    body = "";
+                }
             }
 
             /**
              * 关卡数据
              */
             else if (type == DATA_TYPE.LEVEL_EDIT) {
-
-                writeFile(levelEditPath, levelEdit, () => {
-                    console.log("生成编辑器关卡数据完毕！")
-                    res.end("success!")
-                })
-                levelEdit = "";
+                if (isJsonString(levelEdit)) {
+                    if (levelEdit)
+                        writeFile(levelEditPath, levelEdit, () => {
+                            console.log("生成编辑器关卡数据完毕！")
+                            res.end("success!")
+                        })
+                    levelEdit = "";
+                }
             }
 
             else if (type == DATA_TYPE.LEVEL_DATA) {
-                writeFile(levelDataPath, levelData, () => {
-                    console.log("导出游戏关卡数据完毕！")
-                    res.end("success!")
-                })
-                levelData = "";
+                if (isJsonString(levelData)) {
+                    writeFile(levelDataPath, levelData, () => {
+                        console.log("导出游戏关卡数据完毕！")
+                        res.end("success!")
+                    })
+                    levelData = "";
+                }
             }
         })
     }
 
 })
+
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) == "object") {
+            return true;
+        }
+    } catch (e) {
+    }
+    return false;
+}
+
 
 
 
