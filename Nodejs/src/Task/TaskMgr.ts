@@ -2,10 +2,7 @@
  *  任务系统管理类，任何任务有关放在这
  */
 import { Cmd } from "../../protobuf/common";
-import { Utils } from "../util/Utils";
 import { MyWebSocket } from "../WebSocket/MyWebSocket";
-import { util } from "protobufjs";
-import { JsonParse } from "../JsonParse";
 import { PlayerCenter } from "../PlayerCenter";
 export class TaskMgr {
     private static _taskMgr: TaskMgr = null;
@@ -33,8 +30,9 @@ export class TaskMgr {
             if (min == 0 && second == 0) {
                 this._pushTaskList()
             }
-
         }, 1000)
+
+        
         // console.log(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 25, date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds()), Date.now())
     };
     /**

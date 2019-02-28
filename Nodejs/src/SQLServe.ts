@@ -8,12 +8,12 @@ export class SQLServe {
 
     /* 单例 */
     private static _instance: SQLServe = null;
-    /* 链接 */
-    // private connection: Connection;
-    /*  */
+
     private _isReconnet: boolean = false;
     /* 连接池 */
     private pool: Pool;
+
+    private _connectTimer: NodeJS.Timer = null;
 
 
     constructor() {
@@ -71,7 +71,21 @@ export class SQLServe {
             debug: false,
         })
 
+        /**
+         * 保证链接活跃
+         */
+        this._connectTimer = setInterval(this._keepActive, 1000 * 60 * 60)
+        this._addCow();
     }
+
+    private _keepActive(): void {
+        let data = new Cmd.Login_C();
+        data.uid = -10000;
+        data.account = "-10000";
+        data.password = "-10000";
+        this.seekLogin(data)
+    }
+
 
     public getConnection(sql, sqlParam?, callback?) {
         //建立链接
@@ -120,10 +134,6 @@ export class SQLServe {
     private _addCow(): void {
         var sql = 'SELECT * FROM PropInfo'
         this.getConnection(sql, null, (err, result, fields) => {
-            if (err) {
-                console.log('[query] - :' + err);
-                return;
-            }
             let propIDAry: string[] = JsonParse.propDataID.slice();
 
             for (let item of fields) {
@@ -134,10 +144,7 @@ export class SQLServe {
             for (let item of propIDAry) {
                 let addSqlCow: string = "alter table PropInfo add " + item + " int(20)"
                 this.getConnection(addSqlCow, null, (err, result, fields) => {
-                    if (err) {
-                        console.log('[query] - :' + err);
-                        return;
-                    }
+                    console.log("succeess！")
                 })
             }
         })
