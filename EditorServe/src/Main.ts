@@ -99,8 +99,8 @@ var server = http.createServer(function (req, res) {
                         console.log("生成游戏碰撞体数据csv完毕！")
                         // res.end("success!")
                     })
-                    body = "";
                 }
+                body = "";
             }
 
             /**
@@ -113,8 +113,8 @@ var server = http.createServer(function (req, res) {
                             console.log("生成编辑器关卡数据完毕！")
                             res.end("success!")
                         })
-                    levelEdit = "";
                 }
+                levelEdit = "";
             }
 
             else if (type == DATA_TYPE.LEVEL_DATA) {
@@ -123,8 +123,9 @@ var server = http.createServer(function (req, res) {
                         console.log("导出游戏关卡数据完毕！")
                         res.end("success!")
                     })
-                    levelData = "";
+                   
                 }
+                levelData = "";
             }
         })
     }
