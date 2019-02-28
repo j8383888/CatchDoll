@@ -8,7 +8,7 @@ class VersionController implements RES.IVersionController {
     private versionPath = "assets/";
     // 版本控制信息的所在路径,相对于resource文件夹
     private versionConfigPath = "resource/version.json";
-    //wxgame的当前版本号
+    //当前版本号
     public static currentVersion = "1.1.1";
     // 在游戏开始加载资源的时候就会调用这个函数
     init(): Promise<any> {

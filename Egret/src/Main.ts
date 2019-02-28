@@ -84,7 +84,7 @@ class Main extends eui.UILayer {
                     await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
                 }
                 else {
-                    await RES.loadConfig("resource/default.res2.json?v=" + VersionController.currentVersion, "resource/");
+                    await RES.loadConfig("resource/default.res.json?v=" + VersionController.currentVersion, "resource/");
                 }
             }
             else {
