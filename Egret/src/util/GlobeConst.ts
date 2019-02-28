@@ -3,9 +3,6 @@
  */
 module catchDoll {
 	export class GlobeConst {
-
-		/*是否微信小游戏*/
-		public static isWXGame: boolean = false;
 		/*是否调试模式*/
 		public static isDebug: boolean = false;
 		/*地址*/

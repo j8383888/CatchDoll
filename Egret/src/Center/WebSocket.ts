@@ -179,7 +179,7 @@ module catchDoll {
 			let rawData: Uint8Array = this._readByteAry.bytes.slice(4 + nameLen, 4 + nameLen + rawDataLen);
 			let protoType: any;
 			let message: any;
-			if (GlobeConst.isWXGame) {
+			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
 				protoType = ProtoExtendtion.protoMap.get(cmdTitle);
 				message = protoType.decode(rawData)
 			}
@@ -260,7 +260,7 @@ module catchDoll {
 
 			let protoName: string = cmd["GetType"]()
 			let protoType: any;
-			if (GlobeConst.isWXGame) {
+			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
 				protoType = cmd.constructor;
 			}
 			else {

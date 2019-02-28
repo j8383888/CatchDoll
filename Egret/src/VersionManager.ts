@@ -9,7 +9,7 @@ class VersionController implements RES.IVersionController {
     // 版本控制信息的所在路径,相对于resource文件夹
     private versionConfigPath = "resource/version.json";
     //wxgame的当前版本号
-    private currentVersion = "1.0.8";
+    public static currentVersion = "1.1.1";
     // 在游戏开始加载资源的时候就会调用这个函数
     init(): Promise<any> {
         if (RELEASE) {//发布模式
@@ -49,8 +49,8 @@ class VersionController implements RES.IVersionController {
         // 简单处理，通过localStorage获取当前游戏版本号resVersion，如果版本号不同，进行删除过期资源操作
         // 这里开发者可以自己控制版本号，不一定使用localStorage
         const localVersion = egret.localStorage.getItem("resVersion");
-        if (localVersion != this.currentVersion) {
-            egret.localStorage.setItem("resVersion", this.currentVersion);
+        if (localVersion != VersionController.currentVersion) {
+            egret.localStorage.setItem("resVersion", VersionController.currentVersion);
             console.log("版本更新");
             //下面是wxgame提供的api，进行过期缓存资源的移除
             const fs = wx.getFileSystemManager();
@@ -80,8 +80,8 @@ class VersionController implements RES.IVersionController {
         // 简单处理，通过localStorage获取当前游戏版本号resVersion，如果版本号不同，进行删除过期资源操作
         // 这里开发者可以自己控制版本号，不一定使用localStorage
         const localVersion = egret.localStorage.getItem("resVersion");
-        if (localVersion != this.currentVersion) {
-            egret.localStorage.setItem("resVersion", this.currentVersion);
+        if (localVersion != VersionController.currentVersion) {
+            egret.localStorage.setItem("resVersion", VersionController.currentVersion);
             console.log("Web版本更新");
         }
     }

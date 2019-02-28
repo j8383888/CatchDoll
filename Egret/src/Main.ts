@@ -35,10 +35,10 @@ class Main extends eui.UILayer {
 
     protected createChildren(): void {
         egret.ImageLoader.crossOrigin = "anonymous";
-        if(catchDoll.GlobeConst.isWXGame){
+        if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
             egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH
         }
-        else{
+        else {
             egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.SHOW_ALL
         }
         super.createChildren();
@@ -79,12 +79,18 @@ class Main extends eui.UILayer {
         try {
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            if (catchDoll.GlobeConst.isWXGame) {
-                await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
+            if (RELEASE) {
+                if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+                    await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
+                }
+                else {
+                    await RES.loadConfig("resource/default.res2.json?v=" + VersionController.currentVersion, "resource/");
+                }
             }
             else {
-                await RES.loadConfig("resource/default.res.json", "resource/");
+                await RES.loadConfig("resource/default.res.json?v=" + VersionController.currentVersion, "resource/");
             }
+
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
@@ -99,11 +105,17 @@ class Main extends eui.UILayer {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme;
-            if (catchDoll.GlobeConst.isWXGame) {
-                theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
+            if (RELEASE) {
+                if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+                    theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
+                }
+                else {
+                    theme = new eui.Theme("resource/default.thm2.json?v=" + VersionController.currentVersion, this.stage);
+
+                }
             }
             else {
-                theme = new eui.Theme("resource/default.thm.json", this.stage);
+                theme = new eui.Theme("resource/default.thm.json?v=" + VersionController.currentVersion, this.stage);
             }
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
