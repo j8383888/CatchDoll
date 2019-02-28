@@ -82,7 +82,7 @@ class LevelBtn extends eui.Component {
 		if (MapEditor.instance.curLevel) {
 			MapEditor.instance.curLevel.onSelect(false)
 		}
-		// MapEditor.instance.levelBg.source = this.data.bgSource;
+		MapEditor.instance.levelBg.source = this.data.bgSource;
 		MapEditor.instance.curLevel = e.currentTarget;
 		/**
 		 * 记录
