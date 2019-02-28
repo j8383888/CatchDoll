@@ -19,7 +19,10 @@ export class ResPlugin implements plugins.Command {
         if (file.extname === ".json") {
             file.contents = new Buffer(JSON.stringify(JSON.parse(file.contents.toString())));
         }
+
         var path = file.origin;
+
+
         //对resource/assets下面的资源进行版本控制
         if (path.indexOf(this.versionPath) != -1 && (file.extname === ".mp3" || file.extname === ".fnt" || file.extname === ".json" || file.extname === ".png" || file.extname === ".jpg" || file.extname === ".dbbin" || file.extname === ".proto")) {
             path = path.replace(this.versionPath, "");
@@ -27,6 +30,11 @@ export class ResPlugin implements plugins.Command {
             // 原始的文件夹+crc32码+后缀扩展名
             file.path = this.versionPath + this.versionConfig[path] + file.extname;
         }
+        // else if (path.indexOf("resource/default.res.json") != -1) {
+        //     this.versionConfig[path] = crc32(file.contents.toString());
+        //     // 原始的文件夹+crc32码+后缀扩展名
+        //     file.path = "resource/" + this.versionConfig[path] + file.extname;
+        // }
         return file;
     }
 
