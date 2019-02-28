@@ -48,7 +48,7 @@ module catchDoll {
 					monsterID: number,
 					fixedRotation: number,
 					pathMirror: boolean,
-					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
 					pathData: {
 						origin: { x, y },
 						ctrlP1: { x, y },

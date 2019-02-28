@@ -12,16 +12,16 @@ module catchDoll {
 		/**
 		 * 路径节点序列
 		 */
-		public pathNodes: { x: number, y: number, angle: number, distNext: number, distTotal: number }[];
+		public pathNodes: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[];
 
 		/**
 		 * 当前路径节点
 		 */
-		public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+		public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 		/**
 		 * 下一个路径节点
 		 */
-		public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number };
+		public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 		/**
 		 * 当前路径节点索引
 		 */
@@ -65,10 +65,11 @@ module catchDoll {
 		public enterFrame(): void {
 			let time = egret.getTimer();
 			let runTime = (time - this.startTime) / 1000;
-			let curMoveDistance = runTime * 300
+			let monster = this._gameObj as Monster;
+			let curMoveDistance = runTime * monster.speed * 100
 			let lastPath = this.pathNodes[this.pathNodes.length - 1]
 			let total = lastPath.distTotal
-			let monster = this._gameObj as Monster;
+			
 
 			if (curMoveDistance >= total) {
 				this.pathNodeIndex = 0;
@@ -108,8 +109,8 @@ module catchDoll {
 			let offsety = offsetDist / distNext * (nextPath.y - curPath.y);
 
 			monster.x = (curPath.x + offsetx);
-			monster.y = (curPath.y + offsety)
-
+			monster.y = (curPath.y + offsety);
+			monster.dragonBones.scaleX = curPath.scaleX;
 			/**
 			 * 未锁定角度
 			 */

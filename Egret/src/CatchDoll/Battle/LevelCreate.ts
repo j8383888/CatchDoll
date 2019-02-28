@@ -35,7 +35,7 @@ module catchDoll {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			}[],
 			mapData: { source, x, y, width, height }[],
 		};
@@ -55,7 +55,7 @@ module catchDoll {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number }[],
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			}[],
 			mapData: { source, x, y, width, height }[],
 		}): void {
@@ -143,6 +143,9 @@ module catchDoll {
 								monster.isSpasticity = true;
 								this._catchMonster = monster;
 								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
+								let transform = monster.dragonBones.armature.getBone("centre").global
+								monster.haemalGroup.x = transform.x;
+								monster.haemalGroup.y = transform.y;
 								egret.Tween.removeTweens(paw.pawsSkinBox.pawsHead);
 
 								/*血条缩短*/
@@ -320,6 +323,7 @@ module catchDoll {
 				Master.instance.MasterPaws = null;
 			}
 			this._recoveSceneImg();
+			Laya.timer.clear(this, this._checkHit)
 
 
 			this.curLevelData = null;

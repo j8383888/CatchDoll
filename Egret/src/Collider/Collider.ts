@@ -57,7 +57,7 @@ module catchDoll {
 			this.posX = x;
 			this.posY = y;
 			if (this.isShow) {
-				this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.3)
+				this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.2)
 				this.graphics.drawCircle(0, 0, radius);
 				this.graphics.endFill();
 			}

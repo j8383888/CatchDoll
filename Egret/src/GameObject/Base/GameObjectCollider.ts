@@ -32,14 +32,13 @@ module catchDoll {
 			}
 		}
 
-
 		/**
 		 * 反初始化
 		 */
 		public uninitialize(): void {
 			this.isCollided = false;
 
-			
+
 			super.uninitialize();
 		}
 
