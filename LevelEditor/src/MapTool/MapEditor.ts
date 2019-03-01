@@ -39,7 +39,7 @@ class MapEditor extends eui.Component {
 	 */
 	public lastChapterID: number = -1;
 	/**
-	 * 上一次点击章节ID
+	 * 上一次点击章节
 	 */
 	public lastChapter: ChapterBtn;
 
@@ -105,9 +105,14 @@ class MapEditor extends eui.Component {
 	public stopClick: eui.Rect;
 
 	public pathMirror: eui.CheckBox;
+	public monsterMirror: eui.CheckBox;
+	public pathSetBox: eui.Group;
 
 	public fixedRotation: eui.CheckBox;
-
+	/**
+	 * 当前关卡演示
+	 */
+	public levelTestBtn: eui.Button;
 	public exportDataBtn: eui.Button;
 
 	public chapterData: {
@@ -120,6 +125,7 @@ class MapEditor extends eui.Component {
 				monsterID: number,
 				fixedRotation: number,
 				pathMirror: boolean,
+				monsterMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
 				pathData: {
 					origin: { x, y },
@@ -169,7 +175,7 @@ class MapEditor extends eui.Component {
 			shp.graphics.lineTo(this.mainViewWidth, i);
 		}
 		this.gridContainer.alpha = 0.5;
-		this.sceneGroup.addChildAt(this.gridContainer, 2);
+		this.sceneGroup.addChildAt(this.gridContainer, 3);
 	}
 
 	private _creatBg(): void {
@@ -212,6 +218,7 @@ class MapEditor extends eui.Component {
 			let data = {
 				monsterID: id,
 				pathMirror: true,
+				monsterMirror: false,
 				fixedRotation: 0,
 				pathData: [],
 				exportData: []
@@ -229,8 +236,10 @@ class MapEditor extends eui.Component {
 	 * 创建Img
 	 */
 	private _creatSeneceImg(): void {
-		for (let i: number = 1; i <= 20; i++) {
-			let img = new eui.Image("BattleScene_" + i);
+		let scenejson: egret.SpriteSheet = RES.getRes("BattleScene_json");
+		let textureMap: egret.MapLike<egret.Texture> = scenejson._textureMap
+		for (let item in textureMap) {
+			let img = new eui.Image(item);
 			this.sceneItemGroup.addChild(img);
 			img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
 		}
@@ -279,7 +288,9 @@ class MapEditor extends eui.Component {
 			for (let subItem of item.levelData) {
 				for (let subItem2 of item.levelData) {
 					for (let subItem3 of subItem2.monster) {
-						delete subItem3.pathData
+						delete subItem3.pathData;
+						delete subItem3.monsterMirror;
+						delete subItem3.pathMirror;
 					}
 				}
 			}
@@ -486,7 +497,7 @@ class MapEditor extends eui.Component {
 		if (this.curChapter) {
 			this.curChapter.onSelect(false)
 		}
-		this.fixedRotation.visible = this.pathMirror.visible = false;
+		this.pathSetBox.visible = false;
 		this.curChapter = e.currentTarget;
 		this.curChapter.onClick();
 		this.curChapter.onSelect(true);

@@ -14,6 +14,7 @@ class LevelBtn extends eui.Component {
 		monster: {
 			monsterID: number,
 			pathMirror: boolean,
+			monsterMirror: boolean,
 			fixedRotation: number,
 			pathData: {
 				origin: { x, y },
@@ -42,6 +43,7 @@ class LevelBtn extends eui.Component {
 			monsterID: number,
 			pathMirror: boolean,
 			fixedRotation: number,
+			monsterMirror: boolean,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -70,7 +72,7 @@ class LevelBtn extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 		MapEditor.instance.curMonsterBtn = null;
-		MapEditor.instance.fixedRotation.visible = MapEditor.instance.pathMirror.visible = false;
+		MapEditor.instance.pathSetBox.visible = false;
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();

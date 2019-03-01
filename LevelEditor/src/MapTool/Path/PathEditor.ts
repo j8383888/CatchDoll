@@ -41,10 +41,35 @@ class PathEditor {
 		let pathEditArea = this._mapEditor.pathEditArea;
 		pathEditArea.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
 		this._mapEditor.aniTestBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAnimtionTest, this)
-
+		this._mapEditor.levelTestBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLevelTest, this)
 		this._editorPath();
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
+	}
+
+	/**
+	 * level演示
+	 */
+	private _onLevelTest(): void {
+		if (this._mapEditor.curChapter && this._mapEditor.curLevel) {
+			let len = MapEditor.instance.monsterShowBox.numChildren
+			for (let i: number = 0; i < len; i++) {
+				let monsterBtn: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
+				let exportData = monsterBtn.data.exportData;
+				if (exportData.length == 0) {
+					SystemTipsUtil.showTips("有怪物无路径数据 请检查", ColorUtil.COLOR_RED)
+					return;
+				}
+			}
+			for (let i: number = 0; i < len; i++) {
+				let monsterBtn: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
+				Globe.instance.start(monsterBtn);
+			}
+
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节！", ColorUtil.COLOR_RED)
+		}
 	}
 
 	private _onKeyUp(e: KeyboardEvent): void {
@@ -80,6 +105,9 @@ class PathEditor {
 		}
 		else if (e.key == 'q') {
 			GlobeConst.isEditScene = false;
+		}
+		else if (e.key == 's') {
+			MapEditor.instance.delSenceImgBtn.selected = !MapEditor.instance.delSenceImgBtn.selected;
 		}
 	}
 
@@ -153,8 +181,16 @@ class PathEditor {
 		let distTotal = 0;
 		let distTotalParse = 0;
 		let isMirror: boolean = monsterBtn.data.pathMirror;
+		let isMonsterMirror = monsterBtn.data.monsterMirror;
 		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = []
 
+		let monsterMirrorOdds: number = 1
+		if (isMonsterMirror) {
+			monsterMirrorOdds = -1
+		}
+		else {
+			monsterMirrorOdds = 1
+		}
 		for (let i: number = 0; i < len; i++) {
 			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
 			let pathNode = data[i];
@@ -164,7 +200,7 @@ class PathEditor {
 
 				}
 				else {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 * monsterMirrorOdds }
 					result.push(item);
 				}
 			}
@@ -178,7 +214,7 @@ class PathEditor {
 				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
-				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 }
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 * monsterMirrorOdds }
 				result.push(item);
 				distTotal += distNext;
 			}
@@ -191,7 +227,7 @@ class PathEditor {
 				let pathNode = data[i];
 				distTotalParse = Number(distTotal.toFixed(2));
 				if (i == len - 1) {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: -1 }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: -1 * monsterMirrorOdds }
 					result.push(item);
 				}
 				else {
@@ -203,7 +239,7 @@ class PathEditor {
 					let nextPathNode = data[i + 1];
 					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
-					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: -1 }
+					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: -1 * monsterMirrorOdds }
 					result.push(item);
 					distTotal += distNext;
 				}
@@ -361,6 +397,7 @@ class PathEditor {
 		else {
 			MapEditor.instance.curMonsterBtn.data.fixedRotation = -1;
 		}
+		MapEditor.instance.curMonsterBtn.data.monsterMirror = MapEditor.instance.monsterMirror.selected;
 
 		let len = this.pathPoints.length;
 		for (let i: number = 0; i < len; i++) {
