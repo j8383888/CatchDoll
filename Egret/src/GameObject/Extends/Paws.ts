@@ -39,7 +39,7 @@ module catchDoll {
 					this.confirmRopeHeight();
 				}
 			}
-			).wait(300).to({ y: this.pawsSkinBox.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
+			).wait(100).to({ y: this.pawsSkinBox.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
 				this.isDown = false;
 			})
 		}

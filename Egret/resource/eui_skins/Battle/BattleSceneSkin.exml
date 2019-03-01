@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bgSource" x="0" source=""/>
-	<e:Rect width="720" height="1280" y="0" fillColor="0x605252"/>
+	<e:Image id="bgSource" x="0" source="" width="720" height="1280"/>
+	<e:Rect width="720" height="1280" y="0" fillColor="0x605252" visible="false"/>
 	<e:Group id="battleSceneBox" width="200" height="200">
 
 		<e:Group id="sceneImgBox" width="200" height="200" touchChildren="false" touchEnabled="false"/>
@@ -9,8 +9,8 @@
 	</e:Group>
 
 
-	<e:Image id="curtain2" source="battle_20" right="0" top="0"/>
-	<e:Image id="curtain1" source="battle_21" left="0" top="0"/>
+
+
 
 
 
@@ -28,7 +28,7 @@
 		<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
 	</e:Group>
 	<e:Rect id="downRect" width="720" height="1280" x="0" y="0" fillAlpha="0" strokeAlpha="0"/>
-	<e:Group x="0" y="0">
+	<e:Group x="0" y="0" touchEnabled="false">
 		<e:Image source="battle_16" x="0" y="0"/>
 		<e:Image id="_returnBtn" source="battle_12" x="610" y="0"/>
 		<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>

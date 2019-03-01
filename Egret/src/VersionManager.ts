@@ -1,4 +1,4 @@
-declare var wx: { getFileSystemManager, env }
+// declare var wx: { getFileSystemManager, env }
 class VersionController implements RES.IVersionController {
     // 版本控制信息
     private versionConfig;
@@ -7,7 +7,7 @@ class VersionController implements RES.IVersionController {
     // 版本控制的文件夹
     private versionPath = "assets/";
     // 版本控制信息的所在路径,相对于resource文件夹
-    private versionConfigPath = "resource/version.json";
+    private versionConfigPath = "resource/version.json?v=" + Math.random();
     //当前版本号
     public static currentVersion = "1.1.2";
     // 在游戏开始加载资源的时候就会调用这个函数
@@ -53,9 +53,9 @@ class VersionController implements RES.IVersionController {
             egret.localStorage.setItem("resVersion", VersionController.currentVersion);
             console.log("版本更新");
             //下面是wxgame提供的api，进行过期缓存资源的移除
-            const fs = wx.getFileSystemManager();
+            const fs = wx["getFileSystemManager"]();
             // 如果是最新的微信支持库请修改file-util.js中localFileMap对应的存储路径，其他版本参照修改
-            const dir = wx.env.USER_DATA_PATH + "/cache_crc32/assets";
+            const dir = wx["env"].USER_DATA_PATH + "/cache_crc32/assets";
             fs.readdir({
                 dirPath: dir,
                 success: (e) => {
@@ -126,10 +126,10 @@ class VersionController implements RES.IVersionController {
         if (this.versionConfig) {
             // 部分文件可能存在？v=加数字进行控制的形式，在引擎底层这里是不支持加v=的，只会以原始url加载路径，
             // 如果项目中存在类似的情况，将其还原成普通形式
-            const index = url.indexOf("?v=");
-            if (index != -1) {
-                url = url.slice(0, index);
-            }
+            // const index = url.indexOf("?v=");
+            // if (index != -1) {
+            //     url = url.slice(0, index);
+            // }
             //取版本控制的的version
             let versionKey = url.replace(this.versionPath, "");
             if (this.versionConfig && this.versionConfig[versionKey]) {

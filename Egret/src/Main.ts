@@ -84,11 +84,11 @@ class Main extends eui.UILayer {
                     await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
                 }
                 else {
-                    await RES.loadConfig("resource/default.res.json?v=" + VersionController.currentVersion, "resource/");
+                    await RES.loadConfig("resource/default.res.json?v=" + Math.random(), "resource/");
                 }
             }
             else {
-                await RES.loadConfig("resource/default.res.json?v=" + VersionController.currentVersion, "resource/");
+                await RES.loadConfig("resource/default.res.json", "resource/");
             }
 
             await this.loadTheme();
@@ -110,12 +110,12 @@ class Main extends eui.UILayer {
                     theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
                 }
                 else {
-                    theme = new eui.Theme("resource/default.thm2.json?v=" + VersionController.currentVersion, this.stage);
+                    theme = new eui.Theme("resource/default.thm.json?v=" + Math.random(), this.stage);
 
                 }
             }
             else {
-                theme = new eui.Theme("resource/default.thm.json?v=" + VersionController.currentVersion, this.stage);
+                theme = new eui.Theme("resource/default.thm.json", this.stage);
             }
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();

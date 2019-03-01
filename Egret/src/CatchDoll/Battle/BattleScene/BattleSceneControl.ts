@@ -10,7 +10,7 @@ module catchDoll {
 		/**
 		 * 时间值
 		 */
-		private _timeNum: number = 30;
+		private _timeNum: number = 60;
 
 		public constructor() {
 			super();

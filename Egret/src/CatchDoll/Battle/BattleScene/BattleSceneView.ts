@@ -26,14 +26,6 @@ module catchDoll {
 		 */
 		public propBox: eui.Group;
 		/**
-		 * 窗帘效果
-		 */
-		public curtainEffL: egret.MovieClip;
-		/**
-		 * 窗帘效果
-		 */
-		public curtainEffR: egret.MovieClip;
-		/**
 		 * 背景
 		 */
 		public bgSource: eui.Image;
@@ -59,16 +51,7 @@ module catchDoll {
 			this.returnBtn = new Button(this.skin["_returnBtn"])
 			this.propBtn1 = new Button(this.skin["_propBtn1"])
 			this.propBtn2 = new Button(this.skin["_propBtn2"])
-			this.curtainEffL = UIUtil.creatMovieClip("curtainEff");
-			// this.curtainEffL.gotoAndPlay(1, 1);
-			// this.curtainEffL.scaleY = 1.2
-			// this.curtainEffL.scaleX = - 1.2
-			// this.addChild(this.curtainEffL);
 
-			// this.curtainEffR = UIUtil.creatMovieClip("curtainEff");
-			// this.curtainEffR.gotoAndPlay(1, 1);
-			// this.curtainEffR.scaleX = this.curtainEffR.scaleY = 1.2
-			// this.addChild(this.curtainEffR);
 		}
 
 		/**

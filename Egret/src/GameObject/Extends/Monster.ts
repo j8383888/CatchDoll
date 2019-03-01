@@ -124,6 +124,7 @@ module catchDoll {
          * 反初始化
          */
 		public uninitialize(): void {
+			this.unregisterOperation();
 			if (this._moviePlayer) {
 				this._moviePlayer.stop();
 			}
@@ -133,7 +134,6 @@ module catchDoll {
 			if (this.parent) {
 				this.parent.removeChild(this);
 			}
-			this.unregisterOperation();
 		}
 
 		/**
