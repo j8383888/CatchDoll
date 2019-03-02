@@ -33,7 +33,7 @@ module catchDoll {
 			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
 			this._view.returnBtn.mouseClickHandler = Handler.create(this, this._clickReturnBtn);
 			this._view.timeLabel.text = this._timeNum.toString();
-			Laya.timer.loop(1000, this, this._updateTime)
+			Laya.timer.loop(1000, this, this.updateTime)
 
 			this._view.propBtn1.mouseClickHandler = Handler.create(null, () => {
 				this._view.propBtn1.visible = false;
@@ -64,11 +64,11 @@ module catchDoll {
 		/**
 		 * 更新时间
 		 */
-		private _updateTime(): void {
+		public updateTime(): void {
 			this._timeNum--;
 			if (this._timeNum < 0) {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
-				Laya.timer.clear(this, this._updateTime)
+				Laya.timer.clear(this, this.updateTime)
 			}
 			else if (this._timeNum < 5) {
 				this._view.timeLabel.text = this._timeNum.toString();
@@ -104,7 +104,7 @@ module catchDoll {
 		 */
 		public dispose(): void {
 			this._view.downRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
-			Laya.timer.clear(this, this._updateTime)
+			Laya.timer.clear(this, this.updateTime)
 			egret.Tween.removeTweens(this._view.timeLabel)
 			this._view = null;
 			super.dispose();

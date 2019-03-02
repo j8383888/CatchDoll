@@ -34,6 +34,10 @@ module catchDoll {
 		 */
 		public haemalStrandFrame: eui.Image;
 		/**
+		 * 血条遮罩
+		 */
+		public haemalStrandMask: eui.Image;
+		/**
 		 * 血条初始长度
 		 */
 		public haemalStrandWidth: number = 100;
@@ -67,18 +71,29 @@ module catchDoll {
 
 			this.maxLife = data.life;
 			this.haemalStrand = new eui.Image();
+
+
 			this.haemalStrand.source = "battle_13"
 			this.haemalStrandFrame = new eui.Image();
 			this.haemalStrandFrame.source = "battle_10";
-			this.haemalStrandFrame.scale9Grid = this.haemalStrand.scale9Grid = new egret.Rectangle(10, 10, 27, 2);
-			this.haemalStrand.y = this.haemalStrandFrame.y = -100;
+			this.haemalStrandFrame.scale9Grid = new egret.Rectangle(10, 10, 27, 2);
+			this.haemalStrand.scale9Grid = new egret.Rectangle(10, 10, 27, 2);
+			this.haemalStrandMask = new eui.Image();
+			this.haemalStrandMask.scale9Grid = new egret.Rectangle(10, 10, 27, 2);
+			this.haemalStrandMask.source = "battle_13"
 
-			this.haemalStrand.width = this.haemalStrandFrame.width = this.haemalStrandWidth;
-			this.haemalStrandFrame.x = this.haemalStrand.x = -this.haemalStrand.width / 2
+			this.haemalStrandMask.y = this.haemalStrand.y = this.haemalStrandFrame.y = -100;
+			this.haemalStrandMask.width = this.haemalStrand.width = this.haemalStrandFrame.width = this.haemalStrandWidth;
+			this.haemalStrandMask.x = this.haemalStrandFrame.x = this.haemalStrand.x = -this.haemalStrand.width / 2
 			this.haemalGroup = new egret.DisplayObjectContainer();
 			this.addChild(this.haemalGroup)
 			this.haemalGroup.addChild(this.haemalStrand);
 			this.haemalGroup.addChild(this.haemalStrandFrame);
+
+
+
+			this.haemalGroup.addChild(this.haemalStrandMask);
+			this.haemalStrand.mask = this.haemalStrandMask;
 		}
 
 		/**
@@ -95,7 +110,7 @@ module catchDoll {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}
 			this.life = this.maxLife;
-			this.haemalStrand.width = this.haemalStrandWidth;
+			this.haemalStrandMask.width = this.haemalStrandWidth;
 			this.isAlive = true;
 			let varsData: IMonsterVars = this.varsData as IMonsterVars
 			if (varsData.operation) {

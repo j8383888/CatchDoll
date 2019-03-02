@@ -93,6 +93,8 @@ module catchDoll {
 		 * 检测碰撞
 		 */
 		private _checkHit(): void {
+
+
 			if (this.isCheck) {
 				let monsterMap = LevelCreate.inSenceMonsterMap
 				let monsterMapLen: number = monsterMap.length;
@@ -146,40 +148,42 @@ module catchDoll {
 								let transform = monster.dragonBones.armature.getBone("centre").global
 								monster.haemalGroup.x = transform.x;
 								monster.haemalGroup.y = transform.y;
-								egret.Tween.removeTweens(paw.pawsSkinBox.pawsHead);
+								egret.Tween.removeTweens(paw.pawsBody.pawsHead);
 
 								/*血条缩短*/
 								let targetWidth: number = 0;
-								monster.life -= paw.pawsSkinBox.hurt;
+								monster.life -= paw.pawsBody.hurt;
 								if (monster.life <= 0) {
 									monster.life = 0;
 									targetWidth = 0;
 									monster.x = paw.x;
-									monster.y = paw.pawsSkinBox.pawsHead.y + 300
+									monster.y = paw.pawsBody.pawsHead.y + 300
 									monster.unregisterOperation();
 								}
 								else {
 									targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
 								}
-								egret.Tween.get(monster.haemalStrand).to({ width: targetWidth }, 300, egret.Ease.quadIn).call(() => {
+								/*血条缩短Tween*/
+								egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
 									monster.isSpasticity = false;
 									/**
 									 * 抓住
 									 */
 									if (targetWidth == 0) {
 										let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-										egret.Tween.get(paw.pawsSkinBox.pawsHead, {
+										egret.Tween.get(paw.pawsBody.pawsHead, {
 											onChange: () => {
 												paw.confirmRopeHeight();
 												if (monster) {
 													monster.x = paw.x;
-													monster.y = paw.pawsSkinBox.pawsHead.y + 300;
+													monster.y = paw.pawsBody.pawsHead.y + 300;
 												}
 											},
 											onChangeObj: this,
-										}).wait(300).to({ y: paw.pawsSkinBox.pawsHeadStartPosY }, time).call(() => {
+										}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
 											GameObjectFactory.instance.recoverGameObject(monster);
-											paw.isDown = false;
+											paw.pawsBody.isDown = false;
+											this._checkEnd();
 										})
 									}
 									/**
@@ -195,6 +199,15 @@ module catchDoll {
 						}
 					}
 				}
+			}
+
+		}
+
+		private _checkEnd(): void {
+			if (LevelCreate.inSenceMonsterMap.length == 0) {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
+				let control: BattleSceneControl = UICenter.instance.getManager(commonUI.BattleScene).getControl(BattleSceneControl);
+				Laya.timer.clear(control, control.updateTime)
 			}
 		}
 
@@ -286,7 +299,7 @@ module catchDoll {
 		 */
 		private _creatMaster(): void {
 			Master.instance.MasterPaws = GameObjectFactory.instance.creatGameObject(GAMEOBJECT_SIGN.PAWS)
-			Master.instance.MasterPaws.pawsSkinBox.switchClip(1);
+			Master.instance.MasterPaws.pawsBody.switchClip(1);
 			Master.instance.MasterPaws.y = 160;
 			Master.instance.MasterPaws.x = 360;
 		}
@@ -307,10 +320,10 @@ module catchDoll {
 		 */
 		public dispose(): void {
 			if (this._catchMonster) {
-				egret.Tween.removeTweens(this._catchMonster.haemalStrand)
+				egret.Tween.removeTweens(this._catchMonster.haemalStrandMask)
 			}
-			Master.instance.MasterPaws.isDown = false;
-			egret.Tween.removeTweens(Master.instance.MasterPaws.pawsSkinBox.pawsHead)
+			Master.instance.MasterPaws.pawsBody.isDown = false;
+			egret.Tween.removeTweens(Master.instance.MasterPaws.pawsBody.pawsHead)
 
 			let len: number = LevelCreate.inSenceMonsterMap.length;
 			let map: Dictionary = LevelCreate.inSenceMonsterMap.copy();
