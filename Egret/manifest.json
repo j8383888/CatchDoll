@@ -114,7 +114,7 @@
 		"bin-debug/Table/TaskTable.js",
 		"bin-debug/Table/TreasureTable.js",
 		"bin-debug/Table/TurntableList.js",
-		"bin-debug/CatchDoll/PawsSkinBox.js",
+		"bin-debug/CatchDoll/PawsBody.js",
 		"bin-debug/tool/ImagePlayer.js",
 		"bin-debug/CatchDoll/ScollerTool.js",
 		"bin-debug/tool/MoviePlayer.js",

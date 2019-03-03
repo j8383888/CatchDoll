@@ -10,11 +10,10 @@ module catchDoll {
 		/**
 		 * 夹子容器
 		 */
-		public pawsSkinBox: PawsSkinBox;
-		/**
-		 * 下夹子
-		 */
-		public isDown: boolean = false;
+		public pawsBody: PawsBody;
+
+
+
 
 		public constructor() {
 			super();
@@ -24,23 +23,26 @@ module catchDoll {
          * 初始化一次
          */
 		public loadConfigData(data: IColliderConfigData): void {
-			this.pawsSkinBox = new PawsSkinBox();
+			this.pawsBody = new PawsBody();
 			for (let i: number = 0; i < data.colliderAry.length; i++) {
 				let colliderData: ICollider = data.colliderAry[i];
 				let collider: catchDoll.Collider = Collider.creat(colliderData.posX, colliderData.posY, colliderData.radius)
-				collider.setParent(this.pawsSkinBox.pawsHead);
+				collider.setParent(this.pawsBody.pawsHead);
 				this.colliderAry.push(collider);
 			}
 		}
 
+		/**
+		 * 未捕获动作
+		 */
 		public noCatchAction(): void {
-			egret.Tween.get(this.pawsSkinBox.pawsHead, {
+			egret.Tween.get(this.pawsBody.pawsHead, {
 				onChange: () => {
 					this.confirmRopeHeight();
 				}
 			}
-			).wait(300).to({ y: this.pawsSkinBox.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
-				this.isDown = false;
+			).wait(100).to({ y: this.pawsBody.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
+				this.pawsBody.isDown = false;
 			})
 		}
 
@@ -51,14 +53,14 @@ module catchDoll {
 		 */
 		public initOther(): void {
 			this.confirmRopeHeight();
-			this.addChild(this.pawsSkinBox);
+			this.addChild(this.pawsBody);
 		}
 
 		/**
 		 * 校准绳子长度
 		 */
 		public confirmRopeHeight(): void {
-			this.pawsSkinBox.rope.height = this.pawsSkinBox.pawsHead.y - this.pawsSkinBox.headImg.y - 15
+			this.pawsBody.rope.height = this.pawsBody.pawsHead.y - this.pawsBody.headImg.y - 15
 		}
 
 		/**
@@ -85,8 +87,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			this.pawsSkinBox.dispose();
-			this.pawsSkinBox = null;
+			this.pawsBody.dispose();
+			this.pawsBody = null;
 			super.dispose()
 		}
 	}

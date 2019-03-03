@@ -22,7 +22,7 @@
 			<e:Group id="pathLine" scaleX="1" scaleY="1"/>
 			<e:Group id="pathPoint" scaleX="1" scaleY="1"/>
 		</e:Group>
-		<e:Group id="monsterShowBox" width="1174.61" height="166.73" x="721.21" y="1113.27" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+		<e:Group id="monsterShowBox" width="1092.79" height="166.73" x="803.03" y="1113.27" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
 			<e:layout>
 				<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
 			</e:layout>
@@ -72,6 +72,7 @@
 
 		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
 		<e:Button id="aniTestBtn" label="动画测试" x="30" y="130" anchorOffsetY="0" height="94"/>
+		<e:Button id="levelTestBtn" label="当前关卡演示" x="40" y="140" anchorOffsetY="0" height="94"/>
 		<e:Button id="exportDataBtn" label="导出编辑器数据" x="40" y="140" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout  requestedRowCount="3"/>
@@ -95,8 +96,12 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="pathMirror" label="路径镜像" x="2636.98" scaleX="1" scaleY="1" bottom="6"/>
-	<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="2636.98" scaleX="1" scaleY="1" bottom="40"/>
-	<e:Label text="键盘快捷键键：\ra(按住)：拖动路径节点z：闭合首尾路径点\rd：编辑路径点\rq：拖动场景装饰滑动条" x="2790.98" y="892" anchorOffsetY="0" height="178" anchorOffsetX="0" width="319"/>
+
+	<e:Group id="pathSetBox" x="2636.98" y="1174" visible="false">
+		<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
+		<e:CheckBox id="monsterMirror" label="怪物镜像" x="0" scaleX="1" scaleY="1" y="36"/>
+		<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="0" scaleX="1" scaleY="1" y="0"/>
+	</e:Group>
+	<e:Label id="u8iuihhhhhhh" text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2786.47" y="861.7" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
 	<e:Rect id="stopClick" width="3120" height="1280" fillAlpha="0" visible="false"/>
 </e:Skin>

@@ -13,8 +13,8 @@ class ChapterBtn extends eui.Component {
 			monster: {
 				monsterID: number,
 				pathMirror: boolean,
+				monsterMirror: boolean,
 				fixedRotation: number,
-
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },

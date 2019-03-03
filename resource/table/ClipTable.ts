@@ -28,6 +28,14 @@ module table {
 		 * 伤害
 		 */
 		hurt: number;
+		/**
+		 * 动作前摇
+		 */
+		actionBefore: number;
+		/**
+		 * 伤血持续时间
+		 */
+		hurtDuration: number[];
 
 		GetType(): string { return 'table.ClipTable'; }
 	}

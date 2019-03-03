@@ -1,6 +1,6 @@
 {
-  "engineVersion": "5.2.10",
-  "compilerVersion": "5.2.10",
+  "engineVersion": "5.2.14",
+  "compilerVersion": "5.2.14",
   "template": {},
   "target": {
     "current": "web"
@@ -37,6 +37,10 @@
     {
       "name": "protobuf-bundles",
       "path": "protobuf/bundles"
+    },
+    {
+      "name": "wxgame",
+      "path": "../EgretLibs/weixinapi/libsrc"
     }
   ],
   "targets": {

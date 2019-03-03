@@ -33,17 +33,17 @@ module catchDoll {
 		 * 下钩子
 		 */
 		private _masterDown(): void {
-			if (this._gameObj.isDown) {
+			if (this._gameObj.pawsBody.isDown) {
 				return;
 			}
-			this._gameObj.isDown = true;
+			this._gameObj.pawsBody.isDown = true;
 			LevelCreate.instance.isCheck = true;
 
-			egret.Tween.get(this._gameObj.pawsSkinBox.pawsHead, {
+			egret.Tween.get(this._gameObj.pawsBody.pawsHead, {
 				onChange: () => {
 					this._gameObj.confirmRopeHeight();
 				}
-			}).wait(400).to({ y: 750 }, 500, egret.Ease.quadIn).call(() => {
+			}).wait(this._gameObj.pawsBody.actionBefore * 1000).to({ y: 770 }, 1000, egret.Ease.quadIn).wait(200).call(() => {
 				LevelCreate.instance.isCheck = false;
 				this._gameObj.noCatchAction();
 			});
@@ -57,8 +57,8 @@ module catchDoll {
 			this._sceneBox.x = 0;
 			this._sceneBox = null;
 
-			egret.Tween.removeTweens(this._gameObj.pawsSkinBox.pawsHead);
-			this._gameObj.pawsSkinBox.pawsHead.y = this._gameObj.pawsSkinBox.pawsHeadStartPosY
+			egret.Tween.removeTweens(this._gameObj.pawsBody.pawsHead);
+			this._gameObj.pawsBody.pawsHead.y = this._gameObj.pawsBody.pawsHeadStartPosY
 			this._gameObj.confirmRopeHeight();
 
 			EventManager.unregisterEvent(EVENT_ID.MASTER_DOWN, this, this._masterDown);
@@ -68,10 +68,9 @@ module catchDoll {
 		 * 帧循环
 		 */
 		public enterFrame(): void {
-			if (this._gameObj.isDown) {
+			if (this._gameObj.pawsBody.isDown) {
 				return;
 			}
-			// let value = 720 / 2
 
 			let moveSpeed: number = 4;
 			if (this._isLeft) {
