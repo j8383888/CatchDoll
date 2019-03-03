@@ -45,10 +45,8 @@ module catchDoll {
 		 * 血条容器
 		 */
 		public haemalGroup: egret.DisplayObjectContainer;
-		/**
-		 * 僵直
-		 */
-		public isSpasticity: boolean = false;
+
+		public offsetY: number = 0;
 
 		public constructor() {
 			super();
@@ -94,6 +92,17 @@ module catchDoll {
 
 			this.haemalGroup.addChild(this.haemalStrandMask);
 			this.haemalStrand.mask = this.haemalStrandMask;
+
+
+		}
+
+		public initOther(): void {
+			if (this.sign >= 10 && this.sign <= 14) {
+				this.offsetY = 180;
+			}
+			else {
+				this.offsetY = 140;
+			}
 		}
 
 		/**
@@ -102,7 +111,6 @@ module catchDoll {
 		public initialize(): void {
 			this.x = -1000;
 			this.y = -1000;
-			this.isSpasticity = false;
 			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView)
 			view.monsterBox.addChild(this);
 

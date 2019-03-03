@@ -19,8 +19,8 @@ module catchDoll {
 		public gid: number = 0;
 
 		constructor() {
-			for (let i: number = 1; i <= 9; i++) {
-				this._objClassDic.set(i, Monster);
+			for (let item of TableCenter.instance.MonsterTable) {
+				this._objClassDic.set(item.id, Monster);
 			}
 			this._objClassDic.set(GAMEOBJECT_SIGN.PAWS, Paws);
 		}

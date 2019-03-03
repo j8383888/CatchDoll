@@ -142,7 +142,6 @@ module catchDoll {
 							let monsterCollider = monsterColliderAry[j];
 							if (Collider.isIntersect(pawCollider, monsterCollider)) {
 								this.isCheck = false;
-								monster.isSpasticity = true;
 								this._catchMonster = monster;
 								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
 								let transform = monster.dragonBones.armature.getBone("centre").global
@@ -157,7 +156,7 @@ module catchDoll {
 									monster.life = 0;
 									targetWidth = 0;
 									monster.x = paw.x;
-									monster.y = paw.pawsBody.pawsHead.y + 300
+									monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
 									monster.unregisterOperation();
 								}
 								else {
@@ -165,7 +164,6 @@ module catchDoll {
 								}
 								/*血条缩短Tween*/
 								egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
-									monster.isSpasticity = false;
 									/**
 									 * 抓住
 									 */
@@ -176,7 +174,7 @@ module catchDoll {
 												paw.confirmRopeHeight();
 												if (monster) {
 													monster.x = paw.x;
-													monster.y = paw.pawsBody.pawsHead.y + 300;
+													monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
 												}
 											},
 											onChangeObj: this,
