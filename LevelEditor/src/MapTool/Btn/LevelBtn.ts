@@ -12,9 +12,9 @@ class LevelBtn extends eui.Component {
 		level: number,
 		bgSource: string,
 		monster: {
-			monsterID: number,
+			id: number,
 			pathMirror: boolean,
-			monsterMirror: boolean,
+			objectMirror: boolean,
 			fixedRotation: number,
 			pathData: {
 				origin: { x, y },
@@ -25,7 +25,25 @@ class LevelBtn extends eui.Component {
 			}[]
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		}[],
-		mapData: { source, x, y, width, height }[],
+
+		sceneInteractiveObject: {
+			id: number,
+			fixedRotation: number,
+			pathMirror: boolean,
+			objectMirror: boolean,
+			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			pathData: {
+				origin: { x, y },
+				ctrlP1: { x, y },
+				ctrlP2: { x, y },
+				beforeAnchor: { x, y },
+				nextAnchor: { x, y },
+			}[]
+			carrySubitem: {
+				id: number,
+			}
+		}[],
+		mapData: { source, x, y, width, height }[]
 	};
 
 	public constructor() {
@@ -40,10 +58,10 @@ class LevelBtn extends eui.Component {
 		level: number,
 		bgSource: string,
 		monster: {
-			monsterID: number,
-			pathMirror: boolean,
+			id: number,
 			fixedRotation: number,
-			monsterMirror: boolean,
+			pathMirror: boolean,
+			objectMirror: boolean,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -52,6 +70,24 @@ class LevelBtn extends eui.Component {
 				nextAnchor: { x, y },
 			}[],
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+
+		}[],
+		sceneInteractiveObject: {
+			id: number,
+			fixedRotation: number,
+			pathMirror: boolean,
+			objectMirror: boolean,
+			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			pathData: {
+				origin: { x, y },
+				ctrlP1: { x, y },
+				ctrlP2: { x, y },
+				beforeAnchor: { x, y },
+				nextAnchor: { x, y },
+			}[]
+			carrySubitem: {
+				id: number,
+			}
 		}[],
 		mapData: { source, x, y, width, height }[],
 	}): void {
@@ -66,17 +102,18 @@ class LevelBtn extends eui.Component {
 	}
 
 	private _clear(): void {
-		MapEditor.instance.curMapGoods.length = 0;
+		MapEditor.instance.curLevelOrnaments.length = 0;
 		PathEditor.instance.pathPoints.length = 0;
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
-		MapEditor.instance.curMonsterBtn = null;
+		MapEditor.instance.curEditPathObject = null;
 		MapEditor.instance.pathSetBox.visible = false;
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.monsterShowBox.removeChildren();
+		MapEditor.instance.interactiveShowBox.removeChildren();
 	}
 
 	private _onClick(e: egret.TouchEvent): void {
@@ -109,7 +146,7 @@ class LevelBtn extends eui.Component {
 			img.y = item.y;
 			img.image.width = item.width;
 			img.image.height = item.height
-			MapEditor.instance.curMapGoods.push(img);
+			MapEditor.instance.curLevelOrnaments.push(img);
 			MapEditor.instance.sceneCanvas.addChild(img);
 		}
 
@@ -117,10 +154,19 @@ class LevelBtn extends eui.Component {
 
 		/*生成怪物Btn*/
 		for (let i: number = 0; i < this.data.monster.length; i++) {
-			let data = this.data.monster[i]
+			let data = this.data.monster[i];
 			let monsterBtn = new MonsterBtn(data, this);
 			MapEditor.instance.monsterShowBox.addChild(monsterBtn);
 		}
+
+		/*生成可交互对象*/
+		for (let i: number = 0; i < this.data.sceneInteractiveObject.length; i++) {
+			let data = this.data.sceneInteractiveObject[i];
+			let interactive = new SceneInteractiveObject(data, this);
+			MapEditor.instance.interactiveShowBox.addChild(interactive);
+		}
+
+
 	}
 
 

@@ -53,17 +53,31 @@ class PathEditor {
 	private _onLevelTest(): void {
 		if (this._mapEditor.curChapter && this._mapEditor.curLevel) {
 			let len = MapEditor.instance.monsterShowBox.numChildren
+			let len2 = MapEditor.instance.interactiveShowBox.numChildren
 			for (let i: number = 0; i < len; i++) {
-				let monsterBtn: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
-				let exportData = monsterBtn.data.exportData;
+				let target: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
+				let exportData = target.data.exportData;
 				if (exportData.length == 0) {
 					SystemTipsUtil.showTips("有怪物无路径数据 请检查", ColorUtil.COLOR_RED)
 					return;
 				}
 			}
+			for (let i: number = 0; i < len2; i++) {
+				let target: SceneInteractiveObject = MapEditor.instance.interactiveShowBox.getChildAt(i) as SceneInteractiveObject;
+				let exportData = target.data.exportData;
+				if (exportData.length == 0) {
+					SystemTipsUtil.showTips("有场景交互对象无路径数据 请检查", ColorUtil.COLOR_RED)
+					return;
+				}
+			}
+
 			for (let i: number = 0; i < len; i++) {
-				let monsterBtn: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
-				Globe.instance.start(monsterBtn);
+				let target: MonsterBtn = MapEditor.instance.monsterShowBox.getChildAt(i) as MonsterBtn;
+				Globe.instance.start(target);
+			}
+			for (let i: number = 0; i < len2; i++) {
+				let target: SceneInteractiveObject = MapEditor.instance.interactiveShowBox.getChildAt(i) as SceneInteractiveObject;
+				Globe.instance.start(target);
 			}
 
 		}
@@ -81,6 +95,12 @@ class PathEditor {
 		}
 		else if (e.key == 'q') {
 			GlobeConst.isEditScene = true;
+		}
+		else if (e.key == 'x') {
+			MapEditor.instance.horGuy.selected = false
+		}
+		else if (e.key == 'c') {
+			MapEditor.instance.verGuy.selected = false
 		}
 	}
 
@@ -109,6 +129,12 @@ class PathEditor {
 		else if (e.key == 's') {
 			MapEditor.instance.delSenceImgBtn.selected = !MapEditor.instance.delSenceImgBtn.selected;
 		}
+		else if (e.key == 'x') {
+			MapEditor.instance.horGuy.selected = true
+		}
+		else if (e.key == 'c') {
+			MapEditor.instance.verGuy.selected = true
+		}
 	}
 
 
@@ -118,14 +144,15 @@ class PathEditor {
 	 * 动画测试
 	 */
 	private _onAnimtionTest(): void {
-		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
-			let monsterBtn = this._mapEditor.curMonsterBtn
-			let exportData = monsterBtn.data.exportData;
+		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curEditPathObject) {
+			let target = this._mapEditor.curEditPathObject
+			let exportData = target.data.exportData;
 			if (exportData.length == 0) {
-				SystemTipsUtil.showTips("请先保存怪物路径数据！", ColorUtil.COLOR_RED)
-				return;
+				SystemTipsUtil.showTips("当前路径数据为空 请检查！", ColorUtil.COLOR_RED)
 			}
-			Globe.instance.start(monsterBtn);
+			else {
+				Globe.instance.start(target);
+			}
 		}
 		else {
 			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
@@ -174,22 +201,34 @@ class PathEditor {
 	/**
 	 * 格式化导出数据
 	 */
-	private _formatExprotResult(monsterBtn: MonsterBtn, data: { x: number, y: number }[], ): void {
+	private _formatExprotResult(target: MonsterBtn | SceneInteractiveObject, data: { x: number, y: number }[], ): void {
 		let len: number = data.length
 		let angle = 0;
 		let distNext = 0;
 		let distTotal = 0;
 		let distTotalParse = 0;
-		let isMirror: boolean = monsterBtn.data.pathMirror;
-		let isMonsterMirror = monsterBtn.data.monsterMirror;
+		let mirrorRollOver = 0;
+		let isMirror: boolean = target.data.pathMirror;
+		if (isMirror) {
+			/**
+			 * 镜像路径下 交互对象不翻转
+			 */
+			if (target instanceof SceneInteractiveObject) {
+				mirrorRollOver = 1
+			}
+			else {
+				mirrorRollOver = -1
+			}
+		}
+		let isObjectMirror = target.data.objectMirror;
 		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = []
 
-		let monsterMirrorOdds: number = 1
-		if (isMonsterMirror) {
-			monsterMirrorOdds = -1
+		let objectMirrorOdds: number = 1
+		if (isObjectMirror) {
+			objectMirrorOdds = -1
 		}
 		else {
-			monsterMirrorOdds = 1
+			objectMirrorOdds = 1
 		}
 		for (let i: number = 0; i < len; i++) {
 			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
@@ -200,7 +239,7 @@ class PathEditor {
 
 				}
 				else {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 * monsterMirrorOdds }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 * objectMirrorOdds }
 					result.push(item);
 				}
 			}
@@ -214,7 +253,7 @@ class PathEditor {
 				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
-				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 * monsterMirrorOdds }
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 * objectMirrorOdds }
 				result.push(item);
 				distTotal += distNext;
 			}
@@ -227,7 +266,7 @@ class PathEditor {
 				let pathNode = data[i];
 				distTotalParse = Number(distTotal.toFixed(2));
 				if (i == len - 1) {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: -1 * monsterMirrorOdds }
+					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
 					result.push(item);
 				}
 				else {
@@ -239,14 +278,14 @@ class PathEditor {
 					let nextPathNode = data[i + 1];
 					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
-					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: -1 * monsterMirrorOdds }
+					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
 					result.push(item);
 					distTotal += distNext;
 				}
 			}
 
 		}
-		monsterBtn.data.exportData = result;
+		target.data.exportData = result;
 	}
 
 
@@ -304,9 +343,18 @@ class PathEditor {
 		if (this._mapEditor.deletPathNode.selected) {
 			return;
 		}
-		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curMonsterBtn) {
-
+		if (this._mapEditor.curChapter && this._mapEditor.curLevel && this._mapEditor.curEditPathObject) {
 			let p = this._mapEditor.pathCanvas.globalToLocal(e.stageX, e.stageY)
+			if (MapEditor.instance.horGuy.selected) {
+				if (this.finalPoint) {
+					p.y = this.finalPoint.y
+				}
+			}
+			else if (MapEditor.instance.verGuy.selected) {
+				if (this.finalPoint) {
+					p.x = this.finalPoint.x
+				}
+			}
 			this._addPathNode(p);
 		}
 		else {
@@ -383,21 +431,23 @@ class PathEditor {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
-		}[] = MapEditor.instance.curMonsterBtn.data.pathData;
+		}[] = MapEditor.instance.curEditPathObject.data.pathData;
+
 		pathDataAry.length = 0;
 		if (MapEditor.instance.pathMirror.selected) {
-			MapEditor.instance.curMonsterBtn.data.pathMirror = true;
+			MapEditor.instance.curEditPathObject.data.pathMirror = true;
 		}
 		else {
-			MapEditor.instance.curMonsterBtn.data.pathMirror = false;
+			MapEditor.instance.curEditPathObject.data.pathMirror = false;
 		}
 		if (this._mapEditor.fixedRotation.selected) {
-			MapEditor.instance.curMonsterBtn.data.fixedRotation = 0;
+			MapEditor.instance.curEditPathObject.data.fixedRotation = 0;
 		}
 		else {
-			MapEditor.instance.curMonsterBtn.data.fixedRotation = -1;
+			MapEditor.instance.curEditPathObject.data.fixedRotation = -1;
 		}
-		MapEditor.instance.curMonsterBtn.data.monsterMirror = MapEditor.instance.monsterMirror.selected;
+
+		MapEditor.instance.curEditPathObject.data.objectMirror = MapEditor.instance.objectMirror.selected;
 
 		let len = this.pathPoints.length;
 		for (let i: number = 0; i < len; i++) {
@@ -413,7 +463,7 @@ class PathEditor {
 		}
 
 		let exportData: { x, y }[] = this.getExportPaths(pathDataAry);
-		this._formatExprotResult(MapEditor.instance.curMonsterBtn, exportData);
+		this._formatExprotResult(MapEditor.instance.curEditPathObject, exportData);
 	}
 
 	/**

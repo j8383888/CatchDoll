@@ -1,7 +1,0 @@
-[
-{"id":1,"name":"1星宝箱","condition":"任意进入宠物场，好友宠物场任意进入一次,抽卡牌一次,在任意宠物场得到碎片x1,报复仇家一次","awardID":1001,"awardNum":1,"level":1,"render":["treasureBox1_off","treasureBox1_on"]},
-{"id":2,"name":"2星宝箱","condition":"在任意宠物场得到碎片x2,好友宠物场得到碎片x2,抽卡牌三次,报复仇家二次,合成精英娃娃","awardID":1002,"awardNum":1,"level":2,"render":["treasureBox2_off","treasureBox2_on"]},
-{"id":3,"name":"3星宝箱","condition":"在任意宠物场得到碎片x3,好友宠物场得到碎片x3,抽卡牌五次,报复仇家五次,合成稀有娃娃","awardID":1003,"awardNum":1,"level":3,"render":["treasureBox3_off","treasureBox3_on"]},
-{"id":4,"name":"4星宝箱","condition":"合成史诗娃娃,获得史诗娃娃碎片,抽卡牌10次,报复仇家10次","awardID":1004,"awardNum":1,"level":4,"render":["treasureBox4_off","treasureBox4_on"]},
-{"id":5,"name":"5星宝箱","condition":"合成神话娃娃,获得神话娃娃碎片,抽卡牌15次,报复仇家15次","awardID":1005,"awardNum":1,"level":5,"render":["treasureBox5_off","treasureBox5_on"]}
-]

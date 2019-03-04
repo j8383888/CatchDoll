@@ -11,10 +11,10 @@ class ChapterBtn extends eui.Component {
 			level: number,
 			bgSource: string,
 			monster: {
-				monsterID: number,
-				pathMirror: boolean,
-				monsterMirror: boolean,
+				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				objectMirror: boolean,
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -24,7 +24,25 @@ class ChapterBtn extends eui.Component {
 				}[],
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX }[]
 			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				objectMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+				carrySubitem: {
+					id: number,
+				}
+			}[],
 			mapData: { source, x, y, width, height }[],
+
 		}[]
 	}
 

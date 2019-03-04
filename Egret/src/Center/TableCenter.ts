@@ -24,17 +24,21 @@ module catchDoll {
 		 */
 		public PropTable: table.PropTable[];
 		/**
-		 * 道具配置
+		 * 转盘配置
 		 */
 		public TurnTable: table.TurntableList[];
 		/**
 		 * 商店配置
 		 */
-		public ShopTable: table.shopTable[];
+		public ShopTable: table.ShopTable[];
 		/**
 		 * 商店配置
 		 */
 		public treasureTable: table.TreasureTable[];
+		/**
+		 * 场景可交互对象配置
+		 */
+		public SceneInteractiveObjectTable:table.SceneInteractiveObjectTable[];
 		/**
 		 * 章节数据配置
 		 */
@@ -73,6 +77,7 @@ module catchDoll {
 			this.ShopTable = ConfigParse.getJosn("shopTable_json");
 			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
 			this.ChapterData = ConfigParse.getJosn("LevelData_json")
+			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json")
 		}
 
 		/**

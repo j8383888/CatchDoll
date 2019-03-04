@@ -6,11 +6,12 @@ class MonsterBtn extends eui.Component {
 	public levelBtn: LevelBtn;
 	public startTime: number;
 	public colliderShape: egret.Shape = new egret.Shape();
+	public speed: number = -1;
 
 	public data: {
-		monsterID: number,
+		id: number,
 		pathMirror: boolean,
-		monsterMirror: boolean,
+		objectMirror: boolean,
 		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
@@ -24,7 +25,7 @@ class MonsterBtn extends eui.Component {
 
 
 
-	public runDragonBones: dragonBones.EgretArmatureDisplay;
+	public runTarget: dragonBones.EgretArmatureDisplay;
 
 
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
@@ -32,9 +33,9 @@ class MonsterBtn extends eui.Component {
 	public pathNodeIndex = 0;
 
 	public constructor(data: {
-		monsterID: number,
+		id: number,
 		pathMirror: boolean,
-		monsterMirror: boolean,
+		objectMirror: boolean,
 		fixedRotation: number,
 		pathData: {
 			origin: { x, y },
@@ -49,9 +50,10 @@ class MonsterBtn extends eui.Component {
 		this.skinName = "MonsterBtnSkin"
 		this.data = data;
 		this.levelBtn = levelBtn
-		let grounName = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.monsterID.toString(), "dragonBones")
+		let grounName = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.id.toString(), "dragonBones")
+		this.speed = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.id.toString(), "moveSpeed")
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(grounName);
-		this.runDragonBones = UIUtil.creatDragonbones(grounName);
+		this.runTarget = UIUtil.creatDragonbones(grounName);
 		this.dragonBones = dragon;
 		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);
 		dragon.animation.play(null, 0);
@@ -77,7 +79,7 @@ class MonsterBtn extends eui.Component {
 		shape.graphics.beginFill(ColorUtil.COLOR_GOLD);
 		shape.graphics.drawCircle(0, 0, 30);
 		shape.graphics.endFill();
-		this.runDragonBones.addChild(shape);
+		this.runTarget.addChild(shape);
 
 	}
 
@@ -85,12 +87,18 @@ class MonsterBtn extends eui.Component {
 	 * 编辑路径
 	 */
 	private _onEditPath(e: egret.Event): void {
-		if (MapEditor.instance.curMonsterBtn) {
-			UIUtil.setNomarl(MapEditor.instance.curMonsterBtn.dragonBones);
+		if (MapEditor.instance.curEditPathObject) {
+			if (MapEditor.instance.curEditPathObject instanceof MonsterBtn) {
+				UIUtil.setNomarl(MapEditor.instance.curEditPathObject.dragonBones);
+			}
+			else {
+				UIUtil.setNomarl(MapEditor.instance.curEditPathObject.target);
+			}
+			MapEditor.instance.curEditPathObject = null;
 		}
 		MapEditor.instance.pathSetBox.visible = true;
 		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
-		MapEditor.instance.monsterMirror.selected = this.data.monsterMirror;
+		MapEditor.instance.objectMirror.selected = this.data.objectMirror;
 		if (this.data.fixedRotation == 0) {
 			MapEditor.instance.fixedRotation.selected = true
 		}
@@ -105,7 +113,7 @@ class MonsterBtn extends eui.Component {
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
-		MapEditor.instance.curMonsterBtn = this;
+		MapEditor.instance.curEditPathObject = this;
 
 		PathEditor.instance.drawPath(this.data.pathData)
 	}
@@ -114,13 +122,13 @@ class MonsterBtn extends eui.Component {
 		this.dragonBones.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onEditPath, this);
 		this.dragonBones.dispose();
 		this.dragonBones = null;
-		this.runDragonBones.dispose();
-		this.runDragonBones = null;
+		this.runTarget.dispose();
+		this.runTarget = null;
 		this.curPathNode = null;
 		this.nextPathNode = null;
 		this.levelBtn.data.monster.remove(this.data)
-		if (MapEditor.instance.curMonsterBtn == this) {
-			MapEditor.instance.curMonsterBtn = null;
+		if (MapEditor.instance.curEditPathObject == this) {
+			MapEditor.instance.curEditPathObject = null;
 			PathEditor.instance.finalLine = null;
 			PathEditor.instance.finalPoint = null;
 			PathEditor.instance.lastPoint = null;

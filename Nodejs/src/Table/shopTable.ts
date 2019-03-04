@@ -10,7 +10,7 @@ module table {
 	/**
 	 * FILE: 游戏配置.xlsx SHEET: 商店配置
 	 */
-	export class shopTable {
+	export class ShopTable {
 		id: number;
 		/**
 		 * 物品ID
@@ -21,6 +21,6 @@ module table {
 		 */
 		isHot: number;
 
-		GetType(): string { return 'table.shopTable'; }
+		GetType(): string { return 'table.ShopTable'; }
 	}
 }

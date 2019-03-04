@@ -33,6 +33,17 @@ ColliderTS = r"..\ColliderEditor\src\Table\MonsterTable.ts"
 LevelEditorTS = r"..\LevelEditor\src\Table\MonsterTable.ts"
 copy(srcTS,ColliderTS)
 copy(srcTS,LevelEditorTS)
+srcJson = r"..\resource\table\SceneInteractiveObjectTable.json"
+ColliderJson = r"..\ColliderEditor\resource\config\SceneInteractiveObjectTable.json"
+LevelEditorJson = r"..\LevelEditor\resource\config\SceneInteractiveObjectTable.json"
+copy(srcJson,ColliderJson)
+copy(srcJson,LevelEditorJson)
+srcTS = r"..\resource\table\SceneInteractiveObjectTable.ts"
+ColliderTS = r"..\ColliderEditor\src\Table\SceneInteractiveObjectTable.ts"
+LevelEditorTS = r"..\LevelEditor\src\Table\SceneInteractiveObjectTable.ts"
+copy(srcTS,ColliderTS)
+copy(srcTS,LevelEditorTS)
+
 
 #龙骨copy
 dragonRes = r"..\resource\dragonBones";
@@ -54,3 +65,10 @@ BattlePng = r"..\resource\atlas\battle.png";
 LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battle.png";
 copy(BattleJson,LevelEditorJson)
 copy(BattlePng,LevelEditorPng)
+
+BattlePropJson = r"..\resource\atlas\battleProp.json";
+LevelEditorJson = r"..\LevelEditor\resource\assets\atlas\battleProp.json";
+BattlePropPng = r"..\resource\atlas\battleProp.png";
+LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battleProp.png";
+copy(BattlePropJson,LevelEditorJson)
+copy(BattlePropPng,LevelEditorPng)

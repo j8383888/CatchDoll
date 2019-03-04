@@ -65,33 +65,34 @@
 		<field column="等级" code="level" type="int32" />
 	</output>
 	
-	<output type="json-ts" code="TreasureTable" file="游戏配置.xlsx" sheet="宝箱配置">
-		<field column="id" code="id" type="int32" />
-		<field column="名称" code="name" type="string" />
-		<field column="完成任务条件" code="condition" type="string" />
-		<field column="奖励物品ID" code="awardID" type="int32" />
-		<field column="奖励数量" code="awardNum" type="int32" />
-		<field column="宝箱等级" code="level" type="int32" />
-		<field column="图片源" code="render" type="array" >
-				<field column="source" type="string" />
-		</field>		
-	</output>
-	
-	<output type="json-ts" code="shopTable" file="游戏配置.xlsx" sheet="商店配置">
+	<output type="json-ts" code="ShopTable" file="游戏配置.xlsx" sheet="商店配置">
 		<field column="id" code="id" type="int32" />
 		<field column="物品ID" code="itemID" type="int32" />
 		<field column="是否热销" code="isHot" type="int32" />		
 	</output>
 	
-	<output type="json-ts" code="battleTable" file="游戏配置.xlsx" sheet="关卡配置">
-		<field column="章节" code="chapter" type="int32" />
-		<field column="关卡" code="level" type="int32" />
-		<field column="怪物组" code="monsterAry" type="array" >
-			<field column="value" type="object" >
-				<field column="monsterID" code="monsterID" type="int32" />
-				<field column="rate" code="rate" type="int32" />
+	<output type="json-ts" code="SceneInteractiveObjectTable" file="游戏配置.xlsx" sheet="场景道具配置">
+		<field column="id" code="id" type="int32" />
+		<field column="名称" code="name" type="string" />
+		<field column="图片" code="imageAry" type="array" >
+			<field column="value" code="value" type="string" />
+		</field>
+		<field column="影片剪辑" code="movieClipAry" type="array" >
+			<field column="value" code="value" type="object" >
+				<field column="keyName" type="string" />
+				<field column="groupName" type="string" />
+				<field column="actionName" type="string" />
+				<field column="frameRate" type="int32" />
 			</field>
-		</field>		
+		</field>
+		<field column="龙骨" code="dragonBonesName" type="string" />
+		<field column="碰撞体" code="colliderAry" type="array" >
+			<field column="value" code="value" type="object" >
+				<field column="posX" type="int32" />
+				<field column="posY" type="int32" />
+				<field column="radius" type="int32" />
+			</field>
+		</field>
 	</output>
 	
 	

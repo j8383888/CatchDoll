@@ -6,6 +6,8 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 	public image: eui.Image = new eui.Image();
 
 	public controlShape: egret.Shape = new egret.Shape();
+	public varsGroup: eui.Group;
+	public addBtn: eui.Button;
 
 	public constructor(imgSource: string) {
 		super();
@@ -27,18 +29,20 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 
 		this.image.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onGoodsTouch, this)
 		this.image.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this)
-		this.image.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this)
+		this.image.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this);
+
+		// this.addBtn
 	}
 
 	private _onGoodsTouch(e: egret.TouchEvent): void {
 		if (MapEditor.instance.delSenceImgBtn.selected) {
 			let target = this
 			MapEditor.instance.sceneCanvas.removeChild(target);
-			MapEditor.instance.curMapGoods.remove(target)
+			MapEditor.instance.curLevelOrnaments.remove(target)
 			this.dispose();
 		}
 		else {
-			MapEditor.instance.sceneCanvas.addChild(this) 
+			MapEditor.instance.sceneCanvas.addChild(this)
 		}
 	}
 

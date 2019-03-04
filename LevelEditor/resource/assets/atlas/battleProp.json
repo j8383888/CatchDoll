@@ -1,0 +1,15 @@
+{
+  "file": "battleProp.png",
+  "frames": {
+    "battleProp_1": {
+      "x": 0,
+      "y": 0,
+      "w": 98,
+      "h": 112,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 98,
+      "sourceH": 112
+    }
+  }
+}

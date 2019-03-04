@@ -24,7 +24,11 @@ class MapEditor extends eui.Component {
 	/**
 	 * 当前场景的物品数据
 	 */
-	public curMapGoods: SceneOrnamentImg[] = [];
+	public curLevelOrnaments: SceneOrnamentImg[] = [];
+	// /**
+	//  * 当前场景的物品数据
+	//  */
+	// public curLevelInteractiveObjects: SceneInteractiveObject[] = [];
 	/**
 	 * 场景编辑层
 	 */
@@ -65,7 +69,7 @@ class MapEditor extends eui.Component {
 	private gridContainer: egret.DisplayObjectContainer;
 	private static GRID_SIZE: number = 40;
 	private static GRID_COLOR: number = 0x00ff00;
-	private mainViewWidth: number = 1920;       //主视图宽;
+	private mainViewWidth: number = 1280;       //主视图宽;
 	private mainViewHeight: number = 1280;      //主视图高;
 	public sceneGroup: eui.Group;
 	public showGridCbx: eui.CheckBox;    //是否显示网格;
@@ -87,12 +91,18 @@ class MapEditor extends eui.Component {
 
 	public MonsterTable: table.MonsterTable[];
 
+	public SceneInteractiveObjectTable: table.SceneInteractiveObjectTable[];
+
 	public levelBg: eui.Image;
+	public horGuy: eui.CheckBox;
+	public verGuy: eui.CheckBox;
+
 
 	/**
-	 * 当前选择怪物
+	 * 当前编辑路径对象
 	 */
-	public curMonsterBtn: MonsterBtn;
+	public curEditPathObject: MonsterBtn | SceneInteractiveObject;
+
 
 	public bgGroup: eui.Group;
 	public aniTestBtn: eui.Button;
@@ -105,7 +115,7 @@ class MapEditor extends eui.Component {
 	public stopClick: eui.Rect;
 
 	public pathMirror: eui.CheckBox;
-	public monsterMirror: eui.CheckBox;
+	public objectMirror: eui.CheckBox;
 	public pathSetBox: eui.Group;
 
 	public fixedRotation: eui.CheckBox;
@@ -114,6 +124,15 @@ class MapEditor extends eui.Component {
 	 */
 	public levelTestBtn: eui.Button;
 	public exportDataBtn: eui.Button;
+	/**
+	 * 可交互对象组
+	 */
+	public InteractiveObjectGroup: eui.Group;
+
+
+	public interactiveShowBox: eui.Group;
+
+	public pathMirrorNoRollOver: eui.CheckBox;
 
 	public chapterData: {
 		chapterID: number,
@@ -122,10 +141,10 @@ class MapEditor extends eui.Component {
 			level: number,
 			bgSource: string,
 			monster: {
-				monsterID: number,
+				id: number,
 				fixedRotation: number,
 				pathMirror: boolean,
-				monsterMirror: boolean,
+				objectMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
 				pathData: {
 					origin: { x, y },
@@ -134,6 +153,23 @@ class MapEditor extends eui.Component {
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
 				}[]
+			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				objectMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+				carrySubitem: {
+					id: number,
+				}
 			}[],
 			mapData: { source, x, y, width, height }[],
 		}[]
@@ -151,6 +187,70 @@ class MapEditor extends eui.Component {
 			this._instance = new MapEditor();
 		}
 		return this._instance;
+	}
+
+	/**
+	 * 创建可交互对象
+	 */
+	private _createInteractiveObject(): void {
+		this.SceneInteractiveObjectTable = RES.getRes("SceneInteractiveObjectTable_json")
+		for (let item of this.SceneInteractiveObjectTable) {
+			let target: any;
+			if (item.imageAry && item.imageAry.length) {
+				target = new eui.Image();
+				target.source = item.imageAry[0];
+				this.InteractiveObjectGroup.addChild(target);
+			}
+			else if (item.imageAry && item.movieClipAry.length) {
+				target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
+				this.InteractiveObjectGroup.addChild(target);
+			}
+			else if (item.dragonBonesName != "") {
+				target = UIUtil.creatDragonbones(item.dragonBonesName);
+				target.touchEnabled = true;
+				let group = new eui.Group();
+				group.width = target.width;
+				group.height = target.height + 80;
+				target.animation.play(null, 0)
+				target.x = group.width / 2;
+				target.y = group.height / 2;
+				group.addChild(target);
+				this.InteractiveObjectGroup.addChild(group);
+			}
+			target.name = item.id;
+			target.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickInteractiveObject, this)
+		}
+	}
+
+	/**
+	 * 点击可交互对象
+	 */
+	private _clickInteractiveObject(e: egret.TouchEvent): void {
+		if (this.curLevel && this.curChapter) {
+			let target = e.target;
+
+			// let interactive = new SceneInteractiveObject(target.name, type);
+			// interactive.x = e.stageX - target.width / 2 - this.sceneGroup.x;
+			// interactive.y = e.stageY - target.height / 2;
+			// this.interactiveShowBox.addChild(interactive);
+
+			let data = {
+				id: target.name,
+				pathMirror: true,
+				objectMirror: false,
+				fixedRotation: 0,
+				pathData: [],
+				exportData: [],
+				carrySubitem: {
+					id: -1,
+				}
+			};
+			let btn = new SceneInteractiveObject(data, this.curLevel);
+			this.curLevel.data.sceneInteractiveObject.push(data);
+		}
+		else {
+			SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
+		}
 	}
 
 	/**
@@ -216,9 +316,9 @@ class MapEditor extends eui.Component {
 			let id = e.target.name;
 
 			let data = {
-				monsterID: id,
+				id: id,
 				pathMirror: true,
-				monsterMirror: false,
+				objectMirror: false,
 				fixedRotation: 0,
 				pathData: [],
 				exportData: []
@@ -253,6 +353,7 @@ class MapEditor extends eui.Component {
 		this._createGrid();
 		this._creatMonster();
 		this._creatSeneceImg();
+		this._createInteractiveObject();
 		this._creatBg();
 		this.showGridCbx.selected = true;
 
@@ -289,7 +390,7 @@ class MapEditor extends eui.Component {
 				for (let subItem2 of item.levelData) {
 					for (let subItem3 of subItem2.monster) {
 						delete subItem3.pathData;
-						delete subItem3.monsterMirror;
+						delete subItem3.objectMirror;
 						delete subItem3.pathMirror;
 					}
 				}
@@ -336,7 +437,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _onSavePath(e: egret.TouchEvent): void {
-		if (this.curChapter && this.curLevel && this.curMonsterBtn) {
+		if (this.curChapter && this.curLevel && this.curEditPathObject) {
 			PathEditor.instance.savePath();
 			SystemTipsUtil.showTips("保存路径成功！")
 		}
@@ -434,12 +535,12 @@ class MapEditor extends eui.Component {
 
 	private _clear(): void {
 		this.sceneCanvas.removeChildren();
-		this.curMapGoods.length = 0;
+		this.curLevelOrnaments.length = 0;
 
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
-		MapEditor.instance.curMonsterBtn = null;
+		MapEditor.instance.curEditPathObject = null;
 		PathEditor.instance.pathPoints.length = 0;
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
@@ -450,7 +551,7 @@ class MapEditor extends eui.Component {
 	 * 清除场景
 	 */
 	private _onClearScene(): void {
-		this.curMapGoods.length = 0;
+		this.curLevelOrnaments.length = 0;
 		this.sceneCanvas.removeChildren();
 	}
 
@@ -534,7 +635,11 @@ class MapEditor extends eui.Component {
 			level: levelID,
 			bgSource: "",
 			monster: [],
-			mapData: []
+			sceneInteractiveObject: [],
+			mapData: [],
+			carrySubitem: {
+				id: -1,
+			}
 		};
 		level.addListen();
 		level.setData(this.curChapter.data.chapterID, data)
@@ -613,7 +718,7 @@ class MapEditor extends eui.Component {
 				img.x = e.stageX - target.width / 2 - this.sceneGroup.x;
 				img.y = e.stageY - target.height / 2;
 				this.sceneCanvas.addChild(img);
-				this.curMapGoods.push(img);
+				this.curLevelOrnaments.push(img);
 			}
 			else {
 				SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
@@ -661,8 +766,8 @@ class MapEditor extends eui.Component {
 		let levelID: number = levelBtn.data.level;
 
 		let mapData: { source, x, y, width, height }[] = [];
-		for (let i: number = 0; i < this.curMapGoods.length; i++) {
-			let item = this.curMapGoods[i];
+		for (let i: number = 0; i < this.curLevelOrnaments.length; i++) {
+			let item = this.curLevelOrnaments[i];
 			let data = { source: item.image.source, x: item.x, y: item.y, width: item.image.width, height: item.image.height };
 			mapData.push(data);
 		}

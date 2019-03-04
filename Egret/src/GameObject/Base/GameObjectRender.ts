@@ -31,7 +31,7 @@ module catchDoll {
          */
         public loadConfigAsset(assetData: IConfigAsset): void {
             let imageAry: IImagePlayer[] = assetData.imageAry;
-            if (imageAry) {
+            if (imageAry && imageAry.length) {
                 this._imagePlayer = new ImagePlayer();
                 for (let i: number = 0; i < imageAry.length; i++) {
                     this._imagePlayer.push(imageAry[i])
@@ -39,7 +39,7 @@ module catchDoll {
                 this.addChild(this._imagePlayer)
             }
             let movieClipAry: IMoviePlayer[] = assetData.movieClipAry;
-            if (movieClipAry) {
+            if (movieClipAry && movieClipAry.length) {
                 this._moviePlayer = new MoviePlayer()
                 for (let i: number = 0; i < movieClipAry.length; i++) {
                     this._moviePlayer.push(movieClipAry[i])

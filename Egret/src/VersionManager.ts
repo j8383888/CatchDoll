@@ -67,7 +67,7 @@ class VersionController implements RES.IVersionController {
                     }
                 },
                 fail: (e) => {
-                    // console.log(e);
+                    console.log(e);
                 }
             });
         }
