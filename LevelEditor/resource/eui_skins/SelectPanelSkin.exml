@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SelectPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="600" height="400">
+	<e:Rect width="600" height="400" fillColor="0x2e4c14"/>
+	<e:Group id="group" width="600" height="400">
+		<e:layout>
+			<e:TileLayout horizontalGap="0" verticalGap="0"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

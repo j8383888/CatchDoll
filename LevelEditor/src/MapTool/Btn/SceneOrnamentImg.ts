@@ -31,7 +31,14 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 		this.image.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this)
 		this.image.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._onMove, this);
 
-		// this.addBtn
+		this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this._onOpenPanel,this)
+	}
+
+	/**
+	 * 打开面板
+	 */
+	private _onOpenPanel():void{
+
 	}
 
 	private _onGoodsTouch(e: egret.TouchEvent): void {

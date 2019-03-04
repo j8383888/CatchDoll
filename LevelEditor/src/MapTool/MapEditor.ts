@@ -203,6 +203,7 @@ class MapEditor extends eui.Component {
 			}
 			else if (item.imageAry && item.movieClipAry.length) {
 				target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
+				target.play(-1);
 				this.InteractiveObjectGroup.addChild(target);
 			}
 			else if (item.dragonBonesName != "") {
