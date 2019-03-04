@@ -41,7 +41,8 @@ class LevelBtn extends eui.Component {
 			}[]
 			carrySubitem: {
 				id: number,
-			}
+				weight: number,
+			}[]
 		}[],
 		mapData: { source, x, y, width, height }[]
 	};
@@ -87,7 +88,8 @@ class LevelBtn extends eui.Component {
 			}[]
 			carrySubitem: {
 				id: number,
-			}
+				weight: number,
+			}[]
 		}[],
 		mapData: { source, x, y, width, height }[],
 	}): void {

@@ -169,7 +169,8 @@ class MapEditor extends eui.Component {
 				}[]
 				carrySubitem: {
 					id: number,
-				}
+					weight: number,
+				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
 		}[]
@@ -242,9 +243,7 @@ class MapEditor extends eui.Component {
 				fixedRotation: 0,
 				pathData: [],
 				exportData: [],
-				carrySubitem: {
-					id: -1,
-				}
+				carrySubitem: []
 			};
 			let btn = new SceneInteractiveObject(data, this.curLevel);
 			this.curLevel.data.sceneInteractiveObject.push(data);

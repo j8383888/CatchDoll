@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SelectPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="3120" height="1280">
+	<e:Rect width="3120" height="1280" x="0" y="0" fillColor="0x000000" fillAlpha="0.5"/>
+	<e:Rect width="600" height="400" fillColor="0x2e4c14" horizontalCenter="0" verticalCenter="0"/>
+	<e:Group id="group" width="600" height="400" horizontalCenter="0" verticalCenter="0">
+		<e:layout>
+			<e:TileLayout verticalGap="6" rowHeight="100" columnWidth="100" horizontalGap="6"/>
+		</e:layout>
+		<e:Button id="deleteBtn" label="删除" anchorOffsetX="0" right="0" bottom="0" x="1770" y="792"/>
+	</e:Group>
+</e:Skin>

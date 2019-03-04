@@ -67,7 +67,7 @@
 				<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
 			</e:layout>
 		</e:Group>
-		<e:Group id="interactiveShowBox" width="564.55" height="283.09" x="820.36" y="697.21" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+		<e:Group id="interactiveShowBox" width="744.85" height="283.09" x="820.36" y="697.21" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
 			<e:layout>
 			<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
 			</e:layout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SubInteractiveSkin" width="100" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group" width="100" height="100" left="0" top="0"/>
+	<e:EditableText id="weightLabel" width="100" text="1" y="69" textAlign="center"/>
+</e:Skin>

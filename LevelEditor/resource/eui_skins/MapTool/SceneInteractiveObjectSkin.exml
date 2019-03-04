@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="SceneInteractiveObjectSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group id="group" height="200" x="0" y="0" width="200">
-		<e:Group id="varsGroup" width="80" height="80" right="0" top="0">
-			<e:Button id="addBtn" label="选择" anchorOffsetX="0" height="80" top="0" right="0" width="80"/>
-		</e:Group>
-	</e:Group>
-	<e:Button id="deleteBtn" label="删除" anchorOffsetX="0" width="150" scaleX="0.4" scaleY="0.4" right="0" height="80" bottom="0"/>
-</e:Skin>

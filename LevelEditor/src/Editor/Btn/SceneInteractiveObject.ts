@@ -12,6 +12,9 @@ class SceneInteractiveObject extends eui.Component {
 	public deleteBtn: eui.Button;
 	public group: eui.Group;
 	public startTime: number;
+	public subItemGroup: eui.Group;
+
+	public addBtn: eui.Button;
 	public data: {
 		id: number,
 		pathMirror: boolean,
@@ -27,7 +30,8 @@ class SceneInteractiveObject extends eui.Component {
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
-		}
+			weight: number,
+		}[]
 	};
 
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
@@ -50,30 +54,27 @@ class SceneInteractiveObject extends eui.Component {
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
-		}
+			weight: number,
+		}[]
 	}, levelBtn: LevelBtn) {
 		super();
 		this.data = data;
 		this.skinName = "SceneInteractiveObjectSkin";
 		this.levelBtn = levelBtn;
-		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);
+		// if (!this.data.carrySubitem) {
+		// 	this.data.carrySubitem = [];
+		// }
 		let item = ConfigParse.getWholeByProperty(MapEditor.instance.SceneInteractiveObjectTable, "id", data.id.toString())
 		if (item.imageAry && item.imageAry.length) {
 			this.target = new PivotCenterImage();
-			this.target.once(egret.Event.RENDER, () => {
-				this.group.height = this.target.height;
-				this.group.width = this.target.width;
-				this.target.x = this.group.width / 2;
-				this.target.y = this.group.height / 2;
-			}, null)
+			this.target.x = this.group.width / 2;
+			this.target.y = this.group.height / 2;
 			this.target.source = item.imageAry[0];
 
 			this.runTarget = new PivotCenterImage();
 			this.runTarget.source = item.imageAry[0];
 		}
 		else if (item.imageAry && item.movieClipAry.length) {
-			this.group.height = this.target.height;
-			this.group.width = this.target.width;
 			this.target.x = this.group.width / 2;
 			this.target.y = this.group.height / 2;
 			this.target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
@@ -84,8 +85,6 @@ class SceneInteractiveObject extends eui.Component {
 		else if (item.dragonBonesName != "") {
 			this.target = UIUtil.creatDragonbones(item.dragonBonesName);
 			this.target.touchEnabled = true;
-			this.group.height = this.target.height;
-			this.group.width = this.target.width;
 			this.target.x = this.group.width / 2;
 			this.target.y = this.group.height / 2;
 			this.target.animation.play(null, 0)
@@ -94,9 +93,34 @@ class SceneInteractiveObject extends eui.Component {
 
 		this.group.addChild(this.target);
 		MapEditor.instance.interactiveShowBox.addChild(this);
-		this.scaleX = this.scaleY = 0.8;
 		this.target.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onEditPath, this);
+		this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAdd, this);
+		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);
 
+		for (let data of this.data.carrySubitem) {
+			let interactive = new SubInteractiveObject(data, this);
+			this.subItemGroup.addChild(interactive);
+		}
+
+		if (this.data.id == 1) {
+			this.addBtn.visible = true;
+		}
+		else {
+			this.addBtn.visible = false;
+		}
+
+	}
+
+	private _onAdd(e: egret.TouchEvent): void {
+		let data = {
+			id: 1,
+			weight: 1,
+		}
+		this.data.carrySubitem.push(data);
+		let item: SubInteractiveObject = new SubInteractiveObject(data, this);
+		SelectPanel.instance.visible = true;
+		SelectPanel.instance.curSubitem = item;
+		this.subItemGroup.addChild(item);
 	}
 
 	/**
@@ -139,6 +163,11 @@ class SceneInteractiveObject extends eui.Component {
 		this.target.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onEditPath, this);
 		if (this.target instanceof dragonBones.EgretArmatureDisplay) {
 			this.target.dispose();
+		}
+		let len: number = this.subItemGroup.numChildren;
+		for (let i: number = 0; i < len; i++) {
+			let item = this.subItemGroup.getChildAt(i) as SubInteractiveObject
+			item.dispose();
 		}
 
 		if (this.runTarget instanceof dragonBones.EgretArmatureDisplay) {

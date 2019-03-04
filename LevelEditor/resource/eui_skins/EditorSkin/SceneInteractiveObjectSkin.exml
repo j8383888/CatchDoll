@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SceneInteractiveObjectSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="300">
+	<e:Rect width="200" height="200" x="0" y="100" fillAlpha="0.5"/>
+	<e:Rect width="200" height="100" x="0" y="0" fillAlpha="0.5" fillColor="0x2884a0"/>
+	<e:Scroller width="200" height="100" x="0" anchorOffsetY="0" top="0">
+		<e:Group id="subItemGroup">
+		<e:layout>
+			<e:HorizontalLayout gap="0" paddingBottom="0"/>
+		</e:layout>
+		</e:Group>
+	</e:Scroller>
+	<e:Group id="group" height="200" x="0" y="100" width="200">
+
+
+	</e:Group>
+	<e:Button id="deleteBtn" label="删除" anchorOffsetX="0" width="150" scaleX="0.6" scaleY="0.6" right="0" height="80" bottom="0"/>
+	<e:Button id="addBtn" label="添加子项" anchorOffsetX="0" scaleX="0.6" scaleY="0.6" bottom="0" left="0"/>
+</e:Skin>
