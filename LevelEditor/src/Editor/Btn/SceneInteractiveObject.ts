@@ -105,7 +105,7 @@ class SceneInteractiveObject extends eui.Component {
 			this.subItemGroup.addChild(interactive);
 		}
 
-		if (this.data.id == 1) {
+		if (this.data.id == 1001) {
 			this.addBtn.visible = true;
 		}
 		else {
@@ -116,7 +116,7 @@ class SceneInteractiveObject extends eui.Component {
 
 	private _onAdd(e: egret.TouchEvent): void {
 		let data = {
-			id: 1,
+			id: 1001,
 			weight: 1,
 		}
 		this.data.carrySubitem.push(data);

@@ -94,7 +94,7 @@ module catchDoll {
          */
         public uninitialize(): void {
             if (this._moviePlayer) {
-                this._moviePlayer.stop();
+                this._moviePlayer.stopAll();
             }
             if (this._dragonBones) {
                 this._dragonBones.animation.stop();

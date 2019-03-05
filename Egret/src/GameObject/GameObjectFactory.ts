@@ -121,7 +121,7 @@ module catchDoll {
 			}
 			else if (egret.is(gameObj, "catchDoll.SceneInteractiveObject")) {
 				if (LevelCreate.inSceneInterObjMap.isExist(gameObj)) {
-					console.assert(false, "逻辑有误")
+					// console.assert(false, "逻辑有误")
 				}
 				else {
 					LevelCreate.inSceneInterObjMap.set(gameObj.uID, gameObj)
