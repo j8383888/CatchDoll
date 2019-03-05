@@ -109,11 +109,7 @@ module catchDoll {
          * 初始化
          */
 		public initialize(): void {
-			this.x = -1000;
-			this.y = -1000;
-			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView)
-			view.monsterBox.addChild(this);
-
+			super.initialize();
 			if (this._dragonBones) {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}

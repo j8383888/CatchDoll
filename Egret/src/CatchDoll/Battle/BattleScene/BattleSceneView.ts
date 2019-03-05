@@ -29,11 +29,10 @@ module catchDoll {
 		 * 背景
 		 */
 		public bgSource: eui.Image;
-		public battleSceneBox: eui.Group;
-		public sceneImgBox: eui.Group;
-		public monsterBox: eui.Group;
 
-		public downRect:eui.Rect
+		public downRect: eui.Rect
+
+		public btnGroup: eui.Group;
 
 
 
@@ -58,8 +57,8 @@ module catchDoll {
 		 * 展示时
 		 */
 		public onShow(): void {
-			this.addToStage(LAYER.BATTLE);
-
+			this.addToStage(LAYER.BATTLE_LOW);
+			LayerManager.instance.addToLayer(this.btnGroup, LAYER.BATTLE_HIGH)
 		}
 
 		/**

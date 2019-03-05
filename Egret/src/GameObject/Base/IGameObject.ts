@@ -64,6 +64,18 @@ module catchDoll {
 	}
 
 	/**
+	 * 可交互对象数据接口
+	 */
+	export interface ISenceInteractiveVars extends IGameObjectVars {
+		/*操作类型*/
+		operation?: IOperation[],
+		/*锁定角度*/
+		fixedRotation: number,
+		/*路径数据*/
+		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+	}
+
+	/**
 	 * 游戏对象配置接口
 	 */
 	export interface IGameObjectConfig {

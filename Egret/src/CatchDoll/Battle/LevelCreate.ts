@@ -9,6 +9,11 @@ module catchDoll {
 		 * 在视野内的怪物
 		 */
 		public static inSenceMonsterMap: Dictionary = new Dictionary();
+
+		/**
+		 * 可交互对象
+		 */
+		public static inSceneInterObjMap: Dictionary = new Dictionary();
 		/**
 		 * 爪子是否下降
 		 */
@@ -26,16 +31,25 @@ module catchDoll {
 		 */
 		private _sceneImgs: eui.Image[] = [];
 
+
 		private _catchMonster: Monster = null;
 
 		private curLevelData: {
 			level: number,
 			bgSource: string,
 			monster: {
-				monsterID: number,
+				id: number,
 				fixedRotation: number,
-				pathMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				carrySubitem: {
+					id: number,
+					weightOdds: number,
+				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
 		};
@@ -52,24 +66,55 @@ module catchDoll {
 			level: number,
 			bgSource: string,
 			monster: {
-				monsterID: number,
+				id: number,
 				fixedRotation: number,
-				pathMirror: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				carrySubitem: {
+					id: number,
+					weightOdds: number,
+				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
 		}): void {
 			this.curLevelData = levelData
 			this._creatSence();
 			this._creatMonster();
+			this._creatInteractiveObject();
 			this._creatMaster();
-
 			Laya.timer.frameLoop(1, this, this._checkHit)
-
 		}
 
+		/**
+		 * 创建可交互对象
+		 */
+		private _creatInteractiveObject(): void {
+			for (let item of this.curLevelData.sceneInteractiveObject) {
+
+				let varsData: ISenceInteractiveVars = <ISenceInteractiveVars>{};
+				if (item.exportData.length == 1) {
+					varsData.bornX = varsData.exportData[0].x;
+					varsData.bornY = varsData.exportData[0].y;
+				}
+				else {
+					varsData.fixedRotation = item.fixedRotation;
+					varsData.exportData = item.exportData;
+					varsData.operation = [<IOperation>{
+						type: OPERATION_TYPE.MONSTER
+					}]
+				}
+				GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.INTERACTIVE)
+			}
+		}
+
+		/**
+		 * 场景场景
+		 */
 		private _creatSence() {
-			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView);
 			for (let item of this.curLevelData.mapData) {
 				let img: eui.Image = Pool.getItemByCreateFun(Pool.sceneImg, Handler.create(this, this._creatSecneImg, null, true))
 				img.x = item.x;
@@ -77,7 +122,7 @@ module catchDoll {
 				img.width = item.width;
 				img.height = item.height;
 				img.source = item.source;
-				view.sceneImgBox.addChild(img);
+				LayerManager.instance.addToLayer(img, LAYER.BATTLE_SCENE);
 				this._sceneImgs.push(img);
 			}
 
@@ -90,16 +135,159 @@ module catchDoll {
 		}
 
 		/**
+		 * 检测怪物碰撞
+		 */
+		private _checkMonsterHit(paw: Paws): boolean {
+			let monsterMap = LevelCreate.inSenceMonsterMap
+			let monsterMapLen: number = monsterMap.length;
+			if (monsterMapLen == 0) {
+				return;
+			}
+
+
+			let i: number = 0;
+			/**
+			 * 设置全局坐标
+			 */
+
+			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
+				let monsterP: Monster = monsterMap.values[i];
+				let monsterPColliderAry = monsterP.colliderAry
+				let monsterPColliderAryLen = monsterPColliderAry.length;
+				for (let m: number = 0; m < monsterPColliderAryLen; m++) {
+					let monsterPCollider = monsterPColliderAry[m]
+					let p = monsterP.dragonBones.armature.getBone("centre").global
+					monsterPCollider.x = p.x
+					monsterPCollider.y = p.y
+					monsterPCollider.setGlobePos();
+				}
+			}
+
+			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
+				let monster: Monster = monsterMap.values[i];
+				let monsterColliderAry = monster.colliderAry
+				let monsterColliderAryLen = monsterColliderAry.length;
+				let pawColliderAry = paw.colliderAry
+				let pawColliderAryLen = pawColliderAry.length;
+				for (let k: number = 0; k < pawColliderAryLen; k++) {
+					let pawCollider = pawColliderAry[k];
+					for (let j: number = 0; j < monsterColliderAryLen; j++) {
+						let monsterCollider = monsterColliderAry[j];
+						if (Collider.isIntersect(pawCollider, monsterCollider)) {
+							this.isCheck = false;
+							this._catchMonster = monster;
+							monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
+							let transform = monster.dragonBones.armature.getBone("centre").global
+							monster.haemalGroup.x = transform.x;
+							monster.haemalGroup.y = transform.y;
+							egret.Tween.removeTweens(paw.pawsBody.pawsHead);
+
+							/*血条缩短*/
+							let targetWidth: number = 0;
+							monster.life -= paw.pawsBody.hurt;
+							if (monster.life <= 0) {
+								monster.life = 0;
+								targetWidth = 0;
+								monster.x = paw.x;
+								monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
+								monster.unregisterOperation();
+							}
+							else {
+								targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
+							}
+							/*血条缩短Tween*/
+							egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
+								/**
+								 * 抓住
+								 */
+								if (targetWidth == 0) {
+									let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+									egret.Tween.get(paw.pawsBody.pawsHead, {
+										onChange: () => {
+											paw.confirmRopeHeight();
+											if (monster) {
+												monster.x = paw.x;
+												monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
+											}
+										},
+										onChangeObj: this,
+									}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+										GameObjectFactory.instance.recoverGameObject(monster);
+										paw.pawsBody.isDown = false;
+										this._checkEnd();
+									})
+								}
+								/**
+								 * 没抓住
+								 */
+								else {
+									monster.dragonBones.animation.play("Walk", 0);
+									paw.noCatchAction()
+								}
+							})
+							return true;
+						}
+					}
+				}
+			}
+			return false
+		}
+
+		/**
+		 * 检测可交互对象碰撞
+		 */
+		private _checkInteractiveHit(paw: Paws): void {
+			let interObjMap = LevelCreate.inSceneInterObjMap
+			let interObjMapLen: number = interObjMap.length;
+			if (interObjMapLen == 0) {
+				return;
+			}
+			let i: number = 0;
+			/**
+			 * 设置全局坐标
+			 */
+
+			for (i = 0; i < interObjMapLen; i += this._colliderFlag + 1) {
+				let interObjP: SceneInteractiveObject = interObjMap.values[i];
+				let interObjPColliderAry = interObjP.colliderAry
+				let interObjPColliderAryLen = interObjPColliderAry.length;
+				for (let m: number = 0; m < interObjPColliderAryLen; m++) {
+					let monsterPCollider = interObjPColliderAry[m]
+					monsterPCollider.setGlobePos();
+				}
+			}
+
+			for (i = 0; i < interObjMapLen; i += this._colliderFlag + 1) {
+				let interObj: SceneInteractiveObject = interObjMap.values[i];
+				let interObjPColliderAry = interObj.colliderAry
+				let interObjPColliderAryLen = interObjPColliderAry.length;
+				let pawColliderAry = paw.colliderAry
+				let pawColliderAryLen = pawColliderAry.length;
+				for (let k: number = 0; k < pawColliderAryLen; k++) {
+					let pawCollider = pawColliderAry[k];
+					for (let j: number = 0; j < interObjPColliderAryLen; j++) {
+						let interObjCollider = interObjPColliderAry[j];
+						if (Collider.isIntersect(pawCollider, interObjCollider)) {
+							this.isCheck = false;
+							if(interObj.sign == GAMEOBJECT_SIGN.RAMDOM){
+								// interObj.imagePlayer.
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/**
 		 * 检测碰撞
 		 */
 		private _checkHit(): void {
 
-
 			if (this.isCheck) {
-				let monsterMap = LevelCreate.inSenceMonsterMap
-				let monsterMapLen: number = monsterMap.length;
-				if (monsterMapLen == 0) {
-					return;
+				let paw = Master.instance.MasterPaws;
+				let pawColliderArylen = paw.colliderAry.length
+				for (let i: number = 0; i < pawColliderArylen; i++) {
+					paw.colliderAry[i].setGlobePos();
 				}
 				if (this._colliderFlag == 0) {
 					this._colliderFlag = 1;
@@ -107,96 +295,13 @@ module catchDoll {
 				else {
 					this._colliderFlag = 0;
 				}
+				if (this._checkMonsterHit(paw)) {
 
-				let paw = Master.instance.MasterPaws;
-				let i: number = 0;
-				/**
-				 * 设置全局坐标
-				 */
-				let pawColliderArylen = paw.colliderAry.length
-				for (i = 0; i < pawColliderArylen; i++) {
-					paw.colliderAry[i].setGlobePos();
 				}
-				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
-					let monsterP: Monster = monsterMap.values[i];
-					let monsterPColliderAry = monsterP.colliderAry
-					let monsterPColliderAryLen = monsterPColliderAry.length;
-					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
-						let monsterPCollider = monsterPColliderAry[m]
-						let p = monsterP.dragonBones.armature.getBone("centre").global
-						monsterPCollider.x = p.x
-						monsterPCollider.y = p.y
-						monsterPCollider.setGlobePos();
-					}
+				else {
+					this._checkInteractiveHit(paw)
 				}
 
-				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
-					let monster: Monster = monsterMap.values[i];
-					let monsterColliderAry = monster.colliderAry
-					let monsterColliderAryLen = monsterColliderAry.length;
-					let pawColliderAry = paw.colliderAry
-					let pawColliderAryLen = pawColliderAry.length;
-					for (let k: number = 0; k < pawColliderAryLen; k++) {
-						let pawCollider = pawColliderAry[k];
-						for (let j: number = 0; j < monsterColliderAryLen; j++) {
-							let monsterCollider = monsterColliderAry[j];
-							if (Collider.isIntersect(pawCollider, monsterCollider)) {
-								this.isCheck = false;
-								this._catchMonster = monster;
-								monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
-								let transform = monster.dragonBones.armature.getBone("centre").global
-								monster.haemalGroup.x = transform.x;
-								monster.haemalGroup.y = transform.y;
-								egret.Tween.removeTweens(paw.pawsBody.pawsHead);
-
-								/*血条缩短*/
-								let targetWidth: number = 0;
-								monster.life -= paw.pawsBody.hurt;
-								if (monster.life <= 0) {
-									monster.life = 0;
-									targetWidth = 0;
-									monster.x = paw.x;
-									monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
-									monster.unregisterOperation();
-								}
-								else {
-									targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
-								}
-								/*血条缩短Tween*/
-								egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
-									/**
-									 * 抓住
-									 */
-									if (targetWidth == 0) {
-										let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-										egret.Tween.get(paw.pawsBody.pawsHead, {
-											onChange: () => {
-												paw.confirmRopeHeight();
-												if (monster) {
-													monster.x = paw.x;
-													monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
-												}
-											},
-											onChangeObj: this,
-										}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
-											GameObjectFactory.instance.recoverGameObject(monster);
-											paw.pawsBody.isDown = false;
-											this._checkEnd();
-										})
-									}
-									/**
-									 * 没抓住
-									 */
-									else {
-										monster.dragonBones.animation.play("Walk", 0);
-										paw.noCatchAction()
-									}
-								})
-								return;
-							}
-						}
-					}
-				}
 			}
 
 		}
@@ -209,60 +314,6 @@ module catchDoll {
 			}
 		}
 
-
-
-
-
-		// let monsterMap: Dictionary = LevelCreate.inSenceMonsterMap;
-		// 	let globePosx: number = this._gameObj.x;
-		// 	for (let i: number = 0; i < monsterMap.length; i++) {
-		// 		let monster: Monster = monsterMap.values[i];
-		// 		let monsterGlobePosx: number = monster.x;
-		// 		egret.log("钩子跟怪的距离：" + Math.abs(monsterGlobePosx - globePosx));
-		// 		if (Math.abs(monsterGlobePosx - globePosx) <= 60) {
-		// 			this._catchMonster = monster;
-		// 			break;
-		// 		}
-		// 	}
-		// 	if (this._catchMonster) {
-		// 		/*血条缩短*/
-		// 		let targetWidth: number = 0;
-		// 		// this._catchMonster.life -= this._gameObj.hurt;
-
-		// 		if (this._catchMonster.life <= 0) {
-		// 			this._catchMonster.life = 0;
-		// 			targetWidth = 0;
-		// 			this._catchMonster.x = this._gameObj.x;
-		// 			this._catchMonster.y = this._gameObj.pawsHead.y + 300;
-		// 			this._catchMonster.unregisterOperation();
-		// 		}
-		// 		else {
-		// 			egret.log(this._catchMonster.life + " " + this._catchMonster.maxLife + " " + this._catchMonster.haemalStrandWidth)
-		// 			targetWidth = this._catchMonster.life / this._catchMonster.maxLife * this._catchMonster.haemalStrandWidth;
-		// 		}
-		// 		egret.log("targetWidth:" + targetWidth)
-		// 		egret.Tween.get(this._catchMonster.haemalStrand).to({ width: targetWidth }, 300, egret.Ease.quadIn).call(() => {
-		// 			if (targetWidth == 0) {
-		// 				egret.Tween.get(this._gameObj.pawsHead, {
-		// 					onChange: this._pwdUpAction,
-		// 					onChangeObj: this
-		// 				}).wait(200).to({ y: this._gameObj.pawsHeadStartPosY }, 600, egret.Ease.quadIn).call(() => {
-		// 					GameObjectFactory.instance.recoverGameObject(this._catchMonster);
-		// 					this._catchMonster = null;
-		// 					this._isDown = false;
-		// 					/*抓住了就2s后再创建一个*/
-		// 					// Laya.timer.once(2000, this, this._addMonster)
-
-		// 				});
-		// 			}
-		// 			else {
-		// 				this._noCatchAction();
-		// 			}
-		// 		});
-		// 	}
-		// 	else {
-		// 		this._noCatchAction();
-		// 	}
 
 		/**
 		 * 获得单例
@@ -287,7 +338,7 @@ module catchDoll {
 					type: OPERATION_TYPE.MONSTER
 
 				}]
-				GameObjectFactory.instance.creatGameObject(item.monsterID, varsData)
+				GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.MONSTER)
 			}
 
 		}
@@ -303,14 +354,11 @@ module catchDoll {
 		}
 
 		private _recoveSceneImg(): void {
-			let view: BattleSceneView = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView);
 			for (let item of this._sceneImgs) {
 				Pool.recover(Pool.sceneImg, item)
 			}
 			this._sceneImgs.length = 0;
-			if (view) {
-				view.sceneImgBox.removeChildren();
-			}
+			LayerManager.instance.getLayer(LAYER.BATTLE_SCENE).removeChildren();
 		}
 
 		/**
@@ -329,6 +377,15 @@ module catchDoll {
 				let monster: Monster = map.values[i];
 				GameObjectFactory.instance.recoverGameObject(monster);
 			}
+
+			let len2: number = LevelCreate.inSceneInterObjMap.length;
+			let map2: Dictionary = LevelCreate.inSceneInterObjMap.copy();
+			for (let i: number = 0; i < len; i++) {
+				let inter: SceneInteractiveObject = map2.values[i];
+				GameObjectFactory.instance.recoverGameObject(inter);
+			}
+
+
 			if (Master.instance.MasterPaws) {
 				GameObjectFactory.instance.recoverGameObject(Master.instance.MasterPaws);
 				Master.instance.MasterPaws = null;
