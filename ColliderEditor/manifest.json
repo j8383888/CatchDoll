@@ -18,13 +18,16 @@
 		"bin-debug/Editor/ColliderShape.js",
 		"bin-debug/Editor/MainEditor.js",
 		"bin-debug/Editor/MonsterBtn.js",
+		"bin-debug/Editor/SceneInteractiveObject.js",
 		"bin-debug/LoadingUI.js",
+		"bin-debug/Table/SceneInteractiveObjectTable.js",
 		"bin-debug/Tips/SystemTips.js",
 		"bin-debug/Tips/SystemTipsUtil.js",
 		"bin-debug/utils/ArrayExtensions.js",
 		"bin-debug/utils/ColorUtil.js",
 		"bin-debug/utils/ConfigParse.js",
 		"bin-debug/utils/Dictionary.js",
+		"bin-debug/utils/PivotCenterImage.js",
 		"bin-debug/utils/UIUtil.js"
 	]
 }

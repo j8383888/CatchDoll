@@ -52,7 +52,7 @@ ColliderEditorDragonRes = r"..\ColliderEditor\resource\assets\dragonBones";
 copyFolder(dragonRes,LevelEditorDragonRes)
 copyFolder(dragonRes,ColliderEditorDragonRes)
 
-#关卡编辑器的场景图集copy
+#编辑器的图集copy
 BattleSceneJson = r"..\resource\atlas\BattleScene.json"
 LevelEditorJson = r"..\LevelEditor\resource\assets\atlas\BattleScene.json"
 BattleScenePng = r"..\resource\atlas\BattleScene.png"
@@ -71,6 +71,13 @@ BattlePropPng = r"..\resource\atlas\battleProp.png";
 LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battleProp.png";
 copy(BattlePropJson,LevelEditorJson)
 copy(BattlePropPng,LevelEditorPng)
+
+BattleSceneJson = r"..\resource\atlas\battleProp.json"
+LevelEditorJson = r"..\ColliderEditor\resource\assets\atlas\battleProp.json"
+BattleScenePng = r"..\resource\atlas\battleProp.png"
+LevelEditorPng = r"..\ColliderEditor\resource\assets\atlas\battleProp.png"
+copy(BattleSceneJson,LevelEditorJson)
+copy(BattleScenePng,LevelEditorPng)
 
 # 背景图copy
 Res = r"..\resource\image";

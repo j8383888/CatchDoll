@@ -19,7 +19,7 @@ class ColliderShape extends egret.Shape {
 	}
 
 	private _onTouchShape(e: egret.TouchEvent): void {
-		MainEditor.instance.monsterColliderBox.addChild(e.target);
+		MainEditor.instance.ObjectColliderBox.addChild(e.target);
 	}
 
 	/**
@@ -28,7 +28,5 @@ class ColliderShape extends egret.Shape {
 	private _onMoveShape(e: egret.TouchEvent): void {
 		this.x = Number(e.stageX.toFixed(2));
 		this.y = Number(e.stageY.toFixed(2));
-
-
 	}
 }

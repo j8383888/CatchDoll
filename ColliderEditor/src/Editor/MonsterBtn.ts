@@ -4,9 +4,9 @@ class MonsterBtn {
 	 */
 	public data: { id: number, colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] };
 
-	public dragon: dragonBones.EgretArmatureDisplay;
+	public target: dragonBones.EgretArmatureDisplay;
 
-	public runDragon: dragonBones.EgretArmatureDisplay;
+	public runTarget: dragonBones.EgretArmatureDisplay;
 
 	public id: number = - 1;
 
@@ -15,34 +15,34 @@ class MonsterBtn {
 
 
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(dragonSource);
-		this.runDragon = UIUtil.creatDragonbones(dragonSource);
-		this.runDragon.x = this.runDragon.y = 500;
-		this.dragon = dragon;
+		this.runTarget = UIUtil.creatDragonbones(dragonSource);
+		this.runTarget.x = this.runTarget.y = 500;
+		this.target = dragon;
 		dragon.touchEnabled = true;
 		let group = new eui.Group();
-		group.width = 100
+		group.width = dragon.width;
 		group.height = dragon.height + 15;
 
 		dragon.animation.play(null, 0)
 		dragon.x = group.width / 2
+		dragon.y = group.height / 2
 		group.addChild(dragon);
-		dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
+		dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClick, this)
 		MainEditor.instance.monsterBox.addChild(group)
 	}
 
 	public setData(data: { id: number, colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] }): void {
 		this.data = data;
-
 	}
 
-	private _clickMonster(e: egret.TouchEvent): void {
-		MainEditor.instance.switchMonster();
+	private _onClick(e: egret.TouchEvent): void {
+		MainEditor.instance.switchObject();
 
 		for (let item of this.data.colliderAry) {
 			let shape = MainEditor.instance.creatShape()
 			MainEditor.instance.drawCollider(item.x, item.y, item.radius, shape)
 		}
-		MainEditor.instance.monsterShowBox.addChild(this.runDragon)
-		MainEditor.instance.curMonsterBtn = this;
+		MainEditor.instance.ObejctShowBox.addChild(this.runTarget)
+		MainEditor.instance.curEditObject = this;
 	}
 }

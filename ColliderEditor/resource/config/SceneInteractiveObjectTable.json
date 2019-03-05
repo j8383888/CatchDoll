@@ -1,4 +1,4 @@
 [
-{"id":1,"name":"问号箱子","imageAry":["battleProp_1"],"movieClipAry":[{"keyName":"burst","groupName":"battleProp_1burst","actionName":"action","frameRate":10}],"dragonBonesName":"","colliderAry":[{"posX":-3,"posY":-4,"radius":46}]},
-{"id":2,"name":"闪电","imageAry":[],"movieClipAry":[],"dragonBonesName":"battleProp_2","colliderAry":[{"posX":-2,"posY":-4,"radius":47}]}
+{"id":1001,"name":"问号箱子","imageAry":["battleProp_1"],"movieClipAry":[{"keyName":"burst","groupName":"battleProp_1burst","actionName":"action","frameRate":10}],"dragonBonesName":"","colliderAry":[{"posX":-3,"posY":-4,"radius":46}]},
+{"id":1002,"name":"闪电","imageAry":[],"movieClipAry":[],"dragonBonesName":"battleProp_2","colliderAry":[{"posX":-2,"posY":-4,"radius":47}]}
 ]

@@ -9,21 +9,21 @@ class MainEditor extends eui.Component {
 	public monsterBox: eui.Group;
 
 	public monsterTable: table.MonsterTable[];
-	public curMonsterBtn: MonsterBtn = null;
+	public curEditObject: MonsterBtn | SceneInteractiveObject = null;
 	/**
 	 * 怪兽按钮组
 	 */
-	public monsterBtns: MonsterBtn[] = [];
+	public objectAry: any[] = [];
 
 	public editAreaRect: eui.Rect;
 	/**
-	 * 怪兽层级
+	 * 对象层级
 	 */
-	public monsterShowBox: eui.Group;
+	public ObejctShowBox: eui.Group;
 	/**
 	 * 怪兽碰撞体层级
 	 */
-	public monsterColliderBox: eui.Group;
+	public ObjectColliderBox: eui.Group;
 
 	public isDraw: boolean = false;
 
@@ -39,6 +39,8 @@ class MainEditor extends eui.Component {
 	public curColliderShape: ColliderShape;
 	private _originP: { x: number, y: number } = { x: 0, y: 0 };
 	private _colliderShapes: ColliderShape[] = [];
+	public SceneInteractiveObjectTable: table.SceneInteractiveObjectTable[];
+	public InteractiveObjectGroup: eui.Group;
 
 
 	public constructor() {
@@ -46,22 +48,23 @@ class MainEditor extends eui.Component {
 		this.skinName = "MainEditorSkin"
 	}
 
-	public switchMonster(): void {
+	public switchObject(): void {
 		this._originP = { x: 0, y: 0 };
 		this.curColliderShape = null;
 		this._colliderShapes.length = 0;
-		this.monsterColliderBox.removeChildren();
-		this.monsterShowBox.removeChildren();
+		this.ObjectColliderBox.removeChildren();
+		this.ObejctShowBox.removeChildren();
 	}
 
 	public init(): void {
 		this.monsterTable = RES.getRes("MonsterTable_json");
-		this.monsterShowBox.touchEnabled = false;
-		this.monsterShowBox.touchChildren = false;
-		this.monsterColliderBox.touchEnabled = false;
-		this.monsterColliderBox.touchChildren = false;
+		this.ObejctShowBox.touchEnabled = false;
+		this.ObejctShowBox.touchChildren = false;
+		this.ObjectColliderBox.touchEnabled = false;
+		this.ObjectColliderBox.touchChildren = false;
 		this._createGrid();
 		this._creatMonster();
+		this._createInteractiveObject();
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this);
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onMove, this);
 		this.editAreaRect.addEventListener(egret.TouchEvent.TOUCH_END, this._onEnd, this);
@@ -71,6 +74,23 @@ class MainEditor extends eui.Component {
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
 		this._loadColliderData();
+	}
+
+	/**
+	 * 创建可交互对象
+	 */
+	private _createInteractiveObject(): void {
+		this.SceneInteractiveObjectTable = RES.getRes("SceneInteractiveObjectTable_json")
+		for (let item of this.SceneInteractiveObjectTable) {
+			let Interactive = new SceneInteractiveObject(item)
+			this.objectAry.push(Interactive);
+			let dataItem = {
+				id: item.id,
+				colliderAry: []
+			}
+			Interactive.setData(dataItem);
+			this.colliderMap.push(dataItem);
+		}
 	}
 
 	private _onUpload(): void {
@@ -93,13 +113,13 @@ class MainEditor extends eui.Component {
 
 	private _onKeyUp(e: KeyboardEvent): void {
 		if (e.key == 'a') {
-			MainEditor.instance.monsterColliderBox.touchChildren = false;
+			MainEditor.instance.ObjectColliderBox.touchChildren = false;
 		}
 	}
 
 	private _onKeyDown(e: KeyboardEvent): void {
 		if (e.key == 'a') {
-			MainEditor.instance.monsterColliderBox.touchChildren = true;
+			MainEditor.instance.ObjectColliderBox.touchChildren = true;
 		}
 	}
 
@@ -132,7 +152,7 @@ class MainEditor extends eui.Component {
 		}
 
 		for (let item of this.colliderMap) {
-			for (let monster of this.monsterBtns) {
+			for (let monster of this.objectAry) {
 				if (item.id == monster.id) {
 					monster.setData(item);
 					break;
@@ -154,9 +174,9 @@ class MainEditor extends eui.Component {
 	 * 清除
 	 */
 	private _onClear(): void {
-		if (this.curMonsterBtn) {
-			this.monsterColliderBox.removeChildren();
-			this.curMonsterBtn.data.colliderAry.length = 0
+		if (this.curEditObject) {
+			this.ObjectColliderBox.removeChildren();
+			this.curEditObject.data.colliderAry.length = 0
 			this._colliderShapes.length = 0;
 		}
 		else {
@@ -180,7 +200,7 @@ class MainEditor extends eui.Component {
 		let shape = new ColliderShape();
 		this.curColliderShape = shape;
 		this._colliderShapes.push(shape);
-		this.monsterColliderBox.addChild(this.curColliderShape);
+		this.ObjectColliderBox.addChild(this.curColliderShape);
 		return shape
 	}
 
@@ -188,9 +208,9 @@ class MainEditor extends eui.Component {
 
 	private _onEnd(): void {
 		this.isDraw = false;
-		if (!this.curMonsterBtn) {
+		if (!this.curEditObject) {
 			SystemTipsUtil.showTips("请先选中宠物！");
-			this.monsterColliderBox.removeChildren();
+			this.ObjectColliderBox.removeChildren();
 			return;
 		}
 		if (!this.curColliderShape) {
@@ -211,12 +231,12 @@ class MainEditor extends eui.Component {
 	public saveData(): void {
 		let colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] = []
 		for (let item of this._colliderShapes) {
-			let p = this.curMonsterBtn.runDragon.globalToLocal(item.x, item.y);
+			let p = this.curEditObject.runTarget.globalToLocal(item.x, item.y);
 			let data = { x: item.x, y: item.y, radius: item.radius, localX: p.x, localY: p.y }
 			colliderAry.push(data);
 		}
 
-		this.curMonsterBtn.data.colliderAry = colliderAry
+		this.curEditObject.data.colliderAry = colliderAry
 
 	}
 
@@ -277,12 +297,12 @@ class MainEditor extends eui.Component {
 	 * 创建怪物
 	 */
 	private _creatMonster(): void {
-		for (let i: number = 0; i < 3; i++) {
-			let blank = new eui.Group();
-			blank.width = 100
-			blank.height = 50;
-			this.monsterBox.addChild(blank);
-		}
+		// for (let i: number = 0; i < 3; i++) {
+		// 	let blank = new eui.Group();
+		// 	blank.width = 100
+		// 	blank.height = 50;
+		// 	this.monsterBox.addChild(blank);
+		// }
 
 		for (let item of this.monsterTable) {
 			let source = ConfigParse.getPropertyByProperty(this.monsterTable, "id", item.id.toString(), "dragonBones")
@@ -293,7 +313,7 @@ class MainEditor extends eui.Component {
 			}
 			btn.setData(dataItem);
 			this.colliderMap.push(dataItem);
-			this.monsterBtns.push(btn);
+			this.objectAry.push(btn);
 		}
 	}
 

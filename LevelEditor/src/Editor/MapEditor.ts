@@ -112,7 +112,6 @@ class MapEditor extends eui.Component {
 
 	public pathMirror: eui.CheckBox;
 	public objectMirror: eui.CheckBox;
-	public pathSetBox: eui.Group;
 
 	public fixedRotation: eui.CheckBox;
 	/**
@@ -596,7 +595,6 @@ class MapEditor extends eui.Component {
 		if (this.curChapter) {
 			this.curChapter.onSelect(false)
 		}
-		this.pathSetBox.visible = false;
 		this.curChapter = e.currentTarget;
 		this.curChapter.onClick();
 		this.curChapter.onSelect(true);

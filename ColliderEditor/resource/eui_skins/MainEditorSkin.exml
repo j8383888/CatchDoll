@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MainEditorSkin" width="1400" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="MainEditorSkin" width="1920" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect id="editAreaRect" width="1000" height="1000" fillColor="0x0098bc" fillAlpha="0.5"/>
 	<e:Group id="gridBox" width="200" height="200"/>
-	<e:Group id="monsterShowBox" width="200" height="200" x="0" y="0"/>
-	<e:Group id="monsterColliderBox" width="200" height="200"/>
+	<e:Group id="ObejctShowBox" width="200" height="200" x="0" y="0"/>
+	<e:Group id="ObjectColliderBox" width="200" height="200"/>
 	<e:Button id="clearBtn" label="清空当前宠物所有碰撞体" x="1000" y="903.49"/>
 	<e:Button id="uploadBtn" label="上传" x="1000" y="780.21"/>
 	<e:Scroller width="400" height="704.91" x="1000" y="0" anchorOffsetY="0">
@@ -11,6 +11,13 @@
 			<e:layout>
 				<e:TileLayout horizontalAlign="center" verticalGap="0" verticalAlign="middle" requestedColumnCount="3" horizontalGap="8"/>
 			</e:layout>
+		</e:Group>
+	</e:Scroller>
+	<e:Scroller width="400" height="704.91" x="1402" anchorOffsetY="0" top="0">
+		<e:Group id="InteractiveObjectGroup" anchorOffsetY="0" height="706.24">
+		<e:layout>
+			<e:TileLayout horizontalAlign="center" verticalGap="0" verticalAlign="middle" requestedColumnCount="3" horizontalGap="8"/>
+		</e:layout>
 		</e:Group>
 	</e:Scroller>
 	<e:Label text="按住A可以拖动碰撞体" x="1000" y="957.97"/>
