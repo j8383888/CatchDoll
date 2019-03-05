@@ -231,7 +231,16 @@ class MainEditor extends eui.Component {
 	public saveData(): void {
 		let colliderAry: { x: number, y: number, radius: number, localX: number, localY: number }[] = []
 		for (let item of this._colliderShapes) {
-			let p = this.curEditObject.runTarget.globalToLocal(item.x, item.y);
+			let p: egret.Point = new egret.Point(0, 0);
+			if (!(this.curEditObject.runTarget instanceof dragonBones.EgretArmatureDisplay)) {
+				p.x = -this.curEditObject.runTarget.x + item.x;
+				p.y = -this.curEditObject.runTarget.y + item.y;
+			}
+			else {
+				p = this.curEditObject.runTarget.globalToLocal(item.x, item.y);
+			}
+
+
 			let data = { x: item.x, y: item.y, radius: item.radius, localX: p.x, localY: p.y }
 			colliderAry.push(data);
 		}

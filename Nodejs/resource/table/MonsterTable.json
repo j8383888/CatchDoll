@@ -17,5 +17,5 @@
 {"id":16,"name":"机器人B黄","dragonBones":"erjihuang","life":50,"moveSpeed":3.0,"colliderAry":[{"posX":-3,"posY":-6,"radius":55}],"level":1},
 {"id":17,"name":"机器人B蓝","dragonBones":"erjilan","life":50,"moveSpeed":3.0,"colliderAry":[{"posX":-2,"posY":-5,"radius":54}],"level":1},
 {"id":18,"name":"机器人B绿","dragonBones":"erjilv","life":50,"moveSpeed":3.0,"colliderAry":[{"posX":0,"posY":-7,"radius":57}],"level":1},
-{"id":19,"name":"机器人B紫","dragonBones":"erjizi","life":0,"moveSpeed":0.0,"colliderAry":[],"level":0}
+{"id":19,"name":"机器人B紫","dragonBones":"erjizi","life":50,"moveSpeed":3.0,"colliderAry":[{"posX":0,"posY":-9,"radius":53}],"level":1}
 ]
