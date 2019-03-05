@@ -34,14 +34,17 @@
 			<e:Button label="怪物" x="-8" y="0" anchorOffsetX="0" width="274" scaleX="1" scaleY="1"/>
 		</e:Group>
 		</e:Scroller>
-		<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="856.06" y="0" x="204.98" scrollPolicyH="off">
-		<e:Group id="bgGroup" anchorOffsetY="0" height="846.97" x="-2">
-			<e:layout>
-			<e:VerticalLayout horizontalAlign="center"/>
-			</e:layout>
-			<e:Button label="场景背景" x="0.01999999999998181" y="-85.10000000000001" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
+		<e:Group width="280" height="855" x="237" y="97">
+			<e:Button label="场景背景" x="0" y="0" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
+			<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="889.27" y="81.82" x="0" scrollPolicyH="off" scaleX="1" scaleY="1">
+				<e:Group id="bgGroup" anchorOffsetY="0" height="846.97" x="-2">
+					<e:layout>
+						<e:TileLayout rowHeight="400" columnWidth="300"/>
+					</e:layout>
+				</e:Group>
+			</e:Scroller>
 		</e:Group>
-		</e:Scroller>
+
 		<e:layout>
 			<e:HorizontalLayout gap="0"/>
 		</e:layout>
@@ -55,6 +58,7 @@
 		<e:Image id="levelBg" touchEnabled="false" fillMode="scale" width="720" height="1280"/>
 		<e:Image touchEnabled="false" y="200" width="1280" x="0" source="battle_17" fillMode="repeat"/>
 		<e:Group id="sceneCanvas"/>
+		<e:Group id="actionCanvas" touchEnabled="false" touchThrough="true" touchChildren="false"/>
 
 
 
@@ -62,24 +66,27 @@
 			<e:Group id="pathLine" scaleX="1" scaleY="1"/>
 			<e:Group id="pathPoint" scaleX="1" scaleY="1"/>
 		</e:Group>
-		<e:Group id="monsterShowBox" width="563.22" height="283.09" x="819.02" y="982.57" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
-			<e:layout>
-				<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
-			</e:layout>
-		</e:Group>
-		<e:Group id="interactiveShowBox" width="744.85" height="283.09" x="820.36" y="697.21" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
-			<e:layout>
-			<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
-			</e:layout>
-		</e:Group>
+
+
+		<e:Image touchEnabled="false" y="1119.09" width="1280" source="battle_17" fillMode="repeat" alpha="0.3"/>
 	</e:Group>
 
 
 
 
-	<e:Rect width="500.3" height="106.36" x="2101.18" y="972.56" strokeColor="0xff0505" strokeWeight="7" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0"/>
+	<e:Rect width="336.66" height="106.36" x="2101.18" y="972.56" strokeColor="0xff0505" strokeWeight="7" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0"/>
+	<e:Group id="monsterShowBox" width="563.22" height="283.09" x="837.2" y="988.63" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+		<e:layout>
+		<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="interactiveShowBox" width="744.85" height="283.09" x="838.54" y="703.27" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
+		<e:layout>
+		<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
+		</e:layout>
+	</e:Group>
 	<e:Group x="2103.98" y="978" anchorOffsetY="0" height="298" anchorOffsetX="0" width="660">
-		<e:Button id="changeChapterName" label="保存章节名字" x="2" y="-98" anchorOffsetY="0" height="94" scaleX="1" scaleY="1"/>
+
 		<e:Button id="savePath" label="保存当前路径数据" x="165.97000000000003" y="-97.20000000000005" anchorOffsetY="0" height="94" scaleY="1" scaleX="1"/>
 		<e:Button id="saveSceneBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
@@ -104,7 +111,7 @@
 
 
 
-	<e:Group x="2912.98" y="1060.37">
+	<e:Group x="1888.74" y="1060.37">
 		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
 		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
 		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
@@ -116,25 +123,29 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group id="pathSetBox" x="1742" y="1102" anchorOffsetX="0" width="500">
+	<e:Group id="pathSetBox" x="1626.86" y="1062" anchorOffsetX="0" width="263.64">
 		<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="0" scaleX="1" scaleY="1" y="0"/>
 
 		<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
 		<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
 		<e:CheckBox id="pathMirrorNoRollOver" label="镜像路径下（对象不进行水平翻转）" x="-2" scaleX="1" scaleY="1" y="108" visible="false"/>
+		<e:CheckBox id="horGuy" label="水平拉线" x="-1472.86" y="-1101" scaleX="1" scaleY="1"/>
+		<e:CheckBox id="verGuy" label="垂直拉线" x="2.5" y="100.63"/>
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
+	<e:Group x="1473.88" y="1210">
 
-	<e:Rect id="stopClick" width="3120" height="1280" fillAlpha="0" visible="false"/>
-	<e:Group x="1589.02" y="1210">
-		<e:Label id="u8iuihhhhhhh0" text="快捷键：x\n快捷键：c" x="9.63" y="2" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="179.06"/>
-		<e:CheckBox id="horGuy" label="水平拉线" x="154" y="1"/>
-		<e:CheckBox id="verGuy" label="垂直拉线" x="154" y="37"/>
+
+
 		<e:layout>
 			<e:BasicLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="u8iuihhhhhhh" text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2786.47" y="861.7" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
+	<e:Label text="快捷键：x\r快捷键：c" x="1475.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
+	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
+	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1632.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
+	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="false" y="0" x="0" fillAlpha="0"/>
+	<!--</e:Group>-->
 </e:Skin>

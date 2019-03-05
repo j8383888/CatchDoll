@@ -34,10 +34,9 @@ class Globe extends egret.DisplayObject {
 			else if (target.runTarget instanceof dragonBones.EgretArmatureDisplay) {
 				target.runTarget.animation.stop();
 			}
-			if (target.runTarget.parent) {
-				target.runTarget.parent.removeChild(target.runTarget);
-			}
+
 		}
+		this.idleObjectAry.length = 0;
 
 	}
 
@@ -50,31 +49,24 @@ class Globe extends egret.DisplayObject {
 		if (target.data.exportData.length == 1) {
 			if (target instanceof MonsterBtn) {
 				target.runTarget.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
-				target.runTarget.x = target.data.exportData[0].x;
-				target.runTarget.y = target.data.exportData[0].y;
 			}
 			else {
 				if (target.runTarget instanceof eui.Image) {
-
 				}
 				else if (target.runTarget instanceof egret.MovieClip) {
 					target.runTarget.play(-1)
 				}
 				else if (target.runTarget instanceof dragonBones.EgretArmatureDisplay) {
-					target.runTarget.animation.gotoAndPlayByFrame(null, MathUtil.random(0, 20), 0);
+					target.runTarget.animation.play(null, 0);
 				}
-				target.runTarget.x = target.data.exportData[0].x;
-				target.runTarget.y = target.data.exportData[0].y;
 			}
-			MapEditor.instance.pathCanvas.addChild(target.runTarget);
-
+			target.runTarget.x = target.data.exportData[0].x;
+			target.runTarget.y = target.data.exportData[0].y;
 			this.idleObjectAry.push(target);
 		}
 		else {
-
 			if (target instanceof MonsterBtn) {
 				target.runTarget.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
-				this.actionObjectAry.push(target);
 			}
 			else {
 				if (target.runTarget instanceof eui.Image) {
@@ -84,16 +76,17 @@ class Globe extends egret.DisplayObject {
 					target.runTarget.play(-1)
 				}
 				else if (target.runTarget instanceof dragonBones.EgretArmatureDisplay) {
-					target.runTarget.animation.gotoAndPlayByFrame(null, MathUtil.random(0, 20), 0);
+					target.runTarget.animation.play(null, 0);
 				}
-				this.actionObjectAry.push(target);
-			}
-			MapEditor.instance.pathCanvas.addChild(target.runTarget);
 
-			target.startTime = egret.getTimer();
+			}
 			target.curPathNode = target.data.exportData[0];
 			target.nextPathNode = target.data.exportData[1];
+			this.actionObjectAry.push(target);
+
+			target.startTime = egret.getTimer();
 		}
+		MapEditor.instance.actionCanvas.addChild(target.runTarget);
 	}
 
 
@@ -126,7 +119,9 @@ class Globe extends egret.DisplayObject {
 
 			if (curMoveDistance >= total) {
 				target.pathNodeIndex = 0;
-				MapEditor.instance.pathCanvas.removeChild(runTarget);
+				runTarget.x = target.data.exportData[0].x;
+				runTarget.y = target.data.exportData[0].y;
+				runTarget.scaleX = target.data.exportData[0].scaleX;
 				this.actionObjectAry.remove(target);
 			}
 

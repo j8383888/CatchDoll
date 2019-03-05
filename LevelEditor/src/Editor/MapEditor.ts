@@ -61,10 +61,6 @@ class MapEditor extends eui.Component {
 	 * 上传
 	 */
 	public upLoadBtn: eui.Button;
-	/**
-	 * 改章节名字
-	 */
-	public changeChapterName: eui.Button;
 
 	private gridContainer: egret.DisplayObjectContainer;
 	private static GRID_SIZE: number = 40;
@@ -131,6 +127,8 @@ class MapEditor extends eui.Component {
 
 
 	public interactiveShowBox: eui.Group;
+	public actionCanvas: eui.Group;
+
 
 	public pathMirrorNoRollOver: eui.CheckBox;
 
@@ -279,7 +277,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _creatBg(): void {
-		for (let i: number = 1; i <= 3; i++) {
+		for (let i: number = 1; i <= 8; i++) {
 			let img = new eui.Image("BattleBg_" + i + "_png");
 			this.bgGroup.addChild(img);
 		}
@@ -363,7 +361,6 @@ class MapEditor extends eui.Component {
 		this.clearSceneBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearScene, this);
 		this.removeLevelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onRemoveLevel, this);
 		this.upLoadBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._upLoad, this);
-		this.changeChapterName.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onChanegChapter, this);
 		this.showGridCbx.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onShowGrid, this);
 		this.savePath.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onSavePath, this);
 		this.lookPathBtn.addEventListener(egret.TouchEvent.CHANGE, this._onLookPath, this)
@@ -383,15 +380,31 @@ class MapEditor extends eui.Component {
 	}
 
 
+	/**
+	 * 导出数据
+	 */
 	private _onExportData(): void {
 		let exportData = this.chapterData.slice();
 		for (let item of exportData) {
 			for (let subItem of item.levelData) {
-				for (let subItem2 of item.levelData) {
-					for (let subItem3 of subItem2.monster) {
-						delete subItem3.pathData;
-						delete subItem3.objectMirror;
-						delete subItem3.pathMirror;
+				for (let subItem2 of subItem.monster) {
+					delete subItem2.pathData;
+					delete subItem2.objectMirror;
+					delete subItem2.pathMirror;
+				}
+				for (let subItem3 of subItem.sceneInteractiveObject) {
+					delete subItem3.pathData;
+					delete subItem3.objectMirror;
+					delete subItem3.pathMirror;
+					let sum: number = 0;
+					for (let subitem4 of subItem3.carrySubitem) {
+						sum += subitem4.weight;
+					}
+					let sumOdds: number = 0;
+					for (let subitem4 of subItem3.carrySubitem) {
+						sumOdds += subitem4.weight / sum;
+						subitem4["weightOdds"] = sumOdds;
+						delete subitem4.weight;
 					}
 				}
 			}
@@ -403,7 +416,7 @@ class MapEditor extends eui.Component {
 		// request.open("http://127.0.0.1:8080", egret.HttpMethod.POST);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-		let data = JSON.stringify(this.chapterData)
+		let data = JSON.stringify(exportData)
 		request.send("exportData" + data);
 		request.addEventListener(egret.Event.COMPLETE, () => {
 			SystemTipsUtil.showTips("导出数据成功！")
@@ -450,21 +463,6 @@ class MapEditor extends eui.Component {
 		this.gridContainer.visible = this.showGridCbx.selected;
 	}
 
-	/**
-	 * 改变
-	 */
-	private _onChanegChapter(): void {
-		let len = this.chapterMap.length;
-		for (let i: number = 0; i < len; i++) {
-			let btn: ChapterBtn = this.chapterMap.values[i];
-			for (let item of this.chapterData) {
-				if (item.chapterID == btn.data.chapterID) {
-					item.chapterName = btn.labelDisplay.text;
-				}
-			}
-		}
-		SystemTipsUtil.showTips("修改成功")
-	}
 
 	/**
 	 * 上传

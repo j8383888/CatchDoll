@@ -87,9 +87,12 @@ class SceneInteractiveObject extends eui.Component {
 			this.target.touchEnabled = true;
 			this.target.x = this.group.width / 2;
 			this.target.y = this.group.height / 2;
-			this.target.animation.play(null, 0)
 			this.runTarget = UIUtil.creatDragonbones(item.dragonBonesName);
+			this.runTarget.animation.play(null,0);
 		}
+		
+
+
 
 		this.group.addChild(this.target);
 		MapEditor.instance.interactiveShowBox.addChild(this);
@@ -151,11 +154,21 @@ class SceneInteractiveObject extends eui.Component {
 		PathEditor.instance.finalPoint = null;
 		PathEditor.instance.lastPoint = null;
 
-
+		MapEditor.instance.actionCanvas.removeChildren();
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.curEditPathObject = this;
 
+		if (this.data.exportData.length) {
+			this.runTarget.x = this.data.exportData[0].x;
+			this.runTarget.y = this.data.exportData[0].y;
+		}
+		else {
+			this.runTarget.x = -100;
+			this.runTarget.y = -100;
+		}
+		MapEditor.instance.actionCanvas.addChild(this.runTarget);
+		/*画路径*/
 		PathEditor.instance.drawPath(this.data.pathData)
 	}
 

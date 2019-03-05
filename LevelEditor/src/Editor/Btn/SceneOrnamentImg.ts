@@ -35,7 +35,7 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 	/**
 	 * 打开面板
 	 */
-	private _onOpenPanel():void{
+	private _onOpenPanel(): void {
 
 	}
 
@@ -47,7 +47,14 @@ class SceneOrnamentImg extends egret.DisplayObjectContainer {
 			this.dispose();
 		}
 		else {
+
 			MapEditor.instance.sceneCanvas.addChild(this)
+			if (MapEditor.instance.curLevelOrnaments.remove(this)) {
+				MapEditor.instance.curLevelOrnaments.push(this);
+			}
+			else {
+				console.assert(false, "逻辑有误")
+			}
 		}
 	}
 

@@ -1,6 +1,6 @@
 class ChapterBtn extends eui.Component {
 
-	public labelDisplay: eui.Label;
+	public labelDisplay: eui.EditableText;
 	public btnBg: eui.Rect;
 
 
@@ -62,6 +62,11 @@ class ChapterBtn extends eui.Component {
 	public setData(data: any): void {
 		this.labelDisplay.text = data.chapterName;
 		this.data = data;
+		this.labelDisplay.addEventListener(egret.Event.CHANGE, this._onChange, this)
+	}
+
+	private _onChange(): void {
+		this.data.chapterName = this.labelDisplay.text
 	}
 
 	/**

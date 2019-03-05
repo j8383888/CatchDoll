@@ -65,10 +65,14 @@ BattlePng = r"..\resource\atlas\battle.png";
 LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battle.png";
 copy(BattleJson,LevelEditorJson)
 copy(BattlePng,LevelEditorPng)
-
 BattlePropJson = r"..\resource\atlas\battleProp.json";
 LevelEditorJson = r"..\LevelEditor\resource\assets\atlas\battleProp.json";
 BattlePropPng = r"..\resource\atlas\battleProp.png";
 LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battleProp.png";
 copy(BattlePropJson,LevelEditorJson)
 copy(BattlePropPng,LevelEditorPng)
+
+# 背景图copy
+Res = r"..\resource\image";
+LevelEditorRes = r"..\LevelEditor\resource\assets\image";
+copyFolder(Res,LevelEditorRes)

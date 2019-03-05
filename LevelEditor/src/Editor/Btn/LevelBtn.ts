@@ -113,6 +113,7 @@ class LevelBtn extends eui.Component {
 		MapEditor.instance.pathSetBox.visible = false;
 
 		MapEditor.instance.pathLine.removeChildren();
+		MapEditor.instance.actionCanvas.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.monsterShowBox.removeChildren();
 		MapEditor.instance.interactiveShowBox.removeChildren();

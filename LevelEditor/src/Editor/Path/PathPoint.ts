@@ -110,7 +110,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 		let p = MapEditor.instance.pathPoint.globalToLocal(e.stageX, e.stageY);
 		this.x = p.x;
 		this.y = p.y
-		this._updateBezierLine();
+		this.updateBezierLine();
 	}
 
 
@@ -184,10 +184,10 @@ class PathPoint extends egret.DisplayObjectContainer {
 		this.nextAnchor = this.getOppAnchor();
 
 		this._updateCrtlLine(p.x, p.y);
-		this._updateBezierLine();
+		this.updateBezierLine();
 	}
 
-	private _updateBezierLine(): void {
+	public updateBezierLine(): void {
 		if (this.fromline) {
 			this.fromline.drawBezierLine()
 		}

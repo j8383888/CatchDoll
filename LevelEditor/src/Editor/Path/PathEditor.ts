@@ -135,6 +135,30 @@ class PathEditor {
 		else if (e.key == 'c') {
 			MapEditor.instance.verGuy.selected = true
 		}
+		else if (MapEditor.instance.editorPathBtn.selected) {
+			if (PathEditor.instance.lastPoint) {
+				if (e.key == 'ArrowDown') {
+					PathEditor.instance.lastPoint.y += 1;
+					PathEditor.instance.lastPoint.updateBezierLine();
+
+				}
+				else if (e.key == 'ArrowUp') {
+					PathEditor.instance.lastPoint.y -= 1;
+					PathEditor.instance.lastPoint.updateBezierLine();
+				}
+				else if (e.key == 'ArrowLeft') {
+					PathEditor.instance.lastPoint.x -= 1;
+					PathEditor.instance.lastPoint.updateBezierLine();
+				}
+				else if (e.key == 'ArrowRight') {
+					PathEditor.instance.lastPoint.x += 1;
+					PathEditor.instance.lastPoint.updateBezierLine();
+				}
+
+			}
+		}
+		console.log(e.key);
+
 	}
 
 
@@ -464,6 +488,10 @@ class PathEditor {
 
 		let exportData: { x, y }[] = this.getExportPaths(pathDataAry);
 		this._formatExprotResult(MapEditor.instance.curEditPathObject, exportData);
+
+		MapEditor.instance.curEditPathObject.runTarget.x = MapEditor.instance.curEditPathObject.data.exportData[0].x;
+		MapEditor.instance.curEditPathObject.runTarget.y = MapEditor.instance.curEditPathObject.data.exportData[0].y;
+		MapEditor.instance.curEditPathObject.runTarget.scaleX = MapEditor.instance.curEditPathObject.data.exportData[0].scaleX;
 	}
 
 	/**

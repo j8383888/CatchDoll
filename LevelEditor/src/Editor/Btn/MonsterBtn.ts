@@ -54,6 +54,9 @@ class MonsterBtn extends eui.Component {
 		this.speed = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.id.toString(), "moveSpeed")
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(grounName);
 		this.runTarget = UIUtil.creatDragonbones(grounName);
+		this.runTarget.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
+
+
 		this.dragonBones = dragon;
 		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);
 		dragon.animation.play(null, 0);
@@ -113,8 +116,18 @@ class MonsterBtn extends eui.Component {
 
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
+		MapEditor.instance.actionCanvas.removeChildren();
 		MapEditor.instance.curEditPathObject = this;
 
+		if (this.data.exportData.length) {
+			this.runTarget.x = this.data.exportData[0].x;
+			this.runTarget.y = this.data.exportData[0].y;
+		}
+		else {
+			this.runTarget.x = -100
+			this.runTarget.y = -100;
+		}
+		MapEditor.instance.actionCanvas.addChild(this.runTarget);
 		PathEditor.instance.drawPath(this.data.pathData)
 	}
 

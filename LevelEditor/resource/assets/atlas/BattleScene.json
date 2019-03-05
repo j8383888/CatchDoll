@@ -3,7 +3,7 @@
   "frames": {
     "BattleScene_1": {
       "x": 741,
-      "y": 356,
+      "y": 0,
       "w": 800,
       "h": 104,
       "offX": 0,
@@ -41,35 +41,45 @@
       "sourceW": 800,
       "sourceH": 136
     },
-    "BattleScene_7": {
+    "BattleScene_5": {
       "x": 741,
-      "y": 240,
-      "w": 800,
-      "h": 115,
+      "y": 498,
+      "w": 815,
+      "h": 95,
       "offX": 0,
       "offY": 0,
-      "sourceW": 800,
-      "sourceH": 115
+      "sourceW": 815,
+      "sourceH": 98
+    },
+    "BattleScene_7": {
+      "x": 741,
+      "y": 302,
+      "w": 810,
+      "h": 97,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 810,
+      "sourceH": 100
     },
     "BattleScene_8": {
       "x": 741,
-      "y": 461,
-      "w": 720,
-      "h": 96,
+      "y": 105,
+      "w": 831,
+      "h": 98,
       "offX": 0,
       "offY": 0,
-      "sourceW": 720,
-      "sourceH": 97
+      "sourceW": 831,
+      "sourceH": 100
     },
     "BattleScene_9": {
       "x": 741,
-      "y": 0,
-      "w": 800,
-      "h": 120,
+      "y": 400,
+      "w": 810,
+      "h": 97,
       "offX": 0,
       "offY": 0,
-      "sourceW": 800,
-      "sourceH": 123
+      "sourceW": 810,
+      "sourceH": 100
     },
     "BattleScene_10": {
       "x": 0,
@@ -92,74 +102,54 @@
       "sourceH": 160
     },
     "BattleScene_12": {
-      "x": 1542,
-      "y": 0,
-      "w": 298,
-      "h": 143,
-      "offX": 5,
+      "x": 741,
+      "y": 204,
+      "w": 811,
+      "h": 97,
+      "offX": 0,
       "offY": 0,
-      "sourceW": 303,
-      "sourceH": 145
+      "sourceW": 811,
+      "sourceH": 100
     },
     "BattleScene_13": {
       "x": 801,
-      "y": 850,
-      "w": 298,
-      "h": 143,
-      "offX": 5,
+      "y": 594,
+      "w": 815,
+      "h": 91,
+      "offX": 0,
       "offY": 0,
-      "sourceW": 303,
-      "sourceH": 145
+      "sourceW": 815,
+      "sourceH": 91
     },
     "BattleScene_14": {
-      "x": 1102,
-      "y": 558,
-      "w": 298,
-      "h": 143,
-      "offX": 5,
+      "x": 801,
+      "y": 686,
+      "w": 815,
+      "h": 90,
+      "offX": 0,
       "offY": 0,
-      "sourceW": 303,
-      "sourceH": 145
+      "sourceW": 815,
+      "sourceH": 98
     },
     "BattleScene_15": {
-      "x": 1542,
-      "y": 144,
-      "w": 298,
-      "h": 143,
-      "offX": 0,
-      "offY": 0,
-      "sourceW": 303,
-      "sourceH": 145
-    },
-    "BattleScene_16": {
       "x": 801,
-      "y": 558,
-      "w": 300,
-      "h": 145,
+      "y": 777,
+      "w": 815,
+      "h": 90,
       "offX": 0,
       "offY": 0,
-      "sourceW": 315,
-      "sourceH": 145
-    },
-    "BattleScene_17": {
-      "x": 801,
-      "y": 704,
-      "w": 300,
-      "h": 145,
-      "offX": 0,
-      "offY": 0,
-      "sourceW": 315,
-      "sourceH": 145
+      "sourceW": 815,
+      "sourceH": 98
     },
     "BattleScene_18": {
-      "x": 741,
-      "y": 121,
-      "w": 800,
-      "h": 118,
+      "x": 801,
+      "y": 868,
+      "w": 815,
+      "h": 90,
       "offX": 0,
       "offY": 0,
-      "sourceW": 800,
-      "sourceH": 118
+      "sourceW": 815,
+      "sourceH": 98
     },
     "BattleScene_19": {
       "x": 0,

@@ -66,7 +66,7 @@ module catchDoll {
 			this._toggleButtonGroup.push(toggle1);
 			this._toggleButtonGroup.push(toggle2);
 
-			let table: table.shopTable[] = TableCenter.instance.ShopTable;
+			let table: table.ShopTable[] = TableCenter.instance.ShopTable;
 			for (let item of table) {
 				let shopitem: ShopItem = new ShopItem();
 				shopitem.setData(item.itemID, Boolean(item.isHot));
