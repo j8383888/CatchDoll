@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"monster_json,battle_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,curtainEff_json,curtainEff_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,battleTable_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png,LevelData_json,BattleScene_json,commonRes_json,BattleBg_1_png,BattleBg_2_png,BattleBg_3_png,erjihong_ske_dbbin,erjihong_tex_json,erjihong_tex_png,erjihuang_ske_dbbin,erjihuang_tex_json,erjihuang_tex_png,erjilan_ske_dbbin,erjilan_tex_json,erjilan_tex_png,erjilv_ske_dbbin,erjilv_tex_json,erjilv_tex_png,erjizi_ske_dbbin,erjizi_tex_json,erjizi_tex_png,jiqiyijiehong_ske_dbbin,jiqiyijiehong_tex_json,jiqiyijiehong_tex_png,jiqiyijiehuang_ske_dbbin,jiqiyijiehuang_tex_json,jiqiyijiehuang_tex_png,jiqiyijielan_ske_dbbin,jiqiyijielan_tex_json,jiqiyijielan_tex_png,jiqiyijielv_ske_dbbin,jiqiyijielv_tex_json,jiqiyijielv_tex_png,jiqiyijiezi_ske_dbbin,jiqiyijiezi_tex_json,jiqiyijiezi_tex_png",
+			"keys":"monster_json,battle_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,battleTable_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png,LevelData_json,BattleScene_json,commonRes_json,BattleBg_1_png,BattleBg_2_png,BattleBg_3_png,erjihong_ske_dbbin,erjihong_tex_json,erjihong_tex_png,erjihuang_ske_dbbin,erjihuang_tex_json,erjihuang_tex_png,erjilan_ske_dbbin,erjilan_tex_json,erjilan_tex_png,erjilv_ske_dbbin,erjilv_tex_json,erjilv_tex_png,erjizi_ske_dbbin,erjizi_tex_json,erjizi_tex_png,jiqiyijiehong_ske_dbbin,jiqiyijiehong_tex_json,jiqiyijiehong_tex_png,jiqiyijiehuang_ske_dbbin,jiqiyijiehuang_tex_json,jiqiyijiehuang_tex_png,jiqiyijielan_ske_dbbin,jiqiyijielan_tex_json,jiqiyijielan_tex_png,jiqiyijielv_ske_dbbin,jiqiyijielv_tex_json,jiqiyijielv_tex_png,jiqiyijiezi_ske_dbbin,jiqiyijiezi_tex_json,jiqiyijiezi_tex_png,battleProp_2_tex_json,battleProp_2_tex_png,battleProp_2_ske_dbbin,BattleBg_4_png,BattleBg_5_png,BattleBg_6_png,BattleBg_7_png,BattleBg_8_png,battleProp_json,SceneInteractiveObjectTable_json,battleProp_1burst_png,battleProp_1burst_json",
 			"name":"preload"
 		}],
 	"resources":[
@@ -267,16 +267,6 @@
 			"url":"assets/effect/fengche.png"
 		},
 		{
-			"name":"curtainEff_json",
-			"type":"json",
-			"url":"assets/effect/curtainEff.json"
-		},
-		{
-			"name":"curtainEff_png",
-			"type":"image",
-			"url":"assets/effect/curtainEff.png"
-		},
-		{
 			"name":"fengche_json",
 			"type":"json",
 			"url":"assets/effect/fengche.json"
@@ -473,7 +463,7 @@
 		},
 		{
 			"name":"BattleScene_json",
-			"subkeys":"BattleScene_1,BattleScene_10,BattleScene_11,BattleScene_12,BattleScene_13,BattleScene_14,BattleScene_15,BattleScene_16,BattleScene_17,BattleScene_18,BattleScene_19,BattleScene_2,BattleScene_20,BattleScene_3,BattleScene_4,BattleScene_5,BattleScene_6,BattleScene_7,BattleScene_8,BattleScene_9",
+			"subkeys":"BattleScene_1,BattleScene_10,BattleScene_11,BattleScene_12,BattleScene_13,BattleScene_14,BattleScene_15,BattleScene_18,BattleScene_19,BattleScene_2,BattleScene_20,BattleScene_3,BattleScene_4,BattleScene_5,BattleScene_7,BattleScene_8,BattleScene_9",
 			"type":"sheet",
 			"url":"assets/atlas/BattleScene.json"
 		},
@@ -647,6 +637,67 @@
 			"name":"jiqiyijiezi_tex_png",
 			"type":"image",
 			"url":"assets/dragonBones/jiqiyijiezi_tex.png"
+		},
+		{
+			"name":"battleProp_2_tex_json",
+			"type":"json",
+			"url":"assets/dragonBones/battleProp_2_tex.json"
+		},
+		{
+			"name":"battleProp_2_tex_png",
+			"type":"image",
+			"url":"assets/dragonBones/battleProp_2_tex.png"
+		},
+		{
+			"name":"battleProp_2_ske_dbbin",
+			"type":"bin",
+			"url":"assets/dragonBones/battleProp_2_ske.dbbin"
+		},
+		{
+			"name":"BattleBg_4_png",
+			"type":"image",
+			"url":"assets/image/BattleBg_4.png"
+		},
+		{
+			"name":"BattleBg_5_png",
+			"type":"image",
+			"url":"assets/image/BattleBg_5.png"
+		},
+		{
+			"name":"BattleBg_6_png",
+			"type":"image",
+			"url":"assets/image/BattleBg_6.png"
+		},
+		{
+			"name":"BattleBg_7_png",
+			"type":"image",
+			"url":"assets/image/BattleBg_7.png"
+		},
+		{
+			"name":"BattleBg_8_png",
+			"type":"image",
+			"url":"assets/image/BattleBg_8.png"
+		},
+		{
+			"name":"battleProp_json",
+			"subkeys":"battleProp_1",
+			"type":"sheet",
+			"url":"assets/atlas/battleProp.json"
+		},
+		{
+			"name":"SceneInteractiveObjectTable_json",
+			"type":"json",
+			"url":"assets/table/SceneInteractiveObjectTable.json"
+		},
+		{
+			"name":"battleProp_1burst_png",
+			"type":"image",
+			"url":"assets/effect/battleProp_1burst.png"
+		},
+		{
+			"name":"battleProp_1burst_json",
+			"type":"json",
+			"url":"assets/effect/battleProp_1burst.json"
 		}
 	]
 }

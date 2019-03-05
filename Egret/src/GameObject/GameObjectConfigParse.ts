@@ -17,7 +17,7 @@ module catchDoll {
 					colliderAry: [{
 						posX: 90,
 						posY: 120,
-						radius: 50
+						radius: 40
 					}]
 				}
 			});

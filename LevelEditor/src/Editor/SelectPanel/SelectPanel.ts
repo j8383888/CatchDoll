@@ -33,7 +33,7 @@ class SelectPanel extends eui.Component {
 			let target: any;
 			if (item.imageAry && item.imageAry.length) {
 				target = new eui.Image();
-				target.source = item.imageAry[0];
+				target.source = item.imageAry[0].sourceName;
 				this.group.addChild(target);
 			}
 			else if (item.imageAry && item.movieClipAry.length) {

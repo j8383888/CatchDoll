@@ -19,12 +19,13 @@
 
 
 
-	<e:Group y="2.02" horizontalCenter="0">
-		<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
-		<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
-	</e:Group>
+
 	<e:Rect id="downRect" width="720" height="1280" x="0" y="0" fillAlpha="0" strokeAlpha="0"/>
 	<e:Group id="btnGroup" x="0" y="0" touchEnabled="false">
+		<e:Group y="2.02" horizontalCenter="0" x="285" scaleX="1" scaleY="1">
+			<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
+			<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
+		</e:Group>
 		<e:Image source="battle_16" x="0" y="0"/>
 		<e:Image id="_returnBtn" source="battle_12" x="610" y="0"/>
 		<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>

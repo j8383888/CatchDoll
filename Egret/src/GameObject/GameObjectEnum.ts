@@ -18,7 +18,7 @@ const enum GAMEOBJECT_SIGN {
     /**
      * 随机箱子
      */
-    RAMDOM = 1001,
+    RAMDOM_BOX = 1001,
 }
 /**
  * 操作类型

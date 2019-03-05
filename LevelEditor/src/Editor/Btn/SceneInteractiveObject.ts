@@ -69,10 +69,10 @@ class SceneInteractiveObject extends eui.Component {
 			this.target = new PivotCenterImage();
 			this.target.x = this.group.width / 2;
 			this.target.y = this.group.height / 2;
-			this.target.source = item.imageAry[0];
+			this.target.source = item.imageAry[0].sourceName;
 
 			this.runTarget = new PivotCenterImage();
-			this.runTarget.source = item.imageAry[0];
+			this.runTarget.source = item.imageAry[0].sourceName;
 		}
 		else if (item.imageAry && item.movieClipAry.length) {
 			this.target.x = this.group.width / 2;
@@ -90,7 +90,7 @@ class SceneInteractiveObject extends eui.Component {
 			this.runTarget = UIUtil.creatDragonbones(item.dragonBonesName);
 			this.runTarget.animation.play(null,0);
 		}
-		
+		                                             
 
 
 

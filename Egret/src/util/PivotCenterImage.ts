@@ -2,7 +2,7 @@
  * 中心点在中间的Image
  * @author suo
  */
-class CustomImage extends eui.Image {
+class PivotCenterImage extends eui.Image {
 	public constructor() {
 		super();
 	}

@@ -103,8 +103,9 @@ const enum LAYER {
 	BATTLE_LOW,
 	/*场景低层*/
 	BATTLE_SCENE,
+	SCENE_INTERACTIVE_LOW,
 	/*可交互对象*/
-	INTERACTIVE,
+	SCENE_INTERACTIVE_HIGH,
 	/*怪物层*/
 	MONSTER,
 	/*场景高层*/

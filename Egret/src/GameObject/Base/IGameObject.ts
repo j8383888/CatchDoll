@@ -76,6 +76,16 @@ module catchDoll {
 	}
 
 	/**
+	 * 随机箱子接口
+	 */
+	export interface IRandomBox extends ISenceInteractiveVars {
+		carrySubitem: {
+			id: number,
+			weightOdds: number,
+		}[]
+	}
+
+	/**
 	 * 游戏对象配置接口
 	 */
 	export interface IGameObjectConfig {
