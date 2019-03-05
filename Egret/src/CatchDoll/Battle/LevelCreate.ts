@@ -94,11 +94,14 @@ module catchDoll {
 		 */
 		private _creatInteractiveObject(): void {
 			for (let item of this.curLevelData.sceneInteractiveObject) {
-
 				let varsData: ISenceInteractiveVars = <ISenceInteractiveVars>{};
+				if (item.id == GAMEOBJECT_SIGN.RAMDOM_BOX) {
+					(varsData as IRandomBox).carrySubitem = item.carrySubitem;
+				}
+
 				if (item.exportData.length == 1) {
-					varsData.bornX = varsData.exportData[0].x;
-					varsData.bornY = varsData.exportData[0].y;
+					varsData.bornX = item.exportData[0].x;
+					varsData.bornY = item.exportData[0].y;
 				}
 				else {
 					varsData.fixedRotation = item.fixedRotation;
@@ -107,7 +110,7 @@ module catchDoll {
 						type: OPERATION_TYPE.MONSTER
 					}]
 				}
-				GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.INTERACTIVE)
+				GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.SCENE_INTERACTIVE_HIGH)
 			}
 		}
 
@@ -269,8 +272,35 @@ module catchDoll {
 						let interObjCollider = interObjPColliderAry[j];
 						if (Collider.isIntersect(pawCollider, interObjCollider)) {
 							this.isCheck = false;
-							if(interObj.sign == GAMEOBJECT_SIGN.RAMDOM){
-								// interObj.imagePlayer.
+							egret.Tween.removeTweens(paw.pawsBody.pawsHead);
+							interObj.unregisterOperation();
+
+
+							if (interObj.sign == GAMEOBJECT_SIGN.RAMDOM_BOX) {
+								(interObj as RandomBox).playDieEff();
+								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+								egret.Tween.get(paw.pawsBody.pawsHead, {
+									onChange: paw.confirmRopeHeight,
+									onChangeObj: paw,
+								}).wait(600).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+									paw.pawsBody.isDown = false;
+								})
+							}
+							else {
+								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+								egret.Tween.get(paw.pawsBody.pawsHead, {
+									onChange: () => {
+										paw.confirmRopeHeight();
+										if (interObj) {
+											interObj.x = paw.x;
+											interObj.y = paw.pawsBody.pawsHead.y + interObj.height + paw.y;
+										}
+									},
+									onChangeObj: this,
+								}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+									GameObjectFactory.instance.recoverGameObject(interObj);
+									paw.pawsBody.isDown = false;
+								})
 							}
 						}
 					}
@@ -380,7 +410,7 @@ module catchDoll {
 
 			let len2: number = LevelCreate.inSceneInterObjMap.length;
 			let map2: Dictionary = LevelCreate.inSceneInterObjMap.copy();
-			for (let i: number = 0; i < len; i++) {
+			for (let i: number = 0; i < len2; i++) {
 				let inter: SceneInteractiveObject = map2.values[i];
 				GameObjectFactory.instance.recoverGameObject(inter);
 			}

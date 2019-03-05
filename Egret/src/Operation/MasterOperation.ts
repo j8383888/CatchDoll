@@ -13,7 +13,6 @@ module catchDoll {
 		 */
 		private _isLeft: boolean = false;
 
-		private _sceneBox: eui.Group;
 
 
 		public constructor() {
@@ -26,7 +25,6 @@ module catchDoll {
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Paws;
 			EventManager.registerEvent(EVENT_ID.MASTER_DOWN, Handler.create(this, this._masterDown));
-			this._sceneBox = UICenter.instance.getManager(commonUI.BattleScene).getView(BattleSceneView).sceneImgBox;
 		}
 
 		/**
@@ -54,8 +52,6 @@ module catchDoll {
          * 反注册
          */
 		public unregister(): void {
-			this._sceneBox.x = 0;
-			this._sceneBox = null;
 
 			egret.Tween.removeTweens(this._gameObj.pawsBody.pawsHead);
 			this._gameObj.pawsBody.pawsHead.y = this._gameObj.pawsBody.pawsHeadStartPosY

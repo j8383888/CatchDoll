@@ -20,6 +20,9 @@ module catchDoll {
 		/*端口*/
 		public post: number = -1
 
+		// public lastScrollerPos:number = 0
+
+
 		public constructor() {
 			let configData = RES.getRes("config_json");
 			this.isDebug = configData["isDebug"];

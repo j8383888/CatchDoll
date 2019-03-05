@@ -7,6 +7,7 @@ class ConfigParse {
 	}
 
 	public static getJosn(key: string): any {
+		console.log("加载配置档:" + key);
 		var data: Object[] = RES.getRes(key);
 		return data.slice(0);
 	}

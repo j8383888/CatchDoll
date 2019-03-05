@@ -25,9 +25,7 @@ module catchDoll {
 			if (data) {
 				for (let i: number = 0; i < data.length; i++) {
 					let mov: egret.MovieClip = UIUtil.creatMovieClip(data[i].groupName, data[i].actionName);
-					if (data.length != 1) {
-						mov.visible = false;
-					}
+					mov.visible = false;
 					if (data[i].offsetX) {
 						mov.x = data[i].offsetX;
 					}

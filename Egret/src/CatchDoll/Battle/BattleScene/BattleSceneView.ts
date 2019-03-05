@@ -79,7 +79,7 @@ module catchDoll {
 		 * 释放时
 		 */
 		public dispose(): void {
-
+			LayerManager.instance.removeFromLayer(this.btnGroup, LAYER.BATTLE_HIGH)
 			this.returnBtn.dispose();
 			this.returnBtn = null;
 			this.propBtn1.dispose();

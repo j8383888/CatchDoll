@@ -193,10 +193,10 @@ class MapEditor extends eui.Component {
 	private _createInteractiveObject(): void {
 		this.SceneInteractiveObjectTable = RES.getRes("SceneInteractiveObjectTable_json")
 		for (let item of this.SceneInteractiveObjectTable) {
-			let target: any;
+			let target: any; 
 			if (item.imageAry && item.imageAry.length) {
 				target = new eui.Image();
-				target.source = item.imageAry[0];
+				target.source = item.imageAry[0].sourceName;
 				this.InteractiveObjectGroup.addChild(target);
 			}
 			else if (item.imageAry && item.movieClipAry.length) {

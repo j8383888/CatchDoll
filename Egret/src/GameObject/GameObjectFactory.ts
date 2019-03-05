@@ -23,7 +23,12 @@ module catchDoll {
 				this._objClassDic.set(item.id, Monster);
 			}
 			for (let item of TableCenter.instance.SceneInteractiveObjectTable) {
-				this._objClassDic.set(item.id, SceneInteractiveObject);
+				if (item.id == GAMEOBJECT_SIGN.RAMDOM_BOX) {
+					this._objClassDic.set(item.id, RandomBox);
+				}
+				else {
+					this._objClassDic.set(item.id, SceneInteractiveObject);
+				}
 			}
 			this._objClassDic.set(GAMEOBJECT_SIGN.PAWS, Paws);
 		}
