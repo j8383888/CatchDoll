@@ -19,7 +19,7 @@ module table {
 		/**
 		 * 图片
 		 */
-		imageAry: string[];
+		imageAry: SceneInteractiveObjectTable.ImageAryItem[];
 		/**
 		 * 影片剪辑
 		 */
@@ -34,6 +34,12 @@ module table {
 		colliderAry: SceneInteractiveObjectTable.ColliderAryItem[];
 
 		GetType(): string { return 'table.SceneInteractiveObjectTable'; }
+	}
+	export module SceneInteractiveObjectTable {
+		export class ImageAryItem {
+			keyName: string;
+			sourceName: string;
+		}
 	}
 	export module SceneInteractiveObjectTable {
 		export class MovieClipAryItem {

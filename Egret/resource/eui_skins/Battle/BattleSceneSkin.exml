@@ -2,11 +2,7 @@
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="bgSource" x="0" source="" width="720" height="1280"/>
 	<e:Rect width="720" height="1280" y="0" fillColor="0x605252" visible="false"/>
-	<e:Group id="battleSceneBox" width="200" height="200">
 
-		<e:Group id="sceneImgBox" width="200" height="200" touchChildren="false" touchEnabled="false"/>
-		<e:Group id="monsterBox" width="200" height="200"/>
-	</e:Group>
 
 
 
@@ -28,17 +24,18 @@
 		<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
 	</e:Group>
 	<e:Rect id="downRect" width="720" height="1280" x="0" y="0" fillAlpha="0" strokeAlpha="0"/>
-	<e:Group x="0" y="0" touchEnabled="false">
+	<e:Group id="btnGroup" x="0" y="0" touchEnabled="false">
 		<e:Image source="battle_16" x="0" y="0"/>
 		<e:Image id="_returnBtn" source="battle_12" x="610" y="0"/>
 		<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>
+		<e:Group id="propBox" x="-203" y="380" width="203">
+			<e:Image x="0" y="0" source="battle_18"/>
+			<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
+			<e:Image id="prop1" x="72" y="70" source="item_6" anchorOffsetX="54.5" anchorOffsetY="50.5"/>
+			<e:Image id="prop2" x="73" y="175.67" source="item_5" anchorOffsetX="44" anchorOffsetY="49.5"/>
+			<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
+			<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
+		</e:Group>
 	</e:Group>
-	<e:Group id="propBox" x="-203" y="380" width="203">
-		<e:Image x="0" y="0" source="battle_18"/>
-		<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
-		<e:Image id="prop1" x="72" y="70" source="item_6" anchorOffsetX="54.5" anchorOffsetY="50.5"/>
-		<e:Image id="prop2" x="73" y="175.67" source="item_5" anchorOffsetX="44" anchorOffsetY="49.5"/>
-		<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
-		<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
-	</e:Group>
+
 </e:Skin>

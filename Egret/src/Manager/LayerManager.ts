@@ -49,6 +49,8 @@ module catchDoll {
 			else {
 				console.assert(false, "不存在该layerType！")
 			}
+
+
 		}
 
 
@@ -97,8 +99,16 @@ const enum LAYER {
 	BG,
 	SCENE,
 	UI,
-	BATTLE,
+
+	BATTLE_LOW,
+	/*场景低层*/
+	BATTLE_SCENE,
+	/*可交互对象*/
+	INTERACTIVE,
+	/*怪物层*/
 	MONSTER,
+	/*场景高层*/
+	BATTLE_HIGH,
 	POP,
 	EFFECT,
 	LOADING,

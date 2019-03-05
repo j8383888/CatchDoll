@@ -75,7 +75,10 @@
 		<field column="id" code="id" type="int32" />
 		<field column="名称" code="name" type="string" />
 		<field column="图片" code="imageAry" type="array" >
-			<field column="value" code="value" type="string" />
+			<field column="value" code="value" type="object" >
+				<field column="keyName" type="string" />
+				<field column="sourceName" type="string" />
+			</field>
 		</field>
 		<field column="影片剪辑" code="movieClipAry" type="array" >
 			<field column="value" code="value" type="object" >

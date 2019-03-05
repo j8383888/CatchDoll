@@ -38,7 +38,7 @@ module catchDoll {
 		/**
 		 * 场景可交互对象配置
 		 */
-		public SceneInteractiveObjectTable:table.SceneInteractiveObjectTable[];
+		public SceneInteractiveObjectTable: table.SceneInteractiveObjectTable[];
 		/**
 		 * 章节数据配置
 		 */
@@ -49,16 +49,17 @@ module catchDoll {
 				level: number,
 				bgSource: string,
 				monster: {
-					monsterID: number,
+					id: number,
 					fixedRotation: number,
-					pathMirror: boolean,
-					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
-					pathData: {
-						origin: { x, y },
-						ctrlP1: { x, y },
-						ctrlP2: { x, y },
-						beforeAnchor: { x, y },
-						nextAnchor: { x, y },
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				}[],
+				sceneInteractiveObject: {
+					id: number,
+					fixedRotation: number,
+					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+					carrySubitem: {
+						id: number,
+						weightOdds: number,
 					}[]
 				}[],
 				mapData: { source, x, y, width, height }[],
@@ -102,19 +103,20 @@ module catchDoll {
 			level: number,
 			bgSource: string,
 			monster: {
-				monsterID: number,
+				id: number,
 				fixedRotation: number,
-				pathMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number },
-				pathData: {
-					origin: { x, y },
-					ctrlP1: { x, y },
-					ctrlP2: { x, y },
-					beforeAnchor: { x, y },
-					nextAnchor: { x, y },
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				carrySubitem: {
+					id: number,
+					weightOdds: number,
 				}[]
 			}[],
-			mapData: { source, x, y }[],
+			mapData: { source, x, y, width, height }[],
 		}[] {
 			for (let item of this.ChapterData) {
 				if (item.chapterID == chapterID) {

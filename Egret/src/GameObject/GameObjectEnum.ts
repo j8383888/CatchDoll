@@ -14,7 +14,11 @@ const enum GAMEOBJECT_SIGN {
     /**
      * 夹子
      */
-    PAWS = 101,
+    PAWS = 10001,
+    /**
+     * 随机箱子
+     */
+    RAMDOM = 1001,
 }
 /**
  * 操作类型

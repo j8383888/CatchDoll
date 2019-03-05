@@ -37,8 +37,6 @@ module catchDoll {
 		 */
 		public uninitialize(): void {
 			this.isCollided = false;
-
-
 			super.uninitialize();
 		}
 

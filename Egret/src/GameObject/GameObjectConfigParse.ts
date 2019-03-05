@@ -29,6 +29,16 @@ module catchDoll {
 					}, configData: { colliderAry: item.colliderAry, speed: item.moveSpeed, life: item.life }
 				});
 			}
+
+			for (let item of TableCenter.instance.SceneInteractiveObjectTable) {
+				GameObjectConfigParse.configDic.set(item.id, {
+					configAsset: {
+						imageAry: item.imageAry,
+						movieClipAry: item.movieClipAry,
+						dragonBonesName: item.dragonBonesName,
+					}, configData: { colliderAry: item.colliderAry }
+				});
+			}
 		}
 
 

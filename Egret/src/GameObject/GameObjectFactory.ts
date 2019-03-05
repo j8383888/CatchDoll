@@ -22,6 +22,9 @@ module catchDoll {
 			for (let item of TableCenter.instance.MonsterTable) {
 				this._objClassDic.set(item.id, Monster);
 			}
+			for (let item of TableCenter.instance.SceneInteractiveObjectTable) {
+				this._objClassDic.set(item.id, SceneInteractiveObject);
+			}
 			this._objClassDic.set(GAMEOBJECT_SIGN.PAWS, Paws);
 		}
 
@@ -67,8 +70,14 @@ module catchDoll {
 				return;
 			}
 			if (egret.is(gameObj, "catchDoll.Monster")) {
-				let map: Dictionary = LevelCreate.inSenceMonsterMap
 				if (LevelCreate.inSenceMonsterMap.remove(gameObj.uID)) {
+				}
+				else {
+					console.assert(false, "逻辑有误")
+				}
+			}
+			else if (egret.is(gameObj, "catchDoll.SceneInteractiveObject")) {
+				if (LevelCreate.inSceneInterObjMap.remove(gameObj.uID)) {
 				}
 				else {
 					console.assert(false, "逻辑有误")
@@ -105,6 +114,15 @@ module catchDoll {
 					LevelCreate.inSenceMonsterMap.set(gameObj.uID, gameObj)
 				}
 			}
+			else if (egret.is(gameObj, "catchDoll.SceneInteractiveObject")) {
+				if (LevelCreate.inSceneInterObjMap.isExist(gameObj)) {
+					console.assert(false, "逻辑有误")
+				}
+				else {
+					LevelCreate.inSceneInterObjMap.set(gameObj.uID, gameObj)
+				}
+			}
+
 		}
 
 		/**
