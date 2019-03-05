@@ -277,6 +277,9 @@ class PathEditor {
 				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
+				if (isObjectMirror) {
+					angle += 180;
+				}
 				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: 1 * objectMirrorOdds }
 				result.push(item);
 				distTotal += distNext;
@@ -302,6 +305,9 @@ class PathEditor {
 					let nextPathNode = data[i + 1];
 					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
+					if (isObjectMirror) {
+						angle += 180;
+					}
 					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
 					result.push(item);
 					distTotal += distNext;

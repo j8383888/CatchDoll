@@ -11,6 +11,8 @@ module catchDoll {
 
 		public initialize(): void {
 			super.initialize();
+			this.imagePlayer.visible = true
+			// this._moviePlayer
 		}
 
 		/**

@@ -64,6 +64,8 @@ class SubInteractiveObject extends eui.Component {
 		}
 		this.group.removeChildren();
 		this.data.id = id;
+		
+
 		let item = ConfigParse.getWholeByProperty(MapEditor.instance.SceneInteractiveObjectTable, "id", id.toString())
 		if (item.imageAry && item.imageAry.length) {
 			this.target = new PivotCenterImage();
