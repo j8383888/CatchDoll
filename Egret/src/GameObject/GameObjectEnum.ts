@@ -19,6 +19,10 @@ const enum GAMEOBJECT_SIGN {
      * 随机箱子
      */
     RAMDOM_BOX = 1001,
+    /**
+     * 麻痹陷阱
+     */
+    PARALYTIC_TRAP = 1002,
 }
 /**
  * 操作类型

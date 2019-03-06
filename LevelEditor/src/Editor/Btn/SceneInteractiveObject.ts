@@ -197,6 +197,7 @@ class SceneInteractiveObject extends eui.Component {
 			PathEditor.instance.pathPoints.length = 0;
 			MapEditor.instance.pathLine.removeChildren();
 			MapEditor.instance.pathPoint.removeChildren();
+			MapEditor.instance.actionCanvas.removeChildren();
 		}
 		this.parent.removeChild(this)
 		this.target = null;

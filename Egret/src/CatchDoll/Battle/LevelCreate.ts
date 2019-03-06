@@ -275,7 +275,9 @@ module catchDoll {
 							egret.Tween.removeTweens(paw.pawsBody.pawsHead);
 							interObj.unregisterOperation();
 
-
+							/**
+							 * 如果随机箱子
+							 */
 							if (interObj.sign == GAMEOBJECT_SIGN.RAMDOM_BOX) {
 								(interObj as RandomBox).playDieEff();
 								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);

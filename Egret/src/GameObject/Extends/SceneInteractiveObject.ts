@@ -19,9 +19,7 @@ module catchDoll {
 		public initialize(): void {
 			super.initialize();
 			let varsData: ISenceInteractiveVars = this.varsData as ISenceInteractiveVars;
-			if (this._dragonBones) {
-				this._dragonBones.animation.play(null, 0)
-			}
+			
 			if (varsData.operation) {
 				for (let i: number = 0; i < varsData.operation.length; i++) {
 					this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));

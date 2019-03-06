@@ -16,9 +16,9 @@ class SceneInteractiveObject {
 		let target = this.target;
 		if (data.imageAry && data.imageAry.length) {
 			target = new PivotCenterImage();
-			target.source = data.imageAry[0];
+			target.source = data.imageAry[0].sourceName;
 			this.runTarget = new PivotCenterImage();
-			this.runTarget.source = data.imageAry[0];
+			this.runTarget.source = data.imageAry[0].sourceName;
 			MainEditor.instance.InteractiveObjectGroup.addChild(target);
 		}
 		else if (data.imageAry && data.movieClipAry.length) {

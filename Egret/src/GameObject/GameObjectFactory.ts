@@ -26,6 +26,9 @@ module catchDoll {
 				if (item.id == GAMEOBJECT_SIGN.RAMDOM_BOX) {
 					this._objClassDic.set(item.id, RandomBox);
 				}
+				else if (item.id == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
+					this._objClassDic.set(item.id, ParalyticTrap);
+				}
 				else {
 					this._objClassDic.set(item.id, SceneInteractiveObject);
 				}
