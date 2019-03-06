@@ -35,6 +35,11 @@ export class ResPlugin implements plugins.Command {
         //     // 原始的文件夹+crc32码+后缀扩展名
         //     file.path = "resource/" + this.versionConfig[path] + file.extname;
         // }
+        // else if (path.indexOf("resource/default.thm.json") != -1) {
+        //     this.versionConfig[path] = crc32(file.contents.toString());
+        //     // 原始的文件夹+crc32码+后缀扩展名
+        //     file.path = "resource/" + this.versionConfig[path] + file.extname;
+        // }
         return file;
     }
 
