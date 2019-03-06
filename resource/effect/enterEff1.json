@@ -1,0 +1,52 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 3
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_dungeon2.img.toyCastle2.acc.14.0",
+          "x": -115,
+          "y": -113
+        },
+        {
+          "res": "Obj_dungeon2.img.toyCastle2.acc.14.1",
+          "x": -114,
+          "y": -113
+        },
+        {
+          "res": "Obj_dungeon2.img.toyCastle2.acc.14.2",
+          "x": -114,
+          "y": -113
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_dungeon2.img.toyCastle2.acc.14.0": {
+      "x": 0,
+      "y": 0,
+      "w": 230,
+      "h": 226
+    },
+    "Obj_dungeon2.img.toyCastle2.acc.14.1": {
+      "x": 231,
+      "y": 0,
+      "w": 229,
+      "h": 226
+    },
+    "Obj_dungeon2.img.toyCastle2.acc.14.2": {
+      "x": 0,
+      "y": 227,
+      "w": 229,
+      "h": 226
+    }
+  }
+}

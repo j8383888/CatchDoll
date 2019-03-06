@@ -100,6 +100,14 @@ module catchDoll {
 
 			this.haemalGroup.addChild(this.haemalStrandMask);
 			this.haemalStrand.mask = this.haemalStrandMask;
+
+
+		}
+
+		private _createEff(): egret.MovieClip {
+			let mov =  UIUtil.creatMovieClip("enterEff" + MathUtil.random(1, 3))
+			mov.blendMode = egret.BlendMode.ADD
+			return mov;
 		}
 
 		public initOther(): void {
@@ -136,12 +144,38 @@ module catchDoll {
 			this.haemalStrandMask.width = this.haemalStrandWidth;
 			this.isAlive = true;
 			let varsData: IMonsterVars = this.varsData as IMonsterVars
-			if (varsData.operation) {
-				for (let i: number = 0; i < varsData.operation.length; i++) {
-					this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));
+
+			let exportData = varsData.exportData[0];
+			this.x = exportData.x;
+			this.y = exportData.y;
+			this.alpha = 0
+			this.isCollided = false;
+			egret.Tween.get(this).to({ alpha: 1 }, 2000).call(() => {
+				this.isCollided = true;
+				if (varsData.operation) {
+					for (let i: number = 0; i < varsData.operation.length; i++) {
+						this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));
+					}
 				}
-			}
+			})
+
+
+			let mov: egret.MovieClip = Pool.getItemByCreateFun(Pool.enterEff, Handler.create(this, this._createEff))
+
+			mov.alpha = 0;
+			
+			mov.x = varsData.exportData[0].x;
+			mov.y = varsData.exportData[0].y;
+			mov.gotoAndPlay(1, -1);
+			LayerManager.instance.addToLayer(mov, LAYER.BATTLE_SCENE)
+
+			egret.Tween.get(mov).to({ alpha: 1 }, 1000).wait(500).to({ alpha: 0 }, 500).call(() => {
+				mov.stop();
+				Pool.recover(Pool.enterEff, mov);
+				LayerManager.instance.removeFromLayer(mov, LAYER.BATTLE_SCENE)
+			})
 		}
+
 
 		public get dragonBones(): dragonBones.EgretArmatureDisplay {
 			return this._dragonBones;

@@ -17,6 +17,11 @@ module catchDoll {
 		 */
 		public static sceneImg: string = "sceneImg";
 
+		/**
+		 * 旋转金币
+		 */
+		public static enterEff: string = "enterEff";
+
 		/**@private  对象存放池。*/
 		private static _poolDic: Object = {};
 		/*标识组*/
