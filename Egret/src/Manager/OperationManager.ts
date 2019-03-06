@@ -24,7 +24,7 @@ module catchDoll {
 
 
 		constructor() {
-			this._operationClsDic.set(OPERATION_TYPE.MONSTER, MonsterOperation);
+			this._operationClsDic.set(OPERATION_TYPE.MONSTER, MoveOperation);
 			this._operationClsDic.set(OPERATION_TYPE.MASTER, MasterOperation);
 
 			Laya.timer.frameLoop(1, this, this._update);

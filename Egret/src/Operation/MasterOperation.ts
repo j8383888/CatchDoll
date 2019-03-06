@@ -43,7 +43,7 @@ module catchDoll {
 				}
 			}).wait(this._gameObj.pawsBody.actionBefore * 1000).to({ y: 770 }, 1000, egret.Ease.quadIn).wait(200).call(() => {
 				LevelCreate.instance.isCheck = false;
-				this._gameObj.noCatchAction();
+				this._gameObj.noCatchActionFast();
 			});
 		}
 

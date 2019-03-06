@@ -1,14 +1,10 @@
 module catchDoll {
-	export class MonsterOperation extends BaseOperation {
+	export class MoveOperation extends BaseOperation {
 
 		/**
 		 * 宿主对象
 		 */
 		public _gameObj: Monster;
-		/**
-		 * 开始时间
-		 */
-		public startTime: number = -1;
 		/**
 		 * 路径节点序列
 		 */
@@ -39,7 +35,7 @@ module catchDoll {
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Monster;
 
-			this.startTime = egret.getTimer();
+			this._gameObj.startTime = egret.getTimer();
 			let monsterVars = gameObj.varsData as IMonsterVars
 			this.fixedRotation = monsterVars.fixedRotation
 			this.pathNodes = monsterVars.exportData;
@@ -63,19 +59,23 @@ module catchDoll {
 		 * 帧循环
 		 */
 		public enterFrame(): void {
-			let time = egret.getTimer();
-			let runTime = (time - this.startTime) / 1000;
 			let monster = this._gameObj as Monster;
+			if (monster.isStopMove) {
+				return;
+			}
+
+			let time = egret.getTimer();
+			let runTime = (time - monster.startTime) / 1000;
 			let curMoveDistance = runTime * monster.speed * 100
 			let lastPath = this.pathNodes[this.pathNodes.length - 1]
 			let total = lastPath.distTotal
-			
+
 
 			if (curMoveDistance >= total) {
 				this.pathNodeIndex = 0;
 				this.curPathNode = this.pathNodes[0];
 				this.nextPathNode = this.pathNodes[1];
-				this.startTime = egret.getTimer();
+				monster.startTime = egret.getTimer();
 				// GameObjectFactory.instance.recoverGameObject(monster);
 				return;
 			}

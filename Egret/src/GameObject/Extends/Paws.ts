@@ -35,13 +35,27 @@ module catchDoll {
 		/**
 		 * 未捕获动作
 		 */
-		public noCatchAction(): void {
+		public noCatchActionFast(): void {
 			egret.Tween.get(this.pawsBody.pawsHead, {
 				onChange: () => {
 					this.confirmRopeHeight();
 				}
 			}
 			).wait(100).to({ y: this.pawsBody.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
+				this.pawsBody.isDown = false;
+			})
+		}
+
+		/**
+		 * 未捕获动作
+		 */
+		public noCatchActionSlow(): void {
+			egret.Tween.get(this.pawsBody.pawsHead, {
+				onChange: () => {
+					this.confirmRopeHeight();
+				}
+			}
+			).wait(100).to({ y: this.pawsBody.pawsHeadStartPosY }, 600).call(() => {
 				this.pawsBody.isDown = false;
 			})
 		}

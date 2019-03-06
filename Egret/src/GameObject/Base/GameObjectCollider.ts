@@ -33,6 +33,24 @@ module catchDoll {
 		}
 
 		/**
+		 * 是否相交
+		 */
+		public static isIntersect(c1: catchDoll.Collider[], c2: catchDoll.Collider[]): boolean {
+			let len = c1.length;
+			let len2 = c2.length;
+			for (let i: number = 0; i < len; i++) {
+				let colliderA = c1[i];
+				for (let j: number = 0; j < len2; j++) {
+					let colliderB = c2[j]
+					if (Collider.isIntersect(colliderA, colliderB)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
+		/**
 		 * 反初始化
 		 */
 		public uninitialize(): void {
@@ -49,6 +67,7 @@ module catchDoll {
 					this.colliderAry[i].recover();
 				}
 				this.colliderAry.length = 0;
+				this.colliderAry = null;
 			}
 			super.dispose();
 		}

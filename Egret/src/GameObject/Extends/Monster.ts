@@ -45,8 +45,18 @@ module catchDoll {
 		 * 血条容器
 		 */
 		public haemalGroup: egret.DisplayObjectContainer;
-
+		/**
+		 * 偏移
+		 */
 		public offsetY: number = 0;
+		/**
+		 * 开始时间
+		 */
+		public startTime: number = 0;
+		/**
+		 * 是否禁足
+		 */
+		public isStopMove: boolean = false;
 
 		public constructor() {
 			super();
@@ -88,12 +98,8 @@ module catchDoll {
 			this.haemalGroup.addChild(this.haemalStrand);
 			this.haemalGroup.addChild(this.haemalStrandFrame);
 
-
-
 			this.haemalGroup.addChild(this.haemalStrandMask);
 			this.haemalStrand.mask = this.haemalStrandMask;
-
-
 		}
 
 		public initOther(): void {
@@ -103,6 +109,19 @@ module catchDoll {
 			else {
 				this.offsetY = 140;
 			}
+		}
+
+		/**
+		 * 禁止移动
+		 */
+		public stopMove(): void {
+			this.isStopMove = true;
+			this.startTime += 4000;
+			Laya.timer.once(4000, this, this._recoverMove)
+		}
+
+		private _recoverMove(): void {
+			this.isStopMove = false;
 		}
 
 		/**
@@ -143,16 +162,13 @@ module catchDoll {
          * 反初始化
          */
 		public uninitialize(): void {
+
 			this.unregisterOperation();
-			if (this._moviePlayer) {
-				this._moviePlayer.stop();
+			if (this.isStopMove) {
+				this.isStopMove = false;
+				Laya.timer.clear(this, this._recoverMove);
 			}
-			if (this._dragonBones) {
-				this._dragonBones.animation.stop();
-			}
-			if (this.parent) {
-				this.parent.removeChild(this);
-			}
+			super.uninitialize();
 		}
 
 		/**

@@ -108,7 +108,7 @@
 		"bin-debug/MVCcore/UIViewCenter.js",
 		"bin-debug/CatchDoll/PawsBody.js",
 		"bin-debug/Operation/MasterOperation.js",
-		"bin-debug/Operation/MonsterOperation.js",
+		"bin-debug/Operation/MoveOperation.js",
 		"bin-debug/Table/battleTable.js",
 		"bin-debug/Table/ClipTable.js",
 		"bin-debug/Table/MonsterTable.js",
