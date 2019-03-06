@@ -75,7 +75,7 @@ module catchDoll {
 			this.TaskTable = ConfigParse.getJosn("TaskTable_json");
 			this.PropTable = ConfigParse.getJosn("PropTable_json");
 			this.TurnTable = ConfigParse.getJosn("TurntableList_json");
-			this.ShopTable = ConfigParse.getJosn("shopTable_json");
+			this.ShopTable = ConfigParse.getJosn("ShopTable_json");
 			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
 			this.ChapterData = ConfigParse.getJosn("LevelData_json")
 			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json")

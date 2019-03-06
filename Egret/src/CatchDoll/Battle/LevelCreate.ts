@@ -173,69 +173,64 @@ module catchDoll {
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monster: Monster = monsterMap.values[i];
 				let monsterColliderAry = monster.colliderAry
-				let monsterColliderAryLen = monsterColliderAry.length;
 				let pawColliderAry = paw.colliderAry
-				let pawColliderAryLen = pawColliderAry.length;
-				for (let k: number = 0; k < pawColliderAryLen; k++) {
-					let pawCollider = pawColliderAry[k];
-					for (let j: number = 0; j < monsterColliderAryLen; j++) {
-						let monsterCollider = monsterColliderAry[j];
-						if (Collider.isIntersect(pawCollider, monsterCollider)) {
-							this.isCheck = false;
-							this._catchMonster = monster;
-							monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
-							let transform = monster.dragonBones.armature.getBone("centre").global
-							monster.haemalGroup.x = transform.x;
-							monster.haemalGroup.y = transform.y;
-							egret.Tween.removeTweens(paw.pawsBody.pawsHead);
+				if (GameObjectCollider.isIntersect(monsterColliderAry, pawColliderAry)) {
+					this.isCheck = false;
+					this._catchMonster = monster;
+					monster.isCollided = true;
+					monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
+					let transform = monster.dragonBones.armature.getBone("centre").global
+					monster.haemalGroup.x = transform.x;
+					monster.haemalGroup.y = transform.y;
+					egret.Tween.removeTweens(paw.pawsBody.pawsHead);
 
-							/*血条缩短*/
-							let targetWidth: number = 0;
-							monster.life -= paw.pawsBody.hurt;
-							if (monster.life <= 0) {
-								monster.life = 0;
-								targetWidth = 0;
-								monster.x = paw.x;
-								monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
-								monster.unregisterOperation();
-							}
-							else {
-								targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
-							}
-							/*血条缩短Tween*/
-							egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
-								/**
-								 * 抓住
-								 */
-								if (targetWidth == 0) {
-									let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-									egret.Tween.get(paw.pawsBody.pawsHead, {
-										onChange: () => {
-											paw.confirmRopeHeight();
-											if (monster) {
-												monster.x = paw.x;
-												monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
-											}
-										},
-										onChangeObj: this,
-									}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
-										GameObjectFactory.instance.recoverGameObject(monster);
-										paw.pawsBody.isDown = false;
-										this._checkEnd();
-									})
-								}
-								/**
-								 * 没抓住
-								 */
-								else {
-									monster.dragonBones.animation.play("Walk", 0);
-									paw.noCatchActionFast()
-								}
-							})
-							return true;
-						}
+					/*血条缩短*/
+					let targetWidth: number = 0;
+					monster.life -= paw.pawsBody.hurt;
+					if (monster.life <= 0) {
+						monster.life = 0;
+						targetWidth = 0;
+						monster.x = paw.x;
+						monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
+						monster.unregisterOperation();
 					}
+					else {
+						targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
+					}
+					/*血条缩短Tween*/
+					egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
+						/**
+						 * 抓住
+						 */
+						if (targetWidth == 0) {
+							let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+							egret.Tween.get(paw.pawsBody.pawsHead, {
+								onChange: () => {
+									paw.confirmRopeHeight();
+									if (monster) {
+										monster.x = paw.x;
+										monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
+									}
+								},
+								onChangeObj: this,
+							}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+								GameObjectFactory.instance.recoverGameObject(monster);
+								paw.pawsBody.isDown = false;
+								this._checkEnd();
+							})
+						}
+						/**
+						 * 没抓住
+						 */
+						else {
+							monster.dragonBones.animation.play("Walk", 0);
+							paw.noCatchActionFast()
+						}
+					})
+					return true;
+
 				}
+
 			}
 			return false
 		}
@@ -273,51 +268,43 @@ module catchDoll {
 					continue;
 				}
 				let interObjPColliderAry = interObj.colliderAry
-				let interObjPColliderAryLen = interObjPColliderAry.length;
 				let pawColliderAry = paw.colliderAry
-				let pawColliderAryLen = pawColliderAry.length;
-				for (let k: number = 0; k < pawColliderAryLen; k++) {
-					let pawCollider = pawColliderAry[k];
-					for (let j: number = 0; j < interObjPColliderAryLen; j++) {
-						let interObjCollider = interObjPColliderAry[j];
-						if (Collider.isIntersect(pawCollider, interObjCollider)) {
-							this.isCheck = false;
-							egret.Tween.removeTweens(paw.pawsBody.pawsHead);
-							interObj.unregisterOperation();
+				if (GameObjectCollider.isIntersect(interObjPColliderAry, pawColliderAry)) {
+					this.isCheck = false;
+					egret.Tween.removeTweens(paw.pawsBody.pawsHead);
+					interObj.unregisterOperation();
 
-							/**
-							 * 如果随机箱子
-							 */
-							if (interObj.sign == GAMEOBJECT_SIGN.RAMDOM_BOX) {
-								(interObj as RandomBox).playDieEff();
-								paw.noCatchActionSlow();
-							}
-							else if (interObj.sign == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
-								let target: ParalyticTrap = interObj as ParalyticTrap
-								if (!target.isOpen) {
-									target.isCollided = true;
-									target.onOpen();
-								}
-								paw.noCatchActionSlow();
-							}
-
-							else {
-								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-								egret.Tween.get(paw.pawsBody.pawsHead, {
-									onChange: () => {
-										paw.confirmRopeHeight();
-										if (interObj) {
-											interObj.x = paw.x;
-											interObj.y = paw.pawsBody.pawsHead.y + interObj.height + paw.y;
-										}
-									},
-									onChangeObj: this,
-								}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
-									GameObjectFactory.instance.recoverGameObject(interObj);
-									paw.pawsBody.isDown = false;
-								})
-							}
+					/**
+					 * 如果随机箱子
+					 */
+					if (interObj.sign == GAMEOBJECT_SIGN.RAMDOM_BOX) {
+						(interObj as RandomBox).playDieEff();
+						paw.noCatchActionSlow();
+					}
+					else if (interObj.sign == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
+						let target: ParalyticTrap = interObj as ParalyticTrap
+						if (!target.isOpen) {
+							target.isCollided = true;
+							target.onOpen();
 						}
+						paw.noCatchActionSlow();
+					}
+
+					else {
+						let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+						egret.Tween.get(paw.pawsBody.pawsHead, {
+							onChange: () => {
+								paw.confirmRopeHeight();
+								if (interObj) {
+									interObj.x = paw.x;
+									interObj.y = paw.pawsBody.pawsHead.y + interObj.height + paw.y;
+								}
+							},
+							onChangeObj: this,
+						}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+							GameObjectFactory.instance.recoverGameObject(interObj);
+							paw.pawsBody.isDown = false;
+						})
 					}
 				}
 			}
@@ -392,6 +379,9 @@ module catchDoll {
 			 	 */
 				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 					let monsterP: Monster = monsterMap.values[i];
+					if (monsterP.isCollided) {
+						continue;
+					}
 					let monsterPColliderAry = monsterP.colliderAry
 					let monsterPColliderAryLen = monsterPColliderAry.length;
 					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
@@ -409,6 +399,9 @@ module catchDoll {
 				let interObjColliderAry = interObj.trapColliderAry
 				for (let f = 0; f < monsterMapLen; f += this._colliderFlag + 1) {
 					let monster: Monster = monsterMap.values[f];
+					if (monster.isCollided) {
+						continue;
+					}
 					let monsterColliderAry = monster.colliderAry
 					if (GameObjectCollider.isIntersect(interObjColliderAry, monsterColliderAry)) {
 						monster.stopMove()

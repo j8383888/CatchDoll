@@ -31,7 +31,7 @@ module catchDoll {
           */
 		public initOther(): void {
 			this._dragonBones.animation.timeScale = 0.8;
-			let collider: catchDoll.Collider = Collider.creat(0, 0, 20)
+			let collider: catchDoll.Collider = Collider.creat(0, 0, 10)
 			collider.setParent(this);
 			this.trapColliderAry.push(collider);
 		}

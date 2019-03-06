@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"monster_json,battle_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,shopTable_json,TreasureTable_json,fengche_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,battleTable_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png,LevelData_json,BattleScene_json,commonRes_json,BattleBg_1_png,BattleBg_2_png,BattleBg_3_png,erjihong_ske_dbbin,erjihong_tex_json,erjihong_tex_png,erjihuang_ske_dbbin,erjihuang_tex_json,erjihuang_tex_png,erjilan_ske_dbbin,erjilan_tex_json,erjilan_tex_png,erjilv_ske_dbbin,erjilv_tex_json,erjilv_tex_png,erjizi_ske_dbbin,erjizi_tex_json,erjizi_tex_png,jiqiyijiehong_ske_dbbin,jiqiyijiehong_tex_json,jiqiyijiehong_tex_png,jiqiyijiehuang_ske_dbbin,jiqiyijiehuang_tex_json,jiqiyijiehuang_tex_png,jiqiyijielan_ske_dbbin,jiqiyijielan_tex_json,jiqiyijielan_tex_png,jiqiyijielv_ske_dbbin,jiqiyijielv_tex_json,jiqiyijielv_tex_png,jiqiyijiezi_ske_dbbin,jiqiyijiezi_tex_json,jiqiyijiezi_tex_png,battleProp_2_tex_json,battleProp_2_tex_png,battleProp_2_ske_dbbin,BattleBg_4_png,BattleBg_5_png,BattleBg_6_png,BattleBg_7_png,BattleBg_8_png,battleProp_json,SceneInteractiveObjectTable_json,battleProp_1burst_png,battleProp_1burst_json",
+			"keys":"monster_json,battle_json,font_3_fnt,font_4_fnt,font_5_fnt,font_1_fnt,font_2_fnt,Turntable_json,startBg_png,start_json,coinRotation_json,coinRotation_png,functionUI_json,functionPanel_json,item_json,rankingList_json,shopPanel_json,treasureBox_json,bagPanel_json,rankFont_fnt,timeFont_fnt,clip_json,TurntableList_json,chipBg_json,otherRes1_json,settlePanel_json,BlueClipLevel4_json,BlueClipLevel4_png,gainPropEff_json,gainPropEff_png,starBurst_json,starBurst_png,TurntableLamp_json,TurntableLamp_png,BlueClipLevel1_json,BlueClipLevel1_png,BlueClipLevel2_json,BlueClipLevel2_png,BlueClipLevel3_json,BlueClipLevel3_png,MonsterTable_json,PropTable_json,TaskTable_json,ClipTable_json,otherRes2_json,fragment_json,TreasureTable_json,fengche_png,fengche_json,common_proto,config_json,description_json,loading_1_json,loading_1_png,battleTable_json,duyanhong_ske_dbbin,duyanhong_tex_json,duyanhong_tex_png,duyanlan_ske_dbbin,duyanlan_tex_json,duyanlan_tex_png,duyanlv_ske_dbbin,duyanlv_tex_json,duyanlv_tex_png,xiaozhuhei_ske_dbbin,xiaozhuhei_tex_json,xiaozhuhei_tex_png,xiaozhuhong_ske_dbbin,xiaozhuhong_tex_json,xiaozhuhong_tex_png,xiaozhuhuang_ske_dbbin,xiaozhuhuang_tex_json,xiaozhuhuang_tex_png,xiaozhulan_ske_dbbin,xiaozhulan_tex_json,xiaozhulan_tex_png,xiaozhulv_ske_dbbin,xiaozhulv_tex_json,xiaozhulv_tex_png,duyanhei_ske_dbbin,duyanhei_tex_json,duyanhei_tex_png,effect_1_json,effect_1_png,effect_2_json,effect_2_png,LevelData_json,BattleScene_json,commonRes_json,BattleBg_1_png,BattleBg_2_png,BattleBg_3_png,erjihong_ske_dbbin,erjihong_tex_json,erjihong_tex_png,erjihuang_ske_dbbin,erjihuang_tex_json,erjihuang_tex_png,erjilan_ske_dbbin,erjilan_tex_json,erjilan_tex_png,erjilv_ske_dbbin,erjilv_tex_json,erjilv_tex_png,erjizi_ske_dbbin,erjizi_tex_json,erjizi_tex_png,jiqiyijiehong_ske_dbbin,jiqiyijiehong_tex_json,jiqiyijiehong_tex_png,jiqiyijiehuang_ske_dbbin,jiqiyijiehuang_tex_json,jiqiyijiehuang_tex_png,jiqiyijielan_ske_dbbin,jiqiyijielan_tex_json,jiqiyijielan_tex_png,jiqiyijielv_ske_dbbin,jiqiyijielv_tex_json,jiqiyijielv_tex_png,jiqiyijiezi_ske_dbbin,jiqiyijiezi_tex_json,jiqiyijiezi_tex_png,battleProp_2_tex_json,battleProp_2_tex_png,battleProp_2_ske_dbbin,BattleBg_4_png,BattleBg_5_png,BattleBg_6_png,BattleBg_7_png,BattleBg_8_png,battleProp_json,SceneInteractiveObjectTable_json,battleProp_1burst_png,battleProp_1burst_json,ShopTable_json",
 			"name":"preload"
 		}],
 	"resources":[
@@ -250,11 +250,6 @@
 			"subkeys":"fragment_1,fragment_101,fragment_102,fragment_103,fragment_104,fragment_105,fragment_2,fragment_201,fragment_202,fragment_203,fragment_3,fragment_301,fragment_302,fragment_303,fragment_4,fragment_5",
 			"type":"sheet",
 			"url":"assets/atlas/fragment.json"
-		},
-		{
-			"name":"shopTable_json",
-			"type":"json",
-			"url":"assets/table/shopTable.json"
 		},
 		{
 			"name":"TreasureTable_json",
@@ -698,6 +693,11 @@
 			"name":"battleProp_1burst_json",
 			"type":"json",
 			"url":"assets/effect/battleProp_1burst.json"
+		},
+		{
+			"name":"ShopTable_json",
+			"type":"json",
+			"url":"assets/table/ShopTable.json"
 		}
 	]
 }
