@@ -1,0 +1,118 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 9
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.0",
+          "x": -83,
+          "y": -81
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.1",
+          "x": -80,
+          "y": -80
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.2",
+          "x": -76,
+          "y": -81
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.3",
+          "x": -75,
+          "y": -82
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.4",
+          "x": -82,
+          "y": -82
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.5",
+          "x": -83,
+          "y": -82
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.6",
+          "x": -90,
+          "y": -81
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.7",
+          "x": -89,
+          "y": -81
+        },
+        {
+          "res": "Obj_dungeon3.img.woodCave.gate.2.8",
+          "x": -87,
+          "y": -81
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_dungeon3.img.woodCave.gate.2.0": {
+      "x": 168,
+      "y": 329,
+      "w": 167,
+      "h": 162
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.1": {
+      "x": 341,
+      "y": 163,
+      "w": 161,
+      "h": 161
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.2": {
+      "x": 336,
+      "y": 329,
+      "w": 152,
+      "h": 163
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.3": {
+      "x": 503,
+      "y": 0,
+      "w": 151,
+      "h": 164
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.4": {
+      "x": 175,
+      "y": 164,
+      "w": 165,
+      "h": 164
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.5": {
+      "x": 0,
+      "y": 328,
+      "w": 167,
+      "h": 164
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.6": {
+      "x": 0,
+      "y": 0,
+      "w": 181,
+      "h": 163
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.7": {
+      "x": 182,
+      "y": 0,
+      "w": 178,
+      "h": 162
+    },
+    "Obj_dungeon3.img.woodCave.gate.2.8": {
+      "x": 0,
+      "y": 164,
+      "w": 174,
+      "h": 163
+    }
+  }
+}

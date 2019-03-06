@@ -105,7 +105,7 @@ module catchDoll {
 		}
 
 		private _createEff(): egret.MovieClip {
-			let mov =  UIUtil.creatMovieClip("enterEff" + MathUtil.random(1, 3))
+			let mov = UIUtil.creatMovieClip("enterEff" + 4/*MathUtil.random(1, 3)*/)
 			mov.blendMode = egret.BlendMode.ADD
 			return mov;
 		}
@@ -163,16 +163,16 @@ module catchDoll {
 			let mov: egret.MovieClip = Pool.getItemByCreateFun(Pool.enterEff, Handler.create(this, this._createEff))
 
 			mov.alpha = 0;
-			
+
 			mov.x = varsData.exportData[0].x;
-			mov.y = varsData.exportData[0].y;
+			mov.y = varsData.exportData[0].y - 40;
 			mov.gotoAndPlay(1, -1);
-			LayerManager.instance.addToLayer(mov, LAYER.BATTLE_SCENE)
+			LayerManager.instance.addToLayer(mov, LAYER.BATTLE_HIGH)
 
 			egret.Tween.get(mov).to({ alpha: 1 }, 1000).wait(500).to({ alpha: 0 }, 500).call(() => {
 				mov.stop();
 				Pool.recover(Pool.enterEff, mov);
-				LayerManager.instance.removeFromLayer(mov, LAYER.BATTLE_SCENE)
+				LayerManager.instance.removeFromLayer(mov, LAYER.BATTLE_HIGH)
 			})
 		}
 
