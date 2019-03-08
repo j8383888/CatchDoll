@@ -23,7 +23,6 @@ module catchDoll {
 
 			this.isOpen = false;
 			this._dragonBones.animation.gotoAndStopByFrame("start", 1);
-
 		}
 
 		/**
@@ -31,9 +30,12 @@ module catchDoll {
           */
 		public initOther(): void {
 			this._dragonBones.animation.timeScale = 0.8;
-			let collider: catchDoll.Collider = Collider.creat(0, 0, 10)
+			let collider: catchDoll.Collider = Collider.creat(0, 15, 15)
 			collider.setParent(this);
+			let collider2: catchDoll.Collider = Collider.creat(0, -30, 15)
+			collider2.setParent(this);
 			this.trapColliderAry.push(collider);
+			this.trapColliderAry.push(collider2);
 		}
 
 
@@ -42,6 +44,7 @@ module catchDoll {
 		 */
 		public onOpen(): void {
 			this.isOpen = true;
+			
 			this._dragonBones.animation.play("start", 1);
 			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
 		}
@@ -50,6 +53,7 @@ module catchDoll {
 		 * 播放完毕
 		 */
 		private _onComplete(): void {
+			
 			this._dragonBones.animation.play("loop", 0);
 			LevelCreate.InterObjHitMonsterMap.set(this.uID, this);
 		}

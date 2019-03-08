@@ -105,8 +105,8 @@ module catchDoll {
 		}
 
 		private _createEff(): egret.MovieClip {
-			let mov = UIUtil.creatMovieClip("enterEff" + 4/*MathUtil.random(1, 3)*/)
-			mov.blendMode = egret.BlendMode.ADD
+			let mov = UIUtil.creatMovieClip("enterEff" + 5/*MathUtil.random(1, 3)*/)
+			// mov.blendMode = egret.BlendMode.ADD
 			return mov;
 		}
 
@@ -149,9 +149,9 @@ module catchDoll {
 			this.x = exportData.x;
 			this.y = exportData.y;
 			this.alpha = 0
-			this.isCollided = false;
+			this.isCollided = true;
 			egret.Tween.get(this).to({ alpha: 1 }, 2000).call(() => {
-				this.isCollided = true;
+				this.isCollided = false;
 				if (varsData.operation) {
 					for (let i: number = 0; i < varsData.operation.length; i++) {
 						this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));
@@ -165,7 +165,7 @@ module catchDoll {
 			mov.alpha = 0;
 
 			mov.x = varsData.exportData[0].x;
-			mov.y = varsData.exportData[0].y - 40;
+			mov.y = varsData.exportData[0].y;
 			mov.gotoAndPlay(1, -1);
 			LayerManager.instance.addToLayer(mov, LAYER.BATTLE_HIGH)
 

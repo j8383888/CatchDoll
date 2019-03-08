@@ -1,0 +1,41 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 2
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_guild.img.syarenian.common.6.0",
+          "x": -63,
+          "y": -63
+        },
+        {
+          "res": "Obj_guild.img.syarenian.common.6.1",
+          "x": -63,
+          "y": -63
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_guild.img.syarenian.common.6.0": {
+      "x": 0,
+      "y": 0,
+      "w": 127,
+      "h": 127
+    },
+    "Obj_guild.img.syarenian.common.6.1": {
+      "x": 0,
+      "y": 0,
+      "w": 127,
+      "h": 127
+    }
+  }
+}

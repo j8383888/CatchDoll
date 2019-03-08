@@ -33,7 +33,6 @@ module catchDoll {
 			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
 			this._view.returnBtn.mouseClickHandler = Handler.create(this, this._clickReturnBtn);
 			this._view.timeLabel.text = this._timeNum.toString();
-			Laya.timer.loop(1000, this, this.updateTime)
 
 			this._view.propBtn1.mouseClickHandler = Handler.create(null, () => {
 				this._view.propBtn1.visible = false;
@@ -59,6 +58,14 @@ module catchDoll {
 					this._view.propBtn2.enabled = true;
 				});
 			});
+
+			this._view.returnBtn.y = -110;
+			Laya.timer.once(2000, null, () => {
+				egret.Tween.get(this._view.returnBtn.root).to({ y: 0 }, 500);
+				Laya.timer.loop(1000, this, this.updateTime)
+			})
+
+
 		}
 
 		/**

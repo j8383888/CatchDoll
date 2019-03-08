@@ -159,6 +159,9 @@ module catchDoll {
 			 */
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monsterP: Monster = monsterMap.values[i];
+				if (monsterP.isCollided) {
+					continue;
+				}
 				let monsterPColliderAry = monsterP.colliderAry
 				let monsterPColliderAryLen = monsterPColliderAry.length;
 				for (let m: number = 0; m < monsterPColliderAryLen; m++) {
@@ -172,6 +175,9 @@ module catchDoll {
 
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monster: Monster = monsterMap.values[i];
+				if (monster.isCollided) {
+					continue;
+				}
 				let monsterColliderAry = monster.colliderAry
 				let pawColliderAry = paw.colliderAry
 				if (GameObjectCollider.isIntersect(monsterColliderAry, pawColliderAry)) {
@@ -317,19 +323,18 @@ module catchDoll {
 		 */
 		private _checkHit(): void {
 
+			if (this._colliderFlag == 0) {
+				this._colliderFlag = 1;
+			}
+			else {
+				this._colliderFlag = 0;
+			}
 			if (this.isCheck) {
 				let paw = Master.instance.MasterPaws;
 				let pawColliderArylen = paw.colliderAry.length
 				for (let i: number = 0; i < pawColliderArylen; i++) {
 					paw.colliderAry[i].setGlobePos();
 				}
-				if (this._colliderFlag == 0) {
-					this._colliderFlag = 1;
-				}
-				else {
-					this._colliderFlag = 0;
-				}
-
 
 				if (this._checkMonsterHit(paw)) {
 
@@ -346,18 +351,18 @@ module catchDoll {
 		 * 检测场景可交互对象与怪兽的碰撞
 		 */
 		private _checkInteractiveAndMonsterHit(): void {
-			let interHitMonsterMap = LevelCreate.InterObjHitMonsterMap.copy();
+			let interHitMonsterMap = LevelCreate.InterObjHitMonsterMap;
 			let interHitMonsterMapLen: number = interHitMonsterMap.length;
 			if (interHitMonsterMapLen == 0) {
 				return;
 			}
-
-
 			let monsterMap = LevelCreate.inSenceMonsterMap
 			let monsterMapLen: number = monsterMap.length;
 			if (monsterMapLen == 0) {
 				return;
 			}
+			interHitMonsterMap = interHitMonsterMap.copy()
+
 
 			let i: number = 0;
 			/**

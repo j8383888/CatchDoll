@@ -27,8 +27,8 @@
 			<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
 			<e:Label id="timeLabel" text="999" x="75.97" y="74.68" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
 		</e:Group>
-		<e:Image source="battle_16" x="0" y="0"/>
-		<e:Image id="_returnBtn" source="battle_12" x="610" y="0"/>
+		<e:Image source="battle_16" x="0" y="0" visible="false"/>
+		<e:Image id="_returnBtn" source="battle_12" x="610" y="-111"/>
 		<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>
 		<e:Group id="propBox" x="-203" y="380" width="203">
 			<e:Image x="0" y="0" source="battle_18"/>

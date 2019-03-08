@@ -41,7 +41,7 @@ module catchDoll {
 				onChange: () => {
 					this._gameObj.confirmRopeHeight();
 				}
-			}).wait(this._gameObj.pawsBody.actionBefore * 1000).to({ y: 770 }, 1000, egret.Ease.quadIn).wait(200).call(() => {
+			}).wait(this._gameObj.pawsBody.actionBefore * 1000).to({ y: 780 }, 1000, egret.Ease.quadIn).wait(100).call(() => {
 				LevelCreate.instance.isCheck = false;
 				this._gameObj.noCatchActionFast();
 			});

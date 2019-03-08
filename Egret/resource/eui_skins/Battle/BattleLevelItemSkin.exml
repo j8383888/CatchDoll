@@ -8,7 +8,7 @@
 			<e:Image y="13.33" scaleX="1" scaleY="1" source="otherRes1_32" x="129"/>
 			<e:Label id="costLabel" text="x2" x="71.99" y="19.33"/>
 		</e:Group>
-		<e:Image y="208" scaleX="1" scaleY="1" source="otherRes1_17" horizontalCenter="-3"/>
+
 		<e:Rect id="dragoneP" x="150" y="196.67"/>
 	</e:Group>
 </e:Skin>

@@ -31,6 +31,13 @@ module catchDoll {
 				this.colliderAry.push(collider);
 			}
 		}
+		/**
+         * 初始化
+         */
+		public initialize(): void {
+			super.initialize();
+			this.isCollided = false;
+		}
 
 		/**
 		 * 是否相交
@@ -54,7 +61,6 @@ module catchDoll {
 		 * 反初始化
 		 */
 		public uninitialize(): void {
-			this.isCollided = false;
 			super.uninitialize();
 		}
 
