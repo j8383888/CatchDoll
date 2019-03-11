@@ -123,17 +123,20 @@ class Globe extends egret.DisplayObject {
 				runTarget.y = target.data.exportData[0].y;
 				runTarget.scaleX = target.data.exportData[0].scaleX;
 				this.actionObjectAry.remove(target);
+				break;
 			}
 
 			if (curMoveDistance > target.nextPathNode.distTotal) {
 				let len = target.data.exportData.length;
+
 				for (let i: number = target.pathNodeIndex; i < len; i++) {
 					if (target.data.exportData[i].distTotal > curMoveDistance) {
+						target.curPathNode = target.data.exportData[i - 1];
 						target.pathNodeIndex = i;
 						target.nextPathNode = target.data.exportData[i];
-						target.curPathNode = target.data.exportData[i - 1];
 						break;
 					}
+
 				}
 			}
 			let curPath = target.curPathNode;
@@ -145,19 +148,13 @@ class Globe extends egret.DisplayObject {
 
 
 			// /*是否为跳跃路径*/
-			// if (curPath.distTotal == nextPath.distTotal) {
-			// 	runTarget.x = nextPath.x;
-			// 	runTarget.y = nextPath.y;
-			// }
-			// else {
 			let distNext = curPath.distNext;
 			let offsetDist = curMoveDistance - curPath.distTotal;
 			let offsetx = offsetDist / distNext * (nextPath.x - curPath.x);
 			let offsety = offsetDist / distNext * (nextPath.y - curPath.y);
 
 			runTarget.x = (curPath.x + offsetx);
-			runTarget.y = (curPath.y + offsety)
-			// }
+			runTarget.y = (curPath.y + offsety);
 			runTarget.scaleX = curPath.scaleX;
 
 			if (target.data.fixedRotation == -1) {

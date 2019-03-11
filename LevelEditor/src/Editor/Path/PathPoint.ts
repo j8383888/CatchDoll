@@ -80,7 +80,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 		if (this.fromline && this.backline) {
 			let startP = this.fromline.startP;
 			let endP = this.backline.endP;
-			let line = PathEditor.instance.creatLine(startP, endP, startP.isJumpToNextPoint)
+			let line = PathEditor.instance.creatLine(startP, endP)
 			startP.setBackLine(line);
 			endP.setFromLine(line);
 		}

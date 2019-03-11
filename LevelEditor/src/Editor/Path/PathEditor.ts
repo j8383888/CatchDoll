@@ -279,9 +279,6 @@ class PathEditor {
 				 * @param distTotal 与起始点的距离
 				 */
 				let nextPathNode = data[i + 1];
-				if (pathNode.x == nextPathNode.x && pathNode.y == nextPathNode.y) {
-					continue;
-				}
 				if (pathNode.isJumpToNextP) {
 					distNext = 0;
 				}
@@ -317,11 +314,8 @@ class PathEditor {
 					 * @param distTotal 与起始点的距离
 					 */
 					let nextPathNode = data[i + 1];
-					if (pathNode.x == nextPathNode.x && pathNode.y == nextPathNode.y) {
-						continue;
-					}
 					/*是否跳跃路径*/
-					if (pathNode.isJumpToNextP) {
+					if (nextPathNode.isJumpToNextP) {
 						distNext = 0;
 					}
 					else {
@@ -373,7 +367,7 @@ class PathEditor {
 
 
 				if (startNode.isJumpToNextP) {
-					result.push({ x: endNode.origin.x, y: endNode.origin.y, isJumpToNextP: true });
+					result.push({ x: start.x, y: start.y, isJumpToNextP: true });
 				}
 				else {
 					let lastPos = new egret.Point(start.x, start.y);
@@ -392,8 +386,21 @@ class PathEditor {
 
 			}
 		}
+		let len2: number = result.length;
+		let copy = result.slice();
+		for (let i: number = 0; i < len2 - 1; i++) {
+			let a = result[i];
+			let b = result[i + 1];
+			if (a.x == b.x && a.y == b.y) {
+				if (a.isJumpToNextP || b.isJumpToNextP) {
+					a.isJumpToNextP = true;
+				}
+				copy.remove(b)
+			}
+		}
+
 		// this._drawTest(result);
-		return result;
+		return copy;
 	}
 
 	/**
@@ -434,7 +441,7 @@ class PathEditor {
 			this.finalPoint.isJumpToNextPoint = MapEditor.instance.isJumpPathPoint.selected;
 			let newPoint = this.creatPoint(p);
 			newPoint.showCtrlOp(true);
-			let line = this.creatLine(this.finalPoint, newPoint, MapEditor.instance.isJumpPathPoint.selected)
+			let line = this.creatLine(this.finalPoint, newPoint)
 			newPoint.setFromLine(line);
 			this.finalLine = line;
 			this.finalPoint.setBackLine(this.finalLine);
@@ -462,11 +469,11 @@ class PathEditor {
 		PathEditor.instance.pathPoints.length = 0;
 		for (let item of pathNodes) {
 			if (this.finalPoint) {
-				this.finalPoint.isJumpToNextPoint = item.isJumpToNextP;
 				let newPoint = this.creatPoint(new egret.Point(item.origin.x, item.origin.y));
+				newPoint.isJumpToNextPoint = item.isJumpToNextP;
 				newPoint.setCtrlOp(item.ctrlP1, item.ctrlP2);
 				newPoint.setAnchor(new egret.Point(item.beforeAnchor.x, item.beforeAnchor.y), new egret.Point(item.nextAnchor.x, item.nextAnchor.y))
-				let line = this.creatLine(this.finalPoint, newPoint, item.isJumpToNextP)
+				let line = this.creatLine(this.finalPoint, newPoint)
 				newPoint.setFromLine(line);
 				this.finalLine = line;
 				this.finalPoint.setBackLine(this.finalLine);
@@ -488,8 +495,6 @@ class PathEditor {
 	 * 保存路径数据
 	 */
 	public savePath(): void {
-
-
 
 		let pathDataAry: {
 			origin: { x, y },
@@ -551,9 +556,9 @@ class PathEditor {
 	/**
 	 * 划线
 	 */
-	public creatLine(startP: PathPoint, endP: PathPoint, isJumpPath: boolean): PathLine {
+	public creatLine(startP: PathPoint, endP: PathPoint): PathLine {
 		let line = new PathLine();
-		line.setData(startP, endP, isJumpPath)
+		line.setData(startP, endP, startP.isJumpToNextPoint)
 		this._mapEditor.pathLine.addChild(line);
 		return line
 	}
