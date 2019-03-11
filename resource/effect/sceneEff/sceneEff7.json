@@ -1,0 +1,129 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 10
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.0",
+          "x": -28,
+          "y": -47
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.1",
+          "x": -28,
+          "y": -48
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.2",
+          "x": -28,
+          "y": -48
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.3",
+          "x": -28,
+          "y": -48
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.4",
+          "x": -28,
+          "y": -48
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.5",
+          "x": -28,
+          "y": -48
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.6",
+          "x": -28,
+          "y": -47
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.7",
+          "x": -28,
+          "y": -47
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.8",
+          "x": -28,
+          "y": -47
+        },
+        {
+          "res": "Obj_acc1.img.DragonDream.stone.7.9",
+          "x": -28,
+          "y": -47
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_acc1.img.DragonDream.stone.7.0": {
+      "x": 58,
+      "y": 97,
+      "w": 57,
+      "h": 95
+    },
+    "Obj_acc1.img.DragonDream.stone.7.1": {
+      "x": 0,
+      "y": 0,
+      "w": 57,
+      "h": 96
+    },
+    "Obj_acc1.img.DragonDream.stone.7.2": {
+      "x": 58,
+      "y": 0,
+      "w": 57,
+      "h": 96
+    },
+    "Obj_acc1.img.DragonDream.stone.7.3": {
+      "x": 116,
+      "y": 0,
+      "w": 57,
+      "h": 96
+    },
+    "Obj_acc1.img.DragonDream.stone.7.4": {
+      "x": 174,
+      "y": 0,
+      "w": 57,
+      "h": 96
+    },
+    "Obj_acc1.img.DragonDream.stone.7.5": {
+      "x": 0,
+      "y": 97,
+      "w": 57,
+      "h": 96
+    },
+    "Obj_acc1.img.DragonDream.stone.7.6": {
+      "x": 290,
+      "y": 0,
+      "w": 57,
+      "h": 94
+    },
+    "Obj_acc1.img.DragonDream.stone.7.7": {
+      "x": 116,
+      "y": 97,
+      "w": 57,
+      "h": 95
+    },
+    "Obj_acc1.img.DragonDream.stone.7.8": {
+      "x": 174,
+      "y": 97,
+      "w": 57,
+      "h": 95
+    },
+    "Obj_acc1.img.DragonDream.stone.7.9": {
+      "x": 232,
+      "y": 0,
+      "w": 57,
+      "h": 95
+    }
+  }
+}

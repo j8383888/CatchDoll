@@ -195,7 +195,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _creatSceneEff(): void {
-		for (let i: number = 1; i <= 5; i++) {
+		for (let i: number = 1; i <= 13; i++) {
 			let item = UIUtil.creatMovieClip("sceneEff" + i)
 			let group = new eui.Group();
 			group.addChild(item);

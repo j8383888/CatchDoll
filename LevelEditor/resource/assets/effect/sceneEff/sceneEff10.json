@@ -1,0 +1,41 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 2
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.20.0",
+          "x": -19,
+          "y": -8
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.20.1",
+          "x": -15,
+          "y": -10
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_acc1.img.grassySoil.nature.20.0": {
+      "x": 0,
+      "y": 0,
+      "w": 38,
+      "h": 16
+    },
+    "Obj_acc1.img.grassySoil.nature.20.1": {
+      "x": 0,
+      "y": 17,
+      "w": 30,
+      "h": 20
+    }
+  }
+}

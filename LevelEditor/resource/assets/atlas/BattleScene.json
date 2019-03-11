@@ -51,6 +51,16 @@
       "sourceW": 815,
       "sourceH": 98
     },
+    "BattleScene_6": {
+      "x": 1573,
+      "y": 0,
+      "w": 160,
+      "h": 118,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 160,
+      "sourceH": 118
+    },
     "BattleScene_7": {
       "x": 741,
       "y": 302,

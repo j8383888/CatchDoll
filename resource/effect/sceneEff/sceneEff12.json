@@ -1,0 +1,173 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 14
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.10",
+          "x": -44,
+          "y": -53
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.11",
+          "x": -45,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.12",
+          "x": -44,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.13",
+          "x": -43,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.3",
+          "x": -43,
+          "y": -53
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.4",
+          "x": -44,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.5",
+          "x": -44,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.6",
+          "x": -41,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.7",
+          "x": -41,
+          "y": -53
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.8",
+          "x": -41,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.9",
+          "x": -42,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.0.0",
+          "x": -44,
+          "y": -51
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.1.0",
+          "x": -42,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.2.0",
+          "x": -42,
+          "y": -52
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_acc5.img.ghostShip.portal.0.10": {
+      "x": 0,
+      "y": 105,
+      "w": 88,
+      "h": 106
+    },
+    "Obj_acc5.img.ghostShip.portal.0.11": {
+      "x": 0,
+      "y": 0,
+      "w": 90,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.12": {
+      "x": 269,
+      "y": 0,
+      "w": 88,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.13": {
+      "x": 178,
+      "y": 107,
+      "w": 87,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.3": {
+      "x": 181,
+      "y": 0,
+      "w": 87,
+      "h": 106
+    },
+    "Obj_acc5.img.ghostShip.portal.0.4": {
+      "x": 91,
+      "y": 0,
+      "w": 89,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.5": {
+      "x": 89,
+      "y": 106,
+      "w": 88,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.6": {
+      "x": 0,
+      "y": 320,
+      "w": 83,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.7": {
+      "x": 0,
+      "y": 212,
+      "w": 83,
+      "h": 107
+    },
+    "Obj_acc5.img.ghostShip.portal.0.8": {
+      "x": 169,
+      "y": 212,
+      "w": 83,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.9": {
+      "x": 266,
+      "y": 107,
+      "w": 85,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.rope.0.0": {
+      "x": 358,
+      "y": 0,
+      "w": 88,
+      "h": 102
+    },
+    "Obj_acc5.img.ghostShip.rope.1.0": {
+      "x": 84,
+      "y": 212,
+      "w": 84,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.rope.2.0": {
+      "x": 352,
+      "y": 105,
+      "w": 85,
+      "h": 105
+    }
+  }
+}

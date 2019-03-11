@@ -1,6 +1,6 @@
 /** 
  * @description Auto Generate By protoExtendtion.py
- * @version 2019-03-11 11:43:10 
+ * @version 2019-03-11 14:08:06 
  * @author suo
  */
 class ProtoExtendtion {

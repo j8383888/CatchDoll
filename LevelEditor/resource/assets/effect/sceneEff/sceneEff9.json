@@ -1,0 +1,118 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 9
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.0",
+          "x": -16,
+          "y": -8
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.1",
+          "x": -12,
+          "y": -9
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.2",
+          "x": -7,
+          "y": -10
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.3",
+          "x": -17,
+          "y": -6
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.4",
+          "x": -13,
+          "y": -10
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.5",
+          "x": -12,
+          "y": -9
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.6",
+          "x": -7,
+          "y": -10
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.7",
+          "x": -12,
+          "y": -9
+        },
+        {
+          "res": "Obj_acc1.img.grassySoil.nature.19.8",
+          "x": -16,
+          "y": -8
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_acc1.img.grassySoil.nature.19.0": {
+      "x": 27,
+      "y": 0,
+      "w": 33,
+      "h": 16
+    },
+    "Obj_acc1.img.grassySoil.nature.19.1": {
+      "x": 0,
+      "y": 22,
+      "w": 25,
+      "h": 19
+    },
+    "Obj_acc1.img.grassySoil.nature.19.2": {
+      "x": 27,
+      "y": 17,
+      "w": 14,
+      "h": 20
+    },
+    "Obj_acc1.img.grassySoil.nature.19.3": {
+      "x": 0,
+      "y": 42,
+      "w": 34,
+      "h": 13
+    },
+    "Obj_acc1.img.grassySoil.nature.19.4": {
+      "x": 0,
+      "y": 0,
+      "w": 26,
+      "h": 21
+    },
+    "Obj_acc1.img.grassySoil.nature.19.5": {
+      "x": 0,
+      "y": 22,
+      "w": 25,
+      "h": 19
+    },
+    "Obj_acc1.img.grassySoil.nature.19.6": {
+      "x": 27,
+      "y": 17,
+      "w": 14,
+      "h": 20
+    },
+    "Obj_acc1.img.grassySoil.nature.19.7": {
+      "x": 0,
+      "y": 22,
+      "w": 25,
+      "h": 19
+    },
+    "Obj_acc1.img.grassySoil.nature.19.8": {
+      "x": 27,
+      "y": 0,
+      "w": 33,
+      "h": 16
+    }
+  }
+}

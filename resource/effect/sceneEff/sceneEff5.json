@@ -1,0 +1,129 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 10
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.0",
+          "x": -87,
+          "y": -72
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.1",
+          "x": -84,
+          "y": -69
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.2",
+          "x": -81,
+          "y": -69
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.3",
+          "x": -74,
+          "y": -70
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.4",
+          "x": -63,
+          "y": -67
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.5",
+          "x": -55,
+          "y": -65
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.6",
+          "x": -50,
+          "y": -59
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.7",
+          "x": -42,
+          "y": -50
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.8",
+          "x": -34,
+          "y": -39
+        },
+        {
+          "res": "Obj_event.img.2009winter.snack2.14.9",
+          "x": -25,
+          "y": -29
+        }
+      ]
+    }
+  },
+  "res": {
+    "Obj_event.img.2009winter.snack2.14.0": {
+      "x": 0,
+      "y": 0,
+      "w": 174,
+      "h": 144
+    },
+    "Obj_event.img.2009winter.snack2.14.1": {
+      "x": 175,
+      "y": 0,
+      "w": 169,
+      "h": 138
+    },
+    "Obj_event.img.2009winter.snack2.14.2": {
+      "x": 345,
+      "y": 0,
+      "w": 162,
+      "h": 138
+    },
+    "Obj_event.img.2009winter.snack2.14.3": {
+      "x": 0,
+      "y": 145,
+      "w": 148,
+      "h": 140
+    },
+    "Obj_event.img.2009winter.snack2.14.4": {
+      "x": 0,
+      "y": 286,
+      "w": 126,
+      "h": 135
+    },
+    "Obj_event.img.2009winter.snack2.14.5": {
+      "x": 149,
+      "y": 145,
+      "w": 110,
+      "h": 130
+    },
+    "Obj_event.img.2009winter.snack2.14.6": {
+      "x": 260,
+      "y": 139,
+      "w": 100,
+      "h": 118
+    },
+    "Obj_event.img.2009winter.snack2.14.7": {
+      "x": 127,
+      "y": 286,
+      "w": 85,
+      "h": 100
+    },
+    "Obj_event.img.2009winter.snack2.14.8": {
+      "x": 0,
+      "y": 422,
+      "w": 68,
+      "h": 79
+    },
+    "Obj_event.img.2009winter.snack2.14.9": {
+      "x": 69,
+      "y": 422,
+      "w": 51,
+      "h": 59
+    }
+  }
+}
