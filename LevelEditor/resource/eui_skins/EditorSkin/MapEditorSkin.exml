@@ -136,11 +136,12 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group x="1626.86" y="1062" anchorOffsetX="0" width="263.64">
+	<e:Group x="1626.86" y="1026" anchorOffsetX="0" width="263.64">
 		<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="0" scaleX="1" scaleY="1" y="0"/>
 
 		<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
 		<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
+		<e:CheckBox id="isJumpPathPoint" label="跳跃路径" x="10" scaleX="1" scaleY="1" y="80"/>
 		<e:CheckBox id="pathMirrorNoRollOver" label="镜像路径下（对象不进行水平翻转）" x="-2" scaleX="1" scaleY="1" y="108" visible="false"/>
 		<e:CheckBox id="horGuy" label="水平拉线" x="-1472.86" y="-1101" scaleX="1" scaleY="1"/>
 		<e:CheckBox id="verGuy" label="垂直拉线" x="2.5" y="100.63"/>
@@ -151,7 +152,8 @@
 
 	<e:Label text="快捷键：x\r快捷键：c" x="1475.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
 	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
-	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1632.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
+	<e:Label text="e（按住松开）：路径跳跃开关" x="2769.32" y="1198.9" anchorOffsetY="0" height="78.79" anchorOffsetX="0" width="325.06"/>
+	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1632.83" y="965.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
 	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0" visible="false"/>
 	<!--</e:Group>-->
 </e:Skin>

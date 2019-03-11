@@ -47,7 +47,7 @@ module catchDoll {
 		 * 初始化
 		 */
 		public onInit(): void {
-			for (let i: number = 1; i <= 2; i++) {
+			for (let i: number = 1; i <= 3; i++) {
 				let group = this.skin["_chapterBtn" + i] as eui.Group
 				let btn = new Button(group);
 				btn.data = i;

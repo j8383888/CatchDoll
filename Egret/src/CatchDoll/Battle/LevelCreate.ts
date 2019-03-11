@@ -35,6 +35,10 @@ module catchDoll {
 		 * 场景图片
 		 */
 		private _sceneImgs: eui.Image[] = [];
+		/**
+		 * 特效组
+		 */
+		private _effBox: egret.MovieClip[] = [];
 
 
 		private _catchMonster: Monster = null;
@@ -57,6 +61,7 @@ module catchDoll {
 				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
+			effData: { source, x, y }[]
 		};
 
 
@@ -85,12 +90,14 @@ module catchDoll {
 				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
+			effData: { source, x, y }[]
 		}): void {
 			this.curLevelData = levelData
 			this._creatSence();
 			this._creatMonster();
 			this._creatInteractiveObject();
 			this._creatMaster();
+			this._creatEff();
 			Laya.timer.frameLoop(1, this, this._checkHit)
 		}
 
@@ -140,6 +147,20 @@ module catchDoll {
 			let img = new eui.Image();
 			img.fillMode = egret.BitmapFillMode.REPEAT;
 			return img;
+		}
+
+		/**
+		 * 创建特效
+		 */
+		private _creatEff(): void {
+			for (let item of this.curLevelData.effData) {
+				let mov = UIUtil.creatMovieClip(item.source);
+				mov.x = item.x;
+				mov.y = item.y;
+				mov.gotoAndPlay(1, -1);
+				LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT)
+				this._effBox.push(mov);
+			}
 		}
 
 		/**
@@ -322,7 +343,6 @@ module catchDoll {
 		 * 检测碰撞
 		 */
 		private _checkHit(): void {
-
 			if (this._colliderFlag == 0) {
 				this._colliderFlag = 1;
 			}
@@ -496,6 +516,14 @@ module catchDoll {
 				let inter: SceneInteractiveObject = map2.values[i];
 				GameObjectFactory.instance.recoverGameObject(inter);
 			}
+
+			for (let item of this._effBox) {
+				item.stop();
+				LayerManager.instance.removeFromLayer(item, LAYER.BATTLE_EFFECT);
+				item = null;
+			}
+			this._effBox.length = 0;
+
 
 
 			if (Master.instance.MasterPaws) {

@@ -137,6 +137,8 @@ class MapEditor extends eui.Component {
 	public pathMirrorNoRollOver: eui.CheckBox;
 	public effGroup: eui.Group;
 
+	public isJumpPathPoint: eui.CheckBox;
+
 	public chapterData: {
 		chapterID: number,
 		chapterName: string,
@@ -155,6 +157,7 @@ class MapEditor extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 			}[],
 			sceneInteractiveObject: {
@@ -169,6 +172,7 @@ class MapEditor extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 				carrySubitem: {
 					id: number,

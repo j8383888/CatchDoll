@@ -19,6 +19,7 @@ class MonsterBtn extends eui.Component {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
+			isJumpToNextP: boolean
 		}[],
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	};
@@ -43,6 +44,7 @@ class MonsterBtn extends eui.Component {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
+			isJumpToNextP: boolean
 		}[],
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	}, levelBtn: LevelBtn) {

@@ -22,6 +22,7 @@ class ChapterBtn extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 			}[],
 			sceneInteractiveObject: {
@@ -36,6 +37,7 @@ class ChapterBtn extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 				carrySubitem: {
 					id: number,
@@ -77,6 +79,7 @@ class ChapterBtn extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 			}[],
 			sceneInteractiveObject: {
@@ -91,6 +94,7 @@ class ChapterBtn extends eui.Component {
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
+					isJumpToNextP: boolean
 				}[]
 				carrySubitem: {
 					id: number,

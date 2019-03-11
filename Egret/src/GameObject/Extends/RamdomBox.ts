@@ -29,7 +29,15 @@ module catchDoll {
 					let varsData: ISenceInteractiveVars = <ISenceInteractiveVars>{};
 					varsData.bornX = this.x;
 					varsData.bornY = this.y
-					GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.SCENE_INTERACTIVE_LOW)
+					let gameObj = GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.SCENE_INTERACTIVE_LOW)
+					if (item.id == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
+						let paralyticTrap = gameObj as ParalyticTrap
+						paralyticTrap.isCollided = true;
+						Laya.timer.once(500, null, () => {
+							paralyticTrap.onOpen();
+						})
+					}
+
 					break;
 				}
 			}

@@ -102,6 +102,9 @@ class PathEditor {
 		else if (e.key == 'c') {
 			MapEditor.instance.verGuy.selected = false
 		}
+		else if (e.key == 'e') {
+			MapEditor.instance.isJumpPathPoint.selected = false;
+		}
 	}
 
 	private _onKeyDown(e: KeyboardEvent): void {
@@ -130,17 +133,20 @@ class PathEditor {
 			MapEditor.instance.delSenceImgBtn.selected = !MapEditor.instance.delSenceImgBtn.selected;
 		}
 		else if (e.key == 'x') {
-			MapEditor.instance.horGuy.selected = true
+			MapEditor.instance.horGuy.selected = true;
 		}
 		else if (e.key == 'c') {
-			MapEditor.instance.verGuy.selected = true
+			MapEditor.instance.verGuy.selected = true;
 		}
+		else if (e.key == 'e') {
+			MapEditor.instance.isJumpPathPoint.selected = true;
+		}
+
 		else if (MapEditor.instance.editorPathBtn.selected) {
 			if (PathEditor.instance.lastPoint) {
 				if (e.key == 'ArrowDown') {
 					PathEditor.instance.lastPoint.y += 1;
 					PathEditor.instance.lastPoint.updateBezierLine();
-
 				}
 				else if (e.key == 'ArrowUp') {
 					PathEditor.instance.lastPoint.y -= 1;
@@ -154,7 +160,6 @@ class PathEditor {
 					PathEditor.instance.lastPoint.x += 1;
 					PathEditor.instance.lastPoint.updateBezierLine();
 				}
-
 			}
 		}
 		console.log(e.key);
@@ -225,7 +230,7 @@ class PathEditor {
 	/**
 	 * 格式化导出数据
 	 */
-	private _formatExprotResult(target: MonsterBtn | SceneInteractiveObject, data: { x: number, y: number }[], ): void {
+	private _formatExprotResult(target: MonsterBtn | SceneInteractiveObject, data: { x: number, y: number, isJumpToNextP: boolean }[]): void {
 		let len: number = data.length
 		let angle = 0;
 		let distNext = 0;
@@ -245,7 +250,7 @@ class PathEditor {
 			}
 		}
 		let isObjectMirror = target.data.objectMirror;
-		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = []
+		let result: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = [];
 
 		let objectMirrorOdds: number = 1
 		if (isObjectMirror) {
@@ -274,9 +279,17 @@ class PathEditor {
 				 * @param distTotal 与起始点的距离
 				 */
 				let nextPathNode = data[i + 1];
-				distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
-
+				if (pathNode.x == nextPathNode.x && pathNode.y == nextPathNode.y) {
+					continue;
+				}
+				if (pathNode.isJumpToNextP) {
+					distNext = 0;
+				}
+				else {
+					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
+				}
 				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode)
+
 				if (isObjectMirror) {
 					angle += 180;
 				}
@@ -297,13 +310,23 @@ class PathEditor {
 					result.push(item);
 				}
 				else {
+
 					/**
 					 * @param angle：下个点构成的角度
 					 * @param distNext 距下个点的距离
 					 * @param distTotal 与起始点的距离
 					 */
 					let nextPathNode = data[i + 1];
-					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
+					if (pathNode.x == nextPathNode.x && pathNode.y == nextPathNode.y) {
+						continue;
+					}
+					/*是否跳跃路径*/
+					if (pathNode.isJumpToNextP) {
+						distNext = 0;
+					}
+					else {
+						distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
+					}
 					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
 					if (isObjectMirror) {
 						angle += 180;
@@ -328,15 +351,16 @@ class PathEditor {
 		ctrlP2: { x, y },
 		beforeAnchor: { x, y },
 		nextAnchor: { x, y },
-	}[]): Array<{ x, y }> {
+		isJumpToNextP: boolean
+	}[]): Array<{ x, y, isJumpToNextP }> {
 
 		let startNode;
 		let endNode;
 		let len = pathNode.length;
-		let result: Array<{ x, y }> = [];
+		let result: Array<{ x, y, isJumpToNextP }> = [];
 		for (let i: number = 0; i < len; i++) {
 			if (i == len - 1) {
-				result.push({ x: pathNode[i].origin.x, y: pathNode[i].origin.y })
+				result.push({ x: pathNode[i].origin.x, y: pathNode[i].origin.y, isJumpToNextP: false })
 			}
 			else {
 				startNode = pathNode[i];
@@ -347,19 +371,25 @@ class PathEditor {
 				let ctrl1P = startNode.nextAnchor;
 				let ctrl2P = endNode.beforeAnchor;
 
-				let lastPos = new egret.Point(start.x, start.y);
-				let nextPos = new egret.Point(end.x, end.y);
-				let nCount = Math.floor(lastPos.subtract(nextPos).length / PathEditor.EXPORT_LINE_INTERVAL_DISTANCE);
-				if (nCount > 10) {
-					nCount = 10;
+
+				if (startNode.isJumpToNextP) {
+					result.push({ x: endNode.origin.x, y: endNode.origin.y, isJumpToNextP: true });
+				}
+				else {
+					let lastPos = new egret.Point(start.x, start.y);
+					let nextPos = new egret.Point(end.x, end.y);
+					let nCount = Math.floor(lastPos.subtract(nextPos).length / PathEditor.EXPORT_LINE_INTERVAL_DISTANCE);
+					if (nCount > 10) {
+						nCount = 10;
+					}
+					for (let j: number = 0; j < nCount; j++) {
+						let t: number = j / nCount;
+						let px: number = (1 - t) * (1 - t) * (1 - t) * lastPos.x + 3 * (1 - t) * (1 - t) * t * ctrl1P.x + 3 * (1 - t) * t * t * ctrl2P.x + t * t * t * nextPos.x;
+						let py: number = (1 - t) * (1 - t) * (1 - t) * lastPos.y + 3 * (1 - t) * (1 - t) * t * ctrl1P.y + 3 * (1 - t) * t * t * ctrl2P.y + t * t * t * nextPos.y;
+						result.push({ x: parseFloat(px.toFixed(2)), y: parseFloat(py.toFixed(2)), isJumpToNextP: false });
+					}
 				}
 
-				for (let j: number = 0; j < nCount; j++) {
-					let t: number = j / nCount;
-					let px: number = (1 - t) * (1 - t) * (1 - t) * lastPos.x + 3 * (1 - t) * (1 - t) * t * ctrl1P.x + 3 * (1 - t) * t * t * ctrl2P.x + t * t * t * nextPos.x;
-					let py: number = (1 - t) * (1 - t) * (1 - t) * lastPos.y + 3 * (1 - t) * (1 - t) * t * ctrl1P.y + 3 * (1 - t) * t * t * ctrl2P.y + t * t * t * nextPos.y;
-					result.push({ x: parseFloat(px.toFixed(2)), y: parseFloat(py.toFixed(2)) });
-				}
 			}
 		}
 		// this._drawTest(result);
@@ -385,6 +415,8 @@ class PathEditor {
 					p.x = this.finalPoint.x
 				}
 			}
+
+
 			this._addPathNode(p);
 		}
 		else {
@@ -399,10 +431,10 @@ class PathEditor {
 		if (this.finalPoint) {
 			/*隐藏控制线*/
 			this.lastPoint.showCtrlOp(false)
+			this.finalPoint.isJumpToNextPoint = MapEditor.instance.isJumpPathPoint.selected;
 			let newPoint = this.creatPoint(p);
 			newPoint.showCtrlOp(true);
-
-			let line = this.creatLine(this.finalPoint, newPoint)
+			let line = this.creatLine(this.finalPoint, newPoint, MapEditor.instance.isJumpPathPoint.selected)
 			newPoint.setFromLine(line);
 			this.finalLine = line;
 			this.finalPoint.setBackLine(this.finalLine);
@@ -411,10 +443,10 @@ class PathEditor {
 		}
 		else {
 			this.finalPoint = this.creatPoint(p);
-
 			this.lastPoint = this.finalPoint
 			this.finalPoint.showCtrlOp(true);
 		}
+
 		this.pathPoints.push(this.finalPoint)
 	}
 
@@ -424,15 +456,17 @@ class PathEditor {
 		ctrlP2: { x, y },
 		beforeAnchor: { x, y },
 		nextAnchor: { x, y },
+		isJumpToNextP: boolean
 	}[]): void {
 
 		PathEditor.instance.pathPoints.length = 0;
 		for (let item of pathNodes) {
 			if (this.finalPoint) {
+				this.finalPoint.isJumpToNextPoint = item.isJumpToNextP;
 				let newPoint = this.creatPoint(new egret.Point(item.origin.x, item.origin.y));
 				newPoint.setCtrlOp(item.ctrlP1, item.ctrlP2);
 				newPoint.setAnchor(new egret.Point(item.beforeAnchor.x, item.beforeAnchor.y), new egret.Point(item.nextAnchor.x, item.nextAnchor.y))
-				let line = this.creatLine(this.finalPoint, newPoint)
+				let line = this.creatLine(this.finalPoint, newPoint, item.isJumpToNextP)
 				newPoint.setFromLine(line);
 				this.finalLine = line;
 				this.finalPoint.setBackLine(this.finalLine);
@@ -455,7 +489,7 @@ class PathEditor {
 	 */
 	public savePath(): void {
 
-		
+
 
 		let pathDataAry: {
 			origin: { x, y },
@@ -463,6 +497,7 @@ class PathEditor {
 			ctrlP2: { x, y },
 			beforeAnchor: { x, y },
 			nextAnchor: { x, y },
+			isJumpToNextP: boolean
 		}[] = MapEditor.instance.curEditPathObject.data.pathData;
 
 		pathDataAry.length = 0;
@@ -490,11 +525,12 @@ class PathEditor {
 				ctrlP2: { x: pathNode.ctrl2Shape.x, y: pathNode.ctrl2Shape.y },
 				beforeAnchor: { x: pathNode.beforeAnchor.x, y: pathNode.beforeAnchor.y },
 				nextAnchor: { x: pathNode.nextAnchor.x, y: pathNode.nextAnchor.y },
+				isJumpToNextP: pathNode.isJumpToNextPoint
 			}
 			pathDataAry.push(data);
 		}
 
-		let exportData: { x, y }[] = this.getExportPaths(pathDataAry);
+		let exportData: { x, y, isJumpToNextP }[] = this.getExportPaths(pathDataAry);
 		this._formatExprotResult(MapEditor.instance.curEditPathObject, exportData);
 
 		MapEditor.instance.curEditPathObject.runTarget.x = MapEditor.instance.curEditPathObject.data.exportData[0].x;
@@ -515,9 +551,9 @@ class PathEditor {
 	/**
 	 * 划线
 	 */
-	public creatLine(startP: PathPoint, endP: PathPoint): PathLine {
+	public creatLine(startP: PathPoint, endP: PathPoint, isJumpPath: boolean): PathLine {
 		let line = new PathLine();
-		line.setData(startP, endP)
+		line.setData(startP, endP, isJumpPath)
 		this._mapEditor.pathLine.addChild(line);
 		return line
 	}

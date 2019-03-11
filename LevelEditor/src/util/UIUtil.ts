@@ -214,6 +214,7 @@ class UIUtil {
 	 * 获取俩点的弧度
 	 */
 	public static getRadianByPoint(p1: { x: number, y: number }, p2: { x: number, y: number }): number {
+
 		let px = p1.x;
 		let py = p1.y;
 		let mx = p2.x;

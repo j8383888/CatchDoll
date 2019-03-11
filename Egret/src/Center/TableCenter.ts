@@ -63,6 +63,7 @@ module catchDoll {
 					}[]
 				}[],
 				mapData: { source, x, y, width, height }[],
+				effData: { source, x, y }[]
 			}[]
 		}[] = [];
 
@@ -77,8 +78,11 @@ module catchDoll {
 			this.TurnTable = ConfigParse.getJosn("TurntableList_json");
 			this.ShopTable = ConfigParse.getJosn("ShopTable_json");
 			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
-			this.ChapterData = ConfigParse.getJosn("LevelData_json")
-			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json")
+			this.ChapterData = ConfigParse.getJosn("LevelData_json");
+
+			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json");
+			
+
 		}
 
 		/**

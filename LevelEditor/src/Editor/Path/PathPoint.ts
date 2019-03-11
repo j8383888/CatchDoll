@@ -29,6 +29,10 @@ class PathPoint extends egret.DisplayObjectContainer {
 	 * 后锚点
 	 */
 	public nextAnchor: egret.Point;
+	/**
+	 * 是否直接跳至下个点
+	 */
+	public isJumpToNextPoint: boolean = false;
 
 
 	public constructor() {
@@ -76,7 +80,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 		if (this.fromline && this.backline) {
 			let startP = this.fromline.startP;
 			let endP = this.backline.endP;
-			let line = PathEditor.instance.creatLine(startP, endP)
+			let line = PathEditor.instance.creatLine(startP, endP, startP.isJumpToNextPoint)
 			startP.setBackLine(line);
 			endP.setFromLine(line);
 		}
@@ -123,7 +127,7 @@ class PathPoint extends egret.DisplayObjectContainer {
 			if (PathEditor.instance.lastPoint) {
 				PathEditor.instance.lastPoint.showCtrlOp(false);
 			}
-		
+
 			this.showCtrlOp(true);
 			PathEditor.instance.lastPoint = this;
 		}
@@ -189,10 +193,10 @@ class PathPoint extends egret.DisplayObjectContainer {
 
 	public updateBezierLine(): void {
 		if (this.fromline) {
-			this.fromline.drawBezierLine()
+			this.fromline.drawBezierLine(this.fromline.startP.isJumpToNextPoint)
 		}
 		if (this.backline) {
-			this.backline.drawBezierLine()
+			this.backline.drawBezierLine(this.isJumpToNextPoint)
 		}
 	}
 

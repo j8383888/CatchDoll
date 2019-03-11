@@ -44,7 +44,6 @@ module catchDoll {
 		 */
 		public onOpen(): void {
 			this.isOpen = true;
-			
 			this._dragonBones.animation.play("start", 1);
 			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
 		}

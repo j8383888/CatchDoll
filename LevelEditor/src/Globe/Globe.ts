@@ -139,16 +139,25 @@ class Globe extends egret.DisplayObject {
 			let curPath = target.curPathNode;
 			let nextPath = target.nextPathNode;
 
+
 			curPath = curPath == null ? lastPath : curPath;
 			nextPath = nextPath == null ? lastPath : nextPath;
 
-			let distNext = curPath.distNext;// GX.getDistanceByPoint({ x: curPath.x, y: curPath.y }, { x: nextPath.x, y: nextPath.y });
+
+			// /*是否为跳跃路径*/
+			// if (curPath.distTotal == nextPath.distTotal) {
+			// 	runTarget.x = nextPath.x;
+			// 	runTarget.y = nextPath.y;
+			// }
+			// else {
+			let distNext = curPath.distNext;
 			let offsetDist = curMoveDistance - curPath.distTotal;
 			let offsetx = offsetDist / distNext * (nextPath.x - curPath.x);
 			let offsety = offsetDist / distNext * (nextPath.y - curPath.y);
 
 			runTarget.x = (curPath.x + offsetx);
 			runTarget.y = (curPath.y + offsety)
+			// }
 			runTarget.scaleX = curPath.scaleX;
 
 			if (target.data.fixedRotation == -1) {
