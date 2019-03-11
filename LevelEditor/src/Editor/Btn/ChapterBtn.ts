@@ -15,14 +15,14 @@ class ChapterBtn extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
 					ctrlP2: { x, y },
 					beforeAnchor: { x, y },
 					nextAnchor: { x, y },
-				}[],
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX }[]
+				}[]
 			}[],
 			sceneInteractiveObject: {
 				id: number,
@@ -43,7 +43,7 @@ class ChapterBtn extends eui.Component {
 				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
-
+			effData: { source, x, y }[]
 		}[]
 	}
 
@@ -59,7 +59,48 @@ class ChapterBtn extends eui.Component {
 	/**
 	 * 设置数据
 	 */
-	public setData(data: any): void {
+	public setData(data: {
+		chapterID: number,
+		chapterName: string,
+		levelData: {
+			level: number,
+			bgSource: string,
+			monster: {
+				id: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				objectMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+			}[],
+			sceneInteractiveObject: {
+				id: number,
+				fixedRotation: number,
+				pathMirror: boolean,
+				objectMirror: boolean,
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				pathData: {
+					origin: { x, y },
+					ctrlP1: { x, y },
+					ctrlP2: { x, y },
+					beforeAnchor: { x, y },
+					nextAnchor: { x, y },
+				}[]
+				carrySubitem: {
+					id: number,
+					weight: number,
+				}[]
+			}[],
+			mapData: { source, x, y, width, height }[],
+			effData: { source, x, y }[]
+		}[]
+	}): void {
 		this.labelDisplay.text = data.chapterName;
 		this.data = data;
 		this.labelDisplay.addEventListener(egret.Event.CHANGE, this._onChange, this)

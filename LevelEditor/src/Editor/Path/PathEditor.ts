@@ -455,6 +455,8 @@ class PathEditor {
 	 */
 	public savePath(): void {
 
+		
+
 		let pathDataAry: {
 			origin: { x, y },
 			ctrlP1: { x, y },

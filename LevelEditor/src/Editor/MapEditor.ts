@@ -25,6 +25,9 @@ class MapEditor extends eui.Component {
 	 * 当前场景的物品数据
 	 */
 	public curLevelOrnaments: SceneOrnamentImg[] = [];
+
+
+	public curEffs: SceneEff[] = []
 	// /**
 	//  * 当前场景的物品数据
 	//  */
@@ -119,6 +122,8 @@ class MapEditor extends eui.Component {
 	 */
 	public levelTestBtn: eui.Button;
 	public exportDataBtn: eui.Button;
+
+	public clearPathBtn: eui.Button;
 	/**
 	 * 可交互对象组
 	 */
@@ -130,6 +135,7 @@ class MapEditor extends eui.Component {
 
 
 	public pathMirrorNoRollOver: eui.CheckBox;
+	public effGroup: eui.Group;
 
 	public chapterData: {
 		chapterID: number,
@@ -142,7 +148,7 @@ class MapEditor extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -156,7 +162,7 @@ class MapEditor extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
-				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number },
+				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -170,6 +176,7 @@ class MapEditor extends eui.Component {
 				}[]
 			}[],
 			mapData: { source, x, y, width, height }[],
+			effData: { source, x, y }[]
 		}[]
 	}[] = [];
 
@@ -187,13 +194,54 @@ class MapEditor extends eui.Component {
 		return this._instance;
 	}
 
+	private _creatSceneEff(): void {
+		for (let i: number = 1; i <= 5; i++) {
+			let item = UIUtil.creatMovieClip("sceneEff" + i)
+			let group = new eui.Group();
+			group.addChild(item);
+			group.width = item.width;
+			group.height = item.height;
+			item.x = item.width / 2;
+			item.y = item.height / 2;
+			item.touchEnabled = true;
+			item.gotoAndPlay(1, -1);
+			item.frameRate = 8;
+			item.name = "sceneEff" + i;
+			this.effGroup.addChild(group);
+			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onTouchEff, this)
+		}
+	}
+
+	/**
+	 * 特效
+	 */
+	private _onTouchEff(e: egret.TouchEvent): void {
+		if (GlobeConst.isEditScene) {
+			if (this.editorPathBtn.selected) {
+				SystemTipsUtil.showTips("请先取消编辑路径勾选!", ColorUtil.COLOR_RED);
+				return;
+			}
+			if (this.curLevel && this.curChapter) {
+				let target = e.target;
+				let eff = new SceneEff(target.name);
+				eff.x = e.stageX - this.sceneGroup.x;
+				eff.y = e.stageY;
+				this.sceneCanvas.addChild(eff);
+				this.curEffs.push(eff);
+			}
+			else {
+				SystemTipsUtil.showTips("请先选择章节和关卡！", ColorUtil.COLOR_RED);
+			}
+		}
+	}
+
 	/**
 	 * 创建可交互对象
 	 */
 	private _createInteractiveObject(): void {
 		this.SceneInteractiveObjectTable = RES.getRes("SceneInteractiveObjectTable_json")
 		for (let item of this.SceneInteractiveObjectTable) {
-			let target: any; 
+			let target: any;
 			if (item.imageAry && item.imageAry.length) {
 				target = new eui.Image();
 				target.source = item.imageAry[0].sourceName;
@@ -351,6 +399,7 @@ class MapEditor extends eui.Component {
 		this._creatMonster();
 		this._creatSeneceImg();
 		this._createInteractiveObject();
+		this._creatSceneEff();
 		this._creatBg();
 		this.showGridCbx.selected = true;
 
@@ -365,6 +414,7 @@ class MapEditor extends eui.Component {
 		this.lookPathBtn.addEventListener(egret.TouchEvent.CHANGE, this._onLookPath, this)
 		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
 		this.exportDataBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onExportData, this)
+		this.clearPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearPath, this)
 		this.stopClick.visible = false;
 
 		this.stopClick.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
@@ -376,6 +426,16 @@ class MapEditor extends eui.Component {
 			let item = this.bgGroup.getElementAt(i);
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
+	}
+
+	private _onClearPath(): void {
+		PathEditor.instance.finalLine = null;
+		PathEditor.instance.finalPoint = null;
+		PathEditor.instance.lastPoint = null;
+		MapEditor.instance.pathLine.removeChildren();
+		MapEditor.instance.pathPoint.removeChildren();
+		MapEditor.instance.actionCanvas.removeChildren();
+		PathEditor.instance.pathPoints.length = 0;
 	}
 
 
@@ -450,8 +510,13 @@ class MapEditor extends eui.Component {
 
 	private _onSavePath(e: egret.TouchEvent): void {
 		if (this.curChapter && this.curLevel && this.curEditPathObject) {
-			PathEditor.instance.savePath();
-			SystemTipsUtil.showTips("保存路径成功！")
+			if (PathEditor.instance.pathPoints.length) {
+				PathEditor.instance.savePath();
+				SystemTipsUtil.showTips("保存路径成功！")
+			}
+			else {
+				SystemTipsUtil.showTips("路径数据不能为空!", ColorUtil.COLOR_RED);
+			}
 		}
 		else {
 			SystemTipsUtil.showTips("请先选中关卡和章节和怪物！", ColorUtil.COLOR_RED)
@@ -486,7 +551,8 @@ class MapEditor extends eui.Component {
 		let data = {
 			chapterID: chapterID,
 			chapterName: "新的章节",
-			levelData: []
+			levelData: [],
+			effData: []
 		};
 
 		chapterBtn.setData(data);
@@ -531,8 +597,8 @@ class MapEditor extends eui.Component {
 	}
 
 	private _clear(): void {
-		this.sceneCanvas.removeChildren();
 		this.curLevelOrnaments.length = 0;
+		this.curEffs.length = 0;
 
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
@@ -542,6 +608,8 @@ class MapEditor extends eui.Component {
 		MapEditor.instance.pathLine.removeChildren();
 		MapEditor.instance.pathPoint.removeChildren();
 		MapEditor.instance.monsterShowBox.removeChildren();
+		this.sceneCanvas.removeChildren();
+
 	}
 
 	/**
@@ -632,10 +700,12 @@ class MapEditor extends eui.Component {
 			bgSource: "",
 			monster: [],
 			sceneInteractiveObject: [],
-			mapData: [],
 			carrySubitem: {
 				id: -1,
-			}
+			},
+			mapData: [],
+
+			effData: []
 		};
 		level.addListen();
 		level.setData(this.curChapter.data.chapterID, data)
@@ -768,6 +838,13 @@ class MapEditor extends eui.Component {
 			mapData.push(data);
 		}
 		levelBtn.data.mapData = mapData
+		let effData: { source, x, y }[] = [];
+		for (let i: number = 0; i < this.curEffs.length; i++) {
+			let item = this.curEffs[i];
+			let data = { source: item.source, x: item.x, y: item.y };
+			effData.push(data);
+		}
+		levelBtn.data.effData = effData;
 
 	}
 

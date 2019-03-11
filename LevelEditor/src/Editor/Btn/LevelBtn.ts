@@ -44,7 +44,8 @@ class LevelBtn extends eui.Component {
 				weight: number,
 			}[]
 		}[],
-		mapData: { source, x, y, width, height }[]
+		mapData: { source, x, y, width, height }[],
+		effData: { source, x, y }[]
 	};
 
 	public constructor() {
@@ -92,6 +93,7 @@ class LevelBtn extends eui.Component {
 			}[]
 		}[],
 		mapData: { source, x, y, width, height }[],
+		effData: { source, x, y }[]
 	}): void {
 		this.belongChapterID = chapterID
 		this.data = data;
@@ -105,6 +107,7 @@ class LevelBtn extends eui.Component {
 
 	private _clear(): void {
 		MapEditor.instance.curLevelOrnaments.length = 0;
+		MapEditor.instance.curEffs.length = 0;
 		PathEditor.instance.pathPoints.length = 0;
 		PathEditor.instance.finalLine = null;
 		PathEditor.instance.finalPoint = null;
@@ -168,7 +171,19 @@ class LevelBtn extends eui.Component {
 			MapEditor.instance.interactiveShowBox.addChild(interactive);
 		}
 
+		// if (!this.data.effData) {
+		// 	this.data.effData = []
+		// }
 
+		
+		for (let i: number = 0; i < this.data.effData.length; i++) {
+			let data = this.data.effData[i];
+			let eff = new SceneEff(data.source);
+			eff.x = data.x;
+			eff.y = data.y
+			MapEditor.instance.sceneCanvas.addChild(eff);
+			MapEditor.instance.curEffs.push(eff);
+		}
 	}
 
 

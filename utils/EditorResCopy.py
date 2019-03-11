@@ -14,8 +14,7 @@ def copyFolder(srcTree,targetTree):
 		return
 
 	if not os.path.exists(targetTree):
-		print("%s not exist"%(targetTree))
-		return
+		os.mkdir(targetTree)
 
 	if os.path.exists(targetTree):
 		shutil.rmtree(targetTree);
@@ -44,6 +43,11 @@ LevelEditorTS = r"..\LevelEditor\src\Table\SceneInteractiveObjectTable.ts"
 copy(srcTS,ColliderTS)
 copy(srcTS,LevelEditorTS)
 
+
+#特效copy
+effRes = r"..\resource\effect\sceneEff";
+LevelEditorEffRes = r"..\LevelEditor\resource\assets\effect\sceneEff";
+copyFolder(effRes,LevelEditorEffRes)
 
 #龙骨copy
 dragonRes = r"..\resource\dragonBones";

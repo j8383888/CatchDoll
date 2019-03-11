@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MapEditorSkin" width="3120" height="1280" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing">
+	<e:Rect id="pathEditArea" width="1480" height="1280" fillColor="0x0d7a60" anchorOffsetX="0"/>
 	<e:Group y="0" right="0">
 		<e:Scroller width="200" anchorOffsetX="0" anchorOffsetY="0" height="964" y="0" scrollPolicyH="off" x="0">
 			<e:Group id="levelGroup" anchorOffsetY="0" height="838">
@@ -35,13 +36,24 @@
 		</e:Group>
 		</e:Scroller>
 		<e:Group width="280" height="855" x="237" y="97">
+			<e:Button label="特效" x="0" y="0" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
+			<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="889.27" y="81.82" x="0" scrollPolicyH="off" scaleX="1" scaleY="1">
+				<e:Group id="effGroup" anchorOffsetY="0" height="846.97" x="-2">
+					<e:layout>
+						<e:VerticalLayout horizontalAlign="center"/>
+					</e:layout>
+
+				</e:Group>
+			</e:Scroller>
+		</e:Group>
+		<e:Group width="280" height="855" x="247" y="107">
 			<e:Button label="场景背景" x="0" y="0" anchorOffsetX="0" width="282" scaleX="1" scaleY="1"/>
 			<e:Scroller width="280" anchorOffsetX="0" anchorOffsetY="0" height="889.27" y="81.82" x="0" scrollPolicyH="off" scaleX="1" scaleY="1">
-				<e:Group id="bgGroup" anchorOffsetY="0" height="846.97" x="-2">
-					<e:layout>
-						<e:TileLayout rowHeight="400" columnWidth="300"/>
-					</e:layout>
-				</e:Group>
+			<e:Group id="bgGroup" anchorOffsetY="0" height="846.97" x="-2">
+				<e:layout>
+				<e:TileLayout rowHeight="400" columnWidth="300"/>
+				</e:layout>
+			</e:Group>
 			</e:Scroller>
 		</e:Group>
 
@@ -51,7 +63,7 @@
 	</e:Group>
 
 
-	<e:Rect id="pathEditArea" width="1480" height="1280" fillColor="0x0d7a60" anchorOffsetX="0"/>
+
 	<e:Group id="sceneGroup" width="1280" x="100" y="0" touchEnabled="false">
 		<e:Rect width="1280" height="1280" fillColor="0x0d607c"  touchEnabled="false" y="-2"/>
 		<e:Rect width="720" height="1280" touchEnabled="false" x="0" y="0" fillColor="0x29434c"/>
@@ -90,6 +102,7 @@
 		<e:Button id="savePath" label="保存当前路径数据" x="165.97000000000003" y="-97.20000000000005" anchorOffsetY="0" height="94" scaleY="1" scaleX="1"/>
 		<e:Button id="saveSceneBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
+		<e:Button id="clearPathBtn" label="清空当前路径数据" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
 
 
@@ -135,17 +148,10 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="1473.88" y="1210">
 
-
-
-		<e:layout>
-			<e:BasicLayout/>
-		</e:layout>
-	</e:Group>
 	<e:Label text="快捷键：x\r快捷键：c" x="1475.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
 	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
 	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1632.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
-	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0"/>
+	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0" visible="false"/>
 	<!--</e:Group>-->
 </e:Skin>
