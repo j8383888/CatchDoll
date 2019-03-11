@@ -324,7 +324,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _creatBg(): void {
-		for (let i: number = 1; i <= 8; i++) {
+		for (let i: number = 1; i <= 23; i++) {
 			let img = new eui.Image("BattleBg_" + i + "_png");
 			this.bgGroup.addChild(img);
 		}
