@@ -14,15 +14,6 @@ module catchDoll {
 		 * 可交互对象
 		 */
 		public static inSceneInterObjMap: Dictionary = new Dictionary();
-
-		/**
-		 * 需要跟怪物碰撞的可交互对象 字典
-		 */
-		public static InterObjHitMonsterMap: Dictionary = new Dictionary();
-		/**
-		 * 爪子是否下降
-		 */
-		public isCheck: boolean = false;
 		/**
 		 * 单例
 		 */
@@ -166,45 +157,25 @@ module catchDoll {
 		/**
 		 * 检测怪物碰撞
 		 */
-		private _checkMonsterHit(paw: Paws): boolean {
+		private _checkPawHitMonster(paw: Paws): boolean {
 			let monsterMap = LevelCreate.inSenceMonsterMap
 			let monsterMapLen: number = monsterMap.length;
 			if (monsterMapLen == 0) {
 				return;
 			}
 
-
 			let i: number = 0;
-			/**
-			 * 设置全局坐标
-			 */
-			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
-				let monsterP: Monster = monsterMap.values[i];
-				if (monsterP.isCollided) {
-					continue;
-				}
-				let monsterPColliderAry = monsterP.colliderAry
-				let monsterPColliderAryLen = monsterPColliderAry.length;
-				for (let m: number = 0; m < monsterPColliderAryLen; m++) {
-					let monsterPCollider = monsterPColliderAry[m]
-					let p = monsterP.dragonBones.armature.getBone("centre").global
-					monsterPCollider.x = p.x
-					monsterPCollider.y = p.y
-					monsterPCollider.setGlobePos();
-				}
-			}
-
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monster: Monster = monsterMap.values[i];
-				if (monster.isCollided) {
+				if (!monster.isOpen) {
 					continue;
 				}
 				let monsterColliderAry = monster.colliderAry
 				let pawColliderAry = paw.colliderAry
 				if (GameObjectCollider.isIntersect(monsterColliderAry, pawColliderAry)) {
-					this.isCheck = false;
+					paw.isOpen = false;
+					monster.isOpen = false;
 					this._catchMonster = monster;
-					monster.isCollided = true;
 					monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
 					let transform = monster.dragonBones.armature.getBone("centre").global
 					monster.haemalGroup.x = transform.x;
@@ -265,39 +236,23 @@ module catchDoll {
 		/**
 		 * 检测可交互对象碰撞
 		 */
-		private _checkInteractiveHit(paw: Paws): void {
+		private _checkPawHitInteractive(paw: Paws): void {
 			let interObjMap = LevelCreate.inSceneInterObjMap
 			let interObjMapLen: number = interObjMap.length;
 			if (interObjMapLen == 0) {
 				return;
 			}
 			let i: number = 0;
-			/**
-			 * 设置全局坐标
-			 */
-
-			for (i = 0; i < interObjMapLen; i += this._colliderFlag + 1) {
-				let interObjP: SceneInteractiveObject = interObjMap.values[i];
-				if (interObjP.isCollided) {
-					continue;
-				}
-				let interObjPColliderAry = interObjP.colliderAry
-				let interObjPColliderAryLen = interObjPColliderAry.length;
-				for (let m: number = 0; m < interObjPColliderAryLen; m++) {
-					let interObjPCollider = interObjPColliderAry[m]
-					interObjPCollider.setGlobePos();
-				}
-			}
 
 			for (i = 0; i < interObjMapLen; i += this._colliderFlag + 1) {
 				let interObj: SceneInteractiveObject = interObjMap.values[i];
-				if (interObj.isCollided) {
+				if (!interObj.isOpen) {
 					continue;
 				}
-				let interObjPColliderAry = interObj.colliderAry
+				let interObjColliderAry = interObj.colliderAry
 				let pawColliderAry = paw.colliderAry
-				if (GameObjectCollider.isIntersect(interObjPColliderAry, pawColliderAry)) {
-					this.isCheck = false;
+				if (GameObjectCollider.isIntersect(interObjColliderAry, pawColliderAry)) {
+					paw.isOpen = false;
 					egret.Tween.removeTweens(paw.pawsBody.pawsHead);
 					interObj.unregisterOperation();
 
@@ -310,9 +265,9 @@ module catchDoll {
 					}
 					else if (interObj.sign == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
 						let target: ParalyticTrap = interObj as ParalyticTrap
-						if (!target.isOpen) {
-							target.isCollided = true;
-							target.onOpen();
+						if (!target.isMonsterHitOpen) {
+							target.isOpen = false;
+							target.openMonsterHit();
 						}
 						paw.noCatchActionSlow();
 					}
@@ -349,64 +304,79 @@ module catchDoll {
 			else {
 				this._colliderFlag = 0;
 			}
-			if (this.isCheck) {
-				let paw = Master.instance.MasterPaws;
+
+			this._setMonsterGlobeP();
+			this._setInterGlobeP();
+
+			this._checkInteractiveAndMonsterHit();
+
+			let paw = Master.instance.MasterPaws;
+			if (paw.isOpen) {
 				let pawColliderArylen = paw.colliderAry.length
 				for (let i: number = 0; i < pawColliderArylen; i++) {
 					paw.colliderAry[i].setGlobePos();
 				}
-
-				if (this._checkMonsterHit(paw)) {
-
+				if (this._checkPawHitMonster(paw)) {
 				}
 				else {
-					this._checkInteractiveHit(paw)
+					this._checkPawHitInteractive(paw)
 				}
 			}
-
-			this._checkInteractiveAndMonsterHit();
 		}
 
 		/**
-		 * 检测场景可交互对象与怪兽的碰撞
+		 * 设置可交互对象的全局坐标
 		 */
-		private _checkInteractiveAndMonsterHit(): void {
-			let interHitMonsterMap = LevelCreate.InterObjHitMonsterMap;
-			let interHitMonsterMapLen: number = interHitMonsterMap.length;
-			if (interHitMonsterMapLen == 0) {
+		private _setInterGlobeP(): void {
+			let interObjMap = LevelCreate.inSceneInterObjMap;
+			let interObjMapLen: number = interObjMap.length;
+			if (interObjMapLen == 0) {
 				return;
 			}
+			let i: number = 0;
+			/**S
+			 * 设置全局坐标
+			 */
+			for (i = 0; i < interObjMapLen; i += this._colliderFlag + 1) {
+				let interObj: SceneInteractiveObject = interObjMap.values[i];
+				if (!interObj.isStatic) {
+					if (interObj.isOpen) {
+						let interObjColliderAry = interObj.colliderAry
+						let interObjColliderAryLen = interObjColliderAry.length;
+						for (let m: number = 0; m < interObjColliderAryLen; m++) {
+							let interObjCollider = interObjColliderAry[m]
+							interObjCollider.setGlobePos();
+						}
+					}
+
+					if (interObj.isMonsterHitOpen) {
+						let hitMonsterColliderAry = interObj.hitMonsterColliderAry
+						let hitMonsterColliderAryLen = hitMonsterColliderAry.length;
+						for (let m: number = 0; m < hitMonsterColliderAryLen; m++) {
+							let hitMonsterCollider = hitMonsterColliderAry[m]
+							hitMonsterCollider.setGlobePos();
+						}
+					}
+				}
+			}
+		}
+
+		/**
+		 * 设置全局坐标
+		 */
+		private _setMonsterGlobeP(): void {
+			let i: number;
 			let monsterMap = LevelCreate.inSenceMonsterMap
 			let monsterMapLen: number = monsterMap.length;
 			if (monsterMapLen == 0) {
 				return;
 			}
-			interHitMonsterMap = interHitMonsterMap.copy()
-
-
-			let i: number = 0;
 			/**
 			 * 设置全局坐标
 			 */
-			for (i = 0; i < interHitMonsterMapLen; i += this._colliderFlag + 1) {
-				let interObjP: ParalyticTrap = interHitMonsterMap.values[i];
-				let interObjPColliderAry = interObjP.trapColliderAry
-				let interObjPColliderAryLen = interObjPColliderAry.length;
-				for (let m: number = 0; m < interObjPColliderAryLen; m++) {
-					let interObjPCollider = interObjPColliderAry[m]
-					interObjPCollider.setGlobePos();
-				}
-			}
-
-			if (!this.isCheck) {
-				/**
-			 	 * 设置全局坐标
-			 	 */
-				for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
-					let monsterP: Monster = monsterMap.values[i];
-					if (monsterP.isCollided) {
-						continue;
-					}
+			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
+				let monsterP: Monster = monsterMap.values[i];
+				if (monsterP.isOpen) {
 					let monsterPColliderAry = monsterP.colliderAry
 					let monsterPColliderAryLen = monsterPColliderAry.length;
 					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
@@ -418,23 +388,49 @@ module catchDoll {
 					}
 				}
 			}
+		}
 
-			for (let j = 0; j < interHitMonsterMapLen; j += this._colliderFlag + 1) {
-				let interObj: ParalyticTrap = interHitMonsterMap.values[j];
-				let interObjColliderAry = interObj.trapColliderAry
+		/**
+		 * 检测场景可交互对象与怪兽的碰撞
+		 */
+		private _checkInteractiveAndMonsterHit(): void {
+			let interObjMap = LevelCreate.inSceneInterObjMap;
+			let interObjMapLen: number = interObjMap.length;
+			if (interObjMapLen == 0) {
+				return;
+			}
+			let monsterMap = LevelCreate.inSenceMonsterMap
+			let monsterMapLen: number = monsterMap.length;
+			if (monsterMapLen == 0) {
+				return;
+			}
+
+			interObjMap = interObjMap.copy()
+			let i: number = 0;
+
+			let deleteAry = []
+			for (let j = 0; j < interObjMapLen; j += this._colliderFlag + 1) {
+				let interObj: ParalyticTrap = interObjMap.values[j];
+				let interObjColliderAry = interObj.hitMonsterColliderAry;
+				if (!interObj.isMonsterHitOpen) {
+					continue;
+				}
 				for (let f = 0; f < monsterMapLen; f += this._colliderFlag + 1) {
 					let monster: Monster = monsterMap.values[f];
-					if (monster.isCollided) {
+					if (!monster.isOpen) {
 						continue;
 					}
 					let monsterColliderAry = monster.colliderAry
 					if (GameObjectCollider.isIntersect(interObjColliderAry, monsterColliderAry)) {
 						monster.stopMove()
-						LevelCreate.InterObjHitMonsterMap.remove(interObj.uID);
-						GameObjectFactory.instance.recoverGameObject(interObj);
+						deleteAry.push(interObj);
 						break;
 					}
 				}
+			}
+			for (let item of deleteAry) {
+				GameObjectFactory.instance.recoverGameObject(item);
+
 			}
 		}
 

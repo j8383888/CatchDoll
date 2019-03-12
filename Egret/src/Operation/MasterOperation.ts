@@ -35,14 +35,14 @@ module catchDoll {
 				return;
 			}
 			this._gameObj.pawsBody.isDown = true;
-			LevelCreate.instance.isCheck = true;
+			this._gameObj.isOpen = true;
 
 			egret.Tween.get(this._gameObj.pawsBody.pawsHead, {
 				onChange: () => {
 					this._gameObj.confirmRopeHeight();
 				}
 			}).wait(this._gameObj.pawsBody.actionBefore * 1000).to({ y: 780 }, 1000, egret.Ease.quadIn).wait(100).call(() => {
-				LevelCreate.instance.isCheck = false;
+				this._gameObj.isOpen = false;
 				this._gameObj.noCatchActionFast();
 			});
 		}

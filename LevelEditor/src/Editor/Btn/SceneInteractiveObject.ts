@@ -89,8 +89,9 @@ class SceneInteractiveObject extends eui.Component {
 			this.target.touchEnabled = true;
 			this.target.x = this.group.width / 2;
 			this.target.y = this.group.height / 2;
+			this.target.animation.play(item.actionNameAry[1], 0)
 			this.runTarget = UIUtil.creatDragonbones(item.dragonBonesName);
-			this.runTarget.animation.play(null,0);
+			this.runTarget.animation.play(item.actionNameAry[1] ,0);
 		}
 		                                             
 

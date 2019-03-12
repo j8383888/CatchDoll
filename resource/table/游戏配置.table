@@ -89,7 +89,17 @@
 			</field>
 		</field>
 		<field column="龙骨" code="dragonBonesName" type="string" />
+		<field column="龙骨动画列表" code="actionNameAry" type="array" >
+			<field column="value" code="value" type="string" />
+		</field>
 		<field column="碰撞体" code="colliderAry" type="array" >
+			<field column="value" code="value" type="object" >
+				<field column="posX" type="int32" />
+				<field column="posY" type="int32" />
+				<field column="radius" type="int32" />
+			</field>
+		</field>
+		<field column="二级碰撞体" code="hitMonsterColliderAry" type="array" >
 			<field column="value" code="value" type="object" >
 				<field column="posX" type="int32" />
 				<field column="posY" type="int32" />

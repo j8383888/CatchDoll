@@ -16,7 +16,7 @@
 	<e:Scroller width="400" height="704.91" x="1402" anchorOffsetY="0" top="0">
 		<e:Group id="InteractiveObjectGroup" anchorOffsetY="0" height="706.24">
 		<e:layout>
-			<e:TileLayout horizontalAlign="center" verticalGap="0" verticalAlign="middle" requestedColumnCount="3" horizontalGap="8"/>
+			<e:TileLayout horizontalAlign="center" verticalGap="0" verticalAlign="middle" horizontalGap="8" requestedColumnCount="2"/>
 		</e:layout>
 		</e:Group>
 	</e:Scroller>

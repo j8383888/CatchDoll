@@ -29,9 +29,17 @@ module table {
 		 */
 		dragonBonesName: string;
 		/**
+		 * 龙骨动画列表
+		 */
+		actionNameAry: string[];
+		/**
 		 * 碰撞体
 		 */
 		colliderAry: SceneInteractiveObjectTable.ColliderAryItem[];
+		/**
+		 * 二级碰撞体
+		 */
+		hitMonsterColliderAry: SceneInteractiveObjectTable.HitMonsterColliderAryItem[];
 
 		GetType(): string { return 'table.SceneInteractiveObjectTable'; }
 	}
@@ -51,6 +59,13 @@ module table {
 	}
 	export module SceneInteractiveObjectTable {
 		export class ColliderAryItem {
+			posX: number;
+			posY: number;
+			radius: number;
+		}
+	}
+	export module SceneInteractiveObjectTable {
+		export class HitMonsterColliderAryItem {
 			posX: number;
 			posY: number;
 			radius: number;

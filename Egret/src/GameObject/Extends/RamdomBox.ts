@@ -12,7 +12,6 @@ module catchDoll {
 		public initialize(): void {
 			super.initialize();
 			this.imagePlayer.visible = true
-			// this._moviePlayer
 		}
 
 		/**
@@ -32,9 +31,9 @@ module catchDoll {
 					let gameObj = GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.SCENE_INTERACTIVE_LOW)
 					if (item.id == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
 						let paralyticTrap = gameObj as ParalyticTrap
-						paralyticTrap.isCollided = true;
+						paralyticTrap.isOpen = false;
 						Laya.timer.once(500, null, () => {
-							paralyticTrap.onOpen();
+							paralyticTrap.openMonsterHit();
 						})
 					}
 

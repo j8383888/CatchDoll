@@ -118,13 +118,11 @@ module catchDoll {
 	}
 
 	/**
-	 * 子弹初始化一次数据
+	 * 场景可交互物体配置数据
 	 */
-	export interface IBulletConfig extends IColliderConfigData {
-		/*等级*/
-		level: number
-		/*速度*/
-		speed: number
+	export interface ISceneInteractiveObjectConfig extends IColliderConfigData {
+		/*2级碰撞器配置数据*/
+		hitMonsterColliderAry: ICollider[]
 	}
 
 	/**

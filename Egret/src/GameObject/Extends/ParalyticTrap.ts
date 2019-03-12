@@ -5,15 +5,7 @@
 module catchDoll {
 	export class ParalyticTrap extends SceneInteractiveObject {
 
-		/**
-		 * 打开
-		 */
-		public isOpen: boolean = false;
-		/**
-		 * 陷阱范围
-		 */
-		public trapColliderAry: catchDoll.Collider[] = [];
-
+		
 		public constructor() {
 			super();
 		}
@@ -21,7 +13,6 @@ module catchDoll {
 		public initialize(): void {
 			super.initialize();
 
-			this.isOpen = false;
 			this._dragonBones.animation.gotoAndStopByFrame("start", 1);
 		}
 
@@ -30,38 +21,33 @@ module catchDoll {
           */
 		public initOther(): void {
 			this._dragonBones.animation.timeScale = 0.8;
-			let collider: catchDoll.Collider = Collider.creat(0, 15, 15)
-			collider.setParent(this);
-			let collider2: catchDoll.Collider = Collider.creat(0, -30, 15)
-			collider2.setParent(this);
-			this.trapColliderAry.push(collider);
-			this.trapColliderAry.push(collider2);
 		}
 
 
 		/**
 		 * 打开
 		 */
-		public onOpen(): void {
-			this.isOpen = true;
+		public openMonsterHit(): void {
+			
+			this.isOpen = false;
 			this._dragonBones.animation.play("start", 1);
 			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
 		}
+
+		
 
 		/**
 		 * 播放完毕
 		 */
 		private _onComplete(): void {
-			
+			this.isMonsterHitOpen = true;
 			this._dragonBones.animation.play("loop", 0);
-			LevelCreate.InterObjHitMonsterMap.set(this.uID, this);
 		}
 
 		/**
 		 * 反初始化
 		 */
 		public uninitialize(): void {
-			LevelCreate.InterObjHitMonsterMap.remove(this.uID);
 			this._dragonBones.removeDBEventListener(dragonBones.EventObject.COMPLETE, this._onComplete, this)
 			super.uninitialize();
 		}
@@ -70,13 +56,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			if (this.trapColliderAry.length != 0) {
-				for (let i: number = 0; i < this.trapColliderAry.length; i++) {
-					this.trapColliderAry[i].recover();
-				}
-				this.trapColliderAry.length = 0;
-				this.trapColliderAry = null;
-			}
+			
 			super.dispose();
 		}
 	}

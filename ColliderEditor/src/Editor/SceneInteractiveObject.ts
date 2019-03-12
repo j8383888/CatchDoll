@@ -34,13 +34,12 @@ class SceneInteractiveObject {
 			let group = new eui.Group();
 			group.width = target.width;
 			group.height = target.height + 80;
-			target.animation.play(null, 0)
 			target.x = group.width / 2;
 			target.y = group.height / 2;
 			group.addChild(target);
-			target.animation.play(null, 0);
+			target.animation.play(data.actionNameAry[1], 0);
 			this.runTarget = UIUtil.creatDragonbones(data.dragonBonesName);
-			this.runTarget.animation.play(null, 0);
+			this.runTarget.animation.play(data.actionNameAry[1], 0);
 			MainEditor.instance.InteractiveObjectGroup.addChild(group);
 		}
 		this.runTarget.x = 500;

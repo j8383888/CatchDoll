@@ -262,7 +262,7 @@ class MapEditor extends eui.Component {
 				let group = new eui.Group();
 				group.width = target.width;
 				group.height = target.height + 80;
-				target.animation.play(null, 0)
+				target.animation.play(item.actionNameAry[1], 0)
 				target.x = group.width / 2;
 				target.y = group.height / 2;
 				group.addChild(target);

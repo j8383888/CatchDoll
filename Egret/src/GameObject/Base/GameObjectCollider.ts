@@ -10,9 +10,10 @@ module catchDoll {
 		 */
 		public colliderAry: catchDoll.Collider[] = [];
 		/**
-		 * 是否已经发生碰撞
+		 * 是否打开碰撞器
 		 */
-		public isCollided: boolean = false;
+		public isOpen: boolean = true;
+		
 
 
 		public constructor() {
@@ -36,7 +37,7 @@ module catchDoll {
          */
 		public initialize(): void {
 			super.initialize();
-			this.isCollided = false;
+			this.isOpen = true;
 		}
 
 		/**

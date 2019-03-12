@@ -137,6 +137,7 @@ module catchDoll {
          */
 		public initialize(): void {
 			super.initialize();
+			
 			if (this._dragonBones) {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}
@@ -149,9 +150,9 @@ module catchDoll {
 			this.x = exportData.x;
 			this.y = exportData.y;
 			this.alpha = 0
-			this.isCollided = true;
+			this.isOpen = false;
 			egret.Tween.get(this).to({ alpha: 1 }, 2000).call(() => {
-				this.isCollided = false;
+				this.isOpen = true;
 				if (varsData.operation) {
 					for (let i: number = 0; i < varsData.operation.length; i++) {
 						this._registerAry.push(OperationManager.instance.registerOperation(this, varsData.operation[i].type));

@@ -3,7 +3,7 @@
  * @author suo
  */
 module catchDoll {
-	export class Collider extends egret.DisplayObject implements catchDoll.ICollider {
+	export class Collider extends egret.Shape implements catchDoll.ICollider {
 
 		/**
 		 * Y坐标
@@ -56,11 +56,11 @@ module catchDoll {
 			this.y = y;
 			this.posX = x;
 			this.posY = y;
-			// if (this.isShow) {
-			// 	this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.5)
-			// 	this.graphics.drawCircle(0, 0, radius);
-			// 	this.graphics.endFill();
-			// }
+			if (this.isShow) {
+				this.graphics.beginFill(ColorUtil.COLOR_GREEN, 0.5)
+				this.graphics.drawCircle(0, 0, radius);
+				this.graphics.endFill();
+			}
 		}
 
 		/**
@@ -74,7 +74,7 @@ module catchDoll {
 		 * 清除
 		 */
 		public clear(): void {
-			// this.graphics.clear();
+			this.graphics.clear();
 			this.posX = NaN;
 			this.posY = NaN;
 			this.radius = NaN;
