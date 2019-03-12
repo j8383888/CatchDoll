@@ -77,18 +77,17 @@ class Main extends eui.UILayer {
 
     private async loadResource() {
         try {
-            const loadingView = new LoadingUI();
-            this.stage.addChild(loadingView);
-
             if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
                 await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
             }
             else {
                 await RES.loadConfig("resource/default.res.json", "resource/");
             }
-
-
+            await RES.loadGroup("firstLoad", 1);
             await this.loadTheme();
+            
+            const loadingView = new LoadingUI();
+            this.stage.addChild(loadingView);
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
         }

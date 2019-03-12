@@ -27,13 +27,13 @@ module catchDoll {
 			this._operationClsDic.set(OPERATION_TYPE.MONSTER, MoveOperation);
 			this._operationClsDic.set(OPERATION_TYPE.MASTER, MasterOperation);
 
-			Laya.timer.frameLoop(1, this, this._update);
+			Laya.timer.loop(33, this, this._update);
 		}
 
 		/**
 		 * 更新
 		 */
-		private _update(): void {
+		private _update(timeStamp:number): void {
 			let values: BaseOperation[] = this._resgisterOprDic.values;
 			for (let item of values) {
 				item.enterFrame();

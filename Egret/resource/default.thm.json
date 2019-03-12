@@ -12,6 +12,7 @@
 		"resource/eui_skins/Illustrations/illstationsClipItemSkin.exml",
 		"resource/eui_skins/Illustrations/illstationsDollItemSkin.exml",
 		"resource/eui_skins/Illustrations/illustrationsPanelSkin.exml",
+		"resource/eui_skins/LoadingSkin.exml",
 		"resource/eui_skins/PawsSkin.exml",
 		"resource/eui_skins/RankList/RankItemItem.exml",
 		"resource/eui_skins/RankList/RankPanelSkin.exml",

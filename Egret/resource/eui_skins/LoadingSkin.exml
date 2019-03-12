@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoadingSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="BattleBg_21_png"/>
+	<e:Rect id="progressRect" width="600" height="60" y="641.14" fillColor="0x1adb29" x="60"/>
+	<e:Label text="Loading..." y="558" size="60" horizontalCenter="8"/>
+	<e:Label id="progressLabel" text="1/1" y="640" size="60" anchorOffsetX="0" width="438" textAlign="center" horizontalCenter="0"/>
+</e:Skin>
