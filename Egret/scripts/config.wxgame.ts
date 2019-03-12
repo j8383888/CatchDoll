@@ -6,6 +6,7 @@ import { UglifyPlugin, CompilePlugin, ManifestPlugin, ExmlPlugin, EmitResConfigF
 import { WxgamePlugin } from './wxgame/wxgame';
 import { CustomPlugin } from './myplugin';
 import * as defaultConfig from './config';
+import { ResPlugin } from './resPlugin';
 
 const config: ResourceManagerConfig = {
 
@@ -35,6 +36,7 @@ const config: ResourceManagerConfig = {
                 outputDir,
                 commands: [
                     new CleanPlugin({ matchers: ["js", "resource"] }),
+                    // new ResPlugin(),
                     new CompilePlugin({ libraryType: "release", defines: { DEBUG: false, RELEASE: true } }),
                     new ExmlPlugin('commonjs'), // 非 EUI 项目关闭此设置
                     new WxgamePlugin(),
@@ -48,6 +50,7 @@ const config: ResourceManagerConfig = {
                             { from: "resource/**", to: `../${projectName}_wxgame_remote` }
                         ]
                     }),
+                    
                     new ManifestPlugin({ output: 'manifest.js' })
                 ]
             }

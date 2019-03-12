@@ -13,7 +13,7 @@ def writeProtoExtendition(pkg,msgAry,clientFile,serveFile):
 		f.write("\tpublic static init(): void {\n");
 		f.write("\t\tthis.protoMap = new Dictionary();\n");
 		for item in msgAry:
-			f.write("\t\tthis.protoMap.set(\""+ item +"\","+pkg+"."+item+");\n")
+			f.write("\t\tthis.protoMap.set(\""+ pkg+"."+item +"\","+pkg+"."+item+");\n")
 		f.write("\t}\n");
 		f.write("}\n");
 

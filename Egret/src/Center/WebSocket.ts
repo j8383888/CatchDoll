@@ -157,7 +157,7 @@ module catchDoll {
 			Laya.timer.once(1000 * 90, this, this._showLoading, [true])
 
 			if (this._curHeartCount >= this.MAX_COUNT) {
-				ConfirmUtil.showPanel("网络连接失败，请检查网络",Handler.create(window.location, window.location.reload, null, true))
+				ConfirmUtil.showPanel("网络连接失败，请检查网络", Handler.create(window.location, window.location.reload, null, true))
 				Laya.timer.clear(this, this._sendHeartMsg);
 			}
 			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
@@ -181,6 +181,7 @@ module catchDoll {
 			let message: any;
 			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
 				protoType = ProtoExtendtion.protoMap.get(cmdTitle);
+				console.log(protoType, cmdTitle)
 				message = protoType.decode(rawData)
 			}
 			else {

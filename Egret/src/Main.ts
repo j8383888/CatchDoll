@@ -79,17 +79,14 @@ class Main extends eui.UILayer {
         try {
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            if (RELEASE) {
-                if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-                    await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
-                }
-                else {
-                    await RES.loadConfig("resource/default.res.json", "resource/");
-                }
+
+            if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+                await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
             }
             else {
                 await RES.loadConfig("resource/default.res.json", "resource/");
             }
+
 
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
@@ -105,17 +102,14 @@ class Main extends eui.UILayer {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme;
-            if (RELEASE) {
-                if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-                    theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
-                }
-                else {
-                    theme = new eui.Theme("resource/default.thm.json", this.stage);
-                }
+            if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+                theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
             }
             else {
                 theme = new eui.Theme("resource/default.thm.json", this.stage);
             }
+
+
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
             }, this);
