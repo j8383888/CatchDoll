@@ -39,6 +39,8 @@ class SceneInteractiveObject extends eui.Component {
 	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 	public pathNodeIndex = 0;
 
+	public speed: number = 200;
+
 
 	public constructor(data: {
 		id: number,
@@ -91,9 +93,9 @@ class SceneInteractiveObject extends eui.Component {
 			this.target.y = this.group.height / 2;
 			this.target.animation.play(item.actionNameAry[1], 0)
 			this.runTarget = UIUtil.creatDragonbones(item.dragonBonesName);
-			this.runTarget.animation.play(item.actionNameAry[1] ,0);
+			this.runTarget.animation.play(item.actionNameAry[1], 0);
 		}
-		                                             
+
 
 
 

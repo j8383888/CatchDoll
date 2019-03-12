@@ -108,7 +108,7 @@ class Globe extends egret.DisplayObject {
 			let target: MonsterBtn | SceneInteractiveObject = this.actionObjectAry[i];
 			let time = egret.getTimer();
 			let runTime = (time - target.startTime) / 1000;
-			let curMoveDistance = runTime * 200
+			let curMoveDistance = runTime * target.speed
 			let lastPath = target.data.exportData[target.data.exportData.length - 1]
 			let total = lastPath.distTotal
 			let runTarget = target.runTarget;

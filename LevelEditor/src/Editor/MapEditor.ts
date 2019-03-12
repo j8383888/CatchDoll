@@ -433,13 +433,18 @@ class MapEditor extends eui.Component {
 	}
 
 	private _onClearPath(): void {
-		PathEditor.instance.finalLine = null;
-		PathEditor.instance.finalPoint = null;
-		PathEditor.instance.lastPoint = null;
-		MapEditor.instance.pathLine.removeChildren();
-		MapEditor.instance.pathPoint.removeChildren();
-		MapEditor.instance.actionCanvas.removeChildren();
-		PathEditor.instance.pathPoints.length = 0;
+		if (this.curChapter && this.curLevel && this.curEditPathObject) {
+			PathEditor.instance.finalLine = null;
+			PathEditor.instance.finalPoint = null;
+			PathEditor.instance.lastPoint = null;
+			MapEditor.instance.pathLine.removeChildren();
+			MapEditor.instance.pathPoint.removeChildren();
+			MapEditor.instance.actionCanvas.removeChildren();
+			PathEditor.instance.pathPoints.length = 0;
+		}
+		else {
+			SystemTipsUtil.showTips("请先选中关卡和章节和编辑路径对象！", ColorUtil.COLOR_RED)
+		}
 	}
 
 
