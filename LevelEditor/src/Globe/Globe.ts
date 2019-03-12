@@ -141,8 +141,6 @@ class Globe extends egret.DisplayObject {
 			}
 			let curPath = target.curPathNode;
 			let nextPath = target.nextPathNode;
-
-
 			curPath = curPath == null ? lastPath : curPath;
 			nextPath = nextPath == null ? lastPath : nextPath;
 
@@ -155,12 +153,11 @@ class Globe extends egret.DisplayObject {
 
 			runTarget.x = (curPath.x + offsetx);
 			runTarget.y = (curPath.y + offsety);
-			runTarget.scaleX = curPath.scaleX;
+			
 
 			if (target.data.fixedRotation == -1) {
 				let angle = curPath.angle - 90;
 				let rotation = runTarget.rotation;
-
 				let diff = angle - rotation;
 				if (diff < -180) {
 					angle += 360;
@@ -171,6 +168,7 @@ class Globe extends egret.DisplayObject {
 				runTarget.rotation = rotation + speedRotation;
 			}
 			else {
+				runTarget.scaleX = curPath.scaleX;
 				runTarget.rotation = 0;
 			}
 		}
