@@ -98,7 +98,9 @@ class Globe extends egret.DisplayObject {
 					this._timerKey = -1
 				}
 				else {
-					MapEditor.instance.stopClick.visible = false;
+					if (MapEditor.instance.state == 0) {
+						MapEditor.instance.stopClick.visible = false;
+					}
 				}
 			}
 			return;
@@ -153,7 +155,7 @@ class Globe extends egret.DisplayObject {
 
 			runTarget.x = (curPath.x + offsetx);
 			runTarget.y = (curPath.y + offsety);
-			
+
 
 			if (target.data.fixedRotation == -1) {
 				let angle = curPath.angle - 90;

@@ -41,6 +41,8 @@ class ChapterBtn extends eui.Component {
 				}[]
 				carrySubitem: {
 					id: number,
+					x: number,
+					y: number,
 					weight: number,
 				}[]
 			}[],
@@ -98,6 +100,8 @@ class ChapterBtn extends eui.Component {
 				}[]
 				carrySubitem: {
 					id: number,
+					x: number,
+					y: number,
 					weight: number,
 				}[]
 			}[],

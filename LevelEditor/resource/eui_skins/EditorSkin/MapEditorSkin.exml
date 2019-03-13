@@ -70,6 +70,7 @@
 		<e:Image id="levelBg" touchEnabled="false" fillMode="scale" width="720" height="1280"/>
 		<e:Image touchEnabled="false" y="200" width="1280" x="0" source="battle_17" fillMode="repeat"/>
 		<e:Group id="sceneCanvas"/>
+		<e:Group id="subInteractiveCanvas" touchEnabled="false" touchChildren="true"/>
 		<e:Group id="actionCanvas" touchEnabled="false" touchThrough="true" touchChildren="false"/>
 
 
@@ -127,9 +128,10 @@
 
 	<e:Group x="1888.74" y="1060.37">
 		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
+		<e:CheckBox id="movePathPoint" label="拖动路径点" x="-262" scaleX="1" scaleY="1" bottom="70" y="83.63000000000011"/>
 		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
 		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
-		<e:CheckBox label="删除场景装饰" x="-262" scaleX="1" scaleY="1" bottom="70" y="83.63000000000011" visible="false"/>
+
 		<e:CheckBox id="delSenceImgBtn" label="删除场景装饰" x="-272" scaleX="1" scaleY="1" bottom="70" y="73.63000000000011"/>
 		<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="4" y="118.5"/>
 
@@ -153,10 +155,15 @@
 	</e:Group>
 
 	<e:Label text="快捷键：x\r快捷键：c" x="1405.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
-	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
+	<e:Label text="键盘快捷键键\rz：闭合首尾路径点\rq：拖动场景装饰滑动条" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
 	<e:Label text="快捷键：e" x="1404.47" y="1132.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06"/>
-	<e:Label text="快捷键：w" x="1732.47" y="1060.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
+	<e:Label text="快捷键：w" x="1736" y="1060.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
+	<e:Label text="快捷键：a" x="1736" y="1097.21" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
+	<e:Label text="快捷键：d" x="1736" y="1132.48" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
+	<e:Label text="快捷键：s" x="1736" y="1204.29" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
 	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1786.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
 	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0" visible="false"/>
+	<e:Rect id="stopClick2" width="2295.76" height="1280" touchEnabled="true" y="0" x="834.24" fillAlpha="1" anchorOffsetX="0" fillColor="0x8c590e" visible="false"/>
+	<e:Button id="confirmBtn" label="确定" x="1110.6" y="543.91" anchorOffsetY="0" height="94" visible="false"/>
 	<!--</e:Group>-->
 </e:Skin>

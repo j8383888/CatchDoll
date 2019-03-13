@@ -41,6 +41,8 @@ class MapEditor extends eui.Component {
 
 	public removeLevelBtn: eui.Button;
 
+	public movePathPoint: eui.CheckBox;
+
 	/**
 	 * 上一次点击章节ID
 	 */
@@ -125,6 +127,11 @@ class MapEditor extends eui.Component {
 
 	public clearPathBtn: eui.Button;
 	/**
+	 * 子项所在层级
+	 */
+	public subInteractiveCanvas: eui.Group;
+
+	/**
 	 * 可交互对象组
 	 */
 	public InteractiveObjectGroup: eui.Group;
@@ -134,10 +141,13 @@ class MapEditor extends eui.Component {
 	public actionCanvas: eui.Group;
 
 
+	public confirmBtn: eui.Button;
 	public pathMirrorNoRollOver: eui.CheckBox;
 	public effGroup: eui.Group;
 
 	public isJumpPathPoint: eui.CheckBox;
+
+	public stopClick2: eui.Rect;
 
 	public chapterData: {
 		chapterID: number,
@@ -176,6 +186,8 @@ class MapEditor extends eui.Component {
 				}[]
 				carrySubitem: {
 					id: number,
+					x: number,
+					y: number,
 					weight: number,
 				}[]
 			}[],
@@ -183,6 +195,10 @@ class MapEditor extends eui.Component {
 			effData: { source, x, y }[]
 		}[]
 	}[] = [];
+	/**
+	 * 0动画禁止操作 1导出数据后禁止操作
+	 */
+	public state: number = 0;
 
 
 	public constructor() {
@@ -419,10 +435,16 @@ class MapEditor extends eui.Component {
 		this.lookGoodsBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onLookGoods, this)
 		this.exportDataBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onExportData, this)
 		this.clearPathBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClearPath, this)
+		this.confirmBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onConfirm, this)
 		this.stopClick.visible = false;
 
 		this.stopClick.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-			SystemTipsUtil.showTips("正在播放动画！禁止操作！(不然容易报错)", ColorUtil.COLOR_RED)
+			if (this.state == 0) {
+				SystemTipsUtil.showTips("正在播放动画！禁止操作！(不然容易报错)", ColorUtil.COLOR_RED)
+			}
+			else {
+				SystemTipsUtil.showTips("导出数据后禁止操作，请刷新页面", ColorUtil.COLOR_RED)
+			}
 		}, null)
 		this.lookPathBtn.selected = this.lookGoodsBtn.selected = true;
 		let len2 = this.bgGroup.numChildren;
@@ -430,6 +452,14 @@ class MapEditor extends eui.Component {
 			let item = this.bgGroup.getElementAt(i);
 			item.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onBgDown, this)
 		}
+	}
+
+	private _onConfirm(): void {
+		let curObj = SelectPanel.instance.curSubitem;
+		curObj.data.x = curObj.runTarget.x;
+		curObj.data.y = curObj.runTarget.y;
+		curObj.removeUpdatePos();
+
 	}
 
 	private _onClearPath(): void {
@@ -468,6 +498,8 @@ class MapEditor extends eui.Component {
 					let sum: number = 0;
 					for (let subitem4 of subItem3.carrySubitem) {
 						sum += subitem4.weight;
+						subitem4["offsetX"] = subitem4.x - subItem3.exportData[0].x;
+						subitem4["offsetY"] = subitem4.y - subItem3.exportData[0].y;
 					}
 					let sumOdds: number = 0;
 					for (let subitem4 of subItem3.carrySubitem) {
@@ -494,6 +526,8 @@ class MapEditor extends eui.Component {
 			SystemTipsUtil.showTips("导出数据失败", ColorUtil.COLOR_RED)
 		}, this);
 		request.addEventListener(egret.ProgressEvent.PROGRESS, () => { }, this);
+		this.state = 1;
+		this.stopClick.visible = true;
 	}
 
 	private _onLookPath(e: egret.TouchEvent): void {
@@ -710,11 +744,7 @@ class MapEditor extends eui.Component {
 			bgSource: "",
 			monster: [],
 			sceneInteractiveObject: [],
-			carrySubitem: {
-				id: -1,
-			},
 			mapData: [],
-
 			effData: []
 		};
 		level.addListen();
@@ -736,7 +766,6 @@ class MapEditor extends eui.Component {
 				else {
 					return 0;
 				}
-
 			}
 		}
 	}
@@ -758,7 +787,6 @@ class MapEditor extends eui.Component {
 	 * 保存数据到服务器
 	 */
 	private _saveDataOnServe(): void {
-
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
 		request.open("http://129.28.87.105:8080", egret.HttpMethod.POST);
@@ -778,16 +806,12 @@ class MapEditor extends eui.Component {
 		request.addEventListener(egret.ProgressEvent.PROGRESS, () => { }, this);
 	}
 
-
-
 	private _onDown(e: egret.TouchEvent): void {
 		if (GlobeConst.isEditScene) {
 			if (this.editorPathBtn.selected) {
 				SystemTipsUtil.showTips("请先取消编辑路径勾选!", ColorUtil.COLOR_RED);
 				return;
 			}
-
-
 			if (this.curLevel && this.curChapter) {
 				let target = e.target;
 				let img = new SceneOrnamentImg(target.source);

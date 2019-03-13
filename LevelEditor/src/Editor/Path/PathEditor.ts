@@ -99,6 +99,7 @@ class PathEditor {
 				item.ctrl1Shape.touchEnabled = true;
 				item.ctrl2Shape.touchEnabled = true;
 			}
+			MapEditor.instance.movePathPoint.selected = false;
 		}
 		else if (e.key == 'q') {
 			GlobeConst.isEditScene = true;
@@ -126,6 +127,7 @@ class PathEditor {
 				item.ctrl1Shape.touchEnabled = false;
 				item.ctrl2Shape.touchEnabled = false;
 			}
+			MapEditor.instance.movePathPoint.selected = true;
 		}
 		else if (e.key == 'z') {
 			if (MapEditor.instance.editorPathBtn.selected) {
@@ -210,7 +212,7 @@ class PathEditor {
 	private _editorPath(): void {
 		if (this._mapEditor.editorPathBtn.selected) {
 			this._mapEditor.deletPathNode.visible = true;
-
+			this._mapEditor.movePathPoint.visible = true;
 			this._mapEditor.sceneCanvas.touchEnabled = false;
 			this._mapEditor.sceneCanvas.touchChildren = false;
 			this._mapEditor.pathEditArea.touchEnabled = true;
@@ -226,6 +228,7 @@ class PathEditor {
 			this._mapEditor.pathCanvas.touchChildren = false;
 			this._mapEditor.deletPathNode.visible = false;
 			this._mapEditor.deletPathNode.selected = false;
+			this._mapEditor.movePathPoint.visible = false;
 
 
 		}

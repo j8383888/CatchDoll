@@ -43,6 +43,8 @@ class LevelBtn extends eui.Component {
 			}[]
 			carrySubitem: {
 				id: number,
+				x: number,
+				y: number,
 				weight: number,
 			}[]
 		}[],
@@ -93,6 +95,8 @@ class LevelBtn extends eui.Component {
 			}[]
 			carrySubitem: {
 				id: number,
+				x: number,
+				y: number,
 				weight: number,
 			}[]
 		}[],
@@ -174,13 +178,7 @@ class LevelBtn extends eui.Component {
 			let interactive = new SceneInteractiveObject(data, this);
 			MapEditor.instance.interactiveShowBox.addChild(interactive);
 		}
-
-		// if (!this.data.effData) {
-		// 	this.data.effData = []
-		// }
-
 		if (this.data.effData) {
-
 			for (let i: number = 0; i < this.data.effData.length; i++) {
 				let data = this.data.effData[i];
 				let eff = new SceneEff(data.source);
@@ -189,6 +187,9 @@ class LevelBtn extends eui.Component {
 				MapEditor.instance.sceneCanvas.addChild(eff);
 				MapEditor.instance.curEffs.push(eff);
 			}
+		}
+		else {
+			this.data.effData = []
 		}
 	}
 

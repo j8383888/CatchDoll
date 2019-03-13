@@ -12,7 +12,7 @@ class SceneInteractiveObject extends eui.Component {
 	public deleteBtn: eui.Button;
 	public group: eui.Group;
 	public startTime: number;
-	public subItemGroup: eui.Group;
+	public subitemGroup: eui.Group;
 
 	public addBtn: eui.Button;
 	public data: {
@@ -31,6 +31,8 @@ class SceneInteractiveObject extends eui.Component {
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
+			x: number,
+			y: number,
 			weight: number,
 		}[]
 	};
@@ -58,6 +60,8 @@ class SceneInteractiveObject extends eui.Component {
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
+			x: number,
+			y: number,
 			weight: number,
 		}[]
 	}, levelBtn: LevelBtn) {
@@ -65,22 +69,17 @@ class SceneInteractiveObject extends eui.Component {
 		this.data = data;
 		this.skinName = "SceneInteractiveObjectSkin";
 		this.levelBtn = levelBtn;
-		// if (!this.data.carrySubitem) {
-		// 	this.data.carrySubitem = [];
-		// }
 		let item = ConfigParse.getWholeByProperty(MapEditor.instance.SceneInteractiveObjectTable, "id", data.id.toString())
 		if (item.imageAry && item.imageAry.length) {
 			this.target = new PivotCenterImage();
-			this.target.x = this.group.width / 2;
-			this.target.y = this.group.height / 2;
+
 			this.target.source = item.imageAry[0].sourceName;
 
 			this.runTarget = new PivotCenterImage();
 			this.runTarget.source = item.imageAry[0].sourceName;
 		}
 		else if (item.imageAry && item.movieClipAry.length) {
-			this.target.x = this.group.width / 2;
-			this.target.y = this.group.height / 2;
+
 			this.target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
 			this.target.play(-1);
 
@@ -89,14 +88,12 @@ class SceneInteractiveObject extends eui.Component {
 		else if (item.dragonBonesName != "") {
 			this.target = UIUtil.creatDragonbones(item.dragonBonesName);
 			this.target.touchEnabled = true;
-			this.target.x = this.group.width / 2;
-			this.target.y = this.group.height / 2;
 			this.target.animation.play(item.actionNameAry[1], 0)
 			this.runTarget = UIUtil.creatDragonbones(item.dragonBonesName);
 			this.runTarget.animation.play(item.actionNameAry[1], 0);
 		}
-
-
+		this.target.x = this.group.width / 2;
+		this.target.y = this.group.height / 2;
 
 
 		this.group.addChild(this.target);
@@ -107,7 +104,7 @@ class SceneInteractiveObject extends eui.Component {
 
 		for (let data of this.data.carrySubitem) {
 			let interactive = new SubInteractiveObject(data, this);
-			this.subItemGroup.addChild(interactive);
+			this.subitemGroup.addChild(interactive);
 		}
 
 		if (this.data.id == 1001) {
@@ -120,15 +117,23 @@ class SceneInteractiveObject extends eui.Component {
 	}
 
 	private _onAdd(e: egret.TouchEvent): void {
+		
+		if (this.data.exportData.length == 0) {
+			SystemTipsUtil.showTips("请先编辑路径数据！")
+			return;
+		}
+
 		let data = {
-			id: 1001,
+			id: 1002,
+			x: this.data.exportData[0].x,
+			y: this.data.exportData[0].y,
 			weight: 1,
 		}
 		this.data.carrySubitem.push(data);
 		let item: SubInteractiveObject = new SubInteractiveObject(data, this);
 		SelectPanel.instance.visible = true;
 		SelectPanel.instance.curSubitem = item;
-		this.subItemGroup.addChild(item);
+		this.subitemGroup.addChild(item);
 	}
 
 	/**
@@ -181,9 +186,9 @@ class SceneInteractiveObject extends eui.Component {
 		if (this.target instanceof dragonBones.EgretArmatureDisplay) {
 			this.target.dispose();
 		}
-		let len: number = this.subItemGroup.numChildren;
+		let len: number = this.subitemGroup.numChildren;
 		for (let i: number = 0; i < len; i++) {
-			let item = this.subItemGroup.getChildAt(i) as SubInteractiveObject
+			let item = this.subitemGroup.getChildAt(i) as SubInteractiveObject
 			item.dispose();
 		}
 
