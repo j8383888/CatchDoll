@@ -59,6 +59,8 @@ module catchDoll {
 					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 					carrySubitem: {
 						id: number,
+						offsetX: number,
+						offsetY: number,
 						weightOdds: number,
 					}[]
 				}[],
@@ -81,7 +83,7 @@ module catchDoll {
 			this.ChapterData = ConfigParse.getJosn("LevelData_json");
 
 			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json");
-			
+
 
 		}
 

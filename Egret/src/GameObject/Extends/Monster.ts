@@ -18,13 +18,13 @@ module catchDoll {
 		 */
 		public maxLife: number = NaN
 		/**
-		 * 是否活着
-		 */
-		public isAlive: boolean = false;
-		/**
 		 * 移动速度
 		 */
 		public speed: number = 0;
+		/**
+		 * 原移动速度
+		 */
+		public configSpeed: number = 0;
 		/**
 		 * 血条
 		 */
@@ -66,6 +66,10 @@ module catchDoll {
 		 * 是否减速
 		 */
 		public isSlowMove: boolean = false;
+		/**
+		 * 已经移动距离
+		 */
+		public moveDistance: number = 0;
 
 		public constructor() {
 			super();
@@ -85,6 +89,7 @@ module catchDoll {
 		public loadConfigData(data: IMonsterConfigData): void {
 			super.loadConfigData(data)
 			this.speed = data.speed;
+			this.configSpeed = data.speed;
 
 			this.maxLife = data.life;
 			this.haemalStrand = new eui.Image();
@@ -129,6 +134,22 @@ module catchDoll {
 		}
 
 		/**
+		 * isSlow true:减速开始, false:减速结束
+		 */
+		public slowMove(isSlow: boolean): void {
+			this.isSlowMove = isSlow;
+			let now = egret.getTimer();
+			this.moveDistance += this.speed * (now - this.startTime) / 1000;
+			this.startTime = now;
+			if (this.isSlowMove) {
+				this.speed = this.configSpeed - 100;
+			}
+			else {
+				this.speed = this.configSpeed
+			}
+		}
+
+		/**
 		 * 隐藏
 		 */
 		public hide(isHide: boolean): void {
@@ -163,12 +184,12 @@ module catchDoll {
 		public initialize(): void {
 			super.initialize();
 			this.isHide = false;
+			this.moveDistance = 0;
 			if (this._dragonBones) {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}
 			this.life = this.maxLife;
 			this.haemalStrandMask.width = this.haemalStrandWidth;
-			this.isAlive = true;
 			let varsData: IMonsterVars = this.varsData as IMonsterVars
 
 			let exportData = varsData.exportData[0];

@@ -48,6 +48,8 @@ module catchDoll {
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				carrySubitem: {
 					id: number,
+					offsetX: number,
+					offsetY: number,
 					weightOdds: number,
 				}[]
 			}[],
@@ -77,6 +79,8 @@ module catchDoll {
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				carrySubitem: {
 					id: number,
+					offsetX: number,
+					offsetY: number,
 					weightOdds: number,
 				}[]
 			}[],
@@ -294,6 +298,7 @@ module catchDoll {
 
 
 
+
 		/**
 		 * 检测碰撞
 		 */
@@ -413,7 +418,7 @@ module catchDoll {
 				if (!interObj.isMonsterHitOpen) {
 					continue;
 				}
-				if (interObj.sign == GAMEOBJECT_SIGN.Mushroom) {
+				if (interObj.sign == GAMEOBJECT_SIGN.Mushroom_RED || interObj.sign == GAMEOBJECT_SIGN.Mushroom_GREEN) {
 					continue;
 				}
 				let interObjColliderAry = interObj.hitMonsterColliderAry;

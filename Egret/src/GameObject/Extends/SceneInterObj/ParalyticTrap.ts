@@ -28,7 +28,6 @@ module catchDoll {
 		 * 打开
 		 */
 		public openMonsterHit(): void {
-			
 			this.isOpen = false;
 			this._dragonBones.animation.play("start", 1);
 			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)

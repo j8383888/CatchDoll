@@ -81,6 +81,8 @@ module catchDoll {
 	export interface IRandomBox extends ISenceInteractiveVars {
 		carrySubitem: {
 			id: number,
+			offsetX: number,
+			offsetY: number,
 			weightOdds: number,
 		}[]
 	}
@@ -123,7 +125,7 @@ module catchDoll {
 		/*2级碰撞器配置数据*/
 		hitMonsterColliderAry: ICollider[]
 		/*动作名字列表*/
-		actionNameAry:string[];
+		actionNameAry: string[];
 	}
 
 	/**

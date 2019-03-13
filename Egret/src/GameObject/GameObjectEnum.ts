@@ -30,7 +30,11 @@ const enum GAMEOBJECT_SIGN {
     /**
      * 蘑菇
      */
-    Mushroom = 1004,
+    Mushroom_RED = 1004,
+    /**
+     * 蘑菇
+     */
+    Mushroom_GREEN = 1005,
 }
 /**
  * 操作类型

@@ -9,6 +9,11 @@ module catchDoll {
 			super();
 		}
 
+		public initOther(): void {
+			super.initOther()
+			this._moviePlayer.y -= 40
+		}
+
 		public initialize(): void {
 			super.initialize();
 			this.imagePlayer.visible = true
@@ -21,13 +26,13 @@ module catchDoll {
 			this.imagePlayer.visible = false;
 
 			this._moviePlayer.play("burst", 1, 0, Handler.create(this, this._cb, null, true))
-			let varsData: IRandomBox = this.varsData as IRandomBox;
+			let randomVarsData: IRandomBox = this.varsData as IRandomBox;
 			let random = Math.random()
-			for (let item of varsData.carrySubitem) {
+			for (let item of randomVarsData.carrySubitem) {
 				if (random < item.weightOdds) {
 					let varsData: ISenceInteractiveVars = <ISenceInteractiveVars>{};
-					varsData.bornX = this.x;
-					varsData.bornY = this.y
+					varsData.bornX = this.x + item.offsetX;
+					varsData.bornY = this.y + item.offsetY;
 					let gameObj = GameObjectFactory.instance.creatGameObject(item.id, varsData, LAYER.SCENE_INTERACTIVE_LOW)
 					if (item.id == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
 						let paralyticTrap = gameObj as ParalyticTrap

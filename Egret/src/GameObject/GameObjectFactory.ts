@@ -32,7 +32,7 @@ module catchDoll {
 				else if (item.id == GAMEOBJECT_SIGN.GRASS) {
 					this._objClassDic.set(item.id, Grass);
 				}
-				else if (item.id == GAMEOBJECT_SIGN.Mushroom) {
+				else if (item.id == GAMEOBJECT_SIGN.Mushroom_RED || item.id == GAMEOBJECT_SIGN.Mushroom_GREEN) {
 					this._objClassDic.set(item.id, Mushroom);
 				}
 				else {

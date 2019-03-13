@@ -66,12 +66,13 @@ module catchDoll {
 
 			let time = egret.getTimer();
 			let runTime = (time - monster.startTime) / 1000;
-			let curMoveDistance = runTime * monster.speed * 100
+			let curMoveDistance = runTime * monster.speed + monster.moveDistance;
 			let lastPath = this.pathNodes[this.pathNodes.length - 1]
 			let total = lastPath.distTotal
 
 
 			if (curMoveDistance >= total) {
+				monster.moveDistance = 0;
 				this.pathNodeIndex = 0;
 				this.curPathNode = this.pathNodes[0];
 				this.nextPathNode = this.pathNodes[1];
