@@ -167,7 +167,7 @@ module catchDoll {
 			let i: number = 0;
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monster: Monster = monsterMap.values[i];
-				if (!monster.isOpen) {
+				if (!monster.isOpen || monster.isHide) {
 					continue;
 				}
 				let monsterColliderAry = monster.colliderAry
@@ -308,7 +308,7 @@ module catchDoll {
 			this._setMonsterGlobeP();
 			this._setInterGlobeP();
 
-			this._checkInteractiveAndMonsterHit();
+			this._checkInterHitMonster();
 
 			let paw = Master.instance.MasterPaws;
 			if (paw.isOpen) {
@@ -393,7 +393,7 @@ module catchDoll {
 		/**
 		 * 检测场景可交互对象与怪兽的碰撞
 		 */
-		private _checkInteractiveAndMonsterHit(): void {
+		private _checkInterHitMonster(): void {
 			let interObjMap = LevelCreate.inSceneInterObjMap;
 			let interObjMapLen: number = interObjMap.length;
 			if (interObjMapLen == 0) {
@@ -405,16 +405,18 @@ module catchDoll {
 				return;
 			}
 
-			interObjMap = interObjMap.copy()
 			let i: number = 0;
 
 			let deleteAry = []
 			for (let j = 0; j < interObjMapLen; j += this._colliderFlag + 1) {
 				let interObj: ParalyticTrap = interObjMap.values[j];
-				let interObjColliderAry = interObj.hitMonsterColliderAry;
 				if (!interObj.isMonsterHitOpen) {
 					continue;
 				}
+				if (interObj.sign == GAMEOBJECT_SIGN.Mushroom) {
+					continue;
+				}
+				let interObjColliderAry = interObj.hitMonsterColliderAry;
 				for (let f = 0; f < monsterMapLen; f += this._colliderFlag + 1) {
 					let monster: Monster = monsterMap.values[f];
 					if (!monster.isOpen) {
@@ -422,9 +424,19 @@ module catchDoll {
 					}
 					let monsterColliderAry = monster.colliderAry
 					if (GameObjectCollider.isIntersect(interObjColliderAry, monsterColliderAry)) {
-						monster.stopMove()
-						deleteAry.push(interObj);
+						if (interObj.sign == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
+							monster.stopMove()
+							deleteAry.push(interObj);
+						}
+						else if (interObj.sign == GAMEOBJECT_SIGN.GRASS) {
+							monster.hide(true);
+						}
 						break;
+					}
+					else {
+						if (interObj.sign == GAMEOBJECT_SIGN.GRASS) {
+							monster.hide(false);
+						}
 					}
 				}
 			}

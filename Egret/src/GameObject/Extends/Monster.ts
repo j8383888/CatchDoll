@@ -53,10 +53,19 @@ module catchDoll {
 		 * 开始时间
 		 */
 		public startTime: number = 0;
+
 		/**
 		 * 是否禁足
 		 */
 		public isStopMove: boolean = false;
+		/**
+		 * 是否隐藏
+		 */
+		public isHide: boolean = false;
+		/**
+		 * 是否减速
+		 */
+		public isSlowMove: boolean = false;
 
 		public constructor() {
 			super();
@@ -120,6 +129,22 @@ module catchDoll {
 		}
 
 		/**
+		 * 隐藏
+		 */
+		public hide(isHide: boolean): void {
+			if (isHide == this.isHide) {
+				return;
+			}
+			this.isHide = isHide
+			if (this.isHide) {
+				this.alpha = 0.5
+			}
+			else {
+				this.alpha = 1;
+			}
+		}
+
+		/**
 		 * 禁止移动
 		 */
 		public stopMove(): void {
@@ -137,7 +162,7 @@ module catchDoll {
          */
 		public initialize(): void {
 			super.initialize();
-			
+			this.isHide = false;
 			if (this._dragonBones) {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
 			}

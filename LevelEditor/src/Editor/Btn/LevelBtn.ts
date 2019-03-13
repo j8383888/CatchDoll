@@ -179,14 +179,16 @@ class LevelBtn extends eui.Component {
 		// 	this.data.effData = []
 		// }
 
-		
-		for (let i: number = 0; i < this.data.effData.length; i++) {
-			let data = this.data.effData[i];
-			let eff = new SceneEff(data.source);
-			eff.x = data.x;
-			eff.y = data.y
-			MapEditor.instance.sceneCanvas.addChild(eff);
-			MapEditor.instance.curEffs.push(eff);
+		if (this.data.effData) {
+
+			for (let i: number = 0; i < this.data.effData.length; i++) {
+				let data = this.data.effData[i];
+				let eff = new SceneEff(data.source);
+				eff.x = data.x;
+				eff.y = data.y
+				MapEditor.instance.sceneCanvas.addChild(eff);
+				MapEditor.instance.curEffs.push(eff);
+			}
 		}
 	}
 

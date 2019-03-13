@@ -23,6 +23,14 @@ const enum GAMEOBJECT_SIGN {
      * 麻痹陷阱
      */
     PARALYTIC_TRAP = 1002,
+    /**
+     * 草丛
+     */
+    GRASS = 1003,
+    /**
+     * 蘑菇
+     */
+    Mushroom = 1004,
 }
 /**
  * 操作类型

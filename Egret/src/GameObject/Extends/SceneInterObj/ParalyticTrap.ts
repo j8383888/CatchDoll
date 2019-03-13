@@ -12,7 +12,7 @@ module catchDoll {
 
 		public initialize(): void {
 			super.initialize();
-
+			this.isMonsterHitOpen = false;
 			this._dragonBones.animation.gotoAndStopByFrame("start", 1);
 		}
 

@@ -25,6 +25,7 @@ class SubInteractiveObject extends eui.Component {
 		this.host = host;
 		this.updateInteractive(data.id);
 		this.group.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClick, this);
+
 		this.weightLabel.text = this.data.weight.toString();
 		this.weightLabel.addEventListener(egret.TouchEvent.CHANGE, this._onChange, this);
 	}
@@ -64,7 +65,7 @@ class SubInteractiveObject extends eui.Component {
 		}
 		this.group.removeChildren();
 		this.data.id = id;
-		
+
 
 		let item = ConfigParse.getWholeByProperty(MapEditor.instance.SceneInteractiveObjectTable, "id", id.toString())
 		if (item.imageAry && item.imageAry.length) {

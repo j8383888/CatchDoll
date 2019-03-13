@@ -29,6 +29,12 @@ module catchDoll {
 				else if (item.id == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
 					this._objClassDic.set(item.id, ParalyticTrap);
 				}
+				else if (item.id == GAMEOBJECT_SIGN.GRASS) {
+					this._objClassDic.set(item.id, Grass);
+				}
+				else if (item.id == GAMEOBJECT_SIGN.Mushroom) {
+					this._objClassDic.set(item.id, Mushroom);
+				}
 				else {
 					this._objClassDic.set(item.id, SceneInteractiveObject);
 				}

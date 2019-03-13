@@ -117,6 +117,7 @@
 			<e:TileLayout  requestedRowCount="3"/>
 		</e:layout>
 	</e:Group>
+	<e:CheckBox id="showGridCbx" label="显示网格" x="2778" y="1238"/>
 
 
 
@@ -128,15 +129,16 @@
 		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
 		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
 		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
+		<e:CheckBox label="删除场景装饰" x="-262" scaleX="1" scaleY="1" bottom="70" y="83.63000000000011" visible="false"/>
 		<e:CheckBox id="delSenceImgBtn" label="删除场景装饰" x="-272" scaleX="1" scaleY="1" bottom="70" y="73.63000000000011"/>
 		<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="4" y="118.5"/>
-		<e:CheckBox id="showGridCbx" label="显示网格" x="2" y="158"/>
+
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
 
-	<e:Group x="1626.86" y="1026" anchorOffsetX="0" width="263.64">
+	<e:Group x="1556.86" y="1026" anchorOffsetX="0" width="263.64">
 		<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="0" scaleX="1" scaleY="1" y="0"/>
 
 		<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
@@ -150,10 +152,11 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Label text="快捷键：x\r快捷键：c" x="1475.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
+	<e:Label text="快捷键：x\r快捷键：c" x="1405.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
 	<e:Label text="键盘快捷键键：\na(按住)：拖动路径节点\nz：闭合首尾路径点\nd：编辑路径点\nq：拖动场景装饰滑动条\ns：打开关闭删除场景装饰按钮" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
-	<e:Label text="e（按住松开）：路径跳跃开关" x="2769.32" y="1198.9" anchorOffsetY="0" height="78.79" anchorOffsetX="0" width="325.06"/>
-	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1632.83" y="965.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
+	<e:Label text="快捷键：e" x="1404.47" y="1132.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06"/>
+	<e:Label text="快捷键：w" x="1732.47" y="1060.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
+	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1786.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
 	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0" visible="false"/>
 	<!--</e:Group>-->
 </e:Skin>

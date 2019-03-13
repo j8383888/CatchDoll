@@ -38,6 +38,7 @@ class PathEditor {
 	public _init(): void {
 		this._mapEditor = MapEditor.instance;
 		MapEditor.instance.editorPathBtn.addEventListener(egret.TouchEvent.CHANGE, this._editorPath, this)
+		// MapEditor.instance.delSenceImgBtn.addEventListener(egret.TouchEvent.CHANGE, this._onDelSceneChange, this)
 		let pathEditArea = this._mapEditor.pathEditArea;
 		pathEditArea.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onDown, this)
 		this._mapEditor.aniTestBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onAnimtionTest, this)
@@ -45,6 +46,12 @@ class PathEditor {
 		this._editorPath();
 		document.addEventListener("keydown", this._onKeyDown);
 		document.addEventListener("keyup", this._onKeyUp);
+	}
+
+	private _onDelSceneChange(): void {
+		if (MapEditor.instance.delSenceImgBtn.selected) {
+			MapEditor.instance.editorPathBtn.selected = false;
+		}
 	}
 
 	/**
@@ -105,6 +112,12 @@ class PathEditor {
 		else if (e.key == 'e') {
 			MapEditor.instance.isJumpPathPoint.selected = false;
 		}
+		else if (e.key == 'w') {
+			MapEditor.instance.deletPathNode.selected = false;
+		}
+		else if (e.key == 's') {
+			MapEditor.instance.delSenceImgBtn.selected = false;
+		}
 	}
 
 	private _onKeyDown(e: KeyboardEvent): void {
@@ -130,7 +143,7 @@ class PathEditor {
 			GlobeConst.isEditScene = false;
 		}
 		else if (e.key == 's') {
-			MapEditor.instance.delSenceImgBtn.selected = !MapEditor.instance.delSenceImgBtn.selected;
+			MapEditor.instance.delSenceImgBtn.selected = true;
 		}
 		else if (e.key == 'x') {
 			MapEditor.instance.horGuy.selected = true;
@@ -140,6 +153,9 @@ class PathEditor {
 		}
 		else if (e.key == 'e') {
 			MapEditor.instance.isJumpPathPoint.selected = true;
+		}
+		else if (e.key == 'w') {
+			MapEditor.instance.deletPathNode.selected = true;
 		}
 
 		else if (MapEditor.instance.editorPathBtn.selected) {

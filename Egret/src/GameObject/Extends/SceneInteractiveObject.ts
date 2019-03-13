@@ -25,6 +25,10 @@ module catchDoll {
 		 * 是否静态
 		 */
 		public isStatic: boolean = true;
+		/**
+		 * 动作名字列表
+		 */
+		public actionNameAry: string[] = []
 
 
 		/**
@@ -32,6 +36,7 @@ module catchDoll {
          */
 		public loadConfigData(data: ISceneInteractiveObjectConfig): void {
 			super.loadConfigData(data);
+			this.actionNameAry = data.actionNameAry;
 			for (let i: number = 0; i < data.hitMonsterColliderAry.length; i++) {
 				let colliderData: ICollider = data.hitMonsterColliderAry[i];
 				let collider: catchDoll.Collider = Collider.creat(colliderData.posX, colliderData.posY, colliderData.radius)
@@ -45,7 +50,7 @@ module catchDoll {
          */
 		public initialize(): void {
 			super.initialize();
-			this.isMonsterHitOpen = false;
+
 
 			let varsData: ISenceInteractiveVars = this.varsData as ISenceInteractiveVars;
 			if (varsData.operation) {

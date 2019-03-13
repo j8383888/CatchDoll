@@ -114,7 +114,6 @@ module catchDoll {
 		anchorOffsetX: number,
 		/*绝对锚点Y*/
 		anchorOffsetY: number,
-
 	}
 
 	/**
@@ -123,6 +122,8 @@ module catchDoll {
 	export interface ISceneInteractiveObjectConfig extends IColliderConfigData {
 		/*2级碰撞器配置数据*/
 		hitMonsterColliderAry: ICollider[]
+		/*动作名字列表*/
+		actionNameAry:string[];
 	}
 
 	/**

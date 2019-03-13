@@ -439,7 +439,8 @@ class MapEditor extends eui.Component {
 			PathEditor.instance.lastPoint = null;
 			MapEditor.instance.pathLine.removeChildren();
 			MapEditor.instance.pathPoint.removeChildren();
-			MapEditor.instance.actionCanvas.removeChildren();
+			MapEditor.instance.curEditPathObject.runTarget.x = -100;
+			MapEditor.instance.curEditPathObject.runTarget.y = -100
 			PathEditor.instance.pathPoints.length = 0;
 		}
 		else {

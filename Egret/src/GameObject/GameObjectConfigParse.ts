@@ -36,7 +36,7 @@ module catchDoll {
 						imageAry: item.imageAry,
 						movieClipAry: item.movieClipAry,
 						dragonBonesName: item.dragonBonesName,
-					}, configData: { colliderAry: item.colliderAry, hitMonsterColliderAry: item.hitMonsterColliderAry }
+					}, configData: { colliderAry: item.colliderAry, hitMonsterColliderAry: item.hitMonsterColliderAry,actionNameAry:item.actionNameAry }
 				});
 			}
 		}
