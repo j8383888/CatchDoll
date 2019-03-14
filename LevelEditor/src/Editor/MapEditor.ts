@@ -146,6 +146,11 @@ class MapEditor extends eui.Component {
 	public effGroup: eui.Group;
 
 	public isJumpPathPoint: eui.CheckBox;
+	/**
+	 * 
+	 */
+	public editSceneOrnaBtn:eui.CheckBox;
+
 
 	public stopClick2: eui.Rect;
 
@@ -532,10 +537,6 @@ class MapEditor extends eui.Component {
 
 	private _onLookPath(e: egret.TouchEvent): void {
 		this.editorPathBtn.visible = this.pathCanvas.visible = this.lookPathBtn.selected;
-		if (!this.pathCanvas.visible) {
-			this.editorPathBtn.visible = this.editorPathBtn.selected = false;
-			this.deletPathNode.visible = this.deletPathNode.selected = false;
-		}
 	}
 
 	private _onLookGoods(e: egret.TouchEvent): void {

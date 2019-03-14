@@ -70,6 +70,7 @@
 		<e:Image id="levelBg" touchEnabled="false" fillMode="scale" width="720" height="1280"/>
 		<e:Image touchEnabled="false" y="200" width="1280" x="0" source="battle_17" fillMode="repeat"/>
 		<e:Group id="sceneCanvas"/>
+
 		<e:Group id="subInteractiveCanvas" touchEnabled="false" touchChildren="true"/>
 		<e:Group id="actionCanvas" touchEnabled="false" touchThrough="true" touchChildren="false"/>
 
@@ -87,7 +88,7 @@
 
 
 
-	<e:Rect width="336.66" height="106.36" x="2101.18" y="972.56" strokeColor="0xff0505" strokeWeight="7" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0"/>
+	<e:Rect width="336.66" height="106.36" x="2453.18" y="976.56" strokeColor="0xff0505" strokeWeight="7" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0"/>
 	<e:Group id="monsterShowBox" width="563.22" height="283.09" x="837.2" y="988.63" anchorOffsetX="0" anchorOffsetY="0" touchEnabled="false">
 		<e:layout>
 		<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
@@ -98,27 +99,29 @@
 		<e:TileLayout horizontalAlign="left" verticalAlign="bottom" horizontalGap="0" verticalGap="0"/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="2103.98" y="978" anchorOffsetY="0" height="298" anchorOffsetX="0" width="660">
+	<e:Group anchorOffsetY="0" height="298" anchorOffsetX="0" width="660" right="0" bottom="0">
 
 		<e:Button id="savePath" label="保存当前路径数据" x="165.97000000000003" y="-97.20000000000005" anchorOffsetY="0" height="94" scaleY="1" scaleX="1"/>
 		<e:Button id="saveSceneBtn" label="保存当前场景" x="0" y="100" anchorOffsetY="0" height="94" />
 		<e:Button id="clearSceneBtn" label="清空当前场景" x="210" y="90" anchorOffsetY="0"/>
 		<e:Button id="clearPathBtn" label="清空当前路径数据" x="210" y="90" anchorOffsetY="0"/>
+		<e:Button id="addChapter" label="添加章节" x="410" y="92" anchorOffsetY="0"/>
 		<e:Button id="addBtn" label="添加新关卡" x="0" y="0" anchorOffsetY="0" />
 
 
-		<e:Button id="addChapter" label="添加章节" x="410" y="92" anchorOffsetY="0" />
+
 		<e:Button id="removeLevelBtn" label="删除关卡" x="202" y="4" anchorOffsetY="0"/>
 
-		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
+
 		<e:Button id="aniTestBtn" label="动画测试" x="30" y="130" anchorOffsetY="0" height="94"/>
 		<e:Button id="levelTestBtn" label="当前关卡演示" x="40" y="140" anchorOffsetY="0" height="94"/>
+		<e:Button id="upLoadBtn" label="上传" x="20" y="120" anchorOffsetY="0" height="94"/>
 		<e:Button id="exportDataBtn" label="导出编辑器数据" x="40" y="140" anchorOffsetY="0" height="94"/>
 		<e:layout>
 			<e:TileLayout  requestedRowCount="3"/>
 		</e:layout>
 	</e:Group>
-	<e:CheckBox id="showGridCbx" label="显示网格" x="2778" y="1238"/>
+	<e:CheckBox id="showGridCbx" label="显示网格" x="2964" y="1244"/>
 
 
 
@@ -126,42 +129,55 @@
 
 
 
-	<e:Group x="1888.74" y="1060.37">
-		<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
-		<e:CheckBox id="movePathPoint" label="拖动路径点" x="-262" scaleX="1" scaleY="1" bottom="70" y="83.63000000000011"/>
-		<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
-		<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
 
-		<e:CheckBox id="delSenceImgBtn" label="删除场景装饰" x="-272" scaleX="1" scaleY="1" bottom="70" y="73.63000000000011"/>
-		<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="4" y="118.5"/>
 
-		<e:layout>
-			<e:VerticalLayout/>
-		</e:layout>
+
+
+
+
+
+
+
+	<e:Group x="2049.21" y="1132.96">
+		<e:Group x="152.06" y="34.07">
+			<e:CheckBox id="delSenceImgBtn" label="删除场景装饰" x="0" scaleX="1" scaleY="1" y="0"/>
+			<e:CheckBox id="editSceneOrnaBtn" label="编辑场景装饰" x="0" scaleX="1" scaleY="1" y="36"/>
+			<e:CheckBox id="lookGoodsBtn" label="显示场景装饰" x="0" y="72"/>
+		</e:Group>
+		<e:Label text="快捷键：r 拖动场景装饰滑动条" x="2" y="0" anchorOffsetY="0" height="32.79" anchorOffsetX="0" width="499.06" textColor="0xFFFFFF"/>
+		<e:Label text="快捷键：e" x="0.79" y="35.33" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
+		<e:Label text="快捷键：q" x="0.79" y="71.33" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
 	</e:Group>
-
-	<e:Group x="1556.86" y="1026" anchorOffsetX="0" width="263.64">
-		<e:CheckBox id="fixedRotation" label="锁定角度（0度）" x="0" scaleX="1" scaleY="1" y="0"/>
-
-		<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
-		<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
-		<e:CheckBox id="isJumpPathPoint" label="跳跃路径" x="10" scaleX="1" scaleY="1" y="80"/>
-		<e:CheckBox id="pathMirrorNoRollOver" label="镜像路径下（对象不进行水平翻转）" x="-2" scaleX="1" scaleY="1" y="108" visible="false"/>
-		<e:CheckBox id="horGuy" label="水平拉线" x="-1472.86" y="-1101" scaleX="1" scaleY="1"/>
-		<e:CheckBox id="verGuy" label="垂直拉线" x="2.5" y="100.63"/>
-		<e:layout>
+	<e:Group x="1352" y="1006.96">
+		<e:Group x="503.95" y="125.4" anchorOffsetY="0" height="150">
+			<e:CheckBox id="deletPathNode" label="删除路径点" x="0" y="0"/>
+			<e:CheckBox id="movePathPoint" label="拖动路径点" x="-262" scaleX="1" scaleY="1" bottom="70" y="83.63000000000011"/>
+			<e:CheckBox id="editorPathBtn" label="编辑路径" x="2" y="76"/>
+			<e:CheckBox id="lookPathBtn" label="显示路径" x="4" y="79"/>
+			<e:layout>
 			<e:VerticalLayout/>
-		</e:layout>
+			</e:layout>
+		</e:Group>
+		<e:Group x="150.86" y="19.04" anchorOffsetX="0" width="181.64" anchorOffsetY="0" height="248">
+			<e:CheckBox id="fixedRotation" label="锁定角度" x="0" scaleX="1" scaleY="1" y="0"/>
+			<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
+			<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
+			<e:CheckBox id="isJumpPathPoint" label="跳跃路径" x="10" scaleX="1" scaleY="1" y="80"/>
+			<e:CheckBox id="pathMirrorNoRollOver" label="镜像路径下（对象不进行水平翻转）" x="-2" scaleX="1" scaleY="1" y="108" visible="false"/>
+			<e:CheckBox id="horGuy" label="水平拉线" x="-1472.86" y="-1101" scaleX="1" scaleY="1"/>
+			<e:CheckBox id="verGuy" label="垂直拉线" x="2.5" y="100.63"/>
+			<e:layout>
+			<e:VerticalLayout/>
+			</e:layout>
+		</e:Group>
+		<e:Label text="快捷键：x\r快捷键：c" x="0" y="204.68" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
+		<e:Label text="快捷键：f" x="0" y="126.68" anchorOffsetY="0" height="32.79" anchorOffsetX="0" width="145.06"/>
+		<e:Label text="快捷键：d" x="351.21" y="124" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
+		<e:Label text="快捷键：z 闭合首尾路径点" x="319.21" y="0" anchorOffsetY="0" height="38.79" anchorOffsetX="0" width="373.06" textColor="0xFFFFFF"/>
+		<e:Label text="快捷键：s" x="351.21" y="160.24" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
+		<e:Label text="快捷键：a" x="351.21" y="195.51" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
+		<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="340.83" y="38.89" anchorOffsetY="0" height="58.79" anchorOffsetX="0" width="347.06"/>
 	</e:Group>
-
-	<e:Label text="快捷键：x\r快捷键：c" x="1405.8" y="1211.64" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
-	<e:Label text="键盘快捷键键\rz：闭合首尾路径点\rq：拖动场景装饰滑动条" x="2771.32" y="982.9" anchorOffsetY="0" height="206.79" anchorOffsetX="0" width="325.06"/>
-	<e:Label text="快捷键：e" x="1404.47" y="1132.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06"/>
-	<e:Label text="快捷键：w" x="1736" y="1060.97" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
-	<e:Label text="快捷键：a" x="1736" y="1097.21" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
-	<e:Label text="快捷键：d" x="1736" y="1132.48" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
-	<e:Label text="快捷键：s" x="1736" y="1204.29" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>
-	<e:Label text="上下左右 可移动路径点\n（先打开编辑路径按钮）" x="1786.83" y="985.85" anchorOffsetY="0" height="74.79" anchorOffsetX="0" width="347.06"/>
 	<e:Rect id="stopClick" width="3120" height="1280" fillColor="0x0D607C" touchEnabled="true" y="0" x="0" fillAlpha="0" visible="false"/>
 	<e:Rect id="stopClick2" width="2295.76" height="1280" touchEnabled="true" y="0" x="834.24" fillAlpha="1" anchorOffsetX="0" fillColor="0x8c590e" visible="false"/>
 	<e:Button id="confirmBtn" label="确定" x="1110.6" y="543.91" anchorOffsetY="0" height="94" visible="false"/>

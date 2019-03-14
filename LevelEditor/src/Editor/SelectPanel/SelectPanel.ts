@@ -35,6 +35,9 @@ class SelectPanel extends eui.Component {
 	 * 取消
 	 */
 	private _onCancel(): void {
+		if(this.curSubitem.isFirst){
+			this.curSubitem.clear();
+		}
 		this.curSubitem = null;
 		this.visible = false;
 	}
@@ -86,7 +89,7 @@ class SelectPanel extends eui.Component {
 
 	private _onClick(e: egret.TouchEvent): void {
 		let id = e.target.name;
-		this.curSubitem.updateInteractive(id);
+		this.curSubitem.updateInteractive(id, false);
 		this.visible = false;
 	}
 }

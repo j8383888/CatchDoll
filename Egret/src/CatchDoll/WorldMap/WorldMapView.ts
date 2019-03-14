@@ -21,7 +21,7 @@ module catchDoll {
 		 * 左按钮
 		 */
 		public shopBtn: Button;
-		
+
 		/**
 		 * 排行榜
 		 */
@@ -34,7 +34,8 @@ module catchDoll {
 		 * 转盘按钮
 		 */
 		public turnTableBtn: Button;
-		
+
+
 
 
 
@@ -78,10 +79,10 @@ module catchDoll {
 			}
 
 			this.shopBtn = new Button(this.skin["_shopBtn"]);
-			
 			this.rankBtn = new Button(this.skin["_rankBtn"]);
 			this.inventBtn = new Button(this.skin["_inventBtn"]);
 			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
+
 
 		}
 
@@ -115,7 +116,6 @@ module catchDoll {
 		 * 释放时
 		 */
 		public dispose(): void {
-
 			for (let item of this.chapterBtns) {
 				item.dispose();
 				item = null;
@@ -126,7 +126,7 @@ module catchDoll {
 			this.shopBtn = null;
 			this.turnTableBtn.dispose();
 			this.turnTableBtn = null;
-			
+
 			this.rankBtn.dispose();
 			this.rankBtn = null;
 			this.inventBtn.dispose();

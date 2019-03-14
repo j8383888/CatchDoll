@@ -12,6 +12,8 @@ class SubInteractiveObject extends eui.Component {
 
 	public host: SceneInteractiveObject;
 
+	public isFirst: boolean = false;
+
 	public data: {
 		id: number,
 		x: number,
@@ -24,14 +26,13 @@ class SubInteractiveObject extends eui.Component {
 		x: number,
 		y: number,
 		weight: number,
-	}, host: SceneInteractiveObject) {
+	}, host: SceneInteractiveObject, isFirst: boolean = false) {
 		super();
 		this.skinName = "SubInteractiveSkin";
 		this.data = data;
 		this.host = host;
-		this.updateInteractive(data.id);
 		this.group.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClick, this);
-
+		this.updateInteractive(data.id, isFirst);
 		this.weightLabel.text = this.data.weight.toString();
 		this.weightLabel.addEventListener(egret.TouchEvent.CHANGE, this._onChange, this);
 	}
@@ -88,7 +89,8 @@ class SubInteractiveObject extends eui.Component {
 	/**
 	 * 更新可交换对象
 	 */
-	public updateInteractive(id: number): void {
+	public updateInteractive(id: number, isFirst: boolean): void {
+		this.isFirst = isFirst;
 		if (this.target && this.target instanceof dragonBones.EgretArmatureDisplay) {
 			this.target.dispose();
 			this.target = null;

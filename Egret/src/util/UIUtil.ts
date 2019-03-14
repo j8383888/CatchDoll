@@ -124,7 +124,7 @@ class UIUtil {
 	public static circleAdd(value: number, addNum: number, maxNum: number): number {
 		value += addNum;
 		if (value > maxNum) {
-			value -= maxNum ;
+			value -= maxNum;
 		}
 		return value;
 	}
@@ -138,7 +138,7 @@ class UIUtil {
 		if (egretFactory.getDragonBonesData(groupName) == null) {
 			var dragonbonesData = RES.getRes(groupName + "_ske_dbbin");
 			var textureData = RES.getRes(groupName + "_tex_json");
-			var texture = RES.getRes( groupName + "_tex_png");
+			var texture = RES.getRes(groupName + "_tex_png");
 			egretFactory.parseDragonBonesData(dragonbonesData, groupName);
 			egretFactory.parseTextureAtlasData(textureData, texture, groupName);
 		}
@@ -208,6 +208,63 @@ class UIUtil {
 		let y: number = p.y;
 		Point.release(p);
 		return [x, y];
+	}
+
+	/**
+	 * 区域碰撞检测
+	 */
+	public static hitRect(rect1: egret.Rectangle, rect2: egret.Rectangle): boolean {
+		if (rect1.x + rect1.width > rect2.x && rect2.x + rect2.width > rect1.x &&
+			rect2.y + rect2.height > rect2.y && rect2.y + rect2.height > rect1.y) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 发光shader
+	 */
+	public static brightShader(): egret.CustomFilter {
+		let vertexSrc =
+			"attribute vec2 aVertexPosition;\n" +
+			"attribute vec2 aTextureCoord;\n" +
+			"attribute vec2 aColor;\n" +
+
+			"uniform vec2 projectionVector;\n" +
+
+			"varying vec2 vTextureCoord;\n" +
+			"varying vec4 vColor;\n" +
+
+			"const vec2 center = vec2(-1.0, 1.0);\n" +
+
+			"void main(void) {\n" +
+			"   gl_Position = vec4( (aVertexPosition / projectionVector) + center , 0.0, 1.0);\n" +
+			"   vTextureCoord = aTextureCoord;\n" +
+			"   vColor = vec4(aColor.x, aColor.x, aColor.x, aColor.x);\n" +
+			"}";
+		let fragmentSrc1 =
+			"precision lowp float;\n" +
+			"varying vec2 vTextureCoord;\n" +
+			"varying vec4 vColor;\n" +
+			"uniform sampler2D uSampler;\n" +
+
+			"uniform float customUniform;\n" +
+
+			"void main(void) {\n" +
+			"vec2 uvs = vTextureCoord.xy;\n" +
+			"vec4 fg = texture2D(uSampler, vTextureCoord);\n" +
+			"fg.rgb += sin(customUniform + uvs.x * 2. + uvs.y * 2.) * 0.2;\n" +
+			"gl_FragColor = fg * vColor;\n" +
+			"}";
+
+		let customFilter = new egret.CustomFilter(
+			vertexSrc,
+			fragmentSrc1,
+			{
+				customUniform: 0
+			}
+		);
+		return customFilter
 	}
 
 }

@@ -117,7 +117,7 @@ class SceneInteractiveObject extends eui.Component {
 	}
 
 	private _onAdd(e: egret.TouchEvent): void {
-		
+
 		if (this.data.exportData.length == 0) {
 			SystemTipsUtil.showTips("请先编辑路径数据！")
 			return;
@@ -130,7 +130,8 @@ class SceneInteractiveObject extends eui.Component {
 			weight: 1,
 		}
 		this.data.carrySubitem.push(data);
-		let item: SubInteractiveObject = new SubInteractiveObject(data, this);
+		let item: SubInteractiveObject = new SubInteractiveObject(data, this,true);
+		
 		SelectPanel.instance.visible = true;
 		SelectPanel.instance.curSubitem = item;
 		this.subitemGroup.addChild(item);

@@ -94,14 +94,14 @@ class PathEditor {
 	}
 
 	private _onKeyUp(e: KeyboardEvent): void {
-		if (e.key == 'a') {
+		if (e.key == 's') {
 			for (let item of PathEditor.instance.pathPoints) {
 				item.ctrl1Shape.touchEnabled = true;
 				item.ctrl2Shape.touchEnabled = true;
 			}
 			MapEditor.instance.movePathPoint.selected = false;
 		}
-		else if (e.key == 'q') {
+		else if (e.key == 'r') {
 			GlobeConst.isEditScene = true;
 		}
 		else if (e.key == 'x') {
@@ -110,19 +110,19 @@ class PathEditor {
 		else if (e.key == 'c') {
 			MapEditor.instance.verGuy.selected = false
 		}
-		else if (e.key == 'e') {
+		else if (e.key == 'f') {
 			MapEditor.instance.isJumpPathPoint.selected = false;
 		}
-		else if (e.key == 'w') {
+		else if (e.key == 'd') {
 			MapEditor.instance.deletPathNode.selected = false;
 		}
-		else if (e.key == 's') {
+		else if (e.key == 'e') {
 			MapEditor.instance.delSenceImgBtn.selected = false;
 		}
 	}
 
 	private _onKeyDown(e: KeyboardEvent): void {
-		if (e.key == 'a') {
+		if (e.key == 's') {
 			for (let item of PathEditor.instance.pathPoints) {
 				item.ctrl1Shape.touchEnabled = false;
 				item.ctrl2Shape.touchEnabled = false;
@@ -137,14 +137,18 @@ class PathEditor {
 				}
 			}
 		}
-		else if (e.key == 'd') {
+		else if (e.key == 'q') {
+			MapEditor.instance.editSceneOrnaBtn.selected = !MapEditor.instance.editSceneOrnaBtn.selected
+			MapEditor.instance.sceneCanvas.touchChildren = MapEditor.instance.editSceneOrnaBtn.selected;
+		}
+		else if (e.key == 'a') {
 			MapEditor.instance.editorPathBtn.selected = !MapEditor.instance.editorPathBtn.selected;
 			PathEditor.instance._editorPath();
 		}
-		else if (e.key == 'q') {
+		else if (e.key == 'r') {
 			GlobeConst.isEditScene = false;
 		}
-		else if (e.key == 's') {
+		else if (e.key == 'e') {
 			MapEditor.instance.delSenceImgBtn.selected = true;
 		}
 		else if (e.key == 'x') {
@@ -153,10 +157,10 @@ class PathEditor {
 		else if (e.key == 'c') {
 			MapEditor.instance.verGuy.selected = true;
 		}
-		else if (e.key == 'e') {
+		else if (e.key == 'f') {
 			MapEditor.instance.isJumpPathPoint.selected = true;
 		}
-		else if (e.key == 'w') {
+		else if (e.key == 'd') {
 			MapEditor.instance.deletPathNode.selected = true;
 		}
 
@@ -187,6 +191,8 @@ class PathEditor {
 
 
 
+
+
 	/**
 	 * 动画测试
 	 */
@@ -211,8 +217,7 @@ class PathEditor {
 	 */
 	private _editorPath(): void {
 		if (this._mapEditor.editorPathBtn.selected) {
-			this._mapEditor.deletPathNode.visible = true;
-			this._mapEditor.movePathPoint.visible = true;
+	
 			this._mapEditor.sceneCanvas.touchEnabled = false;
 			this._mapEditor.sceneCanvas.touchChildren = false;
 			this._mapEditor.pathEditArea.touchEnabled = true;
@@ -226,11 +231,6 @@ class PathEditor {
 			this._mapEditor.pathEditArea.touchEnabled = false;
 			this._mapEditor.pathEditArea.touchChildren = false;
 			this._mapEditor.pathCanvas.touchChildren = false;
-			this._mapEditor.deletPathNode.visible = false;
-			this._mapEditor.deletPathNode.selected = false;
-			this._mapEditor.movePathPoint.visible = false;
-
-
 		}
 	}
 
