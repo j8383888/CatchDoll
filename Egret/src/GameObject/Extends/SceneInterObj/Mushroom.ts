@@ -67,6 +67,31 @@ module catchDoll {
 		}
 
 		/**
+		 * 播放放大效果
+		 */
+		public playEnlargeEff(): void {
+			if (this.sign == GAMEOBJECT_SIGN.Mushroom_GREEN) {
+				this._dragonBones.animation.play("enlarge-lv",1)
+			}
+			else {
+				this._dragonBones.animation.play("enlarge-hong",1)
+			}
+			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this.onEnLargeEffComplete, this)
+		}
+
+		/**
+		 * 放大效果完毕
+		 */
+		public onEnLargeEffComplete(): void {
+			if (this.sign == GAMEOBJECT_SIGN.Mushroom_GREEN) {
+				this._dragonBones.animation.play("loop-lv",0)
+			}
+			else {
+				this._dragonBones.animation.play("loop-hong",0)
+			}
+		}
+
+		/**
 		 * 重置时间
 		 */
 		private _resetTime(): void {
