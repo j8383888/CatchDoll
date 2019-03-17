@@ -35,7 +35,7 @@ class SelectPanel extends eui.Component {
 	 * 取消
 	 */
 	private _onCancel(): void {
-		if(this.curSubitem.isFirst){
+		if (this.curSubitem.isFirst) {
 			this.curSubitem.clear();
 		}
 		this.curSubitem = null;
@@ -58,9 +58,10 @@ class SelectPanel extends eui.Component {
 					target.source = item.imageAry[0].sourceName;
 					this.group.addChild(target);
 				}
-				else if (item.imageAry && item.movieClipAry.length) {
+				else if (item.movieClipAry && item.movieClipAry.length) {
 					target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
-					target.play(-1);
+					target.gotoAndStop(0);
+					target.touchEnabled = true;
 					this.group.addChild(target);
 				}
 				else if (item.dragonBonesName != "") {

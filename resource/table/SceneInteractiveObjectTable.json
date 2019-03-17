@@ -1,5 +1,5 @@
 [
-{"id":1001,"name":"问号箱子","imageAry":[{"keyName":"idle","sourceName":"battleProp_1"}],"movieClipAry":[{"keyName":"burst","groupName":"battleProp_1burst","actionName":"action","frameRate":10}],"dragonBonesName":"","actionNameAry":[],"colliderAry":[{"posX":0,"posY":14,"radius":55}],"hitMonsterColliderAry":[]},
+{"id":1001,"name":"问号箱子","imageAry":[],"movieClipAry":[{"keyName":"burst","groupName":"battleProp_1burst","actionName":"action","frameRate":10}],"dragonBonesName":"","actionNameAry":[],"colliderAry":[{"posX":0,"posY":67,"radius":23}],"hitMonsterColliderAry":[]},
 {"id":1002,"name":"麻痹陷阱","imageAry":[],"movieClipAry":[],"dragonBonesName":"battleProp_2","actionNameAry":["start","loop"],"colliderAry":[{"posX":1,"posY":19,"radius":25}],"hitMonsterColliderAry":[{"posX":0,"posY":15,"radius":15},{"posX":0,"posY":-30,"radius":15}]},
 {"id":1003,"name":"植物","imageAry":[],"movieClipAry":[],"dragonBonesName":"zhiwu","actionNameAry":["loop"],"colliderAry":[],"hitMonsterColliderAry":[{"posX":-55,"posY":-5,"radius":44},{"posX":37,"posY":-5,"radius":47}]},
 {"id":1004,"name":"蘑菇红","imageAry":[],"movieClipAry":[],"dragonBonesName":"mogu","actionNameAry":["Skill-hong","loop-hong"],"colliderAry":[],"hitMonsterColliderAry":[{"posX":-1,"posY":-3,"radius":114}]},

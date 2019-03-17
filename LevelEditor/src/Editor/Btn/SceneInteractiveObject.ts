@@ -78,12 +78,13 @@ class SceneInteractiveObject extends eui.Component {
 			this.runTarget = new PivotCenterImage();
 			this.runTarget.source = item.imageAry[0].sourceName;
 		}
-		else if (item.imageAry && item.movieClipAry.length) {
+		else if (item.movieClipAry && item.movieClipAry.length) {
 
 			this.target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
-			this.target.play(-1);
-
+			this.target.touchEnabled = true;
+			this.target.gotoAndStop(0);
 			this.runTarget = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
+			this.runTarget.gotoAndStop(0);
 		}
 		else if (item.dragonBonesName != "") {
 			this.target = UIUtil.creatDragonbones(item.dragonBonesName);

@@ -21,12 +21,19 @@ class SceneInteractiveObject {
 			this.runTarget.source = data.imageAry[0].sourceName;
 			MainEditor.instance.InteractiveObjectGroup.addChild(target);
 		}
-		else if (data.imageAry && data.movieClipAry.length) {
+		else if (data.movieClipAry && data.movieClipAry.length) {
 			target = UIUtil.creatMovieClip(data.movieClipAry[0].groupName)
-			target.play(-1);
-			MainEditor.instance.InteractiveObjectGroup.addChild(target);
+			target.touchEnabled = true;
+			target.gotoAndStop(1);
+			let group = new eui.Group();
+			group.width = target.width;
+			group.height = target.height + 80;
+			target.x = group.width / 2;
+			target.y = group.height / 2;
+			group.addChild(target);
+			MainEditor.instance.InteractiveObjectGroup.addChild(group);
 			this.runTarget = UIUtil.creatMovieClip(data.movieClipAry[0].groupName);
-			this.runTarget.play(-1);
+			this.runTarget.gotoAndStop(0);
 		}
 		else if (data.dragonBonesName != "") {
 			target = UIUtil.creatDragonbones(data.dragonBonesName);
