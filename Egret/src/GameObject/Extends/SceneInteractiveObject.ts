@@ -46,6 +46,21 @@ module catchDoll {
 		}
 
 		/**
+		 * 播放放大效果
+		 */
+		public playEnlargeEff(): void {
+			this._dragonBones.animation.play("enlarge", 1)
+			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this.onEnLargeEffComplete, this)
+		}
+
+		/**
+		 * 放大效果完毕
+		 */
+		public onEnLargeEffComplete(): void {
+			this._dragonBones.animation.play("loop", 0)
+		}
+
+		/**
          * 初始化
          */
 		public initialize(): void {
@@ -92,6 +107,9 @@ module catchDoll {
          * 反初始化
          */
 		public uninitialize(): void {
+			if (this._dragonBones) {
+				this._dragonBones.removeDBEventListener(dragonBones.EventObject.COMPLETE, this.onEnLargeEffComplete, this)
+			}
 			this.unregisterOperation();
 			super.uninitialize();
 		}

@@ -5,7 +5,7 @@
 module catchDoll {
 	export class ParalyticTrap extends SceneInteractiveObject {
 
-		
+
 		public constructor() {
 			super();
 		}
@@ -28,12 +28,11 @@ module catchDoll {
 		 * 打开
 		 */
 		public openMonsterHit(): void {
-			this.isOpen = false;
 			this._dragonBones.animation.play("start", 1);
 			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
 		}
 
-		
+
 
 		/**
 		 * 播放完毕
@@ -41,6 +40,14 @@ module catchDoll {
 		private _onComplete(): void {
 			this.isMonsterHitOpen = true;
 			this._dragonBones.animation.play("loop", 0);
+		}
+
+		/**
+		 * 放大效果完毕
+		 */
+		public onEnLargeEffComplete(): void {
+			this.isMonsterHitOpen = true;
+			this._dragonBones.animation.play("loop", 0)
 		}
 
 		/**
@@ -55,7 +62,7 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			
+
 			super.dispose();
 		}
 	}

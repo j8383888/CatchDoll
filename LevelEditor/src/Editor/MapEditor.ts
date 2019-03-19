@@ -149,7 +149,7 @@ class MapEditor extends eui.Component {
 	/**
 	 * 
 	 */
-	public editSceneOrnaBtn:eui.CheckBox;
+	public editSceneOrnaBtn: eui.CheckBox;
 
 
 	public stopClick2: eui.Rect;
@@ -272,10 +272,17 @@ class MapEditor extends eui.Component {
 				target.source = item.imageAry[0].sourceName;
 				this.InteractiveObjectGroup.addChild(target);
 			}
-			else if (item.imageAry && item.movieClipAry.length) {
+			else if (item.movieClipAry && item.movieClipAry.length) {
 				target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
-				target.play(-1);
-				this.InteractiveObjectGroup.addChild(target);
+				target.gotoAndStop(0);
+				let group = new eui.Group();
+				group.width = target.width;
+				group.height = target.height + 80;
+				target.x = target.width / 2;
+				target.y = target.height / 2;
+				group.addChild(target);
+
+				this.InteractiveObjectGroup.addChild(group);
 			}
 			else if (item.dragonBonesName != "") {
 				target = UIUtil.creatDragonbones(item.dragonBonesName);
