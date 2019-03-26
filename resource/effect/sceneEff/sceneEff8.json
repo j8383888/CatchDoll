@@ -12,107 +12,107 @@
       "events": [],
       "frames": [
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.0",
-          "x": -16,
-          "y": -9
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.0",
+          "x": -68,
+          "y": -46
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.1",
-          "x": -13,
-          "y": -10
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.1",
+          "x": -68,
+          "y": -45
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.2",
-          "x": -8,
-          "y": -9
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.2",
+          "x": -76,
+          "y": -45
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.3",
-          "x": -16,
-          "y": -7
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.3",
+          "x": -84,
+          "y": -44
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.4",
-          "x": -13,
-          "y": -10
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.4",
+          "x": -88,
+          "y": -44
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.5",
-          "x": -17,
-          "y": -6
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.5",
+          "x": -88,
+          "y": -44
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.6",
-          "x": -16,
-          "y": -9
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.6",
+          "x": -88,
+          "y": -45
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.7",
-          "x": -8,
-          "y": -9
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.7",
+          "x": -90,
+          "y": -46
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.21.8",
-          "x": -13,
-          "y": -10
+          "res": "Obj_acc1.img.heneFarmFD.cow.4.8",
+          "x": -68,
+          "y": -46
         }
       ]
     }
   },
   "res": {
-    "Obj_acc1.img.grassySoil.nature.21.0": {
+    "Obj_acc1.img.heneFarmFD.cow.4.0": {
+      "x": 0,
+      "y": 184,
+      "w": 136,
+      "h": 92
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.1": {
+      "x": 137,
+      "y": 184,
+      "w": 136,
+      "h": 91
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.2": {
+      "x": 317,
+      "y": 90,
+      "w": 145,
+      "h": 90
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.3": {
+      "x": 317,
+      "y": 0,
+      "w": 152,
+      "h": 89
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.4": {
+      "x": 160,
+      "y": 0,
+      "w": 156,
+      "h": 89
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.5": {
+      "x": 160,
+      "y": 90,
+      "w": 156,
+      "h": 89
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.6": {
+      "x": 0,
+      "y": 93,
+      "w": 157,
+      "h": 90
+    },
+    "Obj_acc1.img.heneFarmFD.cow.4.7": {
       "x": 0,
       "y": 0,
-      "w": 33,
-      "h": 18
+      "w": 159,
+      "h": 92
     },
-    "Obj_acc1.img.grassySoil.nature.21.1": {
-      "x": 34,
-      "y": 0,
-      "w": 26,
-      "h": 20
-    },
-    "Obj_acc1.img.grassySoil.nature.21.2": {
-      "x": 35,
-      "y": 21,
-      "w": 16,
-      "h": 19
-    },
-    "Obj_acc1.img.grassySoil.nature.21.3": {
+    "Obj_acc1.img.heneFarmFD.cow.4.8": {
       "x": 0,
-      "y": 19,
-      "w": 33,
-      "h": 15
-    },
-    "Obj_acc1.img.grassySoil.nature.21.4": {
-      "x": 34,
-      "y": 0,
-      "w": 26,
-      "h": 20
-    },
-    "Obj_acc1.img.grassySoil.nature.21.5": {
-      "x": 0,
-      "y": 35,
-      "w": 34,
-      "h": 12
-    },
-    "Obj_acc1.img.grassySoil.nature.21.6": {
-      "x": 0,
-      "y": 0,
-      "w": 33,
-      "h": 18
-    },
-    "Obj_acc1.img.grassySoil.nature.21.7": {
-      "x": 35,
-      "y": 21,
-      "w": 16,
-      "h": 19
-    },
-    "Obj_acc1.img.grassySoil.nature.21.8": {
-      "x": 34,
-      "y": 0,
-      "w": 26,
-      "h": 20
+      "y": 277,
+      "w": 136,
+      "h": 92
     }
   }
 }

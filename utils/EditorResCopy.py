@@ -69,19 +69,19 @@ BattlePng = r"..\resource\atlas\battle.png";
 LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battle.png";
 copy(BattleJson,LevelEditorJson)
 copy(BattlePng,LevelEditorPng)
-BattlePropJson = r"..\resource\atlas\battleProp.json";
-LevelEditorJson = r"..\LevelEditor\resource\assets\atlas\battleProp.json";
-BattlePropPng = r"..\resource\atlas\battleProp.png";
-LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battleProp.png";
-copy(BattlePropJson,LevelEditorJson)
-copy(BattlePropPng,LevelEditorPng)
+# BattlePropJson = r"..\resource\atlas\battleProp.json";
+# LevelEditorJson = r"..\LevelEditor\resource\assets\atlas\battleProp.json";
+# BattlePropPng = r"..\resource\atlas\battleProp.png";
+# LevelEditorPng = r"..\LevelEditor\resource\assets\atlas\battleProp.png";
+# copy(BattlePropJson,LevelEditorJson)
+# copy(BattlePropPng,LevelEditorPng)
 
-BattleSceneJson = r"..\resource\atlas\battleProp.json"
-LevelEditorJson = r"..\ColliderEditor\resource\assets\atlas\battleProp.json"
-BattleScenePng = r"..\resource\atlas\battleProp.png"
-LevelEditorPng = r"..\ColliderEditor\resource\assets\atlas\battleProp.png"
-copy(BattleSceneJson,LevelEditorJson)
-copy(BattleScenePng,LevelEditorPng)
+# BattleSceneJson = r"..\resource\atlas\battleProp.json"
+# LevelEditorJson = r"..\ColliderEditor\resource\assets\atlas\battleProp.json"
+# BattleScenePng = r"..\resource\atlas\battleProp.png"
+# LevelEditorPng = r"..\ColliderEditor\resource\assets\atlas\battleProp.png"
+# copy(BattleSceneJson,LevelEditorJson)
+# copy(BattleScenePng,LevelEditorPng)
 
 # 背景图copy
 Res = r"..\resource\image";

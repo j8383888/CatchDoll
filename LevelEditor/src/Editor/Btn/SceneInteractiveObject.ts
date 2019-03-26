@@ -82,9 +82,15 @@ class SceneInteractiveObject extends eui.Component {
 
 			this.target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
 			this.target.touchEnabled = true;
-			this.target.gotoAndStop(0);
 			this.runTarget = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
-			this.runTarget.gotoAndStop(0);
+			if (item.id == 1001) {
+				this.target.gotoAndStop(0);
+				this.runTarget.gotoAndStop(0);
+			}
+			else {
+				this.target.gotoAndPlay(1, -1);
+				this.runTarget.gotoAndPlay(1, -1);
+			}
 		}
 		else if (item.dragonBonesName != "") {
 			this.target = UIUtil.creatDragonbones(item.dragonBonesName);
@@ -131,8 +137,8 @@ class SceneInteractiveObject extends eui.Component {
 			weight: 1,
 		}
 		this.data.carrySubitem.push(data);
-		let item: SubInteractiveObject = new SubInteractiveObject(data, this,true);
-		
+		let item: SubInteractiveObject = new SubInteractiveObject(data, this, true);
+
 		SelectPanel.instance.visible = true;
 		SelectPanel.instance.curSubitem = item;
 		this.subitemGroup.addChild(item);

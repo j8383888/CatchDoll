@@ -6,113 +6,168 @@
         {
           "name": "mc",
           "frame": 1,
-          "end": 9
+          "end": 14
         }
       ],
       "events": [],
       "frames": [
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.0",
-          "x": -16,
-          "y": -8
+          "res": "Obj_acc5.img.ghostShip.portal.0.10",
+          "x": -44,
+          "y": -53
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.1",
-          "x": -12,
-          "y": -9
+          "res": "Obj_acc5.img.ghostShip.portal.0.11",
+          "x": -45,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.2",
-          "x": -7,
-          "y": -10
+          "res": "Obj_acc5.img.ghostShip.portal.0.12",
+          "x": -44,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.3",
-          "x": -17,
-          "y": -6
+          "res": "Obj_acc5.img.ghostShip.portal.0.13",
+          "x": -43,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.4",
-          "x": -13,
-          "y": -10
+          "res": "Obj_acc5.img.ghostShip.portal.0.3",
+          "x": -43,
+          "y": -53
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.5",
-          "x": -12,
-          "y": -9
+          "res": "Obj_acc5.img.ghostShip.portal.0.4",
+          "x": -44,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.6",
-          "x": -7,
-          "y": -10
+          "res": "Obj_acc5.img.ghostShip.portal.0.5",
+          "x": -44,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.7",
-          "x": -12,
-          "y": -9
+          "res": "Obj_acc5.img.ghostShip.portal.0.6",
+          "x": -41,
+          "y": -52
         },
         {
-          "res": "Obj_acc1.img.grassySoil.nature.19.8",
-          "x": -16,
-          "y": -8
+          "res": "Obj_acc5.img.ghostShip.portal.0.7",
+          "x": -41,
+          "y": -53
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.8",
+          "x": -41,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.portal.0.9",
+          "x": -42,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.0.0",
+          "x": -44,
+          "y": -51
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.1.0",
+          "x": -42,
+          "y": -52
+        },
+        {
+          "res": "Obj_acc5.img.ghostShip.rope.2.0",
+          "x": -42,
+          "y": -52
         }
       ]
     }
   },
   "res": {
-    "Obj_acc1.img.grassySoil.nature.19.0": {
-      "x": 27,
-      "y": 0,
-      "w": 33,
-      "h": 16
-    },
-    "Obj_acc1.img.grassySoil.nature.19.1": {
+    "Obj_acc5.img.ghostShip.portal.0.10": {
       "x": 0,
-      "y": 22,
-      "w": 25,
-      "h": 19
+      "y": 105,
+      "w": 88,
+      "h": 106
     },
-    "Obj_acc1.img.grassySoil.nature.19.2": {
-      "x": 27,
-      "y": 17,
-      "w": 14,
-      "h": 20
-    },
-    "Obj_acc1.img.grassySoil.nature.19.3": {
-      "x": 0,
-      "y": 42,
-      "w": 34,
-      "h": 13
-    },
-    "Obj_acc1.img.grassySoil.nature.19.4": {
+    "Obj_acc5.img.ghostShip.portal.0.11": {
       "x": 0,
       "y": 0,
-      "w": 26,
-      "h": 21
+      "w": 90,
+      "h": 104
     },
-    "Obj_acc1.img.grassySoil.nature.19.5": {
-      "x": 0,
-      "y": 22,
-      "w": 25,
-      "h": 19
-    },
-    "Obj_acc1.img.grassySoil.nature.19.6": {
-      "x": 27,
-      "y": 17,
-      "w": 14,
-      "h": 20
-    },
-    "Obj_acc1.img.grassySoil.nature.19.7": {
-      "x": 0,
-      "y": 22,
-      "w": 25,
-      "h": 19
-    },
-    "Obj_acc1.img.grassySoil.nature.19.8": {
-      "x": 27,
+    "Obj_acc5.img.ghostShip.portal.0.12": {
+      "x": 269,
       "y": 0,
-      "w": 33,
-      "h": 16
+      "w": 88,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.13": {
+      "x": 178,
+      "y": 107,
+      "w": 87,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.3": {
+      "x": 181,
+      "y": 0,
+      "w": 87,
+      "h": 106
+    },
+    "Obj_acc5.img.ghostShip.portal.0.4": {
+      "x": 91,
+      "y": 0,
+      "w": 89,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.5": {
+      "x": 89,
+      "y": 106,
+      "w": 88,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.6": {
+      "x": 0,
+      "y": 320,
+      "w": 83,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.portal.0.7": {
+      "x": 0,
+      "y": 212,
+      "w": 83,
+      "h": 107
+    },
+    "Obj_acc5.img.ghostShip.portal.0.8": {
+      "x": 169,
+      "y": 212,
+      "w": 83,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.portal.0.9": {
+      "x": 266,
+      "y": 107,
+      "w": 85,
+      "h": 105
+    },
+    "Obj_acc5.img.ghostShip.rope.0.0": {
+      "x": 358,
+      "y": 0,
+      "w": 88,
+      "h": 102
+    },
+    "Obj_acc5.img.ghostShip.rope.1.0": {
+      "x": 84,
+      "y": 212,
+      "w": 84,
+      "h": 104
+    },
+    "Obj_acc5.img.ghostShip.rope.2.0": {
+      "x": 352,
+      "y": 105,
+      "w": 85,
+      "h": 105
     }
   }
 }

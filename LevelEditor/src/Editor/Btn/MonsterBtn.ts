@@ -57,7 +57,7 @@ class MonsterBtn extends eui.Component {
 		let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(grounName);
 		this.runTarget = UIUtil.creatDragonbones(grounName);
 		this.runTarget.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
-
+		
 
 		this.dragonBones = dragon;
 		this.deleteBtn.once(egret.TouchEvent.TOUCH_TAP, this._onDel, this);

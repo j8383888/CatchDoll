@@ -1,0 +1,129 @@
+{
+  "mc": {
+    "action": {
+      "frameRate": 10,
+      "labels": [
+        {
+          "name": "mc",
+          "frame": 1,
+          "end": 10
+        }
+      ],
+      "events": [],
+      "frames": [
+        {
+          "res": "yuanquanxian_00000",
+          "x": -85,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00001",
+          "x": -45,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00002",
+          "x": -75,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00003",
+          "x": -85,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00004",
+          "x": -85,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00005",
+          "x": -85,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00006",
+          "x": -85,
+          "y": -85
+        },
+        {
+          "res": "yuanquanxian_00007",
+          "x": -85,
+          "y": -62
+        },
+        {
+          "res": "yuanquanxian_00008",
+          "x": -85,
+          "y": -4
+        },
+        {
+          "res": "yuanquanxian_00009",
+          "x": -62,
+          "y": 54
+        }
+      ]
+    }
+  },
+  "res": {
+    "yuanquanxian_00000": {
+      "x": 342,
+      "y": 102,
+      "w": 0,
+      "h": 0
+    },
+    "yuanquanxian_00001": {
+      "x": 342,
+      "y": 82,
+      "w": 90,
+      "h": 19
+    },
+    "yuanquanxian_00002": {
+      "x": 342,
+      "y": 0,
+      "w": 150,
+      "h": 49
+    },
+    "yuanquanxian_00003": {
+      "x": 171,
+      "y": 162,
+      "w": 170,
+      "h": 89
+    },
+    "yuanquanxian_00004": {
+      "x": 0,
+      "y": 319,
+      "w": 170,
+      "h": 130
+    },
+    "yuanquanxian_00005": {
+      "x": 171,
+      "y": 0,
+      "w": 170,
+      "h": 161
+    },
+    "yuanquanxian_00006": {
+      "x": 0,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    "yuanquanxian_00007": {
+      "x": 0,
+      "y": 171,
+      "w": 170,
+      "h": 147
+    },
+    "yuanquanxian_00008": {
+      "x": 171,
+      "y": 252,
+      "w": 170,
+      "h": 89
+    },
+    "yuanquanxian_00009": {
+      "x": 342,
+      "y": 50,
+      "w": 124,
+      "h": 31
+    }
+  }
+}

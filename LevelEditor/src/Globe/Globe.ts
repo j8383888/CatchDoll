@@ -90,6 +90,7 @@ class Globe extends egret.DisplayObject {
 	}
 
 
+
 	private _onFrame(): void {
 		if (this.actionObjectAry.length == 0) {
 			if (this._timerKey != -1) {
@@ -130,15 +131,38 @@ class Globe extends egret.DisplayObject {
 
 			if (curMoveDistance > target.nextPathNode.distTotal) {
 				let len = target.data.exportData.length;
-
 				for (let i: number = target.pathNodeIndex; i < len; i++) {
+					/**
+					 * 创建特效
+					 */
+					if (target.data.exportData[i].distNext == 0 && i != len - 1) {
+						let mov = UIUtil.creatMovieClip("transmitBeam");
+						mov.gotoAndPlay(1, 1);
+						mov.x = target.data.exportData[i].x;
+						mov.y = target.data.exportData[i].y - 50;
+
+						MapEditor.instance.actionCanvas.addChild(mov);
+						mov.once(egret.MovieClipEvent.COMPLETE, () => {
+							MapEditor.instance.actionCanvas.removeChild(mov);
+						}, null)
+
+						let mov2 = UIUtil.creatMovieClip("transmitBeam");
+						mov2.gotoAndPlay(1, 1);
+						mov2.x = target.data.exportData[i + 1].x;
+						mov2.y = target.data.exportData[i + 1].y;
+						mov2.scaleY = -1;
+						MapEditor.instance.actionCanvas.addChild(mov2);
+						mov2.once(egret.MovieClipEvent.COMPLETE, () => {
+							MapEditor.instance.actionCanvas.removeChild(mov2);
+						}, null)
+					}
+
 					if (target.data.exportData[i].distTotal > curMoveDistance) {
 						target.curPathNode = target.data.exportData[i - 1];
 						target.pathNodeIndex = i;
 						target.nextPathNode = target.data.exportData[i];
 						break;
 					}
-
 				}
 			}
 			let curPath = target.curPathNode;

@@ -220,7 +220,7 @@ class MapEditor extends eui.Component {
 	}
 
 	private _creatSceneEff(): void {
-		for (let i: number = 1; i <= 13; i++) {
+		for (let i: number = 1; i <= 10; i++) {
 			let item = UIUtil.creatMovieClip("sceneEff" + i)
 			let group = new eui.Group();
 			group.addChild(item);
@@ -274,7 +274,13 @@ class MapEditor extends eui.Component {
 			}
 			else if (item.movieClipAry && item.movieClipAry.length) {
 				target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
-				target.gotoAndStop(0);
+				if (item.id == 1001) {
+					target.gotoAndStop(0);
+				}
+				else {
+					target.gotoAndPlay(1, -1);
+				}
+				target.touchEnabled = true;
 				let group = new eui.Group();
 				group.width = target.width;
 				group.height = target.height + 80;

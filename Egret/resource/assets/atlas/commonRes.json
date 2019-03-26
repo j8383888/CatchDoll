@@ -13,23 +13,13 @@
     },
     "closeBtnSmall": {
       "x": 0,
-      "y": 168,
+      "y": 112,
       "w": 52,
       "h": 52,
       "offX": 0,
       "offY": 0,
       "sourceW": 52,
       "sourceH": 52
-    },
-    "otherRes2_18": {
-      "x": 0,
-      "y": 112,
-      "w": 55,
-      "h": 55,
-      "offX": 0,
-      "offY": 0,
-      "sourceW": 55,
-      "sourceH": 55
     },
     "selectBg1": {
       "x": 0,

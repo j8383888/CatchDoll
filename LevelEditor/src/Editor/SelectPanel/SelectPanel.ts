@@ -60,6 +60,12 @@ class SelectPanel extends eui.Component {
 				}
 				else if (item.movieClipAry && item.movieClipAry.length) {
 					target = UIUtil.creatMovieClip(item.movieClipAry[0].groupName)
+					if (item.id == 1001) {
+						target.gotoAndStop(0);
+					}
+					else {
+						target.gotoAndPlay(1, -1);
+					}
 					target.gotoAndStop(0);
 					target.touchEnabled = true;
 					this.group.addChild(target);
