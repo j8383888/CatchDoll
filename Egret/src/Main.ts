@@ -78,7 +78,7 @@ class Main extends eui.UILayer {
     private async loadResource() {
         try {
             if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-                await RES.loadConfig("default.res.json", "http://129.28.87.105/wxRes/resource/");
+                await RES.loadConfig("default.res.json", "https://www.suozgame.com/wxRes/resource/");
             }
             else {
                 await RES.loadConfig("resource/default.res.json", "resource/");
@@ -102,7 +102,7 @@ class Main extends eui.UILayer {
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme;
             if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-                theme = new eui.Theme("http://129.28.87.105/wxRes/resource/default.thm.json", this.stage);
+                theme = new eui.Theme("https://www.suozgame.com/wxRes/resource/default.thm.json", this.stage);
             }
             else {
                 theme = new eui.Theme("resource/default.thm.json", this.stage);

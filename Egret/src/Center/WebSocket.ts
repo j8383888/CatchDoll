@@ -95,7 +95,8 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
-			this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
+			this._webSocket.connectByUrl("wss://127.0.0.1:8001");
+			// this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
 		}
