@@ -177,6 +177,8 @@ module catchDoll {
 			this.startTime += 4000;
 			let mov: egret.MovieClip = Pool.getItemByCreateFun(Pool.LightningParalysis, Handler.create(UIUtil, UIUtil.creatMovieClip, ["LightningParalysis"], true))
 			mov.gotoAndPlay(1, -1);
+			mov.x = this.colliderAry[0].x;
+			mov.y = this.colliderAry[0].y;
 			this.addChild(mov);
 			this.LightningParalysisEff = mov;
 			Laya.timer.once(4000, this, this._recoverMove, [mov])

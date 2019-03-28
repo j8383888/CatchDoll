@@ -64,6 +64,16 @@ module catchDoll {
 		}
 
 		/**
+		 * 设坐标
+		 */
+		public setToXY(x: number, y: number): void {
+			this.x = x;
+			this.y = y;
+			this.posX = x;
+			this.posY = y;
+		}
+
+		/**
 		 * 设值父物体
 		 */
 		public setParent(value: egret.DisplayObjectContainer) {

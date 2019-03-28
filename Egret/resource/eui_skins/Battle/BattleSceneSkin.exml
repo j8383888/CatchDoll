@@ -22,8 +22,9 @@
 
 
 	<e:Group id="btnGroup" x="0" y="0" touchEnabled="false" height="1280">
-		<e:Rect id="leftRect" width="360" height="1108.79" x="0" y="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0"/>
-		<e:Rect id="rightRect" width="360" height="1111.82" fillAlpha="0" strokeAlpha="0" x="360" anchorOffsetY="0"/>
+		<e:Rect id="leftRect" width="240" height="1110" x="0" y="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0"/>
+		<e:Rect id="downRect" width="240" height="1110" x="240" y="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0"/>
+		<e:Rect id="rightRect" width="240" height="1110" fillAlpha="0" strokeAlpha="0" x="480" anchorOffsetY="0" anchorOffsetX="0" y="0"/>
 		<e:Group y="2.02" horizontalCenter="0" x="285" scaleX="1" scaleY="1">
 			<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
 			<e:Label id="timeLabel" text="999" x="85.09" y="88.31" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>

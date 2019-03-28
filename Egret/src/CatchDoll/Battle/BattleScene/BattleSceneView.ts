@@ -41,6 +41,7 @@ module catchDoll {
 		public leftOp: Button;
 		public leftRect: eui.Rect;
 		public rightRect: eui.Rect;
+		public downRect: eui.Rect;
 
 		public btnLeftEff: egret.MovieClip;
 		public btnRightEff: egret.MovieClip;

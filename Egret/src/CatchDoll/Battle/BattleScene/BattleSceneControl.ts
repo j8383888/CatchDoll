@@ -32,12 +32,8 @@ module catchDoll {
 			LevelCreate.instance.init(levelData);
 			this._view.leftRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
 			this._view.rightRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickRight, this);
-			this._view.downOp.mouseClickHandler = Handler.create(null, () => {
-				if (!Master.instance.MasterPaws.pawsBody.isDown) {
-					this._playEffonce(this._view.btnDownEff);
-					EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
-				}
-			})
+			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickDown, this);
+			this._view.downOp.mouseClickHandler = Handler.create(this, this._onClickDown);
 			this._view.leftOp.mouseClickHandler = Handler.create(this, this._onClickLeft);
 			this._view.rightOp.mouseClickHandler = Handler.create(this, this._onClickRight);
 
@@ -76,6 +72,13 @@ module catchDoll {
 			})
 
 
+		}
+
+		private _onClickDown(): void {
+			if (!Master.instance.MasterPaws.pawsBody.isDown) {
+				this._playEffonce(this._view.btnDownEff);
+				EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
+			}
 		}
 
 		/**
@@ -138,8 +141,9 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			this._view.rightRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
+			this._view.rightRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
 			this._view.leftRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickRight, this);
+			this._view.downRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickDown, this);
 			Laya.timer.clear(this, this.updateTime)
 			egret.Tween.removeTweens(this._view.timeLabel)
 			this._view = null;

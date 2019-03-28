@@ -387,8 +387,7 @@ module catchDoll {
 					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
 						let monsterPCollider = monsterPColliderAry[m]
 						let p = monsterP.dragonBones.armature.getBone("centre").global
-						monsterPCollider.x = p.x
-						monsterPCollider.y = p.y
+						monsterPCollider.setToXY(p.x, p.y)
 						monsterPCollider.setGlobePos();
 					}
 				}
