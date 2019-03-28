@@ -5,7 +5,10 @@ import { Dictionary } from "../util/Dictionary";
 import { PlayerCenter } from "../PlayerCenter";
 import { MsgHandler } from "./MsgHandler";
 import { TaskMgr } from "../Task/TaskMgr";
-var ws = require("nodejs-websocket");
+var fs = require('fs');
+// var nodejsWs = require("nodejs-websocket");
+var https = require("https")
+var wsModule = require("ws");
 /**
  * NODE-JS 里面已经有了个websocket  
  */
@@ -21,6 +24,9 @@ export class MyWebSocket {
     private readonly MAX_COUNT: number = 3;
 
     private _timer: NodeJS.Timeout;
+
+    private keypath = process.cwd() + '/server.key';//我把秘钥文件放在运行命令的目录下测试
+    private certpath = process.cwd() + '/server.crt';//console.log(keypath);
 
 
 
@@ -39,9 +45,26 @@ export class MyWebSocket {
 
     /* 创建Web */
     public creatWebSocket(): void {
+        var options = {
+            key: fs.readFileSync(this.keypath),
+            cert: fs.readFileSync(this.certpath),
+            // passphrase: '1234'//如果秘钥文件有密码的话，用这个属性设置密码
+        };
+
         console.log("WebSocket开始建立连接...")
-        var server = ws.createServer(this._onReceive).listen(8001)
+        var server = https.createServer(options, this._onReceive).listen(8001)
         console.log("WebSocket建立完毕");
+
+        var ws = new wsModule.Server({
+            server: server
+        });
+        //把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
+        //同样，如果丢进去的是个http服务的话那么创建出来的还是无加密的ws服务
+        ws.on('connection', function (wsConnect) {
+            wsConnect.on('message', function (message) {
+                console.log(message);
+            });
+        });
         TaskMgr.getInstance().taskTimer();  // 开启任务刷新的计时
     }
 

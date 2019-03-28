@@ -6,9 +6,12 @@
   "dependencies": {
     "@types/mysql": "^2.15.5",
     "@types/protobufjs": "^6.0.0",
+    "@types/ws": "^6.0.1",
     "fs": "0.0.1-security",
+    "https": "^1.0.0",
     "mysql": "^2.16.0",
-    "nodejs-websocket": "^1.7.2"
+    "nodejs-websocket": "^1.7.2",
+    "ws": "^6.2.1"
   },
   "devDependencies": {},
   "scripts": {
