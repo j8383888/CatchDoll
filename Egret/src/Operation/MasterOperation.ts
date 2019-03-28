@@ -25,6 +25,11 @@ module catchDoll {
 		public register(gameObj: catchDoll.GameObject): void {
 			this._gameObj = gameObj as Paws;
 			EventManager.registerEvent(EVENT_ID.MASTER_DOWN, Handler.create(this, this._masterDown));
+			EventManager.registerEvent(EVENT_ID.MASTER_LEFT_RIGHT, Handler.create(this, this._masterRightLeft));
+		}
+
+		private _masterRightLeft(isLeft: boolean): void {
+			this._isLeft = isLeft;
 		}
 
 		/**
@@ -58,6 +63,7 @@ module catchDoll {
 			this._gameObj.confirmRopeHeight();
 
 			EventManager.unregisterEvent(EVENT_ID.MASTER_DOWN, this, this._masterDown);
+			EventManager.unregisterEvent(EVENT_ID.MASTER_LEFT_RIGHT, this, this._masterRightLeft);
 		}
 
 		/**

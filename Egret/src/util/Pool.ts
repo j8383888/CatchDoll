@@ -22,6 +22,9 @@ module catchDoll {
 		 */
 		public static enterEff: string = "enterEff";
 
+		public static transmitBeam: string = "transmitBeam"
+		public static LightningParalysis: string = "LightningParalysis"
+
 		/**@private  对象存放池。*/
 		private static _poolDic: Object = {};
 		/*标识组*/

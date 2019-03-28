@@ -30,7 +30,17 @@ module catchDoll {
 			let levelData = this._dataCenter.openParam
 			this._view.bgSource.source = levelData.bgSource
 			LevelCreate.instance.init(levelData);
-			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
+			this._view.leftRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
+			this._view.rightRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickRight, this);
+			this._view.downOp.mouseClickHandler = Handler.create(null, () => {
+				if (!Master.instance.MasterPaws.pawsBody.isDown) {
+					this._playEffonce(this._view.btnDownEff);
+					EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
+				}
+			})
+			this._view.leftOp.mouseClickHandler = Handler.create(this, this._onClickLeft);
+			this._view.rightOp.mouseClickHandler = Handler.create(this, this._onClickRight);
+
 			this._view.returnBtn.mouseClickHandler = Handler.create(this, this._clickReturnBtn);
 			this._view.timeLabel.text = this._timeNum.toString();
 
@@ -98,11 +108,29 @@ module catchDoll {
 		}
 
 		/**
-		 * 点击抓按钮
+		 * 点击左按钮
 		 */
-		private _onClikDown(): void {
-			EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
+		private _onClickLeft(): void {
+			this._playEffonce(this._view.btnLeftEff);
+			EventManager.fireEvent(EVENT_ID.MASTER_LEFT_RIGHT, true);
 		}
+
+		/**
+		 * 点击右按钮
+		 */
+		private _onClickRight(): void {
+			this._playEffonce(this._view.btnRightEff);
+			EventManager.fireEvent(EVENT_ID.MASTER_LEFT_RIGHT, false);
+		}
+
+		private _playEffonce(mov: egret.MovieClip): void {
+			mov.visible = true;
+			mov.gotoAndPlay(1, 1);
+			mov.once(egret.MovieClipEvent.COMPLETE, () => {
+				mov.visible = false;
+			}, null)
+		}
+
 
 
 
@@ -110,7 +138,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			this._view.downRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClikDown, this);
+			this._view.rightRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
+			this._view.leftRect.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickRight, this);
 			Laya.timer.clear(this, this.updateTime)
 			egret.Tween.removeTweens(this._view.timeLabel)
 			this._view = null;

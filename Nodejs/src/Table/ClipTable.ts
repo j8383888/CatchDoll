@@ -17,9 +17,9 @@ module table {
 		 */
 		name: string;
 		/**
-		 * 影片剪辑源
+		 * 渲染源
 		 */
-		movieClipAry: ClipTable.MovieClipAryItem[];
+		render: string;
 		/**
 		 * 命中率
 		 */
@@ -38,13 +38,5 @@ module table {
 		hurtDuration: number[];
 
 		GetType(): string { return 'table.ClipTable'; }
-	}
-	export module ClipTable {
-		export class MovieClipAryItem {
-			keyName: string;
-			groupName: string;
-			actionName: string;
-			frameRate: number;
-		}
 	}
 }

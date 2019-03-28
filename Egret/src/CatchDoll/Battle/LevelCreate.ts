@@ -153,7 +153,7 @@ module catchDoll {
 				mov.x = item.x;
 				mov.y = item.y;
 				mov.gotoAndPlay(1, -1);
-				LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT)
+				LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT_LOW)
 				this._effBox.push(mov);
 			}
 		}
@@ -492,7 +492,7 @@ module catchDoll {
 		 * 创建主角
 		 */
 		private _creatMaster(): void {
-			Master.instance.MasterPaws = GameObjectFactory.instance.creatGameObject(GAMEOBJECT_SIGN.PAWS)
+			Master.instance.MasterPaws = GameObjectFactory.instance.creatGameObject(GAMEOBJECT_SIGN.PAWS, null, LAYER.BATTLE_OP);
 			Master.instance.MasterPaws.pawsBody.switchClip(1);
 			Master.instance.MasterPaws.y = 160;
 			Master.instance.MasterPaws.x = 360;
@@ -532,7 +532,7 @@ module catchDoll {
 
 			for (let item of this._effBox) {
 				item.stop();
-				LayerManager.instance.removeFromLayer(item, LAYER.BATTLE_EFFECT);
+				LayerManager.instance.removeFromLayer(item, LAYER.BATTLE_EFFECT_LOW);
 				item = null;
 			}
 			this._effBox.length = 0;

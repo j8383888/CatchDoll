@@ -70,6 +70,10 @@ module catchDoll {
 		 * 已经移动距离
 		 */
 		public moveDistance: number = 0;
+		/**
+		 * 闪电麻痹特效
+		 */
+		public LightningParalysisEff: egret.MovieClip;
 
 		public constructor() {
 			super();
@@ -171,10 +175,20 @@ module catchDoll {
 		public stopMove(): void {
 			this.isStopMove = true;
 			this.startTime += 4000;
-			Laya.timer.once(4000, this, this._recoverMove)
+			let mov: egret.MovieClip = Pool.getItemByCreateFun(Pool.LightningParalysis, Handler.create(UIUtil, UIUtil.creatMovieClip, ["LightningParalysis"], true))
+			mov.gotoAndPlay(1, -1);
+			this.addChild(mov);
+			this.LightningParalysisEff = mov;
+			Laya.timer.once(4000, this, this._recoverMove, [mov])
 		}
 
-		private _recoverMove(): void {
+		/**
+		 * 恢复移动
+		 */
+		private _recoverMove(mov: egret.MovieClip): void {
+			mov.stop();
+			this.removeChild(mov);
+			Pool.recover(Pool.LightningParalysis, mov);
 			this.isStopMove = false;
 		}
 
@@ -243,10 +257,12 @@ module catchDoll {
          * 反初始化
          */
 		public uninitialize(): void {
-
 			this.unregisterOperation();
 			if (this.isStopMove) {
 				this.isStopMove = false;
+				this.LightningParalysisEff.stop();
+				this.removeChild(this.LightningParalysisEff);
+				Pool.recover(Pool.LightningParalysis, this.LightningParalysisEff);
 				Laya.timer.clear(this, this._recoverMove);
 			}
 			super.uninitialize();

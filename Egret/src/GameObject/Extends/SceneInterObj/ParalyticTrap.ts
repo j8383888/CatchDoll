@@ -13,7 +13,7 @@ module catchDoll {
 		public initialize(): void {
 			super.initialize();
 			this.isMonsterHitOpen = false;
-			this._dragonBones.animation.gotoAndStopByFrame("start", 1);
+			// this._dragonBones.animation.gotoAndStopByFrame("start", 1);
 		}
 
 		/**
@@ -28,8 +28,9 @@ module catchDoll {
 		 * 打开
 		 */
 		public openMonsterHit(): void {
-			this._dragonBones.animation.play("start", 1);
-			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
+			// this._dragonBones.animation.play("start", 1);
+			// this._dragonBones.once(dragonBones.EventObject.COMPLETE, this._onComplete, this)
+			this._onComplete();
 		}
 
 

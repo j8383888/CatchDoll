@@ -35,6 +35,9 @@ module catchDoll {
 				else if (item.id == GAMEOBJECT_SIGN.Mushroom_RED || item.id == GAMEOBJECT_SIGN.Mushroom_GREEN) {
 					this._objClassDic.set(item.id, Mushroom);
 				}
+				else if (item.id == GAMEOBJECT_SIGN.TransmitDoor) {
+					this._objClassDic.set(item.id, TransmitDoor);
+				}
 				else {
 					this._objClassDic.set(item.id, SceneInteractiveObject);
 				}

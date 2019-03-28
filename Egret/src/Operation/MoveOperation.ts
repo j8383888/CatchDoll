@@ -55,6 +55,7 @@ module catchDoll {
 			this.nextPathNode = null;
 		}
 
+
 		/**
 		 * 帧循环
 		 */
@@ -89,6 +90,34 @@ module catchDoll {
 			if (curMoveDistance > this.nextPathNode.distTotal) {
 				let len = this.pathNodes.length;
 				for (let i: number = this.pathNodeIndex; i < len; i++) {
+
+					/**
+					 * 创建特效
+					 */
+					if (this.pathNodes[i].distNext == 0 && i != len - 1) {
+						let mov = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
+						mov.gotoAndPlay(1, 1);
+						mov.x = this.pathNodes[i].x;
+						mov.y = this.pathNodes[i].y - 50;
+						mov.scaleY = 1
+						LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT_HIGH)
+						mov.once(egret.MovieClipEvent.COMPLETE, () => {
+							Pool.recover(Pool.transmitBeam, mov)
+							LayerManager.instance.removeFromLayer(mov, LAYER.BATTLE_EFFECT_HIGH)
+						}, null)
+
+						let mov2 = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
+						mov2.gotoAndPlay(1, 1);
+						mov2.x = this.pathNodes[i + 1].x;
+						mov2.y = this.pathNodes[i + 1].y;
+						mov2.scaleY = -1;
+						LayerManager.instance.addToLayer(mov2, LAYER.BATTLE_EFFECT_HIGH)
+						mov2.once(egret.MovieClipEvent.COMPLETE, () => {
+							Pool.recover(Pool.transmitBeam, mov2)
+							LayerManager.instance.removeFromLayer(mov2, LAYER.BATTLE_EFFECT_HIGH)
+						}, null)
+					}
+
 					if (this.pathNodes[i].distTotal > curMoveDistance) {
 						this.pathNodeIndex = i;
 						this.nextPathNode = this.pathNodes[i];

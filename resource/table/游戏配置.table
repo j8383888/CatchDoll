@@ -33,14 +33,7 @@
 		<key code="id"/>
 		<field column="id" code="id" type="int32" />
 		<field column="夹子名称" code="name" type="string" />
-		<field column="影片剪辑源" code="movieClipAry" type="array" >
-			<field column="value" code="value" type="object" >
-				<field column="keyName" type="string" />
-				<field column="groupName" type="string" />
-				<field column="actionName" type="string" />
-				<field column="frameRate" type="int32" />
-			</field>
-		</field>
+		<field column="渲染源" code="render" type="string"/>
 		<field column="命中率" code="hitRate" type="int32" />
 		<field column="伤害" code="hurt" type="int32" />
 		<field column="动作前摇" code="actionBefore" type="float" />

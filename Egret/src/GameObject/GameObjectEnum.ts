@@ -35,6 +35,10 @@ const enum GAMEOBJECT_SIGN {
      * 蘑菇
      */
     Mushroom_GREEN = 1005,
+    /**
+     * 
+     */
+    TransmitDoor = 1006
 }
 /**
  * 操作类型

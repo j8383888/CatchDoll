@@ -23,6 +23,7 @@
 		</e:Group>
 			<e:Group id="_chapterBtn3" x="1440" y="50" width="720">
 				<e:Image source="otherRes1_12" y="-54.54" horizontalCenter="0"/>
+				<e:Image y="119.46" horizontalCenter="-4" source="otherRes2_53"/>
 				<e:Group y="0" horizontalCenter="10">
 				<e:Image source="otherRes1_18" y="0" x="0"/>
 				<e:Image source="otherRes1_7" x="147" y="15"/>

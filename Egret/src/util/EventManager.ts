@@ -174,6 +174,10 @@ const enum EVENT_ID {
 	 */
 	MASTER_DOWN,
 	/**
+	 * 玩家左右
+	 */
+	MASTER_LEFT_RIGHT,
+	/**
 	 * 更新钱
 	 */
 	UPDATE_MONEY,

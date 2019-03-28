@@ -2,84 +2,44 @@
   "file": "clip.png",
   "frames": {
     "clip_1": {
-      "x": 0,
-      "y": 295,
-      "w": 149,
-      "h": 122,
-      "offX": 17,
-      "offY": 24,
-      "sourceW": 180,
-      "sourceH": 180
+      "x": 105,
+      "y": 106,
+      "w": 72,
+      "h": 94,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 72,
+      "sourceH": 97
     },
     "clip_2": {
-      "x": 163,
-      "y": 174,
-      "w": 137,
-      "h": 126,
-      "offX": 23,
-      "offY": 36,
-      "sourceW": 180,
-      "sourceH": 180
+      "x": 0,
+      "y": 133,
+      "w": 87,
+      "h": 103,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 87,
+      "sourceH": 109
     },
     "clip_3": {
-      "x": 301,
-      "y": 274,
-      "w": 121,
-      "h": 110,
-      "offX": 32,
-      "offY": 30,
-      "sourceW": 185,
-      "sourceH": 140
+      "x": 105,
+      "y": 0,
+      "w": 101,
+      "h": 105,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 101,
+      "sourceH": 107
     },
     "clip_4": {
-      "x": 301,
-      "y": 173,
-      "w": 152,
-      "h": 100,
-      "offX": 16,
-      "offY": 23,
-      "sourceW": 185,
-      "sourceH": 140
-    },
-    "clip_5": {
-      "x": 231,
-      "y": 0,
-      "w": 169,
-      "h": 172,
-      "offX": 86,
-      "offY": 79,
-      "sourceW": 340,
-      "sourceH": 260
-    },
-    "clip_6": {
       "x": 0,
       "y": 0,
-      "w": 230,
-      "h": 173,
-      "offX": 58,
-      "offY": 61,
-      "sourceW": 340,
-      "sourceH": 260
-    },
-    "clip_7": {
-      "x": 150,
-      "y": 301,
-      "w": 135,
-      "h": 122,
-      "offX": 51,
-      "offY": 46,
-      "sourceW": 240,
-      "sourceH": 180
-    },
-    "clip_8": {
-      "x": 0,
-      "y": 174,
-      "w": 162,
-      "h": 120,
-      "offX": 38,
-      "offY": 37,
-      "sourceW": 240,
-      "sourceH": 180
+      "w": 104,
+      "h": 132,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 104,
+      "sourceH": 134
     }
   }
 }

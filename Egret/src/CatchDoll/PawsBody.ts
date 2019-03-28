@@ -29,7 +29,7 @@ module catchDoll {
 		/**
 		 * 下夹子效果
 		 */
-		public downEff: egret.MovieClip;
+		public pawHeadImg: eui.Image;
 		/**
 		 * 伤害
 		 */
@@ -72,22 +72,11 @@ module catchDoll {
 			if (this.isDown) {
 				return;
 			}
-
-			if (this.downEff) {
-				this.pawsHead.removeChild(this.downEff);
-			}
-
 			this.clipID = clipID;
-			let assetData: table.ClipTable.MovieClipAryItem = ConfigParse.getPropertyByProperty(TableCenter.instance.ClipTable, "id", clipID.toString(), "movieClipAry")[0];
-			this.downEff = UIUtil.creatMovieClip(assetData.groupName, assetData.actionName);
-			this.downEff.x = this.pawsHead.width / 2;
-			this.downEff.y = this.pawsHead.height / 2;
-			this.downEff.gotoAndStop(1);
-			this.downEff.frameRate = 8;
+			this.pawHeadImg.source =  ConfigParse.getPropertyByProperty(TableCenter.instance.ClipTable, "id", clipID.toString(), "render");
 			this.hurt = ConfigParse.getPropertyByProperty(TableCenter.instance.ClipTable, "id", clipID.toString(), "hurt")
 			this.actionBefore = ConfigParse.getPropertyByProperty(TableCenter.instance.ClipTable, "id", clipID.toString(), "actionBefore");
 			this.hurtDuration = ConfigParse.getPropertyByProperty(TableCenter.instance.ClipTable, "id", clipID.toString(), "hurtDuration");
-			this.pawsHead.addChild(this.downEff);
 		}
 
 		/**

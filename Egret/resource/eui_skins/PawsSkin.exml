@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="PawsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group id="pawBox" x="0" y="0" anchorOffsetX="90">
-		<e:Image id="rope" x="88" y="84.66" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" height="40" source="battle_3" scaleY="1"/>
+		<e:Image id="rope" y="84.66" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" height="40" source="battle_3" scaleY="1" horizontalCenter="-1"/>
 
-		<e:Group x="41.98" y="0" scaleX="0.6" scaleY="0.6">
+		<e:Group y="0" scaleX="0.6" scaleY="0.6" horizontalCenter="0">
 			<e:Image id="headImg" x="16.66" y="16.66" fillMode="scale" source="otherRes1_3"/>
 			<e:Image x="0" y="0" fillMode="scale" source="otherRes1_6"/>
 		</e:Group>
 		<e:Group id="pawsHead" width="180" height="180" x="0" y="69.67">
-			<e:Image x="0" y="0" fillMode="scale" source="clip_1" scaleX="1" scaleY="1" visible="false"/>
+			<e:Image id="pawHeadImg" fillMode="scale" source="clip_1" scaleX="1" scaleY="1" verticalCenter="8.5" horizontalCenter="0"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

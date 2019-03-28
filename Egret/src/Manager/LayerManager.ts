@@ -103,15 +103,19 @@ const enum LAYER {
 	BATTLE_LOW,
 	/*场景低层*/
 	BATTLE_SCENE,
-	BATTLE_EFFECT,
+	BATTLE_EFFECT_LOW,
 	SCENE_INTERACTIVE_LOW,
 	/*可交互对象*/
 	SCENE_INTERACTIVE_HIGH,
 
 	/*怪物层*/
 	MONSTER,
+	/*场景特效层*/
+	BATTLE_EFFECT_HIGH,
 	/*场景高层*/
 	BATTLE_HIGH,
+	/*场景操作层*/
+	BATTLE_OP,
 	POP,
 	EFFECT,
 	LOADING,
