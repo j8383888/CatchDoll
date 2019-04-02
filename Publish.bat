@@ -7,3 +7,4 @@ call Publish.bat
 echo ¿ªÊ¼ÐÞ¸Ä
 cd ../utils/
 start python alterPublishCode.py
+pause
