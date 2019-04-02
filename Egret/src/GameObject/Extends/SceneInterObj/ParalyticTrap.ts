@@ -44,6 +44,14 @@ module catchDoll {
 		}
 
 		/**
+		 * 关闭
+		 */
+		public close():void{
+			this.isMonsterHitOpen = false;
+			this._dragonBones.animation.gotoAndStopByProgress("enlarge", 100);
+		}
+
+		/**
 		 * 放大效果完毕
 		 */
 		public onEnLargeEffComplete(): void {

@@ -118,7 +118,7 @@
 		"bin-debug/Table/PropTable.js",
 		"bin-debug/Table/SceneInteractiveObjectTable.js",
 		"bin-debug/Table/ScenePropTable.js",
-		"bin-debug/Table/ShopTable.js",
+		"bin-debug/Table/shopTable.js",
 		"bin-debug/Table/TaskTable.js",
 		"bin-debug/Table/TreasureTable.js",
 		"bin-debug/Table/TurntableList.js",

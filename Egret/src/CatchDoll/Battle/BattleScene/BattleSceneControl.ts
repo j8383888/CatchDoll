@@ -75,8 +75,8 @@ module catchDoll {
 		}
 
 		private _onClickDown(): void {
+			this._playEffonce(this._view.btnDownEff);
 			if (!Master.instance.MasterPaws.pawsBody.isDown) {
-				this._playEffonce(this._view.btnDownEff);
 				EventManager.fireEvent(EVENT_ID.MASTER_DOWN);
 			}
 		}
