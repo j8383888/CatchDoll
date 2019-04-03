@@ -21,20 +21,55 @@ class DebugPlatform implements Platform {
     }
 }
 
-
-if (!window.platform) {
-    window.platform = new DebugPlatform();
+class WXPlatform implements Platform {
+    async getUserInfo() {
+        return new Promise((resolve, reject) => {
+            wx["getUserInfo"]({
+                withCredentials: true,
+                success: res => {
+                    var userInfo = res.userInfo;
+                    var nickName = userInfo.nickName;
+                    var avatarUrl = userInfo.avatarUrl;
+                    var gender = userInfo.gender; //性别 0：未知、1：男、2：女
+                    var province = userInfo.province;
+                    var city = userInfo.city;
+                    var country = userInfo.country;
+                    resolve(userInfo);
+                },
+                fail: res => {
+                    wx["showModal"]({
+                        title: '友情提醒',
+                        content: '请允许微信获得授权!',
+                        confirmText: "授权",
+                        showCancel: false,
+                        success: res => {
+                            resolve(null);
+                        }
+                    });
+                }
+            });
+        })
+    }
+    async login() {
+    }
 }
 
-
-
-declare let platform: Platform;
-
 declare interface Window {
-
     platform: Platform
 }
 
+
+declare let platform: Platform;
+if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+    if (!window.platform) {
+        platform = new WXPlatform();
+    }
+}
+else {
+    if (!window.platform) {
+        platform = new DebugPlatform();
+    }
+}
 
 
 

@@ -108,15 +108,19 @@ module catchDoll {
 			let cmd: Cmd.Login_C = new Cmd.Login_C()
 			cmd.account = "suo";
 			cmd.password = MathUtil.random(0, 10000).toString();
-
-			let index = location.search.indexOf("?uid=")
-			if (index != -1) {
-				let StrAry = location.search.split("?uid=")
-				let uid = StrAry[StrAry.length - 1];
-				cmd.uid = Number(uid);
+			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+				cmd.uid = 1000;
 			}
 			else {
-				cmd.uid = 9998;
+				let index = location.search.indexOf("?uid=")
+				if (index != -1) {
+					let StrAry = location.search.split("?uid=")
+					let uid = StrAry[StrAry.length - 1];
+					cmd.uid = Number(uid);
+				}
+				else {
+					cmd.uid = 9998;
+				}
 			}
 			this.sendMsg(cmd);
 
