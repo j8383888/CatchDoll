@@ -6,7 +6,7 @@ import { PlayerCenter } from "../PlayerCenter";
 import { MsgHandler } from "./MsgHandler";
 import { TaskMgr } from "../Task/TaskMgr";
 var fs = require('fs');
-// var nodejsWs = require("nodejs-websocket");
+var nodejsWs = require("nodejs-websocket");
 var https = require("https")
 var wsModule = require("ws");
 /**
@@ -45,10 +45,13 @@ export class MyWebSocket {
 
     /* 创建Web */
     public creatWebSocket(): void {
+
+
+
         var options = {
             key: fs.readFileSync(this.keypath),
             cert: fs.readFileSync(this.certpath),
-            // passphrase: '1234'//如果秘钥文件有密码的话，用这个属性设置密码
+            passphrase: '8398337'//如果秘钥文件有密码的话，用这个属性设置密码
         };
 
         console.log("WebSocket开始建立连接...")
@@ -60,11 +63,7 @@ export class MyWebSocket {
         });
         //把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
         //同样，如果丢进去的是个http服务的话那么创建出来的还是无加密的ws服务
-        ws.on('connection', function (wsConnect) {
-            wsConnect.on('message', function (message) {
-                console.log(message);
-            });
-        });
+        ws.on('connection', this._onReceive);
         TaskMgr.getInstance().taskTimer();  // 开启任务刷新的计时
     }
 
@@ -93,7 +92,7 @@ export class MyWebSocket {
             buffer.writeUInt16BE(dataLen, 2 + titleLen);
             /* 写入协议数据*/
             buffer.fill(data, 4 + titleLen);
-            connect.sendBinary(buffer);
+            connect.send(buffer);
         }
 
     }
@@ -126,9 +125,11 @@ export class MyWebSocket {
         // conn.on("text", function (str: string) {
         //     conn.sendText(str) 
         // })
-        conn.on('binary', function (stream) {
-            stream.once('readable', () => {
-                let rawData: Buffer = stream._readableState.buffer.head.data;
+        console.log('wss服务器已启动');
+        conn.on('message', function (binary) {
+        // conn.on('binary', function (stream) {
+            // stream.once('readable', () => {
+                let rawData: Buffer = binary;
                 /*rawData:buffer 组成:协议名字长度+协议名字+协议数据长度+协议数据 */
                 let nameLen = rawData.readUInt16BE(0);
                 let rawDataLen = rawData.slice(2 + nameLen, 4 + nameLen).readUInt16BE(0);
@@ -176,7 +177,7 @@ export class MyWebSocket {
                 }
                 let dateStr = new Date().toLocaleString();
                 console.log(dateStr, "[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
-            })
+            // })
         })
         conn.once("close", (code, reason) => {
             let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn);
