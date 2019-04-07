@@ -411,7 +411,7 @@ module catchDoll {
 
 			let i: number = 0;
 
-			let deleteAry = []
+			// let deleteAry = []
 			for (let j = 0; j < interObjMapLen; j += this._colliderFlag + 1) {
 				let interObj: ParalyticTrap = interObjMap.values[j];
 				if (!interObj.isMonsterHitOpen) {
@@ -429,8 +429,8 @@ module catchDoll {
 					let monsterColliderAry = monster.colliderAry
 					if (GameObjectCollider.isIntersect(interObjColliderAry, monsterColliderAry)) {
 						if (interObj.sign == GAMEOBJECT_SIGN.PARALYTIC_TRAP) {
-							monster.stopMove()
-							deleteAry.push(interObj);
+							monster.stopMove();
+							(interObj as ParalyticTrap).close();
 						}
 						else if (interObj.sign == GAMEOBJECT_SIGN.GRASS) {
 							monster.hide(true);
@@ -444,10 +444,9 @@ module catchDoll {
 					}
 				}
 			}
-			for (let item of deleteAry) {
-				GameObjectFactory.instance.recoverGameObject(item);
-
-			}
+			// for (let item of deleteAry) {
+			// 	GameObjectFactory.instance.recoverGameObject(item);
+			// }
 		}
 
 		private _checkEnd(): void {

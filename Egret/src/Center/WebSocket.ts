@@ -95,10 +95,10 @@ module catchDoll {
 			this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this._onReceiveMessage, this);
 			this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this._onSocketError, this);
 			this._webSocket.addEventListener(egret.Event.CLOSE, this._onSocketClose, this);
-			this._webSocket.connectByUrl("ws://www.suozgame.com:8001");
-			// this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
+			this._webSocket.connectByUrl("wss://suozgame.com:8001");
+			// this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
 		}
 
 		/**
@@ -108,15 +108,19 @@ module catchDoll {
 			let cmd: Cmd.Login_C = new Cmd.Login_C()
 			cmd.account = "suo";
 			cmd.password = MathUtil.random(0, 10000).toString();
-
-			let index = location.search.indexOf("?uid=")
-			if (index != -1) {
-				let StrAry = location.search.split("?uid=")
-				let uid = StrAry[StrAry.length - 1];
-				cmd.uid = Number(uid);
+			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+				cmd.uid = 1000;
 			}
 			else {
-				cmd.uid = 9998;
+				let index = location.search.indexOf("?uid=")
+				if (index != -1) {
+					let StrAry = location.search.split("?uid=")
+					let uid = StrAry[StrAry.length - 1];
+					cmd.uid = Number(uid);
+				}
+				else {
+					cmd.uid = 9998;
+				}
 			}
 			this.sendMsg(cmd);
 
