@@ -5,19 +5,16 @@
  * 由于不同平台的接口形式各有不同，白鹭推荐开发者将所有接口封装为基于 Promise 的异步形式
  */
 declare interface Platform {
-
     getUserInfo(): Promise<any>;
-
     login(): Promise<any>
-
 }
 
 class DebugPlatform implements Platform {
     async getUserInfo() {
-        return { nickName: "username" }
+        console.error("window getUserInfo")
     }
     async login() {
-
+        console.error("window login")
     }
 }
 
@@ -51,25 +48,49 @@ class WXPlatform implements Platform {
         })
     }
     async login() {
+        console.error("获取微信OpenID");
+        return new Promise((resolve, reject) => {
+            wx["login"]({
+                //获取code
+                success: function (res) {
+                    var code = res.code; //返回code
+                    var appId = 'wx2f26847a6393a178';
+                    var secret = '4af1b2014ffa5e37b5f5172c1195eb9e';
+                    wx["request"]({
+                        url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + secret + '&js_code=' + code + '&grant_type=authorization_code',
+                        data: {},
+                        header: {
+                            'content-type': 'json'
+                        },
+                        success: function (res) {
+                            var openid = res.data.openid //返回openid
+                            console.error('openid为:' + openid);
+                            resolve(openid);
+                        }
+                    })
+                }
+            })
+        })
+
+    }
+
+    public getWXOpenId() {
+        return new Promise((resolve, reject) => {
+            wx["login"]({
+                //获取code
+                success: function (res) {
+                    var code = res.code; //返回code
+                    resolve(code);
+                },
+                fail: res => {
+                    console.error("逻辑有误")
+                }
+            })
+        })
     }
 }
 
-declare interface Window {
-    platform: Platform
-}
 
-
-declare let platform: Platform;
-if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-    if (!window.platform) {
-        platform = new WXPlatform();
-    }
-}
-else {
-    if (!window.platform) {
-        platform = new DebugPlatform();
-    }
-}
 
 
 

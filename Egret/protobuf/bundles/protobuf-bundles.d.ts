@@ -13,7 +13,7 @@ declare namespace Cmd {
         password: string;
 
         /** Login_C uid */
-        uid?: (number|null);
+        uid?: (string|null);
     }
 
     /** Represents a Login_C. */
@@ -32,7 +32,7 @@ declare namespace Cmd {
         public password: string;
 
         /** Login_C uid. */
-        public uid: number;
+        public uid: string;
 
         /**
          * Encodes the specified Login_C message. Does not implicitly {@link Cmd.Login_C.verify|verify} messages.
@@ -57,7 +57,7 @@ declare namespace Cmd {
     interface IPlayerInfo_S {
 
         /** PlayerInfo_S uid */
-        uid: number;
+        uid: string;
 
         /** PlayerInfo_S itemInfo */
         itemInfo?: (Cmd.IItemInfo_CS[]|null);
@@ -79,7 +79,7 @@ declare namespace Cmd {
         constructor(properties?: Cmd.IPlayerInfo_S);
 
         /** PlayerInfo_S uid. */
-        public uid: number;
+        public uid: string;
 
         /** PlayerInfo_S itemInfo. */
         public itemInfo: Cmd.IItemInfo_CS[];
@@ -162,9 +162,6 @@ declare namespace Cmd {
     /** Properties of an ItemUpdate_CS. */
     interface IItemUpdate_CS {
 
-        /** ItemUpdate_CS uid */
-        uid: number;
-
         /** ItemUpdate_CS itemInfo */
         itemInfo?: (Cmd.IItemInfo_CS[]|null);
     }
@@ -177,9 +174,6 @@ declare namespace Cmd {
          * @param [properties] Properties to set
          */
         constructor(properties?: Cmd.IItemUpdate_CS);
-
-        /** ItemUpdate_CS uid. */
-        public uid: number;
 
         /** ItemUpdate_CS itemInfo. */
         public itemInfo: Cmd.IItemInfo_CS[];
@@ -207,7 +201,7 @@ declare namespace Cmd {
     interface IHeartbeat_CS {
 
         /** Heartbeat_CS uid */
-        uid: number;
+        uid: string;
     }
 
     /** Represents a Heartbeat_CS. */
@@ -220,7 +214,7 @@ declare namespace Cmd {
         constructor(properties?: Cmd.IHeartbeat_CS);
 
         /** Heartbeat_CS uid. */
-        public uid: number;
+        public uid: string;
 
         /**
          * Encodes the specified Heartbeat_CS message. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
@@ -404,9 +398,6 @@ declare namespace Cmd {
 
     /** Properties of a SameUidLogin_S. */
     interface ISameUidLogin_S {
-
-        /** SameUidLogin_S uid */
-        uid: number;
     }
 
     /** Represents a SameUidLogin_S. */
@@ -417,9 +408,6 @@ declare namespace Cmd {
          * @param [properties] Properties to set
          */
         constructor(properties?: Cmd.ISameUidLogin_S);
-
-        /** SameUidLogin_S uid. */
-        public uid: number;
 
         /**
          * Encodes the specified SameUidLogin_S message. Does not implicitly {@link Cmd.SameUidLogin_S.verify|verify} messages.

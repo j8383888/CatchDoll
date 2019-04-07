@@ -40,19 +40,10 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
         this.skinName = "LoadingSkin";
     }
 
-    // private textField: egret.TextField;
-
-    // private createView(): void {
-    //     this.textField = new egret.TextField();
-    //     this.addChild(this.textField);
-    //     this.textField.y = 300;
-    //     this.textField.width = 720;
-    //     this.textField.height = 100;
-    //     this.textField.textAlign = "center";
-    // }
-
     public onProgress(current: number, total: number): void {
-        this.progressRect.width = 600 * current / total;
-        this.progressLabel.text = `${current}/${total}`;
+        let multiple = Math.floor(current / total * 100)
+        this.progressRect.width = 600 * multiple / 100;
+        let cur = multiple
+        this.progressLabel.text = cur + "/100";
     }
 }

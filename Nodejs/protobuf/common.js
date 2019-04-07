@@ -26,7 +26,7 @@ $root.Cmd = (function() {
          * @interface ILogin_C
          * @property {string} account Login_C account
          * @property {string} password Login_C password
-         * @property {number|null} [uid] Login_C uid
+         * @property {string|null} [uid] Login_C uid
          */
 
         /**
@@ -62,11 +62,11 @@ $root.Cmd = (function() {
 
         /**
          * Login_C uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.Login_C
          * @instance
          */
-        Login_C.prototype.uid = 0;
+        Login_C.prototype.uid = "";
 
         return Login_C;
     })();
@@ -77,7 +77,7 @@ $root.Cmd = (function() {
          * Properties of a PlayerInfo_S.
          * @memberof Cmd
          * @interface IPlayerInfo_S
-         * @property {number} uid PlayerInfo_S uid
+         * @property {string} uid PlayerInfo_S uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
          * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
          * @property {number} serveTime PlayerInfo_S serveTime
@@ -101,11 +101,11 @@ $root.Cmd = (function() {
 
         /**
          * PlayerInfo_S uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.PlayerInfo_S
          * @instance
          */
-        PlayerInfo_S.prototype.uid = 0;
+        PlayerInfo_S.prototype.uid = "";
 
         /**
          * PlayerInfo_S itemInfo.
@@ -193,7 +193,6 @@ $root.Cmd = (function() {
          * Properties of an ItemUpdate_CS.
          * @memberof Cmd
          * @interface IItemUpdate_CS
-         * @property {number} uid ItemUpdate_CS uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] ItemUpdate_CS itemInfo
          */
 
@@ -214,14 +213,6 @@ $root.Cmd = (function() {
         }
 
         /**
-         * ItemUpdate_CS uid.
-         * @member {number} uid
-         * @memberof Cmd.ItemUpdate_CS
-         * @instance
-         */
-        ItemUpdate_CS.prototype.uid = 0;
-
-        /**
          * ItemUpdate_CS itemInfo.
          * @member {Array.<Cmd.IItemInfo_CS>} itemInfo
          * @memberof Cmd.ItemUpdate_CS
@@ -238,7 +229,7 @@ $root.Cmd = (function() {
          * Properties of a Heartbeat_CS.
          * @memberof Cmd
          * @interface IHeartbeat_CS
-         * @property {number} uid Heartbeat_CS uid
+         * @property {string} uid Heartbeat_CS uid
          */
 
         /**
@@ -258,11 +249,11 @@ $root.Cmd = (function() {
 
         /**
          * Heartbeat_CS uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.Heartbeat_CS
          * @instance
          */
-        Heartbeat_CS.prototype.uid = 0;
+        Heartbeat_CS.prototype.uid = "";
 
         return Heartbeat_CS;
     })();
@@ -423,7 +414,6 @@ $root.Cmd = (function() {
          * Properties of a SameUidLogin_S.
          * @memberof Cmd
          * @interface ISameUidLogin_S
-         * @property {number} uid SameUidLogin_S uid
          */
 
         /**
@@ -440,14 +430,6 @@ $root.Cmd = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * SameUidLogin_S uid.
-         * @member {number} uid
-         * @memberof Cmd.SameUidLogin_S
-         * @instance
-         */
-        SameUidLogin_S.prototype.uid = 0;
 
         return SameUidLogin_S;
     })();

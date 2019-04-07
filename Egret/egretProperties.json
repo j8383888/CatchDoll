@@ -47,6 +47,11 @@
     "android": {
       "appname": "娃娃去哪了2",
       "packagename": "com.companyname"
+    },
+    "ios": {
+      "appname": "test",
+      "packagename": "com.companyname",
+      "hybrid": true
     }
   }
 }

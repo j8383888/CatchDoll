@@ -7,7 +7,7 @@ module catchDoll {
 		/*单例*/
 		private static _instance: Master = null;
 		/*uid*/
-		public uid: number = -1;
+		public uid: string = "";
 		/*玩家的钩锁*/
 		public MasterPaws: Paws;
 		/**
@@ -79,7 +79,6 @@ module catchDoll {
 
 		public sendItemUpdateMsg(itemID: number, updateNum: number) {
 			let cmd: Cmd.ItemUpdate_CS = new Cmd.ItemUpdate_CS();
-			cmd.uid = Master.instance.uid
 			let itemInfo: Cmd.IItemInfo_CS[] = []
 			let item: Cmd.ItemInfo_CS = new Cmd.ItemInfo_CS();
 			item.itemID = itemID;
@@ -98,7 +97,7 @@ module catchDoll {
 		public dispose(): void {
 			Laya.timer.clear(this, this._updateServeTime)
 			EventManager.unregisterEvent(EVENT_ID.UPDATE_ITEM_INFO, this, this._updateItem);
-			this.uid = -1;
+			this.uid = "";
 
 		}
 

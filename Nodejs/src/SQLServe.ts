@@ -28,39 +28,6 @@ export class SQLServe {
     }
 
     public createConnection() {
-        //创建一个connection
-        // this.connection = SQL.createConnection({
-        //     host: JsonParse.SQLHost, //主机
-        //     user: 'root', //MySQL认证用户名
-        //     password: 'jym8398337', //MySQL认证用户密码
-        //     port: JsonParse.SQLPost, //端口号
-        //     database: 'test',
-        //     debug: false,
-        // });
-        // this.connection.connect((err) => {
-        //     if (err) {
-
-        //         console.log('[query] - :' + err);
-        //         setTimeout(SQLServe.instance.createConnection, 2000);
-        //         return;
-        //     }
-        //     this._clearSQL
-        //     this._isReconnet = true;
-        //     this._addCow();
-        //     // this._clearSQL();
-        //     console.log('数据库[connection connect]  succeed!');
-        // });
-
-        // this.connection.on('error', function (err) {
-        //     console.error('sql error', err);
-        //     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-        //         this._isReconnet = true;
-        //         console.error('sql error执行重连:' + err.message);
-        //         SQLServe.instance.createConnection();
-        //     } else {
-        //         throw err;
-        //     }
-        // })
 
         this.pool = SQL.createPool({
             host: JsonParse.SQLHost, //主机
@@ -80,7 +47,7 @@ export class SQLServe {
 
     private _keepActive(): void {
         let data = new Cmd.Login_C();
-        data.uid = -10000;
+        data.uid = "-10000";
         data.account = "-10000";
         data.password = "-10000";
         SQLServe.instance.seekLogin(data)
@@ -156,7 +123,7 @@ export class SQLServe {
      * @param data 
      */
     public seekLogin(data: Cmd.Login_C) {
-        var sql = 'SELECT * FROM Login where uid=' + data.uid;
+        var sql = "SELECT * FROM Login where uid=\"" + data.uid + "\"";
         this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('数据库[SELsECT ERROR] - ', err.message);
@@ -177,7 +144,7 @@ export class SQLServe {
      * @param data 
      */
     private _seekPlayerData(data: Cmd.Login_C): void {
-        var sql = 'SELECT * FROM PropInfo where uid=' + data.uid;
+        var sql = "SELECT * FROM PropInfo where uid=\"" + data.uid + "\"";
         const COMPELETE_NUM: number = 2;
         let num: number = 0;
         let itemInfoAry: Cmd.ItemInfo_CS[] = [];
@@ -202,7 +169,7 @@ export class SQLServe {
             }
         })
 
-        var sql = 'SELECT * FROM PlayerInfo where uid=' + data.uid;
+        var sql = "SELECT * FROM PlayerInfo where uid=\"" + data.uid + "\"";
         this.getConnection(sql, null, (err, result, fields) => {
             if (err) {
                 console.log('[query] - :' + err);
@@ -265,7 +232,7 @@ export class SQLServe {
 
         let rowName = "uid,";
         let valueStr = "?,";
-        var addUserParams: number[] = [data.uid];
+        var addUserParams: any[] = [data.uid];
         for (let item of JsonParse.propDataID) {
             rowName += item + ",";
             valueStr += "?,"
@@ -368,7 +335,7 @@ export class SQLServe {
      * @param uid 
      * @param userData 
      */
-    public setUserData(uid: number): void {
+    public setUserData(uid: string): void {
 
         /* 道具 */
         let itemInfo: Cmd.ItemInfo_CS[] = PlayerCenter.getItemInfo(uid);

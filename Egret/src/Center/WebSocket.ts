@@ -98,7 +98,7 @@ module catchDoll {
 			this._writeByteAry.endian = egret.EndianConst.BIG_ENDIAN.toString();
 			protobuf.parse(RES.getRes("common_proto"), this._protoRoot);
 			this._webSocket.connectByUrl("wss://suozgame.com:8001");
-			// this._webSocket.connect(DataCenter.instance.host, DataCenter.instance.post);
+			// this._webSocket.connectByUrl("ws://127.0.0.1:8001");
 		}
 
 		/**
@@ -106,25 +106,36 @@ module catchDoll {
 		 */
 		private _login(): void {
 			let cmd: Cmd.Login_C = new Cmd.Login_C()
-			cmd.account = "suo";
-			cmd.password = MathUtil.random(0, 10000).toString();
+
 			if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
-				cmd.uid = 1000;
+				cmd.account = "wxgame";
+				cmd.password = DataCenter.instance.js_code
 			}
 			else {
+				cmd.account = "other";
+				cmd.password = MathUtil.random(0, 10000).toString();
+
 				let index = location.search.indexOf("?uid=")
 				if (index != -1) {
 					let StrAry = location.search.split("?uid=")
 					let uid = StrAry[StrAry.length - 1];
-					cmd.uid = Number(uid);
+					cmd.uid = uid;
 				}
 				else {
-					cmd.uid = 9998;
+					cmd.uid = "9997";
 				}
 			}
 			this.sendMsg(cmd);
+		}
+
+
+		/**
+		 * 微信登录
+		 */
+		public wxLogin(): void {
 
 		}
+
 		/**
 		 * socket异常
 		 */
@@ -151,7 +162,7 @@ module catchDoll {
 		 *  心跳检测
 		 */
 		private _heartCheck(): void {
-			Laya.timer.loop(1000 * 60, this, this._sendHeartMsg);
+			Laya.timer.loop(1000 * 90, this, this._sendHeartMsg);
 		}
 		/**
 		 *  发送心跳消息
@@ -165,7 +176,7 @@ module catchDoll {
 				Laya.timer.clear(this, this._sendHeartMsg);
 			}
 			let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
-			cmd.uid = Master.instance.uid;
+			cmd.uid = Master.instance.uid
 			this.sendMsg(cmd);
 		}
 		/**
@@ -232,12 +243,8 @@ module catchDoll {
 					break;
 				case "Cmd.SameUidLogin_S":
 					let accurateData6: Cmd.SameUidLogin_S = message as Cmd.SameUidLogin_S;
-					if (accurateData6.uid == Master.instance.uid) {
-						ConfirmUtil.showPanel("账号重复登陆，请检查", Handler.create(window.location, window.location.reload, null, true))
-					}
-					else {
-						console.assert(false, "逻辑有误")
-					}
+					ConfirmUtil.showPanel("账号重复登陆，请检查", Handler.create(window.location, window.location.reload, null, true))
+
 					break;
 				case "Cmd.ServeTips_S":
 					let accurateData7: Cmd.ServeTips_S = message as Cmd.ServeTips_S

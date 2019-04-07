@@ -23,7 +23,7 @@ $root.Cmd = (function() {
          * @interface ILogin_C
          * @property {string} account Login_C account
          * @property {string} password Login_C password
-         * @property {number|null} [uid] Login_C uid
+         * @property {string|null} [uid] Login_C uid
          */
 
         /**
@@ -59,11 +59,11 @@ $root.Cmd = (function() {
 
         /**
          * Login_C uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.Login_C
          * @instance
          */
-        Login_C.prototype.uid = 0;
+        Login_C.prototype.uid = "";
 
         /**
          * Encodes the specified Login_C message. Does not implicitly {@link Cmd.Login_C.verify|verify} messages.
@@ -80,7 +80,7 @@ $root.Cmd = (function() {
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.account);
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
             if (message.uid != null && message.hasOwnProperty("uid"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.uid);
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.uid);
             return writer;
         };
 
@@ -109,7 +109,7 @@ $root.Cmd = (function() {
                     message.password = reader.string();
                     break;
                 case 3:
-                    message.uid = reader.int32();
+                    message.uid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -132,7 +132,7 @@ $root.Cmd = (function() {
          * Properties of a PlayerInfo_S.
          * @memberof Cmd
          * @interface IPlayerInfo_S
-         * @property {number} uid PlayerInfo_S uid
+         * @property {string} uid PlayerInfo_S uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] PlayerInfo_S itemInfo
          * @property {Cmd.ITaskUpdate_CS} taskInfo PlayerInfo_S taskInfo
          * @property {number} serveTime PlayerInfo_S serveTime
@@ -156,11 +156,11 @@ $root.Cmd = (function() {
 
         /**
          * PlayerInfo_S uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.PlayerInfo_S
          * @instance
          */
-        PlayerInfo_S.prototype.uid = 0;
+        PlayerInfo_S.prototype.uid = "";
 
         /**
          * PlayerInfo_S itemInfo.
@@ -198,7 +198,7 @@ $root.Cmd = (function() {
         PlayerInfo_S.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.uid);
             if (message.itemInfo != null && message.itemInfo.length)
                 for (var i = 0; i < message.itemInfo.length; ++i)
                     $root.Cmd.ItemInfo_CS.encode(message.itemInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
@@ -226,7 +226,7 @@ $root.Cmd = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.uid = reader.int32();
+                    message.uid = reader.string();
                     break;
                 case 2:
                     if (!(message.itemInfo && message.itemInfo.length))
@@ -372,7 +372,6 @@ $root.Cmd = (function() {
          * Properties of an ItemUpdate_CS.
          * @memberof Cmd
          * @interface IItemUpdate_CS
-         * @property {number} uid ItemUpdate_CS uid
          * @property {Array.<Cmd.IItemInfo_CS>|null} [itemInfo] ItemUpdate_CS itemInfo
          */
 
@@ -391,14 +390,6 @@ $root.Cmd = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * ItemUpdate_CS uid.
-         * @member {number} uid
-         * @memberof Cmd.ItemUpdate_CS
-         * @instance
-         */
-        ItemUpdate_CS.prototype.uid = 0;
 
         /**
          * ItemUpdate_CS itemInfo.
@@ -420,7 +411,6 @@ $root.Cmd = (function() {
         ItemUpdate_CS.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
             if (message.itemInfo != null && message.itemInfo.length)
                 for (var i = 0; i < message.itemInfo.length; ++i)
                     $root.Cmd.ItemInfo_CS.encode(message.itemInfo[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
@@ -445,9 +435,6 @@ $root.Cmd = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.uid = reader.int32();
-                    break;
                 case 2:
                     if (!(message.itemInfo && message.itemInfo.length))
                         message.itemInfo = [];
@@ -458,8 +445,6 @@ $root.Cmd = (function() {
                     break;
                 }
             }
-            if (!message.hasOwnProperty("uid"))
-                throw $util.ProtocolError("missing required 'uid'", { instance: message });
             return message;
         };
 
@@ -472,7 +457,7 @@ $root.Cmd = (function() {
          * Properties of a Heartbeat_CS.
          * @memberof Cmd
          * @interface IHeartbeat_CS
-         * @property {number} uid Heartbeat_CS uid
+         * @property {string} uid Heartbeat_CS uid
          */
 
         /**
@@ -492,11 +477,11 @@ $root.Cmd = (function() {
 
         /**
          * Heartbeat_CS uid.
-         * @member {number} uid
+         * @member {string} uid
          * @memberof Cmd.Heartbeat_CS
          * @instance
          */
-        Heartbeat_CS.prototype.uid = 0;
+        Heartbeat_CS.prototype.uid = "";
 
         /**
          * Encodes the specified Heartbeat_CS message. Does not implicitly {@link Cmd.Heartbeat_CS.verify|verify} messages.
@@ -510,7 +495,7 @@ $root.Cmd = (function() {
         Heartbeat_CS.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.uid);
             return writer;
         };
 
@@ -533,7 +518,7 @@ $root.Cmd = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.uid = reader.int32();
+                    message.uid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -900,7 +885,6 @@ $root.Cmd = (function() {
          * Properties of a SameUidLogin_S.
          * @memberof Cmd
          * @interface ISameUidLogin_S
-         * @property {number} uid SameUidLogin_S uid
          */
 
         /**
@@ -919,14 +903,6 @@ $root.Cmd = (function() {
         }
 
         /**
-         * SameUidLogin_S uid.
-         * @member {number} uid
-         * @memberof Cmd.SameUidLogin_S
-         * @instance
-         */
-        SameUidLogin_S.prototype.uid = 0;
-
-        /**
          * Encodes the specified SameUidLogin_S message. Does not implicitly {@link Cmd.SameUidLogin_S.verify|verify} messages.
          * @function encode
          * @memberof Cmd.SameUidLogin_S
@@ -938,7 +914,6 @@ $root.Cmd = (function() {
         SameUidLogin_S.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
             return writer;
         };
 
@@ -960,16 +935,11 @@ $root.Cmd = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.uid = reader.int32();
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
                 }
             }
-            if (!message.hasOwnProperty("uid"))
-                throw $util.ProtocolError("missing required 'uid'", { instance: message });
             return message;
         };
 

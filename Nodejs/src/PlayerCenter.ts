@@ -16,7 +16,7 @@ export class PlayerCenter {
      * 移除
      * @param uid 
      */
-    public static remove(uid: number): void {
+    public static remove(uid: string): void {
         this.playerDataMap.remove(uid);
     }
 
@@ -24,7 +24,7 @@ export class PlayerCenter {
     /**
 	 * 获得玩家道具数量
 	 */
-    public static getProp(uid: number, propID: number): number {
+    public static getProp(uid: string, propID: number): number {
         let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
@@ -36,7 +36,7 @@ export class PlayerCenter {
     /**
      * 检测玩家道具数量
      */
-    public static checkPropEnough(uid: number, propID: number, checkNum: number): boolean {
+    public static checkPropEnough(uid: string, propID: number, checkNum: number): boolean {
         let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
@@ -53,7 +53,7 @@ export class PlayerCenter {
     /**
      * 设置玩家道具数量
      */
-    public static updateProp(uid: number, propID: number, updateNum: number): number {
+    public static updateProp(uid: string, propID: number, updateNum: number): number {
         let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             if (item.itemID == propID) {
@@ -64,7 +64,7 @@ export class PlayerCenter {
         }
     }
 
-    public static clearUpdateNum(uid: number): void {
+    public static clearUpdateNum(uid: string): void {
         let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid)
         for (let item of propData) {
             item.itemUpdateNum = 0;
@@ -75,7 +75,7 @@ export class PlayerCenter {
     /**
     * 设置玩家道具数量
     */
-    public static setProp(uid: number, propID: number, num: number): void {
+    public static setProp(uid: string, propID: number, num: number): void {
         let propData: Cmd.IItemInfo_CS[] = this.getItemInfo(uid);
         for (let item of propData) {
             if (item.itemID == propID) {
@@ -89,7 +89,7 @@ export class PlayerCenter {
      * 获得道具信息
      * @param uid 
      */
-    public static getItemInfo(uid: number): Cmd.ItemInfo_CS[] {
+    public static getItemInfo(uid: string): Cmd.ItemInfo_CS[] {
         return this.playerDataMap.get(uid).itemInfo;
 
     }
@@ -98,7 +98,7 @@ export class PlayerCenter {
      * 获得道具信息
      * @param uid 
      */
-    public static getTaskInfo(uid: number): Cmd.TaskUpdate_CS {
+    public static getTaskInfo(uid: string): Cmd.TaskUpdate_CS {
         return this.playerDataMap.get(uid).taskInfo;
     }
 
@@ -107,7 +107,7 @@ export class PlayerCenter {
      * @param uid 
      * @param itemInfoAry 
      */
-    public static sendPlayerData(uid: number, itemInfoAry: Cmd.ItemInfo_CS[], task: Cmd.TaskUpdate_CS): void {
+    public static sendPlayerData(uid: string, itemInfoAry: Cmd.ItemInfo_CS[], task: Cmd.TaskUpdate_CS): void {
         let cmd: Cmd.PlayerInfo_S = new Cmd.PlayerInfo_S();
         cmd.uid = uid;
         cmd.itemInfo = itemInfoAry;
@@ -123,9 +123,8 @@ export class PlayerCenter {
      * @param uid 
      * @param itemInfoAry 
      */
-    public static sendPropData(uid: number, itemInfoAry?: Cmd.ItemInfo_CS[]): void {
+    public static sendPropData(uid: string, itemInfoAry?: Cmd.ItemInfo_CS[]): void {
         let cmd: Cmd.ItemUpdate_CS = new Cmd.ItemUpdate_CS();
-        cmd.uid = uid;
         if (itemInfoAry === void 0) {
             itemInfoAry = this.getItemInfo(uid);
         }
@@ -137,14 +136,14 @@ export class PlayerCenter {
     /**
      * 设置道具数据
      */
-    public static setItemInfo(uid: number, itemInfoAry: Cmd.ItemInfo_CS[]): void {
+    public static setItemInfo(uid: string, itemInfoAry: Cmd.ItemInfo_CS[]): void {
         this.playerDataMap.get(uid).itemInfo = itemInfoAry;
     }
 
     /**
      * 获得一个随机任务
      */
-    public static getRamdomTask(uid: number, taskID: number): Cmd.TaskUpdate_CS.TaskInfo {
+    public static getRamdomTask(uid: string, taskID: number): Cmd.TaskUpdate_CS.TaskInfo {
         let task: Cmd.TaskUpdate_CS = this.getTaskInfo(uid);
         let taskIDs: number[] = JsonParse.taskDataID.slice();
         for (let item of task.taskInfo) {

@@ -5,18 +5,18 @@ export namespace Cmd {
     interface ILogin_C {
         account: string;
         password: string;
-        uid?: (number|null);
+        uid?: (string|null);
     }
 
     class Login_C implements ILogin_C {
         constructor(properties?: Cmd.ILogin_C);
         public account: string;
         public password: string;
-        public uid: number;
+        public uid: string;
     }
 
     interface IPlayerInfo_S {
-        uid: number;
+        uid: string;
         itemInfo?: (Cmd.IItemInfo_CS[]|null);
         taskInfo: Cmd.ITaskUpdate_CS;
         serveTime: number;
@@ -24,7 +24,7 @@ export namespace Cmd {
 
     class PlayerInfo_S implements IPlayerInfo_S {
         constructor(properties?: Cmd.IPlayerInfo_S);
-        public uid: number;
+        public uid: string;
         public itemInfo: Cmd.IItemInfo_CS[];
         public taskInfo: Cmd.ITaskUpdate_CS;
         public serveTime: number;
@@ -44,23 +44,21 @@ export namespace Cmd {
     }
 
     interface IItemUpdate_CS {
-        uid: number;
         itemInfo?: (Cmd.IItemInfo_CS[]|null);
     }
 
     class ItemUpdate_CS implements IItemUpdate_CS {
         constructor(properties?: Cmd.IItemUpdate_CS);
-        public uid: number;
         public itemInfo: Cmd.IItemInfo_CS[];
     }
 
     interface IHeartbeat_CS {
-        uid: number;
+        uid: string;
     }
 
     class Heartbeat_CS implements IHeartbeat_CS {
         constructor(properties?: Cmd.IHeartbeat_CS);
-        public uid: number;
+        public uid: string;
     }
 
     interface ITaskUpdate_CS {
@@ -105,12 +103,10 @@ export namespace Cmd {
     }
 
     interface ISameUidLogin_S {
-        uid: number;
     }
 
     class SameUidLogin_S implements ISameUidLogin_S {
         constructor(properties?: Cmd.ISameUidLogin_S);
-        public uid: number;
     }
 
     interface IServeTips_S {

@@ -21,7 +21,7 @@ export class MsgHandler {
     constructor(target) {
         this._target = target
     };
-    public handler(event: string, msgData: any, uid: number) {
+    public handler(event: string, msgData: any, uid: string) {
         switch (event) {
             /* 物品变更 */
             case "Cmd.ItemUpdate_CS":
@@ -53,7 +53,6 @@ export class MsgHandler {
                 if (PlayerCenter.checkPropEnough(uid, PROP_ID.DIMOND, 2)) {
                     PlayerCenter.updateProp(uid, PROP_ID.DIMOND, -2);
                     let cmd2 = new Cmd.ItemUpdate_CS();
-                    cmd2.uid = uid;
                     cmd2.itemInfo = itemInfo;
                     MyWebSocket.instance.sendMsg(uid, cmd2);
 

@@ -3,8 +3,6 @@
  */
 module catchDoll {
 	export class GlobeConst {
-		/*是否调试模式*/
-		public static isDebug: boolean = false;
 		/*地址*/
 		public static host: string = "";
 		/*端口*/

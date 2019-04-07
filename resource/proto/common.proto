@@ -5,13 +5,13 @@ message Login_C
 {
     required string account = 1;
     required string password = 2;
-    optional int32 uid = 3;
+    optional string uid = 3;
 }
 
 /* 玩家信息 */
 message PlayerInfo_S
 {
-    required int32 uid = 1;
+    required string uid = 1;
     repeated ItemInfo_CS itemInfo = 2;
     required TaskUpdate_CS taskInfo = 3;
 	required int32 serveTime = 4;
@@ -29,14 +29,13 @@ message ItemInfo_CS
 /* 物品变化 */
 message ItemUpdate_CS
 {
-    required int32 uid = 1;
     repeated ItemInfo_CS itemInfo = 2;
 }
 
 /* 心跳包 */
 message Heartbeat_CS
 {
-    required int32 uid = 1;
+    required string uid = 1;
 }
 
 /* 任务更新 */
@@ -65,7 +64,6 @@ message GetTaskAward_C{
 
 /* 相同ID登陆 */
 message SameUidLogin_S{
-    required int32 uid = 1;
 }
 
 /* 系统消息Tips */

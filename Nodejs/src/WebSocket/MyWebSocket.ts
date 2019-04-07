@@ -8,6 +8,7 @@ import { TaskMgr } from "../Task/TaskMgr";
 var fs = require('fs');
 var nodejsWs = require("nodejs-websocket");
 var https = require("https")
+var http = require("http")
 var wsModule = require("ws");
 /**
  * NODE-JS 里面已经有了个websocket  
@@ -47,7 +48,6 @@ export class MyWebSocket {
     public creatWebSocket(): void {
 
 
-
         var options = {
             key: fs.readFileSync(this.keypath),
             cert: fs.readFileSync(this.certpath),
@@ -68,7 +68,7 @@ export class MyWebSocket {
     }
 
     /*发送数据 */
-    public sendMsg(uid: number, cmd: any): void {
+    public sendMsg(uid: string, cmd: any): void {
 
         let connect = this.connectMap.get(uid);
         if (connect) {
@@ -109,7 +109,7 @@ export class MyWebSocket {
             let value: number = this.heartMap.values[i];
             value++;
             if (value >= this.MAX_COUNT) {
-                let uid: number = this.heartMap.keys[i]
+                let uid: string = this.heartMap.keys[i]
                 console.log("uid为:" + uid + "心跳异常")
                 this.onPlayerOffline(uid);
             }
@@ -127,57 +127,42 @@ export class MyWebSocket {
         // })
         console.log('wss服务器已启动');
         conn.on('message', function (binary) {
-        // conn.on('binary', function (stream) {
+            // conn.on('binary', function (stream) {
             // stream.once('readable', () => {
-                let rawData: Buffer = binary;
-                /*rawData:buffer 组成:协议名字长度+协议名字+协议数据长度+协议数据 */
-                let nameLen = rawData.readUInt16BE(0);
-                let rawDataLen = rawData.slice(2 + nameLen, 4 + nameLen).readUInt16BE(0);
-                let cmdName = rawData.slice(2, 2 + nameLen).toString("utf8")
-                var protoType: protobuf.Type = ProtoParse.Root.lookupType(cmdName);
+            let rawData: Buffer = binary;
+            /*rawData:buffer 组成:协议名字长度+协议名字+协议数据长度+协议数据 */
+            let nameLen = rawData.readUInt16BE(0);
+            let rawDataLen = rawData.slice(2 + nameLen, 4 + nameLen).readUInt16BE(0);
+            let cmdName = rawData.slice(2, 2 + nameLen).toString("utf8")
+            var protoType: protobuf.Type = ProtoParse.Root.lookupType(cmdName);
 
-                let message: protobuf.Message<{}> = protoType.decode(rawData.slice(4 + nameLen, 4 + nameLen + rawDataLen));
-                let jsonData = message.toJSON()
+            let message: protobuf.Message<{}> = protoType.decode(rawData.slice(4 + nameLen, 4 + nameLen + rawDataLen));
+            let jsonData = message.toJSON()
 
-                if (cmdName == "Cmd.Heartbeat_CS") {
-                    let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
-                    let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
-                    cmd.uid = data3.uid;
-                    MyWebSocket.instance.heartMap.set(data3.uid, 0)
-                    MyWebSocket.instance.sendMsg(data3.uid, cmd);
-                }
-                /* 登陆协议 */
-                else if (cmdName == "Cmd.Login_C") {
-                    console.log("玩家登陆");
-                    let data: Cmd.Login_C = jsonData as Cmd.Login_C;
-                    let uid = data.uid
-                    let oldConn = MyWebSocket.instance.connectMap.get(uid);
-
-                    if (oldConn) {
-                        console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
-                        const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
-                        info.uid = uid;
-                        MyWebSocket.instance.sendMsg(uid, info);
-
-                        MyWebSocket.instance.connectMap.set(uid, conn);
-                        MyWebSocket.instance.heartMap.set(uid, 0);
-                        let playerData = PlayerCenter.playerDataMap.get(uid);
-                        PlayerCenter.sendPlayerData(uid, playerData.itemInfo, playerData.taskInfo)
-                    }
-                    else {
-                        MyWebSocket.instance.connectMap.set(uid, conn);
-                        MyWebSocket.instance.heartMap.set(uid, 0);
-                        SQLServe.instance.seekLogin(data)
-                    }
-
+            if (cmdName == "Cmd.Heartbeat_CS") {
+                let data3: Cmd.Heartbeat_CS = jsonData as Cmd.Heartbeat_CS;
+                let cmd: Cmd.Heartbeat_CS = new Cmd.Heartbeat_CS();
+                cmd.uid = data3.uid;
+                MyWebSocket.instance.heartMap.set(data3.uid, 0)
+                MyWebSocket.instance.sendMsg(data3.uid, cmd);
+            }
+            /* 登陆协议 */
+            else if (cmdName == "Cmd.Login_C") {
+                console.log("玩家登陆");
+                let data: Cmd.Login_C = jsonData as Cmd.Login_C;
+                if (data.account == "wxgame") {
+                    MyWebSocket.instance.getWXOpenID(conn, data);
                 }
                 else {
-                    let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn)
-                    MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, uid);
+                    MyWebSocket.instance._checkUid(data.uid, conn)
                 }
-                let dateStr = new Date().toLocaleString();
-                console.log(dateStr, "[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
-            // })
+            }
+            else {
+                let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn)
+                MsgHandler.getInstance(MyWebSocket.instance).handler(cmdName, jsonData, uid);
+            }
+            let dateStr = new Date().toLocaleString();
+            console.log(dateStr, "[收到客户端数据: " + cmdName + ":" + JSON.stringify(message) + "]");
         })
         conn.once("close", (code, reason) => {
             let uid = MyWebSocket.instance.connectMap.getKeyByValue(conn);
@@ -195,22 +180,68 @@ export class MyWebSocket {
         });
     }
 
-    /**
-     * 登陆
-     * @param data 
-     */
-    private _login(data: Cmd.Login_C, conn: any): void {
+    private _checkUid(conn, data: Cmd.Login_C): void {
+        let uid = data.uid;
+        let oldConn = MyWebSocket.instance.connectMap.get(uid);
+        if (oldConn) {
+            console.log(`检测到已有玩家登陆此账号，将其踢出连接`);
+            const info: Cmd.SameUidLogin_S = new Cmd.SameUidLogin_S();
+            MyWebSocket.instance.sendMsg(uid, info);
 
-    };
+            MyWebSocket.instance.connectMap.set(uid, conn);
+            MyWebSocket.instance.heartMap.set(uid, 0);
+            let playerData = PlayerCenter.playerDataMap.get(uid);
+            PlayerCenter.sendPlayerData(uid, playerData.itemInfo, playerData.taskInfo)
+        }
+        else {
+            MyWebSocket.instance.connectMap.set(uid, conn);
+            MyWebSocket.instance.heartMap.set(uid, 0);
+            SQLServe.instance.seekLogin(data)
+        }
+    }
+
+
 
     /**
      * 玩家离线操作
      * @param uid 
      */
-    public onPlayerOffline(uid: number): void {
+    public onPlayerOffline(uid: string): void {
         SQLServe.instance.setUserData(uid);
         PlayerCenter.remove(uid);
         MyWebSocket.instance.heartMap.remove(uid);
         console.log("uid为:" + uid + "玩家断线")
+    }
+
+
+    /**
+     * 获取微信OpenID
+     * @param code 
+     */
+    public getWXOpenID(conn, data: Cmd.Login_C): void {
+        var appId = 'wx2f26847a6393a178';
+        var secret = '4af1b2014ffa5e37b5f5172c1195eb9e';
+        let url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + secret + '&js_code=' + data.password + '&grant_type=authorization_code';
+        https.get(url, function (res) {
+            var datas = [];
+            var size = 0;
+            res.on('data', function (data) {
+                datas.push(data);
+                size += data.length;
+            });
+            res.on("end", function () {
+                // var result = datas.toString();
+                var buff = Buffer.concat(datas, size);
+                var resultStr = buff.toString();//不需要转编码,直接tostring  
+                let result = JSON.parse(resultStr)
+                console.log(result);
+                let openid = result["openid"]
+                data.uid = openid
+                MyWebSocket.instance._checkUid(conn, data);
+            });
+        }).on("error", function (err) {
+            console.error(err.stack)
+        });
+
     }
 }

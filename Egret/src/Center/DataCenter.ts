@@ -18,15 +18,13 @@ module catchDoll {
 		/*地址*/
 		public host: string = "";
 		/*端口*/
-		public post: number = -1
-
-		// public lastScrollerPos:number = 0
-
+		public post: number = -1;
+		/*微信平台要用的东西js_code*/
+		public js_code:string = "";
 
 		public constructor() {
 			let configData = RES.getRes("config_json");
 			this.isDebug = configData["isDebug"];
-			this.isDebug = false;
 			if (this.isDebug) {
 				this.host = configData["debug"]["host"];
 				this.post = configData["debug"]["post"];
@@ -35,7 +33,6 @@ module catchDoll {
 				this.host = configData["dev"]["host"];
 				this.post = configData["dev"]["post"];
 			}
-			GlobeConst.isDebug = this.isDebug;
 			GlobeConst.host = this.host;
 			GlobeConst.post = this.post;
 		}

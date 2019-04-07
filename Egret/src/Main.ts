@@ -68,11 +68,14 @@ class Main extends eui.UILayer {
     private async runGame() {
         await this.loadResource()
         const result = await RES.getResAsync("description_json")
-        await platform.login();
-        const userInfo = await platform.getUserInfo();
-        console.log(userInfo);
+        if (egret.Capabilities.runtimeType == egret.RuntimeType.WXGAME) {
+            let platform = new WXPlatform();
+            let js_code = await platform.getWXOpenId()
+            console.log(js_code);
+            catchDoll.DataCenter.instance.js_code = String(js_code);
+            // const userInfo = await platform.getUserInfo();
+        }
         this.createGameScene();
-
     }
 
     private async loadResource() {
@@ -85,7 +88,7 @@ class Main extends eui.UILayer {
             }
             await RES.loadGroup("firstLoad", 1);
             await this.loadTheme();
-            
+
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
             await RES.loadGroup("preload", 0, loadingView);
@@ -107,8 +110,6 @@ class Main extends eui.UILayer {
             else {
                 theme = new eui.Theme("resource/default.thm.json", this.stage);
             }
-
-
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
             }, this);
@@ -177,4 +178,6 @@ class Main extends eui.UILayer {
         panel.verticalCenter = 0;
         this.addChild(panel);
     }
+
+
 }
