@@ -47,6 +47,11 @@ module catchDoll {
 		 */
 		public taskBtn: Button;
 
+		/**
+		 * 图鉴按钮
+		 */
+		public illustratedBtn: Button;
+
 
 
 
@@ -65,7 +70,7 @@ module catchDoll {
 			this.setUpBtn = new Button(this.skin["_setUpBtn"]);
 			this.leftBtn = new Button(this.skin["_leftBtn"]);
 			this.rightBtn = new Button(this.skin["_rightBtn"]);
-
+			this.illustratedBtn = new Button(this.skin["_illustratedBtn"])
 
 
 			this.bottomMenu.x = 720;
@@ -130,6 +135,8 @@ module catchDoll {
 			this.leftBtn = null;
 			this.rightBtn.dispose();
 			this.rightBtn = null;
+			this.illustratedBtn.dispose();
+			this.illustratedBtn = null;
 
 			super.dispose();
 		}

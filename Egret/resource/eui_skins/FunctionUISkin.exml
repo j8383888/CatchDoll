@@ -8,18 +8,22 @@
 			<e:Image id="_rightBtn" x="-87.96" y="57.3" source="functionUI_4" scaleX="1" anchorOffsetX="35.5" anchorOffsetY="60.5"/>
 			<e:Scroller width="590" height="142" x="-12.83" y="-16.08" scaleX="1" scaleY="1" anchorOffsetY="0" anchorOffsetX="0" scrollPolicyV="off">
 			<e:Group id="bottomBtnGroup" y="20">
-				<e:Group id="_taskBtn" name="btn1" x="54.61" y="60.92" anchorOffsetX="48.5" anchorOffsetY="55" scaleX="1">
+				<e:Group id="_taskBtn" name="btn1" x="80.35" y="76.07" anchorOffsetX="76" anchorOffsetY="70" scaleX="1">
 					<e:Image x="0" y="0" source="functionUI_18"/>
 					<e:Image x="0" y="0" source="functionUI_1"/>
 					<e:Image x="-48.6" y="39.33" source="functionUI_2"/>
 				</e:Group>
+				<e:Group id="_illustratedBtn" name="btn2" x="204" y="79.11" anchorOffsetX="70" anchorOffsetY="70" scaleX="1">
+					<e:Image x="0" y="0" source="functionUI_18"/>
+					<e:Image x="-1.52" y="-9.12" source="otherRes3_2"/>
+				</e:Group>
 
-				<e:Group name="btn2" id="_registerBtn" x="215.98" y="75.56" scaleX="1" scaleY="1" anchorOffsetX="51" anchorOffsetY="56.5">
+				<e:Group name="btn3" id="_registerBtn" x="337.18" y="75.56" scaleX="1" scaleY="1" anchorOffsetX="51" anchorOffsetY="56.5">
 					<e:Image x="-18.33000000000004" y="-15.059999999999945" source="functionUI_18" scaleX="1" scaleY="1"/>
 					<e:Image x="0" y="0" source="functionUI_8" scaleX="1.1" scaleY="1.1"/>
 
 				</e:Group>
-				<e:Group name="btn3" id="_setUpBtn" x="363.98" y="73.52" scaleX="1" scaleY="1" anchorOffsetX="40" anchorOffsetY="50">
+				<e:Group name="btn4" id="_setUpBtn" x="485.18" y="73.52" scaleX="1" scaleY="1" anchorOffsetX="40" anchorOffsetY="50">
 					<e:Image x="-35.379999999999995" y="-19.519999999999982" source="functionUI_18" scaleX="1" scaleY="1"/>
 					<e:Image x="-15" y="0" source="functionUI_13"/>
 				</e:Group>

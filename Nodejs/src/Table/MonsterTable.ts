@@ -36,6 +36,10 @@ module table {
 		 * 等级
 		 */
 		level: number;
+		/**
+		 * 是否在图鉴中显示
+		 */
+		showInIllustrations: number;
 
 		GetType(): string { return 'table.MonsterTable'; }
 	}

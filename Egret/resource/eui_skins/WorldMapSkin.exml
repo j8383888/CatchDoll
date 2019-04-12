@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="WorldMapSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
 	<e:Image id="bg" source="otherRes1_14" y="0" width="720" height="1280"/>
-	<e:Scroller id="scroller" width="720" height="588" x="0" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="-18">
+	<e:Scroller id="scroller" width="720" height="620" x="0" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="-18">
 		<e:Group id="itemGroup">
-		<e:Group id="_chapterBtn1" x="0" y="50" width="720">
+		<e:Group id="_chapterBtn1" x="0" y="70" width="720">
 			<e:Group y="0" horizontalCenter="0">
-			<e:Image source="otherRes1_18" y="0" x="0"/>
+			<e:Image source="otherRes1_18" y="0" x="0" alpha="0.7"/>
 			<e:Image source="otherRes1_7" x="147" y="15"/>
 			<e:Image y="17.93" x="14.96" scaleX="1" scaleY="1" source="fragment_101"/>
 			<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_301"/>
 			</e:Group>
 			<e:Image y="106" source="otherRes1_20" horizontalCenter="0"/>
 		</e:Group>
-		<e:Group id="_chapterBtn2" x="720" y="50" width="720">
+		<e:Group id="_chapterBtn2" x="720" y="70" width="720">
 			<e:Group y="0" horizontalCenter="0">
-			<e:Image source="otherRes1_18" y="0" x="0"/>
+			<e:Image source="otherRes1_18" y="0" x="0" alpha="0.7"/>
 			<e:Image source="otherRes1_7" x="147" y="15"/>
 			<e:Image y="10.34" x="18" scaleX="1" scaleY="1" source="fragment_102"/>
 			<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_302"/>
 			</e:Group>
 			<e:Image y="106" source="otherRes1_23" horizontalCenter="0"/>
 		</e:Group>
-			<e:Group id="_chapterBtn3" x="1440" y="50" width="720">
+			<e:Group id="_chapterBtn3" x="1440" y="70" width="720">
 				<e:Image source="otherRes1_12" y="-54.54" horizontalCenter="0"/>
 				<e:Image y="119.46" horizontalCenter="-4" source="otherRes2_53"/>
-				<e:Group y="0" horizontalCenter="10">
-				<e:Image source="otherRes1_18" y="0" x="0"/>
+				<e:Group y="-66" horizontalCenter="-10">
+				<e:Image source="otherRes1_18" y="0" x="0" alpha="0.7"/>
 				<e:Image source="otherRes1_7" x="147" y="15"/>
 				<e:Image y="10.34" x="18" scaleX="1" scaleY="1" source="fragment_102"/>
 				<e:Image y="34.33" x="30" scaleX="1" scaleY="1" source="fragment_302"/>

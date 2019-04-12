@@ -33,6 +33,10 @@ module table {
 		 */
 		actionBefore: number;
 		/**
+		 * 等级
+		 */
+		level: number;
+		/**
 		 * 伤血持续时间
 		 */
 		hurtDuration: number[];

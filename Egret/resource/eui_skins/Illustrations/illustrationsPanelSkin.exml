@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="illustrationsPanelSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="bg" x="0" y="0" source="otherRes2_19"/>
-	<e:Image id="closeBtn" source="battle_12" right="0" top="0"/>
+	<e:Image id="closeBtn" right="0" top="0" source="returnBtn"/>
 	<e:Image x="6.48" y="675.48" source="otherRes2_12"/>
 	<e:Group id="switchBtn1" x="43.78" y="710">
 		<e:Image x="0" y="0" source="otherRes2_6"/>
@@ -21,14 +21,18 @@
 		</e:layout>
 	</e:Group>
 	<e:Group y="240.59" x="217">
-		<e:Group x="100.15" y="9.88">
-			<e:Label id="nameLabel" text="小太阳" x="25.2" y="16" textColor="0xFFA066" bold="true" fontFamily="Microsoft YaHei" verticalAlign="justify"/>
-			<e:Image x="-54.57" y="1.52" source="otherRes2_29" scaleX="1" scaleY="1"/>
-		</e:Group>
+
 		<e:Image x="18.8" y="185.91" source="otherRes2_2"/>
-		<e:Image x="66.27" y="249" source="fragment_1"/>
-		<e:Image x="0" y="0" source="fragment_101"/>
-		<e:Image x="47.8" y="71.88" source="monster_1"/>
+		<e:Image id="fragmentImg" x="66.27" y="249" source="fragment_1"/>
+		<e:Group x="0" y="9.88" height="64">
+			<e:Group x="100.15" y="0">
+				<e:Image x="-54.57" y="1.52" source="otherRes2_29" scaleX="1" scaleY="1"/>
+				<e:Label id="nameLabel" text="小太阳" x="-62.8" y="16" textColor="0xFFA066" bold="true" fontFamily="Microsoft YaHei" verticalAlign="justify" anchorOffsetX="0" width="243" textAlign="center"/>
+			</e:Group>
+			<e:Image id="fragmentTopImg" x="0" source="fragment_101" verticalCenter="2"/>
+		</e:Group>
+		<e:Group id="group" width="200" height="200" horizontalCenter="0.5" bottom="140">
+		</e:Group>
 		<e:Label id="fragmentNum" text="0/30" x="123.22" y="259.52" textColor="0xffa066" bold="true" fontFamily="Microsoft YaHei" verticalAlign="justify"/>
 		<e:Group id="UnlockBtn" x="52.420000000000016" y="302.71" scaleX="1" scaleY="1">
 			<e:Image x="0" y="0" source="otherRes2_3"/>

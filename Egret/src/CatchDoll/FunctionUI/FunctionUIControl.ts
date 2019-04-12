@@ -26,13 +26,15 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			this._view.menuBtn.mouseClickHandler = Handler.create(this, this._onClick);
-			
+
 			this._view.registerBtn.mouseClickHandler = Handler.create(this, this._onClicRegister)
 			this._view.setUpBtn.mouseUpHandler = Handler.create(this, this._onClicSetUp)
 			this._view.taskBtn.mouseClickHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.taskPanel);
 			})
-
+			this._view.illustratedBtn.mouseClickHandler = Handler.create(null, () => {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.illustrations);
+			})
 
 
 			this._view.rightBtn.mouseClickHandler = Handler.create(null, () => {
@@ -75,7 +77,7 @@ module catchDoll {
 			UICenter.instance.openUI(commonUI.RegisterPanel)
 		}
 
-		
+
 
 		/**
 		 * 释放

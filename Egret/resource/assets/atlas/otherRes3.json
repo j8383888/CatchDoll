@@ -1,0 +1,65 @@
+{
+  "file": "otherRes3.png",
+  "frames": {
+    "otherRes3_1": {
+      "x": 173,
+      "y": 132,
+      "w": 33,
+      "h": 31,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 33,
+      "sourceH": 31
+    },
+    "otherRes3_2": {
+      "x": 0,
+      "y": 0,
+      "w": 114,
+      "h": 135,
+      "offX": 13,
+      "offY": 0,
+      "sourceW": 140,
+      "sourceH": 140
+    },
+    "otherRes3_3": {
+      "x": 115,
+      "y": 89,
+      "w": 112,
+      "h": 42,
+      "offX": 3,
+      "offY": 10,
+      "sourceW": 120,
+      "sourceH": 60
+    },
+    "otherRes3_4": {
+      "x": 288,
+      "y": 0,
+      "w": 112,
+      "h": 42,
+      "offX": 3,
+      "offY": 10,
+      "sourceW": 120,
+      "sourceH": 60
+    },
+    "otherRes3_5": {
+      "x": 0,
+      "y": 136,
+      "w": 172,
+      "h": 88,
+      "offX": 5,
+      "offY": 2,
+      "sourceW": 180,
+      "sourceH": 90
+    },
+    "otherRes3_6": {
+      "x": 115,
+      "y": 0,
+      "w": 172,
+      "h": 88,
+      "offX": 5,
+      "offY": 2,
+      "sourceW": 180,
+      "sourceH": 90
+    }
+  }
+}

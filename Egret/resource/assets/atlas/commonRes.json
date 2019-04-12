@@ -3,7 +3,7 @@
   "frames": {
     "closeBtnBig": {
       "x": 158,
-      "y": 0,
+      "y": 111,
       "w": 86,
       "h": 85,
       "offX": 9,
@@ -12,8 +12,8 @@
       "sourceH": 100
     },
     "closeBtnSmall": {
-      "x": 0,
-      "y": 112,
+      "x": 158,
+      "y": 197,
       "w": 52,
       "h": 52,
       "offX": 0,
@@ -21,9 +21,29 @@
       "sourceW": 52,
       "sourceH": 52
     },
-    "selectBg1": {
+    "pauseBtn": {
       "x": 0,
       "y": 0,
+      "w": 110,
+      "h": 110,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 110,
+      "sourceH": 110
+    },
+    "returnBtn": {
+      "x": 111,
+      "y": 0,
+      "w": 110,
+      "h": 110,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 110,
+      "sourceH": 110
+    },
+    "selectBg1": {
+      "x": 0,
+      "y": 111,
       "w": 157,
       "h": 55,
       "offX": 0,
@@ -33,7 +53,7 @@
     },
     "selectBg2": {
       "x": 0,
-      "y": 56,
+      "y": 167,
       "w": 157,
       "h": 55,
       "offX": 0,
