@@ -32,18 +32,30 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
      * 进度条文本
      */
     public progressLabel: eui.Label;
+    /**
+     * 进度条
+     */
+    public progressImg: eui.Image;
 
-    public progressRect: eui.Rect;
+    private LoadingEff: egret.MovieClip;
+
+    public LoadingStartPos: eui.Rect;
 
     public constructor() {
         super();
         this.skinName = "LoadingSkin";
+
+        this.LoadingEff = UIUtil.creatMovieClip("LoadingEff")
+        this.LoadingEff.play(-1);
+        this.LoadingEff.x = this.LoadingStartPos.x;
+        this.LoadingEff.y = this.LoadingStartPos.y
+        this.addChild(this.LoadingEff)
     }
 
     public onProgress(current: number, total: number): void {
         let multiple = Math.floor(current / total * 100)
-        this.progressRect.width = 600 * multiple / 100;
-        let cur = multiple
-        this.progressLabel.text = cur + "/100";
+        this.progressImg.width = 600 * multiple / 100;
+        this.LoadingEff.x = this.progressImg.x + this.progressImg.width;
+        this.progressLabel.text = multiple + "/100";
     }
 }

@@ -29,6 +29,9 @@ module catchDoll {
 			for (let item of this._view.chapterBtns) {
 				item.mouseClickHandler = Handler.create(this, this._onClickChapter)
 			}
+			this._view.PumpingCardBtn.mouseUpHandler =Handler.create(null,()=>{
+				SimpleUICenter.instance.openUI(SIMPLE_UI.PumpingCard);
+			})
 
 			this._view.rankBtn.mouseClickHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.rankPanel);

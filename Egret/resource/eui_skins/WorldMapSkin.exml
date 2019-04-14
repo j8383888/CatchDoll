@@ -61,6 +61,7 @@
 
 
 	<e:Image y="526" x="140.3" scaleX="-1" scaleY="1" source="otherRes1_19" alpha="0.5"/>
+	<e:Image id="_PumpingCardBtn" y="1005.7" scaleX="-1" scaleY="1" alpha="1" source="otherRes3_2" x="140"/>
 	<e:Image y="526" x="577.25" scaleX="1" scaleY="1" source="otherRes1_19" alpha="0.5"/>
 
 </e:Skin>

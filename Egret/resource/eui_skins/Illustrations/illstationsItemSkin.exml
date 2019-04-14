@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="illstationsItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="0" y="0" source="otherRes2_9"/>
+	<e:Image x="30.86" y="28.52" source="monster_1" scaleX="0.6" scaleY="0.6" visible="false"/>
+	<e:Image x="6.72" y="137.16" source="otherRes2_1"/>
+	<e:Label id="nameLabel" text="Label" y="144" horizontalCenter="0"/>
+	<e:Group id="renderBox" width="137.33" height="104" x="18.33" y="23" anchorOffsetX="0" anchorOffsetY="0"/>
+</e:Skin>

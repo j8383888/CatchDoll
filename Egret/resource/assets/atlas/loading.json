@@ -1,0 +1,25 @@
+{
+  "file": "loading.png",
+  "frames": {
+    "loading_1": {
+      "x": 0,
+      "y": 34,
+      "w": 639,
+      "h": 25,
+      "offX": 1,
+      "offY": 0,
+      "sourceW": 640,
+      "sourceH": 26
+    },
+    "loading_2": {
+      "x": 0,
+      "y": 0,
+      "w": 647,
+      "h": 33,
+      "offX": 1,
+      "offY": 0,
+      "sourceW": 648,
+      "sourceH": 33
+    }
+  }
+}

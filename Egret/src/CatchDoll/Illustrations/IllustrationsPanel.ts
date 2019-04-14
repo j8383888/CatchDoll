@@ -16,11 +16,11 @@ module catchDoll {
 		/**
 		 * 项list
 		 */
-		private _itemList: any[] = [];
+		private _itemList: illustrationsItem[] = [];
 		/**
-		 * 上一次的龙骨
+		 * 上一次在舞台中央对象
 		 */
-		private _lastMonster: dragonBones.EgretArmatureDisplay = null;
+		private _lastStageCenterTarget: dragonBones.EgretArmatureDisplay | eui.Image = null;
 		/**
 		 * 显示容器
 		 */
@@ -46,11 +46,6 @@ module catchDoll {
 		 * 未选中背景
 		 */
 		private readonly UN_SELECT_BG_SOURCE: string = "otherRes2_5";
-
-		/**
-		 * 上一次的夹子
-		 */
-		private _lastClip: eui.Image;
 
 
 		public constructor() {
@@ -113,24 +108,23 @@ module catchDoll {
 		 */
 		private _clear(): void {
 			for (let item of this._itemList) {
-				if (item instanceof dragonBones.EgretArmatureDisplay) {
-					item.dispose();
+				if (item.renderTarget instanceof dragonBones.EgretArmatureDisplay) {
 					item.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
 				}
 				else {
 					item.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._clickClip, this)
 				}
+				item.dispose();
 				item = null;
 			}
 			this._itemList.length = 0;
 			this.itemGroup.removeChildren();
 			this.group.removeChildren()
-			if (this._lastMonster) {
-				this._lastMonster.dispose();
-				this._lastMonster = null;
-			}
-			if (this._lastClip) {
-				this._lastClip = null;
+			if (this._lastStageCenterTarget) {
+				if (this._lastStageCenterTarget instanceof dragonBones.EgretArmatureDisplay) {
+					this._lastStageCenterTarget.dispose();
+				}
+				this._lastStageCenterTarget = null;
 			}
 
 		}
@@ -139,7 +133,7 @@ module catchDoll {
 		 * 点击夹子
 		 */
 		private _clickClip(e: egret.TouchEvent): void {
-			this._showClip(e.target.name);
+			this._showClip(e.currentTarget.id);
 		}
 
 		/**
@@ -148,11 +142,11 @@ module catchDoll {
 		private _showClip(id: number): void {
 			this.group.removeChildren();
 			let data = ConfigParse.getWholeByProperty(TableCenter.instance.ClipTable, "id", id.toString()) as table.ClipTable;
-			this._lastClip = new eui.Image();
-			this._lastClip.horizontalCenter = 0;
-			this._lastClip.bottom = 20;
-			this._lastClip.source = data.render;
-			this.group.addChild(this._lastClip);
+			this._lastStageCenterTarget = new eui.Image();
+			this._lastStageCenterTarget.horizontalCenter = 0;
+			this._lastStageCenterTarget.bottom = 20;
+			this._lastStageCenterTarget.source = data.render;
+			this.group.addChild(this._lastStageCenterTarget);
 			this.nameLabel.text = data.name;
 			this.fragmentImg.source = "fragment_" + data.level;
 			this.fragmentTopImg.source = "fragment_10" + data.level
@@ -165,20 +159,11 @@ module catchDoll {
 			let table = TableCenter.instance.MonsterTable;
 			for (let i: number = 0; i < table.length; i++) {
 				if (table[i].showInIllustrations) {
-					let dragon: dragonBones.EgretArmatureDisplay = UIUtil.creatDragonbones(table[i].dragonBones);
-					dragon.touchEnabled = true;
-					let group = new eui.Group();
-					group.width = dragon.width;
-					group.height = 200;
-
-					dragon.animation.play(null, 0)
-					dragon.x = dragon.width / 2
-					dragon.y = group.height - dragon.height / 2
-					group.addChild(dragon);
-					dragon.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
-					dragon.name = table[i].id.toString();
-					this.itemGroup.addChild(group);
-					this._itemList.push(dragon);
+					let item = new illustrationsItem();
+					item.setData(table[i].id, table[i].name, table[i].dragonBones, true)
+					item.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickMonster, this)
+					this.itemGroup.addChild(item);
+					this._itemList.push(item);
 				}
 			}
 		}
@@ -187,20 +172,22 @@ module catchDoll {
 		 * 显示一只怪物
 		 */
 		private _showMonster(id: number): void {
-			if (this._lastMonster) {
-				this.group.removeChild(this._lastMonster)
-				this._lastMonster.dispose();
-				this._lastMonster = null;
+			if (this._lastStageCenterTarget) {
+				this.group.removeChild(this._lastStageCenterTarget)
+				if (this._lastStageCenterTarget instanceof dragonBones.EgretArmatureDisplay) {
+					this._lastStageCenterTarget.dispose();
+				}
+				this._lastStageCenterTarget = null;
 			}
 
 			let data = ConfigParse.getWholeByProperty(TableCenter.instance.MonsterTable, "id", id.toString()) as table.MonsterTable;
-			this._lastMonster = UIUtil.creatDragonbones(data.dragonBones)
-			this.group.addChild(this._lastMonster);
-			this.group.width = this._lastMonster.width;
-			this.group.height = this._lastMonster.height;
-			this._lastMonster.animation.play(null, 0)
-			this._lastMonster.x = this.group.width / 2
-			this._lastMonster.y = this.group.height / 2
+			this._lastStageCenterTarget = UIUtil.creatDragonbones(data.dragonBones)
+			this.group.addChild(this._lastStageCenterTarget);
+			this.group.width = this._lastStageCenterTarget.width;
+			this.group.height = this._lastStageCenterTarget.height;
+			this._lastStageCenterTarget.animation.play(null, 0)
+			this._lastStageCenterTarget.x = this.group.width / 2
+			this._lastStageCenterTarget.y = this.group.height / 2
 			this.nameLabel.text = data.name;
 			this.fragmentImg.source = "fragment_" + data.level;
 			this.fragmentTopImg.source = "fragment_10" + data.level
@@ -212,12 +199,11 @@ module catchDoll {
 		private _showAllClip(): void {
 			let table = TableCenter.instance.ClipTable;
 			for (let i: number = 0; i < table.length; i++) {
-				let img = new eui.Image();
-				img.source = table[i].render;
-				img.name = table[i].id.toString();
-				img.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickClip, this);
-				this.itemGroup.addChild(img);
-				this._itemList.push(img);
+				let item = new illustrationsItem();
+				item.setData(table[i].id, table[i].name, table[i].render, false)
+				item.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clickClip, this);
+				this.itemGroup.addChild(item);
+				this._itemList.push(item);
 			}
 		}
 
@@ -225,7 +211,7 @@ module catchDoll {
 		 * 点击
 		 */
 		private _clickMonster(e: egret.TouchEvent): void {
-			this._showMonster(e.target.name)
+			this._showMonster(e.currentTarget.id)
 		}
 
 

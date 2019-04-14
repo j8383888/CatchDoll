@@ -34,6 +34,10 @@ module catchDoll {
 		 * 转盘按钮
 		 */
 		public turnTableBtn: Button;
+		/**
+		 * 抽卡按钮
+		 */
+		public PumpingCardBtn: Button;
 
 
 
@@ -82,7 +86,7 @@ module catchDoll {
 			this.rankBtn = new Button(this.skin["_rankBtn"]);
 			this.inventBtn = new Button(this.skin["_inventBtn"]);
 			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
-
+			this.PumpingCardBtn = new Button(this.skin["_PumpingCardBtn"]);
 
 		}
 
@@ -126,7 +130,8 @@ module catchDoll {
 			this.shopBtn = null;
 			this.turnTableBtn.dispose();
 			this.turnTableBtn = null;
-
+			this.PumpingCardBtn.dispose();
+			this.PumpingCardBtn = null;
 			this.rankBtn.dispose();
 			this.rankBtn = null;
 			this.inventBtn.dispose();

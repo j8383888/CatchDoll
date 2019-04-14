@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PumpingCardPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" x="0" y="0" source="otherRes2_19"/>
+	<e:Group id="_oneBuy" x="180.44" y="552.85">
+		<e:Image x="0" y="0" source="otherRes3_6"/>
+		<e:Image x="30" y="15" source="otherRes3_3"/>
+	</e:Group>
+	<e:Group id="_tenBuy" x="378.26" y="552.85">
+		<e:Image x="0" y="0" source="otherRes3_5"/>
+		<e:Image x="30" y="15" source="otherRes3_4"/>
+	</e:Group>
+	<e:Image x="6.48" y="675.48" source="otherRes2_12"/>
+	<e:Image y="413.18" source="otherRes2_2" horizontalCenter="0"/>
+	<e:Image id="closeBtn" right="0" top="0" source="returnBtn"/>
+	<e:Rect id="dragonPos" y="397.54" x="353.88"/>
+</e:Skin>

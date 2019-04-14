@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PumpingCardItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="levelBg" x="0" y="0" source="fragment_401"/>
+	<e:Group x="1" y="8">
+		<e:Image id="levelImg" source="fragment_101"/>
+		<e:Image id="levelFont" source="fragment_301" horizontalCenter="0" verticalCenter="-7.5"/>
+	</e:Group>
+	<e:Group id="renderBox" width="200" height="200" y="19" x="15"/>
+	<e:Image id="starBoxBg" verticalCenter="88" source="fragment_501" horizontalCenter="0.5" scaleX="0.8" scaleY="0.8"/>
+	<e:Group id="starBox" y="207" horizontalCenter="0">
+		<e:layout>
+		<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>
