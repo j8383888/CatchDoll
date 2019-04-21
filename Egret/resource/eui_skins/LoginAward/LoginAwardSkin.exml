@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginAwardSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="otherRes3_9" y="15.15"/>
+	<e:Image id="closeBtn" x="593.38" y="-19.07" source="functionPanel_4"/>
+	<e:Group x="188.5" y="814.54">
+		<e:Image x="0" y="0" source="otherRes3_12"/>
+		<e:Image source="otherRes3_25" horizontalCenter="0.5" verticalCenter="-3.5"/>
+	</e:Group>
+	<e:Image y="31.18" source="otherRes3_13" horizontalCenter="0"/>
+	<e:Group id="itemGroup" width="542.42" height="610.61" y="133.48" anchorOffsetX="0" anchorOffsetY="0" x="59">
+		<e:layout>
+			<e:TileLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

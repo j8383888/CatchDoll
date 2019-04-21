@@ -9,7 +9,7 @@ module catchDoll {
 
 		public constructor() {
 			super()
-			this.skinName = "";
+			this.skinName = "LoginAwardSkin";
 		}
 
 		/**

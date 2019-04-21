@@ -13,6 +13,8 @@
 		"resource/eui_skins/Illustrations/illstationsItemSkin.exml",
 		"resource/eui_skins/Illustrations/illustrationsPanelSkin.exml",
 		"resource/eui_skins/LoadingSkin.exml",
+		"resource/eui_skins/LoginAward/LoaginAwardItemSkin.exml",
+		"resource/eui_skins/LoginAward/LoginAwardSkin.exml",
 		"resource/eui_skins/PawsSkin.exml",
 		"resource/eui_skins/PumpingCard/PumpingCardItemSkin.exml",
 		"resource/eui_skins/PumpingCard/PumpingCardPanelSkin.exml",

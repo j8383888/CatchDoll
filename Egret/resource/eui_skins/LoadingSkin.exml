@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LoadingSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="BattleBg_21_png"/>
+	<e:Image id="bg" source="BattleBg_21_png" top="0" bottom="0"/>
 
-	<e:Label text="Loading..." y="558" size="60" horizontalCenter="8"/>
-	<e:Label id="progressLabel" text="1/1" y="640" size="60" anchorOffsetX="0" width="438" textAlign="center" horizontalCenter="0"/>
-	<e:Rect id="LoadingStartPos" x="54.71" y="727.3"/>
-	<e:Image y="712.6" source="loading_2" horizontalCenter="0"/>
-	<e:Image id="progressImg" y="715.27" source="loading_1" fillMode="clip" x="41.95" width="10"/>
+
+
+
+
+	<e:Group id="group" x="36" verticalCenter="0">
+		<e:Label text="Loading..." y="0" size="60" x="200"/>
+		<e:Label id="progressLabel" text="1/1" y="82" size="60" anchorOffsetX="0" width="438" textAlign="center" x="105"/>
+		<e:Rect id="LoadingStartPos" x="18.71" y="169.3"/>
+		<e:Image y="154.6" source="loading_2" x="0"/>
+		<e:Image id="progressImg" y="157.27" source="loading_1" fillMode="clip" x="5.95" width="10"/>
+	</e:Group>
 </e:Skin>

@@ -107,8 +107,8 @@ module catchDoll {
 				}
 
 				if (item.exportData.length == 1) {
-					varsData.bornX = item.exportData[0].x;
-					varsData.bornY = item.exportData[0].y;
+					varsData.bornX = item.exportData[0].x
+					varsData.bornY = item.exportData[0].y + GameCenter.stageHOffset;
 				}
 				else {
 					varsData.fixedRotation = item.fixedRotation;
@@ -128,7 +128,12 @@ module catchDoll {
 			for (let item of this.curLevelData.mapData) {
 				let img: eui.Image = Pool.getItemByCreateFun(Pool.sceneImg, Handler.create(this, this._creatSecneImg, null, true))
 				img.x = item.x;
-				img.y = item.y;
+				if (item.y < 200) {
+					img.y = item.y
+				}
+				else {
+					img.y = item.y + GameCenter.stageHOffset;
+				}
 				img.width = item.width;
 				img.height = item.height;
 				img.source = item.source;
@@ -151,7 +156,7 @@ module catchDoll {
 			for (let item of this.curLevelData.effData) {
 				let mov = UIUtil.creatMovieClip(item.source);
 				mov.x = item.x;
-				mov.y = item.y;
+				mov.y = item.y + GameCenter.stageHOffset;
 				mov.gotoAndPlay(1, -1);
 				LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT_LOW)
 				this._effBox.push(mov);

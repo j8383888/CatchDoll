@@ -23,18 +23,34 @@ module catchDoll {
 		public static stageW: number = 0
 		/*舞台高*/
 		public static stageH: number = 0;
+		/**
+		 * 垂直方向适配比例
+		 */
+		public static adpateScaleY: number = 1;
+
+		public static stageHOffset: number = 0;
 
 
 		public constructor() {
 			super();
 			this._init();
 			this.addEventListener(egret.Event.ENTER_FRAME, this._enterFrame, this);
+			egret.MainContext.instance.stage.addEventListener(egret.Event.RESIZE, this._onResize, this, true, 1000)
+		}
+
+		private _onResize(): void {
+			GameCenter.stageW = egret.MainContext.instance.stage.stageWidth;
+			GameCenter.stageH = egret.MainContext.instance.stage.stageHeight;
+			GameCenter.adpateScaleY = GameCenter.stageH / 1280;
+			GameCenter.stageHOffset = GameCenter.stageH - 1280
 		}
 
 		private _init(): void {
 			Laya.init();
 			GameCenter.stageW = egret.MainContext.instance.stage.stageWidth;
 			GameCenter.stageH = egret.MainContext.instance.stage.stageHeight;
+			GameCenter.adpateScaleY = GameCenter.stageH / 1280;
+			GameCenter.stageHOffset = GameCenter.stageH - 1280
 			this.gameObjectManager = GameObjectManager.instance;
 			this.layerManager = LayerManager.instance;
 			this.operationManager = OperationManager.instance;
@@ -87,6 +103,8 @@ module catchDoll {
 
 
 			this.removeEventListener(egret.Event.ENTER_FRAME, this._enterFrame, this);
+			egret.MainContext.instance.stage.removeEventListener(egret.Event.RESIZE, this._onResize, this)
+
 		}
 	}
 }

@@ -28,13 +28,37 @@ module catchDoll {
 		/*通用关闭按钮*/
 		public commonCloseBtn: Button = null;
 
+		public isWholeScene: boolean = false;
+
 		public constructor(enterEff: POP_EFFECT = POP_EFFECT.CENTER, blackBg: boolean = false, alpha: number = 0.5) {
 			super();
 			this._alpha = alpha;
 			this._hasBlackBg = blackBg;
 			this._enterEff = enterEff;
-
 			this.once(eui.UIEvent.CREATION_COMPLETE, this._creationComplete, this);
+			egret.MainContext.instance.stage.addEventListener(egret.Event.RESIZE, this._onResize, this);
+		}
+
+		/**
+		 * 适配 
+		 */
+		private _onResize(): void {
+			if (this.isWholeScene) {
+				if (this.skin["bg"] != null) {
+					this.skin["bg"].height = GameCenter.stageH;
+				}
+				this.height = GameCenter.stageH;
+			}
+			else {
+				this.y = (GameCenter.stageH - this.height) / 2;
+			}
+			if (this._hasBlackBg) {
+				this._blakBG.graphics.clear();
+				this._blakBG.graphics.beginFill(0x000000, this._alpha);
+				this._blakBG.graphics.drawRect(0, 0, GameCenter.stageW, GameCenter.stageH);
+				this._blakBG.graphics.endFill();
+			}
+
 		}
 
 		/**
@@ -49,6 +73,8 @@ module catchDoll {
 		 * 加载完毕并放置到舞台上
 		 */
 		private _creationComplete(e: egret.Event): void {
+			console.log("打开面板" + this.skinName)
+
 			this._selfAdaption();
 			this.showEnterEff();
 			this._drawDragRect();
@@ -67,6 +93,7 @@ module catchDoll {
 		public _selfAdaption() {
 			if (this.skin["bg"] != null) {
 				this._panelWidth = this.skin["bg"].width;
+
 				this._panelHeight = this.skin["bg"].height;
 				this._panelX = this.skin["bg"].x;
 				this._panelY = this.skin["bg"].y;
@@ -75,6 +102,23 @@ module catchDoll {
 				this._panelWidth = this.width;
 				this._panelHeight = this.height;
 			}
+
+			/**
+			 * 垂直拉伸背景
+			 */
+			if (this._panelHeight == 1280) {
+				this._panelHeight = GameCenter.stageH;
+				if (this.skin["bg"] != null) {
+					this.skin["bg"].height = GameCenter.stageH;
+				}
+				else {
+					console.assert(true, "请设置背景ID为bg！")
+				}
+				this.height = GameCenter.stageH;
+				this.isWholeScene = true;
+			}
+
+
 			this._posX = (GameCenter.stageW - this._panelWidth) / 2 - this._panelX;
 			this._posY = (GameCenter.stageH - this._panelHeight) / 2 - this._panelY;
 		}
@@ -184,6 +228,7 @@ module catchDoll {
 			// this._drawBar.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this._outsideDrag, this);
 			// egret.MainContext.instance.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this._onDrag, this);
 			LayerManager.instance.removeFromLayer(this);
+			egret.MainContext.instance.stage.removeEventListener(egret.Event.RESIZE, this._onResize, this);
 			if (this._enterEff != POP_EFFECT.NORMAL) {
 				egret.Tween.removeTweens(this);
 			}

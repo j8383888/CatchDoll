@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="FunctionUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
-
-	<e:Image id="_leftBtn" x="686.08" y="1193.7" source="functionUI_4" scaleX="-1" anchorOffsetX="35.5" anchorOffsetY="60.5"/>
-	<e:Group id="bottomMenu" x="0" y="1092.03">
-		<e:Image x="0" y="0" source="functionUI_12" scale9Grid="100,47,600,96" anchorOffsetX="0" width="871"/>
-		<e:Group x="137.52" y="35.44">
-			<e:Image id="_rightBtn" x="-87.96" y="57.3" source="functionUI_4" scaleX="1" anchorOffsetX="35.5" anchorOffsetY="60.5"/>
-			<e:Scroller width="590" height="142" x="-12.83" y="-16.08" scaleX="1" scaleY="1" anchorOffsetY="0" anchorOffsetX="0" scrollPolicyV="off">
-			<e:Group id="bottomBtnGroup" y="20">
-				<e:Group id="_taskBtn" name="btn1" x="80.35" y="76.07" anchorOffsetX="76" anchorOffsetY="70" scaleX="1">
-					<e:Image x="0" y="0" source="functionUI_18"/>
-					<e:Image x="0" y="0" source="functionUI_1"/>
-					<e:Image x="-48.6" y="39.33" source="functionUI_2"/>
-				</e:Group>
-				<e:Group id="_illustratedBtn" name="btn2" x="204" y="79.11" anchorOffsetX="70" anchorOffsetY="70" scaleX="1">
-					<e:Image x="0" y="0" source="functionUI_18"/>
-					<e:Image x="-1.52" y="-9.12" source="otherRes3_2"/>
-				</e:Group>
-
-				<e:Group name="btn3" id="_registerBtn" x="337.18" y="75.56" scaleX="1" scaleY="1" anchorOffsetX="51" anchorOffsetY="56.5">
-					<e:Image x="-18.33000000000004" y="-15.059999999999945" source="functionUI_18" scaleX="1" scaleY="1"/>
-					<e:Image x="0" y="0" source="functionUI_8" scaleX="1.1" scaleY="1.1"/>
-
-				</e:Group>
-				<e:Group name="btn4" id="_setUpBtn" x="485.18" y="73.52" scaleX="1" scaleY="1" anchorOffsetX="40" anchorOffsetY="50">
-					<e:Image x="-35.379999999999995" y="-19.519999999999982" source="functionUI_18" scaleX="1" scaleY="1"/>
-					<e:Image x="-15" y="0" source="functionUI_13"/>
-				</e:Group>
-			</e:Group>
-			</e:Scroller>
-		</e:Group>
-	</e:Group>
-
-	<e:Group x="388.58" y="52.24">
+	<e:Group y="0" x="10">
+		<e:Group x="388.58" y="52.24">
 		<e:Image x="0" y="0" source="otherRes1_11"/>
 		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45"/>
 		<e:Image x="-26" y="-8" source="functionUI_7"/>
 		<e:Label id="diamond" text="0" x="6" y="8" anchorOffsetX="0" width="90" textAlign="right" scaleX="1" scaleY="1"/>
-	</e:Group>
-	<e:Group x="171.85" y="52.24">
+		</e:Group>
+		<e:Group x="171.85" y="52.24">
 		<e:Image x="0" y="0" source="otherRes1_11"/>
 		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45" scaleX="1" scaleY="1"/>
 		<e:Image x="-26" y="-8" source="functionUI_16"/>
 		<e:Label id="money" text="0" x="6" y="9" anchorOffsetX="0" width="90" textAlign="right"/>
-	</e:Group>
-	<e:Image id="_menuBtn" source="functionUI_9" scaleX="0.8" scaleY="0.8" x="588.29" y="25.75"/>
-	<e:Group x="0" y="0">
+		</e:Group>
+		<e:Image id="_menuBtn" source="functionUI_9" scaleX="0.8" scaleY="0.8" x="588.29" y="10.6"/>
+		<e:Group x="0" y="0">
 		<e:Image id="headImg" scaleX="0.8" scaleY="0.8" source="otherRes1_3" horizontalCenter="0" verticalCenter="0"/>
 		<e:Image scaleX="0.8" scaleY="0.8" source="otherRes1_6" x="0" y="0"/>
+		</e:Group>
 	</e:Group>
+	<e:Image id="_leftBtn" x="686.91" source="functionUI_4" scaleX="-1" anchorOffsetX="35.5" anchorOffsetY="60.5" bottom="33"/>
+	<e:Group id="bottomMenu" x="0" bottom="0">
+		<e:Image x="0" y="0" source="functionUI_12" scale9Grid="100,47,600,96" anchorOffsetX="0" width="871"/>
+		<e:Group x="137.52" y="35.44">
+		<e:Image id="_rightBtn" x="-87.96" y="57.3" source="functionUI_4" scaleX="1" anchorOffsetX="35.5" anchorOffsetY="60.5"/>
+		<e:Scroller width="590" height="142" x="-12.83" y="-16.08" scaleX="1" scaleY="1" anchorOffsetY="0" anchorOffsetX="0" scrollPolicyV="off">
+			<e:Group id="bottomBtnGroup" y="20">
+			<e:Group id="_taskBtn" name="btn1" x="80.35" y="76.07" anchorOffsetX="76" anchorOffsetY="70" scaleX="1">
+				<e:Image x="0" y="0" source="functionUI_18"/>
+				<e:Image x="0" y="0" source="functionUI_1"/>
+				<e:Image x="-48.6" y="39.33" source="functionUI_2"/>
+			</e:Group>
+			<e:Group id="_illustratedBtn" name="btn2" x="204" y="79.11" anchorOffsetX="70" anchorOffsetY="70" scaleX="1">
+				<e:Image x="0" y="0" source="functionUI_18"/>
+				<e:Image x="-1.52" y="-9.12" source="otherRes3_2"/>
+			</e:Group>
+			<e:Group name="btn3" id="_registerBtn" x="337.18" y="75.56" scaleX="1" scaleY="1" anchorOffsetX="51" anchorOffsetY="56.5">
+				<e:Image x="-18.33000000000004" y="-15.059999999999945" source="functionUI_18" scaleX="1" scaleY="1"/>
+				<e:Image x="0" y="0" source="functionUI_8" scaleX="1.1" scaleY="1.1"/>
+			</e:Group>
+			<e:Group name="btn4" id="_setUpBtn" x="485.18" y="73.52" scaleX="1" scaleY="1" anchorOffsetX="40" anchorOffsetY="50">
+				<e:Image x="-35.379999999999995" y="-19.519999999999982" source="functionUI_18" scaleX="1" scaleY="1"/>
+				<e:Image x="-15" y="0" source="functionUI_13"/>
+			</e:Group>
+			</e:Group>
+		</e:Scroller>
+		</e:Group>
+	</e:Group>
+
+
+
+
+
+
+
+
 </e:Skin>

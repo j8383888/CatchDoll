@@ -28,14 +28,11 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			let levelData = this._dataCenter.openParam
-			this._view.bgSource.source = levelData.bgSource
+			this._view.bg.source = levelData.bgSource
 			LevelCreate.instance.init(levelData);
 			this._view.leftRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickLeft, this);
 			this._view.rightRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickRight, this);
 			this._view.downRect.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickDown, this);
-			this._view.downOp.mouseClickHandler = Handler.create(this, this._onClickDown);
-			this._view.leftOp.mouseClickHandler = Handler.create(this, this._onClickLeft);
-			this._view.rightOp.mouseClickHandler = Handler.create(this, this._onClickRight);
 
 			this._view.returnBtn.mouseClickHandler = Handler.create(this, this._clickReturnBtn);
 			this._view.timeLabel.text = this._timeNum.toString();

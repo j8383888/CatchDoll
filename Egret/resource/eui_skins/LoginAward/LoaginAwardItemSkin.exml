@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoaginAwardItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="otherRes3_10"/>
+	<e:Label id="dayLabel" text="星期一" y="17" horizontalCenter="0"/>
+	<e:Label id="alreadyGet" text="已领取" y="153" horizontalCenter="0"/>
+</e:Skin>

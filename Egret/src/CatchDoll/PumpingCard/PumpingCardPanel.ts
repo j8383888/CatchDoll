@@ -55,6 +55,7 @@ module catchDoll {
 		 */
 		private _onOneBuy(): void {
 			this._oneBuyDragon.animation.play("lv-Skill");
+			this.oneBuy.enabled = this.tenBuy.enabled = false;
 			Laya.timer.once(800, this, this._showCard)
 		}
 
@@ -64,9 +65,10 @@ module catchDoll {
 		private _showCard(): void {
 			let card = new PumpingCardItem();
 			card.setData(MathUtil.random(1, 19))
-			egret.Tween.get(card).set({ alpha: 0, x: this.dragonPos.x, y: this.dragonPos.y - 10, scaleX: 0.5, scaleY: 0.5 }).to({ alpha: 1, y: this.dragonPos.y - 200, scaleX: 1, scaleY: 1 }, 1000).wait(2000).to({
+			egret.Tween.get(card).set({ alpha: 0, x: this.dragonPos.x, y: this.dragonPos.y - 10, scaleX: 0.5, scaleY: 0.5 }).to({ alpha: 1, y: this.dragonPos.y - 200, scaleX: 0.7, scaleY: 0.7 }, 1000).wait(2000).to({
 				alpha: 0
 			}, 200).call(() => {
+				this.oneBuy.enabled = this.tenBuy.enabled = true;
 				card.dispose();
 				this.removeChild(card);
 			})

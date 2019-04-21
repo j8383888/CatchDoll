@@ -98,7 +98,7 @@ module catchDoll {
 						let mov = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
 						mov.gotoAndPlay(1, 1);
 						mov.x = this.pathNodes[i].x;
-						mov.y = this.pathNodes[i].y - 50;
+						mov.y = (this.pathNodes[i].y - 50) + GameCenter.stageHOffset;
 						mov.scaleY = 1
 						LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT_HIGH)
 						mov.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -109,7 +109,7 @@ module catchDoll {
 						let mov2 = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
 						mov2.gotoAndPlay(1, 1);
 						mov2.x = this.pathNodes[i + 1].x;
-						mov2.y = this.pathNodes[i + 1].y;
+						mov2.y = this.pathNodes[i + 1].y + GameCenter.stageHOffset;
 						mov2.scaleY = -1;
 						LayerManager.instance.addToLayer(mov2, LAYER.BATTLE_EFFECT_HIGH)
 						mov2.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -139,7 +139,7 @@ module catchDoll {
 			let offsety = offsetDist / distNext * (nextPath.y - curPath.y);
 
 			monster.x = (curPath.x + offsetx);
-			monster.y = (curPath.y + offsety);
+			monster.y = (curPath.y + offsety) + GameCenter.stageHOffset;
 			monster.dragonBones.scaleX = curPath.scaleX;
 			/**
 			 * 未锁定角度

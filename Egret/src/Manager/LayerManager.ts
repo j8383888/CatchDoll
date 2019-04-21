@@ -16,16 +16,20 @@ module catchDoll {
 		 * 跟节点
 		 */
 		private _root: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+		/**
+		 * Y方向适配偏移
+		 */
+		public adapteOffsetY: number = 0;
 
 		constructor() {
 			egret.MainContext.instance.stage.addChild(this._root);
 			for (let i: number = LAYER.BG; i < LAYER.LOADING + 1; i++) {
 				let layer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
-				// layer.touchChildren = false;
 				this._layerMap.set(i, layer);
 				this._root.addChild(layer);
 			}
 
+			this.adapteOffsetY = (GameCenter.stageH - 1280) / 2
 		}
 
 		/**

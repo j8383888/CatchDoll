@@ -210,7 +210,7 @@ module catchDoll {
 
 			let exportData = varsData.exportData[0];
 			this.x = exportData.x;
-			this.y = exportData.y;
+			this.y = exportData.y + GameCenter.stageHOffset;
 			this.alpha = 0
 			this.isOpen = false;
 			egret.Tween.get(this).to({ alpha: 1 }, 2000).call(() => {
@@ -228,7 +228,7 @@ module catchDoll {
 			mov.alpha = 0;
 
 			mov.x = varsData.exportData[0].x;
-			mov.y = varsData.exportData[0].y;
+			mov.y = varsData.exportData[0].y + GameCenter.stageHOffset;
 			mov.gotoAndPlay(1, -1);
 			LayerManager.instance.addToLayer(mov, LAYER.BATTLE_HIGH)
 

@@ -15,11 +15,14 @@
 		<e:Image x="0" y="0" source="otherRes2_4"/>
 		<e:Image x="15.85" y="10.59" source="otherRes2_7"/>
 	</e:Group>
-	<e:Group id="itemGroup" x="65.83" y="797.75" anchorOffsetX="0" width="627.27" anchorOffsetY="0" height="401.52">
-		<e:layout>
-			<e:TileLayout horizontalAlign="center" verticalAlign="middle"/>
-		</e:layout>
-	</e:Group>
+	<e:Scroller width="630" height="400" y="791.95" x="80.9">
+		<e:Group id="itemGroup" x="30.3">
+			<e:layout>
+				<e:TileLayout/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+
 	<e:Group y="240.59" x="217">
 
 		<e:Image x="18.8" y="185.91" source="otherRes2_2"/>

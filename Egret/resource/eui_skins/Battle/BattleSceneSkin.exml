@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="BattleSceneSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bgSource" x="0" source="" width="720" height="1280"/>
-	<e:Rect width="720" height="1280" y="0" fillColor="0x605252" visible="false"/>
-
-
-
-
-
-
-
-
-
-
-	<e:Image x="0" y="200" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17" width="720"/>
-
-
-
-
-
-
-
-
+	<e:Image id="bg" source="" width="720" height="1280"/>
+	<e:Image x="0" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17" width="720" top="200"/>
 	<e:Group id="btnGroup" x="0" y="0" touchEnabled="false" height="1280">
-		<e:Rect id="leftRect" width="240" height="1280" x="0" y="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0"/>
-		<e:Rect id="downRect" width="240" height="1280" x="240" y="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0"/>
-		<e:Rect id="rightRect" width="240" height="1280" fillAlpha="0" strokeAlpha="0" x="480" anchorOffsetY="0" anchorOffsetX="0" y="0"/>
+		<e:Rect id="leftRect" width="240" x="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
+		<e:Rect id="downRect" width="240" x="240" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
+		<e:Rect id="rightRect" width="240" fillAlpha="0" strokeAlpha="0" x="480" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
 		<e:Group y="2.02" horizontalCenter="0" x="285" scaleX="1" scaleY="1">
-			<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
-			<e:Label id="timeLabel" text="999" x="85.09" y="88.31" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
+		<e:Image id="_returnBtn0" y="0" x="0" source="battle_9"/>
+		<e:Label id="timeLabel" text="999" x="85.09" y="88.31" width="74" textAlign="center" anchorOffsetX="37" anchorOffsetY="20" size="40"/>
 		</e:Group>
 		<e:Image x="0" y="0" source="pauseBtn" visible="false"/>
 		<e:Image id="_returnBtn" x="610" y="-111" source="returnBtn"/>
-		<e:Image id="_propBtn1" x="56" y="570" source="battle_19" scaleX="-1" alpha="1"/>
-		<e:Group id="propBox" x="-203" y="380" width="203">
-			<e:Image x="0" y="0" source="battle_18"/>
-			<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
-			<e:Image id="prop1" x="72" y="70" source="item_6" anchorOffsetX="54.5" anchorOffsetY="50.5"/>
-			<e:Image id="prop2" x="73" y="175.67" source="item_5" anchorOffsetX="44" anchorOffsetY="49.5"/>
-			<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
-			<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
+		<e:Image id="_propBtn1" x="56" source="battle_19" scaleX="-1" alpha="1" verticalCenter="0"/>
+		<e:Group id="propBox" x="-203" width="203" verticalCenter="0">
+		<e:Image x="0" y="0" source="battle_18"/>
+		<e:Image id="_propBtn2" x="168" y="226" source="battle_19" anchorOffsetX="37.5" anchorOffsetY="37.5"/>
+		<e:Image id="prop1" x="72" y="70" source="item_6" anchorOffsetX="54.5" anchorOffsetY="50.5"/>
+		<e:Image id="prop2" x="73" y="175.67" source="item_5" anchorOffsetX="44" anchorOffsetY="49.5"/>
+		<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
+		<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
 		</e:Group>
-		<e:Image id="_downOp" alpha="1" source="otherRes2_51" x="275" y="1110"/>
-		<e:Image id="_rightOp" alpha="1" source="otherRes2_18" x="560" y="1120"/>
-		<e:Image id="_leftOp" source="otherRes2_18" alpha="1" scaleX="-1" x="160" y="1120"/>
+		<e:Group id="OpGroup" x="160" bottom="0">
+			<e:Image alpha="1" source="otherRes2_51" x="115" y="0"/>
+			<e:Image alpha="1" source="otherRes2_18" x="400" y="10"/>
+			<e:Image source="otherRes2_18" alpha="1" scaleX="-1" x="0" y="10"/>
+		</e:Group>
 	</e:Group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </e:Skin>
