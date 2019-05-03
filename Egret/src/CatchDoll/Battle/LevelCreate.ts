@@ -62,6 +62,7 @@ module catchDoll {
 
 		}
 
+
 		/**
 		 * 初始化
 		 */
@@ -176,65 +177,72 @@ module catchDoll {
 			let i: number = 0;
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
 				let monster: Monster = monsterMap.values[i];
-				if (!monster.isOpen || monster.isHide) {
+				if (!monster.isOpen || monster.isHide || monster.isMiss) {
 					continue;
 				}
 				let monsterColliderAry = monster.colliderAry
 				let pawColliderAry = paw.colliderAry
 				if (GameObjectCollider.isIntersect(monsterColliderAry, pawColliderAry)) {
-					paw.isOpen = false;
-					monster.isOpen = false;
-					this._catchMonster = monster;
-					monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
-					let transform = monster.dragonBones.armature.getBone("centre").global
-					monster.haemalGroup.x = transform.x;
-					monster.haemalGroup.y = transform.y;
-					egret.Tween.removeTweens(paw.pawsBody.pawsHead);
+					if (Math.abs(paw.x - monster.x) < monsterColliderAry[0].radius / 2) {
+						paw.isOpen = false;
+						monster.isOpen = false;
+						this._catchMonster = monster;
+						monster.dragonBones.animation.gotoAndStopByTime("Walk", 0);
+						let transform = monster.dragonBones.armature.getBone("centre").global
+						monster.haemalGroup.x = transform.x;
+						monster.haemalGroup.y = transform.y;
+						egret.Tween.removeTweens(paw.pawsBody.pawsHead);
 
-					/*血条缩短*/
-					let targetWidth: number = 0;
-					monster.life -= paw.pawsBody.hurt;
-					if (monster.life <= 0) {
-						monster.life = 0;
-						targetWidth = 0;
-						monster.x = paw.x;
-						monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
-						monster.unregisterOperation();
+						/*血条缩短*/
+						let targetWidth: number = 0;
+						monster.life -= paw.pawsBody.hurt;
+						if (monster.life <= 0) {
+							monster.life = 0;
+							targetWidth = 0;
+							monster.x = paw.x;
+							monster.y = paw.pawsBody.pawsHead.y + paw.y + monster.offsetY;
+							monster.unregisterOperation();
+						}
+						else {
+							targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
+						}
+						/*血条缩短Tween*/
+						egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
+							/**
+							 * 抓住
+							 */
+							if (targetWidth == 0) {
+								let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
+								egret.Tween.get(paw.pawsBody.pawsHead, {
+									onChange: () => {
+										paw.confirmRopeHeight();
+										if (monster) {
+											monster.x = paw.x;
+											monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
+										}
+									},
+									onChangeObj: this,
+								}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
+									GameObjectFactory.instance.recoverGameObject(monster);
+									paw.pawsBody.isDown = false;
+									this._checkEnd();
+								})
+							}
+							/**
+							 * 没抓住
+							 */
+							else {
+								monster.dragonBones.animation.play("Walk", 0);
+								paw.noCatchActionFast()
+							}
+						})
+						return true;
 					}
 					else {
-						targetWidth = monster.life / monster.maxLife * monster.haemalStrandWidth;
+						monster.showMiss();
+						return false;
 					}
-					/*血条缩短Tween*/
-					egret.Tween.get(monster.haemalStrandMask).to({ width: targetWidth }, paw.pawsBody.hurtDuration[0] * 1000, egret.Ease.quadIn).call(() => {
-						/**
-						 * 抓住
-						 */
-						if (targetWidth == 0) {
-							let time = 600;/// (660 - paw.pawsSkinBox.pawsHeadStartPosY) * (paw.pawsSkinBox.y - paw.pawsSkinBox.pawsHeadStartPosY);
-							egret.Tween.get(paw.pawsBody.pawsHead, {
-								onChange: () => {
-									paw.confirmRopeHeight();
-									if (monster) {
-										monster.x = paw.x;
-										monster.y = paw.pawsBody.pawsHead.y + monster.offsetY + paw.y;
-									}
-								},
-								onChangeObj: this,
-							}).wait(300).to({ y: paw.pawsBody.pawsHeadStartPosY }, time).call(() => {
-								GameObjectFactory.instance.recoverGameObject(monster);
-								paw.pawsBody.isDown = false;
-								this._checkEnd();
-							})
-						}
-						/**
-						 * 没抓住
-						 */
-						else {
-							monster.dragonBones.animation.play("Walk", 0);
-							paw.noCatchActionFast()
-						}
-					})
-					return true;
+
 
 				}
 
@@ -385,14 +393,16 @@ module catchDoll {
 			 * 设置全局坐标
 			 */
 			for (i = 0; i < monsterMapLen; i += this._colliderFlag + 1) {
-				let monsterP: Monster = monsterMap.values[i];
-				if (monsterP.isOpen) {
-					let monsterPColliderAry = monsterP.colliderAry
+				let monster: Monster = monsterMap.values[i];
+				if (monster.isOpen) {
+					let monsterPColliderAry = monster.colliderAry
 					let monsterPColliderAryLen = monsterPColliderAry.length;
 					for (let m: number = 0; m < monsterPColliderAryLen; m++) {
 						let monsterPCollider = monsterPColliderAry[m]
-						let p = monsterP.dragonBones.armature.getBone("centre").global
-						monsterPCollider.setToXY(p.x, p.y)
+						if (monster.isActiveInside) {
+							let p = monster.dragonBones.armature.getBone("centre").global
+							monsterPCollider.setToXY(p.x, p.y)
+						}
 						monsterPCollider.setGlobePos();
 					}
 				}

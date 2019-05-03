@@ -56,6 +56,8 @@ module catchDoll {
 			this.pawsHead.addEventListener(egret.TouchEvent.TOUCH_TAP, this._clikPawsHead, this);
 		}
 
+		
+
 
 
 		/**

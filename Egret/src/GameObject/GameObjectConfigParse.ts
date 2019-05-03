@@ -26,7 +26,7 @@ module catchDoll {
 				GameObjectConfigParse.configDic.set(item.id, {
 					configAsset: {
 						dragonBonesName: item.dragonBones
-					}, configData: { colliderAry: item.colliderAry, speed: item.moveSpeed, life: item.life }
+					}, configData: { colliderAry: item.colliderAry, speed: item.moveSpeed, life: item.life, isActiveInside: item.isActiveInside }
 				});
 			}
 

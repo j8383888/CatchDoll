@@ -112,6 +112,8 @@ module catchDoll {
 		life: number,
 		/*速度*/
 		speed: number,
+		/*内部是否活动（比如跳）*/
+		isActiveInside:number;
 		/*绝对锚点X*/
 		anchorOffsetX: number,
 		/*绝对锚点Y*/

@@ -58,6 +58,7 @@ module catchDoll {
 			return false;
 		}
 
+
 		/**
 		 * 反初始化
 		 */
