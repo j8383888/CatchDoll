@@ -58,6 +58,7 @@
 		</field>
 		<field column="等级" code="level" type="int32" />
 		<field column="是否在图鉴中显示" code="showInIllustrations" type="int32" />
+		<field column="内部是否活跃" code="isActiveInside" type="int32" />
 	</output>
 	
 	<output type="json-ts" code="ShopTable" file="游戏配置.xlsx" sheet="商店配置">

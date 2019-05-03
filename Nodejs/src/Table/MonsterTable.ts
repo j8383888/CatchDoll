@@ -40,6 +40,10 @@ module table {
 		 * 是否在图鉴中显示
 		 */
 		showInIllustrations: number;
+		/**
+		 * 内部是否活跃
+		 */
+		isActiveInside: number;
 
 		GetType(): string { return 'table.MonsterTable'; }
 	}
