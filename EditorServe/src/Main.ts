@@ -17,7 +17,7 @@ var colliderEditPath: string = "./ColliderEdit.json"
 var colliderDataPath: string = "./ColliderData.csv"
 
 
-var type: DATA_TYPE = DATA_TYPE.LEVEL_EDIT;
+var type: DATA_TYPE = DATA_TYPE.NO;
 
 /**
  * 获得Json数据
@@ -53,20 +53,21 @@ var server = http.createServer(function (req, res) {
 
             let data = chunk.toString();
             console.log(data);
-            let dataType = data.slice(0, 20)
+            if (type == DATA_TYPE.NO) {
+                let dataType = data.slice(0, 20)
+                if (dataType.indexOf("editorData") != -1) {
+                    type = DATA_TYPE.LEVEL_EDIT;
+                    data = data.replace("editorData", "");
+                }
+                else if (dataType.indexOf("exportData") != -1) {
+                    type = DATA_TYPE.LEVEL_DATA;
+                    data = data.replace("exportData", "");
+                }
 
-            if (dataType.indexOf("editorData") != -1) {
-                type = DATA_TYPE.LEVEL_EDIT;
-                data = data.replace("editorData", "");
-            }
-            else if (dataType.indexOf("exportData") != -1) {
-                type = DATA_TYPE.LEVEL_DATA;
-                data = data.replace("exportData", "");
-            }
-
-            else if (dataType.indexOf("collider") != -1) {
-                type = DATA_TYPE.COLLIDER;
-                data = data.replace("collider", "");
+                else if (dataType.indexOf("collider") != -1) {
+                    type = DATA_TYPE.COLLIDER;
+                    data = data.replace("collider", "");
+                }
             }
             /**
              * 关卡数据
@@ -123,10 +124,11 @@ var server = http.createServer(function (req, res) {
                         console.log("导出游戏关卡数据完毕！")
                         res.end("success!")
                     })
-                   
+
                 }
                 levelData = "";
             }
+            type = DATA_TYPE.NO;
         })
     }
 
@@ -180,4 +182,5 @@ const enum DATA_TYPE {
     LEVEL_EDIT,
     LEVEL_DATA,
     COLLIDER,
+    NO,
 }

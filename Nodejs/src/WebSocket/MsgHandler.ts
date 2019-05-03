@@ -26,7 +26,7 @@ export class MsgHandler {
             /* 物品变更 */
             case "Cmd.ItemUpdate_CS":
                 let data: Cmd.ItemUpdate_CS = msgData as Cmd.ItemUpdate_CS;
-                this._itemUpdate(data);
+                this._itemUpdate(data, uid);
                 break;
 
 
@@ -74,16 +74,16 @@ export class MsgHandler {
 
 
 
-    private _itemUpdate(data): void {
+    private _itemUpdate(data, uid: string): void {
         let itemInfo = data.itemInfo;
         // data2.uid = data2.uid;
-        PlayerCenter.clearUpdateNum(data.uid);
+        PlayerCenter.clearUpdateNum(uid);
         for (let item of itemInfo) {
             if (item.itemUpdateNum && item.itemUpdateNum != 0) {
-                PlayerCenter.updateProp(data.uid, item.itemID, item.itemUpdateNum);
+                PlayerCenter.updateProp(uid, item.itemID, item.itemUpdateNum);
             }
         }
-        PlayerCenter.sendPropData(data.uid);
+        PlayerCenter.sendPropData(uid);
     };
 };
 global["MsgHandler"] = MsgHandler;

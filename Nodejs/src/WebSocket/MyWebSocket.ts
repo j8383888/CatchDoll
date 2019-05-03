@@ -154,7 +154,7 @@ export class MyWebSocket {
                     MyWebSocket.instance.getWXOpenID(conn, data);
                 }
                 else {
-                    MyWebSocket.instance._checkUid(data.uid, conn)
+                    MyWebSocket.instance._checkUid(conn, data)
                 }
             }
             else {
