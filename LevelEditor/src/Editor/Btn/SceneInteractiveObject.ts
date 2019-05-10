@@ -13,6 +13,7 @@ class SceneInteractiveObject extends eui.Component {
 	public group: eui.Group;
 	public startTime: number;
 	public subitemGroup: eui.Group;
+	public moveDistance: number = 0;
 
 	public addBtn: eui.Button;
 	public data: {
@@ -20,6 +21,7 @@ class SceneInteractiveObject extends eui.Component {
 		pathMirror: boolean,
 		objectMirror: boolean,
 		fixedRotation: number,
+		isRamdomTurnRound: boolean,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -29,6 +31,7 @@ class SceneInteractiveObject extends eui.Component {
 			isJumpToNextP: boolean
 		}[],
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+		exportMirrorData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
 			x: number,
@@ -37,18 +40,21 @@ class SceneInteractiveObject extends eui.Component {
 		}[]
 	};
 
+	public isInMirrorPath: boolean = false;
 	public curPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 	public nextPathNode: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number };
 	public pathNodeIndex = 0;
 
 	public speed: number = 200;
-
+	public coolingTimerKey = 0;
+	public isCooling: boolean = false;
 
 	public constructor(data: {
 		id: number,
 		pathMirror: boolean,
 		objectMirror: boolean,
 		fixedRotation: number,
+		isRamdomTurnRound: boolean,
 		pathData: {
 			origin: { x, y },
 			ctrlP1: { x, y },
@@ -58,6 +64,7 @@ class SceneInteractiveObject extends eui.Component {
 			isJumpToNextP: boolean
 		}[],
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+		exportMirrorData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		carrySubitem: {
 			id: number,
 			x: number,
@@ -158,6 +165,7 @@ class SceneInteractiveObject extends eui.Component {
 			}
 			MapEditor.instance.curEditPathObject = null;
 		}
+		MapEditor.instance.isRandomTurnRound.selected = this.data.isRamdomTurnRound;
 		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
 		MapEditor.instance.objectMirror.selected = this.data.objectMirror;
 		if (this.data.fixedRotation == 0) {

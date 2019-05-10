@@ -43,7 +43,20 @@ module catchDoll {
 			}
 			).wait(100).to({ y: this.pawsBody.pawsHeadStartPosY }, 600, egret.Ease.getBackOut(1.3)).call(() => {
 				this.pawsBody.isDown = false;
+				this._resetData();
 			})
+		}
+
+		/**
+		 * 重置数据
+		 */
+		private _resetData(): void {
+			let monsterMap = LevelCreate.inSenceMonsterMap
+			let len = monsterMap.length
+			for (let i: number = 0; i < len; i++) {
+				let monster: Monster = monsterMap.values[i];
+				monster.isMiss = false;
+			}
 		}
 
 		/**
@@ -57,6 +70,7 @@ module catchDoll {
 			}
 			).wait(100).to({ y: this.pawsBody.pawsHeadStartPosY }, 600).call(() => {
 				this.pawsBody.isDown = false;
+				this._resetData();
 			})
 		}
 

@@ -163,6 +163,9 @@ class PathEditor {
 		else if (e.key == 'd') {
 			MapEditor.instance.deletPathNode.selected = true;
 		}
+		else if (e.key == 'v') {
+			MapEditor.instance.isRandomTurnRound.selected = !MapEditor.instance.isRandomTurnRound.selected;
+		}
 
 		else if (MapEditor.instance.editorPathBtn.selected) {
 			if (PathEditor.instance.lastPoint) {
@@ -217,7 +220,7 @@ class PathEditor {
 	 */
 	private _editorPath(): void {
 		if (this._mapEditor.editorPathBtn.selected) {
-	
+
 			this._mapEditor.sceneCanvas.touchEnabled = false;
 			this._mapEditor.sceneCanvas.touchChildren = false;
 			this._mapEditor.pathEditArea.touchEnabled = true;
@@ -283,13 +286,13 @@ class PathEditor {
 			let pathNode = data[i];
 			distTotalParse = Number(distTotal.toFixed(2));
 			if (i == len - 1) {
-				if (isMirror) {
+				// if (isMirror) {
 
-				}
-				else {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 * objectMirrorOdds }
-					result.push(item);
-				}
+				// }
+				// else {
+				item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: 1 * objectMirrorOdds }
+				result.push(item);
+				// }
 			}
 			else {
 				/**
@@ -315,43 +318,45 @@ class PathEditor {
 			}
 		}
 
-		if (isMirror) {
-			data = data.reverse();
-			for (let i: number = 0; i < len; i++) {
-				let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
-				let pathNode = data[i];
-				distTotalParse = Number(distTotal.toFixed(2));
-				if (i == len - 1) {
-					item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
-					result.push(item);
+
+
+		distTotal = 0;
+		let resultMirror: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[] = [];
+		data = data.reverse();
+		for (let i: number = 0; i < len; i++) {
+			let item: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }
+			let pathNode = data[i];
+			distTotalParse = Number(distTotal.toFixed(2));
+			if (i == len - 1) {
+				item = { x: pathNode.x, y: pathNode.y, angle: 0, distNext: 0, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
+				resultMirror.push(item);
+			}
+			else {
+
+				/**
+				 * @param angle：下个点构成的角度
+				 * @param distNext 距下个点的距离
+				 * @param distTotal 与起始点的距离
+				 */
+				let nextPathNode = data[i + 1];
+				/*是否跳跃路径*/
+				if (nextPathNode.isJumpToNextP) {
+					distNext = 0;
 				}
 				else {
-
-					/**
-					 * @param angle：下个点构成的角度
-					 * @param distNext 距下个点的距离
-					 * @param distTotal 与起始点的距离
-					 */
-					let nextPathNode = data[i + 1];
-					/*是否跳跃路径*/
-					if (nextPathNode.isJumpToNextP) {
-						distNext = 0;
-					}
-					else {
-						distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
-					}
-					angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
-					if (isObjectMirror) {
-						angle += 180;
-					}
-					item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
-					result.push(item);
-					distTotal += distNext;
+					distNext = Number(UIUtil.getDistanceByPoint(pathNode, nextPathNode).toFixed(2));
 				}
+				angle = UIUtil.getRadianByPoint(pathNode, nextPathNode) + 180;
+				if (isObjectMirror) {
+					angle += 180;
+				}
+				item = { x: pathNode.x, y: pathNode.y, angle: angle, distNext: distNext, distTotal: distTotalParse, scaleX: mirrorRollOver * objectMirrorOdds }
+				resultMirror.push(item);
+				distTotal += distNext;
 			}
-
 		}
 		target.data.exportData = result;
+		target.data.exportMirrorData = resultMirror;
 	}
 
 
@@ -537,6 +542,8 @@ class PathEditor {
 		else {
 			MapEditor.instance.curEditPathObject.data.fixedRotation = -1;
 		}
+
+		MapEditor.instance.curEditPathObject.data.isRamdomTurnRound = this._mapEditor.isRandomTurnRound.selected;
 
 		MapEditor.instance.curEditPathObject.data.objectMirror = MapEditor.instance.objectMirror.selected;
 
