@@ -80,12 +80,12 @@ class Globe extends egret.DisplayObject {
 				}
 			}
 
-			if (target.data.isRamdomTurnRound) {
-				target.coolingTimerKey = egret.setTimeout(() => {
-					target.isCooling = false
-				}, null, 2000);
-				target.isCooling = true
-			}
+			// if (target.data.isRamdomTurnRound) {
+			// 	target.coolingTimerKey = egret.setTimeout(() => {
+			// 		target.isCooling = false
+			// 	}, null, 2000);
+			// 	target.isCooling = true
+			// }
 
 
 			target.curPathNode = target.data.exportData[0];
@@ -138,7 +138,27 @@ class Globe extends egret.DisplayObject {
 			// target.colliderShape.y = transform.y;
 
 			if (curMoveDistance >= total) {
-				if (target.isInMirrorPath) {
+				if (target.data.pathMirror) {
+					if (target.isInMirrorPath) {
+						runTarget.x = target.data.exportData[0].x;
+						runTarget.y = target.data.exportData[0].y;
+						runTarget.scaleX = target.data.exportData[0].scaleX;
+						this.actionObjectAry.remove(target);
+						target.isInMirrorPath = false;
+						target.moveDistance = 0;
+						target.pathNodeIndex = 0;
+						// egret.clearTimeout(target.coolingTimerKey);
+					}
+					else {
+						target.isInMirrorPath = true;
+						target.curPathNode = target.data.exportMirrorData[0];
+						target.nextPathNode = target.data.exportMirrorData[1];
+						target.pathNodeIndex = 0;
+						target.moveDistance = 0;
+						target.startTime = egret.getTimer();
+					}
+				}
+				else {
 					runTarget.x = target.data.exportData[0].x;
 					runTarget.y = target.data.exportData[0].y;
 					runTarget.scaleX = target.data.exportData[0].scaleX;
@@ -146,54 +166,46 @@ class Globe extends egret.DisplayObject {
 					target.isInMirrorPath = false;
 					target.moveDistance = 0;
 					target.pathNodeIndex = 0;
-					egret.clearTimeout(target.coolingTimerKey);
 				}
-				else {
-					target.isInMirrorPath = true;
-					target.curPathNode = target.data.exportMirrorData[0];
-					target.nextPathNode = target.data.exportMirrorData[1];
-					target.pathNodeIndex = 0;
-					target.moveDistance = 0;
-					target.startTime = egret.getTimer();
-				}
+
 				continue;
 			}
 
-			/**
-			 * 随机回头
-			 */
-			if (target.data.isRamdomTurnRound) {
-				if (!target.isCooling) {
-					target.coolingTimerKey = egret.setTimeout(() => {
-						target.isCooling = false
-					}, null, 1000);
-					target.isCooling = true;
-					if (Math.random() > 0.5) {
-						if (target.pathNodeIndex >= len - 1) {
-							continue;
-						}
+			// /**
+			//  * 随机回头
+			//  */
+			// if (target.data.isRamdomTurnRound) {
+			// 	if (!target.isCooling) {
+			// 		target.coolingTimerKey = egret.setTimeout(() => {
+			// 			target.isCooling = false
+			// 		}, null, 1000);
+			// 		target.isCooling = true;
+			// 		if (Math.random() > 0.5) {
+			// 			if (target.pathNodeIndex >= len - 1) {
+			// 				continue;
+			// 			}
 
-						let index = len - target.pathNodeIndex - 1
+			// 			let index = len - target.pathNodeIndex - 1
 
-						if (target.isInMirrorPath) {
-							target.curPathNode = target.data.exportData[index-1];
-							target.nextPathNode = target.data.exportData[index];
-							target.moveDistance = total - curMoveDistance
-							target.isInMirrorPath = false;
-						}
-						else {
-							target.curPathNode = target.data.exportMirrorData[index-1];
-							target.nextPathNode = target.data.exportMirrorData[index];
-							target.moveDistance = total - curMoveDistance
-							target.isInMirrorPath = true;
-						}
-						target.pathNodeIndex = index;
-						// console.error("target.pathNodeIndex:" + target.pathNodeIndex, "len" + len)
-						target.startTime = egret.getTimer();
-						continue;
-					}
-				}
-			}
+			// 			if (target.isInMirrorPath) {
+			// 				target.curPathNode = target.data.exportData[index-1];
+			// 				target.nextPathNode = target.data.exportData[index];
+			// 				target.moveDistance = total - curMoveDistance
+			// 				target.isInMirrorPath = false;
+			// 			}
+			// 			else {
+			// 				target.curPathNode = target.data.exportMirrorData[index-1];
+			// 				target.nextPathNode = target.data.exportMirrorData[index];
+			// 				target.moveDistance = total - curMoveDistance
+			// 				target.isInMirrorPath = true;
+			// 			}
+			// 			target.pathNodeIndex = index;
+			// 			// console.error("target.pathNodeIndex:" + target.pathNodeIndex, "len" + len)
+			// 			target.startTime = egret.getTimer();
+			// 			continue;
+			// 		}
+			// 	}
+			// }
 
 
 			if (curMoveDistance > target.nextPathNode.distTotal) {
