@@ -158,11 +158,12 @@
 			<e:VerticalLayout/>
 			</e:layout>
 		</e:Group>
-		<e:Group x="150.86" y="19.04" anchorOffsetX="0" width="181.64" anchorOffsetY="0" height="248">
+		<e:Group x="150.86" y="-20.96" anchorOffsetX="0" width="181.64" anchorOffsetY="0">
 			<e:CheckBox id="fixedRotation" label="锁定角度" x="0" scaleX="1" scaleY="1" y="0"/>
 			<e:CheckBox id="objectMirror" label="对象镜像" x="0" scaleX="1" scaleY="1" y="36"/>
 			<e:CheckBox id="pathMirror" label="路径镜像" x="0" scaleX="1" scaleY="1" y="70"/>
 			<e:CheckBox id="isJumpPathPoint" label="跳跃路径" x="10" scaleX="1" scaleY="1" y="80"/>
+			<e:CheckBox id="isRandomTurnRound" label="随机回头" x="20" scaleX="1" scaleY="1" y="90"/>
 			<e:CheckBox id="pathMirrorNoRollOver" label="镜像路径下（对象不进行水平翻转）" x="-2" scaleX="1" scaleY="1" y="108" visible="false"/>
 			<e:CheckBox id="horGuy" label="水平拉线" x="-1472.86" y="-1101" scaleX="1" scaleY="1"/>
 			<e:CheckBox id="verGuy" label="垂直拉线" x="2.5" y="100.63"/>
@@ -171,7 +172,8 @@
 			</e:layout>
 		</e:Group>
 		<e:Label text="快捷键：x\r快捷键：c" x="0" y="204.68" anchorOffsetY="0" height="64.79" anchorOffsetX="0" width="145.06"/>
-		<e:Label text="快捷键：f" x="0" y="126.68" anchorOffsetY="0" height="32.79" anchorOffsetX="0" width="145.06"/>
+		<e:Label text="快捷键：f" x="0" y="88.68" anchorOffsetY="0" height="32.79" anchorOffsetX="0" width="145.06"/>
+		<e:Label text="快捷键：v" x="0" y="126.68" anchorOffsetY="0" height="32.79" anchorOffsetX="0" width="145.06"/>
 		<e:Label text="快捷键：d" x="351.21" y="124" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xffffff"/>
 		<e:Label text="快捷键：z 闭合首尾路径点" x="319.21" y="0" anchorOffsetY="0" height="38.79" anchorOffsetX="0" width="373.06" textColor="0xFFFFFF"/>
 		<e:Label text="快捷键：s" x="351.21" y="160.24" anchorOffsetY="0" height="34.79" anchorOffsetX="0" width="145.06" textColor="0xFFFFFF"/>

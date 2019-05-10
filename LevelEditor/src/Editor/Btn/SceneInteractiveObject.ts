@@ -165,6 +165,7 @@ class SceneInteractiveObject extends eui.Component {
 			}
 			MapEditor.instance.curEditPathObject = null;
 		}
+		MapEditor.instance.isRandomTurnRound.selected = this.data.isRamdomTurnRound;
 		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
 		MapEditor.instance.objectMirror.selected = this.data.objectMirror;
 		if (this.data.fixedRotation == 0) {

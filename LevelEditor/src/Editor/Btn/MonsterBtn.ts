@@ -59,9 +59,6 @@ class MonsterBtn extends eui.Component {
 		super();
 		this.skinName = "MonsterBtnSkin"
 		this.data = data;
-		if (!this.data.isRamdomTurnRound) {
-			this.data.isRamdomTurnRound = true;
-		}
 
 		this.levelBtn = levelBtn
 		let grounName = ConfigParse.getPropertyByProperty(MapEditor.instance.MonsterTable, "id", data.id.toString(), "dragonBones")
@@ -115,6 +112,7 @@ class MonsterBtn extends eui.Component {
 		}
 		MapEditor.instance.pathMirror.selected = this.data.pathMirror;
 		MapEditor.instance.objectMirror.selected = this.data.objectMirror;
+		MapEditor.instance.isRandomTurnRound.selected = this.data.isRamdomTurnRound
 		if (this.data.fixedRotation == 0) {
 			MapEditor.instance.fixedRotation.selected = true
 		}

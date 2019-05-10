@@ -163,6 +163,9 @@ class PathEditor {
 		else if (e.key == 'd') {
 			MapEditor.instance.deletPathNode.selected = true;
 		}
+		else if (e.key == 'v') {
+			MapEditor.instance.isRandomTurnRound.selected = !MapEditor.instance.isRandomTurnRound.selected;
+		}
 
 		else if (MapEditor.instance.editorPathBtn.selected) {
 			if (PathEditor.instance.lastPoint) {
@@ -539,6 +542,8 @@ class PathEditor {
 		else {
 			MapEditor.instance.curEditPathObject.data.fixedRotation = -1;
 		}
+
+		MapEditor.instance.curEditPathObject.data.isRamdomTurnRound = this._mapEditor.isRandomTurnRound.selected;
 
 		MapEditor.instance.curEditPathObject.data.objectMirror = MapEditor.instance.objectMirror.selected;
 

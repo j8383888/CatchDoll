@@ -150,6 +150,10 @@ class MapEditor extends eui.Component {
 	 * 
 	 */
 	public editSceneOrnaBtn: eui.CheckBox;
+	/**
+	 * 随机回头
+	 */
+	public isRandomTurnRound:eui.CheckBox;	
 
 
 	public stopClick2: eui.Rect;
