@@ -40,12 +40,18 @@ module catchDoll {
 			monster: {
 				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			}[],
 			sceneInteractiveObject: {
 				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				carrySubitem: {
 					id: number,
 					offsetX: number,
@@ -72,12 +78,18 @@ module catchDoll {
 			monster: {
 				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			}[],
 			sceneInteractiveObject: {
 				id: number,
 				fixedRotation: number,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				carrySubitem: {
 					id: number,
 					offsetX: number,
@@ -114,6 +126,9 @@ module catchDoll {
 				else {
 					varsData.fixedRotation = item.fixedRotation;
 					varsData.exportData = item.exportData;
+					varsData.exportMirrorData = item.exportMirrorData;
+					varsData.isRamdomTurnRound = item.isRamdomTurnRound;
+					varsData.pathMirror = item.pathMirror;
 					varsData.operation = [<IOperation>{
 						type: OPERATION_TYPE.MONSTER
 					}]
@@ -491,6 +506,9 @@ module catchDoll {
 
 				let varsData: IMonsterVars = <IMonsterVars>{};
 				varsData.fixedRotation = item.fixedRotation;
+				varsData.isRamdomTurnRound = item.isRamdomTurnRound;
+				varsData.pathMirror = item.pathMirror;
+				varsData.exportMirrorData = item.exportMirrorData;
 				varsData.exportData = item.exportData;
 				varsData.operation = [<IOperation>{
 					type: OPERATION_TYPE.MONSTER

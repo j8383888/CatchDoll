@@ -518,12 +518,12 @@ class MapEditor extends eui.Component {
 			for (let subItem of item.levelData) {
 				for (let subItem2 of subItem.monster) {
 					delete subItem2.pathData;
-					// delete subItem2.objectMirror;
+					delete subItem2.objectMirror;
 					// delete subItem2.pathMirror;
 				}
 				for (let subItem3 of subItem.sceneInteractiveObject) {
 					delete subItem3.pathData;
-					// delete subItem3.objectMirror;
+					delete subItem3.objectMirror;
 					// delete subItem3.pathMirror;
 					let sum: number = 0;
 					for (let subitem4 of subItem3.carrySubitem) {

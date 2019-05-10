@@ -86,12 +86,11 @@ module catchDoll {
 		 * miss标志
 		 */
 		public isMiss: boolean = false;
+		
 
 		public constructor() {
 			super();
 		}
-
-
 
 
 		public loadConfigAsset(assetData: IConfigAsset): void {
@@ -230,7 +229,7 @@ module catchDoll {
 			super.initialize();
 			this.isHide = false;
 			this.isMiss = false;
-			
+
 			this.moveDistance = 0;
 			if (this._dragonBones) {
 				this._dragonBones.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);

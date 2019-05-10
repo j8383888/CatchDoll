@@ -50,13 +50,20 @@ module catchDoll {
 				bgSource: string,
 				monster: {
 					id: number,
+					pathMirror: boolean,
+					isRamdomTurnRound: boolean,
 					fixedRotation: number,
 					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+					exportMirrorData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				}[],
 				sceneInteractiveObject: {
 					id: number,
+					pathMirror: boolean,
+					isRamdomTurnRound: boolean,
 					fixedRotation: number,
 					exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+					exportMirrorData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+					
 					carrySubitem: {
 						id: number,
 						offsetX: number,
@@ -111,12 +118,18 @@ module catchDoll {
 			monster: {
 				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			}[],
 			sceneInteractiveObject: {
 				id: number,
 				fixedRotation: number,
+				pathMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				carrySubitem: {
 					id: number,
 					weightOdds: number,

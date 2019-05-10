@@ -59,8 +59,14 @@ module catchDoll {
 		operation?: IOperation[],
 		/*锁定角度*/
 		fixedRotation: number,
+		/*是否路径镜像*/
+		pathMirror: boolean,
+		/*是否随机回头*/
+		isRamdomTurnRound: boolean,
 		/*路径数据*/
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+		/*路径数据(镜像)*/
+		exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	}
 
 	/**
@@ -71,8 +77,14 @@ module catchDoll {
 		operation?: IOperation[],
 		/*锁定角度*/
 		fixedRotation: number,
+		/*是否路径镜像*/
+		pathMirror: boolean,
+		/*是否随机回头*/
+		isRamdomTurnRound: boolean,
 		/*路径数据*/
 		exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+		/*路径数据(镜像)*/
+		exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 	}
 
 	/**
@@ -113,7 +125,7 @@ module catchDoll {
 		/*速度*/
 		speed: number,
 		/*内部是否活动（比如跳）*/
-		isActiveInside:number;
+		isActiveInside: number;
 		/*绝对锚点X*/
 		anchorOffsetX: number,
 		/*绝对锚点Y*/

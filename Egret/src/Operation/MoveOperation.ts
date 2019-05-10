@@ -9,6 +9,14 @@ module catchDoll {
 		 * 路径节点序列
 		 */
 		public pathNodes: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[];
+		/**
+		 * 路径节点序列(镜像)
+		 */
+		public pathMirrorNodes: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[];
+		/**
+		 * 当前路径数据
+		 */
+		public curPathData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[];
 
 		/**
 		 * 当前路径节点
@@ -24,6 +32,23 @@ module catchDoll {
 		public pathNodeIndex = 0;
 
 		public fixedRotation: number = 0;
+		/*是否路径镜像*/
+		public pathMirror: boolean;
+		/*是否随机回头*/
+		public isRamdomTurnRound: boolean;
+
+		/**
+		 * 是否在镜像路径上
+		 */
+		public isInMirrorPath: boolean = false;
+		/**
+		 * 冷却时间
+		 */
+		public coolingTurnRoundTimerKey: number = - 1;
+		/**
+		 * 是否在冷却随机回头
+		 */
+		public isCoolingTurnRound: boolean = false;
 
 		public constructor() {
 			super();
@@ -36,12 +61,23 @@ module catchDoll {
 			this._gameObj = gameObj as Monster;
 
 			this._gameObj.startTime = egret.getTimer();
-			let monsterVars = gameObj.varsData as IMonsterVars
+			let monsterVars = gameObj.varsData as IMonsterVars;
 			this.fixedRotation = monsterVars.fixedRotation
 			this.pathNodes = monsterVars.exportData;
+			this.pathMirrorNodes = monsterVars.exportMirrorData
+			this.pathMirror = monsterVars.pathMirror;
+			this.isRamdomTurnRound = monsterVars.isRamdomTurnRound;
 			this.curPathNode = this.pathNodes[0];
 			this.nextPathNode = this.pathNodes[1];
-			if (this.pathNodes.length == 0) {
+			this.curPathData = this.pathNodes;
+			if (this.isRamdomTurnRound) {
+				this.isCoolingTurnRound = true;
+				this.coolingTurnRoundTimerKey = egret.setTimeout(() => {
+					this.isCoolingTurnRound = false
+				}, null, 1000);
+			}
+
+			if (this.pathNodes.length == 0 || this.pathMirrorNodes.length == 0) {
 				console.assert(false, "逻辑有误")
 			}
 		}
@@ -53,6 +89,7 @@ module catchDoll {
 			this._gameObj = null;
 			this.curPathNode = null;
 			this.nextPathNode = null;
+			egret.clearTimeout(this.coolingTurnRoundTimerKey);
 		}
 
 
@@ -68,19 +105,82 @@ module catchDoll {
 			let time = egret.getTimer();
 			let runTime = (time - monster.startTime) / 1000;
 			let curMoveDistance = runTime * monster.speed + monster.moveDistance;
-			let lastPath = this.pathNodes[this.pathNodes.length - 1]
+			let len = this.curPathData.length;
+			let lastPath = this.curPathData[len - 1]
 			let total = lastPath.distTotal
 
 
 			if (curMoveDistance >= total) {
-				monster.moveDistance = 0;
-				this.pathNodeIndex = 0;
-				this.curPathNode = this.pathNodes[0];
-				this.nextPathNode = this.pathNodes[1];
-				monster.startTime = egret.getTimer();
-				// GameObjectFactory.instance.recoverGameObject(monster);
+				if (this.pathMirror) {
+					if (this.isInMirrorPath) {
+						monster.moveDistance = 0;
+						this.pathNodeIndex = 0;
+						this.curPathNode = this.pathNodes[0];
+						this.nextPathNode = this.pathNodes[1];
+						monster.startTime = egret.getTimer();
+						this.curPathData = this.pathNodes;
+						this.isInMirrorPath = false;
+					}
+					else {
+						monster.moveDistance = 0;
+						this.pathNodeIndex = 0;
+						this.curPathNode = this.pathMirrorNodes[0];
+						this.nextPathNode = this.pathMirrorNodes[1];
+						this.curPathData = this.pathMirrorNodes;
+						monster.startTime = egret.getTimer();
+						this.isInMirrorPath = true;
+					}
+				}
+				else {
+					monster.moveDistance = 0;
+					this.pathNodeIndex = 0;
+					this.curPathNode = this.pathNodes[0];
+					this.nextPathNode = this.pathNodes[1];
+					monster.startTime = egret.getTimer();
+					this.isInMirrorPath = false;
+				}
 				return;
 			}
+
+			/**
+			 * 随机回头
+			 */
+			if (this.isRamdomTurnRound) {
+				if (!this.isCoolingTurnRound) {
+					this.coolingTurnRoundTimerKey = egret.setTimeout(() => {
+						this.isCoolingTurnRound = false
+					}, null, 3000);
+					this.isCoolingTurnRound = true;
+					if (monster.isStopMove) {
+						return;
+					}
+
+					if (Math.random() > 0.5) {
+						if (this.pathNodeIndex >= len - 1) {
+							return;
+						}
+						let index = len - this.pathNodeIndex - 1
+						if (this.isInMirrorPath) {
+							this.curPathNode = this.pathNodes[index - 1];
+							this.nextPathNode = this.pathNodes[index];
+							this.curPathData = this.pathNodes;
+							monster.moveDistance = total - curMoveDistance
+							this.isInMirrorPath = false;
+						}
+						else {
+							this.curPathNode = this.pathMirrorNodes[index - 1];
+							this.nextPathNode = this.pathMirrorNodes[index];
+							this.curPathData = this.pathMirrorNodes;
+							monster.moveDistance = total - curMoveDistance
+							this.isInMirrorPath = true;
+						}
+						this.pathNodeIndex = index;
+						monster.startTime = egret.getTimer();
+						return
+					}
+				}
+			}
+
 			let transform = monster.dragonBones.armature.getBone("centre").global
 
 			monster.haemalGroup.x = transform.x;
@@ -88,17 +188,17 @@ module catchDoll {
 
 
 			if (curMoveDistance > this.nextPathNode.distTotal) {
-				let len = this.pathNodes.length;
+				let len = this.curPathData.length;
 				for (let i: number = this.pathNodeIndex; i < len; i++) {
 
 					/**
 					 * 创建特效
 					 */
-					if (this.pathNodes[i].distNext == 0 && i != len - 1) {
+					if (this.curPathData[i].distNext == 0 && i != len - 1) {
 						let mov = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
 						mov.gotoAndPlay(1, 1);
-						mov.x = this.pathNodes[i].x;
-						mov.y = (this.pathNodes[i].y - 50) + GameCenter.stageHOffset;
+						mov.x = this.curPathData[i].x;
+						mov.y = (this.curPathData[i].y - 50) + GameCenter.stageHOffset;
 						mov.scaleY = 1
 						LayerManager.instance.addToLayer(mov, LAYER.BATTLE_EFFECT_HIGH)
 						mov.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -108,8 +208,8 @@ module catchDoll {
 
 						let mov2 = Pool.getItemByCreateFun(Pool.transmitBeam, Handler.create(UIUtil, UIUtil.creatMovieClip, ["transmitBeam"]))
 						mov2.gotoAndPlay(1, 1);
-						mov2.x = this.pathNodes[i + 1].x;
-						mov2.y = this.pathNodes[i + 1].y + GameCenter.stageHOffset;
+						mov2.x = this.curPathData[i + 1].x;
+						mov2.y = this.curPathData[i + 1].y + GameCenter.stageHOffset;
 						mov2.scaleY = -1;
 						LayerManager.instance.addToLayer(mov2, LAYER.BATTLE_EFFECT_HIGH)
 						mov2.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -118,10 +218,10 @@ module catchDoll {
 						}, null)
 					}
 
-					if (this.pathNodes[i].distTotal > curMoveDistance) {
+					if (this.curPathData[i].distTotal > curMoveDistance) {
 						this.pathNodeIndex = i;
-						this.nextPathNode = this.pathNodes[i];
-						this.curPathNode = this.pathNodes[i - 1];
+						this.nextPathNode = this.curPathData[i];
+						this.curPathNode = this.curPathData[i - 1];
 						break;
 					}
 				}
