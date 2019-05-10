@@ -15,7 +15,9 @@ class ChapterBtn extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -30,7 +32,9 @@ class ChapterBtn extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -74,7 +78,9 @@ class ChapterBtn extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -89,7 +95,9 @@ class ChapterBtn extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },

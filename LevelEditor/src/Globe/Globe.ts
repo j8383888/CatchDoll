@@ -34,7 +34,6 @@ class Globe extends egret.DisplayObject {
 			else if (target.runTarget instanceof dragonBones.EgretArmatureDisplay) {
 				target.runTarget.animation.stop();
 			}
-
 		}
 		this.idleObjectAry.length = 0;
 
@@ -67,6 +66,7 @@ class Globe extends egret.DisplayObject {
 		else {
 			if (target instanceof MonsterBtn) {
 				target.runTarget.animation.gotoAndPlayByFrame("Walk", MathUtil.random(0, 20), 0);
+
 			}
 			else {
 				if (target.runTarget instanceof eui.Image) {
@@ -78,12 +78,19 @@ class Globe extends egret.DisplayObject {
 				else if (target.runTarget instanceof dragonBones.EgretArmatureDisplay) {
 					target.runTarget.animation.play(null, 0);
 				}
-
 			}
+
+			if (target.data.isRamdomTurnRound) {
+				target.coolingTimerKey = egret.setTimeout(() => {
+					target.isCooling = false
+				}, null, 2000);
+				target.isCooling = true
+			}
+
+
 			target.curPathNode = target.data.exportData[0];
 			target.nextPathNode = target.data.exportData[1];
 			this.actionObjectAry.push(target);
-
 			target.startTime = egret.getTimer();
 		}
 		MapEditor.instance.actionCanvas.addChild(target.runTarget);
@@ -111,35 +118,91 @@ class Globe extends egret.DisplayObject {
 			let target: MonsterBtn | SceneInteractiveObject = this.actionObjectAry[i];
 			let time = egret.getTimer();
 			let runTime = (time - target.startTime) / 1000;
-			let curMoveDistance = runTime * target.speed
-			let lastPath = target.data.exportData[target.data.exportData.length - 1]
-			let total = lastPath.distTotal
+			let curMoveDistance = runTime * target.speed + target.moveDistance;
 			let runTarget = target.runTarget;
+			let pathData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[];
 
+			if (target.isInMirrorPath) {
+				pathData = target.data.exportMirrorData;
+			}
+			else {
+				pathData = target.data.exportData
+			}
+			let len = pathData.length;
+
+
+			let lastPath = pathData[len - 1]
+			let total = lastPath.distTotal
 			// let transform = runTarget.armature.getBone("centre").global
 			// target.colliderShape.x = transform.x;
 			// target.colliderShape.y = transform.y;
 
 			if (curMoveDistance >= total) {
-				target.pathNodeIndex = 0;
-				runTarget.x = target.data.exportData[0].x;
-				runTarget.y = target.data.exportData[0].y;
-				runTarget.scaleX = target.data.exportData[0].scaleX;
-				this.actionObjectAry.remove(target);
-				break;
+				if (target.isInMirrorPath) {
+					target.pathNodeIndex = 0;
+					runTarget.x = target.data.exportData[0].x;
+					runTarget.y = target.data.exportData[0].y;
+					runTarget.scaleX = target.data.exportData[0].scaleX;
+					this.actionObjectAry.remove(target);
+					target.isInMirrorPath = false;
+				}
+				else {
+					target.isInMirrorPath = true;
+					target.curPathNode = target.data.exportMirrorData[0];
+					target.nextPathNode = target.data.exportMirrorData[1];
+					target.pathNodeIndex = 0;
+					target.startTime = egret.getTimer();
+				}
+				egret.clearTimeout(target.coolingTimerKey);
+				continue;
 			}
 
+			/**
+			 * 随机回头
+			 */
+			if (target.data.isRamdomTurnRound) {
+				if (!target.isCooling) {
+					target.coolingTimerKey = egret.setTimeout(() => {
+						target.isCooling = false
+					}, null, 1000);
+					target.isCooling = true;
+					if (Math.random() > 0) {
+						let index = len - target.pathNodeIndex
+						if (index > len) {
+							index = len
+						}
+						if (target.isInMirrorPath) {
+							target.curPathNode = target.data.exportData[index - 1];
+
+							target.nextPathNode = target.data.exportData[index];
+							target.moveDistance = total - curMoveDistance
+							target.isInMirrorPath = false;
+
+						}
+						else {
+							target.curPathNode = target.data.exportMirrorData[index -1];
+							target.nextPathNode = target.data.exportMirrorData[index];
+							target.moveDistance = total - curMoveDistance
+							target.isInMirrorPath = true;
+						}
+						target.pathNodeIndex = len - target.pathNodeIndex;
+						target.startTime = egret.getTimer();
+						continue;
+					}
+				}
+			}
+
+
 			if (curMoveDistance > target.nextPathNode.distTotal) {
-				let len = target.data.exportData.length;
 				for (let i: number = target.pathNodeIndex; i < len; i++) {
 					/**
 					 * 创建特效
 					 */
-					if (target.data.exportData[i].distNext == 0 && i != len - 1) {
+					if (pathData[i].distNext == 0 && i != len - 1) {
 						let mov = UIUtil.creatMovieClip("transmitBeam");
 						mov.gotoAndPlay(1, 1);
-						mov.x = target.data.exportData[i].x;
-						mov.y = target.data.exportData[i].y - 50;
+						mov.x = pathData[i].x;
+						mov.y = pathData[i].y - 50;
 
 						MapEditor.instance.actionCanvas.addChild(mov);
 						mov.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -148,8 +211,8 @@ class Globe extends egret.DisplayObject {
 
 						let mov2 = UIUtil.creatMovieClip("transmitBeam");
 						mov2.gotoAndPlay(1, 1);
-						mov2.x = target.data.exportData[i + 1].x;
-						mov2.y = target.data.exportData[i + 1].y;
+						mov2.x = pathData[i + 1].x;
+						mov2.y = pathData[i + 1].y;
 						mov2.scaleY = -1;
 						MapEditor.instance.actionCanvas.addChild(mov2);
 						mov2.once(egret.MovieClipEvent.COMPLETE, () => {
@@ -157,10 +220,10 @@ class Globe extends egret.DisplayObject {
 						}, null)
 					}
 
-					if (target.data.exportData[i].distTotal > curMoveDistance) {
-						target.curPathNode = target.data.exportData[i - 1];
+					if (pathData[i].distTotal > curMoveDistance) {
+						target.curPathNode = pathData[i - 1];
 						target.pathNodeIndex = i;
-						target.nextPathNode = target.data.exportData[i];
+						target.nextPathNode = pathData[i];
 						break;
 					}
 				}
@@ -171,7 +234,6 @@ class Globe extends egret.DisplayObject {
 			nextPath = nextPath == null ? lastPath : nextPath;
 
 
-			// /*是否为跳跃路径*/
 			let distNext = curPath.distNext;
 			let offsetDist = curMoveDistance - curPath.distTotal;
 			let offsetx = offsetDist / distNext * (nextPath.x - curPath.x);

@@ -16,6 +16,7 @@ class LevelBtn extends eui.Component {
 			pathMirror: boolean,
 			objectMirror: boolean,
 			fixedRotation: number,
+			isRamdomTurnRound: boolean,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -25,6 +26,7 @@ class LevelBtn extends eui.Component {
 				isJumpToNextP: boolean
 			}[]
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 		}[],
 
 		sceneInteractiveObject: {
@@ -32,7 +34,9 @@ class LevelBtn extends eui.Component {
 			fixedRotation: number,
 			pathMirror: boolean,
 			objectMirror: boolean,
+			isRamdomTurnRound: boolean,
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -68,6 +72,7 @@ class LevelBtn extends eui.Component {
 			fixedRotation: number,
 			pathMirror: boolean,
 			objectMirror: boolean,
+			isRamdomTurnRound: boolean,
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },
@@ -77,6 +82,7 @@ class LevelBtn extends eui.Component {
 				isJumpToNextP: boolean
 			}[],
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 
 		}[],
 		sceneInteractiveObject: {
@@ -84,7 +90,9 @@ class LevelBtn extends eui.Component {
 			fixedRotation: number,
 			pathMirror: boolean,
 			objectMirror: boolean,
+			isRamdomTurnRound: boolean,
 			exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+			exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 			pathData: {
 				origin: { x, y },
 				ctrlP1: { x, y },

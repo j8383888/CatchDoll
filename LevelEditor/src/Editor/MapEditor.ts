@@ -165,7 +165,9 @@ class MapEditor extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -180,7 +182,9 @@ class MapEditor extends eui.Component {
 				fixedRotation: number,
 				pathMirror: boolean,
 				objectMirror: boolean,
+				isRamdomTurnRound: boolean,
 				exportData: { x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
+				exportMirrorData:{ x: number, y: number, angle: number, distNext: number, distTotal: number, scaleX: number }[],
 				pathData: {
 					origin: { x, y },
 					ctrlP1: { x, y },
@@ -323,8 +327,10 @@ class MapEditor extends eui.Component {
 				id: target.name,
 				pathMirror: true,
 				objectMirror: false,
+				isRamdomTurnRound: true,
 				fixedRotation: 0,
 				pathData: [],
+				exportMirrorData: [],
 				exportData: [],
 				carrySubitem: []
 			};
@@ -403,8 +409,10 @@ class MapEditor extends eui.Component {
 				pathMirror: true,
 				objectMirror: false,
 				fixedRotation: 0,
+				isRamdomTurnRound: true,
 				pathData: [],
-				exportData: []
+				exportData: [],
+				exportMirrorData: [],
 			};
 			let btn = new MonsterBtn(data, this.curLevel);
 			this.curLevel.data.monster.push(data);
@@ -506,13 +514,13 @@ class MapEditor extends eui.Component {
 			for (let subItem of item.levelData) {
 				for (let subItem2 of subItem.monster) {
 					delete subItem2.pathData;
-					delete subItem2.objectMirror;
-					delete subItem2.pathMirror;
+					// delete subItem2.objectMirror;
+					// delete subItem2.pathMirror;
 				}
 				for (let subItem3 of subItem.sceneInteractiveObject) {
 					delete subItem3.pathData;
-					delete subItem3.objectMirror;
-					delete subItem3.pathMirror;
+					// delete subItem3.objectMirror;
+					// delete subItem3.pathMirror;
 					let sum: number = 0;
 					for (let subitem4 of subItem3.carrySubitem) {
 						sum += subitem4.weight;
