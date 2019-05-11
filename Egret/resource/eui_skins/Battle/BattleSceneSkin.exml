@@ -3,6 +3,11 @@
 	<e:Image id="bg" source="" width="720" height="1280"/>
 	<e:Image x="0" anchorOffsetX="0" anchorOffsetY="0" fillMode="repeat" source="battle_17" width="720" top="200"/>
 	<e:Group id="btnGroup" x="0" y="0" touchEnabled="false" height="1280">
+		<e:Group id="OpGroup" x="160" bottom="0">
+			<e:Image alpha="1" source="otherRes2_51" x="115" y="0"/>
+			<e:Image alpha="1" source="otherRes2_18" x="400" y="10"/>
+			<e:Image source="otherRes2_18" alpha="1" scaleX="-1" x="0" y="10"/>
+		</e:Group>
 		<e:Rect id="leftRect" width="240" x="0" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
 		<e:Rect id="downRect" width="240" x="240" fillAlpha="0" strokeAlpha="0" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
 		<e:Rect id="rightRect" width="240" fillAlpha="0" strokeAlpha="0" x="480" anchorOffsetY="0" anchorOffsetX="0" top="0" bottom="0"/>
@@ -21,11 +26,7 @@
 		<e:Image id="prop3" x="73" y="279.33" source="item_4" anchorOffsetX="43.5" anchorOffsetY="53"/>
 		<e:Image id="prop4" x="74" y="390" source="item_7" anchorOffsetX="52.5" anchorOffsetY="52"/>
 		</e:Group>
-		<e:Group id="OpGroup" x="160" bottom="0">
-			<e:Image alpha="1" source="otherRes2_51" x="115" y="0"/>
-			<e:Image alpha="1" source="otherRes2_18" x="400" y="10"/>
-			<e:Image source="otherRes2_18" alpha="1" scaleX="-1" x="0" y="10"/>
-		</e:Group>
+
 	</e:Group>
 
 

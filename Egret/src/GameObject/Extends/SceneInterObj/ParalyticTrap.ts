@@ -33,6 +33,15 @@ module catchDoll {
 			this._onComplete();
 		}
 
+		/**
+		 * 播放放大效果
+		 */
+		public playEnlargeEff(): void {
+			this.isOpen = false;
+			this._dragonBones.animation.play("enlarge", 1)
+			this._dragonBones.once(dragonBones.EventObject.COMPLETE, this.onEnLargeEffComplete, this)
+		}
+
 
 
 		/**
@@ -46,7 +55,7 @@ module catchDoll {
 		/**
 		 * 关闭
 		 */
-		public close():void{
+		public close(): void {
 			this.isMonsterHitOpen = false;
 			this._dragonBones.animation.gotoAndStopByProgress("enlarge", 100);
 		}
