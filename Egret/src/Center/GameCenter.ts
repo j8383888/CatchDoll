@@ -35,7 +35,7 @@ module catchDoll {
 			super();
 			this._init();
 			this.addEventListener(egret.Event.ENTER_FRAME, this._enterFrame, this);
-			egret.MainContext.instance.stage.addEventListener(egret.Event.RESIZE, this._onResize, this, true, 1000)
+			egret.MainContext.instance.stage.addEventListener(egret.Event.RESIZE, this._onResize, this, false, 1000)
 		}
 
 		private _onResize(): void {
@@ -43,12 +43,15 @@ module catchDoll {
 			GameCenter.stageH = egret.MainContext.instance.stage.stageHeight;
 			GameCenter.adpateScaleY = GameCenter.stageH / 1280;
 			GameCenter.stageHOffset = GameCenter.stageH - 1280
+			egret.log("屏幕宽度："+GameCenter.stageW,"屏幕高度："+GameCenter.stageH)
 		}
 
 		private _init(): void {
 			Laya.init();
 			GameCenter.stageW = egret.MainContext.instance.stage.stageWidth;
 			GameCenter.stageH = egret.MainContext.instance.stage.stageHeight;
+
+			egret.log("屏幕宽度："+GameCenter.stageW,"屏幕高度："+GameCenter.stageH)
 			GameCenter.adpateScaleY = GameCenter.stageH / 1280;
 			GameCenter.stageHOffset = GameCenter.stageH - 1280
 			this.gameObjectManager = GameObjectManager.instance;

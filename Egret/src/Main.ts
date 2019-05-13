@@ -39,7 +39,7 @@ class Main extends eui.UILayer {
             egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH
         }
         else {
-            egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.SHOW_ALL
+            egret.MainContext.instance.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH
         }
         super.createChildren();
         egret.lifecycle.addLifecycleListener((context) => {
