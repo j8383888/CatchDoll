@@ -43,7 +43,7 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
 
     public group: eui.Group;
 
-    public bg:eui.Image;
+    public bg: eui.Image;
 
 
 
@@ -51,13 +51,15 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
         super();
         this.skinName = "LoadingSkin";
 
+
         this.LoadingEff = UIUtil.creatMovieClip("LoadingEff")
         this.LoadingEff.play(-1);
         this.LoadingEff.x = this.LoadingStartPos.x;
         this.LoadingEff.y = this.LoadingStartPos.y
         this.height = egret.MainContext.instance.stage.stageHeight;
-        this.group.addChild(this.LoadingEff)
-
+        this.group.addChild(this.LoadingEff);
+        let imgNode = document.getElementById("fontImg")
+        imgNode.parentNode.removeChild(imgNode);
     }
 
     public onProgress(current: number, total: number): void {
