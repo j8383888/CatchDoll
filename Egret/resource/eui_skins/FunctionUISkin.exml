@@ -2,16 +2,16 @@
 <e:Skin class="FunctionUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
 	<e:Group y="0" x="10">
 		<e:Group x="388.58" y="52.24">
-		<e:Image x="0" y="0" source="otherRes1_11"/>
+		<e:Image x="0" y="-1" source="otherRes1_11"/>
 		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45"/>
 		<e:Image x="-26" y="-8" source="functionUI_7"/>
-		<e:Label id="diamond" text="0" x="6" y="8" anchorOffsetX="0" width="90" textAlign="right" scaleX="1" scaleY="1"/>
+		<e:Label id="diamond" text="0" x="6" y="10.8" anchorOffsetX="0" width="90" textAlign="right" scaleX="1" scaleY="1"/>
 		</e:Group>
 		<e:Group x="171.85" y="52.24">
 		<e:Image x="0" y="0" source="otherRes1_11"/>
 		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45" scaleX="1" scaleY="1"/>
 		<e:Image x="-26" y="-8" source="functionUI_16"/>
-		<e:Label id="money" text="0" x="6" y="9" anchorOffsetX="0" width="90" textAlign="right"/>
+		<e:Label id="money" text="0" x="6" y="11.8" anchorOffsetX="0" width="90" textAlign="right"/>
 		</e:Group>
 		<e:Image id="_menuBtn" source="functionUI_9" scaleX="0.8" scaleY="0.8" x="588.29" y="10.6"/>
 		<e:Group x="0" y="0">

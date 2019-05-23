@@ -145,7 +145,7 @@
 		},
 		{
 			"name":"otherRes1_json",
-			"subkeys":"otherRes1_1,otherRes1_10,otherRes1_11,otherRes1_12,otherRes1_14,otherRes1_15,otherRes1_16,otherRes1_18,otherRes1_19,otherRes1_2,otherRes1_20,otherRes1_21,otherRes1_23,otherRes1_3,otherRes1_32,otherRes1_4,otherRes1_5,otherRes1_6,otherRes1_7,otherRes1_8,otherRes1_9",
+			"subkeys":"otherRes1_1,otherRes1_10,otherRes1_11,otherRes1_12,otherRes1_13,otherRes1_14,otherRes1_15,otherRes1_16,otherRes1_17,otherRes1_18,otherRes1_19,otherRes1_2,otherRes1_20,otherRes1_21,otherRes1_22,otherRes1_23,otherRes1_24,otherRes1_25,otherRes1_3,otherRes1_32,otherRes1_4,otherRes1_5,otherRes1_6,otherRes1_7,otherRes1_8,otherRes1_9",
 			"type":"sheet",
 			"url":"assets/atlas/otherRes1.json"
 		},

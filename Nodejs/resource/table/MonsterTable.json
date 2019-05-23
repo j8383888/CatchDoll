@@ -18,7 +18,7 @@
 {"id":17,"name":"机器人B蓝","dragonBones":"erjilan","life":50,"moveSpeed":195.0,"colliderAry":[{"posX":-2,"posY":-5,"radius":54}],"level":1,"showInIllustrations":1,"isActiveInside":0},
 {"id":18,"name":"机器人B绿","dragonBones":"erjilv","life":50,"moveSpeed":195.0,"colliderAry":[{"posX":0,"posY":-7,"radius":57}],"level":1,"showInIllustrations":1,"isActiveInside":0},
 {"id":19,"name":"机器人B紫","dragonBones":"erjizi","life":50,"moveSpeed":195.0,"colliderAry":[{"posX":0,"posY":-9,"radius":53}],"level":1,"showInIllustrations":1,"isActiveInside":0},
-{"id":20,"name":"小鸭幼年绿","dragonBones":"lvya","life":50,"moveSpeed":200.0,"colliderAry":[{"posX":0,"posY":-9,"radius":54}],"level":2,"showInIllustrations":1,"isActiveInside":0},
-{"id":21,"name":"小鸭幼年紫","dragonBones":"ziya","life":50,"moveSpeed":201.0,"colliderAry":[{"posX":0,"posY":-9,"radius":55}],"level":2,"showInIllustrations":1,"isActiveInside":0},
-{"id":22,"name":"小鸭幼年黄","dragonBones":"huangya","life":50,"moveSpeed":202.0,"colliderAry":[{"posX":0,"posY":-9,"radius":56}],"level":2,"showInIllustrations":1,"isActiveInside":0}
+{"id":20,"name":"小鸭幼年绿","dragonBones":"lvya","life":50,"moveSpeed":200.0,"colliderAry":[{"posX":0,"posY":-8,"radius":69}],"level":2,"showInIllustrations":1,"isActiveInside":0},
+{"id":21,"name":"小鸭幼年紫","dragonBones":"ziya","life":50,"moveSpeed":201.0,"colliderAry":[{"posX":0,"posY":-8,"radius":69}],"level":2,"showInIllustrations":1,"isActiveInside":0},
+{"id":22,"name":"小鸭幼年黄","dragonBones":"huangya","life":50,"moveSpeed":202.0,"colliderAry":[{"posX":0,"posY":-8,"radius":69}],"level":2,"showInIllustrations":1,"isActiveInside":0}
 ]

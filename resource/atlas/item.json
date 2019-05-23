@@ -2,24 +2,24 @@
   "file": "item.png",
   "frames": {
     "item_1": {
-      "x": 413,
-      "y": 0,
-      "w": 65,
-      "h": 65,
-      "offX": 0,
-      "offY": 0,
-      "sourceW": 65,
-      "sourceH": 65
-    },
-    "item_2": {
       "x": 316,
       "y": 106,
-      "w": 65,
-      "h": 65,
+      "w": 63,
+      "h": 63,
       "offX": 0,
       "offY": 0,
-      "sourceW": 65,
-      "sourceH": 65
+      "sourceW": 63,
+      "sourceH": 63
+    },
+    "item_2": {
+      "x": 413,
+      "y": 0,
+      "w": 70,
+      "h": 70,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 70,
+      "sourceH": 70
     },
     "item_3": {
       "x": 0,
