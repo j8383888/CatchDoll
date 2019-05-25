@@ -38,6 +38,14 @@ module catchDoll {
 		 * 抽卡按钮
 		 */
 		public PumpingCardBtn: Button;
+		/**
+		 * 灯光光影
+		 */
+		public eff1:egret.MovieClip;
+		/**
+		 * 方块特效
+		 */
+		public eff2:egret.MovieClip;
 
 
 
@@ -87,6 +95,14 @@ module catchDoll {
 			this.inventBtn = new Button(this.skin["_inventBtn"]);
 			this.turnTableBtn = new Button(this.skin["_turnTableBtn"]);
 			this.PumpingCardBtn = new Button(this.skin["_PumpingCardBtn"]);
+
+			this.eff1 = UIUtil.creatMovieClip("eff_1");
+			this.eff1.gotoAndPlay(1,-1);
+			this.skin["cubeGroup"].addChild(this.eff1);
+
+			this.eff2 = UIUtil.creatMovieClip("eff_2");
+			this.eff2.gotoAndPlay(1,-1);
+			this.skin["cubeGroup"].addChild(this.eff2);
 
 		}
 

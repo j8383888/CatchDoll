@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="WorldMapSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
 	<e:Image id="bg" source="otherRes1_14" width="720" height="1280"/>
+	<e:Image x="27.2" y="371.75" source="otherRes1_13"/>
+	<e:Group x="65.2" y="565.75">
+		<e:Image source="otherRes1_22"/>
+		<e:Image horizontalCenter="0" verticalCenter="0" source="otherRes1_17"/>
+	</e:Group>
+	<e:Group x="475.2" y="569.75">
+		<e:Image horizontalCenter="0" verticalCenter="0" source="otherRes1_24"/>
+	</e:Group>
+	<e:Group x="-32.8" y="641.75">
+		<e:Image id="cloud1" x="0" y="108" source="otherRes1_27"/>
+		<e:Image id="cloud2" x="332" y="232" source="otherRes1_28"/>
+		<e:Image id="cloud3" x="82" y="302" source="otherRes1_29"/>
+		<e:Image id="cloud4" x="214" y="380" source="otherRes1_30"/>
+		<e:Image x="56" y="0" source="otherRes1_26"/>
+	</e:Group>
+	<e:Group id="cubeGroup" x="473.2" y="639.75">
+		<e:Image id="cube1" x="0" y="0" source="otherRes1_31"/>
+		<e:Image id="cube2" x="48" y="80" source="otherRes1_34"/>
+		<e:Image id="cube3" x="12" y="132" source="otherRes1_33"/>
+	</e:Group>
+	<e:Group x="181.2" y="255.75">
+		<e:Image source="otherRes1_22"/>
+		<e:Image source="otherRes1_25" horizontalCenter="0" verticalCenter="0"/>
+	</e:Group>
 
 
 
@@ -8,7 +32,7 @@
 
 
 
-	<e:Group x="0" verticalCenter="0">
+	<e:Group x="0" verticalCenter="0" visible="false">
 		<e:Scroller id="scroller" width="720" height="620" x="0" anchorOffsetX="0" anchorOffsetY="0" y="77.84">
 			<e:Group id="itemGroup">
 			<e:Group id="_chapterBtn1" x="0" y="70" width="720">
