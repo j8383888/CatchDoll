@@ -42,7 +42,7 @@ module catchDoll {
 		/**
 		 * 适配 
 		 */
-		private _onResize(): void {
+		protected _onResize(): void {
 			if (this.isWholeScene) {
 				if (this.skin["bg"] != null) {
 					this.skin["bg"].height = GameCenter.stageH;

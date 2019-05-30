@@ -183,9 +183,9 @@ class UIUtil {
 	/**
 	 * 设置对象缩放动画
 	 */
-	public static setScaleTween(target: egret.DisplayObject, scaleXGene: number, scaleYGene: number, durationTime: number = 600): void {
-		egret.Tween.get(target).to({ scaleX: 1.1 * scaleXGene, scaleY: 1.1 * scaleYGene }, durationTime).call(() => {
-			egret.Tween.get(target).to({ scaleX: 0.9 * scaleXGene, scaleY: 0.9 * scaleYGene }, durationTime).call(this.setScaleTween, this, [target, scaleXGene, scaleYGene, durationTime])
+	public static setScaleTween(target: egret.DisplayObject, bigScale: number = 1.1, smallScale: number = 0.9, durationTime: number = 600): void {
+		egret.Tween.get(target).to({ scaleX: bigScale, scaleY: bigScale }, durationTime).call(() => {
+			egret.Tween.get(target).to({ scaleX: smallScale, scaleY: smallScale }, durationTime).call(this.setScaleTween, this, [target, bigScale, smallScale, durationTime])
 		}, this);
 	}
 

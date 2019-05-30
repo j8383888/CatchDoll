@@ -3,13 +3,13 @@
 	<e:Group y="0" x="10">
 		<e:Group x="388.58" y="52.24">
 		<e:Image x="0" y="-1" source="otherRes1_11"/>
-		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45"/>
+		<e:Image x="133" y="-9" source="functionPanel_5" rotation="45"/>
 		<e:Image x="-26" y="-8" source="item_1"/>
 		<e:Label id="diamond" text="0" x="6" y="10.8" anchorOffsetX="0" width="90" textAlign="right" scaleX="1" scaleY="1"/>
 		</e:Group>
 		<e:Group x="171.85" y="52.24">
 		<e:Image x="0" y="0" source="otherRes1_11"/>
-		<e:Image x="130" y="-12" source="functionPanel_5" rotation="45" scaleX="1" scaleY="1"/>
+		<e:Image x="133" y="-9" source="functionPanel_5" rotation="45" scaleX="1" scaleY="1"/>
 		<e:Image x="-26" y="-8" source="item_2"/>
 		<e:Label id="money" text="0" x="6" y="11.8" anchorOffsetX="0" width="90" textAlign="right"/>
 		</e:Group>

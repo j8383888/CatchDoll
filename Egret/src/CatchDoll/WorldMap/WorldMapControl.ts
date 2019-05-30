@@ -29,7 +29,7 @@ module catchDoll {
 			for (let item of this._view.chapterBtns) {
 				item.mouseClickHandler = Handler.create(this, this._onClickChapter)
 			}
-			this._view.PumpingCardBtn.mouseUpHandler =Handler.create(null,()=>{
+			this._view.gameBtn2.mouseUpHandler =Handler.create(null,()=>{
 				SimpleUICenter.instance.openUI(SIMPLE_UI.PumpingCard);
 			})
 
@@ -42,6 +42,9 @@ module catchDoll {
 			})
 			this._view.inventBtn.mouseClickHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
+			})
+			this._view.gameBtn1.mouseClickHandler = Handler.create(null,()=>{
+				this._view.group.visible = !this._view.group.visible;
 			})
 		}
 
