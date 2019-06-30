@@ -23,13 +23,13 @@ module catchDoll {
 		 * 显示时
 		 */
 		public onShow(): void {
-			let view: FunctionUIView = UICenter.instance.getManager(commonUI.FunctionUI).getView(FunctionUIView);
-			view.visible = true;
+			// let view: FunctionUIView = UICenter.instance.getManager(commonUI.FunctionUI).getView(FunctionUIView);
+			// view.visible = true;
 
 			for (let item of this._view.chapterBtns) {
 				item.mouseClickHandler = Handler.create(this, this._onClickChapter)
 			}
-			this._view.gameBtn2.mouseUpHandler =Handler.create(null,()=>{
+			this._view.gameBtn2.mouseUpHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.PumpingCard);
 			})
 
@@ -43,8 +43,9 @@ module catchDoll {
 			this._view.inventBtn.mouseClickHandler = Handler.create(null, () => {
 				SimpleUICenter.instance.openUI(SIMPLE_UI.SettlePanel, { starNum: 3, itemID: 1 });
 			})
-			this._view.gameBtn1.mouseClickHandler = Handler.create(null,()=>{
-				this._view.group.visible = !this._view.group.visible;
+			this._view.gameBtn1.mouseClickHandler = Handler.create(null, () => {
+				SimpleUICenter.instance.openUI(SIMPLE_UI.BattleChapter);
+				// this._view.group.visible = !this._view.group.visible;
 			})
 		}
 
@@ -67,8 +68,8 @@ module catchDoll {
 		 * 释放
 		 */
 		public dispose(): void {
-			let view: FunctionUIView = UICenter.instance.getManager(commonUI.FunctionUI).getView(FunctionUIView);
-			view.visible = false;
+			// let view: FunctionUIView = UICenter.instance.getManager(commonUI.FunctionUI).getView(FunctionUIView);
+			// view.visible = false;
 			this._view = null;
 			super.dispose();
 		}

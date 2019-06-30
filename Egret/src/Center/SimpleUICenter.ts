@@ -32,6 +32,7 @@ module catchDoll {
 			this.addUI(SIMPLE_UI.BattleSelect, BattleSelectLevelPanel);
 			this.addUI(SIMPLE_UI.PumpingCard, PumpingCardPanel);
 			this.addUI(SIMPLE_UI.LoginAward, LoginAward);
+			this.addUI(SIMPLE_UI.BattleChapter, BattleChapterPanel);
 		}
 
 		/**
@@ -132,6 +133,8 @@ module catchDoll {
 		SystemTips,
 		/*战役选关*/
 		BattleSelect,
+		/*战役章节面板*/
+		BattleChapter,
 		/*抽卡*/
 		PumpingCard,
 		/*登录奖励*/

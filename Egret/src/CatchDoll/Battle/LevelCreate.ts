@@ -544,7 +544,8 @@ module catchDoll {
 			if (this._catchMonster) {
 				egret.Tween.removeTweens(this._catchMonster.haemalStrandMask)
 			}
-			Master.instance.MasterPaws.pawsBody.isDown = false;
+			let paw = Master.instance.MasterPaws
+			paw.pawsBody.isDown = false;
 			egret.Tween.removeTweens(Master.instance.MasterPaws.pawsBody.pawsHead)
 
 			let len: number = LevelCreate.inSenceMonsterMap.length;

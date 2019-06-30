@@ -81,7 +81,7 @@ module catchDoll {
 		/**
 		 * miss文本
 		 */
-		public missLabel: eui.Label = new eui.Label();
+		public missImg: PivotCenterImage = new PivotCenterImage();
 		/**
 		 * miss标志
 		 */
@@ -153,15 +153,15 @@ module catchDoll {
 				this.haemalStrandMask.y = this.haemalStrand.y = this.haemalStrandFrame.y = -100;
 			}
 
-			this.missLabel.text = "miss"
-			this.addChild(this.missLabel)
-			this.missLabel.alpha = 0;
-			this.missLabel.y = -50
-			this.missLabel.x = -this.missLabel.textWidth / 2
+			this.missImg.source = "otherRes4_9"
+			this.addChild(this.missImg)
+			this.missImg.alpha = 0;
+			this.missImg.y = -50
+			this.missImg.x = 0
 		}
 
 		public showMiss(): void {
-			egret.Tween.get(this.missLabel, null, null, true).set({ y: -50 }).to({ y: this.haemalStrandMask.y, alpha: 1 }, 500).wait(1000).to({ alpha: 0 }, 300);
+			egret.Tween.get(this.missImg, null, null, true).set({ y: -50 }).to({ y: this.haemalStrandMask.y , alpha: 1 }, 500).wait(1000).to({ alpha: 0 }, 300);
 			this.isMiss = true;
 		}
 

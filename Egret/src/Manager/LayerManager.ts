@@ -101,7 +101,8 @@ module catchDoll {
  */
 const enum LAYER {
 	BG,
-	SCENE,
+	WorldMap,
+	BattleChapter,
 	UI,
 
 	BATTLE_LOW,

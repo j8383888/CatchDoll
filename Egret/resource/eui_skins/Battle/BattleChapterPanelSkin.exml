@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BattleChapterPanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="otherRes4_2"/>
+	<e:Image id="closeBtn" source="otherRes4_8" right="0" top="23"/>
+	<e:Scroller width="720" height="390" verticalCenter="0">
+		<e:Group>
+			<e:Group id="_chapterBtn1" x="0" y="31">
+				<e:Image y="0" source="otherRes4_1"/>
+				<e:Image source="otherRes4_4" horizontalCenter="0" verticalCenter="-19.5"/>
+			</e:Group>
+			<e:Group id="_chapterBtn2" x="10" y="41">
+				<e:Image y="0" source="otherRes4_1"/>
+				<e:Image horizontalCenter="0" verticalCenter="-19.5" source="otherRes4_5"/>
+			</e:Group>
+			<e:Group id="_chapterBtn3" x="20" y="51">
+				<e:Image y="0" source="otherRes4_1"/>
+				<e:Image horizontalCenter="0" verticalCenter="-19.5" source="otherRes4_6"/>
+			</e:Group>
+			<e:Group id="_chapterBtn4" x="30" y="61">
+				<e:Image y="0" source="otherRes4_1"/>
+				<e:Image source="otherRes4_7" horizontalCenter="0" verticalCenter="-19.5"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

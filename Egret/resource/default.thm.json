@@ -3,6 +3,7 @@
 	"autoGenerateExmlsList": true,
 	"exmls": [
 		"resource/eui_skins/BagPanelSkin.exml",
+		"resource/eui_skins/Battle/BattleChapterPanelSkin.exml",
 		"resource/eui_skins/Battle/BattleLevelItemSkin.exml",
 		"resource/eui_skins/Battle/BattleSceneSkin.exml",
 		"resource/eui_skins/Battle/BattleSelectLevelSkin.exml",

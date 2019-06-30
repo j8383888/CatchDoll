@@ -32,7 +32,7 @@ module catchDoll {
 		 * 展示时
 		 */
 		public onShow(): void {
-			this.addToStage(LAYER.SCENE);
+			this.addToStage(LAYER.WorldMap);
 		}
 
 

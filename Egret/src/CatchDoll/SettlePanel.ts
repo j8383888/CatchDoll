@@ -18,7 +18,7 @@ module catchDoll {
 		public openParam: { starNum: number, itemID: number };
 
 		public constructor() {
-			super(POP_EFFECT.CENTER, true);
+			super(POP_EFFECT.CENTER);
 			this.skinName = "SettlePanelSkin"
 		}
 

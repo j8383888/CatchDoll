@@ -179,7 +179,7 @@ module catchDoll {
 		 */
 		public onShow(): void {
 			this.scrollerTool = new ScollerTool(this.scroller, 720, false);
-			this.addToStage(LAYER.SCENE);
+			this.addToStage(LAYER.WorldMap);
 		}
 
 

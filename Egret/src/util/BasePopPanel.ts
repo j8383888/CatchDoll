@@ -205,8 +205,8 @@ module catchDoll {
 				this._blakBG.graphics.endFill();
 				this._blakBG.touchEnabled = true;
 				this._blakBG.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onClickBlackBg, this)
-				let layer = LayerManager.instance.getLayer(layerType);
-				layer.addChildAt(this._blakBG, 0);
+				// let layer = LayerManager.instance.getLayer(layerType);
+				this.addChildAt(this._blakBG, 0);
 			}
 		}
 

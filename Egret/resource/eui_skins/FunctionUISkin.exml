@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="FunctionUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="1280" width="720">
-	<e:Group y="0" x="10">
+	<e:Group y="0" x="10" touchEnabled="false">
 		<e:Group x="388.58" y="52.24">
 		<e:Image x="0" y="-1" source="otherRes1_11"/>
 		<e:Image x="133" y="-9" source="functionPanel_5" rotation="45"/>
@@ -13,7 +13,7 @@
 		<e:Image x="-26" y="-8" source="item_2"/>
 		<e:Label id="money" text="0" x="6" y="11.8" anchorOffsetX="0" width="90" textAlign="right"/>
 		</e:Group>
-		<e:Image id="_menuBtn" source="functionUI_9" scaleX="0.8" scaleY="0.8" x="588.29" y="10.6"/>
+		<e:Image id="_menuBtn" source="functionUI_9" scaleX="0.8" scaleY="0.8" x="588.29" y="10.6" visible="false"/>
 		<e:Group x="0" y="0">
 		<e:Image id="headImg" scaleX="0.8" scaleY="0.8" source="otherRes1_3" horizontalCenter="0" verticalCenter="0"/>
 		<e:Image scaleX="0.8" scaleY="0.8" source="otherRes1_6" x="0" y="0"/>

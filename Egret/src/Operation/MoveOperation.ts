@@ -181,10 +181,11 @@ module catchDoll {
 				}
 			}
 
-			let transform = monster.dragonBones.armature.getBone("centre").global
-
-			monster.haemalGroup.x = transform.x;
-			monster.haemalGroup.y = transform.y;
+			if (monster.isActiveInside) {
+				let transform = monster.dragonBones.armature.getBone("centre").global
+				monster.haemalGroup.x = transform.x;
+				monster.haemalGroup.y = transform.y;
+			}
 
 
 			if (curMoveDistance > this.nextPathNode.distTotal) {
