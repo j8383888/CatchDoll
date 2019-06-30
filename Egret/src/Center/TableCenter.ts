@@ -88,10 +88,7 @@ module catchDoll {
 			this.ShopTable = ConfigParse.getJosn("ShopTable_json");
 			this.treasureTable = ConfigParse.getJosn("TreasureTable_json");
 			this.ChapterData = ConfigParse.getJosn("LevelData_json");
-
 			this.SceneInteractiveObjectTable = ConfigParse.getJosn("SceneInteractiveObjectTable_json");
-
-
 		}
 
 		/**
