@@ -60,6 +60,16 @@
       "offY": 0,
       "sourceW": 157,
       "sourceH": 55
+    },
+    "star": {
+      "x": 222,
+      "y": 0,
+      "w": 33,
+      "h": 31,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 33,
+      "sourceH": 31
     }
   }
 }

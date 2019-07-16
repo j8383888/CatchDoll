@@ -58,6 +58,9 @@ module catchDoll {
 		 */
 		public onInit(): void {
 
+			for (let i: number = 1; i < 5; i++) {
+				this.skin["pro" + i].mask = this.skin["mask" + i]
+			}
 			let toggle1: ToggleButton = new ToggleButton(this.skin["switchBtn1"])
 			let toggle2: ToggleButton = new ToggleButton(this.skin["switchBtn2"])
 			toggle1.selectHandler = Handler.create(null, () => {

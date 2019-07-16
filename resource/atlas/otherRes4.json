@@ -90,6 +90,176 @@
       "offY": 0,
       "sourceW": 165,
       "sourceH": 122
+    },
+    "otherRes4_10": {
+      "x": 1171,
+      "y": 301,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_11": {
+      "x": 1094,
+      "y": 379,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_12": {
+      "x": 958,
+      "y": 518,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_13": {
+      "x": 1267,
+      "y": 210,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_14": {
+      "x": 166,
+      "y": 1320,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_15": {
+      "x": 721,
+      "y": 776,
+      "w": 40,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 40,
+      "sourceH": 40
+    },
+    "otherRes4_16": {
+      "x": 1094,
+      "y": 301,
+      "w": 76,
+      "h": 38,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 76,
+      "sourceH": 38
+    },
+    "otherRes4_17": {
+      "x": 1094,
+      "y": 340,
+      "w": 76,
+      "h": 38,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 76,
+      "sourceH": 38
+    },
+    "otherRes4_18": {
+      "x": 166,
+      "y": 1281,
+      "w": 76,
+      "h": 38,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 76,
+      "sourceH": 38
+    },
+    "otherRes4_19": {
+      "x": 99,
+      "y": 1404,
+      "w": 46,
+      "h": 24,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 46,
+      "sourceH": 24
+    },
+    "otherRes4_20": {
+      "x": 1030,
+      "y": 301,
+      "w": 48,
+      "h": 25,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 48,
+      "sourceH": 25
+    },
+    "otherRes4_21": {
+      "x": 1504,
+      "y": 0,
+      "w": 47,
+      "h": 23,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 47,
+      "sourceH": 23
+    },
+    "otherRes4_22": {
+      "x": 0,
+      "y": 1502,
+      "w": 48,
+      "h": 25,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 48,
+      "sourceH": 25
+    },
+    "otherRes4_23": {
+      "x": 721,
+      "y": 751,
+      "w": 77,
+      "h": 24,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 77,
+      "sourceH": 24
+    },
+    "otherRes4_24": {
+      "x": 721,
+      "y": 726,
+      "w": 81,
+      "h": 24,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 81,
+      "sourceH": 24
+    },
+    "otherRes4_25": {
+      "x": 958,
+      "y": 465,
+      "w": 119,
+      "h": 52,
+      "offX": 1,
+      "offY": 4,
+      "sourceW": 120,
+      "sourceH": 60
+    },
+    "otherRes4_26": {
+      "x": 1030,
+      "y": 260,
+      "w": 236,
+      "h": 40,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 236,
+      "sourceH": 40
     }
   }
 }

@@ -36,13 +36,13 @@
 		},
 		{
 			"name":"commonRes_json",
-			"subkeys":"closeBtnBig,closeBtnSmall,pauseBtn,returnBtn,selectBg1,selectBg2",
+			"subkeys":"closeBtnBig,closeBtnSmall,pauseBtn,returnBtn,selectBg1,selectBg2,star",
 			"type":"sheet",
 			"url":"assets/atlas/commonRes.json"
 		},
 		{
 			"name":"fragment_json",
-			"subkeys":"fragment_1,fragment_101,fragment_102,fragment_103,fragment_104,fragment_105,fragment_2,fragment_201,fragment_202,fragment_203,fragment_3,fragment_301,fragment_302,fragment_303,fragment_4,fragment_401,fragment_402,fragment_403,fragment_5,fragment_501,fragment_502,fragment_503",
+			"subkeys":"fragment_1,fragment_101,fragment_102,fragment_103,fragment_104,fragment_105,fragment_2,fragment_201,fragment_202,fragment_203,fragment_3,fragment_301,fragment_302,fragment_303,fragment_4,fragment_401,fragment_402,fragment_403,fragment_5,fragment_501,fragment_502,fragment_503,fragment_601,fragment_602,fragment_603,fragment_604,fragment_605,fragment_606",
 			"type":"sheet",
 			"url":"assets/atlas/fragment.json"
 		},
@@ -84,7 +84,7 @@
 		},
 		{
 			"name":"otherRes2_json",
-			"subkeys":"otherRes2_1,otherRes2_10,otherRes2_11,otherRes2_12,otherRes2_13,otherRes2_14,otherRes2_15,otherRes2_16,otherRes2_17,otherRes2_18,otherRes2_19,otherRes2_2,otherRes2_20,otherRes2_21,otherRes2_22,otherRes2_23,otherRes2_24,otherRes2_25,otherRes2_26,otherRes2_27,otherRes2_28,otherRes2_29,otherRes2_3,otherRes2_30,otherRes2_31,otherRes2_32,otherRes2_33,otherRes2_34,otherRes2_35,otherRes2_36,otherRes2_37,otherRes2_38,otherRes2_39,otherRes2_4,otherRes2_40,otherRes2_41,otherRes2_42,otherRes2_43,otherRes2_44,otherRes2_45,otherRes2_46,otherRes2_47,otherRes2_48,otherRes2_49,otherRes2_5,otherRes2_50,otherRes2_51,otherRes2_52,otherRes2_53,otherRes2_6,otherRes2_7,otherRes2_8,otherRes2_9",
+			"subkeys":"otherRes2_1,otherRes2_10,otherRes2_11,otherRes2_12,otherRes2_13,otherRes2_14,otherRes2_15,otherRes2_16,otherRes2_17,otherRes2_18,otherRes2_19,otherRes2_2,otherRes2_20,otherRes2_21,otherRes2_22,otherRes2_23,otherRes2_24,otherRes2_25,otherRes2_26,otherRes2_27,otherRes2_28,otherRes2_29,otherRes2_3,otherRes2_30,otherRes2_31,otherRes2_32,otherRes2_33,otherRes2_34,otherRes2_35,otherRes2_36,otherRes2_37,otherRes2_38,otherRes2_39,otherRes2_4,otherRes2_40,otherRes2_41,otherRes2_42,otherRes2_43,otherRes2_44,otherRes2_45,otherRes2_46,otherRes2_47,otherRes2_48,otherRes2_49,otherRes2_5,otherRes2_50,otherRes2_51,otherRes2_52,otherRes2_53,otherRes2_54,otherRes2_55,otherRes2_6,otherRes2_7,otherRes2_8,otherRes2_9",
 			"type":"sheet",
 			"url":"assets/atlas/otherRes2.json"
 		},
@@ -96,7 +96,7 @@
 		},
 		{
 			"name":"otherRes4_json",
-			"subkeys":"otherRes4_1,otherRes4_2,otherRes4_3,otherRes4_4,otherRes4_5,otherRes4_6,otherRes4_7,otherRes4_8,otherRes4_9",
+			"subkeys":"otherRes4_1,otherRes4_10,otherRes4_11,otherRes4_12,otherRes4_13,otherRes4_14,otherRes4_15,otherRes4_16,otherRes4_17,otherRes4_18,otherRes4_19,otherRes4_2,otherRes4_20,otherRes4_21,otherRes4_22,otherRes4_23,otherRes4_24,otherRes4_25,otherRes4_26,otherRes4_3,otherRes4_4,otherRes4_5,otherRes4_6,otherRes4_7,otherRes4_8,otherRes4_9",
 			"type":"sheet",
 			"url":"assets/atlas/otherRes4.json"
 		},

@@ -21,13 +21,21 @@ module table {
 		 */
 		dragonBones: string;
 		/**
-		 * 生命值
+		 * 生命
 		 */
 		life: number;
 		/**
-		 * 移动速度
+		 * 速度
 		 */
 		moveSpeed: number;
+		/**
+		 * 技巧
+		 */
+		skill: number;
+		/**
+		 * 能量
+		 */
+		power: number;
 		/**
 		 * 碰撞体
 		 */

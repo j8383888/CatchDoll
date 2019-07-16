@@ -2,16 +2,6 @@
   "file": "fragment.png",
   "frames": {
     "fragment_1": {
-      "x": 852,
-      "y": 193,
-      "w": 47,
-      "h": 48,
-      "offX": 0,
-      "offY": 0,
-      "sourceW": 49,
-      "sourceH": 48
-    },
-    "fragment_2": {
       "x": 102,
       "y": 951,
       "w": 47,
@@ -21,8 +11,8 @@
       "sourceW": 49,
       "sourceH": 48
     },
-    "fragment_3": {
-      "x": 942,
+    "fragment_2": {
+      "x": 949,
       "y": 112,
       "w": 47,
       "h": 48,
@@ -31,9 +21,19 @@
       "sourceW": 49,
       "sourceH": 48
     },
+    "fragment_3": {
+      "x": 150,
+      "y": 951,
+      "w": 47,
+      "h": 48,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 49,
+      "sourceH": 48
+    },
     "fragment_4": {
-      "x": 320,
-      "y": 750,
+      "x": 949,
+      "y": 161,
       "w": 47,
       "h": 48,
       "offX": 0,
@@ -42,8 +42,8 @@
       "sourceH": 48
     },
     "fragment_5": {
-      "x": 232,
-      "y": 839,
+      "x": 852,
+      "y": 293,
       "w": 47,
       "h": 48,
       "offX": 0,
@@ -62,8 +62,8 @@
       "sourceH": 72
     },
     "fragment_102": {
-      "x": 852,
-      "y": 99,
+      "x": 697,
+      "y": 407,
       "w": 89,
       "h": 93,
       "offX": 0,
@@ -72,8 +72,8 @@
       "sourceH": 93
     },
     "fragment_103": {
-      "x": 232,
-      "y": 750,
+      "x": 465,
+      "y": 644,
       "w": 87,
       "h": 88,
       "offX": 0,
@@ -92,7 +92,7 @@
       "sourceH": 98
     },
     "fragment_105": {
-      "x": 465,
+      "x": 562,
       "y": 547,
       "w": 82,
       "h": 93,
@@ -220,6 +220,66 @@
       "offY": 0,
       "sourceW": 231,
       "sourceH": 69
+    },
+    "fragment_601": {
+      "x": 852,
+      "y": 99,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
+    },
+    "fragment_602": {
+      "x": 232,
+      "y": 750,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
+    },
+    "fragment_603": {
+      "x": 465,
+      "y": 547,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
+    },
+    "fragment_604": {
+      "x": 852,
+      "y": 196,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
+    },
+    "fragment_605": {
+      "x": 232,
+      "y": 847,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
+    },
+    "fragment_606": {
+      "x": 329,
+      "y": 750,
+      "w": 96,
+      "h": 96,
+      "offX": 0,
+      "offY": 0,
+      "sourceW": 96,
+      "sourceH": 96
     }
   }
 }

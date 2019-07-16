@@ -47,8 +47,10 @@
 		<field column="id" code="id" type="int32" />
 		<field column="怪兽名称" code="name" type="string" />
 		<field column="渲染源" code="dragonBones" type="string" />
-		<field column="生命值" code="life" type="int32" />
-		<field column="移动速度" code="moveSpeed" type="float" />
+		<field column="生命" code="life" type="float" />
+		<field column="速度" code="moveSpeed" type="float" />
+		<field column="技巧" code="skill" type="float" />
+		<field column="能量" code="power" type="float" />
 		<field column="碰撞体" code="colliderAry" type="array" >
 			<field column="value" code="value" type="object" >
 				<field column="posX" type="int32" />
