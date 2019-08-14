@@ -26,7 +26,7 @@
 		<e:Group x="60.35" y="132.33">
 			<e:Group x="0" y="0">
 				<e:Label text="生命" x="0" y="3" textColor="0x14BC30" fontFamily="SimHei" size="25"/>
-				<e:Label text="5" x="148" y="3" fontFamily="SimHei" size="25" textColor="0x00deff"/>
+				<e:Label id="v1" text="5" x="148" y="3" fontFamily="SimHei" size="25" textColor="0x00deff"/>
 				<e:Group x="61.66" verticalCenter="0">
 					<e:Image x="0" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_24"/>
 					<e:Image id="pro1" x="2" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_23"/>
@@ -35,7 +35,7 @@
 			</e:Group>
 			<e:Group x="3.33" y="36.68">
 				<e:Label text="速度" x="0" y="3.45" textColor="0x14BC30" fontFamily="SimHei" size="25"/>
-				<e:Label text="2" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
+				<e:Label id="v2" text="2" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
 				<e:Group x="61.66" verticalCenter="0">
 					<e:Image x="0" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_24"/>
 					<e:Image id="pro2" x="2" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_23"/>
@@ -44,7 +44,7 @@
 			</e:Group>
 			<e:Group x="10" y="90.01">
 				<e:Label text="技巧" x="0" y="3.45" textColor="0x14BC30" fontFamily="SimHei" size="25"/>
-				<e:Label text="3" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
+				<e:Label id="v3" text="3" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
 				<e:Group x="61.66" verticalCenter="0">
 					<e:Image x="0" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_24"/>
 					<e:Image id="pro3" x="2" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_23"/>
@@ -53,7 +53,7 @@
 			</e:Group>
 			<e:Group x="10" y="130">
 				<e:Label text="能量" x="0" y="3.45" textColor="0x14BC30" fontFamily="SimHei" size="25"/>
-				<e:Label text="1" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
+				<e:Label id="v4" text="1" x="148" y="3" textColor="0x00DEFF" fontFamily="SimHei" size="25"/>
 				<e:Group x="61.66" verticalCenter="0">
 					<e:Image x="0" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_24"/>
 					<e:Image id="pro4" x="2" y="0" anchorOffsetY="0" anchorOffsetX="0" source="otherRes4_23"/>

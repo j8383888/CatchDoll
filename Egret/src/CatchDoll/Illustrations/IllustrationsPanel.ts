@@ -81,7 +81,6 @@ module catchDoll {
 			})
 			toggle2.cancelHanlder = Handler.create(null, () => {
 				this._getSwitchBtnBG(toggle2).source = this.UN_SELECT_BG_SOURCE;
-
 			})
 
 			this._toggleButtonGroup.push(toggle1);
@@ -191,6 +190,22 @@ module catchDoll {
 			this._lastStageCenterTarget.animation.play(null, 0)
 			this._lastStageCenterTarget.x = this.group.width / 2
 			this._lastStageCenterTarget.y = this.group.height / 2
+			let life = data.life;
+			let moveSpeed = data.moveSpeed;
+			let skill = data.skill;
+			let power = data.power;
+			this.skin["v1"].text = life;
+			this.skin["v2"].text = moveSpeed;
+			this.skin["v3"].text = skill;
+			this.skin["v4"].text = power;
+			let v1 = life / 500 * 77;
+			let v2 = moveSpeed / 300 * 77;
+			let v3 = skill / 5 * 77;
+			let v4 = power / 5 * 77;
+			egret.Tween.get(this.skin["mask1"], null, null, true).set({ width: 0 }).to({ width: v1 }, 300, egret.Ease.quadIn)
+			egret.Tween.get(this.skin["mask2"], null, null, true).set({ width: 0 }).to({ width: v2 }, 300, egret.Ease.quadIn)
+			egret.Tween.get(this.skin["mask3"], null, null, true).set({ width: 0 }).to({ width: v3 }, 300, egret.Ease.quadIn)
+			egret.Tween.get(this.skin["mask4"], null, null, true).set({ width: 0 }).to({ width: v4 }, 300, egret.Ease.quadIn)
 			this.nameLabel.text = data.name;
 			this.fragmentImg.source = "fragment_" + data.level;
 			this.fragmentTopImg.source = "fragment_10" + data.level
